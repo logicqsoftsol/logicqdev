@@ -1,0 +1,11 @@
+CREATE TABLE TASK (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  name VARCHAR(80) NOT NULL,
+  description	 VARCHAR(50) NOT NULL,
+  priority  INT(2) NOT NULL,
+   status VARCHAR(80) NOT NULL,
+    userid VARCHAR(80) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE INDEX (userid)
+) ENGINE=INNODB;
+ 
