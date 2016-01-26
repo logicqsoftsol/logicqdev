@@ -334,7 +334,6 @@
 						<warSourceDirectory>src/main/webapp</warSourceDirectory>
 						<warName>logicq</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
-						<outputDirectory>D:/apache-tomcat-7.0.67/webapps</outputDirectory>						
 					</configuration>
 				</plugin>
 			</plugins>
