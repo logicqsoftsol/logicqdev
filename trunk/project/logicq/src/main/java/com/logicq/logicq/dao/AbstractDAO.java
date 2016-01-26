@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -184,5 +186,16 @@ public class AbstractDAO<T> {
 			return list.get(0);
 		}
 		return null;
+	}
+
+	public List executeCriteriaForSingleColumn(Class clazz, Object[] params) {
+
+		Session session = getSession();
+		Criteria criteria = session.createCriteria(clazz);
+		for (Object o : params) {
+			criteria.setProjection(Projections.property(String.valueOf(o)));
+		}
+		List list = criteria.list();
+		return list;
 	}
 }
