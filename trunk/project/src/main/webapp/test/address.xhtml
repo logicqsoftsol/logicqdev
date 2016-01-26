@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+      
+      <composite:interface>
+    	<composite:attribute name="houselable" />
+    	<composite:attribute name="houseValue" />
+    	<composite:attribute name="floorlable" />
+    	<composite:attribute name="floorValue" />
+    	<composite:attribute name="buldinglable" />
+    	<composite:attribute name="buldingValue" />
+    	<composite:attribute name="streetlable" />
+    	<composite:attribute name="streetValue" />
+    	<composite:attribute name="localitylable" />
+    	<composite:attribute name="localityValue" />
+    	<composite:attribute name="landmarklable" />
+    	<composite:attribute name="landmarkValue" />
+    	<composite:attribute name="citylable" />
+    	<composite:attribute name="cityValue" />
+    	<composite:attribute name="statelable" />
+    	<composite:attribute name="stateValue" />
+    	<composite:attribute name="pincodelable" />
+    	<composite:attribute name="pincodeValue" />
+    	<composite:attribute name="countylable" />
+    	<composite:attribute name="countryValue" />
+    	<composite:attribute name="landphonelable" />
+    	<composite:attribute name="landphoneValue" />
+    	<composite:attribute name="mobilelable" />
+    	<composite:attribute name="mobileValue" />
+    	<composite:attribute name="emaillable" />
+    	<composite:attribute name="emailValue" />
+    </composite:interface>
+
+<composite:implementation>
+	<h:form>
+		<h:message for="textPanel" />
+		<h:panelGrid columns="7" row="2" id="textPanel">
+			
+			#{cc.attrs.houselable} : 
+			<h:inputText id="house" value="#{cc.attrs.houseValue}">
+			 <f:validator validatorId="stringValidator"/>
+			</h:inputText>
+				
+			#{cc.attrs.floorlable} : 
+			<h:inputText id="floor" value="#{cc.attrs.floorValue}">
+			 <f:validator validatorId="stringValidator"/>
+			</h:inputText>
+			
+			#{cc.attrs.buldinglable} : 
+			<h:inputText id="bulding" value="#{cc.attrs.streetValue}" />
+			
+			#{cc.attrs.streetlable} : 
+			<h:inputText id="street" value="#{cc.attrs.localityValue}" />
+			
+			#{cc.attrs.localitylable} : 
+			<h:inputText id="locality" value="#{cc.attrs.localityValue}" />
+			
+			#{cc.attrs.landmarklable} : 
+			<h:inputText id="landmark" value="#{cc.attrs.landmarkValue}" />
+			
+			#{cc.attrs.citylable} : 
+			<h:inputText id="city" value="#{cc.attrs.cityValue}" />
+			
+			#{cc.attrs.statelable} : 
+			<h:selectOneMenu id="state" value="#{cc.attrs.stateValue}">
+			<f:selectItems value="#{cc.attrs.allState}"/>
+			</h:selectOneMenu>
+			
+			#{cc.attrs.pincodelable} : 
+			<h:inputText id="pincode" value="#{cc.attrs.pincodeValue}">
+			<f:validator validatorId="numberValidator"/>
+			</h:inputText>
+
+           	#{cc.attrs.countylable} : 
+			<h:selectOneMenu id="country" value="#{cc.attrs.allCountryCode}" readonly="true">
+         	  <f:selectItems value="#{cc.attrs.allCountryCode}"/>
+			</h:selectOneMenu>
+			
+           	#{cc.attrs.landphonelable} : 
+			<h:inputText id="landphone" value="#{cc.attrs.landphoneValue}" />
+           
+           	#{cc.attrs.mobilelable} : 
+			<h:inputText id="mobile" value="#{cc.attrs.mobileValue}" >
+			<f:validator validatorId="phoneNumberValidator"/>
+           </h:inputText>
+           	#{cc.attrs.emaillable} : 
+			<h:inputText id="email" value="#{cc.attrs.emailValue}">
+			<f:validator validatorId="emailValidator"/>
+           </h:inputText>>
+		</h:panelGrid>
+		
+		
+	</h:form>
+
+</composite:implementation>
+
+</html>
