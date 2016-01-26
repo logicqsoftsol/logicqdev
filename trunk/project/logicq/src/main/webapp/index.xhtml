@@ -4,54 +4,92 @@
 	xmlns:f="http://java.sun.com/jsf/core" 
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:fb="http://www.facebook.com/2008/fbml"	
-	template="pages/templates/common-template.xhtml">
+	template="pages/templates/common-template.xhtml" xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<ui:define name="content">
+	
 	 	<div class="display-animation">
-				<div class="search-wizard panel bs-wizard bs-wizard-steps-with-progress">
+	 		<div class="search-wizard panel bs-wizard bs-wizard-steps-with-progress">
 						<div class="panel-heading">
-							
+						<div class="steps-centered">
+								<div class="progress progress-striped">
+									<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+									</div>
+								</div>
+
+								<ul class="wizard-steps wizard-steps-name">
+									<li class="step active">
+											<span>Search</span>
+										<a href="#form3_tab1" data-toggle="tab" class="btn btn-primary"><i class="fa fa-search"></i></a>
+									</li>
+									<li class="step">
+										<span>Specialized</span>
+										<a href="#form3_tab2" data-toggle="tab" class="btn btn-white"><i class="fa fa-user-md"></i></a>
+									</li>
+									<li class="step">
+										<span>Schedule</span>
+										<a href="#form3_tab3" data-toggle="tab" class="btn btn-white"><i class="fa fa-clock-o"></i></a>
+									</li>
+									<li class="step">
+										<span>Confirm</span>
+										<a href="#form3_tab4" data-toggle="tab" class="btn btn-white"><i class="fa fa-check"></i></a>
+									</li>
+								</ul><!--.wizard-steps-->
+							</div><!--.steps-centered-->			
 						</div><!--.panel-heading-->
-						<br> </br>
-						<br> </br>
+						<br></br>
+						<br></br>
+						<br></br>
 						<div class="panel-body">
-						<div class="col-md-6">
+						<div class="col-md-5">
+						<div class="tab-pane active" id="form3_tab1">
 								<div class="form-group">
-										<b:inputText placeholder="Search your Location"
-											value="#{userMB.searchText}" id="userlocation" />
+										<h:inputText p:placeholder="Search your Pincode" class="form-control"
+											value="#{userMB.searchlocation}" id="userlocation" required="true" />
 									</div>
 									<br> </br>
 									<div class="col-sm-12" ><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d60512.91950984214!2d73.73423198558297!3d18.57144763208247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1446128278051" frameborder="0" style="border:2; width:100%; height:300px;"></iframe></div>		
 						</div>
-						<div class="col-md-6">
+						</div>
+						<div class="col-md-7">
+			<div class="row">
+			<div class="col-md-10">
 						<div class="form-group">
-										<b:inputText placeholder="Type something here..."
-											value="#{userMB.searchText}" id="searcserviceprovider" >
-											<f:facet name="append">
+						
+										<h:inputText p:placeholder="Type something here..." class="form-control"
+											value="#{userMB.searchText}" id="searcserviceprovider" required="true">
+											<!-- f:facet name="append">
 											<b:button value="" id="searchEntity" look="default"
 										actionListener="#{userMB.searchEntity}"
 										action="#{userMB.entitynavigation}" icon="search" />
-											</f:facet>
-									</b:inputText>
+											</f:fac-->
+									</h:inputText>
 									</div>
-									
-									<div class="col-sm-12">
-									<div class="col-md-3">
+									</div>
+									<div class="col-md-2">
+									<div class="form-group">
+										<h:form>
+									<b:commandButton value="Search" look="primary"
+												action="#{loginMB.logout}" id="searchbutton"
+												icon="glyphicon glyphicon-search" iconAlign="right" />
+												</h:form>
+									</div>
+									</div>
+									</div>
+									<div class="col-md-12">
+								
+									<div class="col-md-4">
 									<b:button value="Find Near By" id="findNearBy" look="default"
 										actionListener="#{userMB.searchEntity}"
-										action="#{userMB.entitynavigation}"/>
+										action="#{userMB.entitynavigation}" />
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-6">
 									<b:button value="Emergency Book" id="emergency" look="default"
 										actionListener="#{userMB.searchEntity}"
 										action="#{userMB.entitynavigation}"/>
 										
 										
 									</div>
-									<div class="col-md-1">
-									<b:button value="Call US" id="callus" look="primary"
-										actionListener="#{userMB.searchEntity}"
-										action="#{userMB.entitynavigation}"/>
-									</div>
+									
 									</div>
 									<br> </br>
 									<br> </br>
@@ -170,14 +208,10 @@
 									</div>
 									</div>
 									</h:form>
-						
-						</div>						
-
-				</div>
+						</div>	
+						</div>					
 				
-
-			</div><!--.row-->
-		
+		</div>
 
 			<div class="layer-container">
 				<div class="menu-layer">
