@@ -1,0 +1,159 @@
+<ui:composition template="templates/common-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface>
+		<composite:attribute name="houselable" />
+		<composite:attribute name="houseValue" />
+		<composite:attribute name="floorlable" />
+		<composite:attribute name="floorValue" />
+		<composite:attribute name="buldinglable" />
+		<composite:attribute name="buldingValue" />
+		<composite:attribute name="streetlable" />
+		<composite:attribute name="streetValue" />
+		<composite:attribute name="localitylable" />
+		<composite:attribute name="localityValue" />
+		<composite:attribute name="landmarklable" />
+		<composite:attribute name="landmarkValue" />
+		<composite:attribute name="citylable" />
+		<composite:attribute name="cityValue" />
+		<composite:attribute name="statelable" />
+		<composite:attribute name="stateValue" />
+		<composite:attribute name="pincodelable" />
+		<composite:attribute name="pincodeValue" />
+		<composite:attribute name="countylable" />
+		<composite:attribute name="countryValue" />
+		<composite:attribute name="landphonelable" />
+		<composite:attribute name="landphoneValue" />
+		<composite:attribute name="mobilelable" />
+		<composite:attribute name="mobileValue" />
+		<composite:attribute name="emaillable" />
+		<composite:attribute name="emailValue" />
+	</composite:interface>
+
+	<composite:implementation>
+		<div class="row">
+			<div class="col-xs-12">
+				<h:form styleClass="form-horizontal">
+					<h:message for="textPanel" />
+					<div class="panel panel-default">
+						<div class="panel-heading">Address Details</div>
+						<div class="panel-body">
+							<h:panelGrid columns="4" row="8" id="textPanel">
+								<div class="form-group">
+									#{cc.attrs.houselable} :
+									<div class="col-sm-10">
+										<h:inputText id="house" value="#{cc.attrs.houseValue}"
+											styleClass="form-control">
+											<f:validator validatorId="stringValidator" />
+										</h:inputText>
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.floorlable} :
+									<div class="col-sm-10">
+										<h:inputText id="floor" value="#{cc.attrs.floorValue}"
+											styleClass="form-control">
+											<f:validator validatorId="stringValidator" />
+										</h:inputText>
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.buldinglable} :
+									<div class="col-sm-10">
+										<h:inputText id="bulding" value="#{cc.attrs.streetValue}"
+											styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.streetlable} :
+									<div class="col-sm-10">
+										<h:inputText id="street" value="#{cc.attrs.localityValue}"
+											styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.localitylable} :
+									<div class="col-sm-10">
+										<h:inputText id="locality" value="#{cc.attrs.localityValue}"
+											styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.landmarklable} :
+									<div class="col-sm-10">
+										<h:inputText id="landmark" value="#{cc.attrs.landmarkValue}"
+											styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.citylable} :
+									<div class="col-sm-10">
+										<h:inputText id="city" value="#{cc.attrs.cityValue}"
+											styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.statelable} :
+									<div class="col-sm-10">
+										<h:selectOneMenu id="state" value="#{cc.attrs.stateValue}">
+											<f:selectItems value="#{cc.attrs.allState}"
+												styleClass="form-control" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.pincodelable} :
+									<div class="col-sm-10">
+										<h:inputText id="pincode" value="#{cc.attrs.pincodeValue}"
+											styleClass="form-control">
+											<f:validator validatorId="numberValidator" />
+										</h:inputText>
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.countylable} :
+									<div class="col-sm-10">
+										<h:selectOneMenu id="country"
+											value="#{cc.attrs.allCountryCode}" styleClass="form-control">
+											<f:selectItems value="#{cc.attrs.allCountryCode}" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.landphonelable} :
+									<div class="col-sm-10">
+										<h:inputText id="landphone" value="#{cc.attrs.landphoneValue}"
+											styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.mobilelable} :
+									<div class="col-sm-10">
+										<h:inputText id="mobile" value="#{cc.attrs.mobileValue}"
+											styleClass="form-control">
+											<f:validator validatorId="phoneNumberValidator" />
+										</h:inputText>
+									</div>
+								</div>
+								<div class="form-group">
+									#{cc.attrs.emaillable} :
+									<div class="col-sm-10">
+										<h:inputText id="email" value="#{cc.attrs.emailValue}"
+											styleClass="form-control">
+											<f:validator validatorId="emailValidator" />
+										</h:inputText>
+									</div>
+								</div>
+							</h:panelGrid>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</composite:implementation>
+</ui:composition>
