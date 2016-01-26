@@ -10,94 +10,112 @@ import javax.persistence.Table;
 import com.logicq.logicq.common.criteriamanager.LogicqAbstractDataObject;
 
 @Entity
-@Table(name="LOGIN")
-public class Login extends LogicqAbstractDataObject implements LoginConstant{
-	
-    @Id
-	@Column(name="email", unique = true, nullable = false)
+@Table(name = "LOGIN")
+public class Login extends LogicqAbstractDataObject implements LoginConstant {
+
+	@Id
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
-	
-	 @Column(name="password", unique = true, nullable = false)
-     private String password;
-	 
-	 @Column(name="phonnumber", unique = true, nullable = false)
-     private Integer phonnumber;
-	 
-	 @Column(name="lastlogindate", unique = true, nullable = false)
-     private Date lastlogindate;
+	@Column(name = "password", unique = true, nullable = false)
+	private String password;
+	@Column(name = "phonnumber", unique = true, nullable = false)
+	private String phonnumber;
+	@Column(name = "lastlogindate", unique = true, nullable = false)
+	private Date lastlogindate;
+	@Column(name = "loginattempcounts", nullable = true)
+	private Integer loginattempcounts;
+	@Column(name = "ipaddress", unique = true, nullable = false)
+	private Integer ipaddress;
+	@Column(name = "userid", unique = true, nullable = false)
+	private Long userid;
 
+	public String getEmail() {
 
-	 @Column(name="loginattempcounts", nullable = true)
-     private Integer loginattempcounts;
-	 
-	 @Column(name="ipaddress", unique = true, nullable = false)
-     private Integer ipaddress;
-	 
-	 @Column(name="userid", unique = true, nullable = false)
-     private Integer userid;
-	 
-	 
-	 public String getEmail() {
-			return email;
-		}
+		return email;
+	}
 
-		public void setEmail(String email) {
-			this.email = email;
-		}
+	public void setEmail(String email) {
 
-		public String getPassword() {
-			return password;
-		}
+		this.email = email;
+	}
 
-		public void setPassword(String password) {
-			this.password = password;
-		}
+	public String getPassword() {
 
-		public Integer getPhonnumber() {
-			return phonnumber;
-		}
+		return password;
+	}
 
-		public void setPhonnumber(Integer phonnumber) {
-			this.phonnumber = phonnumber;
-		}
+	public void setPassword(String password) {
 
-		public Date getLastlogindate() {
-			return lastlogindate;
-		}
+		this.password = password;
+	}
 
-		public void setLastlogindate(Date lastlogindate) {
-			this.lastlogindate = lastlogindate;
-		}
+	public Date getLastlogindate() {
 
-		public Integer getLoginattempcounts() {
-			return loginattempcounts;
-		}
+		return lastlogindate;
+	}
 
-		public void setLoginattempcounts(Integer loginattempcounts) {
-			this.loginattempcounts = loginattempcounts;
-		}
+	public void setLastlogindate(Date lastlogindate) {
 
-		public Integer getIpaddress() {
-			return ipaddress;
-		}
+		this.lastlogindate = lastlogindate;
+	}
 
-		public void setIpaddress(Integer ipaddress) {
-			this.ipaddress = ipaddress;
-		}
+	public Integer getLoginattempcounts() {
 
-		public Integer getUserid() {
-			return userid;
-		}
+		return loginattempcounts;
+	}
 
-		public void setUserid(Integer userid) {
-			this.userid = userid;
-		}
+	public void setLoginattempcounts(Integer loginattempcounts) {
 
-		@Override
-		public String toString() {
-			return "Login [email=" + email + ", password=" + password + ", phonnumber=" + phonnumber
-					+ ", lastlogindate=" + lastlogindate + ", loginattempcounts=" + loginattempcounts + ", ipaddress="
-					+ ipaddress + ", userid=" + userid + "]";
-		}
+		this.loginattempcounts = loginattempcounts;
+	}
 
+	public Integer getIpaddress() {
+
+		return ipaddress;
+	}
+
+	public void setIpaddress(Integer ipaddress) {
+
+		this.ipaddress = ipaddress;
+	}
+
+	public String getPhonnumber() {
+
+		return phonnumber;
+	}
+
+	public void setPhonnumber(String phonnumber) {
+
+		this.phonnumber = phonnumber;
+	}
+
+	public Long getUserid() {
+
+		return userid;
+	}
+
+	public void setUserid(Long userid) {
+
+		this.userid = userid;
+	}
+
+	@Override
+	public String toString() {
+
+		return "Login [email="
+		       + email
+		       + ", password="
+		       + password
+		       + ", phonnumber="
+		       + phonnumber
+		       + ", lastlogindate="
+		       + lastlogindate
+		       + ", loginattempcounts="
+		       + loginattempcounts
+		       + ", ipaddress="
+		       + ipaddress
+		       + ", userid="
+		       + userid
+		       + "]";
+	}
 }
