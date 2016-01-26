@@ -38,6 +38,19 @@ public class UserBean implements Serializable {
 	private String otpformrender = "false";
 	private String otppassword;
 	private String rendersignupform = "true";
+	private String searchlocation;
+
+	
+	public String getSearchlocation() {
+	
+		return searchlocation;
+	}
+
+	
+	public void setSearchlocation(String searchlocation) {
+	
+		this.searchlocation = searchlocation;
+	}
 
 	public String getOtpformrender() {
 
