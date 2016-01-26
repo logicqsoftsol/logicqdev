@@ -1,4 +1,3 @@
-
 package com.logicq.logicq.dao;
 
 import java.io.Serializable;
@@ -173,5 +172,17 @@ public class AbstractDAO<T> {
 		Query qry = session.createQuery("from " + clazz.getName());
 		List list = qry.list();
 		return list;
+	}
+
+	public Object executeNamedQueryForSingleRow(String query, Map<String, Object> paramMap) {
+
+		Session session = getSession();
+		Query qry = session.getNamedQuery(query);
+		bindParameters(qry, paramMap);
+		List list = qry.list();
+		if (list != null && !list.isEmpty() && (list.size() > 0)) {
+			return list.get(0);
+		}
+		return null;
 	}
 }
