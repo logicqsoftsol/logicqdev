@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Home Plus Service</title>
+	<meta name="viewport"
+		content="width=device-width, height=device-height, initial-scale=1" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style"
+		content="black-translucent" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+
+	<!-- BEGIN CORE CSS -->
+	<link rel="stylesheet" href="../assets/admin1/css/admin1.css" />
+	<link rel="stylesheet"
+		href="../assets/admin1/css/doctor-at-home.css" />
+	<link rel="stylesheet" href="../assets/globals/css/elements.css" />
+	<!-- END CORE CSS -->
+	<link rel="stylesheet"
+		href="../assets/globals/plugins/bootstrap-social/bootstrap-social.css" />
+	<!-- END PLUGINS CSS -->
+
+	<link rel="stylesheet"
+		href="../assets/globals/css/bootstrap.min.css" />
+	<script src="../assets/globals/js/jquery.min.js"></script>
+
+	<script src="../assets/globals/js/bootstrap.min.js"></script>
+
+	<!-- END FIX PLUGINS -->
+	<link rel="stylesheet" href="../assets/globals/css/plugins.css" />
+	<link rel="stylesheet"
+		href="../assets/globals/css/bootstrapValidator.min.css" />
+	<link rel="stylesheet"
+		href="../assets/globals/js/bootstrapValidator.min.js" />
+
+<script src="../assets/globals/js/jquery.1.9.1.min.js"></script>
+
+<script src="../assets/globals/js/vendor/jquery.ui.widget.js"></script>
+<script src="../assets/globals/js/jquery.iframe-transport.js"></script>
+<script src="../assets/globals/js/jquery.fileupload.js"></script>
+<link href="../css/bootstrap.css" type="text/css" rel="stylesheet" />
+
+<!-- we code these -->
+<link href="../css/dropzone.css" type="text/css" rel="stylesheet" />
+<script src="../assets/globals/js/myuploadfunction.js"></script>
+</h:head>
+<h:body>
+	<ui:insert name="content">
+	<div style="width:500px;padding:20px">
+
+	<input id="fileupload" type="file" name="files[]" data-url="rest/controller/upload" multiple/>
+	
+	<div id="dropzone" class="fade well">Drop files here</div>
+	
+	<div id="progress" class="progress">
+    	<div class="bar" style="width: 0%;"></div>
+	</div>
+
+	<table id="uploaded-files" class="table">
+		<tr>
+			<th>File Name</th>
+			<th>File Size</th>
+			<th>File Type</th>
+			<th>Download</th>
+		</tr>
+	</table>
+	
+</div>
+	</ui:insert>
+
+	<script src="../assets/globals/js/global-vendors.js"></script>
+	<script
+		src="../assets/globals/plugins/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+	<script src="../assets/globals/scripts/forms-wizard.js"></script>
+	<script
+		src="../assets/globals/plugins/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+	<script src="../assets/globals/scripts/forms-pickers.js"></script>
+	<script src="../assets/globals/js/pleasure.js"></script>
+	<script src="../assets/admin1/js/layout.js"></script>
+	<script type="text/javascript"
+		src="http://maps.googleapis.com/maps/api/js?sensor=false">
+		
+	</script>
+	<script>
+		$(document).ready(function() {
+			Pleasure.init();
+			Layout.init();
+			FormsWizard.init();
+			Index.init();
+			WidgetAudio.single();
+			FormsPickers.init();
+		});
+		$('#scroll').perfectScrollbar('update');
+	</script>
+	<script>
+		$(document).ready(function() {
+			$('.progress .progress-bar').progressbar();
+		})
+	</script>
+</h:body>
+</html>
+	
