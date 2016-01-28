@@ -1,0 +1,138 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fb="http://www.facebook.com/2008/fbml"
+	template="../templates/common-template.xhtml"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	<ui:define name="content">
+		<div class="tab-pane mar-top-40m" id="form3_tab2">
+			<div class="col-sm-12">
+				<div class=" col-sm-8 col-centered">
+					<div class="col-sm-12 search-icon-home ">
+						<div class="search-icon-home col-sm-6">
+						<div class="row">
+						<div class="col-md-8">
+							<div class="form-group">
+								<b:inputText value="#{userMB.searchlocation}" id="location"
+									disabled="true">
+									<f:facet name="prepend">
+										<h:outputText value="Your Location : " />
+									</f:facet>
+									<f:facet name="append">
+										<b:iconAwesome name="fa fa-search fa-1x"></b:iconAwesome>
+									</f:facet>
+								</b:inputText>
+							</div>
+							</div>
+							<div class="col-md-4">
+							<div class="form-group">
+								<b:inputText value="#{userMB.searchText}" id="entiysearchresult"
+									class="form-control" disabled="true">
+									<f:facet name="prepend">
+										<h:outputText value="Your Service Provider : " />
+									</f:facet>
+									<f:facet name="append">
+										<b:iconAwesome name="fa fa-user-md fa-1x"></b:iconAwesome>
+									</f:facet>
+								</b:inputText>
+							</div>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-sm-8 col-centered margin-top-20">
+				<div class="accordion search-spacility" id="accordion">
+
+
+					<div class="col-sm-12 box-border">
+
+						<div class="col-sm-2">
+							<img class="user-image img-responsive" alt=""
+								src="assets/admin1/img/male-doctor.jpg"/>
+						</div>
+						<div class="col-sm-6 doctor-list-show">
+							<h4>Dr. Sudhanshu Lenka</h4>
+							<p>MBBS , MD - Medicine , DNB (Cardiology)</p>
+							<p>Cardiologist</p>
+							<p>11 Years Experience</p>
+							<p class="list-show-icon">
+								<img src="assets/admin1/img/vaccinationathome.png"/>
+								<img src="assets/admin1/img/emergency.png"/>
+								<img src="assets/admin1/img/familydoctor.png"/>
+								<img src="assets/admin1/img/nurse13.png"/>
+							</p>
+						</div>
+						<div class="col-sm-4">
+						<h:form>
+							<div class="right-list-show">
+							<div class="form-group">
+								<h:outputText value="Recommendations :" />
+								<h:commandLink id="recomendation" rendered="true"
+									oncomplete="javascript:location.reload(true)">
+									<i class="fa fa-thumbs-o-up"/>
+									<h:outputText value="100" id="recomendationtext"/>
+									</h:commandLink>
+									</div>
+									<div class="form-group">
+									<h:outputText value="Feedback :" />
+									<h:commandLink id="feedback" rendered="true"
+									oncomplete="javascript:location.reload(true)">
+									<i class="fa fa-comment"/>
+									<h:outputText value="100" id="feedbackvalue" />
+									</h:commandLink>
+									</div>
+									<div class="form-group">
+									<h:outputText value="Location :" />
+									<h:commandLink id="location" rendered="true"
+									oncomplete="javascript:location.reload(true)">
+									<i class="fa fa-map-marker"/>
+									<h:outputText value="Pune" id="locationvalue" />
+									</h:commandLink>
+									</div>
+										<div class="form-group">
+									<h:outputText value="Fees :" />
+									<h:commandLink id="fess" rendered="true"
+									oncomplete="javascript:location.reload(true)">
+									<i class="fa fa-inr"/>
+									<h:outputText value="300" id="fessvalue" />
+									</h:commandLink>
+									</div>
+							</div>
+							<div class="col-sm-12 text-right padding-btn">
+							<div class="row">
+						<div class="col-md-8">
+						<div class="wizard display-inline">
+							<h:commandLink id="viewschedule" rendered="true"
+								class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next"
+								oncomplete="javascript:location.reload(true)">
+								<h:outputText value="View Schedule" id="viewscheduletext" />
+							</h:commandLink>
+							</div>
+							</div>
+							<div class="col-md-4">
+							<div class="wizard display-inline">
+								<h:commandLink id="bookappoitemnt" rendered="true"
+									class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next"
+									oncomplete="javascript:location.reload(true)">
+									<h:outputText value="Book Appoitemnt" id="bookappoitemnttext" />
+								</h:commandLink>
+							</div>
+							</div>
+							</div>
+						</div>
+								</h:form>
+						</div>
+				
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
