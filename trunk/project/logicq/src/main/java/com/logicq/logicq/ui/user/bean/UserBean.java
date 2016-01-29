@@ -1,6 +1,7 @@
 package com.logicq.logicq.ui.user.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.ui.user.vo.UserRegistrationResponse;
+import com.logicq.logicq.ui.user.vo.UserVO;
 
 /**
  * User Bean
@@ -39,16 +41,76 @@ public class UserBean implements Serializable {
 	private String otppassword;
 	private String rendersignupform = "true";
 	private String searchlocation;
+	private String spcification;
+	private String fullname;
+	private String exprience;
+	
+	
+	public String getExprience() {
+	
+		return exprience;
+	}
+
+
+
 
 	
-	public String getSearchlocation() {
+	public void setExprience(String exprience) {
 	
-		return searchlocation;
+		this.exprience = exprience;
+	}
+
+
+
+
+	public String getFullname() {
+	
+		return fullname;
+	}
+
+
+
+	
+	public void setFullname(String fullname) {
+	
+		this.fullname = fullname;
+	}
+
+
+
+	public String getSpcification() {
+	
+		return spcification;
+	}
+
+
+	
+	public void setSpcification(String spcification) {
+	
+		this.spcification = spcification;
+	}
+
+	private List<UserVO> profiles = new ArrayList<UserVO>();
+
+	public List<UserVO> getProfiles() {
+		
+		return profiles;
 	}
 
 	
-	public void setSearchlocation(String searchlocation) {
+	public void setProfiles(List<UserVO> profiles) {
 	
+		this.profiles = profiles;
+	}
+	
+	
+	public String getSearchlocation() {
+
+		return searchlocation;
+	}
+
+	public void setSearchlocation(String searchlocation) {
+
 		this.searchlocation = searchlocation;
 	}
 
