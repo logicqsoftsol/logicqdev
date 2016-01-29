@@ -17,7 +17,7 @@
 	<bean id="ds"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/sakila" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
@@ -50,6 +50,7 @@
 				<value>com.logicq.logicq.model.map.LocationMap</value>
 				<value>com.logicq.logicq.model.login.Login</value>
 				<value>com.logicq.logicq.model.login.Role</value>
+				<value>com.logicq.logicq.model.location.Location</value>
 				<value>com.logicq.logicq.model.upload.UploadFile</value>
 			</list>
 		</property>
