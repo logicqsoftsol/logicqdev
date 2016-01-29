@@ -9,6 +9,8 @@ public class LogicQConstants {
 	public static String ADMIN_ROLE = "admin";
 	public static int INV_USER = -1;
 	public static String INVALID_USER = "invalid user";
+	
+	public static final String BACK_SLASH = "\"";
 }
 /**
  * NIHAR 09-Jan-2016 3:27:33 am

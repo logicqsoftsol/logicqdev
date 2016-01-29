@@ -6,7 +6,24 @@
 	xmlns:fb="http://www.facebook.com/2008/fbml"	
 	template="pages/templates/common-template.xhtml" xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<ui:define name="content">
+		<script>
+	$(function() {
+		 
+		  var availableTags1 = [
+		                       "Doctor", "Plumber"
+		                     ];
+		 
+		  var availableTags = #{locationMB.list};
+		  
+		  $("#userlocation").autocomplete({
+		    source: availableTags
+		  });
+		  $("#searcserviceprovider").autocomplete({
+			    source: availableTags1
+			  });
+		});
 	
+	</script>
 	 	<div class="display-animation">
 	 		<div class="search-wizard panel bs-wizard bs-wizard-steps-with-progress">
 						<div class="panel-heading">

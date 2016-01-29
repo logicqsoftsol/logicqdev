@@ -77,6 +77,18 @@
 	<property name="fileUploadDAO" ref="fileUploadDAO" />
 	</bean>
 	
+	<!-- Location -->
+	<bean id="locationDAO" class="com.logicq.logicq.dao.location.impl.LocationDAO" />
+	<bean id="locationService" class="com.logicq.logicq.service.location.impl.LocationService" />
+	<bean id="locationFacade" class="com.logicq.logicq.facade.location.LocationFacade" />
+	<bean id="locationManagedBean" class="com.logicq.logicq.ui.location.bean.LocationManageBean" />
+	<bean id="locationBeanHelper" class="com.logicq.logicq.ui.login.helper.LocationBeanHelper" />
+	
+	
+	
+	
+	
+	
     
     
 </beans>

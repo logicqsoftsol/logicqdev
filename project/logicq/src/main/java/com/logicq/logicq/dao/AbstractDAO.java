@@ -192,9 +192,9 @@ public class AbstractDAO<T> {
 
 		Session session = getSession();
 		Criteria criteria = session.createCriteria(clazz);
-		for (Object o : params) {
-			criteria.setProjection(Projections.property(String.valueOf(o)));
-		}
+		 for (Object columnName : params) {
+			criteria.setProjection(Projections.property(String.valueOf(columnName)));
+		} 
 		List list = criteria.list();
 		return list;
 	}
