@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 import com.logicq.logicq.common.criteriamanager.LogicqAbstractDataObject;
+import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.login.Role;
 
 /**
@@ -56,6 +57,18 @@ public class User extends LogicqAbstractDataObject implements UserConstant, Seri
 	private Boolean isEmailVerified;
 	@Column(name = "USER_VERIFICATION_FLAG", unique = true, nullable = false)
 	private Boolean isUserVerified;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private Set<Address> addresses;
+
+	public Set<Address> getAddresses() {
+
+		return addresses;
+	}
+
+	public void setAddresses(Set<Address> addresses) {
+
+		this.addresses = addresses;
+	}
 
 	public Boolean getIsUserVerified() {
 
