@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.model.login.Role;
+import com.logicq.logicq.model.user.Facility;
 import com.logicq.logicq.model.user.User;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
@@ -43,6 +44,12 @@ public class UserConversion {
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(role);
 		user.setRole(roles);
+		Facility facility = new Facility();
+		Set<Facility> facilities = new HashSet<Facility>();
+		facility.setFacilityId(Long.valueOf(10));
+		facility.setFacilityName("Default facility");
+		facilities.add(facility);
+		user.setFacilities(facilities);
 		return user;
 	}
 
