@@ -191,4 +191,18 @@ public class User extends LogicqAbstractDataObject implements UserConstant, Seri
 
 		this.role = role;
 	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "user_facilities_map", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "facility_id", referencedColumnName = "facility_id") })
+	private Set<Facility> facilities;
+
+	public Set<Facility> getFacilities() {
+
+		return facilities;
+	}
+
+	public void setFacilities(Set<Facility> facilities) {
+
+		this.facilities = facilities;
+	}
 }
