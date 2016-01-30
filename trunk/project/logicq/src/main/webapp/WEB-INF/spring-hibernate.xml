@@ -53,6 +53,7 @@
 				<value>com.logicq.logicq.model.location.Location</value>
 				<value>com.logicq.logicq.model.upload.UploadFile</value>
 				<value>com.logicq.logicq.model.user.Facility</value>
+				<value>com.logicq.logicq.model.address.Address</value>
 			</list>
 		</property>
 	</bean>
