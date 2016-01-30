@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:b="http://bootsfaces.net/ui"
-	xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:fb="http://www.facebook.com/2008/fbml"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>Home Plus Service</title>
@@ -14,13 +15,14 @@
 	<meta name="apple-mobile-web-app-status-bar-style"
 		content="black-translucent" />
 	<meta name="apple-touch-fullscreen" content="yes" />
-	
+
 	<!-- Google app's client ID -->
-	<meta name="google-signin-client_id" content="968303335561-52e50suf6pro53n3adnki7crmi3dqt9u.apps.googleusercontent.com"/>
-	
+	<meta name="google-signin-client_id"
+		content="968303335561-52e50suf6pro53n3adnki7crmi3dqt9u.apps.googleusercontent.com" />
+
 	<!-- Google platform library -->
-	<script src="https://apis.google.com/js/platform.js"></script>	
-	
+	<script src="https://apis.google.com/js/platform.js"></script>
+
 	<!-- BEGIN CORE CSS -->
 	<link rel="stylesheet" href="pages/assets/admin1/css/admin1.css" />
 	<link rel="stylesheet"
@@ -30,6 +32,9 @@
 	<link rel="stylesheet"
 		href="pages/assets/globals/plugins/bootstrap-social/bootstrap-social.css" />
 	<!-- END PLUGINS CSS -->
+	<script src="pages/assets/globals/js/bootstrapValidator.min.js"></script>
+	<link rel="stylesheet"
+		href="pages/assets/globals/css/bootstrapValidator.min.css" />
 
 	<link rel="stylesheet"
 		href="pages/assets/globals/css/bootstrap.min.css" />
@@ -37,12 +42,13 @@
 
 	<script src="pages/assets/globals/js/bootstrap.min.js"></script>
 
+
+	<script src="resources/javascript/formvalidation.js"></script>
+
+
 	<!-- END FIX PLUGINS -->
 	<link rel="stylesheet" href="pages/assets/globals/css/plugins.css" />
-	<link rel="stylesheet"
-		href="pages/assets/globals/css/bootstrapValidator.min.css" />
-	<link rel="stylesheet"
-		href="pages/assets/globals/js/bootstrapValidator.min.js" />		
+
 </h:head>
 <h:body>
 	<ui:insert name="header">
@@ -67,45 +73,46 @@
 				</div>
 				<div class="overlay-secondary"></div>
 			</div>
-			
+
 		</div>
 		<div class="display-animation">
-		<h:form>
-			<div class="right-box text-right">
-				<div class="main-btn">
+			<h:form>
+				<div class="right-box text-right">
+					<div class="main-btn">
 
-									<div class="col-md-6">
-										<div class="form-group">
-											<b:button value="Log in" look="primary"
-												onclick="$('.modallogin').modal();return false; "
-												oncomplete="javascript:location.reload(true)"
-												icon="glyphicon glyphicon-log-in" iconAlign="right"
-												rendered="#{loginMB.loginvisible}" />
-										</div>
-									</div>
-									<div class="col-md-1">
-										<div class="form-group">
-											<b:button value="Sign up" look="primary"
-												oncomplete="javascript:location.reload(true)"
-												onclick="$('.modalsignup').modal();return false; "
-												icon="glyphicon glyphicon-user" iconAlign="right"
-												rendered="#{loginMB.signupvisible}" />
-										</div>
-										<div class="form-group">
-											<b:commandButton value="Logout" look="primary"
-												action="#{loginMB.logout}" icon="glyphicon glyphicon-log-out"
-												rendered="#{loginMB.logoutvisible}" iconAlign="right" />
-										</div>
-									</div>
-								
-									
-									</div>
-								
+						<div class="col-md-6">
+							<div class="form-group">
+								<b:button value="Log in" look="primary"
+									onclick="$('.modallogin').modal();return false; "
+									oncomplete="javascript:location.reload(true)"
+									icon="glyphicon glyphicon-log-in" iconAlign="right"
+									rendered="#{loginMB.loginvisible}" />
+							</div>
+						</div>
+						<div class="col-md-1">
+							<div class="form-group">
+								<b:button value="Sign up" look="primary"
+									oncomplete="javascript:location.reload(true)"
+									onclick="$('.modalsignup').modal();return false; "
+									icon="glyphicon glyphicon-user" iconAlign="right"
+									rendered="#{loginMB.signupvisible}" />
+							</div>
+							<div class="form-group">
+								<b:commandButton value="Logout" look="primary"
+									action="#{loginMB.logout}" icon="glyphicon glyphicon-log-out"
+									rendered="#{loginMB.logoutvisible}" iconAlign="right" />
+							</div>
+						</div>
+
+
+					</div>
+
 				</div>
 			</h:form>
-				<!-- registration form -->
+		</div>
+		<!-- registration form -->
 		<div class="display-animation">
-			<b:modal id="modalsignup" title="Your profile details"
+			<!--  b:modal id="modalsignup" title="Your profile details"
 			styleClass="modalsignup">
 	<h:form id="signupForm" >
 	<div class="col-md-3">
@@ -160,11 +167,90 @@
 							</div>
 				</div>
 			</h:form>	
+			</b:modal-->
+			<b:modal id="modalsignup" title="Your profile details"
+				styleClass="modalsignup" size="lg">
+						<div class="col-md-4">
+							<div class="input-group">
+								<a href="http://www.homeplusservice.in//"><img
+									src="pages/assets/admin1/img/logo.png" /></a>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<form id="signupForm" method="post" class="form-horizontal">
+								<div class="form-group">
+									<h:inputText p:placeholder="First Name"
+										value="#{userMB.firstname}" id="firstname"
+										class="form-control">
+									</h:inputText>
+								</div>
+								<div class="form-group">
+									<h:inputText p:placeholder="Last Name"
+										value="#{userMB.lastname}" id="lastname" class="form-control">
+									</h:inputText>
+								</div>
+								<div class="form-group">
+									<h:selectOneRadio value="#{userMB.sex}" id="sex">
+										<f:selectItem itemLabel="Male" itemValue="male"
+											class="fa fa-male" />
+										<f:selectItem itemLabel="Female" itemValue="female"
+											class="fa fa-female" />
+									</h:selectOneRadio>
+								</div>
+								<div class="form-group">
+									<b:datepicker placeholder="Date of Birth" value="#{userMB.dob}"
+										class="form-control" id="dob" mode="popup-icon"
+										changeYear="true" changeMonth="true" showButtonPanel="true"></b:datepicker>
+
+								</div>
+								<div class="form-group">
+									<h:inputText p:placeholder="E-mail" value="#{userMB.email}"
+										class="form-control" id="email">
+									</h:inputText>
+								</div>
+								<div class="form-group">
+									<h:inputText p:placeholder="Mobile Number"
+										value="#{userMB.mobilenumber}" id="mobilenumber"
+										class="form-control">
+									</h:inputText>
+								</div>
+								<div class="form-group">
+									<h:inputSecret p:placeholder="Password"
+										value="#{userMB.password}" id="password" class="form-control"></h:inputSecret>
+								</div>
+								<div class="form-group">
+									<h:inputSecret p:placeholder="Confirm Password"
+										class="form-control" value="#{userMB.confirmpassword}"
+										id="confirmpassword"></h:inputSecret>
+								</div>
+
+
+								<div class="form-group">
+									<label class="col-xs-4 control-label" id="captchaOperation"></label>
+									<div class="col-xs-4">
+										<h:inputText class="form-control" name="captcha" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-xs-3 col-xs-offset-5">
+										<h:form>
+											<b:commandButton value="Register" look="primary"
+												id="register" oncomplete="javascript:location.reload(true)"
+												actionListener="#{userMB.addUser}"
+												icon="glyphicon glyphicon-user" iconAlign="left" />
+											<b:button  class="btn btn-default"  value="Cancale" onclick="return false;"
+												dismiss="modal"></b:button>
+
+										</h:form>
+									</div>
+								</div>
+							</form>
+						</div>
 			</b:modal>
-			</div>
-			</div>
-			
-			<!-- Login modal -->
+		</div>
+
+		<!-- Login modal -->
 		<div class="display-animation">
 			<b:modal id="loginmodal" styleClass="modallogin">
 				<h:form>
@@ -198,8 +284,7 @@
 									</b:inputSecret>
 								</div>
 								<b:commandButton class="btn center-block" value="AcessCode"
-									look="primary" immediate="true"
-									actionListener="#{loginMB.getMobAcessCode}"
+									look="primary" actionListener="#{loginMB.getMobAcessCode}"
 									oncomplete="javascript:location.reload(true)"
 									icon="glyphicon glyphicons-iphone">
 								</b:commandButton>
@@ -224,13 +309,14 @@
 							</div>
 							<div class="col-md-5">
 								<div class="form-group">
-													<div class="g-signin2" data-onsuccess="onSignIn"></div>
-													</div>
-												<div class="form-group">
-													<fb:login-button scope="public_profile,email"
-														onlogin="checkLoginState();"></fb:login-button> <!-- FB login status -->
-										
-									</div>
+									<div class="g-signin2" data-onsuccess="onSignIn"></div>
+								</div>
+								<div class="form-group">
+									<fb:login-button scope="public_profile,email"
+										onlogin="checkLoginState();"></fb:login-button>
+									<!-- FB login status -->
+
+								</div>
 							</div>
 							<div class="form-group">
 								<h:commandLink id="forgetPassword" value="Forget Password"
@@ -282,10 +368,11 @@
 			<!--.row-->
 		</div>
 	</ui:insert>
-	
+
 	<!-- This is just to test Facebook integration -->
-	<div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
-	
+	<div class="fb-like" data-share="true" data-width="450"
+		data-show-faces="true"></div>
+
 	<script src="pages/assets/globals/js/global-vendors.js"></script>
 	<script
 		src="pages/assets/globals/plugins/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
@@ -316,6 +403,6 @@
 		})
 	</script>
 	<!-- Platform integration (google, facebook etc.) -->
-	<script src="pages/assets/admin1/js/platform-integration.js"></script>		
+	<script src="pages/assets/admin1/js/platform-integration.js"></script>
 </h:body>
 </html>
