@@ -52,6 +52,7 @@
 				<value>com.logicq.logicq.model.login.Role</value>
 				<value>com.logicq.logicq.model.location.Location</value>
 				<value>com.logicq.logicq.model.upload.UploadFile</value>
+				<value>com.logicq.logicq.model.user.Facility</value>
 			</list>
 		</property>
 	</bean>
