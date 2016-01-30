@@ -1,6 +1,6 @@
 create table sakila.USER(
 
-id int(9) NOT NULL AUTO_INCREMENT,
+id bigint(10) NOT NULL AUTO_INCREMENT,
 FIRST_NAME varchar(40),
 LAST_NAME varchar(40),
 GENDER varchar(10),
