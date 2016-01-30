@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.logicq.logicq.common.LogicqContextProvider;
+import com.logicq.logicq.constant.ComunicationAddress;
+import com.logicq.logicq.constant.ContactType;
+import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.login.Role;
 import com.logicq.logicq.model.user.Facility;
 import com.logicq.logicq.model.user.User;
@@ -50,7 +53,31 @@ public class UserConversion {
 		facility.setFacilityName("Default facility");
 		facilities.add(facility);
 		user.setFacilities(facilities);
+		Set<Address> addresses = setUserAddress(userVO, user);
+		user.setAddresses(addresses);
 		return user;
+	}
+
+	private Set<Address> setUserAddress(UserVO userVO, User user) {
+
+		Set<Address> addresses = new HashSet<Address>();
+		Address address = new Address();
+		address.setHousenumber("I601");
+		address.setFloornumber("6");
+		address.setLocalityname("shankar kalat nagar");
+		address.setStreetname("Wakad Road");
+		address.setLandmarkname("near Costa Rica");
+		address.setCity("Pune");
+		address.setCommunicationaddress(ComunicationAddress.HOME);
+		address.setState("Maharashtra");
+		address.setCountry("India");
+		address.setPincode("411057");
+		address.setDefaultAddressFlag(true);
+		address.setContactType(ContactType.HOME);
+		address.setContactNumber("0226541");
+		address.setUser(user);
+		addresses.add(address);
+		return addresses;
 	}
 
 	public UserVO conversionFromEntitytoVO(User user, UserVO userVO) {
