@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.logicq.logicq.model.location.Location;
 import com.logicq.logicq.service.location.ILocationService;
 
 public class LocationFacade implements ILocationFacade {
@@ -21,7 +22,7 @@ public class LocationFacade implements ILocationFacade {
     
     	this.locationService = locationService;
     }
-    public List<String> getLocation(){
+    public List<Location> getLocation(){
     	return locationService.getLocation();
     }
 	

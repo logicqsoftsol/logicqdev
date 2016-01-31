@@ -2,8 +2,10 @@ package com.logicq.logicq.facade.location;
 
 import java.util.List;
 
+import com.logicq.logicq.model.location.Location;
+
 public interface ILocationFacade {
-	  public List<String> getLocation();
+	  public List<Location> getLocation();
 	     
 	
 }

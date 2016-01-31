@@ -4,9 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.common.LogicqStringFormatter;
-import com.logicq.logicq.service.location.impl.LocationService;
+import com.logicq.logicq.model.location.Location;
 import com.logicq.logicq.ui.login.helper.LocationBeanHelper;
 
 public class LocationManageBean {
@@ -25,10 +24,11 @@ public class LocationManageBean {
     }
 	public List<String> getLocation() {
 
-		List<String> locationlist = null;
+		List<Location> locationlist = null;
 		//LocationService loc = LogicqContextProvider.getApplicationContext().getBean(LocationService.class);
 		//locationlist = loc.getLocation();
 		locationlist=locationBeanHelper.getLocation();
+		//return locationlist;
 		return LogicqStringFormatter.convertAutoCompleteFormat(locationlist);
 	}
 }

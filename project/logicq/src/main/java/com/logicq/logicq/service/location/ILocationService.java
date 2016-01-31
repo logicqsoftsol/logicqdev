@@ -2,8 +2,10 @@ package com.logicq.logicq.service.location;
 
 import java.util.List;
 
+import com.logicq.logicq.model.location.Location;
+
 public interface ILocationService {
-	public List getLocation();
+	public List<Location> getLocation();
 	
 }
 /**

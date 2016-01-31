@@ -14,6 +14,7 @@ import com.logicq.logicq.common.criteriamanager.LogicqAbstractDataObject;
 @Entity
 @Table(name = "LOCATION")
 public class Location extends LogicqAbstractDataObject implements Serializable {
+
 	/**
 	 * NIHAR 26-Jan-2016 5:29:55 pm
 	 */
@@ -21,28 +22,52 @@ public class Location extends LogicqAbstractDataObject implements Serializable {
 	@Column(name = "LOCATIONID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long locationId;
-	@Column(name = "LOCATIONNAME", unique = true, nullable = false)
+	@Column(name = "LOCATIONNAME", nullable = false)
 	private String locationName;
 	
+	@Column(name = "LOCALITY")
+	private String locality;
 	
-    public Long getLocationId() {
-    
-    	return locationId;
-    }
-	
-    public void setLocationId(Long locationId) {
-    
-    	this.locationId = locationId;
-    }
-	
-    public String getLocationName() {
-    
-    	return locationName;
-    }
-	
-    public void setLocationName(String locationName) {
-    
-    	this.locationName = locationName;
-    }
-	 
+	@Column(name = "PINCODE", unique = true)
+	private Long pincode;
+
+	public String getLocality() {
+
+		return locality;
+	}
+
+	public void setLocality(String locality) {
+
+		this.locality = locality;
+	}
+
+	public Long getPincode() {
+
+		return pincode;
+	}
+
+	public void setPincode(Long pincode) {
+
+		this.pincode = pincode;
+	}
+
+	public Long getLocationId() {
+
+		return locationId;
+	}
+
+	public void setLocationId(Long locationId) {
+
+		this.locationId = locationId;
+	}
+
+	public String getLocationName() {
+
+		return locationName;
+	}
+
+	public void setLocationName(String locationName) {
+
+		this.locationName = locationName;
+	}
 }

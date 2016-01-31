@@ -1,15 +1,4 @@
-$(document)
-		.ready(
-				function() {
-					function randomNumber(min, max) {
-						return Math
-								.floor(Math.random() * (max - min + 1) + min);
-					}
-					function generateCaptcha() {
-						$('#captchaOperation').html(
-								[ randomNumber(1, 100), '+',
-										randomNumber(1, 200), '=' ].join(' '));
-					}
+$(document).ready(function() {
 
 					generateCaptcha();
 
@@ -22,7 +11,7 @@ $(document)
 											invalid : 'glyphicon glyphicon-remove',
 											validating : 'glyphicon glyphicon-refresh'
 										},
-										 excluded: ':disabled',
+										excluded : ':disabled',
 										fields : {
 											firstname : {
 												validators : {
@@ -93,20 +82,21 @@ $(document)
 													}
 												}
 											},
-								            dob : {
-								                // The hidden input will not be ignored
-								                excluded: false,
-								                validators: {
-								                    notEmpty: {
-								                        message: 'The date is required'
-								                    },
-								                    date: {
-								                        format: 'MM/DD/YYYY',
-								                        message: 'The date is not a valid'
-								                    }
-								                }
-								            },
-										
+											dob : {
+												// The hidden input will not be
+												// ignored
+												excluded : false,
+												validators : {
+													notEmpty : {
+														message : 'The date is required'
+													},
+													date : {
+														format : 'MM/DD/YYYY',
+														message : 'The date is not a valid'
+													}
+												}
+											},
+
 											captcha : {
 												validators : {
 													callback : {
@@ -128,18 +118,13 @@ $(document)
 										}
 									}).on('err.form.fv', function(e) {
 								generateCaptcha();
-							}) .on('success.form.bv', function (e) {
-						        // Prevent form submission
-						        e.preventDefault();
-
-						        $('#modalsignup').modal('hide');
-						    });
-
-						    $('#modalsignup')
-						       .on('shown.bs.modal', function () {
-						           $('#signupForm').find('[name="username"]').focus();
-						        })
-						        .on('hidden.bs.modal', function () {
-						            $('#signupForm').bootstrapValidator('resetForm', true);
-						        });
+							});
 				});
+
+function randomNumber(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) + min);
+}
+function generateCaptcha() {
+	$('#captchaOperation').html(
+			[ randomNumber(1, 100), '+', randomNumber(1, 200), '=' ].join(' '));
+}

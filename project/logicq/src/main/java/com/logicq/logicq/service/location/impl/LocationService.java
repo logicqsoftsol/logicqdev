@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.logicq.logicq.dao.location.ILocationDAO;
+import com.logicq.logicq.model.location.Location;
 import com.logicq.logicq.service.location.ILocationService;
-import com.logicq.logicq.service.login.IloginService;
 
 public class LocationService implements ILocationService{
 
@@ -23,7 +23,7 @@ public class LocationService implements ILocationService{
 		this.locationDAO = locationDAO;
 	}
 
-	public List<String> getLocation() {
+	public List<Location> getLocation() {
 
 		/*List<String> locationlist = null;
 		if (null != locationDAO) {
