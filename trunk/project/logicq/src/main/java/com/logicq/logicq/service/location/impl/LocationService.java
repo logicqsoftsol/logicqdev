@@ -5,10 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.logicq.logicq.dao.location.ILocationDAO;
+import com.logicq.logicq.model.entity.EntityRole;
 import com.logicq.logicq.model.location.Location;
 import com.logicq.logicq.service.location.ILocationService;
 
-public class LocationService implements ILocationService{
+public class LocationService implements ILocationService {
 
 	@Autowired
 	ILocationDAO locationDAO;
@@ -25,11 +26,11 @@ public class LocationService implements ILocationService{
 
 	public List<Location> getLocation() {
 
-		/*List<String> locationlist = null;
-		if (null != locationDAO) {
-			locationlist = locationDAO.getLocation();
-		}*/
-		
 		return locationDAO.getLocation();
+	}
+	public List<EntityRole> getEntity() {
+
+		 
+		return locationDAO.getEntity();
 	}
 }

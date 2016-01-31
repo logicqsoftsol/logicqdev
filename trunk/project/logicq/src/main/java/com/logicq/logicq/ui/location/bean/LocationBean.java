@@ -6,6 +6,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.logicq.logicq.common.LogicqContextProvider;
+import com.logicq.logicq.common.LogicqStringFormatter;
+import com.logicq.logicq.model.entity.EntityRole;
 import com.logicq.logicq.model.location.Location;
 
 /**
@@ -15,22 +17,26 @@ import com.logicq.logicq.model.location.Location;
 @SessionScoped
 public class LocationBean {
 
-	List<String> list; 
+	List<String> list;
+	List<String> entitylist;
+
+	public List<String> getEntitylist() {
+
+		return entitylist;
+	}
 
 	public List<String> getList() {
 
 		return list;
 	}
 
-	/*	public void setList(List<String> list) {
-			System.out.println("setList");
-			this.list = list;
-		}*/
 	private Long locationId;
 	private String locationName;
 
 	public LocationBean() {
-      list = getLocation();
+
+		list = getLocation();
+		entitylist=getEntity();
 	}
 
 	public Long getLocationId() {
@@ -57,10 +63,11 @@ public class LocationBean {
 
 		LocationManageBean locationManageBean = LogicqContextProvider.getApplicationContext().getBean(LocationManageBean.class);
 		return locationManageBean.getLocation();
-		/*
-		List<String> locationlist = null;
-		LocationService loc = LogicqContextProvider.getApplicationContext().getBean(LocationService.class);
-		locationlist = loc.getLocation();
-		return LogicqStringFormatter.convertAutoCompleteFormat(locationlist);*/
+	}
+
+	public List<String> getEntity() {
+
+		LocationManageBean locationManageBean = LogicqContextProvider.getApplicationContext().getBean(LocationManageBean.class);
+		return locationManageBean.getEntity();
 	}
 }

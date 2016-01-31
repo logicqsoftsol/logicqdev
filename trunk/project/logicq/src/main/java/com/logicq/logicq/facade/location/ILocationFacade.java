@@ -2,10 +2,12 @@ package com.logicq.logicq.facade.location;
 
 import java.util.List;
 
+import com.logicq.logicq.model.entity.EntityRole;
 import com.logicq.logicq.model.location.Location;
 
 public interface ILocationFacade {
 	  public List<Location> getLocation();
+	  List<EntityRole> getEntity() ;
 	     
 	
 }

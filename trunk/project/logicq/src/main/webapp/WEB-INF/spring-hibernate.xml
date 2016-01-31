@@ -54,6 +54,7 @@
 				<value>com.logicq.logicq.model.upload.UploadFile</value>
 				<value>com.logicq.logicq.model.user.Facility</value>
 				<value>com.logicq.logicq.model.address.Address</value>
+				<value>com.logicq.logicq.model.entity.EntityRole</value>
 			</list>
 		</property>
 	</bean>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.logicq.logicq.facade.location.ILocationFacade;
+import com.logicq.logicq.model.entity.EntityRole;
 import com.logicq.logicq.model.location.Location;
 
 /**
@@ -21,12 +22,18 @@ public class LocationBeanHelper {
 	}
 
 	public void setLocationFacade(ILocationFacade locationFacade) {
-		 
+
 		this.locationFacade = locationFacade;
 	}
-	
-	public List<Location> getLocation(){
+
+	public List<Location> getLocation() {
+
 		return locationFacade.getLocation();
 	}
-	 
+
+	public List<EntityRole> getEntity() {
+
+		// TODO Auto-generated method stub
+		return locationFacade.getEntity();
+	}
 }
