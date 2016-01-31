@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.util.StringUtils;
 
 import com.logicq.logicq.constant.LogicQConstants;
+import com.logicq.logicq.model.entity.EntityRole;
 import com.logicq.logicq.model.location.Location;
 
 /**
@@ -30,6 +31,19 @@ public class LogicqStringFormatter {
 				if(StringUtils.isEmpty(input.getLocality())||null==input.getPincode()){
 				searchresult=searchresult.replaceAll("null,","" ).replace(",null", "");
 				}
+				formatedList.add(searchresult);
+			}
+		}
+		return formatedList;
+	}
+	public static List<String> convertAutoCompleteFormatEntity(List<EntityRole> inputlist) {
+
+		List<String> formatedList = new ArrayList<String>();
+		if (null != inputlist && !inputlist.isEmpty()) {
+			for (EntityRole input : inputlist) {
+				
+				String searchresult=LogicQConstants.BACK_SLASH + input.getEntityName() + LogicQConstants.BACK_SLASH;
+				 
 				formatedList.add(searchresult);
 			}
 		}

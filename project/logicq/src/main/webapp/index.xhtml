@@ -10,15 +10,13 @@
 		<script>
 	$(function() {
 		 
-		  var availableTags1 = [
-		                       "Doctor", "Plumber"
-		                     ];
+		  var entityTags = #{locationMB.entitylist}; 
 		 
-		  var availableTags = #{locationMB.list};
+		  var locationTags = #{locationMB.list};
 		  
 		  $("#userlocation").autocomplete({
 			  autoFocus: true,
-		    source: availableTags,
+		    source: locationTags,
 		    change: function (event, ui) {
 		    	if(!ui.item){
                 	alert("Please select from the available list");
@@ -28,7 +26,14 @@
             }
 		  });
 		  $("#searcserviceprovider").autocomplete({
-			    source: availableTags1
+			    source: entityTags,
+			    change: function (event, ui) {
+			    	if(!ui.item){
+	                	alert("Please select from the available list");
+	                    $("#searcserviceprovider").val("");
+	                }
+
+	            }
 			  });
 		});
 	
