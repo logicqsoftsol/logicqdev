@@ -1,14 +1,12 @@
 package com.logicq.logicq.ui.location.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.logicq.logicq.common.LogicqContextProvider;
-import com.logicq.logicq.common.LogicqStringFormatter;
-import com.logicq.logicq.service.location.impl.LocationService;
+import com.logicq.logicq.model.location.Location;
 
 /**
  * NIHAR 26-Jan-2016 5:49:54 pm
@@ -17,7 +15,7 @@ import com.logicq.logicq.service.location.impl.LocationService;
 @SessionScoped
 public class LocationBean {
 
-	List<String> list;
+	List<String> list; 
 
 	public List<String> getList() {
 
@@ -32,9 +30,7 @@ public class LocationBean {
 	private String locationName;
 
 	public LocationBean() {
-
-		System.out.println("inside location bean constructor");
-		list = getLocation();
+      list = getLocation();
 	}
 
 	public Long getLocationId() {

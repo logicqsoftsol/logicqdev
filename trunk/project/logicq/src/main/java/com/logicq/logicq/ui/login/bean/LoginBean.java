@@ -163,7 +163,6 @@ public class LoginBean implements Serializable {
 		LoginManagedBean loginManagedBean = LogicqContextProvider.getApplicationContext().getBean(LoginManagedBean.class);
 		LoginResponse response = loginManagedBean.checkLoginUser(this);
 		LoginBeanHelper.renderPropertiesAfterLogin(this);
-		//return (loginManagedBean.checkLoginUser(this));
 		int value = response.getLogicqTransactionStatus().getNavigationcode();
 		if (value == LogicQConstants.ADMIN) {
 			return LogicQConstants.ADMIN_ROLE;

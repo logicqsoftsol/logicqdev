@@ -14,7 +14,7 @@ import com.logicq.logicq.model.location.Location;
 @Repository
 public class LocationDAO extends AbstractDAO<Location> implements ILocationDAO{
 	public LocationDAO(){
-		System.out.println("locationdao constructor");
+		System.out.println("locationdao   constructor1ss3");
 	}
 
 	public void addLocation(Location location) {
@@ -35,13 +35,13 @@ public class LocationDAO extends AbstractDAO<Location> implements ILocationDAO{
 	    
     }
 
-	public List<String> getLocation() {
+	public List<Location> getLocation() {
 	/*	LogicqCriteriaHandler l_crietria = new LogicqCriteriaHandler();
 		Criteria criteria=l_crietria.createCriteria(getSession(), Location.class);
 		criteria.setProjection(Projections.property("locationName"));
 		List<Location> locationlist = criteria.list();*/
-		String columns[]={"locationName"};
-		List<String> locationlist=executeCriteriaForSingleColumn(Location.class,columns);
+		 
+		List<Location> locationlist=loadClass(Location.class);
 		
 
 	    // TODO Auto-generated method stub

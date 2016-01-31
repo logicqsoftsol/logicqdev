@@ -9,5 +9,5 @@ public interface ILocationDAO {
 	public void addLocation(Location location);
 	public void updateLocation(Location location);
 	public void deleteLocation(Location location);
-	public List<String> getLocation();
+	public List<Location> getLocation();
 }
