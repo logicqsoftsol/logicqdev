@@ -1,14 +1,12 @@
 package com.logicq.logicq.ui.location.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.logicq.logicq.common.LogicqContextProvider;
-import com.logicq.logicq.common.LogicqStringFormatter;
-import com.logicq.logicq.model.entity.EntityRole;
-import com.logicq.logicq.model.location.Location;
 
 /**
  * NIHAR 26-Jan-2016 5:49:54 pm
@@ -19,6 +17,14 @@ public class LocationBean {
 
 	List<String> list;
 	List<String> entitylist;
+	List <String>latlonglist;
+	 
+
+	
+    public List<String> getLatlonglist() {
+    
+    	return latlonglist;
+    }
 
 	public List<String> getEntitylist() {
 
@@ -37,6 +43,7 @@ public class LocationBean {
 
 		list = getLocation();
 		entitylist=getEntity();
+		latlonglist=getLatLong();
 	}
 
 	public Long getLocationId() {
@@ -69,5 +76,12 @@ public class LocationBean {
 
 		LocationManageBean locationManageBean = LogicqContextProvider.getApplicationContext().getBean(LocationManageBean.class);
 		return locationManageBean.getEntity();
+	}
+	
+	public List<String> getLatLong() {
+
+		 LocationManageBean locationManageBean = LogicqContextProvider.getApplicationContext().getBean(LocationManageBean.class);
+		 return locationManageBean.getAllLocation();
+		 
 	}
 }

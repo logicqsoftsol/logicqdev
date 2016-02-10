@@ -27,7 +27,7 @@ public class LogicqStringFormatter {
 		if (null != inputlist && !inputlist.isEmpty()) {
 			for (Location input : inputlist) {
 				
-				String searchresult=LogicQConstants.BACK_SLASH + input.getLocality()+STRING_COMMA+input.getLocationName()+STRING_COMMA+input.getPincode() + LogicQConstants.BACK_SLASH;
+				String searchresult=LogicQConstants.BACK_SLASH + input.getLocality()+STRING_COMMA+input.getLocationName()+STRING_COMMA+input.getPincode()+LogicQConstants.BACK_SLASH;
 				if(StringUtils.isEmpty(input.getLocality())||null==input.getPincode()){
 				searchresult=searchresult.replaceAll("null,","" ).replace(",null", "");
 				}
@@ -44,6 +44,19 @@ public class LogicqStringFormatter {
 				
 				String searchresult=LogicQConstants.BACK_SLASH + input.getEntityName() + LogicQConstants.BACK_SLASH;
 				 
+				formatedList.add(searchresult);
+			}
+		}
+		return formatedList;
+	}
+	
+	public static List<String> convertAutoCompleteFormatLat(List<Location> inputlist) {
+
+		List<String> formatedList = new ArrayList<String>();
+		if (null != inputlist && !inputlist.isEmpty()) {
+			for (Location input : inputlist) {
+				
+				String searchresult=LogicQConstants.BACK_SLASH + input.getLocality()+STRING_COMMA+input.getLocationName()+STRING_COMMA+input.getPincode()+STRING_COMMA+input.getLatitude()+STRING_COMMA+input.getLongitude()+ LogicQConstants.BACK_SLASH;
 				formatedList.add(searchresult);
 			}
 		}

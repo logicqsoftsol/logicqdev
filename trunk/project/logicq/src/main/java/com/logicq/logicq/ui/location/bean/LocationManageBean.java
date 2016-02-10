@@ -36,6 +36,12 @@ public class LocationManageBean {
 		// TODO Auto-generated method stub
 		return LogicqStringFormatter.convertAutoCompleteFormatEntity(entitylist);
 	}
+	public List<String> getAllLocation() {
+
+		List<Location> latlist = null;
+		latlist = locationBeanHelper.getLocation();
+		return LogicqStringFormatter.convertAutoCompleteFormatLat(latlist);
+	}
 }
 /**
  * NIHAR 28-Jan-2016 12:10:49 am
