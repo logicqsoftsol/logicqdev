@@ -13,4 +13,4 @@
     
 //insert Query
 
- insert into location values(1,'Bhbaneswar','SaheedNagar',754879);
+ insert into location values(1,'Bhbaneswar','SaheedNagar',754879,20.2887253,85.8396657);
