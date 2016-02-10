@@ -4,6 +4,8 @@
     locationname VARCHAR(60) NOT NULL,
 	locality VARCHAR(60),
 	pincode BIGINT (16),
+	latitude double(22),
+	longitude double(22),
     UNIQUE INDEX (locationid),
     UNIQUE INDEX (pincode),
     PRIMARY KEY (locationid,locationname,locality,pincode) ) ;
