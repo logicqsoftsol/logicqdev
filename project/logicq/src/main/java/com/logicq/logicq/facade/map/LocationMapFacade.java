@@ -1,6 +1,7 @@
 package com.logicq.logicq.facade.map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.logicq.logicq.conversion.address.AddressConversion;
@@ -22,7 +23,7 @@ public class LocationMapFacade implements ILocationMapFacade {
 		this.locationMapService = locationMapService;
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = true)
 	public AddressVO getLocation(String ipAddress) {
 		LocationMap l_locationMap=locationMapService.getLocation(ipAddress);
 		return addressConversion.conversionFromEntitytoVO(l_locationMap, new AddressVO());

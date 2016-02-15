@@ -1,6 +1,7 @@
 package com.logicq.logicq.facade.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.logicq.logicq.service.login.IloginService;
@@ -22,7 +23,7 @@ public class LoginFacade implements ILoginFacade {
 		return loginService;
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = true)
 	public LoginResponse checkLoginUser(LoginRequest p_request, LoginResponse p_response) {
 
 		return getLoginService().checkLoginUser(p_request, p_response);

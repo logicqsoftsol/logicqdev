@@ -17,9 +17,9 @@
 	<bean id="ds"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/logicq??zeroDateTimeBehavior=convertToNull" />
 		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="" />
 	</bean>
 
 	<bean id="transactionManager"
@@ -63,12 +63,6 @@
 	<bean id="abstractDAO" class="com.logicq.logicq.dao.AbstractDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="applicationContextProvder" class="com.logicq.logicq.common.LogicqContextProvider" />
-	<bean id="user" class="com.logicq.logicq.model.user.User" />
-	<bean id="task" class="com.logicq.logicq.model.task.Task" />
-	<bean id="locationmap" class="com.logicq.logicq.model.map.LocationMap" />
-	<bean id="login" class="com.logicq.logicq.model.login.Login" />
-	<bean id="uploadFile" class="com.logicq.logicq.model.upload.UploadFile" />
 	
 
      <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>

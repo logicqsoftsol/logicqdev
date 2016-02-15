@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:mvc="http://www.springframework.org/schema/mvc" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="
+    http://www.springframework.org/schema/beans     
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-    http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	<mvc:annotation-driven /> 
 
 	<context:component-scan base-package="com.logicq.logicq" />
+	<bean id="applicationContextProvder" class="com.logicq.logicq.common.LogicqContextProvider" />
+	<bean id="user" class="com.logicq.logicq.model.user.User" />
+	<bean id="task" class="com.logicq.logicq.model.task.Task" />
+	<bean id="locationmap" class="com.logicq.logicq.model.map.LocationMap" />
+	<bean id="login" class="com.logicq.logicq.model.login.Login" />
+	<bean id="uploadFile" class="com.logicq.logicq.model.upload.UploadFile" />
+	
 		<!--Abstract Transaction logicq -->
     <bean id="logicqTransactionStatus" class="com.logicq.logicq.common.LogicqTransactionStatus" />
-	<bean id="LogicQTransactionService" class="com.logicq.logicq.common.LogicqHttpServletRequest" />
+	<bean id="logicqHttpServletRequest" class="com.logicq.logicq.common.LogicqHttpServletRequest" />
 
 	<!-- User deatils etries for UI -->
 	<bean id="userManagedBean" class="com.logicq.logicq.ui.user.bean.UserManagedBean" />
@@ -85,10 +98,4 @@
 	<bean id="locationBeanHelper" class="com.logicq.logicq.ui.login.helper.LocationBeanHelper" />
 	
 	
-	
-	
-	
-	
-    
-    
 </beans>

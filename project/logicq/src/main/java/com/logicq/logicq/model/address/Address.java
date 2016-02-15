@@ -13,14 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.logicq.logicq.common.criteriamanager.LogicqAbstractDataObject;
+import com.logicq.logicq.common.criteriamanager.BaseEntity;
 import com.logicq.logicq.constant.ComunicationAddress;
 import com.logicq.logicq.constant.ContactType;
 import com.logicq.logicq.model.user.User;
 
 @Entity
 @Table(name = "USER_ADDRESS")
-public class Address extends LogicqAbstractDataObject implements AddressConstant, Serializable {
+public class Address extends BaseEntity implements AddressConstant, Serializable {
 
 	/**
 	 * serial version uid

@@ -8,14 +8,31 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+/**
+ * 
+ * 
+ * @author SudhanshuLenka
+ *
+ */
 public class LogicqQueryHandler {
-
+/**
+ * 
+ * @param session
+ * @param p_query
+ * @return
+ */
 	public Query createCriteria(Session session, String p_query) {
 
 		return session.createQuery(p_query);
 	}
-
+/**
+ * 
+ * @param session
+ * @param p_query
+ * @param p_filterObjectList
+ * @param operationType
+ * @return
+ */
 	public int executeTransactionalQuery(Session session, String p_query, List<? extends LogicqFilterObject> p_filterObjectList, OperationType operationType) {
 
 		Query query = createCriteria(session, p_query);
@@ -30,13 +47,23 @@ public class LogicqQueryHandler {
 		}
 		return -99;
 	}
-
-	public List<? extends LogicqAbstractDataObject> executeQueryForSelect(Query query, List<? extends LogicqFilterObject> p_filterObjectList) {
+/**
+ * 
+ * @param query
+ * @param p_filterObjectList
+ * @return
+ */
+	public List<? extends BaseEntity> executeQueryForSelect(Query query, List<? extends LogicqFilterObject> p_filterObjectList) {
 
 		return executeQuery(p_filterObjectList, query, OperationType.SELECT);
 	}
-
-	public LogicqAbstractDataObject executeQueryForSingleSelect(Query query, List<? extends LogicqFilterObject> p_filterObjectList) {
+/**
+ * 
+ * @param query
+ * @param p_filterObjectList
+ * @return
+ */
+	public Object executeQueryForSingleSelect(Query query, List<? extends LogicqFilterObject> p_filterObjectList) {
 
 		return executeSingleQuery(p_filterObjectList, query, OperationType.SELECT);
 	}
@@ -51,48 +78,84 @@ public class LogicqQueryHandler {
 		}
 		return result;
 	}
-
+/**
+ * 
+ * @param session
+ * @param query
+ * @param p_filterObjectList
+ * @return
+ */
 	private int executeQueryForInsert(Session session, Query query, List<? extends LogicqFilterObject> p_filterObjectList) {
 
 		return executeQueryForTransaction(p_filterObjectList, query, OperationType.INSERT);
 	}
-
+/**
+ * 
+ * @param session
+ * @param query
+ * @param p_filterObjectList
+ * @return
+ */
 	private int executeQueryForDelete(Session session, Query query, List<? extends LogicqFilterObject> p_filterObjectList) {
 
 		return executeQueryForTransaction(p_filterObjectList, query, OperationType.DELETE);
 	}
-
+/**
+ * 
+ * @param p_filterObjectList
+ * @param query
+ * @param operationType
+ * @return
+ */
 	private int executeQueryForTransaction(List<? extends LogicqFilterObject> p_filterObjectList, Query query, OperationType operationType) {
 
-		if (null != p_filterObjectList || !p_filterObjectList.isEmpty()) {
+		if (null != p_filterObjectList && !p_filterObjectList.isEmpty()) {
 			query = buildFilterCondition(query, p_filterObjectList);
 		}
 		return query.executeUpdate();
 	}
 
-	@SuppressWarnings("null")
-	private List<? extends LogicqAbstractDataObject> executeQuery(List<? extends LogicqFilterObject> p_filterObjectList,
+/**
+ * 
+ * @param p_filterObjectList
+ * @param query
+ * @param operationType
+ * @return
+ */
+	private List<? extends BaseEntity> executeQuery(List<? extends LogicqFilterObject> p_filterObjectList,
 	                                                              Query query,
 	                                                              OperationType operationType) {
 
-		if (null != p_filterObjectList || !p_filterObjectList.isEmpty()) {
+		if (null != p_filterObjectList && !p_filterObjectList.isEmpty()) {
 			query = buildFilterCondition(query, p_filterObjectList);
 		}
 		return query.list();
 	}
-	@SuppressWarnings("unused")
-    private LogicqAbstractDataObject executeSingleQuery(List<? extends LogicqFilterObject> p_filterObjectList,
+	/**
+	 * 
+	 * @param p_filterObjectList
+	 * @param query
+	 * @param operationType
+	 * @return
+	 */
+    private Object executeSingleQuery(List<? extends LogicqFilterObject> p_filterObjectList,
 	                                                              Query query,
 	                                                              OperationType operationType) {
 
-		if (null != p_filterObjectList || !p_filterObjectList.isEmpty()) {
+		if (null != p_filterObjectList && !p_filterObjectList.isEmpty()) {
 			query = buildFilterCondition(query, p_filterObjectList);
 		}
 		if(!query.list().isEmpty()){
-			return (LogicqAbstractDataObject) query.list().get(0);
+			return query.list().get(0);
 				}
 		return null; 
 	}
+	/**
+	 * 
+	 * @param query
+	 * @param p_filterObjectList
+	 * @return
+	 */
 	private Query buildFilterCondition(Query query, List<? extends LogicqFilterObject> p_filterObjectList) {
 
 		for (LogicqFilterObject l_filteredobject : p_filterObjectList) {

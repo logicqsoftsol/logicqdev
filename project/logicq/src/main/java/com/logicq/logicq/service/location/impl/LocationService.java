@@ -3,6 +3,7 @@ package com.logicq.logicq.service.location.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.logicq.logicq.dao.location.ILocationDAO;
 import com.logicq.logicq.model.entity.EntityRole;
@@ -24,10 +25,13 @@ public class LocationService implements ILocationService {
 		this.locationDAO = locationDAO;
 	}
 
+	@ExceptionHandler(Exception.class)
 	public List<Location> getLocation() {
 
 		return locationDAO.getLocation();
 	}
+	
+	@ExceptionHandler(Exception.class)
 	public List<EntityRole> getEntity() {
 
 		 

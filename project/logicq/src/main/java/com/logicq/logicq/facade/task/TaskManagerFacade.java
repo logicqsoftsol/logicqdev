@@ -3,6 +3,7 @@ package com.logicq.logicq.facade.task;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.logicq.logicq.model.task.Task;
@@ -22,23 +23,23 @@ public class TaskManagerFacade implements ITaskManagerFacade{
 		this.taskManagerService = taskManagerService;
 	}
 
-	@Transactional(readOnly=false)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = false)
 	public void addTask(TaskVO task) {
 		taskManagerService.addTask(task);
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = false)
 	public void updateTask(TaskVO task) {
 		taskManagerService.updateTask(task);
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = true)
 	public List<TaskVO> getAllTasks() {
 		
 		return taskManagerService.getAllTasks();
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = true)
 	public TaskVO getTaskById(int taskId) {
 		return taskManagerService.getTaskById(taskId);
 	}

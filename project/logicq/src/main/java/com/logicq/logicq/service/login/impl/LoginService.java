@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.logicq.logicq.constant.LogicQConstants;
 import com.logicq.logicq.conversion.login.LoginConversion;

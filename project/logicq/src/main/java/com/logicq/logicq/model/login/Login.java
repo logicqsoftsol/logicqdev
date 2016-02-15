@@ -1,5 +1,6 @@
 package com.logicq.logicq.model.login;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,12 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.logicq.logicq.common.criteriamanager.LogicqAbstractDataObject;
+import com.logicq.logicq.common.criteriamanager.BaseEntity;
 
 @Entity
 @Table(name = "LOGIN")
-public class Login extends LogicqAbstractDataObject implements LoginConstant {
+public class Login extends BaseEntity implements LoginConstant,Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6797621025593128500L;
 	@Id
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;

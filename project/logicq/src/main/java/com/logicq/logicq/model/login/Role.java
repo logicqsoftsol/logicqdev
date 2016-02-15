@@ -1,15 +1,24 @@
 package com.logicq.logicq.model.login;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.logicq.logicq.common.criteriamanager.BaseEntity;
+import com.logicq.logicq.model.task.TaskConstant;
+
 @Entity
 @Table(name = "USER_ROLES")
-public class Role {
+public class Role extends BaseEntity implements Serializable {
 
-	@Id
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2781440756615459557L;
+	@Id 
 	@Column(name = "role_id", unique = true, nullable = false)
 	private Long roleid;
 	@Column(name = "role", unique = true, nullable = false)

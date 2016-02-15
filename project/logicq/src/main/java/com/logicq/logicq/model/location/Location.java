@@ -9,11 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.logicq.logicq.common.criteriamanager.LogicqAbstractDataObject;
+import com.logicq.logicq.common.criteriamanager.BaseEntity;
 
 @Entity
 @Table(name = "LOCATION")
-public class Location extends LogicqAbstractDataObject implements Serializable {
+public class Location extends BaseEntity implements Serializable {
 
 	/**
 	 * NIHAR 26-Jan-2016 5:29:55 pm
@@ -25,10 +25,10 @@ public class Location extends LogicqAbstractDataObject implements Serializable {
 	@Column(name = "LOCATIONNAME", nullable = false)
 	private String locationName;
 	
-	@Column(name = "LOCALITY")
+	//@Column(name = "LOCALITY")
 	private String locality;
 	
-	@Column(name = "PINCODE", unique = true)
+	//@Column(name = "PINCODE", unique = true)
 	private Long pincode;
 	
 	@Column(name = "LATITUDE", unique = true)
