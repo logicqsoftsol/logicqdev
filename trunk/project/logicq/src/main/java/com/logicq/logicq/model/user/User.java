@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
-import com.logicq.logicq.common.criteriamanager.LogicqAbstractDataObject;
+import com.logicq.logicq.common.criteriamanager.BaseEntity;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.login.Role;
 
@@ -27,7 +27,7 @@ import com.logicq.logicq.model.login.Role;
 @NamedQueries({ @NamedQuery(name = User.GET_USER, query = User.GET_USER_QUERY),
                 @NamedQuery(name = User.GET_MOBILE_NO, query = User.GET_MOBILE_NO_QRY),
                 @NamedQuery(name = User.GET_EMAIL_ID, query = User.GET_EMAIL_ID_QRY) })
-public class User extends LogicqAbstractDataObject implements UserConstant, Serializable {
+public class User extends BaseEntity implements UserConstant, Serializable {
 
 	/**
 	 * serial version uid

@@ -1,12 +1,21 @@
 package com.logicq.logicq.model.login;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.logicq.logicq.common.criteriamanager.BaseEntity;
+
 @Entity
 @Table(name="USER_ROLES_MAP")
-public class UserRoleMap {
+public class UserRoleMap extends BaseEntity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2853249268915521274L;
+
 	@Column(name="user_id", nullable = false)
 	private int userid;
 	

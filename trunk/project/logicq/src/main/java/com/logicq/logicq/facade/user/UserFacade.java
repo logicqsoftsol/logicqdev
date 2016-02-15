@@ -3,6 +3,7 @@ package com.logicq.logicq.facade.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.logicq.logicq.model.user.User;
@@ -24,30 +25,30 @@ public class UserFacade  implements IUserFacade {
 		this.userService = userService;
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional(propagation=Propagation.SUPPORTS, readOnly=false)
 	public UserRegistrationResponse addUser(UserRegistrationRequest userRequest, UserRegistrationResponse userResponse) {
 		return (getUserService().addUser(userRequest, userResponse));
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = false)
 	public void updateUser(UserVO user) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = false)
 	public void deleteUser(UserVO user) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = true)
 	public User getUserById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = true)
 	public List<User> getUsers() {
 		// TODO Auto-generated method stub
 		return null;

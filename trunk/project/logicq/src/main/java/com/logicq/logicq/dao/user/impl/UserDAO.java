@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.Query;
-
-import com.logicq.logicq.common.criteriamanager.LogicqQueryHandler;
 import com.logicq.logicq.constant.CommunicationType;
 import com.logicq.logicq.dao.AbstractDAO;
 import com.logicq.logicq.dao.user.IUserDAO;
@@ -63,7 +60,7 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("mobileNo", mobileNo);
-		List<User> users = executeNamedQuery(UserConstant.GET_MOBILE_NO, params);
+		List<User> users = (List<User>) executeNamedQuery(UserConstant.GET_MOBILE_NO, params);
 		if (users != null && !users.isEmpty() && (users.size() > 0)) {
 			return false;
 		}
@@ -74,7 +71,7 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("emailId", emailId);
-		List<User> users = executeNamedQuery(UserConstant.GET_EMAIL_ID, params);
+		List<User> users = (List<User>) executeNamedQuery(UserConstant.GET_EMAIL_ID, params);
 		if (users != null && !users.isEmpty() && (users.size() > 0)) {
 			return false;
 		}
@@ -97,10 +94,10 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 		List<User> users = new ArrayList<User>();
 		if (CommunicationType.EMAIL.equals(type)) {
 			params.put("emailId", input);
-			users = executeNamedQuery(UserConstant.GET_EMAIL_ID, params);
+			users = (List<User>) executeNamedQuery(UserConstant.GET_EMAIL_ID, params);
 		} else {
 			params.put("mobileNo", input);
-			users = executeNamedQuery(UserConstant.GET_MOBILE_NO, params);
+			users = (List<User>) executeNamedQuery(UserConstant.GET_MOBILE_NO, params);
 		}
 		if (users != null && !users.isEmpty() && (users.size() > 0)) {
 			return users.get(0);

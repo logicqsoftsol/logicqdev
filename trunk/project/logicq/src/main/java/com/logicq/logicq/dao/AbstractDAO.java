@@ -3,6 +3,7 @@ package com.logicq.logicq.dao;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -11,116 +12,94 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Map;
+import com.logicq.logicq.common.criteriamanager.BaseEntity;
 
 public class AbstractDAO<T> {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	/**
-	 * Get Hibernate Session Factory
-	 * 
-	 * @return SessionFactory - Hibernate Session Factory
-	 */
 	public SessionFactory getSessionFactory() {
 
 		return sessionFactory;
 	}
 
-	/**
-	 * Set Hibernate Session Factory
-	 * 
-	 * @param SessionFactory
-	 *            - Hibernate Session Factory
-	 */
 	public void setSessionFactory(SessionFactory sessionFactory) {
 
 		this.sessionFactory = sessionFactory;
 	}
-
-	@Transactional(readOnly = false)
-	public void save(T p_abstractobject, Session p_session) {
-
-		if (null == p_session) {
-			Session session = getSessionFactory().openSession();
-			Transaction l_txn = null;
-			try {
-				l_txn = session.beginTransaction();
-				session.save(p_abstractobject);
-				l_txn.commit();
-			} catch (Exception l_ex) {
-				if (l_txn != null)
-					l_txn.rollback();
-			} finally {
-				session.close();
-			}
-		} else {
-			p_session.save(p_abstractobject);
+	
+/**
+ * 
+ * @return
+ */
+	public Session getCurrentSession() {
+		Session l_session = sessionFactory.getCurrentSession();
+		if (null == l_session) {
+			l_session = sessionFactory.openSession();
 		}
+		return l_session;
 	}
-
-	@Transactional(readOnly = false)
-	public void update(T p_entity, Session p_session) {
-
-		if (null == p_session) {
-			Session session = sessionFactory.openSession();
-			Transaction l_txn = null;
-			try {
-				l_txn = session.beginTransaction();
-				session.update(p_entity);
-				l_txn.commit();
-			} catch (Exception l_ex) {
-				if (l_txn != null)
-					l_txn.rollback();
-			} finally {
-				session.close();
-			}
-		} else {
-			p_session.update(p_entity);
-		}
-	}
-
-	@Transactional(readOnly = false)
-	public void delete(T p_abstractobject, Session p_session) {
-
-		if (null == p_session) {
-			Session session = sessionFactory.openSession();
-			Transaction l_txn = null;
-			try {
-				l_txn = session.beginTransaction();
-				session.delete(p_abstractobject);
-				l_txn.commit();
-			} catch (Exception l_ex) {
-				if (l_txn != null)
-					l_txn.rollback();
-			} finally {
-				session.close();
-			}
-		} else {
-			p_session.update(p_abstractobject);
-		}
-	}
-
+/**
+ * 
+ */
 	public Session getSession() {
-
 		return sessionFactory.openSession();
 	}
+	
+	/**
+	 * 
+	 * @param p_abstractentity
+	 * @param p_session
+	 */
+	public void save(T p_abstractentity, Session p_session) {
+		
+		Session l_session=p_session;
+		if (null == l_session) {
+			 l_session = getSession();
+		}
+		l_session.persist(p_abstractentity);
+	}
+	
+/**
+ * 
+ * @param p_abstractentity
+ * @param p_session
+ */
+	public void update(T p_abstractentity, Session p_session)  {
+		Session l_session = p_session;
+		if (null == p_session) {
+			l_session = getSession();
+		}
+		l_session.update(p_abstractentity);
+	}
+	
 
+
+
+/**
+ * 	
+ * @param p_abstractentity
+ * @param p_session
+ */
+	public void delete(T p_abstractentity, Session p_session) {
+		Session l_session=p_session;
+		if (null == p_session) {
+			 l_session = getSession();
+		}
+        if(null != p_abstractentity){
+        	l_session.delete(p_abstractentity);
+        }
+	}
+	
 	/**
 	 * @return
 	 */
 	public Transaction beginTransaction() {
-
 		Session session = sessionFactory.openSession();
 		Transaction l_txn = null;
-		try {
-			l_txn = session.beginTransaction();
-		} catch (Exception l_ex) {
-			// need to Add logicq exception handling
-		}
+		l_txn = session.beginTransaction();
 		return l_txn;
 	}
 
@@ -130,25 +109,26 @@ public class AbstractDAO<T> {
 	public void commitTransaction(Transaction p_transaction) {
 
 		if (null != p_transaction) {
-			try {
-				p_transaction.commit();
-			} catch (Exception l_ex) {
-				if (null != p_transaction) {
-					p_transaction.rollback();
-				}
-			}
+			p_transaction.commit();
 		}
 	}
-
-	public List executeNamedQuery(String query, Map<String, Object> paramMap) {
-
+/**
+ * 
+ * @param query
+ * @param paramMap
+ * @return
+ */
+	public List<? extends BaseEntity> executeNamedQuery(String query, Map<String, Object> paramMap) {
 		Session session = getSession();
 		Query qry = session.getNamedQuery(query);
 		bindParameters(qry, paramMap);
-		List list = qry.list();
-		return list;
+		return qry.list();
 	}
-
+/**
+ * 
+ * @param qry
+ * @param paramMap
+ */
 	private void bindParameters(Query qry, Map<String, Object> paramMap) {
 
 		for (Map.Entry<String, Object> entry : paramMap.entrySet()) {
@@ -159,23 +139,33 @@ public class AbstractDAO<T> {
 			}
 		}
 	}
-
-	public Object load(Class clazz, Serializable id) {
-
-		Object obj = null;
-		Session session = getSession();
-		obj = session.load(clazz, id);
-		return obj;
+/**
+ * 
+ * @param clazz
+ * @param id
+ * @return
+ */
+	public Object load(Class<T> clazz, Serializable id) {
+		Session session = getCurrentSession();
+		return session.load(clazz, id);
 	}
+/**
+ * 
+ * @param clazz
+ * @return
+ */
+	public List<? extends BaseEntity> loadClass(Class<T> clazz) {
 
-	public List loadClass(Class clazz) {
-
-		Session session = getSession();
+		Session session = getCurrentSession();
 		Query qry = session.createQuery("from " + clazz.getName());
-		List list = qry.list();
-		return list;
+		return qry.list();
 	}
-
+/**
+ * 
+ * @param query
+ * @param paramMap
+ * @return
+ */
 	public Object executeNamedQueryForSingleRow(String query, Map<String, Object> paramMap) {
 
 		Session session = getSession();
@@ -187,15 +177,20 @@ public class AbstractDAO<T> {
 		}
 		return null;
 	}
-
-	public List executeCriteriaForSingleColumn(Class clazz, Object[] params) {
+/**
+ * 
+ * 
+ * @param clazz
+ * @param params
+ * @return
+ */
+	public List<? extends BaseEntity> executeCriteriaForSingleColumn(Class<T> clazz, Object[] params) {
 
 		Session session = getSession();
 		Criteria criteria = session.createCriteria(clazz);
 		 for (Object columnName : params) {
 			criteria.setProjection(Projections.property(String.valueOf(columnName)));
 		} 
-		List list = criteria.list();
-		return list;
+		return criteria.list();
 	}
 }

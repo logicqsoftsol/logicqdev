@@ -12,31 +12,31 @@ public class LogicqCriteriaHandler {
 		return session.createCriteria(p_class);
 	}
 
-	public List<? extends LogicqAbstractDataObject> executeCriteria(Criteria criteria,
+	public List<? extends BaseEntity> executeCriteria(Criteria criteria,
 			List<? extends LogicqFilterObject> p_filterObjectList,
 			DataFetchType p_dataFetchType) {
 		return executeCriteriaDetails(p_filterObjectList, p_dataFetchType,
 				criteria);
 	}
 
-	public List<? extends LogicqAbstractDataObject> executeCriteria(Session session,
+	public List<? extends BaseEntity> executeCriteria(Session session,
 			List<? extends LogicqFilterObject> p_filterObjectList,
 			DataFetchType p_dataFetchType, Class p_class) {
 		return executeCriteriaDetails(p_filterObjectList,
 				p_dataFetchType, createCriteria(session,p_class));
 	}
 
-	public List<? extends LogicqAbstractDataObject> executeCriteriaDetails(
+	public List<? extends BaseEntity> executeCriteriaDetails(
 			List<? extends LogicqFilterObject> p_filterObjectList,
 			DataFetchType p_dataFetchType, Criteria criteria) {
 		criteria = createFiltedQuery(criteria, p_filterObjectList);
 		if (p_dataFetchType.equals(DataFetchType.LIST_RECORD)) {
-			return (List<? extends LogicqAbstractDataObject>) findListObject(criteria);
+			return (List<? extends BaseEntity>) findListObject(criteria);
 		}
 		return null;
 	}
 
-	private List<? extends LogicqAbstractDataObject> findListObject(Criteria criteria) {
+	private List<? extends BaseEntity> findListObject(Criteria criteria) {
 		return criteria.list();
 	}
 

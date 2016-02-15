@@ -1,5 +1,7 @@
 package com.logicq.logicq.model.task;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,13 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.logicq.logicq.common.criteriamanager.LogicqAbstractDataObject;
+import com.logicq.logicq.common.criteriamanager.BaseEntity;
 import com.logicq.logicq.model.login.LoginConstant;
 
 @Entity
 @Table(name = "TASK")
-public class Task extends LogicqAbstractDataObject implements TaskConstant{
+public class Task extends BaseEntity implements TaskConstant,Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5273602336692056432L;
 	@Id
     @Column(name="ID", unique = true, nullable = false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -2,6 +2,8 @@ package com.logicq.logicq.service.user;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
 import com.logicq.logicq.constant.CommunicationType;
 import com.logicq.logicq.model.user.User;
 import com.logicq.logicq.ui.user.vo.UserRegistrationRequest;
@@ -23,6 +25,7 @@ public interface IUserService {
 	 * @param User
 	 *            user
 	 */
+	@ExceptionHandler(Exception.class)
 	public UserRegistrationResponse addUser(UserRegistrationRequest userRequest, UserRegistrationResponse userResponse);
 
 	/**
@@ -31,6 +34,7 @@ public interface IUserService {
 	 * @param User
 	 *            user
 	 */
+	@ExceptionHandler(Exception.class)
 	public void updateUser(UserVO user);
 
 	/**
@@ -39,6 +43,7 @@ public interface IUserService {
 	 * @param User
 	 *            user
 	 */
+	@ExceptionHandler(Exception.class)
 	public void deleteUser(UserVO user);
 
 	/**
@@ -47,6 +52,7 @@ public interface IUserService {
 	 * @param Long
 	 *            User Id
 	 */
+	@ExceptionHandler(Exception.class)
 	public User getUserById(Long id);
 
 	/**
@@ -54,9 +60,12 @@ public interface IUserService {
 	 * 
 	 * @return List - User list
 	 */
+	@ExceptionHandler(Exception.class)
 	public List<User> getUsers();
 
+	@ExceptionHandler(Exception.class)
 	public Long getUserIdFromEmailOrMobile(String input, CommunicationType type);
 	
+	@ExceptionHandler(Exception.class)
 	public User getuserDetail(Long id);
 }
