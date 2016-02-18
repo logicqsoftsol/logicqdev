@@ -27,8 +27,8 @@ public class LocationManageBean {
 	public List<String> getLocation() {
 
 		List<Location> locationlist = null;
-		locationlist = null;//locationBeanHelper.getLocation();
-		return null;// LogicqStringFormatter.convertAutoCompleteFormat(locationlist);
+		locationlist = locationBeanHelper.getLocation();
+		return  LogicqStringFormatter.convertAutoCompleteFormat(locationlist);
 	}
 	public List<String> getEntity() {
 		List<EntityRole> entitylist = null;

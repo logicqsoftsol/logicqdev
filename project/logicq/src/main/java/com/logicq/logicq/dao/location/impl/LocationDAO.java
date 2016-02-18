@@ -34,13 +34,13 @@ public class LocationDAO extends AbstractDAO<Location> implements ILocationDAO {
 
 	public List<Location> getLocation() {
 
-		List<Location> locationlist = null;//loadClass(Location.class);
+		List<Location> locationlist = (List<Location>) loadClass(Location.class);
 		// TODO Auto-generated method stub
 		return locationlist;
 	}
 	public List<EntityRole> getEntity() {
 
-		List<EntityRole> entitylist = null;//loadClass(EntityRole.class);
+		List<EntityRole> entitylist = (List<EntityRole>)loadClass(EntityRole.class);
 		// TODO Auto-generated method stub
 		return entitylist;
 	}
