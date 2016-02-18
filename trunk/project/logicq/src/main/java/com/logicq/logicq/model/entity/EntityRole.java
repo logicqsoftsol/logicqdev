@@ -6,12 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.logicq.logicq.common.criteriamanager.BaseEntity;
 /**
  * NIHAR 01-Feb-2016 1:08:12 am
  */
 @Entity
 @Table(name = "ENTITY")
-public class EntityRole {
+public class EntityRole extends BaseEntity{
 	
  
     public Long getEntityId() {

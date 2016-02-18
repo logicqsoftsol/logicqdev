@@ -149,12 +149,13 @@ public class AbstractDAO<T> {
 		Session session = getCurrentSession();
 		return session.load(clazz, id);
 	}
+	
 /**
  * 
  * @param clazz
  * @return
  */
-	public List<? extends BaseEntity> loadClass(Class<T> clazz) {
+	public List<? extends BaseEntity> loadClass(Class clazz) {
 
 		Session session = getCurrentSession();
 		Query qry = session.createQuery("from " + clazz.getName());
