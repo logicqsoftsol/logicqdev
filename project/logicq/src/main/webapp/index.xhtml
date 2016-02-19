@@ -7,6 +7,11 @@
 	template="pages/templates/common-template.xhtml"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<ui:define name="content">
+	<script>
+		$(document).ready(function() {
+			$('.progress .progress-bar').progressbar();
+		})
+	</script>
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 		<script>
 	$(function() {
@@ -107,6 +112,7 @@
 				</div>
 				<!--.panel-heading-->
 				<br></br> <br></br> <br></br>
+				
 				<div class="panel-body">
 					<div class="col-md-5">
 						<div class="tab-pane active" id="form3_tab1">
@@ -187,11 +193,10 @@
 									<div class="col-md-2">
 										<img src="pages/img/beauty.ico" id="beauty"
 											class="img-responsive" />
-										<h:commandLink id="beautycommandlink"
-											action="#{userMB.selectedEntity}" rendered="true"
-											oncomplete="javascript:location.reload(true)">
+										<h:link id="beautycommandlink"
+											action="#{userMB.selectedEntity}">
 											<h:outputText value="BeautyCare" id="beautycare" />
-										</h:commandLink>
+										</h:link>
 									</div>
 								</div>
 
@@ -211,11 +216,11 @@
 									<div class="col-md-2">
 										<img src="pages/img/carpenter.ico" id="carpenter"
 											class="img-responsive" />
-										<h:commandLink id="carpentercommandlink"
+										<h:link id="carpentercommandlink"
 											action="#{userMB.selectedEntity}" rendered="true"
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Carpenter" id="carpenter" />
-										</h:commandLink>
+										</h:link>
 									</div>
 								</div>
 
@@ -239,22 +244,22 @@
 									<div class="col-md-2">
 										<img src="pages/img/tutor.ico" id="tutor"
 											class="img-responsive" />
-										<h:commandLink id="tutorcommandlink"
+										<h:link id="tutorcommandlink"
 											action="#{userMB.selectedEntity}" rendered="true"
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Tutor" id="tutor" />
-										</h:commandLink>
+										</h:link>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-md-2">
 										<img src="pages/img/grocery.ico" id="grocery"
 											class="img-responsive" />
-										<h:commandLink id="grocerycommandlink"
+										<h:link id="grocerycommandlink"
 											action="#{userMB.selectedEntity}" rendered="true"
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Grocery" id="grocery" />
-										</h:commandLink>
+										</h:link>
 									</div>
 								</div>
 								<div class="form-group">
