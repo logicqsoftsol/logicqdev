@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.validation.constraints.NotNull;
 
@@ -44,19 +45,61 @@ public class UserBean implements Serializable {
 	private String spcification;
 	private String fullname;
 	private String exprience;
-	
-	
-	public String getExprience() {
-	
-		return exprience;
+	private List<ProfileBean> profiles;
+
+	public List<ProfileBean> getProfiles() {
+		profiles=new ArrayList<ProfileBean>();
+		ProfileBean l_profile=new ProfileBean();
+		l_profile.setExprience("10");
+		l_profile.setFacilityDetails("Family doctor");
+		l_profile.setFeedback("100");
+		l_profile.setFess("400");
+		l_profile.setFullname("Test For each");
+		l_profile.setLocation("Pune");
+		l_profile.setRecomendation("200");
+		l_profile.setSpcification("Phd");
+		profiles.add(l_profile);
+		l_profile=new ProfileBean();
+		l_profile.setExprience("11");
+		l_profile.setFacilityDetails("Family doctor1");
+		l_profile.setFeedback("101");
+		l_profile.setFess("401");
+		l_profile.setFullname("Test For each1");
+		l_profile.setLocation("Pune1");
+		l_profile.setRecomendation("201");
+		l_profile.setSpcification("Phd1");
+		profiles.add(l_profile);
+		return profiles;
 	}
 
 
 
+	public void setProfiles(List<ProfileBean> profiles) {
 
-	
+		this.profiles = profiles;
+	}
+
+	@ManagedProperty(value = "#{profile}")
+	private ProfileBean profile;
+
+	public ProfileBean getProfile() {
+		System.out.println("Test");
+		return profile;
+	}
+
+
+	public void setProfile(ProfileBean profile) {
+
+		this.profile = profile;
+	}
+
+	public String getExprience() {
+
+		return exprience;
+	}
+
 	public void setExprience(String exprience) {
-	
+
 		this.exprience = exprience;
 	}
 
@@ -64,46 +107,34 @@ public class UserBean implements Serializable {
 
 
 	public String getFullname() {
-	
+
 		return fullname;
 	}
 
 
 
-	
+
 	public void setFullname(String fullname) {
-	
+
 		this.fullname = fullname;
 	}
 
 
 
 	public String getSpcification() {
-	
+
 		return spcification;
 	}
 
 
-	
+
 	public void setSpcification(String spcification) {
-	
+
 		this.spcification = spcification;
 	}
 
-	private List<UserVO> profiles = new ArrayList<UserVO>();
 
-	public List<UserVO> getProfiles() {
-		
-		return profiles;
-	}
 
-	
-	public void setProfiles(List<UserVO> profiles) {
-	
-		this.profiles = profiles;
-	}
-	
-	
 	public String getSearchlocation() {
 
 		return searchlocation;
@@ -381,7 +412,6 @@ public class UserBean implements Serializable {
 		this.lastname = surname;
 	}
 
-	private String entitynavigation;
 	private String searchText;
 
 	public String getSearchText() {
@@ -394,10 +424,7 @@ public class UserBean implements Serializable {
 		this.searchText = searchText;
 	}
 
-	public String getEntitynavigation() {
 
-		return entitynavigation;
-	}
 
 	public String getAgreeterms() {
 
@@ -429,10 +456,7 @@ public class UserBean implements Serializable {
 		this.email = email;
 	}
 
-	public void setEntitynavigation(String entitynavigation) {
 
-		this.entitynavigation = entitynavigation;
-	}
 
 	public void searchEntity() {
 
@@ -451,5 +475,9 @@ public class UserBean implements Serializable {
 	public String selectedEntity() {
 
 		return "entity";
+	}
+	
+	public String entitynavigation(){
+		return null;
 	}
 }

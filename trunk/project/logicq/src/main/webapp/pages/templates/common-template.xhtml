@@ -18,7 +18,7 @@
 
 	<!-- Google app's client ID -->
 	<meta name="google-signin-client_id"
-		content="968303335561-52e50suf6pro53n3adnki7crmi3dqt9u.apps.googleusercontent.com" />
+		content="U059hPXzE2isJ6PJxs-UKjwy.apps.googleusercontent.com" />
 
 	<!-- Google platform library -->
 	<script src="https://apis.google.com/js/platform.js"></script>
@@ -48,6 +48,7 @@
 
 	<!-- END FIX PLUGINS -->
 	<link rel="stylesheet" href="pages/assets/globals/css/plugins.css" />
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 
 </h:head>
 <h:body>
@@ -112,141 +113,82 @@
 		</div>
 		<!-- registration form -->
 		<div class="display-animation">
-			<!--  b:modal id="modalsignup" title="Your profile details"
-			styleClass="modalsignup">
-	<h:form id="signupForm" >
-	<div class="col-md-3">
-	<div class="input-group">
-						<a href="http://www.homeplusservice.in//"><img
-							src="pages/assets/admin1/img/logo.png" /></a>
-				</div>
-		</div>
-		<div class="col-md-9">
-				<div class="form-group">
-					<h:inputText  p:placeholder="First Name"  value="#{userMB.firstname}"
-						id="firstname" class="form-control">
-					</h:inputText>
-					</div>
-				<div class="form-group">
-					<h:inputText p:placeholder="Last Name" value="#{userMB.lastname}"
-						id="lastname" class="form-control">
-					</h:inputText>
-				</div>
-					<div class="form-group">
-						<h:selectOneRadio value="#{userMB.sex}" id="sex">
-						<f:selectItem itemLabel="Male" itemValue="male" class="fa fa-male"/>
-						<f:selectItem itemLabel="Female" itemValue="female" class="fa fa-female"/>
-					</h:selectOneRadio>
-					</div>
-					<div class="form-group">
-					<b:datepicker placeholder="DOB" value="#{userMB.dob}" class="form-control"
-						id="dob"  mode="popup-icon" changeYear="true" changeMonth="true" showButtonPanel="true"/>
-				</div>
-				<div class="form-group">
-					<h:inputText p:placeholder="E-mail" value="#{userMB.email}" class="form-control"
-						id="email"/>
-				</div>
-				<div class="form-group">
-					<b:inputText p:placeholder="Mobile Number" value="#{userMB.mobilenumber}"
-						id="mobilenumber" class="form-control"/>
-				</div>
-		
-				<div class="form-group">
-					<b:inputSecret p:placeholder="Password" value="#{userMB.password}"
-						id="password" />
-						</div>
-						<div class="form-group">
-					<b:inputSecret p:placeholder="Confirm Password"
-						value="#{userMB.confirmpassword}" id="confirmpassword" />
-				</div>
-				
-				<div class="form-group">
-								<b:commandButton value="Register" look="primary" id="register"
-									oncomplete="javascript:location.reload(true)"
-									actionListener="#{userMB.addUser}" icon="glyphicon glyphicon-user" iconAlign="left"/>
-							</div>
-				</div>
-			</h:form>	
-			</b:modal-->
 			<b:modal id="modalsignup" title="Your profile details"
 				styleClass="modalsignup" size="lg">
-						<div class="col-md-4">
-							<div class="input-group">
-								<a href="http://www.homeplusservice.in//"><img
-									src="pages/assets/admin1/img/logo.png" /></a>
+				<div class="col-md-4">
+					<div class="input-group">
+						<a href="http://www.homeplusservice.in//"><img
+							src="pages/assets/admin1/img/logo.png" /></a>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<form id="signupForm" method="post" class="form-horizontal">
+						<div class="form-group">
+							<h:inputText p:placeholder="First Name"
+								value="#{userMB.firstname}" id="firstname" class="form-control">
+							</h:inputText>
+						</div>
+						<div class="form-group">
+							<h:inputText p:placeholder="Last Name" value="#{userMB.lastname}"
+								id="lastname" class="form-control">
+							</h:inputText>
+						</div>
+						<div class="form-group">
+							<h:selectOneRadio value="#{userMB.sex}" id="sex">
+								<f:selectItem itemLabel="Male" itemValue="male"
+									class="fa fa-male" />
+								<f:selectItem itemLabel="Female" itemValue="female"
+									class="fa fa-female" />
+							</h:selectOneRadio>
+						</div>
+						<div class="form-group">
+							<b:datepicker placeholder="Date of Birth" value="#{userMB.dob}"
+								class="form-control" id="dob" mode="popup-icon"
+								changeYear="true" changeMonth="true" showButtonPanel="true"></b:datepicker>
+
+						</div>
+						<div class="form-group">
+							<h:inputText p:placeholder="E-mail" value="#{userMB.email}"
+								class="form-control" id="email">
+							</h:inputText>
+						</div>
+						<div class="form-group">
+							<h:inputText p:placeholder="Mobile Number"
+								value="#{userMB.mobilenumber}" id="mobilenumber"
+								class="form-control">
+							</h:inputText>
+						</div>
+						<div class="form-group">
+							<h:inputSecret p:placeholder="Password"
+								value="#{userMB.password}" id="password" class="form-control"></h:inputSecret>
+						</div>
+						<div class="form-group">
+							<h:inputSecret p:placeholder="Confirm Password"
+								class="form-control" value="#{userMB.confirmpassword}"
+								id="confirmpassword"></h:inputSecret>
+						</div>
+						<div class="form-group">
+
+							<div class="g-recaptcha"
+								data-sitekey="6LdypxgTAAAAAESCuWgv8d1JpxAId8SRqgxMtqCA"></div>
+
+
+						</div>
+						<div class="form-group">
+							<div class="col-xs-3 col-xs-offset-5">
+								<h:form>
+									<b:commandButton value="Register" look="primary" id="register"
+										oncomplete="javascript:location.reload(true)"
+										actionListener="#{userMB.addUser}"
+										icon="glyphicon glyphicon-user" iconAlign="left" />
+									<b:button class="btn btn-default" value="Cancale"
+										onclick="return false;" dismiss="modal"></b:button>
+
+								</h:form>
 							</div>
 						</div>
-						<div class="col-md-8">
-							<form id="signupForm" method="post" class="form-horizontal">
-								<div class="form-group">
-									<h:inputText p:placeholder="First Name"
-										value="#{userMB.firstname}" id="firstname"
-										class="form-control">
-									</h:inputText>
-								</div>
-								<div class="form-group">
-									<h:inputText p:placeholder="Last Name"
-										value="#{userMB.lastname}" id="lastname" class="form-control">
-									</h:inputText>
-								</div>
-								<div class="form-group">
-									<h:selectOneRadio value="#{userMB.sex}" id="sex">
-										<f:selectItem itemLabel="Male" itemValue="male"
-											class="fa fa-male" />
-										<f:selectItem itemLabel="Female" itemValue="female"
-											class="fa fa-female" />
-									</h:selectOneRadio>
-								</div>
-								<div class="form-group">
-									<b:datepicker placeholder="Date of Birth" value="#{userMB.dob}"
-										class="form-control" id="dob" mode="popup-icon"
-										changeYear="true" changeMonth="true" showButtonPanel="true"></b:datepicker>
-
-								</div>
-								<div class="form-group">
-									<h:inputText p:placeholder="E-mail" value="#{userMB.email}"
-										class="form-control" id="email">
-									</h:inputText>
-								</div>
-								<div class="form-group">
-									<h:inputText p:placeholder="Mobile Number"
-										value="#{userMB.mobilenumber}" id="mobilenumber"
-										class="form-control">
-									</h:inputText>
-								</div>
-								<div class="form-group">
-									<h:inputSecret p:placeholder="Password"
-										value="#{userMB.password}" id="password" class="form-control"></h:inputSecret>
-								</div>
-								<div class="form-group">
-									<h:inputSecret p:placeholder="Confirm Password"
-										class="form-control" value="#{userMB.confirmpassword}"
-										id="confirmpassword"></h:inputSecret>
-								</div>
-
-
-								<div class="form-group">
-									<label class="col-xs-4 control-label" id="captchaOperation"></label>
-									<div class="col-xs-4">
-										<h:inputText class="form-control" name="captcha" />
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="col-xs-3 col-xs-offset-5">
-										<h:form>
-											<b:commandButton value="Register" look="primary"
-												id="register" oncomplete="javascript:location.reload(true)"
-												actionListener="#{userMB.addUser}"
-												icon="glyphicon glyphicon-user" iconAlign="left" />
-											<b:button  class="btn btn-default"  value="Cancale" onclick="return false;"
-												dismiss="modal"></b:button>
-
-										</h:form>
-									</div>
-								</div>
-							</form>
-						</div>
+					</form>
+				</div>
 			</b:modal>
 		</div>
 
@@ -387,6 +329,11 @@
 		
 	</script>
 	<script>
+		$('body').on('hidden.bs.modal', '.modal', function() {
+			$(this).removeData('bs.modal');
+		});
+	</script>
+	<script>
 		$(document).ready(function() {
 			Pleasure.init();
 			Layout.init();
@@ -397,23 +344,28 @@
 		});
 		$('#scroll').perfectScrollbar('update');
 	</script>
-	<script>
-		$(document).ready(function() {
-			$('.progress .progress-bar').progressbar();
-		})
-	</script>
 	<!-- Platform integration (google, facebook etc.) -->
 	<script src="pages/assets/admin1/js/platform-integration.js"></script>
-	
+
 	<!--Start of Zopim Live Chat Script-->
-<script type="text/javascript">
-window.$zopim||(function(d,s){var z=$zopim=function(c){
-z._.push(c)},$=z.s=
-d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-$.src='//v2.zopim.com/?3hKDswbUkUKA9E505N2pu5kPX7fAAbsA';z.t=+new Date;$.
-type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-</script>
-<!--End of Zopim Live Chat-->
+	<script type="text/javascript">
+		window.$zopim || (function(d, s) {
+			var z = $zopim = function(c) {
+				z._.push(c)
+			}, $ = z.s = d.createElement(s), e = d.getElementsByTagName(s)[0];
+			z.set = function(o) {
+				z.set._.push(o)
+			};
+			z._ = [];
+			z.set._ = [];
+			$.async = !0;
+			$.setAttribute('charset', 'utf-8');
+			$.src = '//v2.zopim.com/?3hKDswbUkUKA9E505N2pu5kPX7fAAbsA';
+			z.t = +new Date;
+			$.type = 'text/javascript';
+			e.parentNode.insertBefore($, e)
+		})(document, 'script');
+	</script>
+	<!--End of Zopim Live Chat-->
 </h:body>
 </html>

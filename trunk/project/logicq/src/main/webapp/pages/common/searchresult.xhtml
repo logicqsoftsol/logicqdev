@@ -5,7 +5,8 @@
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:fb="http://www.facebook.com/2008/fbml"
 		template="../templates/common-template.xhtml"
-		xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+		xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+		xmlns:c="http://java.sun.com/jsp/jstl/core">
 		<ui:define name="content">
 			<div class="tab-pane mar-top-40m" id="form3_tab2">
 				<div class="col-sm-12">
@@ -49,22 +50,22 @@
 				<div class="col-sm-8 col-centered margin-top-20">
 					<div class="accordion search-spacility" id="accordion">
 					<h:form>
-				 <ui:repeat  value="#{userMB.profiles}" var="profile">
+				<c:forEach   items="${userMB.profiles}" var="profile">
 						<div class="col-sm-12 box-border">
-
+<div class="display-animation">
 							<div class="col-sm-2">
 								<img class="user-image img-responsive" alt=""
-									src="assets/admin1/img/male-doctor.jpg"/>
+									src="../assets/admin1/img/male-doctor.jpg"/>
 							</div>
 							<div class="col-sm-6 doctor-list-show">
 							<h:outputText value="#{profile.fullname}" id="fullname"/>
 							<h:outputText value="#{profile.spcification}" id="spcification"/>
 							<h:outputText value="#{profile.exprience}" id="exprience"/>
 								<p class="list-show-icon">
-									<img src="assets/admin1/img/vaccinationathome.png"/>
-									<img src="assets/admin1/img/emergency.png"/>
-									<img src="assets/admin1/img/familydoctor.png"/>
-									<img src="assets/admin1/img/nurse13.png"/>
+									<img src="../assets/admin1/img/vaccinationathome.png"/>
+									<img src="../assets/admin1/img/emergency.png"/>
+									<img src="../assets/admin1/img/familydoctor.png"/>
+									<img src="../assets/admin1/img/nurse13.png"/>
 								</p>
 							</div>
 							
@@ -72,35 +73,35 @@
 							
 								<div class="right-list-show">
 								<div class="form-group">
-									<h:outputText value="Recommendations :" />
+									<h:outputText value="Recommendations : " />
+									<h:outputText value="#{profile.recomendation}" id="recomendationtext"/>
 									<h:commandLink id="recomendation" rendered="true"
 										oncomplete="javascript:location.reload(true)">
 										<i class="fa fa-thumbs-o-up"/>
-										<h:outputText value="#{userprofile.recomendation}" id="recomendationtext"/>
 										</h:commandLink>
 										</div>
 										<div class="form-group">
-										<h:outputText value="Feedback :" />
+										<h:outputText value="Feedback : " />
+										<h:outputText value="#{profile.feedback}" id="feedbackvalue" />
 										<h:commandLink id="feedback" rendered="true"
 										oncomplete="javascript:location.reload(true)">
 										<i class="fa fa-comment"/>
-										<h:outputText value="#{userprofile.feedback}" id="feedbackvalue" />
 										</h:commandLink>
 										</div>
 										<div class="form-group">
-										<h:outputText value="Location :" />
+										<h:outputText value="Location : " />
+										<h:outputText value="#{profile.location}" id="locationvalue" />
 										<h:commandLink id="location" rendered="true"
 										oncomplete="javascript:location.reload(true)">
 										<i class="fa fa-map-marker"/>
-										<h:outputText value="#{userprofile.location}" id="locationvalue" />
 										</h:commandLink>
 										</div>
 											<div class="form-group">
-										<h:outputText value="Fees :" />
+										<h:outputText value="Fees : " />
+										<h:outputText value="#{profile.fess}" id="fessvalue" />
 										<h:commandLink id="fess" rendered="true"
 										oncomplete="javascript:location.reload(true)">
 										<i class="fa fa-inr"/>
-										<h:outputText value="#{userprofile.fess}" id="fessvalue" />
 										</h:commandLink>
 										</div>
 								</div>
@@ -108,29 +109,29 @@
 								<div class="row">
 							<div class="col-md-8">
 							<div class="wizard display-inline">
-								<h:commandLink id="viewschedule" rendered="true"
+								<h:link id="viewschedule" rendered="true"
 									class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next"
 									oncomplete="javascript:location.reload(true)">
 									<h:outputText value="View Schedule" id="viewscheduletext" />
-								</h:commandLink>
+								</h:link>
 								</div>
 								</div>
 								<div class="col-md-4">
 								<div class="wizard display-inline">
-									<h:commandLink id="bookappoitemnt" rendered="true"
+									<h:link id="bookappoitemnt" rendered="true"
 										class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next"
 										oncomplete="javascript:location.reload(true)">
 										<h:outputText value="Book Appoitemnt" id="bookappoitemnttext" />
-									</h:commandLink>
+									</h:link>
 								</div>
 								</div>
 								</div>
 							</div>
 									
 							</div>
-					
+					</div>
 						</div>
-						</ui:repeat>   
+						</c:forEach>   
 						</h:form>
 					</div>
 				</div>
