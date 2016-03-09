@@ -1,11 +1,11 @@
- CREATE TABLE location
+CREATE TABLE sakila.location
   (
     locationid   INT (10),
     locationname VARCHAR(60) NOT NULL,
 	locality VARCHAR(60),
 	pincode BIGINT (16),
-	latitude double(22),
-	longitude double(22),
+	latitude double,
+	longitude double,
 	last_update TIMESTAMP,
     create_time TIMESTAMP,
 	created_by  VARCHAR(60),
@@ -17,4 +17,5 @@
     
 //insert Query
 
- insert into location values(1,'Bhbaneswar','SaheedNagar',754879,20.2887253,85.8396657);
+ insert into sakila.location values(2,'Bhbaneswar','S',754879,20.2887253,85.8396657,SYSDATE(),SYSDATE(),null,null);
+ 
