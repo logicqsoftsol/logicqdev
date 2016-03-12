@@ -25,10 +25,10 @@ public class Location extends BaseEntity implements Serializable {
 	@Column(name = "LOCATIONNAME", nullable = false)
 	private String locationName;
 	
-	//@Column(name = "LOCALITY")
+	@Column(name = "LOCALITY")
 	private String locality;
 	
-	//@Column(name = "PINCODE", unique = true)
+	@Column(name = "PINCODE", unique = true)
 	private Long pincode;
 	
 	@Column(name = "LATITUDE", unique = true)
