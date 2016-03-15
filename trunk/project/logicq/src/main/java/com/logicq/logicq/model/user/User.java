@@ -26,7 +26,8 @@ import com.logicq.logicq.model.login.Role;
 @Table(name = "USER")
 @NamedQueries({ @NamedQuery(name = User.GET_USER, query = User.GET_USER_QUERY),
                 @NamedQuery(name = User.GET_MOBILE_NO, query = User.GET_MOBILE_NO_QRY),
-                @NamedQuery(name = User.GET_EMAIL_ID, query = User.GET_EMAIL_ID_QRY) })
+                @NamedQuery(name = User.GET_EMAIL_ID, query = User.GET_EMAIL_ID_QRY),
+                @NamedQuery(name = User.GET_USERS_NEAR_ADDRESS, query = User.GET_USERS_NEAR_ADDRESS_QRY) })
 public class User extends BaseEntity implements UserConstant, Serializable {
 
 	/**
