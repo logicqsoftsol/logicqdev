@@ -1,7 +1,11 @@
 package com.logicq.logicq.ui.user.bean;
 
+import java.io.IOException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+
+import org.primefaces.model.StreamedContent;
 
 @ManagedBean(name = "profileMB")
 @RequestScoped
@@ -15,12 +19,25 @@ public class ProfileBean {
 	private String feedback;
 	private String location;
 	private String fess;
-	
+	private StreamedContent profileimage;
+
+
+	public StreamedContent getProfileimage() {
+		return profileimage;
+	}
+
+
+	public void setProfileimage(StreamedContent profileimage) {
+		this.profileimage = profileimage;
+	}
+
+
 	public String getFullname() {
 	
 		return fullname;
 	}
 	
+
 	public void setFullname(String fullname) {
 	
 		this.fullname = fullname;
@@ -95,4 +112,21 @@ public class ProfileBean {
 	
 		this.fess = fess;
 	}
+	
+	 public StreamedContent getImage() throws IOException {
+//	        FacesContext context = FacesContext.getCurrentInstance();
+//
+//	        if (context.getCurrentInstance().getResponseComplete()) {
+//	            // So, we're rendering the HTML. Return a stub StreamedContent so that it will generate right URL.
+//	            return new DefaultStreamedContent();
+//	        }
+//	        else {
+//	            // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
+////	            String studentId = context.getExternalContext().getRequestParameterMap().get("studentId");
+////	            Student student = studentService.find(Long.valueOf(studentId));
+//	            return new DefaultStreamedContent(new ByteArrayInputStream(null));
+//	        }
+		 return null;
+	    }
+
 }

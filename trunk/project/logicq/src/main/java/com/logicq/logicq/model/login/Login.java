@@ -30,7 +30,7 @@ public class Login extends BaseEntity implements LoginConstant,Serializable {
 	@Column(name = "loginattempcounts", nullable = true)
 	private Integer loginattempcounts;
 	@Column(name = "ipaddress", unique = true, nullable = false)
-	private Integer ipaddress;
+	private String ipaddress;
 	@Column(name = "userid", unique = true, nullable = false)
 	private Long userid;
 
@@ -74,13 +74,12 @@ public class Login extends BaseEntity implements LoginConstant,Serializable {
 		this.loginattempcounts = loginattempcounts;
 	}
 
-	public Integer getIpaddress() {
 
+	public String getIpaddress() {
 		return ipaddress;
 	}
 
-	public void setIpaddress(Integer ipaddress) {
-
+	public void setIpaddress(String ipaddress) {
 		this.ipaddress = ipaddress;
 	}
 

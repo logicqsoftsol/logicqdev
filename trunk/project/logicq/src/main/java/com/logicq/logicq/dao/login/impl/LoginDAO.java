@@ -42,9 +42,11 @@ public class LoginDAO extends AbstractDAO<Login> implements ILoginDAO {
 		l_criterialist.add(l_criteria1);*/
 		return l_criterialist;
 	}
-
+/**
+ * 
+ * 
+ */
 	public void insertLoginDetails(Login login) {
-
-		save(login, null);
+		save(login, getCurrentSession());
 	}
 }

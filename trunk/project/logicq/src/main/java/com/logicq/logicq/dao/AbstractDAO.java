@@ -45,7 +45,8 @@ public class AbstractDAO<T> {
  * 
  */
 	public Session getSession() {
-		return sessionFactory.openSession();
+		
+		return getCurrentSession();
 	}
 	
 	/**
@@ -57,9 +58,9 @@ public class AbstractDAO<T> {
 		
 		Session l_session=p_session;
 		if (null == l_session) {
-			 l_session = getSession();
+			l_session = getSession();
 		}
-		l_session.persist(p_abstractentity);
+		l_session.save(p_abstractentity);
 	}
 	
 /**

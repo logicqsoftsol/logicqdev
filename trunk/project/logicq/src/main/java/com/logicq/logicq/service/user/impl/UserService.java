@@ -81,7 +81,7 @@ public class UserService implements IUserService {
 			l_task.setName("sudhanshu");
 			l_task.setStatus("test");
 			l_task.setPriority("High");
-			itaskManagerService.addTask(l_task);
+			//itaskManagerService.addTask(l_task);
 		} else {
 			//throw Exception
 		}
@@ -96,6 +96,7 @@ public class UserService implements IUserService {
 		loginDetails.setPassword(user.getPassword());
 		loginDetails.setUserid(user.getId());
 		loginDetails.setLastlogindate(new Date());
+		loginDetails.setIpaddress("10.210.245.165");
 		return loginDetails;
 	}
 
