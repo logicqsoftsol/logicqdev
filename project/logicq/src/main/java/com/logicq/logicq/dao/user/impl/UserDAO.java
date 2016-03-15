@@ -104,4 +104,13 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 		}
 		return null;
 	}
+
+	public List<User> getUsersForAddress(String[] addressDetails) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		List<User> users = new ArrayList<User>();
+		params.put("city", addressDetails[0]);
+		users = (List<User>) executeNamedQuery(UserConstant.GET_USERS_NEAR_ADDRESS, params);
+		return users;
+	}
 }
