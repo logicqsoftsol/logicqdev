@@ -16,7 +16,7 @@ import com.logicq.logicq.model.task.Task;
 public class TaskManagerDAO extends AbstractDAO<Task> implements ITaskManagerDAO {
 
 	public void addTask(Task task) {
-		save(task,null);
+		save(task,getCurrentSession());
 	}
 
 	public void updateTask(Task task) {

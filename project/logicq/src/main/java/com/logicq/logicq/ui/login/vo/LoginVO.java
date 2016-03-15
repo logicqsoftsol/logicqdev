@@ -9,7 +9,7 @@ public class LoginVO {
 	private String phonnumber;
 	private Date lastlogindate;
 	private Integer loginattempcounts;
-	private Integer ipaddress;
+	private String ipaddress;
 	private Long userid;
 
 	public String getEmail() {
@@ -52,9 +52,13 @@ public class LoginVO {
 		this.loginattempcounts = loginattempcounts;
 	}
 
-	public Integer getIpaddress() {
-
+	
+	public String getIpaddress() {
 		return ipaddress;
+	}
+
+	public void setIpaddress(String ipaddress) {
+		this.ipaddress = ipaddress;
 	}
 
 	public String getPhonnumber() {
@@ -77,8 +81,5 @@ public class LoginVO {
 		this.userid = userid;
 	}
 
-	public void setIpaddress(Integer ipaddress) {
-
-		this.ipaddress = ipaddress;
-	}
+	
 }
