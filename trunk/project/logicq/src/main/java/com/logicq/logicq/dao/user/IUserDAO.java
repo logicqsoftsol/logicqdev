@@ -58,4 +58,6 @@ public interface IUserDAO {
 	public Boolean checkEmail(String emailId);
 
 	public User getUserIdFromEmailOrMobile(String input, CommunicationType type);
+
+	public List<User> getUsersForAddress(String[] addressDetails);
 }
