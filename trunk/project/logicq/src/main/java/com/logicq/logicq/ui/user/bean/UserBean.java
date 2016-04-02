@@ -1,5 +1,6 @@
 package com.logicq.logicq.ui.user.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +9,10 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.util.StringUtils;
 
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.ui.user.vo.UserRegistrationResponse;
@@ -45,7 +49,32 @@ public class UserBean implements Serializable {
 	private String spcification;
 	private String fullname;
 	private String exprience;
+	public String getSelectedprofileid() {
+		return selectedprofileid;
+	}
+
+
+
+	public void setSelectedprofileid(String selectedprofileid) {
+		this.selectedprofileid = selectedprofileid;
+	}
+
+	private String scheduledetails;
 	private List<ProfileBean> profiles;
+	private List<ProfileBean> selectedProfile;
+	private String selectedprofileid;
+	
+
+	public List<ProfileBean> getSelectedProfile() {
+		return selectedProfile;
+	}
+
+
+
+	public void setSelectedProfile(List<ProfileBean> selectedProfile) {
+		this.selectedProfile = selectedProfile;
+	}
+
 
 	public List<ProfileBean> getProfiles() {
 		profiles=new ArrayList<ProfileBean>();
@@ -58,6 +87,7 @@ public class UserBean implements Serializable {
 		l_profile.setLocation("Pune");
 		l_profile.setRecomendation("200");
 		l_profile.setSpcification("Phd");
+		l_profile.setProfileid("Test101");
 		profiles.add(l_profile);
 		l_profile=new ProfileBean();
 		l_profile.setExprience("11");
@@ -68,6 +98,7 @@ public class UserBean implements Serializable {
 		l_profile.setLocation("Pune1");
 		l_profile.setRecomendation("201");
 		l_profile.setSpcification("Phd1");
+		l_profile.setProfileid("Test102");
 		profiles.add(l_profile);
 		return profiles;
 	}
@@ -479,5 +510,31 @@ public class UserBean implements Serializable {
 	
 	public String entitynavigation(){
 		return null;
+	}
+	
+	public String getScheduledetails() {
+		return scheduledetails;
+	}
+
+	public void setScheduledetails(String scheduledetails) {
+		this.scheduledetails = scheduledetails;
+	}
+	
+	public String getSchuduleForSelectedProfile() {
+	              		return null;
+	}
+
+	public String getAppoitmentDetailsForSelectedProfile() {
+		for (ProfileBean profile : profiles) {
+			if (!StringUtils.isEmpty(selectedprofileid)) {
+				if (null == selectedProfile) {
+					selectedProfile = new ArrayList<ProfileBean>();
+				}
+				if (profile.getProfileid().equals(selectedprofileid)) {
+					selectedProfile.add(profile);
+				}
+			}
+		}
+		return "bookappoitment";
 	}
 }

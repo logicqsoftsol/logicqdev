@@ -20,7 +20,17 @@ public class ProfileBean {
 	private String location;
 	private String fess;
 	private StreamedContent profileimage;
+	private String profileid;
+    
 
+	public String getProfileid() {
+		return profileid;
+	}
+
+
+	public void setProfileid(String profileid) {
+		this.profileid = profileid;
+	}
 
 	public StreamedContent getProfileimage() {
 		return profileimage;

@@ -54,7 +54,7 @@
 							<div class="col-sm-12 box-border">
 								<div class="display-animation">
 									<div class="col-sm-2">
-								<p:graphicImage value="#{profile.image}">
+								<p:graphicImage value="#{profile.image}"/>
 									</div>
 									<div class="col-sm-6 doctor-list-show">
 										<h:outputText value="#{profile.fullname}" id="fullname" />
@@ -110,21 +110,24 @@
 											<div class="row">
 												<div class="col-md-8">
 													<div class="wizard display-inline">
-														<h:link id="viewschedule" rendered="true"
+													<c:set var="selectedprofile" scope="request" value="${profile.profileid}"/>
+														<h:commandLink id="viewschedule" rendered="true"
 															class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next"
-															oncomplete="javascript:location.reload(true)">
+															oncomplete="javascript:location.reload(true)" action="#{userMB.getSchuduleForSelectedProfile}">
+															 <f:setPropertyActionListener target="#{userMB.selectedprofileid}" value="${profile.profileid}" />
 															<h:outputText value="View Schedule" id="viewscheduletext" />
-														</h:link>
+														</h:commandLink>
 													</div>
 												</div>
 												<div class="col-md-4">
 													<div class="wizard display-inline">
-														<h:link id="bookappoitemnt" rendered="true"
+														<h:commandLink id="bookappoitemnt" rendered="true"
 															class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next"
-															oncomplete="javascript:location.reload(true)">
+															oncomplete="javascript:location.reload(true)"  action="#{userMB.getAppoitmentDetailsForSelectedProfile}">
+															 <f:setPropertyActionListener target="#{userMB.selectedprofileid}" value="${profile.profileid}" />
 															<h:outputText value="Book Appoitemnt"
 																id="bookappoitemnttext" />
-														</h:link>
+														</h:commandLink>
 													</div>
 												</div>
 											</div>
