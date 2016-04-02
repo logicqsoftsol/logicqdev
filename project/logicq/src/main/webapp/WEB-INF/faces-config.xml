@@ -28,5 +28,17 @@
             <to-view-id>/pages/admin/adminhome.xhtml</to-view-id>
         </navigation-case>   
       </navigation-rule>
+      
+       <navigation-rule>
+        <from-view-id>/pages/common/searchresult.xhtml</from-view-id> 
+         <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/error.xhtml</to-view-id>
+        </navigation-case> 
+           <navigation-case>
+            <from-outcome>bookappoitment</from-outcome>
+            <to-view-id>/pages/common/bookappoitment.xhtml</to-view-id>
+        </navigation-case>   
+      </navigation-rule>
      
 </faces-config>
