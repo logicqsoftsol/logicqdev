@@ -1,6 +1,5 @@
 package com.logicq.logicq.ui.user.bean;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,15 +7,13 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ViewScoped;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.util.StringUtils;
 
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.ui.user.vo.UserRegistrationResponse;
-import com.logicq.logicq.ui.user.vo.UserVO;
 
 /**
  * User Bean
@@ -26,7 +23,7 @@ import com.logicq.logicq.ui.user.vo.UserVO;
  * @version 1.0.0
  */
 @ManagedBean(name = "userMB")
-@RequestScoped
+@ViewScoped
 public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -45,10 +42,30 @@ public class UserBean implements Serializable {
 	private String otpformrender = "false";
 	private String otppassword;
 	private String rendersignupform = "true";
-	private String searchlocation;
 	private String spcification;
 	private String fullname;
 	private String exprience;
+	
+
+	private String searchlocation;
+	private String searchText;
+	
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
+
+	public String getSearchlocation() {
+		return searchlocation;
+	}
+
+	public void setSearchlocation(String searchlocation) {
+		this.searchlocation = searchlocation;
+	}
+	
 	public String getSelectedprofileid() {
 		return selectedprofileid;
 	}
@@ -164,17 +181,6 @@ public class UserBean implements Serializable {
 		this.spcification = spcification;
 	}
 
-
-
-	public String getSearchlocation() {
-
-		return searchlocation;
-	}
-
-	public void setSearchlocation(String searchlocation) {
-
-		this.searchlocation = searchlocation;
-	}
 
 	public String getOtpformrender() {
 
@@ -441,18 +447,6 @@ public class UserBean implements Serializable {
 	public void setSurname(String surname) {
 
 		this.lastname = surname;
-	}
-
-	private String searchText;
-
-	public String getSearchText() {
-
-		return searchText;
-	}
-
-	public void setSearchText(String searchText) {
-
-		this.searchText = searchText;
 	}
 
 

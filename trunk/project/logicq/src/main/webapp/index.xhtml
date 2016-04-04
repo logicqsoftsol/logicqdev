@@ -19,8 +19,7 @@
 		  var entityTags = #{locationMB.entitylist}; 
 		  var locationTags = #{locationMB.list};
 		  var latlongTags = #{locationMB.latlonglist};
-		  console.log(latlongTags);
-		  $("#userlocation").autocomplete({
+		  $("#searchlocation").autocomplete({
 			
 			  autoFocus: true,
 		    source: locationTags,
@@ -44,7 +43,7 @@
            
 		 
 		  });
-		  $("#searcserviceprovider").autocomplete({
+		  $("#searchText").autocomplete({
 			    source: entityTags,
 			    change: function (event, ui) {
 			    	if(!ui.item){
@@ -118,8 +117,8 @@
 						<div class="tab-pane active" id="form3_tab1">
 							<div class="form-group">
 								<h:inputText p:placeholder="Search your Pincode"
-									class="form-control" value="#{userMB.searchlocation}"
-									id="userlocation" required="true" />
+									class="form-control" value="#{userSearchMB.searchlocation}"
+									id="searchlocation" required="true" autosubmit="true"/>
 							</div>
 							<br> </br>
 							<!-- <div class="col-sm-12"></div> -->
@@ -136,13 +135,8 @@
 								<div class="form-group">
 
 									<h:inputText p:placeholder="Type something here..."
-										class="form-control" value="#{userMB.searchText}"
-										id="searcserviceprovider" required="true">
-										<!-- f:facet name="append">
-											<b:button value="" id="searchEntity" look="default"
-										actionListener="#{userMB.searchEntity}"
-										action="#{userMB.entitynavigation}" icon="search" />
-											</f:fac-->
+										class="form-control" value="#{userSearchMB.searchText}"
+										id="searchText" required="true" autosubmit="true">
 									</h:inputText>
 								</div>
 							</div>
@@ -150,7 +144,7 @@
 								<div class="form-group">
 									<h:form>
 										<b:commandButton value="Search" look="primary"
-											action="#{loginMB.logout}" id="searchbutton"
+											action="#{userSearchMB.searchUsers}" id="searchbutton"
 											icon="glyphicon glyphicon-search" iconAlign="right" />
 									</h:form>
 								</div>

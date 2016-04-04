@@ -28,7 +28,9 @@ xsi:schemaLocation="
 	<bean id="userManagedBean" class="com.logicq.logicq.ui.user.bean.UserManagedBean" />
 	<bean id="userBeanHelper" class="com.logicq.logicq.ui.user.helper.UserBeanHelper" />
 	<bean id="userVO" class="com.logicq.logicq.ui.user.vo.UserVO" />
-
+	<bean id="userSearchManagedBean" class="com.logicq.logicq.ui.search.bean.UserSearchManagedBean" />
+    <bean id="userSearchBeanHelper" class="com.logicq.logicq.ui.search.helper.UserSearchBeanHelper" />
+    
 	<!-- User deatils etries for HOST -->
 	<bean id="userDAO" class="com.logicq.logicq.dao.user.impl.UserDAO" />
 	<bean id="userFacade" class="com.logicq.logicq.facade.user.UserFacade" />
@@ -37,6 +39,10 @@ xsi:schemaLocation="
 	</bean>
 	<bean id="userRequest" class="com.logicq.logicq.ui.user.vo.UserRegistrationRequest" />
 	<bean id="userResponse" class="com.logicq.logicq.ui.user.vo.UserRegistrationResponse" />
+	<bean id="userSearchFacade" class="com.logicq.logicq.facade.search.UserSearchFacade" />
+	<bean id="userSearchApplicationService" class="com.logicq.logicq.service.search.impl.UserSearchApplicationService">
+		<property name="userDAO" ref="userDAO" />
+	</bean>
 
 	<!-- TaskManager entries for UI -->
 	<bean id="taskBean" class="com.logicq.logicq.ui.task.bean.TaskBean" />
