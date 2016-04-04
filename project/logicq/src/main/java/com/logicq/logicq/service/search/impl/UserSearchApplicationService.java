@@ -14,14 +14,22 @@ import com.logicq.logicq.ui.search.vo.UserSearchVO;
 public class UserSearchApplicationService implements IUserSearchApplicationService {
 
 	@Autowired
-	IUserDAO iUserDAO;
+	IUserDAO userDAO;
+
+	public IUserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	public void setUserDAO(IUserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
 
 	public UserSearchResponse searchUsers(UserSearchRequest userSearchRequest, UserSearchResponse userSearchResponse) {
 
 		UserSearchVO userSearchVO = userSearchRequest.getUserSearchVO();
 		String city = userSearchVO.getCity();
 		String[] inputs = { city };
-		List<User> users = iUserDAO.getUsersForAddress(inputs);
+		List<User> users = userDAO.getUsersForAddress(inputs);
 		//userSearchResponse.setLogicqTransactionStatus(logicqTransactionStatus);
 		return userSearchResponse;
 	}

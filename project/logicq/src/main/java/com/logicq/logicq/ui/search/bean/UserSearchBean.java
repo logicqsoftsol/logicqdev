@@ -3,14 +3,13 @@ package com.logicq.logicq.ui.search.bean;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.component.UIInput;
+import javax.faces.bean.ViewScoped;
 
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.ui.search.vo.UserSearchResponse;
 
 @ManagedBean(name = "userSearchMB")
-@RequestScoped
+@ViewScoped
 public class UserSearchBean implements Serializable {
 
 	/**
@@ -26,23 +25,18 @@ public class UserSearchBean implements Serializable {
 	private String pincode;
 	private String searchText;
 	private String entity;
-	UIInput searchText1;
+	private String searchlocation;
 
-	public UIInput getSearchText1() {
 
-		return searchText1;
+	public String getSearchlocation() {
+		return searchlocation;
 	}
 
-	public void setSearchText1(UIInput searchText1) {
-
-		this.searchText1 = searchText1;
+	public void setSearchlocation(String searchlocation) {
+		this.searchlocation = searchlocation;
 	}
 
 	public String searchUsers() {
-
-		String[] addressLines = searchText1.toString().split(",");
-		Integer length = addressLines.length;
-		System.out.println(length);
 		UserSearchManagedBean userSearchManagedBean = LogicqContextProvider.getApplicationContext().getBean(UserSearchManagedBean.class);
 		UserSearchResponse userSearchResponse = userSearchManagedBean.searchUsers(this);
 		return "";
