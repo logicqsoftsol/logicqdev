@@ -2,10 +2,8 @@ package com.logicq.logicq.ui.user.bean;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 import org.primefaces.model.StreamedContent;
@@ -25,23 +23,38 @@ public class ProfileBean {
 	private String fess;
 	private StreamedContent profileimage;
 	private String profileid;
-    private  String bookingdate=null;
+	private String bookingdate = null;
 	private EntityAvailabilityBean avilablityDetails;
-	private String schduleformrender="false";
-	
+	private String schduleformrender = "false";
+	private String userImage;
+
+	public String getUserImage() {
+
+		return userImage;
+	}
+
+	public void setUserImage(String userImage) {
+
+		this.userImage = userImage;
+	}
+
 	public String getSchduleformrender() {
+
 		return schduleformrender;
 	}
 
 	public void setSchduleformrender(String schduleformrender) {
+
 		this.schduleformrender = schduleformrender;
 	}
 
 	public String getBookingdate() {
+
 		return bookingdate;
 	}
 
 	public void setBookingdate(String bookingdate) {
+
 		if (StringUtils.isEmpty(bookingdate)) {
 			bookingdate = new Date().toString();
 		}
@@ -49,26 +62,32 @@ public class ProfileBean {
 	}
 
 	public EntityAvailabilityBean getAvilablityDetails() {
+
 		return avilablityDetails;
 	}
 
 	public void setAvilablityDetails(EntityAvailabilityBean avilablityDetails) {
+
 		this.avilablityDetails = avilablityDetails;
 	}
 
 	public String getProfileid() {
+
 		return profileid;
 	}
 
 	public void setProfileid(String profileid) {
+
 		this.profileid = profileid;
 	}
 
 	public StreamedContent getProfileimage() {
+
 		return profileimage;
 	}
 
 	public void setProfileimage(StreamedContent profileimage) {
+
 		this.profileimage = profileimage;
 	}
 
@@ -153,6 +172,7 @@ public class ProfileBean {
 	}
 
 	public StreamedContent getImage() throws IOException {
+
 		// FacesContext context = FacesContext.getCurrentInstance();
 		//
 		// if (context.getCurrentInstance().getResponseComplete()) {
@@ -170,5 +190,4 @@ public class ProfileBean {
 		// }
 		return null;
 	}
-
 }
