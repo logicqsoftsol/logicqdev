@@ -6,12 +6,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.util.StringUtils;
@@ -49,7 +46,6 @@ public class UserBean implements Serializable {
 	private String spcification;
 	private String fullname;
 	private String exprience;
-
 	private String searchlocation;
 	private String searchText;
 	private String scheduledetails;
@@ -58,86 +54,92 @@ public class UserBean implements Serializable {
 	private String selectedprofileid;
 	@NotNull
 	private String entity = null;
-
 	@ManagedProperty(value = "#{profile}")
 	private ProfileBean profile;
 
 	public String getSearchText() {
+
 		return searchText;
 	}
 
 	public void setSearchText(String searchText) {
+
 		this.searchText = searchText;
 	}
 
 	public String getSearchlocation() {
+
 		return searchlocation;
 	}
 
 	public void setSearchlocation(String searchlocation) {
+
 		this.searchlocation = searchlocation;
 	}
 
 	public String getSelectedprofileid() {
+
 		return selectedprofileid;
 	}
 
 	public void setSelectedprofileid(String selectedprofileid) {
+
 		this.selectedprofileid = selectedprofileid;
 	}
 
 	public List<ProfileBean> getSelectedProfile() {
+
 		return selectedProfile;
 	}
 
 	public void setSelectedProfile(List<ProfileBean> selectedProfile) {
+
 		this.selectedProfile = selectedProfile;
 	}
 
 	public List<ProfileBean> getProfiles() {
-	
-			profiles = new ArrayList<ProfileBean>();
-			ProfileBean l_profile = new ProfileBean();
-			l_profile.setExprience("10");
-			l_profile.setFacilityDetails("Family doctor");
-			l_profile.setFeedback("100");
-			l_profile.setFess("400");
-			l_profile.setFullname("Test For each");
-			l_profile.setLocation("Pune");
-			l_profile.setRecomendation("200");
-			l_profile.setSpcification("Phd");
-			l_profile.setProfileid("Test101");
-			l_profile.setBookingdate(new Date().toString());
-			EntityAvailabilityBean avialen = new EntityAvailabilityBean();
-			avialen.setAvilabledate(new Date());
-			avialen.setEntityid("Test101");
-			avialen.setProfileid("Test101");
-			List<EntityAvalAtLocationBean> enetiyavalloc = avialen.getEntityavalloc("Test101", new Date());
-			avialen.setEntityavalloc(enetiyavalloc);
-			l_profile.setAvilablityDetails(avialen);
-			profiles.add(l_profile);
-			l_profile = new ProfileBean();
-			l_profile.setExprience("11");
-			l_profile.setFacilityDetails("Family doctor1");
-			l_profile.setFeedback("101");
-			l_profile.setFess("401");
-			l_profile.setFullname("Test For each1");
-			l_profile.setLocation("Pune1");
-			l_profile.setRecomendation("201");
-			l_profile.setSpcification("Phd1");
-			l_profile.setProfileid("Test102");
-			l_profile.setBookingdate(new Date().toString());
-			EntityAvailabilityBean avialen1 = new EntityAvailabilityBean();
-			avialen1.setAvilabledate(new Date());
-			avialen1.setEntityid("Test102");
-			avialen1.setProfileid("Test102");
-			List<EntityAvalAtLocationBean> enetiyavalloc1 = avialen1.getEntityavalloc("Test102", new Date());
-			avialen1.setEntityavalloc(enetiyavalloc1);
-			l_profile.setAvilablityDetails(avialen1);
-			findSchuduleForSelectedProfile();
-			profiles.add(l_profile);
-		
 
+		profiles = new ArrayList<ProfileBean>();
+		ProfileBean l_profile = new ProfileBean();
+		l_profile.setExprience("10");
+		l_profile.setFacilityDetails("Family doctor");
+		l_profile.setFeedback("100");
+		l_profile.setFess("400");
+		l_profile.setFullname("Test For each");
+		l_profile.setLocation("Pune");
+		l_profile.setRecomendation("200");
+		l_profile.setSpcification("Phd");
+		l_profile.setProfileid("Test101");
+		l_profile.setBookingdate(new Date().toString());
+		l_profile.setUserImage("../userImage/1000.jpg");
+		EntityAvailabilityBean avialen = new EntityAvailabilityBean();
+		avialen.setAvilabledate(new Date());
+		avialen.setEntityid("Test101");
+		avialen.setProfileid("Test101");
+		List<EntityAvalAtLocationBean> enetiyavalloc = avialen.getEntityavalloc("Test101", new Date());
+		avialen.setEntityavalloc(enetiyavalloc);
+		l_profile.setAvilablityDetails(avialen);
+		profiles.add(l_profile);
+		l_profile = new ProfileBean();
+		l_profile.setExprience("11");
+		l_profile.setFacilityDetails("Family doctor1");
+		l_profile.setFeedback("101");
+		l_profile.setFess("401");
+		l_profile.setFullname("Test For each1");
+		l_profile.setLocation("Pune1");
+		l_profile.setRecomendation("201");
+		l_profile.setSpcification("Phd1");
+		l_profile.setProfileid("Test102");
+		l_profile.setBookingdate(new Date().toString());
+		EntityAvailabilityBean avialen1 = new EntityAvailabilityBean();
+		avialen1.setAvilabledate(new Date());
+		avialen1.setEntityid("Test102");
+		avialen1.setProfileid("Test102");
+		List<EntityAvalAtLocationBean> enetiyavalloc1 = avialen1.getEntityavalloc("Test102", new Date());
+		avialen1.setEntityavalloc(enetiyavalloc1);
+		l_profile.setAvilablityDetails(avialen1);
+		findSchuduleForSelectedProfile();
+		profiles.add(l_profile);
 		return profiles;
 	}
 
@@ -147,6 +149,7 @@ public class UserBean implements Serializable {
 	}
 
 	public ProfileBean getProfile() {
+
 		System.out.println("Test");
 		return profile;
 	}
@@ -362,8 +365,7 @@ public class UserBean implements Serializable {
 
 	public void setEntities(List<String> entities) {
 
-		entities = Arrays.asList("FAMILY DOCTOR", "BEAUTY CARE", "ADVOCATE", "PLUMBER", "ELECTRICIAN", "GROCERY",
-				"ADVOCATE", "CARPENTER", "TUTOR", "MASON");
+		entities = Arrays.asList("FAMILY DOCTOR", "BEAUTY CARE", "ADVOCATE", "PLUMBER", "ELECTRICIAN", "GROCERY", "ADVOCATE", "CARPENTER", "TUTOR", "MASON");
 		this.entities = entities;
 	}
 
@@ -501,18 +503,22 @@ public class UserBean implements Serializable {
 	}
 
 	public String entitynavigation() {
+
 		return null;
 	}
 
 	public String getScheduledetails() {
+
 		return scheduledetails;
 	}
 
 	public void setScheduledetails(String scheduledetails) {
+
 		this.scheduledetails = scheduledetails;
 	}
 
 	public String findSchuduleForSelectedProfile() {
+
 		for (ProfileBean profile : profiles) {
 			if (profile.getProfileid().equals(selectedprofileid)) {
 				if ("true".equalsIgnoreCase(profile.getSchduleformrender())) {
@@ -522,16 +528,17 @@ public class UserBean implements Serializable {
 				}
 			}
 		}
-
 		return null;
 	}
 
 	public String getAppoitmentDetailsForSelectedProfile() {
+
 		findSelectedProfile();
 		return "bookappoitment";
 	}
 
 	private ProfileBean selectedProfileForSchdule() {
+
 		for (ProfileBean profile : profiles) {
 			if (profile.getProfileid().equals(selectedprofileid)) {
 				return profile;
@@ -541,8 +548,9 @@ public class UserBean implements Serializable {
 	}
 
 	private void findSelectedProfile() {
+
 		for (ProfileBean profile : profiles) {
-			if (!StringUtils.isEmpty(selectedprofileid)) {
+			if ( !StringUtils.isEmpty(selectedprofileid)) {
 				if (null == selectedProfile) {
 					selectedProfile = new ArrayList<ProfileBean>();
 				}
