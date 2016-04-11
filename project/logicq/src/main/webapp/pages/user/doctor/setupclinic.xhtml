@@ -1,13 +1,124 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:b="http://bootsfaces.net/ui"
-	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
-	<ui:define name="content">
-	 	<div class="display-animation">
-	 	</div>
-			<div>
-		     Profile Details
-			</div>
-	</ui:define>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script>
+$(document).ready(function(){
+    $("#a").click(function(){
+        $("#cc").hide();
+		$("#bank").show();
+		
+    });
+	 $("#b").click(function(){
+        $("#bank").hide();
+		$("#cc").show();
+		
+    });
+   
+});
+</script>
+</head>
+<body>
 
-</ui:composition>
+	<div class="container">
+		<table>	
+			<tr>
+				<td style="padding-right: 20px">
+					<h2>Payment Options</h2>
+					<ul class="list-group">
+						<li class="list-group-item"  id="b">Credit Card</li>
+						<li class="list-group-item" id="a">Net Banking</li>
+						<li class="list-group-item"  id ="c" onclick="window.open('http://www.paytm.com')">PAYTM</li>
+					</ul>
+				</td>
+				<td style="padding-right: 20px" >
+					<div id ="cc">
+					<table> 
+						<div class="form-group">
+							<input type="email" class="form-control" id="email"
+								placeholder="ENTER YOUR  CARD NUMBER">
+						</div><br>
+						<div class="form-group">
+							<input type="password" class="form-control" id="pwd"
+								placeholder="NAME ON THE CARD">
+						</div>
+						    <table>
+							<tr>
+								<td style="padding-right: 10px">
+									<div class="dropdown">
+										<button class="btn btn-primary dropdown-toggle" type="button"
+											data-toggle="dropdown">
+											MM <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a href="#">01</a></li>
+											<li><a href="#">02</a></li>
+											<li><a href="#">03</a></li>
+											<li><a href="#">04</a></li>
+											<li><a href="#">05</a></li>
+											<li><a href="#">06</a></li>
+											<li><a href="#">07</a></li>
+											<li><a href="#">08</a></li>
+											<li><a href="#">09</a></li>
+											<li><a href="#">10</a></li>
+											<li><a href="#">11</a></li>
+											<li><a href="#">12</a></li>
+										</ul>
+									</div>
+								</td>
+								<td style="padding-right: 10px">
+									<div class="dropdown">
+										<button class="btn btn-primary dropdown-toggle" type="button"
+											data-toggle="dropdown">
+											YY <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a href="#">2016</a></li>
+											<li><a href="#">2017</a></li>
+											<li><a href="#">2018</a></li>
+										</ul>
+									</div>
+								</td>
+								<td><input type="text" class="form-control" id="cvv"
+								placeholder="CVV"></td>
+								 
+							</tr>
+						</table>
+						<br>
+						<button type="submit" class="btn btn-default">Make Payment</button>
+					</table>
+					 
+					<div class="dropdown" style="display: none;" id="bank">
+	                                   <h2>Select Bank</h2>
+										<button class="btn btn-primary dropdown-toggle" type="button"
+											data-toggle="dropdown">
+											Select Bank <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><a href="#">SBI</a></li>
+											<li><a href="#">AXIS</a></li>
+											<li><a href="#">ICICI</a></li>
+										</ul>
+									</div>
+	
+				</td>
+			  </tr>
+
+		</table>
+		
+	</div>
+	
+	
+	
+	 
+
+</body>
+</html>
