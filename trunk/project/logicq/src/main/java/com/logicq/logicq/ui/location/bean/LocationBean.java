@@ -5,8 +5,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.logicq.logicq.common.LogicqContextProvider;
-
 /**
  * NIHAR 26-Jan-2016 5:49:54 pm
  */
@@ -38,12 +36,12 @@ public class LocationBean {
 	private Long locationId;
 	private String locationName;
 
-	public LocationBean() {
+	/*public LocationBean() {
 
 		list = getLocation();
 		entitylist=getEntity();
 		latlonglist=getLatLong();
-	}
+	}*/
 
 	public Long getLocationId() {
 
@@ -65,7 +63,7 @@ public class LocationBean {
 		this.locationName = locationName;
 	}
 
-	public List<String> getLocation() {
+	/*public List<String> getLocation() {
 
 		LocationManageBean locationManageBean = LogicqContextProvider.getApplicationContext().getBean(LocationManageBean.class);
 		return locationManageBean.getLocation();
@@ -82,5 +80,5 @@ public class LocationBean {
 		 LocationManageBean locationManageBean = LogicqContextProvider.getApplicationContext().getBean(LocationManageBean.class);
 		 return locationManageBean.getAllLocation();
 		 
-	}
+	}*/
 }

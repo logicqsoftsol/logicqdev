@@ -1,4 +1,4 @@
-package com.logicq.logicq.ui.location.bean;
+/*package com.logicq.logicq.ui.location.bean;
 
 import java.util.List;
 
@@ -43,6 +43,6 @@ public class LocationManageBean {
 		return LogicqStringFormatter.convertAutoCompleteFormatLat(latlist);
 	}
 }
-/**
- * NIHAR 28-Jan-2016 12:10:49 am
- */
+ 
+ 
+*/
