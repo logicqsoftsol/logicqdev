@@ -7,20 +7,18 @@
 	template="pages/templates/common-template.xhtml"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<ui:define name="content">
-	<script>
-		$(document).ready(function() {
-			$('.progress .progress-bar').progressbar();
-		})
-	</script>
+ 
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 		<script>
 	$(function() {
 		 
-		  var entityTags = #{locationMB.entitylist}; 
-		  var locationTags = #{locationMB.list};
-		  var latlongTags = #{locationMB.latlonglist};
+		  var entityTags = #{addressMB.entitylist}; 
+		  var locationTags = #{addressMB.addresslist};
+		 var latlongTags = #{addressMB.latlonglist};  
+		  //var latlongTags =["20","40"];  
+		  
+		  
 		  $("#searchlocation").autocomplete({
-			
 			  autoFocus: true,
 		    source: locationTags,
 		    change: function (event, ui) {
@@ -60,8 +58,15 @@
 	
     <script>
     var marker;
+   
 
           function initialize(latitude,longitude) {
+        	  
+        	  var locations = [
+        	                     ['Dr Nihar', latitude,longitude, 'BBSR'],
+        	                     ['Dr Rakesh', 20.4622888,85.7278306,'CUTTACK']
+        	                     
+        	                     ];
         	  var myCenter=new google.maps.LatLng(latitude,longitude);
         	  var mapProp = {
         			  center:myCenter,
@@ -76,10 +81,38 @@
         			  animation:google.maps.Animation.BOUNCE
         			  });
 
-        			marker.setMap(map);
+        			setMarkers(map,locations);
         			}
-             // google.maps.event.addDomListener(window, 'load', initialize);
+          function setMarkers(map,locations){
+
+              var marker, i;
+
+        for (i = 0; i &lt; locations.length; i++)
+         {  
+
+         var loan = locations[i][0];
+         var lat = locations[i][1];
+         var long = locations[i][2];
+         var add =  locations[i][3];
+         latlngset = new google.maps.LatLng(lat, long);
+         var marker = new google.maps.Marker({  
+                  map: map, title: loan , position: latlngset  
+                });
+                map.setCenter(marker.getPosition());
+                var content = "Dr Name: " + loan + ' ' + " Address: " + add; 
+                var infowindow = new google.maps.InfoWindow();
+                google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                return function() {
+                   infowindow.setContent(content);
+                   infowindow.open(map,marker);
+                };
+            })(marker,content,infowindow)); 
+
+          }
+          }
+
 </script>
+ 
 		<div class="display-animation">
 			<div
 				class="search-wizard panel bs-wizard bs-wizard-steps-with-progress">
@@ -116,9 +149,9 @@
 					<div class="col-md-5">
 						<div class="tab-pane active" id="form3_tab1">
 							<div class="form-group">
-								<h:inputText p:placeholder="Search your Pincode"
-									class="form-control" value="#{userSearchMB.searchlocation}"
-									id="searchlocation" required="true" autosubmit="true"/>
+								<h:inputText value="#{userSearchMB.searchlocation}" p:placeholder="Search your Pincode"
+									class="form-control" 
+									id="searchlocation" required="true" autosubmit="true" />
 							</div>
 							<br> </br>
 							<!-- <div class="col-sm-12"></div> -->
@@ -133,7 +166,6 @@
 						<div class="row">
 							<div class="col-md-10">
 								<div class="form-group">
-
 									<h:inputText p:placeholder="Type something here..."
 										class="form-control" value="#{userSearchMB.searchText}"
 										id="searchText" required="true" autosubmit="true">
