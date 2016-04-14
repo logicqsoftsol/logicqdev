@@ -60,8 +60,14 @@ xsi:schemaLocation="
 
 	<!-- Addres entries for UI -->
 	<bean id="addressVO" class="com.logicq.logicq.ui.address.vo.AddressVO" />
-	<bean id="addressBean" class="com.logicq.logicq.ui.address.bean.AddressBean" />
+	<!-- <bean id="addressBean" class="com.logicq.logicq.ui.address.bean.AddressBean" /> -->
+	<bean id="addressManagedBean" class="com.logicq.logicq.ui.address.bean.AddressManagedBean" />
 	<bean id="addressHelper" class="com.logicq.logicq.ui.address.helper.AddressHelper" />
+	<bean id="addressDAO" class="com.logicq.logicq.dao.address.impl.AddressDAO" />
+	<bean id="addressFacade" class="com.logicq.logicq.facade.address.AddressFacade" />
+	<bean id="addressService" class="com.logicq.logicq.service.address.impl.AddressService" />
+	
+	
 
 	<!-- TaskManager entries for HOST -->
 	<bean id="locationMapDAO" class="com.logicq.logicq.dao.map.impl.LocationMapDAO" />
