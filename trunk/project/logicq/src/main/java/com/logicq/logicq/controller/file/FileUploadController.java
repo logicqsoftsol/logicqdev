@@ -27,7 +27,7 @@ public class FileUploadController {
 	LinkedList<FileUploadVO> files = new LinkedList<FileUploadVO>();
 	FileUploadVO fileMeta = null;
 	@Autowired
-	private IFileUploadDAO fileUploadDao;
+	public IFileUploadDAO fileUploadDao;
 
 	public IFileUploadDAO getFileUploadDao() {
 
