@@ -99,7 +99,11 @@
                   map: map, title: loan , position: latlngset  
                 });
                 map.setCenter(marker.getPosition());
-                var content = "Dr Name: " + loan + ' ' + " Address: " + add; 
+                var content = '<div id="content">'+
+                '<p id="firstHeading" class="firstHeading">'+loan+' from '+add+
+                '<b> MBBS Cardio </b>'+
+                '</p>'+
+                '<div id="bodyContent">'+'<p><button class="btn btn-blue btn-xs btn-ripple bs-wizard-next">Book Appoitment</button> </p></div> </div>';
                 var infowindow = new google.maps.InfoWindow();
                 google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
                 return function() {
@@ -112,7 +116,7 @@
           }
 
 </script>
- 
+
 		<div class="display-animation">
 			<div
 				class="search-wizard panel bs-wizard bs-wizard-steps-with-progress">
