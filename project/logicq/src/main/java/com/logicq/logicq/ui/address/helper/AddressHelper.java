@@ -1,8 +1,13 @@
 package com.logicq.logicq.ui.address.helper;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.logicq.logicq.facade.address.IAddressFacade;
 import com.logicq.logicq.facade.map.ILocationMapFacade;
+import com.logicq.logicq.model.address.Address;
+import com.logicq.logicq.model.entity.EntityRole;
 import com.logicq.logicq.ui.address.bean.AddressBean;
 import com.logicq.logicq.ui.address.vo.AddressVO;
 
@@ -12,17 +17,30 @@ public class AddressHelper {
 	ILocationMapFacade locationMapFacade;
 
 	public ILocationMapFacade getLocationMapFacade() {
+
 		return locationMapFacade;
 	}
 
 	public void setLocationMapFacade(ILocationMapFacade locationMapFacade) {
+
 		this.locationMapFacade = locationMapFacade;
 	}
-	
-	
-	
-	
+
+	@Autowired
+	IAddressFacade addressFacade;
+
+	public IAddressFacade getAddressFacade() {
+
+		return addressFacade;
+	}
+
+	public void setAddressFacade(IAddressFacade addressFacade) {
+
+		this.addressFacade = addressFacade;
+	}
+
 	public AddressVO conversionUItoVO(AddressBean p_uibean, AddressVO p_address) {
+
 		p_address.setBuldingnumber(p_uibean.getBuldingnumber());
 		p_address.setCity(p_uibean.getCity());
 		p_address.setState(p_uibean.getState());
@@ -39,7 +57,8 @@ public class AddressHelper {
 		return p_address;
 	}
 
-	public AddressBean conversionVOtoUI(AddressVO p_address,AddressBean p_uibean ) {
+	public AddressBean conversionVOtoUI(AddressVO p_address, AddressBean p_uibean) {
+
 		p_uibean.setBuldingnumber(p_address.getBuldingnumber());
 		p_uibean.setCity(p_address.getCity());
 		p_uibean.setState(p_address.getState());
@@ -55,8 +74,25 @@ public class AddressHelper {
 		p_uibean.setPincode(p_address.getPincode());
 		return p_uibean;
 	}
-	
-	public void getLocation(String ip_address){
-		 locationMapFacade.getLocation(ip_address);
+
+	public void getLocation(String ip_address) {
+
+		locationMapFacade.getLocation(ip_address);
 	}
+
+	public List<Address> getAddress() {
+
+		return addressFacade.getAddress() ;
+	}
+
+	public List<EntityRole> getEntity() {
+
+		// TODO Auto-generated method stub
+		return addressFacade. getEntity();
+	}
+	public List<Address> getLatLong() {
+
+		return addressFacade.getAddress() ;
+	}
+
 }

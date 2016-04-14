@@ -1,9 +1,9 @@
 package com.logicq.logicq.ui.address.bean;
 
-import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.ui.address.helper.AddressHelper;
@@ -11,13 +11,9 @@ import com.logicq.logicq.ui.address.vo.AddressVO;
 
 
 @ManagedBean(name = "addressMB")
-@ViewScoped
-public class AddressBean implements Serializable{
+@SessionScoped
+public class AddressBean {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8613835948073100818L;
 	private String housenumber;
 	private String floornumber;
 	private String buldingnumber;
@@ -31,7 +27,42 @@ public class AddressBean implements Serializable{
 	private String landphone;
 	private String mobilenumber;
 	private String email;
+	private String latitude;
+	private String longitude;
+	List<String> addresslist;
+	List<String> entitylist;
+	List<String> latlonglist;
 	
+	
+    public String getLatitude() {
+    
+    	return latitude;
+    }
+	
+    public void setLatitude(String latitude) {
+    
+    	this.latitude = latitude;
+    }
+	
+    public String getLongitude() {
+    
+    	return longitude;
+    }
+	
+    public void setLongitude(String longitude) {
+    
+    	this.longitude = longitude;
+    }
+	
+    public List<String> getLatlonglist() {
+    
+    	return latlonglist;
+    }
+	
+    public void setLatlonglist(List<String> latlonglist) {
+    
+    	this.latlonglist = latlonglist;
+    }
 	private void addAddress(){
 		AddressManagedBean addressManagedBean=LogicqContextProvider.getApplicationContext().getBean(AddressManagedBean.class);
 		AddressVO l_address=	LogicqContextProvider.getApplicationContext().getBean(AddressVO.class);
@@ -39,7 +70,38 @@ public class AddressBean implements Serializable{
 		l_addresshelper.conversionUItoVO(this, l_address);
 		
 	}
+	  public AddressBean(){
+		try{
+		System.out.println("address bean111");
+		addresslist = getLocation();
+		entitylist = getEntity();
+		latlonglist = getLatLong();
+		System.out.println("address bean2");}
+		
+		catch(Exception e){e.printStackTrace();}
+		//latlonglist = getLatLong();
+	}
 	
+	
+    public List<String> getAddresslist() {
+    
+    	return addresslist;
+    }
+	
+    public void setAddresslist(List<String> addresslist) {
+    
+    	this.addresslist = addresslist;
+    }
+	
+    public List<String> getEntitylist() {
+    
+    	return entitylist;
+    }
+	
+    public void setEntitylist(List<String> entitylist) {
+    
+    	this.entitylist = entitylist;
+    }
 	public String getHousenumber() {
 		return housenumber;
 	}
@@ -52,6 +114,23 @@ public class AddressBean implements Serializable{
 		return floornumber;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void setFloornumber(String floornumber) {
 		this.floornumber = floornumber;
 	}
@@ -143,6 +222,22 @@ public class AddressBean implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public List<String> getLocation() {
 
+		AddressManagedBean addressManagedBean = LogicqContextProvider.getApplicationContext().getBean(AddressManagedBean.class);
+		return addressManagedBean.getAddress();
+	}
+
+	public List<String> getEntity() {
+
+		AddressManagedBean addressManagedBean = LogicqContextProvider.getApplicationContext().getBean(AddressManagedBean.class);
+		return addressManagedBean.getEntity();
+	}
+	 	public List<String> getLatLong() {
+
+	 		AddressManagedBean addressManagedBean = LogicqContextProvider.getApplicationContext().getBean(AddressManagedBean.class);
+			 return addressManagedBean. getAllLocation();
+			 
+		} 
 
 }
