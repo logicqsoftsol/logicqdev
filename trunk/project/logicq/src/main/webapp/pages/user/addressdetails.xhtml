@@ -2,8 +2,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="../templates/common-template2.xhtml" xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 
 		<div class="container">
@@ -90,12 +89,15 @@
 								<div class="col-sm-2">
 										<img src="#{profile.userImage}" style="width:300px; height:250px;" class="img-rounded" alt="" />
 									</div>
-			
-						<h:form enctype="multipart/form-data" style="width:200px">
+			<div class="form-group">
+			<h:panelGrid id="panel" rendered="false">
+						<h:form enctype="multipart/form-data" style="width:200px" >
 							<p:fileUpload value="#{fileuploadMB.file}" mode="advanced"
 								multiple="true"
 								fileUploadListener="#{fileuploadMB.handleFileUpload}"></p:fileUpload>
 						</h:form>
+						</h:panelGrid>
+						</div>
 					
 				</div>
 			</div>
