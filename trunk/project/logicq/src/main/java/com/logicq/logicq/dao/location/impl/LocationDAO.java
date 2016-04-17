@@ -14,7 +14,7 @@ public class LocationDAO extends AbstractDAO<Location> implements ILocationDAO {
 
 	public LocationDAO() {
 
-		 System.out.println("locationdao   constructor1ss3");
+		 
 	}
 
 	public void addLocation(Location location) {
