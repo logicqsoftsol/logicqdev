@@ -3,6 +3,7 @@ package com.logicq.logicq.dao.user;
 import java.util.List;
 
 import com.logicq.logicq.constant.CommunicationType;
+import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.model.user.User;
 
 /**
@@ -60,4 +61,6 @@ public interface IUserDAO {
 	public User getUserIdFromEmailOrMobile(String input, CommunicationType type);
 
 	public List<User> getUsersForAddress(String[] addressDetails);
+
+	public List<User> getParticularUsersForArea(EntityType entityType, String area);
 }
