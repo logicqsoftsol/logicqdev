@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.logicq.logicq.constant.CommunicationType;
+import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.dao.AbstractDAO;
 import com.logicq.logicq.dao.user.IUserDAO;
 import com.logicq.logicq.dao.user.UserFilterObject;
@@ -111,6 +112,16 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 		List<User> users = new ArrayList<User>();
 		params.put("city", addressDetails[0]);
 		users = (List<User>) executeNamedQuery(UserConstant.GET_USERS_NEAR_ADDRESS, params);
+		return users;
+	}
+
+	public List<User> getParticularUsersForArea(EntityType entityType, String area) {
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		List<User> users = new ArrayList<User>();
+		params.put("entityType", entityType);
+		params.put("city", area);
+		users = (List<User>) executeNamedQuery(UserConstant.GET_PARTICULAR_USERS_NEAR_ADDRESS, params);
 		return users;
 	}
 }
