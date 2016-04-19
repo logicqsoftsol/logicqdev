@@ -1,0 +1,358 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="profile-template.xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+
+      <div class="right_col" role="main">
+          <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Your Details Setup</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                   
+                    <li><a class="close-link"><i class="fa fa fa-close"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div id="wizard" class="form_wizard wizard_horizontal">
+                    <ul class="wizard_steps">
+                      <li>
+                        <a href="#step-1">
+                          <span class="step_no"><i class="fa fa-user-secret" aria-hidden="true"></i></span>
+                          <span class="step_descr">
+                                            Step 1<br />
+                                            <small>Its About You</small>
+                                        </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#step-2"> 
+                          <span class="step_no"><i class="fa fa-home" aria-hidden="true"></i></span>
+                          <span class="step_descr">
+                                            Step 2<br />
+                                            <small>Your Address Details</small>
+                                        </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#step-3">
+                          <span class="step_no"><i class="fa fa-user-md" aria-hidden="true"></i></span>
+                          <span class="step_descr">
+                                            Step 3<br />
+                                            <small>Your Services</small>
+                                        </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#step-4">
+                          <span class="step_no"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                          <span class="step_descr">
+                                            Step 4<br />
+                                            <small>Your Avilablity</small>
+                                        </span>
+                        </a>
+                      </li>
+                    </ul>
+											<div id="step-1">
+												<h:form class="form-horizontal form-label-left">
+
+													<div class="display-animation">
+														<div class="tab-pane" id="form3_tab1">
+															<div class="row row-centered">
+																<div class="col-sm-8 col-centered">
+																	<div class="col-sm-12 form-group">
+																		<div class="col-sm-2">
+																			<div class="controls">
+																				<h:selectOneMenu id="Title" class="form-control">
+																					<f:selectItem itemValue="mr" itemLabel="MR" />
+																					<f:selectItem itemValue="mrs" itemLabel="MRS" />
+																					<f:selectItem itemValue="doctor" itemLabel="DR" />
+																				</h:selectOneMenu>
+																			</div>
+																		</div>
+
+																		<div class="col-sm-4">
+																			<div class="inputer">
+																				<div class="input-wrapper">
+																					<b:inputText id="firstname" name="fname"
+																						placeholder="First Name" class="form-control" />
+																				</div>
+																			</div>
+																		</div>
+
+																		<div class="col-sm-6">
+																			<div class="inputer">
+																				<div class="input-wrapper">
+																					<b:inputText id="lastname" name="lastname"
+																						placeholder="Family Name/Last Name"
+																						class="form-control" />
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="col-sm-12 form-group">
+																		<div class="col-sm-6">
+																			<div class="inputer">
+																				<div class="input-wrapper">
+																					<b:datepicker placeholder="Date of Birth" value=" "
+																						class="form-control" id="pdob" mode="popup-icon"
+																						changeYear="true" changeMonth="true"
+																						showButtonPanel="true"></b:datepicker>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="col-sm-5 padding-right-zero">
+																			<div class="inputer">
+																				<div class="input-wrapper">
+																					<b:inputText placeholder="E-mail" value=""
+																						class="form-control" id="pemail">
+																					</b:inputText>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="col-sm-1 text-right">
+																			<b:button look="danger" value="Verify"
+																				onclick="$('.modalemailverification').modal();return false; "
+																				icon="fa-check-square-o" />
+																		</div>
+																		<div class="col-sm-12 form-group">
+																			<div class="col-sm-6">
+																				<h:selectOneMenu id="Gender" class="form-control">
+																					<f:selectItem itemValue="Male" itemLabel="MALE" />
+																					<f:selectItem itemValue="Female" itemLabel="FEMALE" />
+																				</h:selectOneMenu>
+																			</div>
+																			<div class="col-sm-5 padding-right-zero">
+																				<div class="inputer">
+																					<div class="input-wrapper">
+																						<b:inputText placeholder="Phone Number"
+																							value="+91-" class="form-control"
+																							id="phonenumber">
+																						</b:inputText>
+																					</div>
+																				</div>
+																			</div>
+																			<div class="col-sm-1 text-right">
+																				<b:button look="danger" value="Validate"
+																					onclick="$('.modalmobileverification').modal();return false; "
+																					icon="fa-check-square-o" />
+																			</div>
+																		</div>
+
+																		<div class="col-sm-12 form-group">
+																			<div class="col-sm-6">
+																				<div class="inputer">
+																					<div class="input-wrapper">
+																						<b:inputText p:placeholder="Specialized" value=""
+																							class="form-control" id="spacility" />
+																					</div>
+																				</div>
+																			</div>
+																			<div class="col-sm-6">
+																				<div class="inputer">
+																					<div class="input-wrapper">
+																						<b:inputText class="form-control" name="exprience"
+																							placeholder="Exprience" value="" />
+																					</div>
+																				</div>
+																			</div>
+
+																		</div>
+																		<div class="col-sm-12 form-group">
+																			<div class="col-sm-4">
+																				<div class="inputer">
+																					<div class="input-wrapper">
+																						<b:inputText class="form-control"
+																							name="qualification" placeholder="Qualification"
+																							value="" />
+																					</div>
+																				</div>
+																			</div>
+																			<div class="col-sm-2">
+																				<h:outputText value="Validate Qualification" />
+																			</div>
+																			<div class="col-sm-6">
+																				<h:form enctype="multipart/form-data">
+																					<p:fileUpload value="#{fileuploadMB.file}"
+																						mode="advanced" multiple="true"
+																						fileUploadListener="#{fileuploadMB.handleFileUpload}"></p:fileUpload>
+																				</h:form>
+																			</div>
+
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<!-- registration form -->
+														<div class="display-animation">
+															<b:modal id="modalemailverification"
+																title="E-Mail Verification"
+																styleClass="modalemailverification" size="lg">
+																<div class="col-md-8">
+																	<form id="emailverificationForm" method="post"
+																		class="form-horizontal">
+																		<div class="form-group">
+																			<b:inputText class="form-control" name="emailoaccode"
+																				placeholder="Enter your OAC code" value="" />
+																		</div>
+																		<b:commandButton value="Verify" look="primary"
+																			id="emailverify" />
+																		<b:commandButton value="Resend" look="primary"
+																			id="resendemailoac" />
+																	</form>
+																</div>
+															</b:modal>
+														</div>
+
+														<div class="display-animation">
+															<b:modal id="modalmobileverification"
+																title="Mobile Number Verification"
+																styleClass="modalmobileverification" size="lg">
+																<div class="col-md-8">
+																	<form id="mobileverificationForm" method="post"
+																		class="form-horizontal">
+																		<div class="form-group">
+																			<b:inputText class="form-control" name="mobileotp"
+																				placeholder="Enter Your OTP" value="" />
+																		</div>
+																		<b:commandButton value="Verify" look="primary"
+																			id="verifymobileotp" />
+																		<b:commandButton value="Resend" look="primary"
+																			id="resendmobileotp" />
+																	</form>
+																</div>
+															</b:modal>
+														</div>
+													</div>
+
+
+												</h:form>
+
+
+											</div>
+											<div id="step-2">
+                      <h2 class="StepTitle">Step 2 Content</h2>
+                      			<div class="row">
+			<h:form id="addresdetails">
+				<div class="col-lg-3">
+					<form class="form-horizontal">
+						<!-- address-line1 input-->
+						<div class="control-group">
+							<div class="controls">
+								<b:inputText id="address-line1" name="address-line1"
+									placeholder="address line 1" class="form-control" />
+							</div>
+						</div>
+						<!-- address-line2 input-->
+						<div class="control-group">
+							<div class="controls">
+								<b:inputText id="address-line2" name="address-line2"
+									placeholder="Apartment, suite , unit, building,floor, etc."
+									class="form-control" />
+							</div>
+						</div>
+						<!-- city input-->
+						<div class="control-group">
+							<div class="controls">
+								<b:inputText id="city" name="city" placeholder="City / Town"
+									class="form-control" />
+							</div>
+						</div>
+						<!-- region input-->
+						<div class="control-group">
+							<div class="controls">
+								<b:inputText id="region" name="region"
+									placeholder="state / province / region" class="form-control" />
+							</div>
+						</div>
+						<!-- postal-code input-->
+						<div class="control-group">
+							<div class="controls">
+								<b:inputText id="postal-code" name="postal-code"
+									placeholder="zip or postal code" class="form-control" />
+							</div>
+						</div>
+
+						<div class="controls">
+							<h:selectOneMenu id="country" class="form-control">
+								<f:selectItem itemValue="IN" itemLabel="INDIA" />
+							</h:selectOneMenu>
+						</div>
+					</form>
+				</div>
+				<div class="col-lg-5">
+					<form class="form-horizontal">
+						<iframe
+							src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d60512.91950984214!2d73.73423198558297!3d18.57144763208247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1446128278051"
+							frameborder="0" style="border: 0; height: 250px; width: 350px"></iframe>
+
+						<div class="form-group">
+							<h:inputText id="Lattitude" name="lattitude" rendered="true"
+								placeholder="Latitude" class="form-control" />
+						</div>
+
+
+						<div class="form-group">
+							<h:inputText id="Longitude" name="longitude" rendered="true"
+								placeholder="Longitude" class="form-control" />
+
+						</div>
+					</form>
+				</div>
+				<div class="col-lg-4">
+
+					<div class="col-sm-2">
+						<h:graphicImage value="#{addressMB.addressImagePath}" class="img-rounded"/>
+					</div>
+					<div class="form-group">
+						<h:panelGrid id="panel" rendered="false">
+							<h:form enctype="multipart/form-data" style="width:200px">
+								<p:fileUpload value="#{fileuploadMB.file}" mode="advanced"
+									multiple="true"
+									fileUploadListener="#{fileuploadMB.handleFileUpload}"></p:fileUpload>
+							</h:form>
+						</h:panelGrid>
+					</div>
+
+				</div>
+				</h:form>
+			</div>
+                    </div>
+                    <div id="step-3">
+                      <h2 class="StepTitle">Step 3 Content</h2>
+                      <p>
+                       Your Services
+                      </p>
+                    </div>
+                    <div id="step-4">
+                      <h2 class="StepTitle">Step 4 Content</h2>
+                      <p>
+                      Your avilablity
+                      </p>
+                    </div>
+
+                  </div>
+ 
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+	</ui:define>
+
+</ui:composition>

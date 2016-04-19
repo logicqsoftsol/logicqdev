@@ -74,36 +74,28 @@
 										<div class="right-list-show">
 											<div class="form-group">
 												<h:outputText value="Recommendations : " />
+												 <h:outputText class="fa fa-thumbs-o-up" value="&#160;"/>
 												<h:outputText value="#{profile.recomendation}"
-													id="recomendationtext" />
-												<h:commandLink id="recomendation" rendered="true"
-													oncomplete="javascript:location.reload(true)">
-													<i class="fa fa-thumbs-o-up" />
-												</h:commandLink>
+													id="recomendationtext"/>
+											    
 											</div>
 											<div class="form-group">
 												<h:outputText value="Feedback : " />
+												<h:outputText class="fa fa-comment" value="&#160;"/>
 												<h:outputText value="#{profile.feedback}" id="feedbackvalue" />
-												<h:commandLink id="feedback" rendered="true"
-													oncomplete="javascript:location.reload(true)">
-													<i class="fa fa-comment" />
-												</h:commandLink>
+												
 											</div>
 											<div class="form-group">
 												<h:outputText value="Location : " />
+												<h:outputText class="fa fa-map-marke" value="&#160;"/>
 												<h:outputText value="#{profile.location}" id="locationvalue" />
-												<h:commandLink id="location" rendered="true"
-													oncomplete="javascript:location.reload(true)">
-													<i class="fa fa-map-marker" />
-												</h:commandLink>
+												
 											</div>
 											<div class="form-group">
 												<h:outputText value="Fees : " />
+												<h:outputText class="fa fa-inr" value="&#160;"/>
 												<h:outputText value="#{profile.fess}" id="fessvalue" />
-												<h:commandLink id="fess" rendered="true"
-													oncomplete="javascript:location.reload(true)">
-													<i class="fa fa-inr" />
-												</h:commandLink>
+												
 											</div>
 										</div>
 										<div class="col-sm-12 text-right padding-btn">
