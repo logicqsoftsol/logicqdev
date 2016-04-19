@@ -1,0 +1,179 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="../templates/common-template2.xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
+		<div class="display-animation">
+			<div class="tab-pane" id="form3_tab1">
+				<div class="row row-centered">
+					<div class="col-sm-8 col-centered">
+						<div class="col-sm-12 form-group">
+							<div class="col-sm-2">
+								<div class="controls">
+							<h:selectOneMenu id="Title" class="form-control">
+								<f:selectItem itemValue="mr" itemLabel="MR" />
+								<f:selectItem itemValue="mrs" itemLabel="MRS" />
+								<f:selectItem itemValue="doctor" itemLabel="DR" />
+							</h:selectOneMenu>
+						</div>
+							</div>
+
+							<div class="col-sm-4">
+								<div class="inputer">
+									<div class="input-wrapper">
+									<b:inputText id="firstname" name="fname"
+									placeholder="First Name" class="form-control" />
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+								<div class="inputer">
+									<div class="input-wrapper">
+									<b:inputText id="lastname" name="lastname"
+									placeholder="Family Name/Last Name" class="form-control" />
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-12 form-group">
+							<div class="col-sm-6">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<b:datepicker placeholder="Date of Birth" value=" "
+											class="form-control" id="pdob" mode="popup-icon"
+											changeYear="true" changeMonth="true" showButtonPanel="true"></b:datepicker>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-5 padding-right-zero">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<b:inputText placeholder="E-mail" value=""
+											class="form-control" id="pemail">
+										</b:inputText>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-1 text-right" >
+							<b:button  look="danger"
+									onclick="$('.modalemailverification').modal();return false; "
+									icon="fa-check-square-o"/>
+						</div>
+							<div class="col-sm-12 form-group">
+								<div class="col-sm-6">
+									<h:selectOneMenu id="Gender" class="form-control">
+										<f:selectItem itemValue="Male" itemLabel="MALE" />
+										<f:selectItem itemValue="Female" itemLabel="FEMALE" />
+									</h:selectOneMenu>
+								</div>
+								<div class="col-sm-1 padding-right-zero phone">
+									<h:selectOneMenu id="selecter phone" class="form-control">
+										<f:selectItem itemValue="91" itemLabel="+91" />
+									</h:selectOneMenu>
+								</div>
+								<div class="col-sm-4 padding-right-zero">
+									<div class="inputer">
+										<div class="input-wrapper">
+											<b:inputText placeholder="Phone Number" value=""
+												class="form-control" id="phonenumber">
+											</b:inputText>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-12 form-group">
+								<b:button  look="danger"
+									onclick="$('.modalmobileverification').modal();return false; "
+									icon="fa-check-square-o"/>
+							</div>
+						<div class="col-sm-12 form-group">
+							<div class="col-sm-6">
+								<div class="inputer">
+									<div class="input-wrapper">
+									<b:inputText p:placeholder="Specialized" value=""
+												class="form-control" id="spacility">
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<b:inputText class="form-control" name="exprience"
+											placeholder="Exprience"  value="" >
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-sm-12 form-group">
+							<div class="col-sm-6">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<b:inputText type="text" name="pin" class="form-control"
+											placeholder="Pin*"/>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="inputer">
+									<div class="input-wrapper">
+										<b:inputText type="password" class="form-control" name="cpin"
+											placeholder="Conform Pin*"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			
+				<!-- registration form -->
+		<div class="display-animation">
+			<b:modal id="modalemailverification" title="E-Mail Verification"
+				styleClass="modalemailverification" size="lg">
+				<div class="col-md-8">
+					<form id="emailverificationForm" method="post" class="form-horizontal">
+						<div class="form-group">
+							<h:inputText p:placeholder="Enter Your OAC"
+								value=" " id="emailoac" class="form-control">
+							</h:inputText>
+						</div>
+						<b:commandButton value="Verify" look="primary" id="emailoac"/>
+					   <b:commandButton value="Resend" look="primary" id="resendoac"/>
+					</form>
+				</div>
+			</b:modal>
+		</div>
+		
+		<div class="display-animation">
+			<b:modal id="modalverification" title="Mobile Number Verification"
+				styleClass="modalmobileverification" size="lg">
+				<div class="col-md-8">
+					<form id="mobileverificationForm" method="post" class="form-horizontal">
+						<div class="form-group">
+							<h:inputText p:placeholder="Enter Your OTP"
+								value=" " id="mobileotp" class="form-control">
+							</h:inputText>
+						</div>
+						<b:commandButton value="Verify" look="primary" id="mobileotp"/>
+					   <b:commandButton value="Resend" look="primary" id="resendmobileotp"/>
+					</form>
+				</div>
+			</b:modal>
+		</div>
+		</div>
+		
+			
+	</ui:define>
+
+</ui:composition>

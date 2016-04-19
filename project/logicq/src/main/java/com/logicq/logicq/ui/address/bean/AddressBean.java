@@ -1,9 +1,11 @@
 package com.logicq.logicq.ui.address.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.ui.address.helper.AddressHelper;
@@ -11,9 +13,13 @@ import com.logicq.logicq.ui.address.vo.AddressVO;
 
 
 @ManagedBean(name = "addressMB")
-@SessionScoped
-public class AddressBean {
+@ViewScoped
+public class AddressBean implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3985758943975376624L;
 	private String housenumber;
 	private String floornumber;
 	private String buldingnumber;
@@ -32,9 +38,18 @@ public class AddressBean {
 	List<String> addresslist;
 	List<String> entitylist;
 	List<String> latlonglist;
+	private String addressImagePath; 
 	
 	
-    public String getLatitude() {
+    public String getAddressImagePath() {
+		return addressImagePath;
+	}
+
+	public void setAddressImagePath(String addressImagePath) {
+		this.addressImagePath = addressImagePath;
+	}
+
+	public String getLatitude() {
     
     	return latitude;
     }
