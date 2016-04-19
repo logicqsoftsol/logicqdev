@@ -38,8 +38,9 @@ public class FileUploadService implements IFileUploadService {
 		UploadFile uploadFile = fileuploadConversion.handleConversionVOtoEntityWithContext(uploadFileRequest.getFileupload());
 		ImageInputStream input = null;
 		byte[] data = uploadFileRequest.getFileupload().getData();
+		String destinationPath = uploadFileRequest.getFileupload().getDestinationPath();
 		try {
-			String path = "D:\\image\\" + uploadFile.getUserId() + ".jpg";
+			String path = destinationPath + uploadFile.getUserId() + ".jpg";
 			File dest = new File(path);
 			input = ImageIO.createImageInputStream(new ByteArrayInputStream(data));
 			BufferedImage image = ImageIO.read(input);
