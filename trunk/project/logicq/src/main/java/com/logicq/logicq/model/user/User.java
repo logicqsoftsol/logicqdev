@@ -5,6 +5,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 import com.logicq.logicq.common.criteriamanager.BaseEntity;
+import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.login.Role;
 
@@ -27,7 +30,8 @@ import com.logicq.logicq.model.login.Role;
 @NamedQueries({ @NamedQuery(name = User.GET_USER, query = User.GET_USER_QUERY),
                 @NamedQuery(name = User.GET_MOBILE_NO, query = User.GET_MOBILE_NO_QRY),
                 @NamedQuery(name = User.GET_EMAIL_ID, query = User.GET_EMAIL_ID_QRY),
-                @NamedQuery(name = User.GET_USERS_NEAR_ADDRESS, query = User.GET_USERS_NEAR_ADDRESS_QRY) })
+                @NamedQuery(name = User.GET_USERS_NEAR_ADDRESS, query = User.GET_USERS_NEAR_ADDRESS_QRY),
+                @NamedQuery(name = User.GET_PARTICULAR_USERS_NEAR_ADDRESS, query = User.GET_PARTICULAR_USERS_NEAR_ADDRESS_QRY) })
 public class User extends BaseEntity implements UserConstant, Serializable {
 
 	/**
@@ -60,6 +64,19 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 	private Boolean isUserVerified;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Address> addresses;
+	@Column(name = "ENTITY_TYPE", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private EntityType entityType;
+
+	public EntityType getEntityType() {
+
+		return entityType;
+	}
+
+	public void setEntityType(EntityType entityType) {
+
+		this.entityType = entityType;
+	}
 
 	public Set<Address> getAddresses() {
 
