@@ -27,7 +27,7 @@ xsi:schemaLocation="
 	<!-- User deatils etries for UI -->
 	<bean id="userManagedBean" class="com.logicq.logicq.ui.user.bean.UserManagedBean" />
 	<bean id="userBeanHelper" class="com.logicq.logicq.ui.user.helper.UserBeanHelper" />
-	<bean id="userVO" class="com.logicq.logicq.ui.user.vo.UserVO" />
+	<bean id="userVO" class="com.logicq.logicq.ui.user.vo.UserVO" scope="request"/>
 	<bean id="userSearchManagedBean" class="com.logicq.logicq.ui.search.bean.UserSearchManagedBean" />
     <bean id="userSearchBeanHelper" class="com.logicq.logicq.ui.search.helper.UserSearchBeanHelper" />
     
@@ -43,6 +43,9 @@ xsi:schemaLocation="
 	<bean id="userSearchApplicationService" class="com.logicq.logicq.service.search.impl.UserSearchApplicationService">
 		<property name="userDAO" ref="userDAO" />
 	</bean>
+	<bean id="userProfilesRequest" class="com.logicq.logicq.ui.user.vo.UserProfilesRequest"/>
+	<bean id="userProfilesResponse" class="com.logicq.logicq.ui.user.vo.UserProfilesResponse"/>
+	<bean id="facilityVO" class="com.logicq.logicq.ui.user.vo.FacilityVO" scope="request"/>
 
 	<!-- TaskManager entries for UI -->
 	<bean id="taskBean" class="com.logicq.logicq.ui.task.bean.TaskBean" />
@@ -100,6 +103,9 @@ xsi:schemaLocation="
 	<bean id="fileUploadDAO" class="com.logicq.logicq.dao.upload.impl.FileUploadDAO" />
 	<bean id="fileUploadService" class="com.logicq.logicq.service.upload.impl.FileUploadService">
 	<property name="fileUploadDAO" ref="fileUploadDAO" />
+	</bean>
+	<bean id="fileUploadImageProperties" class="com.logicq.logicq.ui.fileupload.properties.FileUploadImageProperties">
+	<property name="destinationPath" value="D:\\image\\"/>
 	</bean>
 	
 	<!-- Location -->
