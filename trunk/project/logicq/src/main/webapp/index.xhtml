@@ -7,19 +7,24 @@
 	template="pages/templates/common-template.xhtml"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<ui:define name="content">
- 
+ <h:head>
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 		<script>
-	$(function() {
+		$( document ).ready(function() {
+		 var selectedEntity=null;
 		 
 		  var entityTags = #{addressMB.entitylist}; 
 		  var locationTags = #{addressMB.addresslist};
-		 var latlongTags = #{addressMB.latlonglist};  
+		   var latlongTags = #{addressMB.latlonglist};  
+		   var latlonglist= null;
+		   var latlonglist2= [];
+		   
 		  //var latlongTags =["20","40"];  
-		  
-		  
+		 
+		 
+	 
 		  $("#searchlocation").autocomplete({
-			  autoFocus: true,
+			autoFocus: true,
 		    source: locationTags,
 		    change: function (event, ui) {
 		    	if(!ui.item){
@@ -29,14 +34,30 @@
 
             } ,   
             select: function (event, ui) {
+            	 
 				   
 			    var label = ui.item.label;
 			    var value = ui.item.value;
-			    
+			    selectedEntity=value;
 			    var index=locationTags.indexOf(value); 	
 			    var res = (latlongTags[index]).split(",");
 			    initialize(res[3],res[4]);
-		   }
+			   // alert(selectedEntity);
+			    var j=0;
+			    for ( i=0;i &lt;latlongTags.length;i++){
+			    	if(latlongTags[i].indexOf(selectedEntity) > -1){
+			    		latlonglist=latlongTags[i].split(",");
+			    		
+			    		 
+			    	      latlonglist2[j]=[latlonglist[latlonglist.length-2],latlonglist[latlonglist.length-1]];
+                    	   j++;
+			    		 
+			    	} 	
+		    	     
+			    }
+			    //alert(latlonglist2[0]);
+			    //alert(latlonglist2[1]);
+			}
 		   
            
 		 
@@ -116,8 +137,9 @@
           }
 
 </script>
-
+</h:head>
 		<div class="display-animation">
+		<form id="userForm">
 			<div
 				class="search-wizard panel bs-wizard bs-wizard-steps-with-progress">
 				<div class="panel-heading">
@@ -155,7 +177,8 @@
 							<div class="form-group">
 								<h:inputText value="#{userSearchMB.searchlocation}" p:placeholder="Search your Pincode"
 									class="form-control" 
-									id="searchlocation" required="true" autosubmit="true" />
+									id="searchlocation" required="true" autosubmit="true">
+									<f:ajax listener="#{userSearchMB.getAllEntityByPIN}"></f:ajax></h:inputText>
 							</div>
 							<br> </br>
 							<!-- <div class="col-sm-12"></div> -->
@@ -368,7 +391,9 @@
 					</ul>
 				</div>
 			</div>
+			</form>
 		</div>
+		 
 	</ui:define>
 
 </ui:composition>
