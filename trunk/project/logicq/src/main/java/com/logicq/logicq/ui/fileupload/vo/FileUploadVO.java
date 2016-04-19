@@ -12,6 +12,17 @@ public class FileUploadVO {
 	private Date uploadDate;
 	private Long userid;
 	private InputStream inputStream;
+	private String destinationPath;
+
+	public String getDestinationPath() {
+
+		return destinationPath;
+	}
+
+	public void setDestinationPath(String destinationPath) {
+
+		this.destinationPath = destinationPath;
+	}
 
 	public InputStream getInputStream() {
 
