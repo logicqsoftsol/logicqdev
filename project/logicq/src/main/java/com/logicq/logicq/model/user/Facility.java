@@ -16,12 +16,36 @@ public class Facility extends BaseEntity implements UserConstant, Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3380211965037404723L;
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "facility_id", unique = true, nullable = false)
 	private Long facilityId;
 	@Column(name = "facility_name", unique = true, nullable = false)
 	private String facilityName;
+	@Column(name = "facility_Image_Id", unique = true, nullable = false)
+	private String facilityImageId;
+	@Column(name = "facility_Image_Path", unique = true, nullable = false)
+	private String facilityImagePath;
+
+	public String getFacilityImageId() {
+
+		return facilityImageId;
+	}
+
+	public String getFacilityImagePath() {
+
+		return facilityImagePath;
+	}
+
+	public void setFacilityImageId(String facilityImageId) {
+
+		this.facilityImageId = facilityImageId;
+	}
+
+	public void setFacilityImagePath(String facilityImagePath) {
+
+		this.facilityImagePath = facilityImagePath;
+	}
 
 	public Long getFacilityId() {
 
@@ -48,5 +72,4 @@ public class Facility extends BaseEntity implements UserConstant, Serializable {
 
 		return "Facility [facilityId=" + facilityId + ", facilityName=" + facilityName + "]";
 	}
-	
 }
