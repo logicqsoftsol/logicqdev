@@ -63,11 +63,9 @@
 											id="spcification" />
 										<h:outputText value="#{profile.exprience}" id="exprience" />
 										<p class="list-show-icon">
-											<h:graphicImage value="pages/img/doctor/dermatologist.png" />
-											<h:graphicImage value="pages/img/doctor/emergency.png" />
-											<h:graphicImage value="pages/img/doctor/vaccination1.png" />
-											<h:graphicImage
-												value="pages/img/doctor/vaccinationathome.png" />
+										<c:forEach items="#{profile.facilityDetails}" var="facility">
+											<h:graphicImage value="#{facility.facilityImagePath}" />
+										</c:forEach>
 										</p>
 									</div>
 
