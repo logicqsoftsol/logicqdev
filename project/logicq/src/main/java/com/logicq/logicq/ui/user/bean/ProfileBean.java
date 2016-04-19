@@ -2,12 +2,15 @@ package com.logicq.logicq.ui.user.bean;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.primefaces.model.StreamedContent;
 import org.springframework.util.StringUtils;
+
+import com.logicq.logicq.ui.user.vo.FacilityVO;
 
 @ManagedBean(name = "profileMB")
 @ViewScoped
@@ -16,7 +19,7 @@ public class ProfileBean {
 	private String fullname;
 	private String spcification;
 	private String exprience;
-	private String facilityDetails;
+	private List<FacilityVO> facilityDetails;
 	private String recomendation;
 	private String feedback;
 	private String location;
@@ -121,12 +124,12 @@ public class ProfileBean {
 		this.exprience = exprience;
 	}
 
-	public String getFacilityDetails() {
+	public List<FacilityVO> getFacilityDetails() {
 
 		return facilityDetails;
 	}
 
-	public void setFacilityDetails(String facilityDetails) {
+	public void setFacilityDetails(List<FacilityVO> facilityDetails) {
 
 		this.facilityDetails = facilityDetails;
 	}

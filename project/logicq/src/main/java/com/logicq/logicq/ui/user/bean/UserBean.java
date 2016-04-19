@@ -14,7 +14,11 @@ import javax.validation.constraints.NotNull;
 import org.springframework.util.StringUtils;
 
 import com.logicq.logicq.common.LogicqContextProvider;
+import com.logicq.logicq.constant.EntityType;
+import com.logicq.logicq.ui.user.vo.FacilityVO;
+import com.logicq.logicq.ui.user.vo.UserProfilesResponse;
 import com.logicq.logicq.ui.user.vo.UserRegistrationResponse;
+import com.logicq.logicq.ui.user.vo.UserVO;
 
 /**
  * User Bean
@@ -99,47 +103,36 @@ public class UserBean implements Serializable {
 
 	public List<ProfileBean> getProfiles() {
 
+		UserManagedBean userManagedBean = LogicqContextProvider.getApplicationContext().getBean(UserManagedBean.class);
+		//Hardcoded
+		EntityType entityType = EntityType.DOCTOR;
+		String area = "Pune";
+		UserProfilesResponse response = userManagedBean.getParticularUsersForArea(entityType, area);
+		List<UserVO> users = response.getUserVOs();
 		profiles = new ArrayList<ProfileBean>();
-		ProfileBean l_profile = new ProfileBean();
-		l_profile.setExprience("10");
-		l_profile.setFacilityDetails("Family doctor");
-		l_profile.setFeedback("100");
-		l_profile.setFess("400");
-		l_profile.setFullname("Test For each");
-		l_profile.setLocation("Pune");
-		l_profile.setRecomendation("200");
-		l_profile.setSpcification("Phd");
-		l_profile.setProfileid("Test101");
-		l_profile.setBookingdate(new Date().toString());
-		l_profile.setUserImage("../userImage/1000.jpg");
-		EntityAvailabilityBean avialen = new EntityAvailabilityBean();
-		avialen.setAvilabledate(new Date());
-		avialen.setEntityid("Test101");
-		avialen.setProfileid("Test101");
-		List<EntityAvalAtLocationBean> enetiyavalloc = avialen.getEntityavalloc("Test101", new Date());
-		avialen.setEntityavalloc(enetiyavalloc);
-		l_profile.setAvilablityDetails(avialen);
-		profiles.add(l_profile);
-		l_profile = new ProfileBean();
-		l_profile.setExprience("11");
-		l_profile.setFacilityDetails("Family doctor1");
-		l_profile.setFeedback("101");
-		l_profile.setFess("401");
-		l_profile.setFullname("Test For each1");
-		l_profile.setLocation("Pune1");
-		l_profile.setRecomendation("201");
-		l_profile.setSpcification("Phd1");
-		l_profile.setProfileid("Test102");
-		l_profile.setBookingdate(new Date().toString());
-		EntityAvailabilityBean avialen1 = new EntityAvailabilityBean();
-		avialen1.setAvilabledate(new Date());
-		avialen1.setEntityid("Test102");
-		avialen1.setProfileid("Test102");
-		List<EntityAvalAtLocationBean> enetiyavalloc1 = avialen1.getEntityavalloc("Test102", new Date());
-		avialen1.setEntityavalloc(enetiyavalloc1);
-		l_profile.setAvilablityDetails(avialen1);
-		findSchuduleForSelectedProfile();
-		profiles.add(l_profile);
+		for (UserVO user : users) {
+			ProfileBean profile = new ProfileBean();
+			profile.setFullname(user.getName());
+			profile.setFeedback("100");
+			profile.setFess("400");
+			profile.setFullname("Test For each");
+			profile.setLocation("Pune");
+			profile.setRecomendation("200");
+			profile.setSpcification("Phd");
+			profile.setProfileid("Test101");
+			profile.setBookingdate(new Date().toString());
+			profile.setUserImage("../userImage/1000.jpg");
+			List<FacilityVO> facilities = user.getFacilities();
+			profile.setFacilityDetails(facilities);
+			EntityAvailabilityBean avialen = new EntityAvailabilityBean();
+			avialen.setAvilabledate(new Date());
+			avialen.setEntityid("Test101");
+			avialen.setProfileid("Test101");
+			List<EntityAvalAtLocationBean> enetiyavalloc = avialen.getEntityavalloc("Test101", new Date());
+			avialen.setEntityavalloc(enetiyavalloc);
+			profile.setAvilablityDetails(avialen);
+			profiles.add(profile);
+		}
 		return profiles;
 	}
 
