@@ -1,12 +1,15 @@
 package com.logicq.logicq.service.user.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.constant.CommunicationType;
+import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.conversion.user.UserConversion;
 import com.logicq.logicq.dao.user.IUserDAO;
 import com.logicq.logicq.model.login.Login;
@@ -15,6 +18,8 @@ import com.logicq.logicq.service.login.IloginService;
 import com.logicq.logicq.service.task.ITaskManagerService;
 import com.logicq.logicq.service.user.IUserService;
 import com.logicq.logicq.ui.task.vo.TaskVO;
+import com.logicq.logicq.ui.user.vo.UserProfilesRequest;
+import com.logicq.logicq.ui.user.vo.UserProfilesResponse;
 import com.logicq.logicq.ui.user.vo.UserRegistrationRequest;
 import com.logicq.logicq.ui.user.vo.UserRegistrationResponse;
 import com.logicq.logicq.ui.user.vo.UserVO;
@@ -190,5 +195,20 @@ public class UserService implements IUserService {
 
 		User user = getUserDAO().getUserIdFromEmailOrMobile(input, type);
 		return (user.getId());
+	}
+
+	public UserProfilesResponse getParticularUsersForArea(UserProfilesRequest request, UserProfilesResponse response) {
+
+		List<UserVO> userVOs = new ArrayList<UserVO>();
+		EntityType entityType = request.getEntityType();
+		String area = request.getArea();
+		List<User> users = userDAO.getParticularUsersForArea(entityType, area);
+		for (User user : users) {
+			UserVO userVO = LogicqContextProvider.getApplicationContext().getBean(UserVO.class);
+			userVO = userConversion.conversionFromEntitytoVO(user, userVO);
+			userVOs.add(userVO);
+		}
+		response.setUserVOs(userVOs);
+		return response;
 	}
 }
