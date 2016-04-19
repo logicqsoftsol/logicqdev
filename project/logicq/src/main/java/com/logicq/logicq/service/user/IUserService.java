@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.logicq.logicq.constant.CommunicationType;
 import com.logicq.logicq.model.user.User;
+import com.logicq.logicq.ui.user.vo.UserProfilesRequest;
+import com.logicq.logicq.ui.user.vo.UserProfilesResponse;
 import com.logicq.logicq.ui.user.vo.UserRegistrationRequest;
 import com.logicq.logicq.ui.user.vo.UserRegistrationResponse;
 import com.logicq.logicq.ui.user.vo.UserVO;
@@ -65,7 +67,10 @@ public interface IUserService {
 
 	@ExceptionHandler(Exception.class)
 	public Long getUserIdFromEmailOrMobile(String input, CommunicationType type);
-	
+
 	@ExceptionHandler(Exception.class)
 	public User getuserDetail(Long id);
+
+	@ExceptionHandler(Exception.class)
+	public UserProfilesResponse getParticularUsersForArea(UserProfilesRequest request, UserProfilesResponse response);
 }
