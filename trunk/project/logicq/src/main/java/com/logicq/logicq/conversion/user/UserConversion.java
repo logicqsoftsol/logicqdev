@@ -1,15 +1,19 @@
 package com.logicq.logicq.conversion.user;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.constant.ComunicationAddress;
 import com.logicq.logicq.constant.ContactType;
+import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.login.Role;
 import com.logicq.logicq.model.user.Facility;
 import com.logicq.logicq.model.user.User;
+import com.logicq.logicq.ui.user.vo.FacilityVO;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
 public class UserConversion {
@@ -41,6 +45,7 @@ public class UserConversion {
 		user.setIsEmailVerified(false);
 		user.setIsMobileVerified(false);
 		user.setIsUserVerified(false);
+		user.setEntityType(EntityType.DOCTOR);
 		Role role = new Role();
 		role.setRoleid(Long.valueOf(5));
 		role.setRole("Common Role");
@@ -48,10 +53,14 @@ public class UserConversion {
 		roles.add(role);
 		user.setRole(roles);
 		Facility facility = new Facility();
+		Facility facility1 = new Facility();
+		facility1.setFacilityId(Long.valueOf(15));
+		facility1.setFacilityName("Doctor facility");
 		Set<Facility> facilities = new HashSet<Facility>();
 		facility.setFacilityId(Long.valueOf(10));
 		facility.setFacilityName("Default facility");
 		facilities.add(facility);
+		facilities.add(facility1);
 		user.setFacilities(facilities);
 		Set<Address> addresses = setUserAddress(userVO, user);
 		user.setAddresses(addresses);
@@ -82,13 +91,22 @@ public class UserConversion {
 
 	public UserVO conversionFromEntitytoVO(User user, UserVO userVO) {
 
-		userVO.setName(user.getFirstName());
+		userVO.setName(user.getFirstName() + " " + user.getLastName());
 		userVO.setSurname(user.getLastName());
 		userVO.setDateOfBirth(user.getDateOfBirth());
 		userVO.setGender(user.getGender());
 		userVO.setMobileNo(user.getMobileNo());
 		userVO.setEmailId(user.getEmailId());
 		userVO.setPassword(user.getPassword());
+		Set<Facility> facilities = user.getFacilities();
+		List<FacilityVO> facilityVOs = new ArrayList<FacilityVO>();
+		for (Facility facility : facilities) {
+			FacilityVO facilityVO = LogicqContextProvider.getApplicationContext().getBean(FacilityVO.class);
+			facilityVO.setFacilityImagePath(facility.getFacilityImagePath());
+			facilityVO.setFacilityName(facility.getFacilityName());
+			facilityVOs.add(facilityVO);
+		}
+		userVO.setFacilities(facilityVOs);
 		return userVO;
 	}
 
