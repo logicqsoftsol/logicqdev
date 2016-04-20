@@ -15,6 +15,10 @@ CREATE TABLE sakila.user_address (
   USER_ID bigint(10),
   CONTACT_TYPE varchar(15),
   CONTACT_NUMBER varchar(13),
+  last_update TIMESTAMP,
+  create_time TIMESTAMP,
+  created_by  VARCHAR(60),
+  updated_by VARCHAR(60),
   primary key(address_id),
   CONSTRAINT fk_user_address FOREIGN KEY (USER_ID) REFERENCES sakila.user(id)
   )
