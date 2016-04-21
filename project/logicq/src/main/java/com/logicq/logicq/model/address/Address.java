@@ -61,9 +61,9 @@ public class Address extends BaseEntity implements AddressConstant, Serializable
 	private ContactType contactType;
 	@Column(name = "CONTACT_NUMBER", nullable = false)
 	private String contactNumber;
-	@Column(name = "latitude", nullable = false)
+	@Column(name = "latitude", nullable = true)
 	private String latitude;
-	@Column(name = "longitude", nullable = false)
+	@Column(name = "longitude", nullable = true)
 	private String longitude;
 
 	

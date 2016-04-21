@@ -1,16 +1,3 @@
-/*
- * SmartWizard 3.3.1 plugin
- * jQuery Wizard control Plugin
- * by Dipu
- *
- * Refactored and extended:
- * https://github.com/mstratman/jQuery-Smart-Wizard
- *
- * Original URLs:
- * http://www.techlaboratory.net
- * http://tech-laboratory.blogspot.com
- */
-
 function SmartWizard(target, options) {
     this.target       = target;
     this.options      = options;
@@ -21,9 +8,8 @@ function SmartWizard(target, options) {
     this.elmStepContainer = $('<div></div>').addClass("stepContainer");
     this.loader = $('<div>Loading</div>').addClass("loader");
     this.buttons = {
-        next : $('<a>'+options.labelNext+'</a>').attr("href","#").addClass("btn btn-success"),
-        previous : $('<a>'+options.labelPrevious+'</a>').attr("href","#").addClass("btn btn-primary"),
-        finish  : $('<a>'+options.labelFinish+'</a>').attr("href","#").addClass("btn btn-default")
+        next : $('<a>'+options.labelNext+'</a>').attr("href","#").addClass("btn btn-primary"),
+        previous : $('<a>'+options.labelPrevious+'</a>').attr("href","#").addClass("btn btn-primary")
     };
 
     /*
@@ -74,10 +60,6 @@ function SmartWizard(target, options) {
         //elmActionBar.append($this.loader);
         $this.target.append($this.elmStepContainer);
 
-        if ($this.options.includeFinishButton){
-            elmActionBar.append($this.buttons.finish)
-        }
-
         elmActionBar.append($this.buttons.next)
             .append($this.buttons.previous);
         $this.target.append(elmActionBar);
@@ -89,22 +71,6 @@ function SmartWizard(target, options) {
         });
         $($this.buttons.previous).click(function() {
             $this.goBackward();
-            return false;
-        });
-        $($this.buttons.finish).click(function() {
-            if(!$(this).hasClass('buttonDisabled')){
-                if($.isFunction($this.options.onFinish)) {
-                    var context = { fromStep: $this.curStepIdx + 1 };
-                    if(!$this.options.onFinish.call(this,$($this.steps), context)){
-                        return false;
-                    }
-                }else{
-                    var frm = $this.target.parents('form');
-                    if(frm && frm.length){
-                        frm.submit();
-                    }
-                }
-            }
             return false;
         });
 
@@ -308,8 +274,6 @@ function SmartWizard(target, options) {
                 }
             }
         }
-        // Finish Button
-        $this.enableFinish($this.options.enableFinishButton);
     };
 
     /*
@@ -369,26 +333,6 @@ function SmartWizard(target, options) {
     SmartWizard.prototype.showMessage = function (msg) {
         $('.content', this.msgBox).html(msg);
         this.msgBox.show();
-    }
-
-    SmartWizard.prototype.enableFinish = function (enable) {
-        // Controll status of finish button dynamically
-        // just call this with status you want
-        this.options.enableFinishButton = enable;
-        if (this.options.includeFinishButton){
-            if (!this.steps.hasClass('disabled') || this.options.enableFinishButton){
-                $(this.buttons.finish).removeClass("buttonDisabled");
-                if (this.options.hideButtonsOnDisabled) {
-                    $(this.buttons.finish).show();
-                }
-            }else{
-                $(this.buttons.finish).addClass("buttonDisabled");
-                if (this.options.hideButtonsOnDisabled) {
-                    $(this.buttons.finish).hide();
-                }
-            }
-        }
-        return this.options.enableFinishButton;
     }
 
     SmartWizard.prototype.hideMessage = function () {
@@ -472,18 +416,14 @@ function SmartWizard(target, options) {
         contentURL:null, // content url, Enables Ajax content loading
         contentCache:true, // cache step contents, if false content is fetched always from ajax url
         cycleSteps: false, // cycle step navigation
-        enableFinishButton: false, // make finish button enabled always
-        hideButtonsOnDisabled: false, // when the previous/next/finish buttons are disabled, hide them instead?
+        hideButtonsOnDisabled: true, // when the previous/next/finish buttons are disabled, hide them instead?
         errorSteps:[],    // Array Steps with errors
         labelNext:'Next',
         labelPrevious:'Previous',
-        labelFinish:'Finish',
         noForwardJumping: false,
         ajaxType: "POST",
         onLeaveStep: null, // triggers when leaving a step
         onShowStep: null,  // triggers when showing a step
-        onFinish: null,  // triggers when Finish button is clicked
-        includeFinishButton : true   // Add the finish button
     };
 
 })(jQuery);
