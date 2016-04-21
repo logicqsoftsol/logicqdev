@@ -41,7 +41,7 @@
 	<script src="pages/assets/globals/js/jquery.min.js"></script>
 
 	<script src="pages/assets/globals/js/bootstrap.min.js"></script>
-
+	<script src="pages/assets/globals/js/modernizr-2.6.2.min.js"></script>
 
 	<script src="resources/javascript/formvalidation.js"></script>
 
@@ -49,68 +49,39 @@
 	<!-- END FIX PLUGINS -->
 	<link rel="stylesheet" href="pages/assets/globals/css/plugins.css" />
 	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<link rel="stylesheet" href="pages/assets/admin1/css/style.css" />
 
 </h:head>
 <h:body>
 	<ui:insert name="header">
-		<div id="wrapper">
-			<a href="https://doctorathome.in/"><img
-				src="pages/assets/admin1/img/logo.png"
-				class="img-responsive pull-left" /></a>
-			<div class="navbar navbar-default">
-				<!-- BEGIN ICONS -->
-				<div class="nav-menu pull-right">
-					<div class="hamburger">
-						<span class="patty"></span> <span class="patty"></span> <span
-							class="patty"></span> <span class="patty"></span> <span
-							class="patty"></span> <span class="patty"></span>
+		<h:form>
+			<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="https://doctorathome.in/"><img
+						src="pages/assets/admin1/img/logo.png"
+						class="img-responsive pull-left" /></a>
+				</div>
+				<div class="row">
+					<div class="col-md-12 text-right">
+						<b:button value="Log in"
+							class="btn custom-button-width .navbar-right"
+							onclick="$('.modallogin').modal();return false; "
+							oncomplete="javascript:location.reload(true)"
+							iconAwesome="fa-unlock-alt" iconAlign="right"
+							rendered="#{loginMB.loginvisible}" />
+						<b:button value="Sign up"
+							class="btn custom-button-width .navbar-right"
+							oncomplete="javascript:location.reload(true)"
+							onclick="$('.modalsignup').modal();return false; "
+							icon="glyphicon glyphicon-user" iconAlign="right"
+							rendered="#{loginMB.signupvisible}" />
 					</div>
 				</div>
-				<div class="overlay">
-					<div class="starting-point">
-						<span></span>
-					</div>
-					<div class="logo">Home Plus</div>
-				</div>
-				<div class="overlay-secondary"></div>
 			</div>
+			</nav>
+		</h:form>
 
-		</div>
-		<div class="display-animation">
-			<h:form>
-				<div class="right-box text-right">
-					<div class="main-btn">
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<b:button value="Log in" look="primary"
-									onclick="$('.modallogin').modal();return false; "
-									oncomplete="javascript:location.reload(true)"
-									iconAwesome="fa-unlock-alt" iconAlign="right"
-									rendered="#{loginMB.loginvisible}" />
-							</div>
-						</div>
-						<div class="col-md-1">
-							<div class="form-group">
-								<b:button value="Sign up" look="primary"
-									oncomplete="javascript:location.reload(true)"
-									onclick="$('.modalsignup').modal();return false; "
-									icon="glyphicon glyphicon-user" iconAlign="right"
-									rendered="#{loginMB.signupvisible}" />
-							</div>
-							<div class="form-group">
-								<b:commandButton value="Logout" look="primary"
-									action="#{loginMB.logout}" icon="glyphicon glyphicon-log-out"
-									rendered="#{loginMB.logoutvisible}" iconAlign="right" />
-							</div>
-						</div>
-
-
-					</div>
-
-				</div>
-			</h:form>
-		</div>
 		<!-- registration form -->
 		<div class="display-animation">
 			<b:modal id="modalsignup" title="Your profile details"
@@ -194,79 +165,65 @@
 
 		<!-- Login modal -->
 		<div class="display-animation">
-			<b:modal id="loginmodal" styleClass="modallogin">
+			<b:modal id="loginmodal" styleClass="modallogin"
+				title="Login to Your Account">
 				<h:form>
-					<div class="login-screen">
-						<div class="panel-login blur-content">
-							<div class="panel-heading">
-								<img src="pages/assets/admin1/img/logo.png" alt="" />
-							</div>
-							<div id="pane-login" class="panel-body active">
-								<div class="form-group">
-									<h:outputText icon="glyphicon glyphicon-exclamation-sign"
-										class="alert alert-danger" value="#{loginMB.loginStastus}"
-										rendered="#{loginMB.loginstastusrender}" id="loginstastus">
-									</h:outputText>
-								</div>
-								<div class="form-group">
-									<b:inputText placeholder="Enter your email address"
-										value="#{loginMB.username}" id="email">
-										<f:facet name="prepend">
-											<b:icon name="glyphicon glyphicon-user" />
-										</f:facet>
-									</b:inputText>
-								</div>
-								<!--.form-group-->
-								<div class="form-group">
-									<b:inputSecret placeholder="Enter your Password"
-										value="#{loginMB.password}" id="password">
-										<f:facet name="prepend">
-											<b:icon name="lock" />
-										</f:facet>
-									</b:inputSecret>
-								</div>
-								<b:commandButton class="btn center-block" value="AcessCode"
-									look="primary" actionListener="#{loginMB.getMobAcessCode}"
-									oncomplete="javascript:location.reload(true)"
-									icon="glyphicon glyphicons-iphone">
-								</b:commandButton>
-								<div class="form-group">
-									<b:inputSecret placeholder="Enter your Acess code"
-										value="#{loginMB.otpcode}" id="isacesscode"
-										disabled="#{loginMB.acesscoderender}">
-										<f:facet name="prepend">
-											<b:icon name="lock" />
-										</f:facet>
-									</b:inputSecret>
-								</div>
-								<div class="form-group">
+					<div class="modal-content">
+						<div class="modal-body login-modal">
+							<div class="clearfix"></div>
+							<div id='social-icons-conatainer'>
+								<div class='modal-body-left'>
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon"> <span
+											class="glyphicon glyphicon-user"></span>
+										</span>
+										<b:inputText placeholder="Enter your Mobile Number"
+											value="#{loginMB.username}" id="username" />
+									</div>
+
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon"> <span
+											class="glyphicon glyphicon-lock"></span>
+										</span>
+										<b:inputSecret placeholder="Enter your Password"
+											class="form-control login-field" value="#{loginMB.password}"
+											id="password" />
+									</div>
 									<b:commandButton id="login" value="Log in"
-										class="btn center-block" look="primary" icon="hand-up"
+										class="btn btn-primary modal-login-btn"
 										action="#{loginMB.checkLogin}"
 										oncomplete="javascript:location.reload(true)">
 									</b:commandButton>
-									<b:selectBooleanCheckbox value="true" caption="Rember Me"
-										class="pull-left" />
+									<a href="#" class="login-link text-center">Lost your
+										password?</a>
 								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="form-group">
-									<div class="g-signin2" data-onsuccess="onSignIn"></div>
-								</div>
-								<div class="form-group">
-									<fb:login-button scope="public_profile,email"
-										onlogin="checkLoginState();"></fb:login-button>
-									<!-- FB login status -->
 
+								<div class='modal-body-right'>
+									<div class="modal-social-icons">
+										<a href='www.facebook.com' class="btn btn-default facebook"> <i
+											class="fa fa-facebook modal-icons"></i> Sign In with Facebook
+										</a> <a href='www.twitter.com/login/' class="btn btn-default twitter"> <i
+											class="fa fa-twitter modal-icons"></i> Sign In with Twitter
+										</a> <a href='https://accounts.google.com/ServiceLogin?service=mail&passive=true&rm=false&continue=https://mail.google.com/mail/&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1' class="btn btn-default google"> <i
+											class="fa fa-google-plus modal-icons"></i> Sign In with
+											Google
+										</a> 
+									</div>
 								</div>
+								<div id='center-line'></div>
 							</div>
-							<div class="form-group">
-								<h:commandLink id="forgetPassword" value="Forget Password"
-									class="btn center-block"
-									actionListener="#{userMB.processForgetPassword}">
-								</h:commandLink>
+							<div class="clearfix"></div>
+
+							<div class="form-group modal-register-btn">
+								<b:button value="New User Please Register"
+									class="btn btn-default"
+									oncomplete="javascript:location.reload(true)"
+									onclick="$('.modalsignup').modal();return false; "
+									icon="glyphicon glyphicon-user" iconAlign="right"
+									rendered="#{loginMB.signupvisible}" />
 							</div>
 						</div>
+						<div class="clearfix"></div>
 					</div>
 				</h:form>
 			</b:modal>
