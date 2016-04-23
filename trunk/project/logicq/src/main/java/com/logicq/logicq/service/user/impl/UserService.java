@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.logicq.logicq.service.alert.IAlertApplicationService;
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.constant.CommunicationType;
 import com.logicq.logicq.constant.EntityType;
@@ -17,6 +18,7 @@ import com.logicq.logicq.model.user.User;
 import com.logicq.logicq.service.login.IloginService;
 import com.logicq.logicq.service.task.ITaskManagerService;
 import com.logicq.logicq.service.user.IUserService;
+import com.logicq.logicq.ui.alert.vo.AlertDetailsInputVO;
 import com.logicq.logicq.ui.task.vo.TaskVO;
 import com.logicq.logicq.ui.user.vo.UserProfilesRequest;
 import com.logicq.logicq.ui.user.vo.UserProfilesResponse;
@@ -40,6 +42,10 @@ public class UserService implements IUserService {
 	ITaskManagerService itaskManagerService;
 	@Autowired
 	IloginService loginService;
+	@Autowired
+	IAlertApplicationService alertApplicationService;
+	@Autowired
+	AlertDetailsInputVO alertDetailsInputVO;
 
 	public ITaskManagerService getItaskManagerService() {
 
@@ -80,13 +86,14 @@ public class UserService implements IUserService {
 			Login loginDetails = setLoginDetails(user);
 			loginService.insertLoginDetails(loginDetails);
 			//call to email sending service.
+			alertApplicationService.sendAlert(alertDetailsInputVO);
 			//Calling to task service for verify document
-			TaskVO l_task = new TaskVO();
-			l_task.setDescription("hardcode");
-			l_task.setName("sudhanshu");
-			l_task.setStatus("test");
-			l_task.setPriority("High");
-			//itaskManagerService.addTask(l_task);
+			TaskVO taskVO = new TaskVO();
+			taskVO.setDescription("hardcode");
+			taskVO.setName("sudhanshu");
+			taskVO.setStatus("test");
+			taskVO.setPriority("High");
+			//itaskManagerService.addTask(taskVO);
 		} else {
 			//throw Exception
 		}
