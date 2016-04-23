@@ -41,7 +41,7 @@
 	<script src="pages/assets/globals/js/jquery.min.js"></script>
 
 	<script src="pages/assets/globals/js/bootstrap.min.js"></script>
-	<script src="pages/assets/globals/js/modernizr-2.6.2.min.js"></script>
+
 
 	<script src="resources/javascript/formvalidation.js"></script>
 
@@ -49,22 +49,22 @@
 	<!-- END FIX PLUGINS -->
 	<link rel="stylesheet" href="pages/assets/globals/css/plugins.css" />
 	<script src='https://www.google.com/recaptcha/api.js'></script>
-	<link rel="stylesheet" href="pages/assets/admin1/css/style.css" />
-	<link rel="stylesheet" href="pages/assets/globals/css/bootstrap-switch.css" />
-	<script src="pages/assets/globals/js/bootstrap-switch.js"></script>
 
 </h:head>
 <h:body>
 	<ui:insert name="header">
-		<h:form>
-			<nav class="navbar navbar-default">
-			<div class="container-fluid">
+		<div id="wrapper">
+			<div class="navbar navbar-default">
+				<!-- BEGIN ICONS -->
+				<div class="container-fluid">
 				<div class="navbar-header">
 					<a href="https://doctorathome.in/"><img
 						src="pages/assets/admin1/img/logo.png"
 						class="img-responsive pull-left" /></a>
 				</div>
+				</div>
 				<div class="row">
+				<h:form>
 					<div class="col-md-12 text-right">
 						<b:button value="Log in"
 							class="btn custom-button-width .navbar-right"
@@ -79,37 +79,36 @@
 							icon="glyphicon glyphicon-user" iconAlign="right"
 							rendered="#{loginMB.signupvisible}" />
 					</div>
+					</h:form>
 				</div>
 			</div>
-			</nav>
-		</h:form>
 
+		</div>
 		<!-- registration form -->
 		<div class="display-animation">
-			<b:modal id="modalsignup" title="Sign-up With Us"
+			<b:modal id="modalsignup" title="Your profile details"
 				styleClass="modalsignup" size="lg">
-				<h:form>
 				<div id='social-icons-conatainer'>
-				<div class='modal-body-left'>
+				<div class="col-md-7">
 					<form id="signupForm" method="post" class="form-horizontal">
-					 <div class="row">
+					<div class="row">
 						<div class="form-group col-xs-6">
-							<b:inputText placeholder="First Name" value="#{userMB.firstname}" 
-							id="firstname" class="form-control">
-							</b:inputText>
-							</div>
-							<div class="form-group col-xs-6">
-							<b:inputText p:placeholder="Last Name" value="#{userMB.lastname}"
+							<h:inputText p:placeholder="First Name"
+								value="#{userMB.firstname}" id="firstname" class="form-control">
+							</h:inputText>
+						</div>
+						<div class="form-group col-xs-6">
+							<h:inputText p:placeholder="Last Name" value="#{userMB.lastname}"
 								id="lastname" class="form-control">
-							</b:inputText>
+							</h:inputText>
 						</div>
 						</div>
 						<div class="form-group">
 							<h:selectOneRadio value="#{userMB.sex}" id="sex">
 								<f:selectItem itemLabel="Male" itemValue="male"
-									icon="glyphicons glyphicons-gender-male" />
+									class="fa fa-male" />
 								<f:selectItem itemLabel="Female" itemValue="female"
-									icon="glyphicons glyphicons-gender-female" />
+									class="fa fa-female" />
 							</h:selectOneRadio>
 						</div>
 						<div class="form-group">
@@ -119,59 +118,61 @@
 
 						</div>
 						<div class="form-group">
-							<b:inputText placeholder="E-mail" value="#{userMB.email}"
+							<h:inputText p:placeholder="E-mail" value="#{userMB.email}"
 								class="form-control" id="email">
-							</b:inputText>
+							</h:inputText>
 						</div>
 						<div class="form-group">
-							<b:inputText placeholder="Mobile Number"
+							<h:inputText p:placeholder="Mobile Number"
 								value="#{userMB.mobilenumber}" id="mobilenumber"
 								class="form-control">
-							</b:inputText>
+							</h:inputText>
 						</div>
 						<div class="row">
-								<div class="form-group col-xs-6">
+							<div class="form-group col-xs-6">
 							<h:inputSecret p:placeholder="Password"
 								value="#{userMB.password}" id="password" class="form-control"></h:inputSecret>
 						</div>
-									<div class="form-group col-xs-6">	
+						<div class="form-group col-xs-6">
 							<h:inputSecret p:placeholder="Confirm Password"
 								class="form-control" value="#{userMB.confirmpassword}"
 								id="confirmpassword"></h:inputSecret>
 						</div>
 						</div>
+						
 						<div class="form-group">
 
 							<div class="g-recaptcha"
 								data-sitekey="6LdypxgTAAAAAESCuWgv8d1JpxAId8SRqgxMtqCA"></div>
 
-
 						</div>
 						<div class="form-group">
-								<div class="row">
+						<h:form>
+							<div class="row">
 								<div class="form-group col-xs-6">
 									<b:commandButton value="Register" look="primary" id="register"
 										oncomplete="javascript:location.reload(true)"
 										actionListener="#{userMB.addUser}"
 										icon="glyphicon glyphicon-user" iconAlign="left" />
 										</div>
-									<div class="form-group col-xs-6">	
-									<b:commandButton look="primary" value="Cancle"
-									icon="glyphicons glyphicons-remove" iconAlign="left" dismiss="modal"></b:commandButton>
-										</div>
-										</div>
+										<div class="form-group col-xs-6">
+									<b:button class="btn btn-primary" value="Cancle"
+										onclick="return false;" dismiss="modal"></b:button>
+                                    </div>
+								
+							</div>
+							</h:form>
 						</div>
 					</form>
-					</div>
-					<div class='modal-body-right'>
-					<div class="row">
+				</div>
+					<div class="col-md-3">
 				<div class="input-group">
 									<div class="modal-social-icons">
 									
-										<a href='www.facebook.com' class="btn btn-default facebook"> <i
+										<a href='www.facebook.com' class="btn btn-primary facebook"> <i
 											class="fa fa-facebook"></i> Sign In with Facebook
 										</a> 
-										<a href='https://accounts.google.com/' class="btn btn-default google"> <i
+										<a href='https://accounts.google.com/' class="btn btn-danger google"> <i
 											class="fa fa-google-plus"></i> Sign In with Google
 										</a> 
 									</div>
@@ -179,75 +180,86 @@
 									<a href="#" class="login-link text-center">Exsting User Login here</a>
 								</div>
 								</div>
+								<div id='center-line'>OR</div>
 								</div>
-					<div id='center-line'>OR</div>
-					</div>
-					
-				</h:form>
 			</b:modal>
 		</div>
 
 		<!-- Login modal -->
 		<div class="display-animation">
-			<b:modal id="loginmodal" styleClass="modallogin"
-				title="Login to Your Account">
+			<b:modal id="loginmodal" styleClass="modallogin">
 				<h:form>
-					<div class="modal-content">
-						<div class="modal-body login-modal">
-							<div class="clearfix"></div>
-							<div id='social-icons-conatainer'>
-								<div class='modal-body-left'>
-									<div class="input-group input-group-lg">
-										<span class="input-group-addon"> <span
-											class="glyphicon glyphicon-user"></span>
-										</span>
-										<b:inputText placeholder="Enter your Mobile Number"
-											value="#{loginMB.username}" id="username" />
-									</div>
-
-									<div class="input-group input-group-lg">
-										<span class="input-group-addon"> <span
-											class="glyphicon glyphicon-lock"></span>
-										</span>
-										<b:inputSecret placeholder="Enter your Password"
-											class="form-control login-field" value="#{loginMB.password}"
-											id="password" />
-									</div>
+					<div class="login-screen">
+						<div class="panel-login blur-content">
+							<div class="panel-heading">
+								<img src="pages/assets/admin1/img/logo.png" alt="" />
+							</div>
+							<div id="pane-login" class="panel-body active">
+								<div class="form-group">
+									<h:outputText icon="glyphicon glyphicon-exclamation-sign"
+										class="alert alert-danger" value="#{loginMB.loginStastus}"
+										rendered="#{loginMB.loginstastusrender}" id="loginstastus">
+									</h:outputText>
+								</div>
+								<div class="form-group">
+									<b:inputText placeholder="Enter your email address"
+										value="#{loginMB.username}" id="email">
+										<f:facet name="prepend">
+											<b:icon name="glyphicon glyphicon-user" />
+										</f:facet>
+									</b:inputText>
+								</div>
+								<!--.form-group-->
+								<div class="form-group">
+									<b:inputSecret placeholder="Enter your Password"
+										value="#{loginMB.password}" id="password">
+										<f:facet name="prepend">
+											<b:icon name="lock" />
+										</f:facet>
+									</b:inputSecret>
+								</div>
+								<b:commandButton class="btn center-block" value="AcessCode"
+									look="primary" actionListener="#{loginMB.getMobAcessCode}"
+									oncomplete="javascript:location.reload(true)"
+									icon="glyphicon glyphicons-iphone">
+								</b:commandButton>
+								<div class="form-group">
+									<b:inputSecret placeholder="Enter your Acess code"
+										value="#{loginMB.otpcode}" id="isacesscode"
+										disabled="#{loginMB.acesscoderender}">
+										<f:facet name="prepend">
+											<b:icon name="lock" />
+										</f:facet>
+									</b:inputSecret>
+								</div>
+								<div class="form-group">
 									<b:commandButton id="login" value="Log in"
-										class="btn btn-primary modal-login-btn"
+										class="btn center-block" look="primary" icon="hand-up"
 										action="#{loginMB.checkLogin}"
 										oncomplete="javascript:location.reload(true)">
 									</b:commandButton>
-									<a href="#" class="login-link text-center">Lost your
-										password?</a>
+									<b:selectBooleanCheckbox value="true" caption="Rember Me"
+										class="pull-left" />
 								</div>
-
-								<div class='modal-body-right'>
-									<div class="modal-social-icons">
-										<a href='www.facebook.com' class="btn btn-default facebook"> <i
-											class="fa fa-facebook modal-icons"></i> Sign In with Facebook
-										</a> <a href='www.twitter.com/login/' class="btn btn-default twitter"> <i
-											class="fa fa-twitter modal-icons"></i> Sign In with Twitter
-										</a> <a href='https://accounts.google.com/' class="btn btn-default google"> <i
-											class="fa fa-google-plus modal-icons"></i> Sign In with
-											Google
-										</a> 
-									</div>
-								</div>
-								<div id='center-line'></div>
 							</div>
-							<div class="clearfix"></div>
+							<div class="col-md-5">
+								<div class="form-group">
+									<div class="g-signin2" data-onsuccess="onSignIn"></div>
+								</div>
+								<div class="form-group">
+									<fb:login-button scope="public_profile,email"
+										onlogin="checkLoginState();"></fb:login-button>
+									<!-- FB login status -->
 
-							<div class="form-group modal-register-btn">
-								<b:button value="New User Please Register"
-									class="btn btn-default"
-									oncomplete="javascript:location.reload(true)"
-									onclick="$('.modalsignup').modal();return false; "
-									icon="glyphicon glyphicon-user" iconAlign="right"
-									rendered="#{loginMB.signupvisible}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<h:commandLink id="forgetPassword" value="Forget Password"
+									class="btn center-block"
+									actionListener="#{userMB.processForgetPassword}">
+								</h:commandLink>
 							</div>
 						</div>
-						<div class="clearfix"></div>
 					</div>
 				</h:form>
 			</b:modal>
@@ -318,13 +330,8 @@
 		$(document).ready(function() {
 			Pleasure.init();
 			Layout.init();
-			FormsWizard.init();
-			Index.init();
-			WidgetAudio.single();
-			FormsPickers.init();
 		});
 		$('#scroll').perfectScrollbar('update');
-		$("[name='my-checkbox']").bootstrapSwitch();
 	</script>
 	<!-- Platform integration (google, facebook etc.) -->
 	<script src="pages/assets/admin1/js/platform-integration.js"></script>
