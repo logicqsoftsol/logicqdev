@@ -8,6 +8,7 @@ import com.logicq.logicq.facade.address.IAddressFacade;
 import com.logicq.logicq.facade.map.ILocationMapFacade;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.entity.EntityRole;
+import com.logicq.logicq.model.user.User;
 import com.logicq.logicq.ui.address.bean.AddressBean;
 import com.logicq.logicq.ui.address.vo.AddressVO;
 
@@ -82,17 +83,22 @@ public class AddressHelper {
 
 	public List<Address> getAddress() {
 
-		return addressFacade.getAddress() ;
+		return addressFacade.getAddress();
+	}
+
+	public List<User> getAddressList() {
+
+		return addressFacade.getAddressList();
 	}
 
 	public List<EntityRole> getEntity() {
 
 		// TODO Auto-generated method stub
-		return addressFacade. getEntity();
+		return addressFacade.getEntity();
 	}
+
 	public List<Address> getLatLong() {
 
-		return addressFacade.getAddress() ;
+		return addressFacade.getAddress();
 	}
-
 }

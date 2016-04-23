@@ -9,7 +9,7 @@ import org.springframework.util.StringUtils;
 import com.logicq.logicq.constant.LogicQConstants;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.entity.EntityRole;
-import com.logicq.logicq.model.location.Location;
+import com.logicq.logicq.model.user.User;
 
 /**
  * 
@@ -51,14 +51,23 @@ public class LogicqStringFormatter {
 		return formatedList;
 	}
 	
-	public static List<String> convertAutoCompleteFormatLat(List<Address> inputlist) {
+	public static List<String> convertAutoCompleteFormatLat(List<User> inputlist) {
 
 		List<String> formatedList = new ArrayList<String>();
 		if (null != inputlist && !inputlist.isEmpty()) {
-			for (Address input : inputlist) {
+			for (User user : inputlist) {
 				
-				 String searchresult=LogicQConstants.BACK_SLASH + input.getLocalityname()+STRING_COMMA+input.getCity()+STRING_COMMA+input.getPincode()+STRING_COMMA+input.getLatitude()+STRING_COMMA+input.getLongitude()+ LogicQConstants.BACK_SLASH;
-				 formatedList.add(searchresult);
+				
+				for (Address address : user.getAddresses()) {
+					
+					String searchresult= LogicQConstants.BACK_SLASH +user.getEntityType()+STRING_COMMA+user.getFirstName()+STRING_COMMA+address.getLocalityname()+STRING_COMMA+address.getCity()+STRING_COMMA+
+						address.getPincode()+STRING_COMMA+address.getLatitude()+STRING_COMMA+address.getLongitude()+LogicQConstants.BACK_SLASH;
+					 formatedList.add(searchresult);
+					 }
+				
+				 
+				// String searchresult=LogicQConstants.BACK_SLASH + input.getLocalityname()+STRING_COMMA+input.getCity()+STRING_COMMA+input.getPincode()+STRING_COMMA+input.getLatitude()+STRING_COMMA+input.getLongitude()+ LogicQConstants.BACK_SLASH;
+				
 			}
 		}
 		return formatedList;
