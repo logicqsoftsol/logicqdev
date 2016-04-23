@@ -9,21 +9,15 @@
 	<ui:define name="content">
  <h:head>
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
-		<script>
+		  <script>
 		$( document ).ready(function() {
 		 var selectedEntity=null;
-		 
-		  var entityTags = #{addressMB.entitylist}; 
-		  var locationTags = #{addressMB.addresslist};
-		   var latlongTags = #{addressMB.latlonglist};  
-		   var latlonglist= null;
-		   var latlonglist2= [];
-		   
-		  //var latlongTags =["20","40"];  
-		 
-		 
-	 
-		  $("#searchlocation").autocomplete({
+		 var entityTags = #{addressMB.entitylist}; 
+		 var locationTags = #{addressMB.addresslist};
+		 var latlongTags = #{addressMB.latlonglist};  
+		 var latlonglist= null;
+		 var latlonglist2= [];
+		$("#searchlocation").autocomplete({
 			autoFocus: true,
 		    source: locationTags,
 		    change: function (event, ui) {
@@ -31,97 +25,78 @@
                 	alert("Please select from the available list");
                     $("#userlocation").val("");
                 }
-
-            } ,   
+			} ,   
             select: function (event, ui) {
-            	 
-				   
-			    var label = ui.item.label;
-			    var value = ui.item.value;
-			    selectedEntity=value;
-			    var index=locationTags.indexOf(value); 	
-			    var res = (latlongTags[index]).split(",");
-			    initialize(res[3],res[4]);
-			   // alert(selectedEntity);
+          var label = ui.item.label;
+	  var value = ui.item.value;
+	  selectedEntity=value;
+	  var index=locationTags.indexOf(value); 	
+	  var res = (latlongTags[index]).split(",");
+			    
 			    var j=0;
-			    for ( i=0;i &lt;latlongTags.length;i++){
-			    	if(latlongTags[i].indexOf(selectedEntity) > -1){
+			      for ( i=0;i &lt;latlongTags.length;i++)
+			      {
+			    	if(latlongTags[i].indexOf(selectedEntity) > -1)
+			    	{
 			    		latlonglist=latlongTags[i].split(",");
-			    		
-			    		 
-			    	      latlonglist2[j]=[latlonglist[latlonglist.length-2],latlonglist[latlonglist.length-1]];
+			    		latlonglist2[j]=[latlonglist[0],latlonglist[1],latlonglist[latlonglist.length-2],latlonglist[latlonglist.length-1],latlonglist[3]];
                     	   j++;
-			    		 
 			    	} 	
-		    	     
-			    }
-			    //alert(latlonglist2[0]);
-			    //alert(latlonglist2[1]);
+		    	 } 
+			      initialize(latlonglist2);
 			}
-		   
-           
-		 
 		  });
 		  $("#searchText").autocomplete({
 			    source: entityTags,
 			    change: function (event, ui) {
-			    	if(!ui.item){
+			    	if(!ui.item)
+			    	{
 	                	alert("Please select from the available list");
 	                    $("#searcserviceprovider").val("");
 	                }
-
-	            }
+			 }
 			  });
 		});
 	
-	</script>
-	
-	
-    <script>
-    var marker;
-   
+     var marker;
+	 function initialize(array) 
+	 {
+    		var myCenter=new google.maps.LatLng(array[0][2],array[0][3]);
+        	var mapProp = {
+        			       center:myCenter,
+        			       zoom:12,
+        			        mapTypeId:google.maps.MapTypeId.ROADMAP
+        			     };
+			var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+ 			setMarkers(map,array);
+      }
+      function setMarkers(map,array){
+            var marker, i;
 
-          function initialize(latitude,longitude) {
-        	  
-        	  var locations = [
-        	                     ['Dr Nihar', latitude,longitude, 'BBSR'],
-        	                     ['Dr Rakesh', 20.4622888,85.7278306,'CUTTACK']
-        	                     
-        	                     ];
-        	  var myCenter=new google.maps.LatLng(latitude,longitude);
-        	  var mapProp = {
-        			  center:myCenter,
-        			  zoom:14,
-        			  mapTypeId:google.maps.MapTypeId.ROADMAP
-        			  };
-
-        			var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-        			var marker=new google.maps.Marker({
-        			  position:myCenter,
-        			  animation:google.maps.Animation.BOUNCE
-        			  });
-
-        			setMarkers(map,locations);
-        			}
-          function setMarkers(map,locations){
-
-              var marker, i;
-
-        for (i = 0; i &lt; locations.length; i++)
+        for (i = 0; i &lt; array.length; i++)
          {  
-
-         var loan = locations[i][0];
-         var lat = locations[i][1];
-         var long = locations[i][2];
-         var add =  locations[i][3];
-         latlngset = new google.maps.LatLng(lat, long);
+        var rolee = array[i][0];
+        var role = array[i][0] + " " +array[i][1];
+        var lat = array[i][2];
+        var long = array[i][3];
+        var add =  array[i][4];
+        var url;
+         if (rolee=="DOCTOR"){alert(1);url="pages/img/dr.jpg"};
+         if (rolee=="ELECTRICIAN"){alert(2);url="pages/img/el.jpg"};
+         if (rolee=="PLUMBER"){alert(3);url="pages/img/pl.jpg"};
+         var icon = {
+        		    url:url, // url
+        		    scaledSize: new google.maps.Size(40, 40), // scaled size
+        		    origin: new google.maps.Point(0,0), // origin
+        		    anchor: new google.maps.Point(0, 0) // anchor
+        		};
+		 latlngset = new google.maps.LatLng(lat, long);
          var marker = new google.maps.Marker({  
-                  map: map, title: loan , position: latlngset  
+                  map: map, title: role , position: latlngset  ,icon:icon
                 });
                 map.setCenter(marker.getPosition());
                 var content = '<div id="content">'+
-                '<p id="firstHeading" class="firstHeading">'+loan+' from '+add+
+                '<p id="firstHeading" class="firstHeading">'+role+' from '+add+
                 '<b> MBBS Cardio </b>'+
                 '</p>'+
                 '<div id="bodyContent">'+'<p><button class="btn btn-blue btn-xs btn-ripple bs-wizard-next">Book Appoitment</button> </p></div> </div>';
