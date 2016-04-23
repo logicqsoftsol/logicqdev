@@ -139,30 +139,64 @@
 </script>
 </h:head>
 		<div class="display-animation">
-					<div class="row">
-					<div class="col-xs-6 col-sm-6">
-					<form id="userForm">
-						<div class="form-group col-xs-5">
+		<form id="userForm">
+			<div
+				class="search-wizard panel bs-wizard bs-wizard-steps-with-progress">
+				<div class="panel-heading">
+						</div>
+				<div class="panel-body">
+					<div class="col-md-5">
+						<div class="tab-pane active" id="form3_tab1">
+							<div class="form-group">
 								<h:inputText value="#{userSearchMB.searchlocation}" p:placeholder="Search your Pincode"
 									class="form-control" 
 									id="searchlocation" required="true" autosubmit="true">
 									<f:ajax listener="#{userSearchMB.getAllEntityByPIN}"></f:ajax></h:inputText>
 							</div>
-							<div class="form-group col-xs-6">
+							<div id="googleMap" style="width:580px;height:380px;"></div>
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div class="row">
+							<div class="col-md-10">
+								<div class="form-group">
 									<h:inputText p:placeholder="Type something here..."
 										class="form-control" value="#{userSearchMB.searchText}"
 										id="searchText" required="true" autosubmit="true">
 									</h:inputText>
 								</div>
-								<div class="form-group col-xs-0">
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
 									<h:form>
-										<b:commandButton  look="primary" iconAwesome="fa-search"
-											action="#{userSearchMB.searchUsers}" id="searchbutton"/>
+										<b:commandButton look="primary"
+											action="#{userSearchMB.searchUsers}" id="searchbutton"
+											iconAwesome="fa-search"/>
 									</h:form>
 								</div>
-								</form>
-								<h:form>
-									<div class="col-sm-12 margin-top-10 show-listing">
+							</div>
+						</div>
+						<div class="col-md-12">
+
+							<div class="col-md-4">
+								<b:button value="Find Near By" id="findNearBy" look="default"
+									actionListener="#{userMB.searchEntity}"
+									action="#{userMB.entitynavigation}" />
+							</div>
+							<div class="col-md-6">
+								<b:button value="Emergency Book" id="emergency" look="default"
+									actionListener="#{userMB.searchEntity}"
+									action="#{userMB.entitynavigation}" />
+
+
+							</div>
+
+						</div>
+						<br> </br> <br> </br>
+						<h:form>
+							<div class="col-sm-12 margin-top-10 show-listing">
+
+
 								<div class="form-group">
 									<div class="col-md-2">
 										<img src="pages/img/fd.ico" id="familydoc"
@@ -222,7 +256,10 @@
 									</div>
 								</div>
 							</div>
-								<div class="col-sm-12 margin-top-10 show-listing">
+						</h:form>
+						<br> </br>
+						<h:form>
+							<div class="col-sm-12 margin-top-10 show-listing">
 								<div class="form-group">
 									<div class="col-md-2">
 										<img src="pages/img/tutor.ico" id="tutor"
@@ -280,15 +317,14 @@
 									</div>
 								</div>
 							</div>
-								</h:form>
-								</div>
-								 <div class="col-xs-6 col-sm-6">
-								 <div id="googleMap" style="width:580px;height:380px;"></div>
-								 </div>
-								</div>
-			
+						</h:form>
+					</div>
+				</div>
+
+			</div>
+			</form>
 		</div>
-		 <h1></h1>
+		 
 	</ui:define>
 
 </ui:composition>
