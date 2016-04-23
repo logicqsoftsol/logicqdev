@@ -15,11 +15,15 @@ CREATE TABLE sakila.user_address (
   USER_ID bigint(10),
   CONTACT_TYPE varchar(15),
   CONTACT_NUMBER varchar(13),
+  latitude double,
+  longitude double,
   last_update TIMESTAMP,
   create_time TIMESTAMP,
   created_by  VARCHAR(60),
   updated_by VARCHAR(60),
   primary key(address_id),
-  CONSTRAINT fk_user_address FOREIGN KEY (USER_ID) REFERENCES sakila.user(id)
-  )
-  /
+  CONSTRAINT fk_user_address FOREIGN KEY (USER_ID) REFERENCES sakila.user(id));
+  
+  //insert query
+  
+ insert into sakila.user_address values(1,111,123,111,'Street','Satyanagar','near bigbazar','bhubaneswar','ODISHA',854258,'INDIA','','',1,'','',20.2887253,85.8396657,SYSDATE(),SYSDATE(),null,null);
