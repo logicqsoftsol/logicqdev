@@ -2,13 +2,11 @@ package com.logicq.logicq.ui.address.bean;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.common.LogicqStringFormatter;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.entity.EntityRole;
-import com.logicq.logicq.model.location.Location;
+import com.logicq.logicq.model.user.User;
 import com.logicq.logicq.ui.address.helper.AddressHelper;
 import com.logicq.logicq.ui.address.vo.AddressVO;
 import com.logicq.logicq.ui.user.vo.UserVO;
@@ -39,10 +37,13 @@ public class AddressManagedBean {
 		// TODO Auto-generated method stub
 		return LogicqStringFormatter.convertAutoCompleteFormatEntity(entitylist);
 	}
-	 public List<String> getAllLocation() {
-		AddressHelper addressbeanhelper=LogicqContextProvider.getApplicationContext().getBean(AddressHelper.class);
-		List<Address> latlist = null;
-		latlist = addressbeanhelper.getAddress();
+
+	public List<String> getAllLocation() {
+
+		AddressHelper addressbeanhelper = LogicqContextProvider.getApplicationContext().getBean(AddressHelper.class);
+		List<User> latlist = null;
+		latlist = addressbeanhelper.getAddressList();
+		//return null;
 		return LogicqStringFormatter.convertAutoCompleteFormatLat(latlist);
-	} 
+	}
 }
