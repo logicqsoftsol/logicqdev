@@ -44,7 +44,8 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 
 	public List<User> getUsers() {
 
-		return null;
+		List<User> users = (List<User>) loadClass(User.class);
+		return users;
 	}
 
 	public User getuserDetail(Long userId) {
