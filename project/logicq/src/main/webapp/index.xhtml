@@ -145,39 +145,37 @@
 				<div class="panel-heading">
 						</div>
 				<div class="panel-body">
-					<div class="col-md-5">
+					<div class="col-md-6 div-space">
 						<div class="tab-pane active" id="form3_tab1">
+						<div class="row">
+						<div class="form-group col-xs-5">
 							<div class="form-group">
 								<h:inputText value="#{userSearchMB.searchlocation}" p:placeholder="Search your Pincode"
 									class="form-control" 
 									id="searchlocation" required="true" autosubmit="true">
 									<f:ajax listener="#{userSearchMB.getAllEntityByPIN}"></f:ajax></h:inputText>
 							</div>
-							<div id="googleMap" style="width:580px;height:380px;"></div>
-						</div>
-					</div>
-					<div class="col-md-7">
-						<div class="row">
-							<div class="col-md-10">
-								<div class="form-group">
-									<h:inputText p:placeholder="Type something here..."
+							</div>
+							<div class="form-group col-xs-5">
+							<h:inputText p:placeholder="Type something here..."
 										class="form-control" value="#{userSearchMB.searchText}"
 										id="searchText" required="true" autosubmit="true">
 									</h:inputText>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="form-group">
+									
+									</div>
+									<div class="form-group col-xs-2">
 									<h:form>
 										<b:commandButton look="primary"
 											action="#{userSearchMB.searchUsers}" id="searchbutton"
 											iconAwesome="fa-search"/>
 									</h:form>
-								</div>
-							</div>
+									</div>
+									</div>
+							
 						</div>
-						<div class="col-md-12">
-
+					</div>
+					<div class="col-md-4">
+					<div class="col-md-12">
 							<div class="col-md-4">
 								<b:button value="Find Near By" id="findNearBy" look="default"
 									actionListener="#{userMB.searchEntity}"
@@ -187,18 +185,16 @@
 								<b:button value="Emergency Book" id="emergency" look="default"
 									actionListener="#{userMB.searchEntity}"
 									action="#{userMB.entitynavigation}" />
-
-
 							</div>
-
 						</div>
-						<br> </br> <br> </br>
+					</div>
+						<div class="col-md-12 div-space">
 						<h:form>
-							<div class="col-sm-12 margin-top-10 show-listing">
+							<div class="col-sm-12 margin-top-6 show-listing">
 
 
 								<div class="form-group">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<img src="pages/img/fd.ico" id="familydoc"
 											class="img-responsive" />
 										<h:commandLink id="fdcommandlink"
@@ -210,7 +206,7 @@
 								</div>
 
 								<div class="form-group">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<img src="pages/img/beauty.ico" id="beauty"
 											class="img-responsive" />
 										<h:link id="beautycommandlink"
@@ -221,7 +217,7 @@
 								</div>
 
 								<div class="form-group">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<img src="pages/img/plumber.ico" id="plumber"
 											class="img-responsive" />
 										<h:commandLink id="plumbercommandlink"
@@ -233,7 +229,7 @@
 								</div>
 
 								<div class="form-group">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<img src="pages/img/carpenter.ico" id="carpenter"
 											class="img-responsive" />
 										<h:link id="carpentercommandlink"
@@ -245,7 +241,7 @@
 								</div>
 
 								<div class="form-group">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<img src="pages/img/advocat.ico" id="advocate"
 											class="img-responsive" />
 										<h:commandLink id="Advocatecommandlink"
@@ -255,13 +251,8 @@
 										</h:commandLink>
 									</div>
 								</div>
-							</div>
-						</h:form>
-						<br> </br>
-						<h:form>
-							<div class="col-sm-12 margin-top-10 show-listing">
 								<div class="form-group">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<img src="pages/img/tutor.ico" id="tutor"
 											class="img-responsive" />
 										<h:link id="tutorcommandlink"
@@ -272,7 +263,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<img src="pages/img/grocery.ico" id="grocery"
 											class="img-responsive" />
 										<h:link id="grocerycommandlink"
@@ -283,7 +274,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<img src="pages/img/mason.ico" id="mason"
 											class="img-responsive" />
 										<h:commandLink id="masoncommandlink"
@@ -294,7 +285,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<img src="pages/img/elctrician.ico" id="electrican"
 											class="img-responsive" />
 
@@ -306,7 +297,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<div class="col-md-2">
+									<div class="col-md-1">
 										<img src="pages/img/travel.ico" id="travel"
 											class="img-responsive" />
 										<h:commandLink id="travelcancommandlink"
@@ -319,6 +310,15 @@
 							</div>
 						</h:form>
 					</div>
+					<div class="col-md-10 div-space">
+						<div class="row">
+							<div class="col-md-10">
+								<div class="form-group">
+									<div id="googleMap" style="width:980px;height:480px;"></div>
+								</div>
+							</div>
+						</div>
+						</div>
 				</div>
 
 			</div>

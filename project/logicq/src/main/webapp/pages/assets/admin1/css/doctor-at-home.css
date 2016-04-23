@@ -650,3 +650,9 @@ table.table.table-time-req.table-bordered th{
 .menu-layer li {
     border-bottom:1px solid #ADADAD;
 }
+.div-space {
+    display: block;
+    padding: 10px;
+    margin-bottom: 50px; /* SIMPLY SET THIS PROPERTY AS MUCH AS YOU WANT. This changes the space below box1 */
+    text-align: justify;
+}
