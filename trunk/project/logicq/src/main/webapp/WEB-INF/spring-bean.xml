@@ -114,5 +114,8 @@ xsi:schemaLocation="
 	<bean id="locationFacade" class="com.logicq.logicq.facade.location.LocationFacade" />
 	<bean id="locationBeanHelper" class="com.logicq.logicq.ui.login.helper.LocationBeanHelper" />
 	
+	<bean id="alertApplicationService" class="com.logicq.logicq.service.alert.AlertApplicationService" />
+	<bean id="alertDetailsInputVO" class="com.logicq.logicq.ui.alert.vo.AlertDetailsInputVO" />
+	
 	
 </beans>
