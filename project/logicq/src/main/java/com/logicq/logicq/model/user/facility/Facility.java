@@ -1,4 +1,4 @@
-package com.logicq.logicq.model.user;
+package com.logicq.logicq.model.user.facility;
 
 import java.io.Serializable;
 
@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.logicq.logicq.common.criteriamanager.BaseEntity;
+import com.logicq.logicq.model.user.UserConstant;
 
 @Entity
 @Table(name = "USER_FACILITIES")

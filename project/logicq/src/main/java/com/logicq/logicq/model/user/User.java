@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
@@ -21,6 +22,8 @@ import com.logicq.logicq.common.criteriamanager.BaseEntity;
 import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.login.Role;
+import com.logicq.logicq.model.user.facility.Facility;
+import com.logicq.logicq.model.user.servicereport.ServiceReport;
 
 /**
  * @author Rocky
@@ -67,6 +70,47 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 	@Column(name = "ENTITY_TYPE", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private EntityType entityType;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "user_roles_map", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "role_id") })
+	private Set<Role> role;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "user_facilities_map", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "facility_id", referencedColumnName = "facility_id") })
+	private Set<Facility> facilities;
+	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
+	private Profile profile;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
+	private Set<ServiceReport> serviceReport;
+	
+
+	public Set<ServiceReport> getServiceReport() {
+		return serviceReport;
+	}
+	public void setServiceReport(Set<ServiceReport> serviceReport) {
+		this.serviceReport = serviceReport;
+	}
+	public Profile getProfile() {
+		return profile;
+	}
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+	
+	public Set<Address> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(Set<Address> addresses) {
+
+		this.addresses = addresses;
+	}
+
+	public Boolean getIsUserVerified() {
+
+		return isUserVerified;
+	}
 
 	public EntityType getEntityType() {
 
@@ -78,21 +122,7 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 		this.entityType = entityType;
 	}
 
-	public Set<Address> getAddresses() {
-
-		return addresses;
-	}
-
-	public void setAddresses(Set<Address> addresses) {
-
-		this.addresses = addresses;
-	}
-
-	public Boolean getIsUserVerified() {
-
-		return isUserVerified;
-	}
-
+	
 	public void setIsUserVerified(Boolean isUserVerified) {
 
 		this.isUserVerified = isUserVerified;
@@ -209,10 +239,7 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 		this.isMobileVerified = isMobileVerified;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles_map", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "role_id") })
-	private Set<Role> role;
-
+	
 	public Set<Role> getRole() {
 
 		return role;
@@ -223,10 +250,7 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 		this.role = role;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "user_facilities_map", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "facility_id", referencedColumnName = "facility_id") })
-	private Set<Facility> facilities;
-
+	
 	public Set<Facility> getFacilities() {
 
 		return facilities;
