@@ -52,9 +52,15 @@
 				<value>com.logicq.logicq.model.login.Role</value>
 				<value>com.logicq.logicq.model.location.Location</value>
 				<value>com.logicq.logicq.model.upload.UploadFile</value>
-				<value>com.logicq.logicq.model.user.Facility</value>
+				<value>com.logicq.logicq.model.user.facility.Facility</value>
 				<value>com.logicq.logicq.model.address.Address</value>
 				<value>com.logicq.logicq.model.entity.EntityRole</value>
+				<value>com.logicq.logicq.model.user.Profile</value>
+				<value>com.logicq.logicq.model.user.education.Education</value>
+				<value>com.logicq.logicq.model.service.charge.ServiceCharge</value>
+				<value>com.logicq.logicq.model.user.servicereport.FeedBack</value>
+				<value>com.logicq.logicq.model.user.servicereport.Recomendation</value>
+				<value>com.logicq.logicq.model.user.servicereport.ServiceReport</value>
 			</list>
 		</property>
 	</bean>

@@ -30,6 +30,9 @@ xsi:schemaLocation="
 	<bean id="userVO" class="com.logicq.logicq.ui.user.vo.UserVO" scope="request"/>
 	<bean id="userSearchManagedBean" class="com.logicq.logicq.ui.search.bean.UserSearchManagedBean" />
     <bean id="userSearchBeanHelper" class="com.logicq.logicq.ui.search.helper.UserSearchBeanHelper" />
+    <bean id="userSearchVO" class="com.logicq.logicq.ui.search.vo.UserSearchVO" scope="request"/>
+    <bean id="userSearchRequest" class="com.logicq.logicq.ui.search.vo.UserSearchRequest" scope="request"/>
+    <bean id="userSearchResponse" class="com.logicq.logicq.ui.search.vo.UserSearchResponse" scope="request"/>
     
 	<!-- User deatils etries for HOST -->
 	<bean id="userDAO" class="com.logicq.logicq.dao.user.impl.UserDAO" />
