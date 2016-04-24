@@ -13,5 +13,5 @@ CREATE TABLE login (
   updated_by VARCHAR(60),
   UNIQUE INDEX (userid),
   UNIQUE INDEX (email),
-   UNIQUE INDEX (phonnumber),
+   UNIQUE INDEX (phonnumber)
 );
