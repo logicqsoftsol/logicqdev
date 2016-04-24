@@ -1,4 +1,4 @@
-create table sakila.USER(
+create table USER(
 
 id bigint(10) NOT NULL AUTO_INCREMENT,
 FIRST_NAME varchar(40),
