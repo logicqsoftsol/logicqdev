@@ -65,19 +65,25 @@
 				</div>
 				<div class="row">
 				<h:form>
-					<div class="col-md-12 text-right">
+					<div class="col-md-11 text-right">
+					<div class="input-group pull-right">
 						<b:button value="Log in"
-							class="btn custom-button-width .navbar-right"
+							class="btn custom-button-width .navbar-right" look="primary"
 							onclick="$('.modallogin').modal();return false; "
 							oncomplete="javascript:location.reload(true)"
 							iconAwesome="fa-unlock-alt" iconAlign="right"
-							rendered="#{loginMB.loginvisible}" />
+							rendered="#{loginMB.loginvisible}" dismiss="modal" />
+							</div>
+						<div class="input-group pull-right">
+							<b:column span="2">
 						<b:button value="Sign up"
-							class="btn custom-button-width .navbar-right"
+							class="btn custom-button-width .navbar-right" look="primary"
 							oncomplete="javascript:location.reload(true)"
 							onclick="$('.modalsignup').modal();return false; "
 							icon="glyphicon glyphicon-user" iconAlign="right"
-							rendered="#{loginMB.signupvisible}" />
+							rendered="#{loginMB.signupvisible}" dismiss="modal" />
+							</b:column>
+							</div>
 					</div>
 					</h:form>
 				</div>
@@ -86,22 +92,39 @@
 		</div>
 		<!-- registration form -->
 		<div class="display-animation">
-			<b:modal id="modalsignup" title="Your profile details"
-				styleClass="modalsignup" size="lg">
+			<b:modal id="modalsignup" 
+				styleClass="modalsignup" size="lg" closable="false" close-on-escape="false" backdrop="false">
+				<div class="modal-content">
+				<div class="modal-header">
+										<div class="col-sm-6">
+											<a href="https://doctorathome.in/"><img src="pages/assets/admin1/img/logo.png"/></a>
+										</div>
+										<div class="col-sm-6 text-right">
+											<h4 class="modal-title">Register With us</h4>
+										</div>
+										<a href="#" class="login-link text-center">Exsting User Login here</a>
+										<div class="clearfix"></div>
+				</div>
+				<div class="modal-body">
 				<div id='social-icons-conatainer'>
-				<div class="col-md-7">
+				<div class="col-md-8">
 					<form id="signupForm" method="post" class="form-horizontal">
 					<div class="row">
-						<div class="form-group col-xs-6">
+					
+						<div class="form-group col-xs-5">
 							<h:inputText p:placeholder="First Name"
 								value="#{userMB.firstname}" id="firstname" class="form-control">
 							</h:inputText>
 						</div>
+						
+						
 						<div class="form-group col-xs-6">
 							<h:inputText p:placeholder="Last Name" value="#{userMB.lastname}"
 								id="lastname" class="form-control">
 							</h:inputText>
-						</div>
+							</div>
+							
+						
 						</div>
 						<div class="form-group">
 							<h:selectOneRadio value="#{userMB.sex}" id="sex">
@@ -146,16 +169,17 @@
 								data-sitekey="6LdypxgTAAAAAESCuWgv8d1JpxAId8SRqgxMtqCA"></div>
 
 						</div>
+					<f:facet name="footer">
 						<div class="form-group">
 						<h:form>
 							<div class="row">
-								<div class="form-group col-xs-6">
+								<div class="form-group col-xs-10">
 									<b:commandButton value="Register" look="primary" id="register"
 										oncomplete="javascript:location.reload(true)"
 										actionListener="#{userMB.addUser}"
 										icon="glyphicon glyphicon-user" iconAlign="left" />
 										</div>
-										<div class="form-group col-xs-6">
+										<div class="form-group col-xs-2">
 									<b:button class="btn btn-primary" value="Cancle"
 										onclick="return false;" dismiss="modal"></b:button>
                                     </div>
@@ -163,25 +187,27 @@
 							</div>
 							</h:form>
 						</div>
+						</f:facet>
 					</form>
 				</div>
 					<div class="col-md-3">
-				<div class="input-group">
-									<div class="modal-social-icons">
-									
+				                <div class="input-group">
 										<a href='www.facebook.com' class="btn btn-primary facebook"> <i
 											class="fa fa-facebook"></i> Sign In with Facebook
 										</a> 
+										</div>
+										<div class="input-group">
 										<a href='https://accounts.google.com/' class="btn btn-danger google"> <i
 											class="fa fa-google-plus"></i> Sign In with Google
 										</a> 
-									</div>
-									<h1></h1>
-									<a href="#" class="login-link text-center">Exsting User Login here</a>
+								      </div>
+								</div>
+								
 								</div>
 								</div>
-								<div id='center-line'>OR</div>
 								</div>
+								
+								
 			</b:modal>
 		</div>
 
