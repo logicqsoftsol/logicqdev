@@ -7,6 +7,8 @@ import com.logicq.logicq.ui.search.bean.UserSearchBean;
 import com.logicq.logicq.ui.search.vo.UserSearchRequest;
 import com.logicq.logicq.ui.search.vo.UserSearchResponse;
 import com.logicq.logicq.ui.search.vo.UserSearchVO;
+import com.logicq.logicq.ui.user.bean.ProfileBean;
+import com.logicq.logicq.ui.user.vo.UserVO;
 
 public class UserSearchBeanHelper {
 
@@ -24,8 +26,7 @@ public class UserSearchBeanHelper {
 	}
 
 	public UserSearchResponse searchUsers(UserSearchRequest userSearchRequest, UserSearchResponse userSearchResponse) {
-
-		return (userSearchFacade.searchUsers(userSearchRequest, userSearchResponse));
+		return userSearchFacade.searchUsers(userSearchRequest, userSearchResponse);
 	}
 
 	public UserSearchVO convertUserBeanToVO(UserSearchBean bean, UserSearchVO vo) {
@@ -38,5 +39,14 @@ public class UserSearchBeanHelper {
 		vo.setState(bean.getState());
 		vo.setStreetname(bean.getStreetname());
 		return null;
+	}
+	
+	public ProfileBean convertUserBeanToVO(UserVO uservo,ProfileBean profilebean ) {
+		
+		profilebean.setFullname(uservo.getName());
+		profilebean.setProfileid(String.valueOf(uservo.getId()));
+		//profilebean.set
+		
+		return profilebean;
 	}
 }

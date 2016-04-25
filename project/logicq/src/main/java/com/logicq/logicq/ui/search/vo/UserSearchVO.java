@@ -9,6 +9,33 @@ public class UserSearchVO {
 	private String localityname;
 	private String landmarkname;
 	private String pincode;
+	private String searchText;
+	private String entity;
+	private String searchlocation;
+
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
+
+	public String getEntity() {
+		return entity;
+	}
+
+	public void setEntity(String entity) {
+		this.entity = entity;
+	}
+
+	public String getSearchlocation() {
+		return searchlocation;
+	}
+
+	public void setSearchlocation(String searchlocation) {
+		this.searchlocation = searchlocation;
+	}
 
 	public String getCity() {
 

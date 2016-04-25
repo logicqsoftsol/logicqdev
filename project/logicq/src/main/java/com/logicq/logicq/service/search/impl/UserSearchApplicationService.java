@@ -26,10 +26,10 @@ public class UserSearchApplicationService implements IUserSearchApplicationServi
 
 	public UserSearchResponse searchUsers(UserSearchRequest userSearchRequest, UserSearchResponse userSearchResponse) {
 
-		UserSearchVO userSearchVO = userSearchRequest.getUserSearchVO();
-		String city = userSearchVO.getCity();
-		String[] inputs = { city };
-		List<User> users = userDAO.getUsersForAddress(inputs);
+		String pincode =userSearchRequest.getUserSearchVO().getPincode();
+		String searchtext=userSearchRequest.getUserSearchVO().getSearchText();
+		//String[] inputs = { city };
+		List<User> users = null;//userDAO.getParticularUsersForArea(searchtext,pincode);
 		//userSearchResponse.setLogicqTransactionStatus(logicqTransactionStatus);
 		return userSearchResponse;
 	}

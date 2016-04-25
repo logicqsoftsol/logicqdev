@@ -3,10 +3,11 @@ package com.logicq.logicq.ui.search.bean;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import com.logicq.logicq.common.LogicqContextProvider;
-import com.logicq.logicq.ui.search.vo.UserSearchResponse;
+import com.logicq.logicq.ui.user.bean.UserBean;
 
 @ManagedBean(name = "userSearchMB")
 @ViewScoped
@@ -16,6 +17,7 @@ public class UserSearchBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5987953879794515014L;
+	
 	private String city;
 	private String state;
 	private String country;
@@ -27,7 +29,19 @@ public class UserSearchBean implements Serializable {
 	private String entity;
 	private String searchlocation;
 
+	@ManagedProperty(value = "#{userBean}")
+    private UserBean userBean;  
 
+	
+	public UserBean getUserBean() {
+		return userBean;
+	}
+
+	public void setUserBean(UserBean userBean) {
+		this.userBean = userBean;
+	}
+
+	
 	public String getSearchlocation() {
 		return searchlocation;
 	}
@@ -38,8 +52,8 @@ public class UserSearchBean implements Serializable {
 
 	public String searchUsers() {
 		UserSearchManagedBean userSearchManagedBean = LogicqContextProvider.getApplicationContext().getBean(UserSearchManagedBean.class);
-		UserSearchResponse userSearchResponse = userSearchManagedBean.searchUsers(this);
-		return "";
+		userSearchManagedBean.searchUsers(this);
+		return "searchresult";
 	}
 
 	public String getEntity() {
