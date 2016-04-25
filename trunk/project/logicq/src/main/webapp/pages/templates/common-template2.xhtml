@@ -44,8 +44,6 @@
 
 
 	<script src="resources/javascript/formvalidation.js"></script>
-
-
 	<!-- END FIX PLUGINS -->
 	<link rel="stylesheet" href="../assets/globals/css/plugins.css" />
 	<script src='https://www.google.com/recaptcha/api.js'></script>
@@ -54,84 +52,77 @@
 <h:body>
 	<ui:insert name="header">
 		<div id="wrapper">
-			<a href="https://doctorathome.in/"><img
-				src="../assets/admin1/img/logo.png"
-				class="img-responsive pull-left" /></a>
 			<div class="navbar navbar-default">
 				<!-- BEGIN ICONS -->
-				<div class="nav-menu pull-right">
-					<div class="hamburger">
-						<span class="patty"></span> <span class="patty"></span> <span
-							class="patty"></span> <span class="patty"></span> <span
-							class="patty"></span> <span class="patty"></span>
-					</div>
+				<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="https://doctorathome.in/"><img
+						src="../assets/admin1/img/logo.png"
+						class="img-responsive pull-left" /></a>
 				</div>
-				<div class="overlay">
-					<div class="starting-point">
-						<span></span>
-					</div>
-					<div class="logo">Home Plus</div>
 				</div>
-				<div class="overlay-secondary"></div>
+				<div class="row">
+				<h:form>
+					<div class="col-md-11 text-right">
+					<div class="input-group pull-right">
+						<b:button value="Log in"
+							class="btn custom-button-width .navbar-right" look="primary"
+							onclick="$('.modallogin').modal();return false; "
+							oncomplete="javascript:location.reload(true)"
+							iconAwesome="fa-unlock-alt" iconAlign="right"
+							rendered="#{loginMB.loginvisible}" dismiss="modal" />
+							</div>
+						<div class="input-group pull-right">
+							<b:column span="2">
+						<b:button value="Sign up"
+							class="btn custom-button-width .navbar-right" look="primary"
+							oncomplete="javascript:location.reload(true)"
+							onclick="$('.modalsignup').modal();return false; "
+							icon="glyphicon glyphicon-user" iconAlign="right"
+							rendered="#{loginMB.signupvisible}" dismiss="modal" />
+							</b:column>
+							</div>
+					</div>
+					</h:form>
+				</div>
 			</div>
 
 		</div>
-		<div class="display-animation">
-			<h:form>
-				<div class="right-box text-right">
-					<div class="main-btn">
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<b:button value="Log in" look="primary"
-									onclick="$('.modallogin').modal();return false; "
-									oncomplete="javascript:location.reload(true)"
-									icon="glyphicon glyphicon-log-in" iconAlign="right"
-									rendered="#{loginMB.loginvisible}" />
-							</div>
-						</div>
-						<div class="col-md-1">
-							<div class="form-group">
-								<b:button value="Sign up" look="primary"
-									oncomplete="javascript:location.reload(true)"
-									onclick="$('.modalsignup').modal();return false; "
-									icon="glyphicon glyphicon-user" iconAlign="right"
-									rendered="#{loginMB.signupvisible}" />
-							</div>
-							<div class="form-group">
-								<b:commandButton value="Logout" look="primary"
-									action="#{loginMB.logout}" icon="glyphicon glyphicon-log-out"
-									rendered="#{loginMB.logoutvisible}" iconAlign="right" />
-							</div>
-						</div>
-
-
-					</div>
-
-				</div>
-			</h:form>
-		</div>
 		<!-- registration form -->
 		<div class="display-animation">
-			<b:modal id="modalsignup" title="Your profile details"
-				styleClass="modalsignup" size="lg">
-				<div class="col-md-4">
-					<div class="input-group">
-						<a href="http://www.homeplusservice.in//"><img
-							src="../assets/admin1/img/logo.png" /></a>
-					</div>
+			<b:modal id="modalsignup" 
+				styleClass="modalsignup" size="lg" closable="false" close-on-escape="false" backdrop="false">
+				<div class="modal-content">
+				<div class="modal-header">
+										<div class="col-sm-6">
+											<a href="https://doctorathome.in/"><img src="pages/assets/admin1/img/logo.png"/></a>
+										</div>
+										<div class="col-sm-6 text-right">
+											<h4 class="modal-title">Register With us</h4>
+										</div>
+										<a href="#" class="login-link text-center">Exsting User Login here</a>
+										<div class="clearfix"></div>
 				</div>
+				<div class="modal-body">
+				<div id='social-icons-conatainer'>
 				<div class="col-md-8">
 					<form id="signupForm" method="post" class="form-horizontal">
-						<div class="form-group">
+					<div class="row">
+					
+						<div class="form-group col-xs-5">
 							<h:inputText p:placeholder="First Name"
 								value="#{userMB.firstname}" id="firstname" class="form-control">
 							</h:inputText>
 						</div>
-						<div class="form-group">
+						
+						
+						<div class="form-group col-xs-6">
 							<h:inputText p:placeholder="Last Name" value="#{userMB.lastname}"
 								id="lastname" class="form-control">
 							</h:inputText>
+							</div>
+							
+						
 						</div>
 						<div class="form-group">
 							<h:selectOneRadio value="#{userMB.sex}" id="sex">
@@ -158,37 +149,63 @@
 								class="form-control">
 							</h:inputText>
 						</div>
-						<div class="form-group">
+						<div class="row">
+							<div class="form-group col-xs-6">
 							<h:inputSecret p:placeholder="Password"
 								value="#{userMB.password}" id="password" class="form-control"></h:inputSecret>
 						</div>
-						<div class="form-group">
+						<div class="form-group col-xs-6">
 							<h:inputSecret p:placeholder="Confirm Password"
 								class="form-control" value="#{userMB.confirmpassword}"
 								id="confirmpassword"></h:inputSecret>
 						</div>
+						</div>
+						
 						<div class="form-group">
 
 							<div class="g-recaptcha"
 								data-sitekey="6LdypxgTAAAAAESCuWgv8d1JpxAId8SRqgxMtqCA"></div>
 
-
 						</div>
+					<f:facet name="footer">
 						<div class="form-group">
-							<div class="col-xs-3 col-xs-offset-5">
-								<h:form>
+						<h:form>
+							<div class="row">
+								<div class="form-group col-xs-10">
 									<b:commandButton value="Register" look="primary" id="register"
 										oncomplete="javascript:location.reload(true)"
 										actionListener="#{userMB.addUser}"
 										icon="glyphicon glyphicon-user" iconAlign="left" />
-									<b:button class="btn btn-default" value="Cancale"
+										</div>
+										<div class="form-group col-xs-2">
+									<b:button class="btn btn-primary" value="Cancle"
 										onclick="return false;" dismiss="modal"></b:button>
-
-								</h:form>
+                                    </div>
+								
 							</div>
+							</h:form>
 						</div>
+						</f:facet>
 					</form>
 				</div>
+					<div class="col-md-3">
+				                <div class="input-group">
+										<a href='www.facebook.com' class="btn btn-primary facebook"> <i
+											class="fa fa-facebook"></i> Sign In with Facebook
+										</a> 
+										</div>
+										<div class="input-group">
+										<a href='https://accounts.google.com/' class="btn btn-danger google"> <i
+											class="fa fa-google-plus"></i> Sign In with Google
+										</a> 
+								      </div>
+								</div>
+								
+								</div>
+								</div>
+								</div>
+								
+								
 			</b:modal>
 		</div>
 
@@ -337,15 +354,11 @@
 		$(document).ready(function() {
 			Pleasure.init();
 			Layout.init();
-			FormsWizard.init();
-			Index.init();
-			WidgetAudio.single();
-			FormsPickers.init();
 		});
 		$('#scroll').perfectScrollbar('update');
 	</script>
 	<!-- Platform integration (google, facebook etc.) -->
-	<script src="../assets/admin1/js/platform-integration.js"></script>
+	<script src="pages/assets/admin1/js/platform-integration.js"></script>
 
 	<!--Start of Zopim Live Chat Script-->
 	<script type="text/javascript">

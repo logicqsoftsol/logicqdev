@@ -27,6 +27,7 @@
 	<link rel="stylesheet" href="pages/assets/admin1/css/admin1.css" />
 	<link rel="stylesheet"
 		href="pages/assets/admin1/css/doctor-at-home.css" />
+		
 	<link rel="stylesheet" href="pages/assets/globals/css/elements.css" />
 	<!-- END CORE CSS -->
 	<link rel="stylesheet"
@@ -41,11 +42,9 @@
 	<script src="pages/assets/globals/js/jquery.min.js"></script>
 
 	<script src="pages/assets/globals/js/bootstrap.min.js"></script>
-
+		<link rel="stylesheet" href="pages/assets/admin1/css/style.css" />
 
 	<script src="resources/javascript/formvalidation.js"></script>
-
-
 	<!-- END FIX PLUGINS -->
 	<link rel="stylesheet" href="pages/assets/globals/css/plugins.css" />
 	<script src='https://www.google.com/recaptcha/api.js'></script>
@@ -111,14 +110,14 @@
 					<form id="signupForm" method="post" class="form-horizontal">
 					<div class="row">
 					
-						<div class="form-group col-xs-5">
+						<div class="form-group col-xs-6" >
 							<h:inputText p:placeholder="First Name"
 								value="#{userMB.firstname}" id="firstname" class="form-control">
 							</h:inputText>
 						</div>
 						
 						
-						<div class="form-group col-xs-6">
+						<div class="form-group col-xs-6" style="margin:2px;">
 							<h:inputText p:placeholder="Last Name" value="#{userMB.lastname}"
 								id="lastname" class="form-control">
 							</h:inputText>
@@ -156,7 +155,7 @@
 							<h:inputSecret p:placeholder="Password"
 								value="#{userMB.password}" id="password" class="form-control"></h:inputSecret>
 						</div>
-						<div class="form-group col-xs-6">
+						<div class="form-group col-xs-6" style="margin:2px;">
 							<h:inputSecret p:placeholder="Confirm Password"
 								class="form-control" value="#{userMB.confirmpassword}"
 								id="confirmpassword"></h:inputSecret>

@@ -1,4 +1,3 @@
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
@@ -104,12 +103,12 @@
 													<div class="wizard display-inline">
 														<c:set var="selectedprofile" scope="request"
 															value="#{profile.profileid}" />
-															<h:commandLink id="viewschedule" rendered="true"
-															class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next"
+															<h:commandLink id="viewschedule" rendered="true" data-toggle="collapse" 
+															href="#collapseSchedule" aria-expanded="false" aria-controls="collapseSchedule"
+															class="btn  btn-xs btn-ripple bs-wizard-next" look="primary"
 															oncomplete="javascript:location.reload(true)"
 															action="#{userMB.findSchuduleForSelectedProfile}">
-															<f:setPropertyActionListener
-																target="#{userMB.selectedprofileid}"
+															<f:setPropertyActionListener target="#{userMB.selectedprofileid}"
 																value="${profile.profileid}" />
 															<h:outputText value="View Schedule" id="viewscheduletext" />
 														    <i class="fa fa-arrow-down"></i>
@@ -118,7 +117,7 @@
 												</div>
 												<div class="col-md-4">
 													<div class="wizard display-inline">
-														<h:commandLink id="bookappoitemnt" rendered="true"
+														<h:commandLink id="bookappoitemnt" rendered="true" look="primary"
 															class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next"
 															oncomplete="javascript:location.reload(true)"
 															action="#{userMB.getAppoitmentDetailsForSelectedProfile}">
@@ -136,6 +135,9 @@
 									</div>
 								</div>
 							</div>
+							
+							<div class="collapse" id="collapseSchedule">
+							<div class="well">
 							<div class="col-sm-12 box-border">
 							<h:form id="scheduleform" rendered="#{profile.schduleformrender}">
 								<div class="display-animation">
@@ -171,6 +173,8 @@
 								</div>
 								</h:form>
 							</div>
+                         </div>
+ 						</div>
 
 						</c:forEach>
 						

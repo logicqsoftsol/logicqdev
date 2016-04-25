@@ -117,8 +117,6 @@
 		<form id="userForm">
 			<div
 				class="search-wizard panel bs-wizard bs-wizard-steps-with-progress">
-				<div class="panel-heading">
-						</div>
 				<div class="panel-body">
 					<div class="col-md-6 div-space">
 						<div class="tab-pane active" id="form3_tab1">
@@ -163,13 +161,14 @@
 							</div>
 						</div>
 					</div>
-						<div class="col-md-12 div-space">
+						<div class="col-md-12" style="margin:20px;">
 						<h:form>
 							<div class="col-sm-12 margin-top-6 show-listing">
 
 
 								<div class="form-group">
 									<div class="col-md-1">
+									<div class="social-popout">
 										<img src="pages/img/fd.ico" id="familydoc"
 											class="img-responsive" />
 										<h:commandLink id="fdcommandlink"
@@ -177,22 +176,26 @@
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="FamilyDoctor" id="familydoctor" />
 										</h:commandLink>
+										</div>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<div class="col-md-1">
+									<div class="social-popout">
 										<img src="pages/img/beauty.ico" id="beauty"
 											class="img-responsive" />
 										<h:link id="beautycommandlink"
 											action="#{userMB.selectedEntity}">
 											<h:outputText value="BeautyCare" id="beautycare" />
 										</h:link>
+										</div>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<div class="col-md-1">
+									<div class="social-popout">
 										<img src="pages/img/plumber.ico" id="plumber"
 											class="img-responsive" />
 										<h:commandLink id="plumbercommandlink"
@@ -200,11 +203,13 @@
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Plumber" id="plumber" />
 										</h:commandLink>
+										</div>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<div class="col-md-1">
+									<div class="social-popout">
 										<img src="pages/img/carpenter.ico" id="carpenter"
 											class="img-responsive" />
 										<h:link id="carpentercommandlink"
@@ -212,11 +217,13 @@
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Carpenter" id="carpenter" />
 										</h:link>
+										</div>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<div class="col-md-1">
+									<div class="social-popout">
 										<img src="pages/img/advocat.ico" id="advocate"
 											class="img-responsive" />
 										<h:commandLink id="Advocatecommandlink"
@@ -224,10 +231,12 @@
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Advocate" id="advocate" />
 										</h:commandLink>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-md-1">
+									<div class="social-popout">
 										<img src="pages/img/tutor.ico" id="tutor"
 											class="img-responsive" />
 										<h:link id="tutorcommandlink"
@@ -235,10 +244,12 @@
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Tutor" id="tutor" />
 										</h:link>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-md-1">
+									<div class="social-popout">
 										<img src="pages/img/grocery.ico" id="grocery"
 											class="img-responsive" />
 										<h:link id="grocerycommandlink"
@@ -246,10 +257,12 @@
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Grocery" id="grocery" />
 										</h:link>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-md-1">
+									<div class="social-popout">
 										<img src="pages/img/mason.ico" id="mason"
 											class="img-responsive" />
 										<h:commandLink id="masoncommandlink"
@@ -257,10 +270,12 @@
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Mason" id="masaon" />
 										</h:commandLink>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-md-1">
+									<div class="social-popout">
 										<img src="pages/img/elctrician.ico" id="electrican"
 											class="img-responsive" />
 
@@ -269,10 +284,12 @@
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Elctician" id="electrican" />
 										</h:commandLink>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-md-1">
+									<div class="social-popout">
 										<img src="pages/img/travel.ico" id="travel"
 											class="img-responsive" />
 										<h:commandLink id="travelcancommandlink"
@@ -280,20 +297,19 @@
 											oncomplete="javascript:location.reload(true)">
 											<h:outputText value="Travel" id="travel" />
 										</h:commandLink>
+										</div>
 									</div>
 								</div>
 							</div>
 						</h:form>
 					</div>
-					<div class="col-md-10 div-space">
-						<div class="row">
+					
+					<div class="col-md-10" style="margin:50px;">
 							<div class="col-md-10">
-								<div class="form-group">
 									<div id="googleMap" style="width:980px;height:480px;"></div>
-								</div>
-							</div>
 						</div>
 						</div>
+						
 				</div>
 
 			</div>

@@ -11,8 +11,8 @@ import com.logicq.logicq.constant.ContactType;
 import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.login.Role;
-import com.logicq.logicq.model.user.Facility;
 import com.logicq.logicq.model.user.User;
+import com.logicq.logicq.model.user.facility.Facility;
 import com.logicq.logicq.ui.user.vo.FacilityVO;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
