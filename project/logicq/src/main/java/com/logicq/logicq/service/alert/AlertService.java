@@ -1,9 +1,14 @@
 package com.logicq.logicq.service.alert;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.logicq.logicq.ui.alert.vo.AlertDetailsInputVO;
 import com.logicq.logicq.ui.alert.vo.AlertRegistrationVO;
 
-public class AlertApplicationService implements IAlertApplicationService {
+@Service
+@Transactional
+public class AlertService implements IAlertService {
 
 	public void registerAlert(AlertRegistrationVO registrationVO) {
 

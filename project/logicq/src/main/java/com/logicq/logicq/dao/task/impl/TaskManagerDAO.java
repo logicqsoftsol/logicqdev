@@ -3,6 +3,8 @@ package com.logicq.logicq.dao.task.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.common.criteriamanager.DataFetchType;
 import com.logicq.logicq.common.criteriamanager.LogicqCriteriaHandler;
@@ -13,14 +15,15 @@ import com.logicq.logicq.dao.task.ITaskManagerDAO;
 import com.logicq.logicq.dao.task.TaskFilter;
 import com.logicq.logicq.model.task.Task;
 
+@Repository
 public class TaskManagerDAO extends AbstractDAO<Task> implements ITaskManagerDAO {
 
 	public void addTask(Task task) {
-		save(task,getCurrentSession());
+		save(task);
 	}
 
 	public void updateTask(Task task) {
-		update(task,null);
+		update(task);
 	}
 
 	public List<Task> getAllTasks(Task task) {

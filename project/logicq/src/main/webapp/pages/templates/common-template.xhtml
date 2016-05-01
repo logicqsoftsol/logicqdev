@@ -93,6 +93,7 @@
 		<div class="display-animation">
 			<b:modal id="modalsignup" 
 				styleClass="modalsignup" size="lg" closable="false" close-on-escape="false" backdrop="false">
+				<h:form id="signupForm" class="form-horizontal">
 				<div class="modal-content">
 				<div class="modal-header">
 										<div class="col-sm-6">
@@ -107,7 +108,6 @@
 				<div class="modal-body">
 				<div id='social-icons-conatainer'>
 				<div class="col-md-8">
-					<form id="signupForm" method="post" class="form-horizontal">
 					<div class="row">
 					
 						<div class="form-group col-xs-6" >
@@ -168,9 +168,10 @@
 								data-sitekey="6LdypxgTAAAAAESCuWgv8d1JpxAId8SRqgxMtqCA"></div>
 
 						</div>
-					<f:facet name="footer">
+						
+					
 						<div class="form-group">
-						<h:form>
+						
 							<div class="row">
 								<div class="form-group col-xs-10">
 									<b:commandButton value="Register" look="primary" id="register"
@@ -184,10 +185,10 @@
                                     </div>
 								
 							</div>
-							</h:form>
+							
 						</div>
-						</f:facet>
-					</form>
+						
+						
 				</div>
 					<div class="col-md-3">
 				                <div class="input-group">
@@ -205,8 +206,7 @@
 								</div>
 								</div>
 								</div>
-								
-								
+								</h:form>
 			</b:modal>
 		</div>
 
@@ -291,7 +291,7 @@
 		</div>
 	</ui:insert>
 
-	<ui:insert name="content">LogicQ content</ui:insert>
+	<ui:insert name="content">Logicq content</ui:insert>
 
 	<ui:insert name="footer">
 		<div class="footer-links fot">

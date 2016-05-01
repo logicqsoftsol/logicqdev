@@ -2,13 +2,15 @@ package com.logicq.logicq.dao.address.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.logicq.logicq.dao.AbstractDAO;
 import com.logicq.logicq.dao.address.IAddressDAO;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.entity.EntityRole;
-import com.logicq.logicq.model.location.Location;
 
-public class AddressDAO extends AbstractDAO<AddressDAO> implements IAddressDAO {
+@Repository
+public class AddressDAO extends AbstractDAO<Address> implements IAddressDAO {
 
 	public void addAddress(Address address) {
 

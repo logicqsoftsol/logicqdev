@@ -17,15 +17,9 @@
 		<!-- springsecurity.version>4.0.1.RELEASE</springsecurity.version -->
 		<hibernate.version>4.3.6.Final</hibernate.version>
 		<jsf.version>2.2.8</jsf.version>
-		<spring.social.version>1.1.0.RELEASE</spring.social.version>
-		<spring.social.facebook.version>1.1.0.RELEASE</spring.social.facebook.version>
-		<spring.social.twitter.version>1.1.0.RELEASE</spring.social.twitter.version>
 		<mysql.version>5.1.31</mysql.version>
 		<joda-time.version>2.3</joda-time.version>
-		<testng.version>6.9.4</testng.version>
-		<mockito.version>1.10.19</mockito.version>
-		<h2.version>1.4.187</h2.version>
-		<dbunit.version>2.2</dbunit.version>
+	
 		<!-- activemq.version>5.10.0</activemq.version -->
 		<jackson.version>1.9.10</jackson.version>
 	</properties>
@@ -116,48 +110,8 @@
 		</dependency>
 
 		<!-- Spring Social -->
-		<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-config</artifactId>
-			<version>${spring.social.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-core</artifactId>
-			<version>${spring.social.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-security</artifactId>
-			<version>${spring.social.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-web</artifactId>
-			<version>${spring.social.version}</version>
-		</dependency>
-		<!-- Spring Social Facebook -->
-		<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-facebook</artifactId>
-			<version>${spring.social.facebook.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-social-core</artifactId>
-					<groupId>org.springframework.social</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>spring-social-config</artifactId>
-					<groupId>org.springframework.social</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<!-- Spring Social Twitter -->
-		<dependency>
-			<groupId>org.springframework.social</groupId>
-			<artifactId>spring-social-twitter</artifactId>
-			<version>${spring.social.twitter.version}</version>
-		</dependency>
+		
+		
 		<dependency>
 			<groupId>javaee</groupId>
 			<artifactId>javaee-api</artifactId>
@@ -271,41 +225,12 @@
 			<version>1.9.12</version>
 		</dependency>
 		<!-- Testing dependencies -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${springframework.version}</version>
-			<scope>test</scope>
-		</dependency>
+		
 		<!-- Spring Batch unit test -->
 		<dependency>
 			<groupId>org.springframework.batch</groupId>
 			<artifactId>spring-batch-test</artifactId>
 			<version>${spring.batch.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>${testng.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>${mockito.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>${h2.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>dbunit</groupId>
-			<artifactId>dbunit</artifactId>
-			<version>${dbunit.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<!-- If Using Tomcat6 -->
 		<dependency>

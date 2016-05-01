@@ -2,7 +2,7 @@ package com.logicq.logicq.ui.search.helper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.logicq.logicq.facade.search.IUserSearchFacade;
+import com.logicq.logicq.service.search.IUserSearchService;
 import com.logicq.logicq.ui.search.bean.UserSearchBean;
 import com.logicq.logicq.ui.search.vo.UserSearchRequest;
 import com.logicq.logicq.ui.search.vo.UserSearchResponse;
@@ -13,17 +13,8 @@ import com.logicq.logicq.ui.user.vo.UserVO;
 public class UserSearchBeanHelper {
 
 	@Autowired
-	IUserSearchFacade userSearchFacade;
+	IUserSearchService userSearchFacade;
 
-	public IUserSearchFacade getUserSearchFacade() {
-
-		return userSearchFacade;
-	}
-
-	public void setUserSearchFacade(IUserSearchFacade userSearchFacade) {
-
-		this.userSearchFacade = userSearchFacade;
-	}
 
 	public UserSearchResponse searchUsers(UserSearchRequest userSearchRequest, UserSearchResponse userSearchResponse) {
 		return userSearchFacade.searchUsers(userSearchRequest, userSearchResponse);

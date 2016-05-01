@@ -2,6 +2,9 @@ package com.logicq.logicq.service.task.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.communication.messagesender.jms.LogicqMessageSender;
 import com.logicq.logicq.conversion.task.TaskConversion;
@@ -10,6 +13,8 @@ import com.logicq.logicq.model.task.Task;
 import com.logicq.logicq.service.task.ITaskManagerService;
 import com.logicq.logicq.ui.task.vo.TaskVO;
 
+@Service
+@Transactional
 public class TaskManagerService implements ITaskManagerService {
     
 	ITaskManagerDAO taskManagerDAO;

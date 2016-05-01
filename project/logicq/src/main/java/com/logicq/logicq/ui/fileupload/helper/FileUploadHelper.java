@@ -7,7 +7,7 @@ import java.util.Date;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.logicq.logicq.facade.upload.IFileUploadFacade;
+import com.logicq.logicq.service.upload.IFileUploadService;
 import com.logicq.logicq.ui.fileupload.bean.FileUploadBean;
 import com.logicq.logicq.ui.fileupload.vo.FileUploadRequest;
 import com.logicq.logicq.ui.fileupload.vo.FileUploadResponse;
@@ -16,17 +16,9 @@ import com.logicq.logicq.ui.fileupload.vo.FileUploadVO;
 public class FileUploadHelper {
 
 	@Autowired
-	IFileUploadFacade fileUploadFacade;
+	IFileUploadService fileUploadFacade;
 
-	public IFileUploadFacade getFileUploadFacade() {
 
-		return fileUploadFacade;
-	}
-
-	public void setFileUploadFacade(IFileUploadFacade fileUploadFacade) {
-
-		this.fileUploadFacade = fileUploadFacade;
-	}
 
 	public void uploadDocument(FileUploadRequest uploadFileRequest, FileUploadResponse uploadFileResponse) {
 

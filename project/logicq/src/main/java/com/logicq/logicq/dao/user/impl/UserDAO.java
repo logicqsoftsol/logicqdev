@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.logicq.logicq.constant.CommunicationType;
 import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.dao.AbstractDAO;
@@ -20,21 +22,22 @@ import com.logicq.logicq.model.user.UserConstant;
  * @since 11 Dec 2012
  * @version 1.0.0
  */
+@Repository
 public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 
 	public void addUser(User user) {
 
-		save(user, null);
+		save(user);
 	}
 
 	public void updateUser(User user) {
 
-		update(user, null);
+		update(user);
 	}
 
 	public void deleteUser(User user) {
 
-		delete(user, null);
+		delete(user);
 	}
 
 	public User getUserById(Long userid) {

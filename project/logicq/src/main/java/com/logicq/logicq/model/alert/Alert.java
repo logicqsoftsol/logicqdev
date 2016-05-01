@@ -1,4 +1,4 @@
-package com.logicq.logicq.dao.alert;
+package com.logicq.logicq.model.alert;
 
 import java.io.Serializable;
 

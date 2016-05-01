@@ -14,15 +14,6 @@ xsi:schemaLocation="
 
 	<context:component-scan base-package="com.logicq.logicq" />
 	<bean id="applicationContextProvder" class="com.logicq.logicq.common.LogicqContextProvider" />
-	<bean id="user" class="com.logicq.logicq.model.user.User" />
-	<bean id="task" class="com.logicq.logicq.model.task.Task" />
-	<bean id="locationmap" class="com.logicq.logicq.model.map.LocationMap" />
-	<bean id="login" class="com.logicq.logicq.model.login.Login" />
-	<bean id="uploadFile" class="com.logicq.logicq.model.upload.UploadFile" />
-	
-		<!--Abstract Transaction logicq -->
-    <bean id="logicqTransactionStatus" class="com.logicq.logicq.common.LogicqTransactionStatus" />
-	<bean id="logicqHttpServletRequest" class="com.logicq.logicq.common.LogicqHttpServletRequest" />
 
 	<!-- User deatils etries for UI -->
 	<bean id="userManagedBean" class="com.logicq.logicq.ui.user.bean.UserManagedBean" />
@@ -36,16 +27,12 @@ xsi:schemaLocation="
     
 	<!-- User deatils etries for HOST -->
 	<bean id="userDAO" class="com.logicq.logicq.dao.user.impl.UserDAO" />
-	<bean id="userFacade" class="com.logicq.logicq.facade.user.UserFacade" />
-	<bean id="userService" class="com.logicq.logicq.service.user.impl.UserService">
-		<property name="userDAO" ref="userDAO" />
-	</bean>
+	
+
 	<bean id="userRequest" class="com.logicq.logicq.ui.user.vo.UserRegistrationRequest" />
 	<bean id="userResponse" class="com.logicq.logicq.ui.user.vo.UserRegistrationResponse" />
-	<bean id="userSearchFacade" class="com.logicq.logicq.facade.search.UserSearchFacade" />
-	<bean id="userSearchApplicationService" class="com.logicq.logicq.service.search.impl.UserSearchApplicationService">
-		<property name="userDAO" ref="userDAO" />
-	</bean>
+	
+	
 	<bean id="userProfilesRequest" class="com.logicq.logicq.ui.user.vo.UserProfilesRequest"/>
 	<bean id="userProfilesResponse" class="com.logicq.logicq.ui.user.vo.UserProfilesResponse"/>
 	<bean id="facilityVO" class="com.logicq.logicq.ui.user.vo.FacilityVO" scope="request"/>
@@ -55,41 +42,17 @@ xsi:schemaLocation="
 	<bean id="taskVO" class="com.logicq.logicq.ui.task.vo.TaskVO" />
 	<bean id="taskManagedBean" class="com.logicq.logicq.ui.task.bean.TaskManagedBean" />
 	<bean id="taskManagerHelper" class="com.logicq.logicq.ui.task.helper.TaskManagerHelper" />
-
-	<!-- TaskManager entries for HOST -->
-	<bean id="taskManagerDAO" class="com.logicq.logicq.dao.task.impl.TaskManagerDAO" />
-	<bean id="taskManagerFacade" class="com.logicq.logicq.facade.task.TaskManagerFacade" />
-	<bean id="taskManagerService" class="com.logicq.logicq.service.task.impl.TaskManagerService">
-		<property name="taskManagerDAO" ref="taskManagerDAO" />
-	</bean>
-
-
 	<!-- Addres entries for UI -->
 	<bean id="addressVO" class="com.logicq.logicq.ui.address.vo.AddressVO" />
-	<!-- <bean id="addressBean" class="com.logicq.logicq.ui.address.bean.AddressBean" /> -->
 	<bean id="addressManagedBean" class="com.logicq.logicq.ui.address.bean.AddressManagedBean" />
 	<bean id="addressHelper" class="com.logicq.logicq.ui.address.helper.AddressHelper" />
 	<bean id="addressDAO" class="com.logicq.logicq.dao.address.impl.AddressDAO" />
-	<bean id="addressFacade" class="com.logicq.logicq.facade.address.AddressFacade" />
-	<bean id="addressService" class="com.logicq.logicq.service.address.impl.AddressService" />
 	
 	
-
-	<!-- TaskManager entries for HOST -->
-	<bean id="locationMapDAO" class="com.logicq.logicq.dao.map.impl.LocationMapDAO" />
-	<bean id="locationMapFacade" class="com.logicq.logicq.facade.map.LocationMapFacade" />
-	<bean id="locationMapService" class="com.logicq.logicq.service.map.impl.LocationMapService">
-		<property name="locationMapDAO" ref="locationMapDAO" />
-	</bean>
-
 	<!-- TaskManager entries for Login -->
 	<bean id="loginVO" class="com.logicq.logicq.ui.login.vo.LoginVO" />
 	<bean id="loginManagedBean" class="com.logicq.logicq.ui.login.bean.LoginManagedBean" />
 	<bean id="loginHelper" class="com.logicq.logicq.ui.login.helper.LoginBeanHelper" />
-
-	<bean id="LoginDAO" class="com.logicq.logicq.dao.login.impl.LoginDAO" />
-	<bean id="loginFacade" class="com.logicq.logicq.facade.login.LoginFacade" />
-	<bean id="LoginService" class="com.logicq.logicq.service.login.impl.LoginService" />
 	<bean id="loginRequest" class="com.logicq.logicq.ui.login.vo.LoginRequest" />
 	<bean id="loginResponse" class="com.logicq.logicq.ui.login.vo.LoginResponse" />
 
@@ -102,23 +65,15 @@ xsi:schemaLocation="
 	<bean id="fileUploadRequest" class="com.logicq.logicq.ui.fileupload.vo.FileUploadRequest" />
 	<bean id="fileUploadResponse" class="com.logicq.logicq.ui.fileupload.vo.FileUploadResponse" />
 	
-	<bean id="fileUploadFacade" class="com.logicq.logicq.facade.upload.FileUploadFacade" />
-	<bean id="fileUploadDAO" class="com.logicq.logicq.dao.upload.impl.FileUploadDAO" />
-	<bean id="fileUploadService" class="com.logicq.logicq.service.upload.impl.FileUploadService">
-	<property name="fileUploadDAO" ref="fileUploadDAO" />
-	</bean>
+	
 	<bean id="fileUploadImageProperties" class="com.logicq.logicq.ui.fileupload.properties.FileUploadImageProperties">
 	<property name="destinationPath" value="D:\\image\\"/>
 	</bean>
 	
 	<!-- Location -->
-	<bean id="locationDAO" class="com.logicq.logicq.dao.location.impl.LocationDAO" />
-	<bean id="locationService" class="com.logicq.logicq.service.location.impl.LocationService" />
-	<bean id="locationFacade" class="com.logicq.logicq.facade.location.LocationFacade" />
 	<bean id="locationBeanHelper" class="com.logicq.logicq.ui.login.helper.LocationBeanHelper" />
-	
-	<bean id="alertApplicationService" class="com.logicq.logicq.service.alert.AlertApplicationService" />
 	<bean id="alertDetailsInputVO" class="com.logicq.logicq.ui.alert.vo.AlertDetailsInputVO" />
+	
 	
 	
 </beans>

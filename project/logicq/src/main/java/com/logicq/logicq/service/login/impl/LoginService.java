@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.logicq.logicq.constant.LogicQConstants;
@@ -18,47 +20,21 @@ import com.logicq.logicq.service.user.IUserService;
 import com.logicq.logicq.ui.login.vo.LoginRequest;
 import com.logicq.logicq.ui.login.vo.LoginResponse;
 
+@Service
+@Transactional
 public class LoginService implements IloginService {
 
 	LoginConversion loginConversion = LoginConversion.getInstance();
 	@Autowired
 	ILoginDAO loginDAO;
-	
-	public void setLoginDAO(ILoginDAO loginDAO) {
 
-		this.loginDAO = loginDAO;
-	}
-
-	public ILoginDAO getLoginDAO() {
-
-		return loginDAO;
-	}
 
 	@Autowired
 	IUserService userService;
 
-	public IUserService getUserService() {
-
-		return userService;
-	}
-
-	public void setUserService(IUserService userService) {
-
-		this.userService = userService;
-	}
-
 	@Autowired
 	ITaskManagerService taskManagerService;
 
-	public ITaskManagerService getTaskManagerService() {
-
-		return taskManagerService;
-	}
-
-	public void setTaskManagerService(ITaskManagerService taskManagerService) {
-
-		this.taskManagerService = taskManagerService;
-	}
 
 	public LoginResponse checkLoginUser(LoginRequest p_loginrequest, LoginResponse p_response) {
 
@@ -85,6 +61,6 @@ public class LoginService implements IloginService {
 
 	public void insertLoginDetails(Login loginDetails) {
 
-		getLoginDAO().insertLoginDetails(loginDetails);
+		loginDAO.insertLoginDetails(loginDetails);
 	}
 }
