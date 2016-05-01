@@ -4,27 +4,17 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.logicq.logicq.common.LogicqContextProvider;
-import com.logicq.logicq.facade.login.ILoginFacade;
+import com.logicq.logicq.service.login.IloginService;
 import com.logicq.logicq.ui.login.bean.LoginBean;
 import com.logicq.logicq.ui.login.vo.LoginRequest;
 import com.logicq.logicq.ui.login.vo.LoginResponse;
 import com.logicq.logicq.ui.login.vo.LoginVO;
-import com.logicq.logicq.ui.task.vo.TaskVO;
-import com.logicq.logicq.ui.user.bean.UserBean;
-import com.logicq.logicq.ui.user.vo.UserVO;
 
 public class LoginBeanHelper {
 	@Autowired
-	ILoginFacade loginFacade;
+	IloginService loginFacade;
 
-	public void setLoginFacade(ILoginFacade loginFacade) {
-		this.loginFacade = loginFacade;
-	}
 
-	public ILoginFacade getLoginFacade() {
-		return loginFacade;
-	}
 
 	public static LoginVO conversionUItoVO(LoginBean p_loginbean, LoginVO p_login) {
 

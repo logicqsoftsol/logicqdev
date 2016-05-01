@@ -13,13 +13,6 @@ import com.logicq.logicq.ui.user.vo.UserVO;
 
 public class AddressManagedBean {
 
-	public String getLocation(AddressVO p_addressvo) {
-
-		AddressHelper addressbeanhelper = LogicqContextProvider.getApplicationContext().getBean(AddressHelper.class);
-		UserVO l_uservo = LogicqContextProvider.getApplicationContext().getBean(UserVO.class);
-		addressbeanhelper.getLocation(l_uservo.getIpaddress());
-		return "sucess";
-	}
 
 	public List<String> getAddress() {
 
@@ -32,18 +25,13 @@ public class AddressManagedBean {
 	public List<String> getEntity() {
 
 		AddressHelper addressbeanhelper = LogicqContextProvider.getApplicationContext().getBean(AddressHelper.class);
-		List<EntityRole> entitylist = null;
-		entitylist = addressbeanhelper.getEntity();
-		// TODO Auto-generated method stub
+		List<EntityRole> entitylist =addressbeanhelper.getEntity();
 		return LogicqStringFormatter.convertAutoCompleteFormatEntity(entitylist);
 	}
 
 	public List<String> getAllLocation() {
-
 		AddressHelper addressbeanhelper = LogicqContextProvider.getApplicationContext().getBean(AddressHelper.class);
-		List<User> latlist = null;
-		latlist = addressbeanhelper.getAddressList();
-		//return null;
+		List<User> latlist  = addressbeanhelper.getAddressList();
 		return LogicqStringFormatter.convertAutoCompleteFormatLat(latlist);
 	}
 }

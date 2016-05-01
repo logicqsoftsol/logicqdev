@@ -4,41 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.logicq.logicq.facade.address.IAddressFacade;
-import com.logicq.logicq.facade.map.ILocationMapFacade;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.entity.EntityRole;
 import com.logicq.logicq.model.user.User;
+import com.logicq.logicq.service.address.IAddressService;
 import com.logicq.logicq.ui.address.bean.AddressBean;
 import com.logicq.logicq.ui.address.vo.AddressVO;
 
 public class AddressHelper {
 
-	@Autowired
-	ILocationMapFacade locationMapFacade;
-
-	public ILocationMapFacade getLocationMapFacade() {
-
-		return locationMapFacade;
-	}
-
-	public void setLocationMapFacade(ILocationMapFacade locationMapFacade) {
-
-		this.locationMapFacade = locationMapFacade;
-	}
+	
 
 	@Autowired
-	IAddressFacade addressFacade;
+	IAddressService addressService;
 
-	public IAddressFacade getAddressFacade() {
-
-		return addressFacade;
-	}
-
-	public void setAddressFacade(IAddressFacade addressFacade) {
-
-		this.addressFacade = addressFacade;
-	}
+	
 
 	public AddressVO conversionUItoVO(AddressBean p_uibean, AddressVO p_address) {
 
@@ -75,30 +55,22 @@ public class AddressHelper {
 		p_uibean.setPincode(p_address.getPincode());
 		return p_uibean;
 	}
+	public  List<Address> getAddress() {
 
-	public void getLocation(String ip_address) {
-
-		locationMapFacade.getLocation(ip_address);
+		return addressService.getAddress();
 	}
 
-	public List<Address> getAddress() {
-
-		return addressFacade.getAddress();
-	}
-
-	public List<User> getAddressList() {
-
-		return addressFacade.getAddressList();
-	}
 
 	public List<EntityRole> getEntity() {
-
-		// TODO Auto-generated method stub
-		return addressFacade.getEntity();
+		return addressService.getEntity();
 	}
 
 	public List<Address> getLatLong() {
-
-		return addressFacade.getAddress();
+		return addressService.getAddress();
 	}
+	
+	public List<User> getAddressList() {
+		return addressService.getAddressList();
+	}
+
 }

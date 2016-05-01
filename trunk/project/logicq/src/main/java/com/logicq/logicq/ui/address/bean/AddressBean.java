@@ -41,6 +41,13 @@ public class AddressBean implements Serializable{
 	private String addressImagePath; 
 	
 	
+	  public AddressBean(){
+			addresslist = getLocation();
+			entitylist = getEntity();
+			latlonglist = getLatLong();
+		}
+		
+	
     public String getAddressImagePath() {
 		return addressImagePath;
 	}
@@ -78,24 +85,7 @@ public class AddressBean implements Serializable{
     
     	this.latlonglist = latlonglist;
     }
-	private void addAddress(){
-		AddressManagedBean addressManagedBean=LogicqContextProvider.getApplicationContext().getBean(AddressManagedBean.class);
-		AddressVO l_address=	LogicqContextProvider.getApplicationContext().getBean(AddressVO.class);
-		AddressHelper l_addresshelper=LogicqContextProvider.getApplicationContext().getBean(AddressHelper.class);
-		l_addresshelper.conversionUItoVO(this, l_address);
-		
-	}
-	  public AddressBean(){
-		try{
-		System.out.println("address bean111");
-		addresslist = getLocation();
-		entitylist = getEntity();
-		latlonglist = getLatLong();
-		System.out.println("address bean2");}
-		
-		catch(Exception e){e.printStackTrace();}
-		//latlonglist = getLatLong();
-	}
+
 	
 	
     public List<String> getAddresslist() {
@@ -128,24 +118,6 @@ public class AddressBean implements Serializable{
 	public String getFloornumber() {
 		return floornumber;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public void setFloornumber(String floornumber) {
 		this.floornumber = floornumber;
 	}

@@ -12,55 +12,36 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.logicq.logicq.common.criteriamanager.BaseEntity;
 
+@Repository
 public class AbstractDAO<T> {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	public SessionFactory getSessionFactory() {
-
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-
-		this.sessionFactory = sessionFactory;
-	}
 	
 /**
  * 
  * @return
  */
 	public Session getCurrentSession() {
-		Session l_session = sessionFactory.getCurrentSession();
-		if (null == l_session) {
-			l_session = sessionFactory.openSession();
-		}
-		return l_session;
+		return sessionFactory.getCurrentSession();
 	}
-/**
- * 
- */
+
 	public Session getSession() {
-		
-		return getCurrentSession();
+		return sessionFactory.getCurrentSession();
 	}
+	
 	
 	/**
 	 * 
 	 * @param p_abstractentity
 	 * @param p_session
 	 */
-	public void save(T p_abstractentity, Session p_session) {
-		
-		Session l_session=p_session;
-		if (null == l_session) {
-			l_session = getSession();
-		}
-		l_session.save(p_abstractentity);
+	public void save(T p_abstractentity) {
+             getCurrentSession().save(p_abstractentity);
 	}
 	
 /**
@@ -68,12 +49,9 @@ public class AbstractDAO<T> {
  * @param p_abstractentity
  * @param p_session
  */
-	public void update(T p_abstractentity, Session p_session)  {
-		Session l_session = p_session;
-		if (null == p_session) {
-			l_session = getSession();
-		}
-		l_session.update(p_abstractentity);
+	public void update(T p_abstractentity)  {
+	
+		getCurrentSession().update(p_abstractentity);
 	}
 	
 
@@ -84,44 +62,22 @@ public class AbstractDAO<T> {
  * @param p_abstractentity
  * @param p_session
  */
-	public void delete(T p_abstractentity, Session p_session) {
-		Session l_session=p_session;
-		if (null == p_session) {
-			 l_session = getSession();
-		}
+	public void delete(T p_abstractentity) {
         if(null != p_abstractentity){
-        	l_session.delete(p_abstractentity);
+        	getCurrentSession().delete(p_abstractentity);
         }
 	}
 	
-	/**
-	 * @return
-	 */
-	public Transaction beginTransaction() {
-		Session session = sessionFactory.openSession();
-		Transaction l_txn = null;
-		l_txn = session.beginTransaction();
-		return l_txn;
-	}
 
-	/**
-	 * @param p_transaction
-	 */
-	public void commitTransaction(Transaction p_transaction) {
-
-		if (null != p_transaction) {
-			p_transaction.commit();
-		}
-	}
+	
 /**
  * 
  * @param query
  * @param paramMap
  * @return
  */
-	public List<? extends BaseEntity> executeNamedQuery(String query, Map<String, Object> paramMap) {
-		Session session = getSession();
-		Query qry = session.getNamedQuery(query);
+	public List<?> executeNamedQuery(String query, Map<String, Object> paramMap) {
+		Query qry = getCurrentSession().getNamedQuery(query);
 		bindParameters(qry, paramMap);
 		return qry.list();
 	}
@@ -156,7 +112,7 @@ public class AbstractDAO<T> {
  * @param clazz
  * @return
  */
-	public List<? extends BaseEntity> loadClass(Class clazz) {
+	public List<?> loadClass(Class clazz) {
 
 		Session session = getCurrentSession();
 		Query qry = session.createQuery("from " + clazz.getName());
@@ -169,9 +125,7 @@ public class AbstractDAO<T> {
  * @return
  */
 	public Object executeNamedQueryForSingleRow(String query, Map<String, Object> paramMap) {
-
-		Session session = getSession();
-		Query qry = session.getNamedQuery(query);
+		Query qry = getCurrentSession().getNamedQuery(query);
 		bindParameters(qry, paramMap);
 		List list = qry.list();
 		if (list != null && !list.isEmpty() && (list.size() > 0)) {
@@ -186,10 +140,8 @@ public class AbstractDAO<T> {
  * @param params
  * @return
  */
-	public List<? extends BaseEntity> executeCriteriaForSingleColumn(Class<T> clazz, Object[] params) {
-
-		Session session = getSession();
-		Criteria criteria = session.createCriteria(clazz);
+	public List<?> executeCriteriaForSingleColumn(Class<T> clazz, Object[] params) {
+		Criteria criteria = getCurrentSession().createCriteria(clazz);
 		 for (Object columnName : params) {
 			criteria.setProjection(Projections.property(String.valueOf(columnName)));
 		} 

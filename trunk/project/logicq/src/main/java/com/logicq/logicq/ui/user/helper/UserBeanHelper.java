@@ -2,7 +2,7 @@ package com.logicq.logicq.ui.user.helper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.logicq.logicq.facade.user.IUserFacade;
+import com.logicq.logicq.service.user.IUserService;
 import com.logicq.logicq.ui.user.bean.UserBean;
 import com.logicq.logicq.ui.user.vo.UserProfilesRequest;
 import com.logicq.logicq.ui.user.vo.UserProfilesResponse;
@@ -13,17 +13,9 @@ import com.logicq.logicq.ui.user.vo.UserVO;
 public class UserBeanHelper {
 
 	@Autowired
-	IUserFacade userFacade;
+	IUserService userFacade;
 
-	public IUserFacade getUserFacade() {
-
-		return userFacade;
-	}
-
-	public void setUserFacade(IUserFacade userFacade) {
-
-		this.userFacade = userFacade;
-	}
+	
 
 	public UserRegistrationResponse addUser(UserRegistrationRequest userRequest, UserRegistrationResponse userResponse) {
 

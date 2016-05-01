@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.logicq.logicq.service.alert.IAlertApplicationService;
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.constant.CommunicationType;
 import com.logicq.logicq.constant.EntityType;
@@ -15,6 +15,7 @@ import com.logicq.logicq.conversion.user.UserConversion;
 import com.logicq.logicq.dao.user.IUserDAO;
 import com.logicq.logicq.model.login.Login;
 import com.logicq.logicq.model.user.User;
+import com.logicq.logicq.service.alert.IAlertService;
 import com.logicq.logicq.service.login.IloginService;
 import com.logicq.logicq.service.task.ITaskManagerService;
 import com.logicq.logicq.service.user.IUserService;
@@ -33,6 +34,7 @@ import com.logicq.logicq.ui.user.vo.UserVO;
  * @since 11 Dec 2012
  * @version 1.0.0
  */
+@Service
 @Transactional
 public class UserService implements IUserService {
 
@@ -43,31 +45,11 @@ public class UserService implements IUserService {
 	@Autowired
 	IloginService loginService;
 	@Autowired
-	IAlertApplicationService alertApplicationService;
-	@Autowired
-	AlertDetailsInputVO alertDetailsInputVO;
-
-	public ITaskManagerService getItaskManagerService() {
-
-		return itaskManagerService;
-	}
-
-	public void setItaskManagerService(ITaskManagerService itaskManagerService) {
-
-		this.itaskManagerService = itaskManagerService;
-	}
+	IAlertService alertService;
+	//@Autowired
+	//AlertDetailsInputVO alertDetailsInputVO;
 
 	UserConversion userConversion = UserConversion.getInstance();
-
-	public IUserDAO getUserDAO() {
-
-		return userDAO;
-	}
-
-	public void setUserDAO(IUserDAO userDAO) {
-
-		this.userDAO = userDAO;
-	}
 
 	/**
 	 * Add User
@@ -86,7 +68,7 @@ public class UserService implements IUserService {
 			Login loginDetails = setLoginDetails(user);
 			loginService.insertLoginDetails(loginDetails);
 			//call to email sending service.
-			alertApplicationService.sendAlert(alertDetailsInputVO);
+			//alertService.sendAlert(alertDetailsInputVO);
 			//Calling to task service for verify document
 			TaskVO taskVO = new TaskVO();
 			taskVO.setDescription("hardcode");
@@ -195,12 +177,12 @@ public class UserService implements IUserService {
 
 	public User getuserDetail(Long id) {
 
-		return (getUserDAO().getuserDetail(id));
+		return (userDAO.getuserDetail(id));
 	}
 
 	public Long getUserIdFromEmailOrMobile(String input, CommunicationType type) {
 
-		User user = getUserDAO().getUserIdFromEmailOrMobile(input, type);
+		User user = userDAO.getUserIdFromEmailOrMobile(input, type);
 		return (user.getId());
 	}
 

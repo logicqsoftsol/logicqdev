@@ -12,11 +12,6 @@ import com.logicq.logicq.model.location.Location;
 @Repository
 public class LocationDAO extends AbstractDAO<Location> implements ILocationDAO {
 
-	public LocationDAO() {
-
-		 
-	}
-
 	public void addLocation(Location location) {
 
 		// TODO Auto-generated method stub

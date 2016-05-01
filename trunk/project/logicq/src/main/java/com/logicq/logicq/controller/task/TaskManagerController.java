@@ -6,25 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.logicq.logicq.facade.task.ITaskManagerFacade;
+import com.logicq.logicq.service.task.ITaskManagerService;
 import com.logicq.logicq.ui.task.vo.TaskVO;
 
 
-@RestController
+//@RestController
 public class TaskManagerController {
 	
-    @Autowired
-	ITaskManagerFacade taskManagerFacade;
-
-	public ITaskManagerFacade getTaskManagerFacade() {
-		return taskManagerFacade;
-	}
-
-	public void setTaskManagerFacade(ITaskManagerFacade taskManagerFacade) {
-		this.taskManagerFacade = taskManagerFacade;
-	}
+   @Autowired
+	ITaskManagerService taskManagerFacade;
 
 	 @RequestMapping(value="/tasks",method = RequestMethod.GET,headers="Accept=application/json")
 	 public List<TaskVO> getAllTasks() {	 

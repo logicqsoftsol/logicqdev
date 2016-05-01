@@ -19,15 +19,6 @@ public class LogicqTransactionStatus implements TransactionStatus {
 		this.messagecode = messagecode;
 	}
 
-	public LogicqException getException() {
-		return exception;
-	}
-
-	public void setException(LogicqException exception) {
-		this.exception = exception;
-	}
-
-	private LogicqException exception; 
 	
 	public Integer getNavigationcode() {
 		return navigationcode;

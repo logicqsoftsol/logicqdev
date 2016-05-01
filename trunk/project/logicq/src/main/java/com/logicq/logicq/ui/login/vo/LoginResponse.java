@@ -9,7 +9,7 @@ import com.logicq.logicq.common.LogicqTransactionStatus;
 
 public class LoginResponse extends LogicqHttpServletResponse implements Serializable {
 
-	@Autowired
+	
 	private LogicqTransactionStatus logicqTransactionStatus;
 
 	public LogicqTransactionStatus getLogicqTransactionStatus() {

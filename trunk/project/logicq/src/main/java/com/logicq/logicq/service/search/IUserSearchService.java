@@ -1,9 +1,9 @@
-package com.logicq.logicq.facade.search;
+package com.logicq.logicq.service.search;
 
 import com.logicq.logicq.ui.search.vo.UserSearchRequest;
 import com.logicq.logicq.ui.search.vo.UserSearchResponse;
 
-public interface IUserSearchFacade {
+public interface IUserSearchService {
 
 	public UserSearchResponse searchUsers(UserSearchRequest userSearchRequest, UserSearchResponse userSearchResponse);
 }

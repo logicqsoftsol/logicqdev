@@ -3,6 +3,8 @@ package com.logicq.logicq.dao.login.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.logicq.logicq.common.criteriamanager.DataFetchType;
 import com.logicq.logicq.common.criteriamanager.LogicqCriteriaHandler;
 import com.logicq.logicq.common.criteriamanager.LogicqRestrictions;
@@ -11,6 +13,7 @@ import com.logicq.logicq.dao.login.ILoginDAO;
 import com.logicq.logicq.dao.login.LoginFilter;
 import com.logicq.logicq.model.login.Login;
 
+@Repository
 public class LoginDAO extends AbstractDAO<Login> implements ILoginDAO {
 
 	@SuppressWarnings("unchecked")
@@ -47,6 +50,6 @@ public class LoginDAO extends AbstractDAO<Login> implements ILoginDAO {
  * 
  */
 	public void insertLoginDetails(Login login) {
-		save(login, getCurrentSession());
+		save(login);
 	}
 }

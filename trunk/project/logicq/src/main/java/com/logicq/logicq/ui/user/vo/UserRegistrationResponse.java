@@ -13,7 +13,7 @@ public class UserRegistrationResponse extends LogicqHttpServletResponse implemen
 	 * serial version uid
 	 */
 	private static final long serialVersionUID = 2166814370618487115L;
-	@Autowired
+
 	private LogicqTransactionStatus logicqTransactionStatus;
 
 	public LogicqTransactionStatus getLogicqTransactionStatus() {

@@ -5,23 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.logicq.logicq.common.LogicqContextProvider;
-import com.logicq.logicq.facade.task.ITaskManagerFacade;
+import com.logicq.logicq.service.task.ITaskManagerService;
 import com.logicq.logicq.ui.task.bean.TaskBean;
 import com.logicq.logicq.ui.task.vo.TaskVO;
 
 public class TaskManagerHelper {
 	
     @Autowired
-	ITaskManagerFacade taskManagerFacade;
+	ITaskManagerService taskManagerFacade;
 
-	public ITaskManagerFacade getTaskManagerFacade() {
-		return taskManagerFacade;
-	}
-
-	public void setTaskManagerFacade(ITaskManagerFacade taskManagerFacade) {
-		this.taskManagerFacade = taskManagerFacade;
-	}
-
+	
 
 	public void newtask(TaskVO p_task) {
 		taskManagerFacade.addTask(p_task);
