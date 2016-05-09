@@ -30,10 +30,10 @@ public class BaseEntity implements Serializable{
 	private Date createtime;
 	
 	@Column(name = "created_by")
-	private Date createdby;
+	private String createdby;
 	
 	@Column(name = "updated_by")
-	private Date updatedby;
+	private String updatedby;
 	
 
 	public Date getLastupdatetime() {
@@ -60,26 +60,23 @@ public class BaseEntity implements Serializable{
 	}
 
 	
-	public Date getCreatedby() {
-	
+
+	public String getCreatedby() {
 		return createdby;
 	}
 
-	
-	public void setCreatedby(Date createdby) {
-	
+
+	public void setCreatedby(String createdby) {
 		this.createdby = createdby;
 	}
 
-	
-	public Date getUpdatedby() {
-	
+
+	public String getUpdatedby() {
 		return updatedby;
 	}
 
-	
-	public void setUpdatedby(Date updatedby) {
-	
+
+	public void setUpdatedby(String updatedby) {
 		this.updatedby = updatedby;
 	}
 
