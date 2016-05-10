@@ -1,6 +1,9 @@
 package com.logicq.logicq.ui.user.bean;
 
+import java.io.File;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -9,6 +12,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.servlet.http.Part;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.util.StringUtils;
@@ -552,5 +556,42 @@ public class UserBean implements Serializable {
 				}
 			}
 		}
+	}
+
+	private Part file;
+
+	public Part getFile() {
+
+		return file;
+	}
+
+	public void setFile(Part file) {
+
+		this.file = file;
+	}
+
+	public void handleFileUpload() {
+
+		String fileName = getFileNameFromPart(file);
+		String fileLocation = "D://" + fileName;
+		try {
+			InputStream input = file.getInputStream();
+			Files.copy(input, new File(fileLocation).toPath());
+			String output = "File successfully uploaded to : " + fileLocation;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static String getFileNameFromPart(Part part) {
+
+		final String partHeader = part.getHeader("content-disposition");
+		for (String content : partHeader.split(";")) {
+			if (content.trim().startsWith("filename")) {
+				String fileName = content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+				return fileName;
+			}
+		}
+		return null;
 	}
 }

@@ -1,3 +1,4 @@
+
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
@@ -6,40 +7,54 @@
 	template="profile-template.xhtml"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
-	<ui:define name="content">
 
-					<div class="col-sm-12">
-						<div class="col-xs-12 col-sm-8">
-							<h2><h:outputText value="#{profileMB.fullname}" id="fullname" /></h2>
-							<p>
-						  <strong>About: </strong> <h:outputText value="#{profileMB.qualificationDetails}" id="qualification" />
-							</p>
-							<p>
-								<strong>Skills: </strong> 
-								<p class="list-show-icon">
-											<h:graphicImage value="../img/doctor/dermatologist.png" class="img-rounded"/>
-											<h:graphicImage value="../img/doctor/emergency.png" class="img-rounded"/>
-											<h:graphicImage value="../img/doctor/vaccination1.png" class="img-rounded"/>
-											<h:graphicImage value="../img/doctor/vaccinationathome.png" class="img-rounded"/>
-								</p>
-								</p>
-						</div>
-						<div class="col-xs-12 col-sm-4 text-center">
-							<figure>
-								<img src="../img/fd.ico" alt=""
-									class="img-circle img-responsive" />
-								<figcaption class="ratings">
-									<p>
-										Ratings
-									<c:forEach items="#{profileMB.ratings}" var="rateing">
-										<a href="#"><span class="fa fa-star"></span></a>
-									</c:forEach>
-								</p>
-								</figcaption>
-							</figure>
-							
-						</div>
-					</div>
+	<ui:define name="content">
+		<h:outputStylesheet name="css/fileinput.css" />
+		<h:outputStylesheet name="css/bootstrap.min.css" />
+		<h:outputScript name="js/fileinput.js" />
+		<h:outputScript name="js/fileinput_locale_fr.js" />
+		<h:outputScript name="js/fileinput_locale_es.js" />
+		<h:outputScript name="js/jquery-1.9.1.js" />
+
+		<div class="col-sm-12">
+			<div class="col-xs-12 col-sm-8">
+				<h2>
+					<h:outputText value="#{profileMB.fullname}" id="fullname" />
+				</h2>
+				<p>
+					<strong>About: </strong>
+					<h:outputText value="#{profileMB.qualificationDetails}"
+						id="qualification" />
+				</p>
+				<p>
+					<strong>Skills: </strong>
+				<p class="list-show-icon">
+					<h:graphicImage value="../img/doctor/dermatologist.png"
+						class="img-rounded" />
+					<h:graphicImage value="../img/doctor/emergency.png"
+						class="img-rounded" />
+					<h:graphicImage value="../img/doctor/vaccination1.png"
+						class="img-rounded" />
+					<h:graphicImage value="../img/doctor/vaccinationathome.png"
+						class="img-rounded" />
+				</p>
+				</p>
+			</div>
+			<div class="col-xs-12 col-sm-4 text-center">
+				<figure>
+					<img src="../img/fd.ico" alt="" class="img-circle img-responsive" />
+					<figcaption class="ratings">
+						<p>
+							Ratings
+							<c:forEach items="#{profileMB.ratings}" var="rateing">
+								<a href="#"><span class="fa fa-star"></span></a>
+							</c:forEach>
+						</p>
+					</figcaption>
+				</figure>
+
+			</div>
+		</div>
 
 		<div class="right_col" role="main">
 			<div class="row">
@@ -199,16 +214,16 @@
 																		</div>
 																	</div>
 																</div>
-																<div class="col-sm-2">
-																	<h:outputText value="Validate Qualification" />
-																</div>
-																<div class="col-sm-6">
-																	<h:form enctype="multipart/form-data">
-																		<p:fileUpload value="#{fileuploadMB.file}"
-																			mode="advanced" multiple="true"
-																			fileUploadListener="#{fileuploadMB.handleFileUpload}"></p:fileUpload>
-																	</h:form>
-																</div>
+
+
+
+																<!-- 	<b:button value="Validate Qualification"
+																	class="btn custom-button-width .navbar-right"
+																	oncomplete="javascript:location.reload(true)"
+																	onclick="$('.modalvalidate').modal();return false; "
+																	icon="glyphicon glyphicon-user" iconAlign="right" look="primary"
+																			rendered="#{loginMB.signupvisible}" /> -->
+
 
 															</div>
 														</div>
@@ -257,10 +272,19 @@
 												</b:modal>
 											</div>
 										</div>
-
-
 									</h:form>
-
+									<div class="col-sm-6">
+										<h:outputText value="Validate Qualification" />
+									</div>
+									<div class="col-sm-6">
+										<h:form enctype="multipart/form-data">
+											<h:inputFile class="file" required="true" id="file"
+												value="#{userMB.file}">
+											</h:inputFile>
+											<b:commandButton value="Upload"
+												action="#{userMB.handleFileUpload}" id="uploadbtn" />
+										</h:form>
+									</div>
 
 								</div>
 								<div id="step-2">
@@ -341,15 +365,7 @@
 												<h:graphicImage value="#{addressMB.addressImagePath}"
 													class="img-rounded" />
 											</div>
-											<div class="form-group">
-												<h:panelGrid id="panel" rendered="false">
-													<h:form enctype="multipart/form-data" style="width:200px">
-														<p:fileUpload value="#{fileuploadMB.file}" mode="advanced"
-															multiple="true"
-															fileUploadListener="#{fileuploadMB.handleFileUpload}"></p:fileUpload>
-													</h:form>
-												</h:panelGrid>
-											</div>
+											<div class="form-group"></div>
 
 										</div>
 									</h:form>
@@ -357,23 +373,25 @@
 								<div id="step-3">
 									<h2 class="StepTitle">Step 3 Content</h2>
 									<div class="controls">
-													<h:selectOneMenu id="entittype" class="form-control">
-														<f:selectItem itemValue="doctor" itemLabel="Doctor" />
-														<f:selectItem itemValue="plumber" itemLabel="Plumber" />
-														<f:selectItem itemValue="electrican" itemLabel="Electrican" />
-														<f:selectItem itemValue="Tutotr" itemLabel="Tutor" />
-													</h:selectOneMenu>
-												</div>
-												
-												<div class="controls">
-													<h:selectOneMenu id="facility" class="form-control">
-														<f:selectItem itemValue="familydoc" itemLabel="Family Doctor" />
-														<f:selectItem itemValue="generalphyscian" itemLabel="General Physcian" />
-														<f:selectItem itemValue="personalcare" itemLabel="Personal Care" />
-													</h:selectOneMenu>
-												</div>
-												
-														<div class="col-sm-7 form-group date-form">
+										<h:selectOneMenu id="entittype" class="form-control">
+											<f:selectItem itemValue="doctor" itemLabel="Doctor" />
+											<f:selectItem itemValue="plumber" itemLabel="Plumber" />
+											<f:selectItem itemValue="electrican" itemLabel="Electrican" />
+											<f:selectItem itemValue="Tutotr" itemLabel="Tutor" />
+										</h:selectOneMenu>
+									</div>
+
+									<div class="controls">
+										<h:selectOneMenu id="facility" class="form-control">
+											<f:selectItem itemValue="familydoc" itemLabel="Family Doctor" />
+											<f:selectItem itemValue="generalphyscian"
+												itemLabel="General Physcian" />
+											<f:selectItem itemValue="personalcare"
+												itemLabel="Personal Care" />
+										</h:selectOneMenu>
+									</div>
+
+									<div class="col-sm-7 form-group date-form">
 										<div id="dvPassport" style="display: none">
 											<div class="col-sm-12" id="one" style="display: block;">
 												<div class="col-sm-12">
@@ -424,6 +442,19 @@
 
 			</div>
 		</div>
+
+
+
+
+
+
+
+
+		<b:modal id="modalvalidate" title="Upload Certificate"
+			styleClass="modalvalidate" size="lg">
+		</b:modal>
+
 	</ui:define>
+
 
 </ui:composition>
