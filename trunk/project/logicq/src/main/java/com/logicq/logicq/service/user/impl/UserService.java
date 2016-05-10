@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.constant.CommunicationType;
@@ -19,7 +20,6 @@ import com.logicq.logicq.service.alert.IAlertService;
 import com.logicq.logicq.service.login.IloginService;
 import com.logicq.logicq.service.task.ITaskManagerService;
 import com.logicq.logicq.service.user.IUserService;
-import com.logicq.logicq.ui.alert.vo.AlertDetailsInputVO;
 import com.logicq.logicq.ui.task.vo.TaskVO;
 import com.logicq.logicq.ui.user.vo.UserProfilesRequest;
 import com.logicq.logicq.ui.user.vo.UserProfilesResponse;
@@ -57,6 +57,7 @@ public class UserService implements IUserService {
 	 * @param User
 	 *            user
 	 */
+	@ExceptionHandler(Exception.class)
 	public UserRegistrationResponse addUser(UserRegistrationRequest userRequest, UserRegistrationResponse userResponse) {
 
 		UserVO userVO = userRequest.getUserVO();
@@ -191,7 +192,7 @@ public class UserService implements IUserService {
 		List<UserVO> userVOs = new ArrayList<UserVO>();
 		EntityType entityType = request.getEntityType();
 		String area = request.getArea();
-		List<User> users = userDAO.getParticularUsersForArea(entityType, area);
+		List<User> users =null;// userDAO.getParticularUsersForArea(entityType, area);
 		for (User user : users) {
 			UserVO userVO = LogicqContextProvider.getApplicationContext().getBean(UserVO.class);
 			userVO = userConversion.conversionFromEntitytoVO(user, userVO);

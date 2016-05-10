@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:fb="http://www.facebook.com/2008/fbml"
-	template="pages/templates/common-template.xhtml"
+	template="pages/common-template.xhtml"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<ui:define name="content">
  <h:head>
@@ -140,6 +140,7 @@
 									<h:form>
 										<b:commandButton look="primary"
 											action="#{userSearchMB.searchUsers}" id="searchbutton"
+											oncomplete="javascript:location.reload(true)"
 											iconAwesome="fa-search"/>
 									</h:form>
 									</div>
@@ -152,11 +153,13 @@
 							<div class="col-md-4">
 								<b:button value="Find Near By" id="findNearBy" look="primary"
 									actionListener="#{userMB.searchEntity}"
+									oncomplete="javascript:location.reload(true)"
 									action="#{userMB.entitynavigation}" />
 							</div>
 							<div class="col-md-6">
 								<b:button value="Emergency Book" id="emergency" look="primary"
 									actionListener="#{userMB.searchEntity}"
+									oncomplete="javascript:location.reload(true)"
 									action="#{userMB.entitynavigation}" />
 							</div>
 						</div>

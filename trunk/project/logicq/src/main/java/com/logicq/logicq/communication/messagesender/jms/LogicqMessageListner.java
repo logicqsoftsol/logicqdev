@@ -21,6 +21,6 @@ public class LogicqMessageListner  {
 				l_key = st2.nextToken();
 			}
 		}
-		LogicqContextProvider.getApplicationmap().put(l_key, l_value);
+		//LogicqContextProvider.getApplicationmap().put(l_key, l_value);
 	}
 }

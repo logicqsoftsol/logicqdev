@@ -32,14 +32,14 @@ public class TaskManagerService implements ITaskManagerService {
 	public void addTask(TaskVO p_taskvo) {
 		Task l_task=taskconversion.handleConversionVOtoEntityWithContext(p_taskvo);
 		taskManagerDAO.addTask(l_task);
-		LogicqContextProvider.getApplicationmap().put(String.valueOf(l_task.getId()) , l_task);
+		//LogicqContextProvider.getApplicationmap().put(String.valueOf(l_task.getId()) , l_task);
 	}
 
 	
 	public void updateTask(TaskVO p_taskvo) {
 		Task l_task=taskconversion.handleConversionVOtoEntityWithContext(p_taskvo);
 		taskManagerDAO.updateTask(l_task);
-		LogicqContextProvider.getApplicationmap().remove(l_task.getId());
+		//LogicqContextProvider.getApplicationmap().remove(l_task.getId());
 	}
 
 	public List<TaskVO> getAllTasks() {
@@ -65,7 +65,7 @@ public class TaskManagerService implements ITaskManagerService {
 		TaskVO l_taskvo = taskconversion
 				.handleConversionEntitytoVOWithContext(l_task);
 		updateTask(l_taskvo);
-		LogicqContextProvider.getApplicationmap().remove(l_task.getId());
+		//LogicqContextProvider.getApplicationmap().remove(l_task.getId());
 	}
 
 	public List<TaskVO> getAllTasks(TaskVO task) {

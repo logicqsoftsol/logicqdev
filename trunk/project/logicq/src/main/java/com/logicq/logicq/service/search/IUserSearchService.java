@@ -1,9 +1,8 @@
 package com.logicq.logicq.service.search;
 
-import com.logicq.logicq.ui.search.vo.UserSearchRequest;
-import com.logicq.logicq.ui.search.vo.UserSearchResponse;
+import com.logicq.logicq.ui.search.vo.UserSearchVO;
 
 public interface IUserSearchService {
 
-	public UserSearchResponse searchUsers(UserSearchRequest userSearchRequest, UserSearchResponse userSearchResponse);
+	public UserSearchVO searchUsers(UserSearchVO userSearchVO);
 }

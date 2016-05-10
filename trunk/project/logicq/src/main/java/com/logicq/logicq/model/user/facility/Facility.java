@@ -21,11 +21,11 @@ public class Facility extends BaseEntity implements UserConstant, Serializable {
 	@Id
 	@Column(name = "facility_id", unique = true, nullable = false)
 	private Long facilityId;
-	@Column(name = "facility_name", unique = true, nullable = false)
+	@Column(name = "facility_name", unique = true, nullable = true)
 	private String facilityName;
-	@Column(name = "facility_Image_Id", unique = true, nullable = false)
+	@Column(name = "facility_Image_Id", unique = true, nullable = true)
 	private String facilityImageId;
-	@Column(name = "facility_Image_Path", unique = true, nullable = false)
+	@Column(name = "facility_Image_Path", unique = true, nullable = true)
 	private String facilityImagePath;
 
 	public String getFacilityImageId() {

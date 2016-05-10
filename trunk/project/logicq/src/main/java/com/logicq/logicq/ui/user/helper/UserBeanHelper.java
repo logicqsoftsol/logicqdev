@@ -13,13 +13,13 @@ import com.logicq.logicq.ui.user.vo.UserVO;
 public class UserBeanHelper {
 
 	@Autowired
-	IUserService userFacade;
+	IUserService userService;
 
 	
 
 	public UserRegistrationResponse addUser(UserRegistrationRequest userRequest, UserRegistrationResponse userResponse) {
 
-		return (userFacade.addUser(userRequest, userResponse));
+		return (userService.addUser(userRequest, userResponse));
 	}
 
 	public UserVO conversionUItoVO(UserBean userBean, UserVO userVO) {
@@ -48,6 +48,6 @@ public class UserBeanHelper {
 
 	public UserProfilesResponse getParticularUsersForArea(UserProfilesRequest request, UserProfilesResponse response) {
 
-		return (userFacade.getParticularUsersForArea(request, response));
+		return (userService.getParticularUsersForArea(request, response));
 	}
 }

@@ -29,15 +29,15 @@ public class NotificationBean implements Serializable{
 	}
 
 	public void pollNotification(){
-		if(LogicqContextProvider.getApplicationmap().size()>0){
-		count= LogicqContextProvider.getApplicationmap().size();
-		}
+//		if(LogicqContextProvider.getApplicationmap().size()>0){
+//		count= LogicqContextProvider.getApplicationmap().size();
+//		}
 		notificationcount=String.valueOf(count);
 	}
 	
 	public void notificationdetailsAction(){
 		TaskManagerHelper l_taskHelper=LogicqContextProvider.getApplicationContext().getBean(TaskManagerHelper.class);
-		 Map<String, Object> l_notificationMap=LogicqContextProvider.getApplicationmap();
+		 Map<String, Object> l_notificationMap=null;//LogicqContextProvider.getApplicationmap();
 		 tasklist=new ArrayList<TaskVO>();
 		 for (Map.Entry<String, Object> entry : l_notificationMap.entrySet())
 		 {

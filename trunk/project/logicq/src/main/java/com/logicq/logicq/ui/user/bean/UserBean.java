@@ -1,3 +1,4 @@
+
 package com.logicq.logicq.ui.user.bean;
 
 import java.io.File;
@@ -6,23 +7,20 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.util.StringUtils;
 
 import com.logicq.logicq.common.LogicqContextProvider;
-import com.logicq.logicq.constant.EntityType;
-import com.logicq.logicq.ui.user.vo.FacilityVO;
-import com.logicq.logicq.ui.user.vo.UserProfilesResponse;
+import com.logicq.logicq.ui.search.bean.UserSearchBean;
 import com.logicq.logicq.ui.user.vo.UserRegistrationResponse;
-import com.logicq.logicq.ui.user.vo.UserVO;
 
 /**
  * User Bean
@@ -62,8 +60,29 @@ public class UserBean implements Serializable {
 	private String selectedprofileid;
 	@NotNull
 	private String entity = null;
-	@ManagedProperty(value = "#{profile}")
+	
+	@ManagedProperty(value = "#{profileMB}")
 	private ProfileBean profile;
+	
+	@ManagedProperty(value = "#{userSearchMB}")
+	private UserSearchBean useSearchBean;
+
+	private List<String> entities;
+	private String login;
+	private String forgetPassword;
+	private String facebooklogin;
+	private String gmaillogin;
+	private String acesscode;
+	
+	
+	
+	public UserSearchBean getUseSearchBean() {
+		return useSearchBean;
+	}
+
+	public void setUseSearchBean(UserSearchBean useSearchBean) {
+		this.useSearchBean = useSearchBean;
+	}
 
 	public String getSearchText() {
 
@@ -106,38 +125,12 @@ public class UserBean implements Serializable {
 	}
 
 	public List<ProfileBean> getProfiles() {
-
-		UserManagedBean userManagedBean = LogicqContextProvider.getApplicationContext().getBean(UserManagedBean.class);
-		//Hardcoded
-		EntityType entityType = EntityType.DOCTOR;
-		String area = "Pune";
-		UserProfilesResponse response = userManagedBean.getParticularUsersForArea(entityType, area);
-		List<UserVO> users = response.getUserVOs();
-		profiles = new ArrayList<ProfileBean>();
-		for (UserVO user : users) {
-			ProfileBean profile = new ProfileBean();
-			profile.setFullname(user.getName());
-			profile.setFeedback("100");
-			profile.setFess("400");
-			profile.setFullname("Test For each");
-			profile.setLocation("Pune");
-			profile.setRecomendation("200");
-			profile.setSpcification("Phd");
-			profile.setProfileid("Test101");
-			profile.setBookingdate(new Date().toString());
-			profile.setUserImage("../userImage/1000.jpg");
-			List<FacilityVO> facilities = user.getFacilities();
-			profile.setFacilityDetails(facilities);
-			EntityAvailabilityBean avialen = new EntityAvailabilityBean();
-			avialen.setAvilabledate(new Date());
-			avialen.setEntityid("Test101");
-			avialen.setProfileid("Test101");
-			List<EntityAvalAtLocationBean> enetiyavalloc = avialen.getEntityavalloc("Test101", new Date());
-			avialen.setEntityavalloc(enetiyavalloc);
-			profile.setAvilablityDetails(avialen);
-			profiles.add(profile);
-		}
-		return profiles;
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		UserSearchBean userbeansearch
+	    = (UserSearchBean)facesContext.getApplication()
+	      .createValueBinding("#{userSearchMB}").getValue(facesContext);
+		this.profiles =  userbeansearch.getProfiles();
+			return profiles;
 	}
 
 	public void setProfiles(List<ProfileBean> profiles) {
@@ -146,8 +139,6 @@ public class UserBean implements Serializable {
 	}
 
 	public ProfileBean getProfile() {
-
-		System.out.println("Test");
 		return profile;
 	}
 
@@ -286,12 +277,7 @@ public class UserBean implements Serializable {
 		this.mobilenumber = mobilenumber;
 	}
 
-	private List<String> entities;
-	private String login;
-	private String forgetPassword;
-	private String facebooklogin;
-	private String gmaillogin;
-	private String acesscode;
+	
 
 	public String getAcesscode() {
 
@@ -305,13 +291,11 @@ public class UserBean implements Serializable {
 
 	public String loginfromFacebook() {
 
-		System.out.println("facebooklogin");
 		return facebooklogin;
 	}
 
 	public String loginfromGmail() {
 
-		System.out.println("gmaillogin");
 		return gmaillogin;
 	}
 
