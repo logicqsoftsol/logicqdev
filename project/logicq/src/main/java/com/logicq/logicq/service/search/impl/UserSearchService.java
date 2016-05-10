@@ -1,16 +1,15 @@
 package com.logicq.logicq.service.search.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.logicq.logicq.dao.user.IUserDAO;
-import com.logicq.logicq.model.user.User;
 import com.logicq.logicq.service.search.IUserSearchService;
-import com.logicq.logicq.ui.search.vo.UserSearchRequest;
-import com.logicq.logicq.ui.search.vo.UserSearchResponse;
+import com.logicq.logicq.ui.search.vo.UserSearchVO;
 
 @Service
 @Transactional
@@ -19,13 +18,11 @@ public class UserSearchService implements IUserSearchService {
 	@Autowired
 	IUserDAO userDAO;
 
-	public UserSearchResponse searchUsers(UserSearchRequest userSearchRequest, UserSearchResponse userSearchResponse) {
 
-		String pincode =userSearchRequest.getUserSearchVO().getPincode();
-		String searchtext=userSearchRequest.getUserSearchVO().getSearchText();
-		//String[] inputs = { city };
-		List<User> users = null;//userDAO.getParticularUsersForArea(searchtext,pincode);
-		//userSearchResponse.setLogicqTransactionStatus(logicqTransactionStatus);
-		return userSearchResponse;
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	@ExceptionHandler(Exception.class)
+	public UserSearchVO searchUsers(@Validated UserSearchVO userSearchVO) {
+		
+		return null;
 	}
 }

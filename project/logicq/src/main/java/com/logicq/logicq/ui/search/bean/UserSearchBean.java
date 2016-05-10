@@ -1,13 +1,18 @@
 package com.logicq.logicq.ui.search.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import com.logicq.logicq.common.LogicqContextProvider;
-import com.logicq.logicq.ui.user.bean.UserBean;
+import com.logicq.logicq.ui.user.bean.EntityAvailabilityBean;
+import com.logicq.logicq.ui.user.bean.EntityAvalAtLocationBean;
+import com.logicq.logicq.ui.user.bean.ProfileBean;
+import com.logicq.logicq.ui.user.vo.FacilityVO;
 
 @ManagedBean(name = "userSearchMB")
 @ViewScoped
@@ -17,28 +22,51 @@ public class UserSearchBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5987953879794515014L;
-	
-	private String city;
-	private String state;
-	private String country;
-	private String streetname;
-	private String localityname;
-	private String landmarkname;
-	private String pincode;
 	private String searchText;
-	private String entity;
-	private String searchlocation;
-
-	@ManagedProperty(value = "#{userBean}")
-    private UserBean userBean;  
-
+	private String searchlocation; 
 	
-	public UserBean getUserBean() {
-		return userBean;
+	private List<ProfileBean> profiles;
+	
+	public List<ProfileBean> getProfiles() {
+		profiles=(List<ProfileBean>)LogicqContextProvider.getElementFromApplicationMap("profileMB"); //LogicqContextProvider.getConversationMap().get("profileMB");
+		LogicqContextProvider.removeElementFromApplicationMap("profileMB");
+		return profiles;
 	}
 
-	public void setUserBean(UserBean userBean) {
-		this.userBean = userBean;
+	public void setProfiles(List<ProfileBean> profiles) {
+		this.profiles = profiles;
+	}
+
+
+	
+
+	public String searchUsers() {
+		//UserSearchManagedBean userSearchManagedBean = LogicqContextProvider.getApplicationContext().getBean(UserSearchManagedBean.class);
+		//userSearchManagedBean.searchUsers(this);
+		profiles=new ArrayList<ProfileBean>();
+		ProfileBean profile=(ProfileBean) LogicqContextProvider.getBean("profileMB");
+				profile.setFullname("Test001");
+				profile.setFeedback("100");
+				profile.setFess("400");
+				profile.setFullname("Test For each");
+				profile.setLocation("Pune");
+				profile.setRecomendation("200");
+				profile.setSpcification("Phd");
+				profile.setProfileid("Test101");
+				profile.setBookingdate(new Date().toString());
+				profile.setUserImage("pages/userImage/1000.jpg");
+				List<FacilityVO> facilities = new ArrayList<FacilityVO>();
+				profile.setFacilityDetails(facilities);
+				EntityAvailabilityBean avialen = new EntityAvailabilityBean();
+				avialen.setAvilabledate(new Date());
+				avialen.setEntityid("Test101");
+				avialen.setProfileid("Test101");
+				List<EntityAvalAtLocationBean> enetiyavalloc = avialen.getEntityavalloc("Test101", new Date());
+				avialen.setEntityavalloc(enetiyavalloc);
+				profile.setAvilablityDetails(avialen);
+				profiles.add(profile);
+			LogicqContextProvider.addElementFromApplicationMap("profileMB", profiles);
+		return "searchresult";
 	}
 
 	
@@ -50,99 +78,14 @@ public class UserSearchBean implements Serializable {
 		this.searchlocation = searchlocation;
 	}
 
-	public String searchUsers() {
-		UserSearchManagedBean userSearchManagedBean = LogicqContextProvider.getApplicationContext().getBean(UserSearchManagedBean.class);
-		userSearchManagedBean.searchUsers(this);
-		return "searchresult";
-	}
-
-	public String getEntity() {
-
-		return entity;
-	}
-
-	public void setEntity(String entity) {
-
-		this.entity = entity;
-	}
-
+	
 	public String getSearchText() {
-
 		return searchText;
 	}
 
 	public void setSearchText(String searchText) {
-
 		this.searchText = searchText;
 	}
 
-	public String getCity() {
-
-		return city;
-	}
-
-	public void setCity(String city) {
-
-		this.city = city;
-	}
-
-	public String getState() {
-
-		return state;
-	}
-
-	public void setState(String state) {
-
-		this.state = state;
-	}
-
-	public String getCountry() {
-
-		return country;
-	}
-
-	public void setCountry(String country) {
-
-		this.country = country;
-	}
-
-	public String getStreetname() {
-
-		return streetname;
-	}
-
-	public void setStreetname(String streetname) {
-
-		this.streetname = streetname;
-	}
-
-	public String getLocalityname() {
-
-		return localityname;
-	}
-
-	public void setLocalityname(String localityname) {
-
-		this.localityname = localityname;
-	}
-
-	public String getLandmarkname() {
-
-		return landmarkname;
-	}
-
-	public void setLandmarkname(String landmarkname) {
-
-		this.landmarkname = landmarkname;
-	}
-
-	public String getPincode() {
-
-		return pincode;
-	}
-
-	public void setPincode(String pincode) {
-
-		this.pincode = pincode;
-	}
+	
 }

@@ -27,7 +27,6 @@ public interface IUserService {
 	 * @param User
 	 *            user
 	 */
-	@ExceptionHandler(Exception.class)
 	public UserRegistrationResponse addUser(UserRegistrationRequest userRequest, UserRegistrationResponse userResponse);
 
 	/**

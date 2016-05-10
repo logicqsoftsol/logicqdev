@@ -14,6 +14,7 @@ import com.logicq.logicq.dao.user.IUserDAO;
 import com.logicq.logicq.dao.user.UserFilterObject;
 import com.logicq.logicq.model.user.User;
 import com.logicq.logicq.model.user.UserConstant;
+import com.logicq.logicq.model.user.UserSearch;
 
 /**
  * User DAO
@@ -47,18 +48,11 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 
 	public List<User> getUsers() {
 
-		List<User> users = (List<User>) loadClass(User.class);
-		return users;
+		return (List<User>) loadClass(User.class);
 	}
 
 	public User getuserDetail(Long userId) {
-
-		User user = (User) load(User.class, userId);
-		if (user != null) {
-			return user;
-		} else {
-			return null;
-		}
+			return (User) load(User.class, userId);
 	}
 
 	public Boolean checkMobileNo(String mobileNo) {
@@ -113,19 +107,24 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 	public List<User> getUsersForAddress(String[] addressDetails) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		List<User> users = new ArrayList<User>();
 		params.put("city", addressDetails[0]);
-		users = (List<User>) executeNamedQuery(UserConstant.GET_USERS_NEAR_ADDRESS, params);
-		return users;
+		return (List<User>) executeNamedQuery(UserConstant.GET_USERS_NEAR_ADDRESS, params);
 	}
 
 	public List<User> getParticularUsersForArea(EntityType entityType, String area) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		List<User> users = new ArrayList<User>();
 		params.put("entityType", entityType);
 		params.put("city", area);
-		users = (List<User>) executeNamedQuery(UserConstant.GET_PARTICULAR_USERS_NEAR_ADDRESS, params);
-		return users;
+		return (List<User>) executeNamedQuery(UserConstant.GET_PARTICULAR_USERS_NEAR_ADDRESS, params);
+	}
+
+	public List<User> getAllEntityAccordingtoLocation(UserSearch usersearch) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("city", usersearch.getCity());
+		params.put("pincode", usersearch.getPincode());
+		params.put("pincode", usersearch.getState());
+		params.put("roleid", usersearch.getSearchText());
+		return  null;//(List<User>) excuteCriteria(User.class);
 	}
 }

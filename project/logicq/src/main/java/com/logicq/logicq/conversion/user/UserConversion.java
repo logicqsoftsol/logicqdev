@@ -111,14 +111,7 @@ public class UserConversion {
 	}
 
 	public User handleConversionVOtoEntityWithContext(UserVO p_uservo) {
-
-		User userentity = null;
-		if (null != LogicqContextProvider.getApplicationContext()) {
-			userentity = LogicqContextProvider.getApplicationContext().getBean(User.class);
-		}
-		if (null == userentity) {
-			userentity = new User();
-		}
+		User userentity = new User();
 		return conversionFromVOtoEntity(p_uservo, userentity);
 	}
 }

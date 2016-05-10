@@ -1,0 +1,42 @@
+<ui:composition template="templates/common-template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+   <ui:define name="content">
+    <ui:insert name="header">
+		<div id="wrapper">
+			<a href="https://doctorathome.in/"><img
+				src="assets/admin1/img/logo.png"
+				class="img-responsive pull-left" /></a>
+			<div class="navbar navbar-default">
+				<!-- BEGIN ICONS -->
+				<div class="nav-menu pull-right">
+						   <span class="patty"></span> <span class="patty"></span> <span
+							class="patty"></span> <span class="patty"></span> <span
+							class="patty"></span> <span class="patty"></span>
+				</div>
+				<div class="overlay">
+					<div class="starting-point">
+						<span></span>
+					</div>
+					<div class="logo">Home Plus</div>
+				</div>
+				<div class="overlay-secondary"></div>
+			</div>
+		</div>
+		<div class="layer-container">
+			<div class="menu-layer">
+				<ul>
+					<li><a href="user/profile.xhtml">About Me</a> <i
+						class="fa fa-thumbs-o-up"></i></li>
+					<li><a href="#">Facility Subscribe</a></li>
+					<li><a href="user/documentdetails.xhtml">All
+							Documents</a></li>
+				</ul>
+			</div>
+		</div>
+	</ui:insert>
+       <ui:insert name="content">Logicq content</ui:insert>
+    </ui:define>
+</ui:composition>

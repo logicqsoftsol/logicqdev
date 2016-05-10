@@ -35,16 +35,22 @@ public class AddressBean implements Serializable{
 	private String email;
 	private String latitude;
 	private String longitude;
-	List<String> addresslist;
-	List<String> entitylist;
-	List<String> latlonglist;
+	static List<String> addresslist;
+	static  List<String> entitylist;
+	static List<String> latlonglist;
 	private String addressImagePath; 
 	
 	
 	  public AddressBean(){
+		  if(null==addresslist){
 			addresslist = getLocation();
+		  }
+		  if(null==entitylist){
 			entitylist = getEntity();
+		  }
+		  if(null==latlonglist){
 			latlonglist = getLatLong();
+		  }
 		}
 		
 	
