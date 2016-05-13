@@ -2,12 +2,9 @@ package com.logicq.logicq.ui.login.vo;
 
 import java.io.Serializable;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.logicq.logicq.common.LogicqHttpServletResponse;
 import com.logicq.logicq.common.LogicqTransactionStatus;
 
-public class LoginResponse extends LogicqHttpServletResponse implements Serializable {
+public class LoginResponse  implements Serializable {
 
 	
 	private LogicqTransactionStatus logicqTransactionStatus;

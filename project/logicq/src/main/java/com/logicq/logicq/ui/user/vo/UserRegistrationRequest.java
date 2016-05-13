@@ -2,10 +2,9 @@ package com.logicq.logicq.ui.user.vo;
 
 import java.io.Serializable;
 
-import com.logicq.logicq.common.LogicqHttpServletRequest;
 import com.logicq.logicq.ui.task.vo.TaskVO;
 
-public class UserRegistrationRequest extends LogicqHttpServletRequest implements Serializable {
+public class UserRegistrationRequest  implements Serializable {
 
 	/**
 	 * serial version uid

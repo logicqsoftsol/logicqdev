@@ -2,9 +2,7 @@ package com.logicq.logicq.ui.fileupload.vo;
 
 import java.io.Serializable;
 
-import com.logicq.logicq.common.LogicqHttpServletResponse;
-
-public class FileUploadResponse  extends LogicqHttpServletResponse implements Serializable {
+public class FileUploadResponse   implements Serializable {
 	private FileUploadVO fileupload;
 
 	

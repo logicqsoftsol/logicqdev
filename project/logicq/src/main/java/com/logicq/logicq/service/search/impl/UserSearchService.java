@@ -22,7 +22,7 @@ public class UserSearchService implements IUserSearchService {
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
 	@ExceptionHandler(Exception.class)
 	public UserSearchVO searchUsers(@Validated UserSearchVO userSearchVO) {
-		
+		//userDAO.getAllEntityAccordingtoLocation(usersearch)
 		return null;
 	}
 }

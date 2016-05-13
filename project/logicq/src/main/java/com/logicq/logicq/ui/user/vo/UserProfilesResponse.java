@@ -3,9 +3,7 @@ package com.logicq.logicq.ui.user.vo;
 import java.io.Serializable;
 import java.util.List;
 
-import com.logicq.logicq.common.LogicqHttpServletResponse;
-
-public class UserProfilesResponse extends LogicqHttpServletResponse implements Serializable {
+public class UserProfilesResponse  implements Serializable {
 
 	/**
 	 * 

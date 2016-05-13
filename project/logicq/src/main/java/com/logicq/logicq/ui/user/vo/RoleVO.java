@@ -2,6 +2,9 @@ package com.logicq.logicq.ui.user.vo;
 
 import java.io.Serializable;
 
+import com.logicq.logicq.common.ConvertClass;
+
+@ConvertClass(enable=true)
 public class RoleVO implements Serializable{
 	
 

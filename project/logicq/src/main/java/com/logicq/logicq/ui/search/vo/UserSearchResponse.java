@@ -3,11 +3,10 @@ package com.logicq.logicq.ui.search.vo;
 import java.io.Serializable;
 import java.util.List;
 
-import com.logicq.logicq.common.LogicqHttpServletResponse;
 import com.logicq.logicq.common.LogicqTransactionStatus;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
-public class UserSearchResponse extends LogicqHttpServletResponse implements Serializable {
+public class UserSearchResponse implements Serializable {
 
 	/**
 	 * 

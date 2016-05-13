@@ -2,10 +2,9 @@ package com.logicq.logicq.ui.user.vo;
 
 import java.io.Serializable;
 
-import com.logicq.logicq.common.LogicqHttpServletRequest;
 import com.logicq.logicq.constant.EntityType;
 
-public class UserProfilesRequest extends LogicqHttpServletRequest implements Serializable {
+public class UserProfilesRequest implements Serializable {
 
 	/**
 	 * 
