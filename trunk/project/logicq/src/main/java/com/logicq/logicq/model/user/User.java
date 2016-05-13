@@ -1,6 +1,7 @@
 package com.logicq.logicq.model.user;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +19,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
+
+import com.logicq.logicq.common.ConvertClass;
+import com.logicq.logicq.common.ConvertField;
 import com.logicq.logicq.common.criteriamanager.BaseEntity;
 import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.model.address.Address;
@@ -28,6 +32,7 @@ import com.logicq.logicq.model.user.servicereport.ServiceReport;
 /**
  * @author Rocky
  */
+@ConvertClass(enable=true)
 @Entity
 @Table(name = "USER")
 @NamedQueries({ @NamedQuery(name = User.GET_USER, query = User.GET_USER_QUERY),
@@ -45,6 +50,8 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 	@Column(name = "ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@ConvertField(enable=false)
 	@Column(name = "FIRST_NAME", unique = true, nullable = false)
 	private String firstName;
 	@Column(name = "LAST_NAME", unique = true, nullable = false)
@@ -56,7 +63,7 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 	@Column(name = "EMAIL_ID", unique = true, nullable = false)
 	private String emailId;
 	@Column(name = "DOB", unique = true, nullable = false)
-	private String dateOfBirth;
+	private Date dateOfBirth;
 	@Column(name = "USER_PASSWORD", unique = true, nullable = false)
 	private String password;
 	@Column(name = "MOB_VERIFICATION_FLAG", unique = true, nullable = false)
@@ -209,16 +216,13 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 		this.emailId = emailId;
 	}
 
-	public String getDateOfBirth() {
 
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
-
-	public void setDateOfBirth(String dateOfBirth) {
-
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-
 	public String getPassword() {
 
 		return password;
@@ -260,4 +264,15 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 
 		this.facilities = facilities;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender
+				+ ", mobileNo=" + mobileNo + ", emailId=" + emailId + ", dateOfBirth=" + dateOfBirth + ", password="
+				+ password + ", isMobileVerified=" + isMobileVerified + ", isEmailVerified=" + isEmailVerified
+				+ ", isUserVerified=" + isUserVerified + ", addresses=" + addresses + ", entityType=" + entityType
+				+ ", role=" + role + ", facilities=" + facilities + ", profile=" + profile + ", serviceReport="
+				+ serviceReport + "]";
+	}
+	
+	
 }

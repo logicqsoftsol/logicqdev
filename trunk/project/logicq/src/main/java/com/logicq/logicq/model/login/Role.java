@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.logicq.logicq.common.ConvertClass;
 import com.logicq.logicq.common.criteriamanager.BaseEntity;
-import com.logicq.logicq.model.task.TaskConstant;
 
+@ConvertClass(enable=true)
 @Entity
 @Table(name = "USER_ROLES")
 public class Role extends BaseEntity implements Serializable {

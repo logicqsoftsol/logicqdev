@@ -1,7 +1,7 @@
 package com.logicq.logicq.constant;
 
 public enum EntityType {
-	DOCTOR("doctor"), PLUMBER("plumber"), ELECTRICIAN("electrician");
+	DOCTOR("doctor"), PLUMBER("plumber"), ELECTRICIAN("electrician"), SERVICE_CONSUMER("serviceconsumer");
 
 	private String type;
 

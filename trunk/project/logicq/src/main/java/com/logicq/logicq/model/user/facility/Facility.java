@@ -1,15 +1,16 @@
 package com.logicq.logicq.model.user.facility;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.logicq.logicq.common.ConvertClass;
 import com.logicq.logicq.common.criteriamanager.BaseEntity;
 import com.logicq.logicq.model.user.UserConstant;
 
+@ConvertClass(enable=true)
 @Entity
 @Table(name = "USER_FACILITIES")
 public class Facility extends BaseEntity implements UserConstant, Serializable {

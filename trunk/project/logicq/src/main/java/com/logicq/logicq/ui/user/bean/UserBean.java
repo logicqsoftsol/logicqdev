@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -18,6 +19,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.util.StringUtils;
 
+import com.logicq.logicq.common.JSFUtil;
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.ui.search.bean.UserSearchBean;
 import com.logicq.logicq.ui.user.vo.UserRegistrationResponse;
@@ -75,7 +77,7 @@ public class UserBean implements Serializable {
 	private String acesscode;
 	
 	
-	
+
 	public UserSearchBean getUseSearchBean() {
 		return useSearchBean;
 	}
@@ -394,7 +396,13 @@ public class UserBean implements Serializable {
 		UserRegistrationResponse response = userManagedBean.addUser(this);
 		rendersignupform = "false";
 		otpformrender = "true";
+		JSFUtil.handleNavigation("register");
 		return "register";
+	}
+	
+	public String otpvalidate(){
+		JSFUtil.handleNavigation("index");
+		 return "index";
 	}
 
 	public String reset() {
@@ -557,7 +565,7 @@ public class UserBean implements Serializable {
 	public void handleFileUpload() {
 
 		String fileName = getFileNameFromPart(file);
-		String fileLocation = "D://" + fileName;
+		String fileLocation = "F://" + fileName;
 		try {
 			InputStream input = file.getInputStream();
 			Files.copy(input, new File(fileLocation).toPath());

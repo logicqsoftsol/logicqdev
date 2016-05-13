@@ -10,11 +10,8 @@
 
 	<ui:define name="content">
 		<h:outputStylesheet name="css/fileinput.css" />
-		<h:outputStylesheet name="css/bootstrap.min.css" />
 		<h:outputScript name="js/fileinput.js" />
-		<h:outputScript name="js/fileinput_locale_fr.js" />
 		<h:outputScript name="js/fileinput_locale_es.js" />
-		<h:outputScript name="js/jquery-1.9.1.js" />
 
 		<div class="col-sm-12">
 			<div class="col-xs-12 col-sm-8">
@@ -277,13 +274,9 @@
 										<h:outputText value="Validate Qualification" />
 									</div>
 									<div class="col-sm-6">
-										<h:form enctype="multipart/form-data">
-											<h:inputFile class="file" required="true" id="file"
-												value="#{userMB.file}">
-											</h:inputFile>
-											<b:commandButton value="Upload"
-												action="#{userMB.handleFileUpload}" id="uploadbtn" />
-										</h:form>
+										<b:button look="Primary" value="Upload"
+																		onclick="$('.modaluploaddocument').modal();return false; "
+																		icon="fa fa-upload" />
 									</div>
 
 								</div>

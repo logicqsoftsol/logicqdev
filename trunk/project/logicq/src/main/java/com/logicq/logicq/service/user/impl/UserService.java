@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +39,8 @@ import com.logicq.logicq.ui.user.vo.UserVO;
 @Transactional
 public class UserService implements IUserService {
 
+	final static Logger logger = Logger.getLogger(UserService.class);
+	
 	@Autowired
 	IUserDAO userDAO;
 	@Autowired
@@ -63,22 +66,10 @@ public class UserService implements IUserService {
 		UserVO userVO = userRequest.getUserVO();
 		Boolean isUserValid = validateUser(userRequest.getUserVO());
 		if (isUserValid) {
-			User user = userConversion.handleConversionVOtoEntityWithContext(userVO);
+			User user = userConversion.conversionFromVOtoEntity(userVO, User.class);
 			userDAO.addUser(user);
-			//insert into login table
-			Login loginDetails = setLoginDetails(user);
-			loginService.insertLoginDetails(loginDetails);
-			//call to email sending service.
-			//alertService.sendAlert(alertDetailsInputVO);
-			//Calling to task service for verify document
-			TaskVO taskVO = new TaskVO();
-			taskVO.setDescription("hardcode");
-			taskVO.setName("sudhanshu");
-			taskVO.setStatus("test");
-			taskVO.setPriority("High");
-			//itaskManagerService.addTask(taskVO);
 		} else {
-			//throw Exception
+			logger.info(" user already exist : uservalidation "+isUserValid);
 		}
 		return userResponse;
 	}
@@ -96,31 +87,9 @@ public class UserService implements IUserService {
 	}
 
 	private Boolean validateUser(UserVO userVO) {
-
-		Boolean validFields = checkNullValues(userVO);
-		if ( !validFields) {
-			return false;
-		}
 		Boolean isNewEmail = checkEmail(userVO.getEmailId());
-		Boolean isNewMobileNo = checkMobileNo(userVO.getMobileNo());
+		Boolean isNewMobileNo = checkMobileNo(userVO.getMobileno());
 		return (isNewEmail && isNewMobileNo);
-	}
-
-	private Boolean checkNullValues(UserVO userVO) {
-
-		if ((userVO.getEmailId() == null)
-		    || (userVO.getMobileNo() == null)
-		    || (userVO.getPassword() == null)
-		    || (userVO.getSurname() == null)
-		    || (userVO.getName() == null)
-		    || (userVO.getMobileNo() == "")
-		    || (userVO.getPassword() == "")
-		    || (userVO.getSurname() == "")
-		    || (userVO.getName() == "")
-		    || (userVO.getEmailId() == "")) {
-			return false;
-		}
-		return true;
 	}
 
 	private Boolean checkMobileNo(String mobileNo) {
@@ -141,7 +110,7 @@ public class UserService implements IUserService {
 	 */
 	public void deleteUser(UserVO user) {
 
-		User l_userentity = userConversion.handleConversionVOtoEntityWithContext(user);
+		User l_userentity = userConversion.conversionFromVOtoEntity(user, User.class);
 		userDAO.deleteUser(l_userentity);
 	}
 
@@ -153,7 +122,7 @@ public class UserService implements IUserService {
 	 */
 	public void updateUser(UserVO user) {
 
-		User l_userentity = userConversion.handleConversionVOtoEntityWithContext(user);
+		User l_userentity = userConversion.conversionFromVOtoEntity(user, User.class);
 		userDAO.updateUser(l_userentity);
 	}
 

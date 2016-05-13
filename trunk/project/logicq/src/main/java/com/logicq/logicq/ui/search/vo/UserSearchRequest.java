@@ -3,10 +3,9 @@ package com.logicq.logicq.ui.search.vo;
 import java.io.Serializable;
 import java.util.List;
 
-import com.logicq.logicq.common.LogicqHttpServletRequest;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
-public class UserSearchRequest extends LogicqHttpServletRequest implements Serializable {
+public class UserSearchRequest  implements Serializable {
 
 	/**
 	 * 

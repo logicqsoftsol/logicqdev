@@ -21,11 +21,15 @@
         </navigation-case> 
            <navigation-case>
             <from-outcome>searchresult</from-outcome>
-            <to-view-id>/pages/common/searchresult.xhtml</to-view-id>
+            <to-view-id>/searchresult.xhtml</to-view-id>
         </navigation-case> 
          <navigation-case>
             <from-outcome>admin</from-outcome>
             <to-view-id>/pages/admin/adminhome.xhtml</to-view-id>
+        </navigation-case> 
+         <navigation-case>
+            <from-outcome>register</from-outcome>
+            <to-view-id>/pages/validateotp.xhtml</to-view-id>
         </navigation-case>   
       </navigation-rule>
       
@@ -39,6 +43,14 @@
             <from-outcome>bookappoitment</from-outcome>
             <to-view-id>/pages/common/bookappoitment.xhtml</to-view-id>
         </navigation-case>   
+      </navigation-rule>
+      
+       <navigation-rule>
+        <from-view-id>/pages/validateotp.xhtml</from-view-id> 
+         <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case> 
       </navigation-rule>
      
 </faces-config>

@@ -1,6 +1,5 @@
 package com.logicq.logicq.ui.user.bean;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
-import org.primefaces.model.StreamedContent;
 import org.springframework.util.StringUtils;
 
 import com.logicq.logicq.ui.user.vo.FacilityVO;
@@ -26,7 +24,6 @@ public class ProfileBean {
 	private String feedback;
 	private String location;
 	private String fess;
-	private StreamedContent profileimage;
 	private String profileid;
 	private String bookingdate = null;
 	private EntityAvailabilityBean avilablityDetails;
@@ -170,15 +167,7 @@ public class ProfileBean {
 		this.profileid = profileid;
 	}
 
-	public StreamedContent getProfileimage() {
-
-		return profileimage;
-	}
-
-	public void setProfileimage(StreamedContent profileimage) {
-
-		this.profileimage = profileimage;
-	}
+	
 
 	public String getFullname() {
 
@@ -260,25 +249,7 @@ public class ProfileBean {
 		this.fess = fess;
 	}
 
-	public StreamedContent getImage() throws IOException {
-
-		// FacesContext context = FacesContext.getCurrentInstance();
-		//
-		// if (context.getCurrentInstance().getResponseComplete()) {
-		// // So, we're rendering the HTML. Return a stub StreamedContent so
-		// that it will generate right URL.
-		// return new DefaultStreamedContent();
-		// }
-		// else {
-		// // So, browser is requesting the image. Return a real StreamedContent
-		// with the image bytes.
-		//// String studentId =
-		// context.getExternalContext().getRequestParameterMap().get("studentId");
-		//// Student student = studentService.find(Long.valueOf(studentId));
-		// return new DefaultStreamedContent(new ByteArrayInputStream(null));
-		// }
-		return null;
-	}
+	
 	
 	private void defaultProfileRenderProperty() {
 		setProfileRendered(false);

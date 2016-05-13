@@ -1,5 +1,8 @@
 package com.logicq.logicq.ui.user.vo;
 
+import com.logicq.logicq.common.ConvertClass;
+
+@ConvertClass(enable=true)
 public class FacilityVO {
 
 	private Integer facilityID;
