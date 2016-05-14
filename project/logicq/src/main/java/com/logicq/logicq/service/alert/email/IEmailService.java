@@ -1,4 +1,6 @@
 package com.logicq.logicq.service.alert.email;
 
-public interface IEmailService {
+import com.logicq.logicq.service.alert.IAlertImplService;
+
+public interface IEmailService extends IAlertImplService{
 }
