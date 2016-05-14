@@ -2,7 +2,10 @@ package com.logicq.logicq.service.user.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.logicq.logicq.common.LogicqContextProvider;
+import com.logicq.logicq.constant.AlertType;
 import com.logicq.logicq.constant.CommunicationType;
 import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.conversion.user.UserConversion;
@@ -21,7 +25,7 @@ import com.logicq.logicq.service.alert.IAlertService;
 import com.logicq.logicq.service.login.IloginService;
 import com.logicq.logicq.service.task.ITaskManagerService;
 import com.logicq.logicq.service.user.IUserService;
-import com.logicq.logicq.ui.task.vo.TaskVO;
+import com.logicq.logicq.ui.alert.vo.AlertDetailsInputVO;
 import com.logicq.logicq.ui.user.vo.UserProfilesRequest;
 import com.logicq.logicq.ui.user.vo.UserProfilesResponse;
 import com.logicq.logicq.ui.user.vo.UserRegistrationRequest;
@@ -40,7 +44,6 @@ import com.logicq.logicq.ui.user.vo.UserVO;
 public class UserService implements IUserService {
 
 	final static Logger logger = Logger.getLogger(UserService.class);
-	
 	@Autowired
 	IUserDAO userDAO;
 	@Autowired
@@ -51,7 +54,6 @@ public class UserService implements IUserService {
 	IAlertService alertService;
 	//@Autowired
 	//AlertDetailsInputVO alertDetailsInputVO;
-
 	UserConversion userConversion = UserConversion.getInstance();
 
 	/**
@@ -68,10 +70,39 @@ public class UserService implements IUserService {
 		if (isUserValid) {
 			User user = userConversion.conversionFromVOtoEntity(userVO, User.class);
 			userDAO.addUser(user);
+			//insert into login table
+			Login loginDetails = setLoginDetails(user);
+			loginService.insertLoginDetails(loginDetails);
+			//build alert DTO
+			AlertDetailsInputVO alertDetailsInputVO = new AlertDetailsInputVO();
+			alertDetailsInputVO = buildAlertDetails(user,
+			                                        alertDetailsInputVO,
+			                                        "com.logicq.logicq.service.user.impl.UserService.addUser(UserRegistrationRequest, UserRegistrationResponse)");
+			//call to email sending service.
+			alertService.sendAlert(alertDetailsInputVO);
 		} else {
-			logger.info(" user already exist : uservalidation "+isUserValid);
+			logger.info(" user already exist : uservalidation " + isUserValid);
 		}
 		return userResponse;
+	}
+
+	private AlertDetailsInputVO buildAlertDetails(User user, AlertDetailsInputVO alertDetailsInputVO, String serviceId) {
+
+		String emailId = user.getEmailId();
+		Random ran = new Random();
+		int max = 999999;
+		int min = 100000;
+		int bound = ((max - min) + 1);
+		int randomNo = ran.nextInt(bound) + min;
+		Map<String, Object> nameValuePair = new HashMap<String, Object>();
+		nameValuePair.put("emailId", emailId);
+		nameValuePair.put("subject", "OTP for your new Account Creation");
+		nameValuePair.put("otpValue", String.valueOf(randomNo));
+		alertDetailsInputVO.setAlertType(AlertType.EMAIL);
+		alertDetailsInputVO.setNameValuePair(nameValuePair);
+		alertDetailsInputVO.setServiceId(serviceId);
+		alertDetailsInputVO.setUserId(user.getId());
+		return alertDetailsInputVO;
 	}
 
 	private Login setLoginDetails(User user) {
@@ -87,6 +118,7 @@ public class UserService implements IUserService {
 	}
 
 	private Boolean validateUser(UserVO userVO) {
+
 		Boolean isNewEmail = checkEmail(userVO.getEmailId());
 		Boolean isNewMobileNo = checkMobileNo(userVO.getMobileno());
 		return (isNewEmail && isNewMobileNo);
@@ -161,7 +193,7 @@ public class UserService implements IUserService {
 		List<UserVO> userVOs = new ArrayList<UserVO>();
 		EntityType entityType = request.getEntityType();
 		String area = request.getArea();
-		List<User> users =null;// userDAO.getParticularUsersForArea(entityType, area);
+		List<User> users = null;// userDAO.getParticularUsersForArea(entityType, area);
 		for (User user : users) {
 			UserVO userVO = LogicqContextProvider.getApplicationContext().getBean(UserVO.class);
 			userVO = userConversion.conversionFromEntitytoVO(user, userVO);
