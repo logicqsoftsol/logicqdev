@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import com.logicq.logicq.common.JSFUtil;
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.ui.user.bean.EntityAvailabilityBean;
 import com.logicq.logicq.ui.user.bean.EntityAvalAtLocationBean;
@@ -41,31 +42,10 @@ public class UserSearchBean implements Serializable {
 	
 
 	public String searchUsers() {
-		//UserSearchManagedBean userSearchManagedBean = LogicqContextProvider.getApplicationContext().getBean(UserSearchManagedBean.class);
-		//userSearchManagedBean.searchUsers(this);
-		profiles=new ArrayList<ProfileBean>();
-		ProfileBean profile=(ProfileBean) LogicqContextProvider.getBean("profileMB");
-				profile.setFullname("Test001");
-				profile.setFeedback("100");
-				profile.setFess("400");
-				profile.setFullname("Test For each");
-				profile.setLocation("Pune");
-				profile.setRecomendation("200");
-				profile.setSpcification("Phd");
-				profile.setProfileid("Test101");
-				profile.setBookingdate(new Date().toString());
-				profile.setUserImage("pages/userImage/1000.jpg");
-				List<FacilityVO> facilities = new ArrayList<FacilityVO>();
-				profile.setFacilityDetails(facilities);
-				EntityAvailabilityBean avialen = new EntityAvailabilityBean();
-				avialen.setAvilabledate(new Date());
-				avialen.setEntityid("Test101");
-				avialen.setProfileid("Test101");
-				List<EntityAvalAtLocationBean> enetiyavalloc = avialen.getEntityavalloc("Test101", new Date());
-				avialen.setEntityavalloc(enetiyavalloc);
-				profile.setAvilablityDetails(avialen);
-				profiles.add(profile);
+		UserSearchManagedBean userSearchManagedBean = LogicqContextProvider.getApplicationContext().getBean(UserSearchManagedBean.class);
+		userSearchManagedBean.searchUsers(this);
 			LogicqContextProvider.addElementFromApplicationMap("profileMB", profiles);
+			JSFUtil.handleNavigation("searchresult");
 		return "searchresult";
 	}
 

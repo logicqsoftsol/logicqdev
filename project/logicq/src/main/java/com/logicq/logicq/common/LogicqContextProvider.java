@@ -10,8 +10,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import com.logicq.logicq.ui.user.bean.ProfileBean;
-
 public class LogicqContextProvider implements ApplicationContextAware {
 
 	private static ApplicationContext context;
@@ -52,5 +50,9 @@ public class LogicqContextProvider implements ApplicationContextAware {
 
 	public static void addElementFromApplicationMap(String key ,Object value){
 		conversationMap.put(key, value);
+	}
+	
+	public static Object getBeanFromContext(Class claz) {
+		return getApplicationContext().getBean(claz);
 	}
 }

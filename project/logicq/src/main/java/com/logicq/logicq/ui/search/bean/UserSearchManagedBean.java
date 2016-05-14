@@ -13,8 +13,7 @@ import com.logicq.logicq.ui.user.vo.UserVO;
 public class UserSearchManagedBean {
 
 	public List<UserVO> searchUsers(UserSearchBean userSearchBean) {
-		UserSearchBeanHelper userSearchBeanHelper = LogicqContextProvider.getApplicationContext()
-				.getBean(UserSearchBeanHelper.class);
+		UserSearchBeanHelper userSearchBeanHelper = (UserSearchBeanHelper) LogicqContextProvider.getBeanFromContext(UserSearchBeanHelper.class);
 		UserSearchVO uservo = userSearchBeanHelper.searchUsers(userSearchBean);
 		return uservo.getUservo();
 	}

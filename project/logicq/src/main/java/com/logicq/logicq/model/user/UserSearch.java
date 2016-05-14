@@ -2,6 +2,9 @@ package com.logicq.logicq.model.user;
 
 import javax.validation.constraints.NotNull;
 
+import com.logicq.logicq.common.ConvertClass;
+
+@ConvertClass(enable=true)
 public class UserSearch {
 	
 	private String city;
