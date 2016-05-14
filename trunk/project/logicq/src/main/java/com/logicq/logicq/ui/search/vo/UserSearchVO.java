@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import com.logicq.logicq.common.ConvertClass;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
+@ConvertClass(enable=true)
 public class UserSearchVO {
 
 	private String city;
