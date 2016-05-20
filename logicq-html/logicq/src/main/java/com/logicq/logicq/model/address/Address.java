@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,9 +54,11 @@ public class Address extends BaseEntity implements AddressConstant, Serializable
 	@Column(name = "COMMUNICATION_ADDRESS_TYPE", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private ComunicationAddress communicationaddress;
-	@ManyToOne
+	
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "USER_ID", nullable = true)
 	private User user;
+	
 	@Column(name = "DEFAULT_ADDRESS_FLAG", nullable = false)
 	private Boolean defaultAddressFlag;
 	@Column(name = "CONTACT_TYPE", nullable = false)

@@ -35,7 +35,7 @@ public class EntityRole extends BaseEntity{
     
     	this.entityName = entityName;
     }
-@Id
+  @Id
  @Column(name = "ENTITYID", unique = true, nullable = false)
  @GeneratedValue(strategy = GenerationType.IDENTITY)
  private Long entityId;

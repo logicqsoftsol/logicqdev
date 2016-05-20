@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.common.LogicqConversion;
+import com.logicq.logicq.conversion.user.UserConversion;
 import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.map.LocationMap;
 import com.logicq.logicq.model.user.User;
@@ -14,6 +15,7 @@ import com.logicq.logicq.ui.user.vo.UserVO;
 public class AddressConversion {
 	
 	private static AddressConversion instance;
+	private UserConversion userconversion;
 
 	public static AddressConversion getInstance() {
 		if (null == instance) {
@@ -27,6 +29,7 @@ public class AddressConversion {
 	 */
 	public static List<Address> conversionFromVOtoEntity(List<AddressVO> addressvolist, Class claz) {
 		LogicqConversion<Address> votoentity = new LogicqConversion<Address>();
+	//	LogicqConversion<User> uservotoentity = new LogicqConversion<User>();
 		List<Address>  addresentitylist=null;
 		try {
 			addresentitylist= (List<Address>) votoentity.objectConversionForList(addressvolist, Address.class);
@@ -50,6 +53,7 @@ public class AddressConversion {
 		} catch (Exception e) {
 
 		}
+     System.out.println(addresentitylist);
 		return addresentitylist;
 	}
 	

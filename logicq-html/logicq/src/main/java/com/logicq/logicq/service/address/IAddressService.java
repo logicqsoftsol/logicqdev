@@ -11,8 +11,6 @@ public interface IAddressService {
 
 	public List<AddressVO> getAllAddress();
 
-	public List<EntityRole> getEntity();
-	
-	public List<User> getAddressList();
+	public String getListofAllAddress();
 }
 

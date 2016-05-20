@@ -39,4 +39,10 @@ public class AddressService implements IAddressService {
 	public List<User> getAddressList() {
 		return userService.getUsers();
 	}
+
+
+	public String getListofAllAddress() {
+		List<AddressVO> addresslist=	getAllAddress();
+		 return addresslist.toString();
+	}
 }

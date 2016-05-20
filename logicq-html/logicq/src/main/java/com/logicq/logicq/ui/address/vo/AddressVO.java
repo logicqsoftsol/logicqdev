@@ -1,10 +1,17 @@
 package com.logicq.logicq.ui.address.vo;
 
+import java.io.Serializable;
+
 import com.logicq.logicq.common.ConvertClass;
 
 @ConvertClass
-public class AddressVO {
+public class AddressVO implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4190827315703182806L;
+	private String addressId;
 	private String housenumber;
 	private String floornumber;
 	private String buldingnumber;
@@ -19,6 +26,12 @@ public class AddressVO {
 	private String mobilenumber;
 	private String email;
 	
+	public String getAddressId() {
+		return addressId;
+	}
+	public void setAddressId(String addressId) {
+		this.addressId = addressId;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -97,5 +110,17 @@ public class AddressVO {
 	public void setMobilenumber(String mobilenumber) {
 		this.mobilenumber = mobilenumber;
 	}
+	
+	public String jsonadresslistdropdown() {
+     return "{addressId:" + addressId + "," + " value : '" + landmarkname + " " + city + " " + pincode + "'}".trim();
+	}
+	
+	
+	@Override
+	public String toString() {
+		return jsonadresslistdropdown();
+	}
+	
+	
 
 }
