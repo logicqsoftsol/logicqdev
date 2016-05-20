@@ -12,21 +12,21 @@ public class LogicqCriteriaHandler {
 		return session.createCriteria(p_class);
 	}
 
-	public List<? extends BaseEntity> executeCriteria(Criteria criteria,
+	public List<?> executeCriteria(Criteria criteria,
 			List<? extends LogicqFilterObject> p_filterObjectList,
 			DataFetchType p_dataFetchType) {
 		return executeCriteriaDetails(p_filterObjectList, p_dataFetchType,
 				criteria);
 	}
 
-	public List<? extends BaseEntity> executeCriteria(Session session,
+	public List<?> executeCriteria(Session session,
 			List<? extends LogicqFilterObject> p_filterObjectList,
 			DataFetchType p_dataFetchType, Class p_class) {
 		return executeCriteriaDetails(p_filterObjectList,
 				p_dataFetchType, createCriteria(session,p_class));
 	}
 
-	public List<? extends BaseEntity> executeCriteriaDetails(
+	public List<? > executeCriteriaDetails(
 			List<? extends LogicqFilterObject> p_filterObjectList,
 			DataFetchType p_dataFetchType, Criteria criteria) {
 		criteria = createFiltedQuery(criteria, p_filterObjectList);
@@ -36,7 +36,7 @@ public class LogicqCriteriaHandler {
 		return null;
 	}
 
-	private List<? extends BaseEntity> findListObject(Criteria criteria) {
+	private List<? > findListObject(Criteria criteria) {
 		return criteria.list();
 	}
 
@@ -49,11 +49,11 @@ public class LogicqCriteriaHandler {
 						p_filterObject.getFieldvalue()));
 			}else if (p_filterObject.getRestricationtype().equals(
 					LogicqRestrictions.BETWEEN)) {
-//				p_criteria.add(Restrictions.between(p_filterObject.getFieldname(),
-//						p_filterObject.getFieldvalue()));
 			   }
 		}
 
 		return p_criteria;
 	}
+	
+	
 }
