@@ -72,7 +72,7 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 	private Boolean isEmailVerified;
 	@Column(name = "USER_VERIFICATION_FLAG", unique = true, nullable = false)
 	private Boolean isUserVerified;
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "user")
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Address> addresses;
 	@Column(name = "ENTITY_TYPE", nullable = false)
 	@Enumerated(EnumType.STRING)

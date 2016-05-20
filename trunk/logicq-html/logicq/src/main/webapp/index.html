@@ -34,24 +34,6 @@
 		Pleasure.init();
 		Layout.init();
 		FormsWizard.init();
-            function displayResult(item) {
-                $('.alert').show().html('You selected <strong>' + item.value + '</strong>: <strong>' + item.text + '</strong>');
-            }
-            $('#location').typeahead({
-                source: [
-                    {id: 1, name: 'Toronto'},
-                    {id: 2, name: 'Montreal'},
-                    {id: 3, name: 'New York'},
-                    {id: 4, name: 'Buffalo'},
-                    {id: 5, name: 'Boston'},
-                    {id: 6, name: 'Columbus'},
-                    {id: 7, name: 'Dallas'},
-                    {id: 8, name: 'Vancouver'},
-                    {id: 9, name: 'Seattle'},
-                    {id: 10, name: 'Los Angeles'}
-                ],
-                onSelect: displayResult
-            });
 	});
 	$('#scroll').perfectScrollbar('update');
 	</script>
