@@ -191,7 +191,7 @@ public class UserService implements IUserService {
 		//String area = request.getArea();
 		List<User> users = null;// userDAO.getParticularUsersForArea(entityType, area);
 		for (User user : users) {
-			UserVO userVO = LogicqContextProvider.getApplicationContext().getBean(UserVO.class);
+			UserVO userVO = new UserVO();//LogicqContextProvider.getApplicationContext().getBean(UserVO.class);
 			userVO = userConversion.conversionFromEntitytoVO(user, userVO);
 			userVOs.add(userVO);
 		}

@@ -26,14 +26,7 @@ public class UserSearchConversion {
 	 * 
 	 */
 	public UserSearch conversionFromVOtoEntity(UserSearchVO usersearchVO, Class claz) {
-		LogicqConversion<UserSearch> votoentity = new LogicqConversion<UserSearch>();
-		UserSearch usersearch=null;
-		try {
-			usersearch = votoentity.objectConversion(usersearchVO, UserSearch.class);
-		} catch (Exception e) {
-		
-		}
-		return usersearch;
+		return (UserSearch) LogicqConversion.objectConversion(usersearchVO, UserSearch.class);
 	}
 
 	/**
@@ -43,12 +36,7 @@ public class UserSearchConversion {
 	 * @return
 	 */
 	public UserSearchVO conversionFromEntitytoVO(UserSearch usersearch, UserSearchVO usersearchVO) {
-		LogicqConversion<UserSearchVO> votoentity = new LogicqConversion<UserSearchVO>();
-		try {
-			usersearchVO = votoentity.objectConversion(usersearch, UserSearchVO.class);
-		} catch (Exception e) {
-
-		}
+			usersearchVO = (UserSearchVO) LogicqConversion.objectConversion(usersearch, UserSearchVO.class);
 		return usersearchVO;
 	}
 
