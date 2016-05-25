@@ -20,7 +20,7 @@ public class MapController {
 	
 	@RequestMapping(value = "/getAllLocation", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> getAllLocationOptioon() {
-		String adressoption = addressservice.getListofAllAddress();
+		String adressoption =null;// addressservice.getListofAllAddress();
 		if (StringUtils.isEmpty(adressoption)) {
 			new ResponseEntity<String>(adressoption, HttpStatus.BAD_REQUEST);
 		}

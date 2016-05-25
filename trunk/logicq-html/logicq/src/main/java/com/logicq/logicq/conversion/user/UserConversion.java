@@ -9,7 +9,7 @@ import com.logicq.logicq.ui.user.vo.UserVO;
 public class UserConversion {
 
 	final static Logger logger = Logger.getLogger(UserConversion.class);
-	
+
 	private static UserConversion instance;
 
 	public static UserConversion getInstance() {
@@ -20,18 +20,12 @@ public class UserConversion {
 		return instance;
 	}
 
+	
 	/*
 	 * 
 	 */
 	public User conversionFromVOtoEntity(UserVO userVO, Class claz) {
-		LogicqConversion<User> votoentity = new LogicqConversion<User>();
-		User user=null;
-		try {
-			user = votoentity.objectConversion(userVO, User.class);
-		} catch (Exception e) {
-		
-		}
-		return user;
+		return (User) LogicqConversion.objectConversion(userVO, User.class);
 	}
 
 	/**
@@ -41,12 +35,7 @@ public class UserConversion {
 	 * @return
 	 */
 	public UserVO conversionFromEntitytoVO(User user, UserVO userVO) {
-		LogicqConversion<UserVO> votoentity = new LogicqConversion<UserVO>();
-		try {
-			userVO = votoentity.objectConversion(user, UserVO.class);
-		} catch (Exception e) {
 
-		}
-		return userVO;
+		return (UserVO) LogicqConversion.objectConversion(user, UserVO.class);
 	}
 }

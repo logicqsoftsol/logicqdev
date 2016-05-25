@@ -1,11 +1,13 @@
 package com.logicq.logicq.model.user;
 
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 
 import com.logicq.logicq.common.ConvertClass;
 
 @ConvertClass(enable=true)
-public class UserSearch {
+public class UserSearch implements UserSearchConstant{
 	
 	private String city;
 	@NotNull
@@ -18,9 +20,17 @@ public class UserSearch {
 	private String pincode;
 	@NotNull
 	private String searchText;
-	private String entity;
 	@NotNull
 	private String searchlocation;
+	private List<User> user;
+	
+	
+	public List<User> getUser() {
+		return user;
+	}
+	public void setUser(List<User> user) {
+		this.user = user;
+	}
 	public String getCity() {
 		return city;
 	}
@@ -68,12 +78,6 @@ public class UserSearch {
 	}
 	public void setSearchText(String searchText) {
 		this.searchText = searchText;
-	}
-	public String getEntity() {
-		return entity;
-	}
-	public void setEntity(String entity) {
-		this.entity = entity;
 	}
 	public String getSearchlocation() {
 		return searchlocation;

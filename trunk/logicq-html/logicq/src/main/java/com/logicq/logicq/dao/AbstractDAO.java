@@ -147,4 +147,14 @@ public class AbstractDAO<T> {
 		} 
 		return criteria.list();
 	}
+	
+	public List<?> execcuteQuery(String queryString) {
+		Query query = getCurrentSession().createQuery(queryString);
+		return query.list();
+	}
+	
+	public List<?> execcuteSQLQuery(String queryString) {
+		Query query = getCurrentSession().createSQLQuery(queryString);
+		return query.list();
+	}
 }

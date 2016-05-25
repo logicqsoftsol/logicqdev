@@ -9,7 +9,7 @@ import org.hibernate.criterion.Restrictions;
 public class LogicqCriteriaHandler {
 
 	public Criteria createCriteria(Session session, Class p_class) {
-		return session.createCriteria(p_class);
+		return session.createCriteria(p_class,p_class.getSimpleName().toLowerCase());
 	}
 
 	public List<?> executeCriteria(Criteria criteria,
