@@ -12,5 +12,6 @@ public interface UserConstant {
 	public static final String GET_USERS_NEAR_ADDRESS = "GET_USERS_NEAR_ADDRESS";
 	public static final String GET_USERS_NEAR_ADDRESS_QRY = "from User u where u.id = (select a.user.id from Address a where a.city = :city)";
 	public static final String GET_PARTICULAR_USERS_NEAR_ADDRESS = "GET_PARTICULAR_USERS_NEAR_ADDRESS";
-	public static final String GET_PARTICULAR_USERS_NEAR_ADDRESS_QRY = "from User u where u.entityType = :entityType and u.id = (select a.user.id from Address a where a.city = :city)";
+	public static final String GET_PARTICULAR_USERS_NEAR_ADDRESS_QRY = "from User u where u.entityType = :entityType and u.id = (select a.user.id from Address a where a.addressId = :addressId)";
 }
+					

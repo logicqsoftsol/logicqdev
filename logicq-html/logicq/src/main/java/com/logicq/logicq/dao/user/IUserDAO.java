@@ -19,7 +19,7 @@ public interface IUserDAO {
 	/**
 	 * Add User
 	 * 
-	 * @param User
+	 * @param LoginUser
 	 *            user
 	 */
 	public void addUser(User user);
@@ -27,7 +27,7 @@ public interface IUserDAO {
 	/**
 	 * Update User
 	 * 
-	 * @param User
+	 * @param LoginUser
 	 *            user
 	 */
 	public void updateUser(User user);
@@ -35,7 +35,7 @@ public interface IUserDAO {
 	/**
 	 * Delete User
 	 * 
-	 * @param User
+	 * @param LoginUser
 	 *            user
 	 */
 	public void deleteUser(User user);

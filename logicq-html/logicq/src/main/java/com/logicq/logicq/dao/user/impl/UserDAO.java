@@ -132,10 +132,11 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<User> getAllEntityAccordingtoLocation(UserSearch usersearch) {
-		//LogicqCriteriaHandler l_crietria = new LogicqCriteriaHandler();
-		//Criteria criterialist = formQueryParams(usersearch, l_crietria);
-		String query=" from User usr  INNER JOIN usr.addresses addr where addr.city='Pune'";
-		return (List<User>)execcuteQuery(query);
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("entityType", usersearch.getSearchText());
+		params.put("addressId", usersearch.getAddressid());
+		return  (List<User>) executeNamedQuery(UserConstant.GET_PARTICULAR_USERS_NEAR_ADDRESS, params);
 	}
 
 	private Criteria formQueryParams(UserSearch usersearch,LogicqCriteriaHandler l_crietria) {

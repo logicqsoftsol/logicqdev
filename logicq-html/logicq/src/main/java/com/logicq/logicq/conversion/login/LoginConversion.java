@@ -19,11 +19,11 @@ public class LoginConversion {
 	public Login conversionFromVOtoEntity(LoginVO loginvo, Login loginuser) {
 
 		loginuser.setEmail(loginvo.getEmail());
-		loginuser.setPhonnumber(loginvo.getPhonnumber());
-		loginuser.setIpaddress(loginvo.getIpaddress());
-		loginuser.setLastlogindate(loginvo.getLastlogindate());
-		loginuser.setLoginattempcounts(loginvo.getLoginattempcounts());
-		loginuser.setUserid(loginvo.getUserid());
+//		loginuser.setPhonnumber(loginvo.getPhonnumber());
+//		loginuser.setIpaddress(loginvo.getIpaddress());
+//		loginuser.setLastlogindate(loginvo.getLastlogindate());
+//		loginuser.setLoginattempcounts(loginvo.getLoginattempcounts());
+//		loginuser.setUserid(loginvo.getUserid());
 		loginuser.setPassword(loginvo.getPassword());
 		return loginuser;
 	}
@@ -31,11 +31,11 @@ public class LoginConversion {
 	public LoginVO conversionFromEntitytoVO(Login loginuser, LoginVO loginvo) {
 
 		loginvo.setEmail(loginuser.getEmail());
-		loginvo.setPhonnumber(loginuser.getPhonnumber());
-		loginvo.setIpaddress(loginuser.getIpaddress());
-		loginvo.setLastlogindate(loginuser.getLastlogindate());
-		loginvo.setLoginattempcounts(loginuser.getLoginattempcounts());
-		loginvo.setUserid(loginuser.getUserid());
+//		loginvo.setPhonnumber(loginuser.getPhonnumber());
+//		loginvo.setIpaddress(loginuser.getIpaddress());
+//		loginvo.setLastlogindate(loginuser.getLastlogindate());
+//		loginvo.setLoginattempcounts(loginuser.getLoginattempcounts());
+//		loginvo.setUserid(loginuser.getUserid());
 		loginvo.setPassword(loginuser.getPassword());
 		return loginvo;
 	}
@@ -43,9 +43,6 @@ public class LoginConversion {
 	public Login handleConversionVOtoEntityWithContext(LoginVO loginvo) {
 
 		Login loginentity = null;
-		if (null != LogicqContextProvider.getApplicationContext()) {
-			loginentity = LogicqContextProvider.getApplicationContext().getBean(Login.class);
-		}
 		if (null == loginentity) {
 			loginentity = new Login();
 		}

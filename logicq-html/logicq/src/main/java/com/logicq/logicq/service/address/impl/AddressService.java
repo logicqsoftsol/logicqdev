@@ -59,6 +59,7 @@ public class AddressService implements IAddressService {
 			basesearch.setFirstname(addr.getUser().getFirstName());
 			basesearch.setLastname(addr.getUser().getLastName());
 			basesearch.setEntityType(addr.getUser().getEntityType());
+			
 			addresslist.add(basesearch);
 		}
 		return addresslist;

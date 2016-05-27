@@ -55,7 +55,7 @@ public class UserService implements IUserService {
 	/**
 	 * Add User
 	 * 
-	 * @param User
+	 * @param LoginUser
 	 *            user
 	 */
 	@ExceptionHandler(Exception.class)
@@ -133,7 +133,7 @@ public class UserService implements IUserService {
 	/**
 	 * Delete User
 	 * 
-	 * @param User
+	 * @param LoginUser
 	 *            user
 	 */
 	public void deleteUser(UserVO user) {
@@ -145,7 +145,7 @@ public class UserService implements IUserService {
 	/**
 	 * Update User
 	 * 
-	 * @param User
+	 * @param LoginUser
 	 *            user
 	 */
 	public void updateUser(UserVO user) {

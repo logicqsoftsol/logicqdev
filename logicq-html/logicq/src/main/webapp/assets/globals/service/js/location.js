@@ -2,7 +2,7 @@ var addresslist='';
 $(document).ready(function() {
     $.ajax({
 		method: 'GET',
-        url: "http://127.0.0.1:8090/logicq/map/getAllLocation",
+        url: "http://127.0.0.1:8090/logicq/app/login",
 		 dataType : "json",
 		contentType: "application/json",
 		cache:true,
