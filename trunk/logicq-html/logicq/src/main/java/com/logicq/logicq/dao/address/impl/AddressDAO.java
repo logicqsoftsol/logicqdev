@@ -15,6 +15,8 @@ import com.logicq.logicq.ui.search.vo.BaseSearchVO;
 @Repository
 public class AddressDAO extends AbstractDAO<Address> implements IAddressDAO {
 
+	private static final String STRATUP_ADDRESS_LOAD = "select distinct addr from Address addr inner join addr.user";
+
 	public void addAddress(Address address) {
 	}
 
@@ -41,7 +43,7 @@ public class AddressDAO extends AbstractDAO<Address> implements IAddressDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Address> getListofAllAddressandBasicUserinfo() {
-		String query =  "select distinct addr from Address addr inner join addr.user";
+		String query =  STRATUP_ADDRESS_LOAD;
 		return  (List<Address>) execcuteQuery(query);
 	}
 }

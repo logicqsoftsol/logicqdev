@@ -29,7 +29,7 @@ public class SearchController {
 	@Autowired
 	IUserSearchService usersearch;
 	
-	@RequestMapping(value = "/map/getAllLocation", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/map/getAlllocation", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<BaseSearchVO>> getAllLocationOptioon() {
 		List<BaseSearchVO> alladdressdetails = addressservice.getListofAllAddressandBasicUserinfo();
 //		if (StringUtils.isEmpty(adressoption)) {
@@ -41,10 +41,10 @@ public class SearchController {
 	@RequestMapping(value = "/user/getAlluserforlocation", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<UserVO>> getAlluserforlocation() {
 		UserSearchVO luser = new UserSearchVO();
-		luser.setCity("pune");
+		//luser.setCity("pune");
 		luser.setSearchText("DOCTOR");
 		UserSearchVO uservo = usersearch.searchUsers(luser);
-		List<UserVO> user = uservo.getUservo();
+		List<UserVO> user = null;//uservo.getUservo();
 		if (null == user || user.isEmpty()) {
 			new ResponseEntity<List<UserVO>>(user, HttpStatus.BAD_REQUEST);
 		}

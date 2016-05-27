@@ -20,7 +20,7 @@ public interface IUserService {
 	/**
 	 * Add User
 	 * 
-	 * @param User
+	 * @param LoginUser
 	 *            user
 	 */
 	public UserVO addUser(UserVO userRequest);
@@ -28,7 +28,7 @@ public interface IUserService {
 	/**
 	 * Update User
 	 * 
-	 * @param User
+	 * @param LoginUser
 	 *            user
 	 */
 	@ExceptionHandler(Exception.class)
@@ -37,7 +37,7 @@ public interface IUserService {
 	/**
 	 * Delete User
 	 * 
-	 * @param User
+	 * @param LoginUser
 	 *            user
 	 */
 	@ExceptionHandler(Exception.class)

@@ -32,7 +32,6 @@ public class UserSearchService implements IUserSearchService {
 	public UserSearchVO searchUsers(@Validated UserSearchVO userSearchVO) {
 		UserSearch usersearch= usersearchConversion.conversionFromVOtoEntity(userSearchVO, UserSearch.class);
 		List<User>  users=	userDAO.getAllEntityAccordingtoLocation(usersearch);
-		usersearch.setUser(users);
 		return usersearchConversion.conversionFromEntitytoVO(usersearch, userSearchVO);
 	}
 }
