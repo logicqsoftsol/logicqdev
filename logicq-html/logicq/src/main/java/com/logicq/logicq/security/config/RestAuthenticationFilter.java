@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
@@ -30,10 +33,13 @@ public class RestAuthenticationFilter extends GenericFilterBean {
 	private static final Logger LOGGER = Logger.getLogger(RestAuthenticationFilter.class);
 	private final TokenAuthenticationService tokenAuthenticationService;
 	private UserService userService;
-
+	
+    private PasswordEncoder passwordEncoder;
+	
 	public RestAuthenticationFilter(UserService userService, TokenAuthenticationService tokenAuthenticationService) {
 		this.tokenAuthenticationService = tokenAuthenticationService;
 		this.userService = userService;
+		this.passwordEncoder=new BCryptPasswordEncoder();
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
@@ -49,10 +55,9 @@ public class RestAuthenticationFilter extends GenericFilterBean {
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 
 			} else if (httpRequest.getRequestURI().endsWith("login")) {
-
 				String username = (String) httpRequest.getHeader("userName");
 				String password = (String) httpRequest.getHeader("password");
-				UserDetails userDetails = userService.checkUserDetails(username, password);
+				UserDetails userDetails = userService.checkUserDetails(username, passwordEncoder.encode(password));
 				final String authtoken = tokenAuthenticationService.getTokenHandler()
 						.createTokenForUser((LoginUserVO) userDetails);
 				((LoginUserVO) userDetails).setToken(authtoken);
