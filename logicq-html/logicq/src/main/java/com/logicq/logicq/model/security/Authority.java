@@ -2,10 +2,14 @@ package com.logicq.logicq.model.security;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import com.logicq.logicq.common.ConvertClass;
+
 import java.util.List;
 
 @Entity
 @Table(name = "AUTHORITY")
+@ConvertClass
 public class Authority {
 
     @Id

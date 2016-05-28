@@ -26,6 +26,7 @@ import com.logicq.logicq.service.login.IloginService;
 import com.logicq.logicq.service.task.ITaskManagerService;
 import com.logicq.logicq.service.user.IUserService;
 import com.logicq.logicq.ui.alert.vo.AlertDetailsInputVO;
+import com.logicq.logicq.ui.security.LoginUserVO;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
 /**
@@ -160,9 +161,9 @@ public class UserService implements IUserService {
 	 * @param int
 	 *            User Id
 	 */
-	public User getUserById(Long id) {
-
-		return userDAO.getUserById(id);
+	public UserVO getUserById(Long id) {
+		User user=userDAO.getUserById(id);
+		return userConversion.conversionFromEntitytoVO(user, UserVO.class);
 	}
 
 	/**
@@ -191,10 +192,11 @@ public class UserService implements IUserService {
 		//String area = request.getArea();
 		List<User> users = null;// userDAO.getParticularUsersForArea(entityType, area);
 		for (User user : users) {
-			UserVO userVO = new UserVO();//LogicqContextProvider.getApplicationContext().getBean(UserVO.class);
-			userVO = userConversion.conversionFromEntitytoVO(user, userVO);
+			UserVO	userVO = userConversion.conversionFromEntitytoVO(user, UserVO.class);
 			userVOs.add(userVO);
 		}
 		return request;
 	}
+	
+	
 }

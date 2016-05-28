@@ -19,8 +19,11 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.logicq.logicq.common.ConvertClass;
+
 @Entity
 @Table(name = "LOGINUSER")
+@ConvertClass
 public class LoginUser {
 
     @Id

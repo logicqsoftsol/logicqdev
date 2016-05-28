@@ -26,5 +26,10 @@ public class LoginVO {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		return "LoginVO [email=" + email + ", password=" + password + "]";
+	}
+
 	
 }

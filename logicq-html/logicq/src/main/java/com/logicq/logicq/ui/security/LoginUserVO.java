@@ -7,7 +7,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.logicq.logicq.common.ConvertClass;
 
+@ConvertClass
 public class LoginUserVO implements UserDetails {
 
     private final Long id;

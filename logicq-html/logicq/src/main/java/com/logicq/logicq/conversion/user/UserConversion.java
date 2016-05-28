@@ -34,7 +34,7 @@ public class UserConversion {
 	 * @param userVO
 	 * @return
 	 */
-	public UserVO conversionFromEntitytoVO(User user, UserVO userVO) {
+	public UserVO conversionFromEntitytoVO(User user, Class claz) {
 
 		return (UserVO) LogicqConversion.objectConversion(user, UserVO.class);
 	}
