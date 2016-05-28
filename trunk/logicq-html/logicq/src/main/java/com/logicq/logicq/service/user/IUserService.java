@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.logicq.logicq.constant.CommunicationType;
 import com.logicq.logicq.model.user.User;
+import com.logicq.logicq.ui.security.LoginUserVO;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
 /**
@@ -50,7 +51,7 @@ public interface IUserService {
 	 *            User Id
 	 */
 	@ExceptionHandler(Exception.class)
-	public User getUserById(Long id);
+	public UserVO getUserById(Long id);
 
 	/**
 	 * Get User List
@@ -68,4 +69,5 @@ public interface IUserService {
 
 	@ExceptionHandler(Exception.class)
 	public UserVO getParticularUsersForArea(UserVO request);
+		
 }

@@ -1,6 +1,4 @@
-  $(document).ready(function(){
-        // click on button submit
-        $("#login").submit(function(){
+  $("#login").submit(function(){
 		  var formdata=$("#loginform").serializeJSON();
 			$.ajax({
 			  type: "POST",
@@ -12,5 +10,4 @@
 			    alert("login sucess  "+result.email);
 			  }
 			});
-        });
-    });
+ });

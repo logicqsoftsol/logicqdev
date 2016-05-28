@@ -1,6 +1,7 @@
 package com.logicq.logicq.dao.login.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,9 @@ import com.logicq.logicq.dao.AbstractDAO;
 import com.logicq.logicq.dao.login.ILoginDAO;
 import com.logicq.logicq.dao.login.LoginFilter;
 import com.logicq.logicq.model.login.Login;
+import com.logicq.logicq.model.security.Authority;
+import com.logicq.logicq.model.security.AuthorityName;
+import com.logicq.logicq.model.security.LoginUser;
 
 @Repository
 public class LoginDAO extends AbstractDAO<Login> implements ILoginDAO {
@@ -52,4 +56,24 @@ public class LoginDAO extends AbstractDAO<Login> implements ILoginDAO {
 	public void insertLoginDetails(Login login) {
 		save(login);
 	}
+
+	@Override
+	public LoginUser fethchUser(String username, String password) {
+		LoginUser userentity = new LoginUser();
+		if ("Test".equalsIgnoreCase(username)) {
+			userentity.setUsername(username);
+			userentity.setFirstname("Test");
+			userentity.setEmail("test@gmail.com");
+			userentity.setEnabled(Boolean.TRUE);
+			userentity.setLastname("test");
+			userentity.setLastPasswordResetDate(new Date());
+			List<Authority> authorities = new ArrayList<Authority>();
+			Authority auth = new Authority();
+			auth.setId(new Long(123));
+			auth.setName(AuthorityName.ROLE_ADMIN);
+			authorities.add(auth);
+			userentity.setAuthorities(authorities);
+		}
+		return userentity;
+}
 }
