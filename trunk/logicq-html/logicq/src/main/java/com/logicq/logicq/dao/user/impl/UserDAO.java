@@ -63,7 +63,7 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 	public Boolean checkMobileNo(String mobileNo) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("mobileNo", mobileNo);
+		params.put("phone", mobileNo);
 		@SuppressWarnings("unchecked")
 		List<User> users = (List<User>) executeNamedQuery(UserConstant.GET_MOBILE_NO, params);
 		if (users != null && !users.isEmpty() && (users.size() > 0)) {
@@ -76,7 +76,7 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 	public Boolean checkEmail(String emailId) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("emailId", emailId);
+		params.put("email", emailId);
 		List<User> users = (List<User>) executeNamedQuery(UserConstant.GET_EMAIL_ID, params);
 		if (users != null && !users.isEmpty() && (users.size() > 0)) {
 			return false;
@@ -101,10 +101,10 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 		Map<String, Object> params = new HashMap<String, Object>();
 		List<User> users = new ArrayList<User>();
 		if (CommunicationType.EMAIL.equals(type)) {
-			params.put("emailId", input);
+			params.put("email", input);
 			users = (List<User>) executeNamedQuery(UserConstant.GET_EMAIL_ID, params);
 		} else {
-			params.put("mobileNo", input);
+			params.put("phone", input);
 			users = (List<User>) executeNamedQuery(UserConstant.GET_MOBILE_NO, params);
 		}
 		if (users != null && !users.isEmpty() && (users.size() > 0)) {

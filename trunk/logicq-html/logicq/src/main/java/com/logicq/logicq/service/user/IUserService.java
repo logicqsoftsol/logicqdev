@@ -2,11 +2,12 @@ package com.logicq.logicq.service.user;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.logicq.logicq.constant.CommunicationType;
 import com.logicq.logicq.model.user.User;
-import com.logicq.logicq.ui.security.LoginUserVO;
+import com.logicq.logicq.ui.user.vo.BasicUserVO;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
 /**
@@ -69,5 +70,11 @@ public interface IUserService {
 
 	@ExceptionHandler(Exception.class)
 	public UserVO getParticularUsersForArea(UserVO request);
+	
+	public UserVO createNewUser(BasicUserVO basicuservo);
+	
+	@ExceptionHandler(Exception.class)
+	public UserVO getUserIdFromEmailOrMobile(String inputid);
+	
 		
 }

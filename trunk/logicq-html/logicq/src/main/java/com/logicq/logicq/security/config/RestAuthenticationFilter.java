@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.logicq.security.service.TokenAuthenticationConstant;
 import com.logicq.logicq.security.service.TokenAuthenticationService;
 import com.logicq.logicq.security.service.UserService;
+import com.logicq.logicq.ui.login.vo.LoginVO;
 import com.logicq.logicq.ui.security.LoginUserVO;
 
 public class RestAuthenticationFilter extends GenericFilterBean {
@@ -57,17 +58,18 @@ public class RestAuthenticationFilter extends GenericFilterBean {
 			} else if (httpRequest.getRequestURI().endsWith("login")) {
 				String username = (String) httpRequest.getHeader("userName");
 				String password = (String) httpRequest.getHeader("password");
+				if(!StringUtils.isEmpty(password) && !StringUtils.isEmpty(username)){
 				UserDetails userDetails = userService.checkUserDetails(username, passwordEncoder.encode(password));
 				final String authtoken = tokenAuthenticationService.getTokenHandler()
-						.createTokenForUser((LoginUserVO) userDetails);
-				((LoginUserVO) userDetails).setToken(authtoken);
+						.createTokenForUser((LoginVO) userDetails);
+				((LoginVO) userDetails).setToken(authtoken);
 				if (!StringUtils.isEmpty(authtoken)) {
 					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 							userDetails, null, userDetails.getAuthorities());
 					authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
 					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}
-
+				}
 			}
 			if (SecurityContextHolder.getContext().getAuthentication() != null
 					&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {

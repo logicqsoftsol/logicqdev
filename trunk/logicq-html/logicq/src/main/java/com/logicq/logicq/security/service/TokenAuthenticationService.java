@@ -4,9 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
 
 import com.logicq.logicq.security.helper.TokenHandler;
-import com.logicq.logicq.ui.security.LoginUserVO;
+import com.logicq.logicq.ui.login.vo.LoginVO;
 
 
 public class TokenAuthenticationService implements  TokenAuthenticationConstant {
@@ -20,7 +21,7 @@ public class TokenAuthenticationService implements  TokenAuthenticationConstant 
     }
 
     public String addAuthentication(HttpServletResponse response, UserAuthentication authentication) {
-        final LoginUserVO user = authentication.getDetails();
+        final LoginVO user = authentication.getDetails();
         String token = tokenHandler.createTokenForUser(user);
         response.addHeader(AUTH_HEADER_NAME, token);
         return token;
@@ -29,7 +30,7 @@ public class TokenAuthenticationService implements  TokenAuthenticationConstant 
     public Authentication getAuthentication(HttpServletRequest request) {
         final String token = request.getHeader(AUTH_HEADER_NAME);
         if (token != null) {
-            final LoginUserVO user = tokenHandler.parseUserFromToken(token);
+            final LoginVO user = tokenHandler.parseUserFromToken(token);
             if (user != null) {
                 return new UserAuthentication(user);
             }

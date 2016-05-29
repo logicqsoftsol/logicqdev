@@ -7,37 +7,36 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.logicq.logicq.service.login.impl.LoginService;
-import com.logicq.logicq.ui.security.LoginUserVO;
+import com.logicq.logicq.ui.login.vo.LoginVO;
 
 public class UserService implements UserDetailsService {
 
     private final AccountStatusUserDetailsChecker detailsChecker = new AccountStatusUserDetailsChecker();
-    private final HashMap<String, LoginUserVO> userMap = new HashMap<String, LoginUserVO>();
-   
-    
-    public final LoginUserVO loadUserByUsername(String username) throws UsernameNotFoundException {
+    private static  HashMap<String, LoginVO> userMap = new HashMap<String, LoginVO>();
+
+	public final LoginVO loadUserByUsername(String username) throws UsernameNotFoundException {
 		return userMap.get(username);
 	}
     
-	public LoginUserVO checkUserDetails(String username, String password) {
-		LoginService loginservice = new LoginService();
-		LoginUserVO uservo = loadUserByUsername(username);
+	public LoginVO checkUserDetails(String username, String password) {
+		LoginVO uservo = loadUserByUsername(username);
 		if (null == uservo) {
-			uservo = loginservice.checkLoginUser(username, password);
-			if (null != uservo) {
-				addUser(uservo);
-			} else {
-				if (uservo == null) {
-					throw new UsernameNotFoundException("user not found");
-				}
-
-			}
+			throw new UsernameNotFoundException("user not found");
 		}
 		detailsChecker.check(uservo);
 		return uservo;
 	}
 
-    private void addUser(LoginUserVO user) {
+    public void addUser(LoginVO user) {
         userMap.put(user.getUsername(), user);
     }
+    
+    
+    public static HashMap<String, LoginVO> getUserMap() {
+		return userMap;
+	}
+
+	public static void setUserMap(HashMap<String, LoginVO> userMap) {
+		UserService.userMap = userMap;
+	}
 }

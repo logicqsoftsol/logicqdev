@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
+import com.logicq.logicq.ui.login.vo.LoginVO;
 import com.logicq.logicq.ui.security.LoginUserVO;
 
 public class UserAuthentication implements Authentication {
@@ -13,10 +14,10 @@ public class UserAuthentication implements Authentication {
 	 * 
 	 */
 	private static final long serialVersionUID = -3893087502431740099L;
-	private final LoginUserVO user;
+	private final LoginVO user;
     private boolean authenticated = true;
 
-    public UserAuthentication(LoginUserVO user) {
+    public UserAuthentication(LoginVO user) {
         this.user = user;
     }
 
@@ -35,7 +36,7 @@ public class UserAuthentication implements Authentication {
         return user.getPassword();
     }
 
-    public LoginUserVO getDetails() {
+    public LoginVO getDetails() {
         return user;
     }
 

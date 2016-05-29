@@ -1,5 +1,6 @@
 package com.logicq.logicq.security.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -18,15 +20,16 @@ import com.logicq.logicq.security.service.UserService;
 @EnableWebSecurity
 @Order(2)
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
     private final UserService userService;
     private final TokenAuthenticationService tokenAuthenticationService;
     private final String token="tooManySecrets";
-  
+    
     public SpringSecurityConfig() {
         super(true);
         this.userService = new UserService();
         tokenAuthenticationService = new TokenAuthenticationService(token, userService);
+        
     }
     
  

@@ -650,3 +650,6 @@ table.table.table-time-req.table-bordered th{
 .menu-layer li {
     border-bottom:1px solid #ADADAD;
 }
+.btn-space {
+    margin-right: 5px;
+}

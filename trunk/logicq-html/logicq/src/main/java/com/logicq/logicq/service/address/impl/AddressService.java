@@ -15,6 +15,7 @@ import com.logicq.logicq.model.address.Address;
 import com.logicq.logicq.model.entity.EntityRole;
 import com.logicq.logicq.model.user.User;
 import com.logicq.logicq.service.address.IAddressService;
+import com.logicq.logicq.service.login.IloginService;
 import com.logicq.logicq.service.user.IUserService;
 import com.logicq.logicq.ui.address.vo.AddressVO;
 import com.logicq.logicq.ui.search.vo.BaseSearchVO;
@@ -28,7 +29,11 @@ public class AddressService implements IAddressService {
 	
 	@Autowired
 	IUserService userService;
- 
+	
+	@Autowired
+	IloginService loginservice;
+	
+	
 
 	public List<AddressVO> getAllAddress() {
 		List<Address> address = addressDAO.getAddress();
@@ -44,9 +49,15 @@ public class AddressService implements IAddressService {
 		return userService.getUsers();
 	}
 
-
+    public void loadDefaultLoginDetails(){
+    	loginservice.load();
+    }
+	
 	public List<BaseSearchVO> getListofAllAddressandBasicUserinfo() {
 		List<Address> address = addressDAO.getListofAllAddressandBasicUserinfo();
+		//Load default login details
+		loadDefaultLoginDetails();
+		
 		List<BaseSearchVO> addresslist = new ArrayList<BaseSearchVO>();
 
 		for (Address addr : address) {
@@ -62,6 +73,7 @@ public class AddressService implements IAddressService {
 			
 			addresslist.add(basesearch);
 		}
+		
 		return addresslist;
 	}
 }
