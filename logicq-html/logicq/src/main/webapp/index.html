@@ -61,7 +61,8 @@
 					<a href="https://doctorathome.in/"><img src="assets/admin1/img/logo.png"/></a>
 				</div><!--.col-->
 				<div class="right-box text-right">
-					<ul class="nav navbar-right top-nav" style='display: none;'>
+				<div class="display-animation" id="basicprofile">
+					<ul class="nav navbar-right top-nav"  style='display: none;'>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"><i class="fa fa-user"></i> Sudhanshu
 								Lenka<b class="caret"></b></a>
@@ -77,10 +78,11 @@
 										Log Out</a></li>
 							</ul></li>
 					</ul>
-					<div class="main-btn">
-						<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#defaultModal">LogIn</button>
+					</div>
+					<div class="main-btn" id="login-reg">
+						<button class="btn btn-xs btn-primary" id="login" data-toggle="modal" data-target="#loginmodal">LogIn</button>
 
-						<div class="modal scale fade" id="defaultModal" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal scale fade" id="loginmodal" tabindex="-1" role="dialog" aria-hidden="true">
 						<form method="post" id="loginform" class="" novalidate="novalidate">
 							<!--  form method="post" action="home.html" class="" novalidate="novalidate"-->
 							<div class="modal-dialog">
@@ -113,7 +115,8 @@
 											</div><!--.form-group-->
 											<div class="form-buttons clearfix">
 												<label class="pull-left"><input type="checkbox" name="remember" value="1"> Remember me</label>
-												<button type="submit" id="login" class="btn btn-success pull-right">LogIn</button>
+												<button id="loginsubmit" class="btn btn-success pull-right">Login</button>
+												 <!--input type="submit" id="login"  name="Login" class="btn btn-success pull-right" value="Login"-->
 											</div><!--.form-buttons-->
 
 											<ul class="extra-links margin-top-20 text-right">
@@ -141,15 +144,83 @@
 							</form>
 						</div><!--.modal-->
 						<!-- <a class="btn btn-xs btn-default btn-ripple" href="register.html">Register</a> --> 
-						<div class="btn-group register-btn">
+						<!--  div class="btn-group register-btn">
 							<button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">Register &nbsp;<span class="caret"></span></button>
-									<ul class="dropdown-menu" role="menu">
+									< ul class="dropdown-menu" role="menu">
 										<li><a href="doctor_register.html">Doctor</a></li>
 										<li><a href="pathology_register.html">Pathology</a></li>
 										<li><a href="pharmacy_register.html">Pharmacy</a></li>
 									</ul>
-						</div><!--.btn-group-->
-					</div>
+						</div-->
+						
+						<button class="btn btn-xs btn-primary" id="register" data-toggle="modal" data-target="#registermodal">Register</button>
+					  <div class="modal scale fade" id="registermodal" tabindex="-1" role="dialog" aria-hidden="true">
+						<form method="post" id="register" class="" novalidate="novalidate" method="post">
+							<!--  form method="post" action="home.html" class="" novalidate="novalidate"-->
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header bg-main-color">
+										<div class="col-sm-6">
+											<a href="https://doctorathome.in/"><img src="assets/admin1/img/logo.png"/></a>
+										</div><!--.col-->
+										<div class="col-sm-6 text-right">
+											<h4 class="modal-title">Register</h4>
+										</div><!--.col-->
+										<div class="clearfix"></div>
+									</div>
+									<div class="modal-body">
+										
+										<div id="pane-login" class="panel-body active">
+											<div class="form-group">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<input type="email" id="email" class="form-control" placeholder="Enter email address">
+													</div>
+												</div>
+											</div><!--.email form-group-->
+											<div class="form-group">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<input type="text" id="phone" class="form-control" placeholder="Enter Mobile Number">
+													</div>
+												</div>
+											</div><!--.phone form-group-->
+											<div class="form-group">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<input type="text" id="name" class="form-control" placeholder="First Name  Last Name">
+													</div>
+												</div>
+											</div><!--.name form-group-->
+													<div class="form-group">
+												<div class="inputer">
+													<div class="input-wrapper">
+														<input type="password" id="password" class="form-control" placeholder="Enter password">
+													</div>
+												</div>
+											</div><!--.form-group-->
+											<div class="form-buttons clearfix">
+												<input type="submit" id="register" class="btn btn-primary btn-space pull-right" value="Register"/>
+												<input type="button" class="btn btn-primary btn-space pull-right" id="reset" data-dismiss="modal"  value="Cancel"/>
+											</div><!-- button .form-buttons-->
+										</div><!--#register.panel-body-->
+											<div class="social-accounts margin-top-20">
+												<div class="btn-group btn-merged btn-group-justified">
+													<div class="btn-group">
+														<a class="fb-bg btn btn-social btn-blue"><i class="fa fa-facebook"></i> Facebook</a>
+													</div>
+													<div class="btn-group">
+														<a class="gmail-bg btn btn-google btn-red"><i class="fa fa-google-plus"></i> Gmail</a>
+													</div>
+												</div>
+											</div><!--.social-accounts-->
+									</div>
+								</div><!--.modal-content-->
+							</div><!--.modal-dialog-->
+							</form>
+						</div><!--.modal register-->
+					   
+						
 					<!--<ol class="breadcrumb">
 						<li><a href="#" class="active"><i class="ion-home"></i> Homepage</a></li>
 					</ol>-->

@@ -9,16 +9,22 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.logicq.logicq.common.LogicqContextProvider;
 import com.logicq.logicq.constant.AlertType;
 import com.logicq.logicq.constant.CommunicationType;
 import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.conversion.user.UserConversion;
 import com.logicq.logicq.dao.user.IUserDAO;
+import com.logicq.logicq.model.login.Authority;
+import com.logicq.logicq.model.login.AuthorityName;
 import com.logicq.logicq.model.login.Login;
 import com.logicq.logicq.model.user.User;
 import com.logicq.logicq.service.alert.IAlertService;
@@ -26,7 +32,8 @@ import com.logicq.logicq.service.login.IloginService;
 import com.logicq.logicq.service.task.ITaskManagerService;
 import com.logicq.logicq.service.user.IUserService;
 import com.logicq.logicq.ui.alert.vo.AlertDetailsInputVO;
-import com.logicq.logicq.ui.security.LoginUserVO;
+import com.logicq.logicq.ui.login.vo.LoginVO;
+import com.logicq.logicq.ui.user.vo.BasicUserVO;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
 /**
@@ -52,6 +59,11 @@ public class UserService implements IUserService {
 	//@Autowired
 	//AlertDetailsInputVO alertDetailsInputVO;
 	UserConversion userConversion = UserConversion.getInstance();
+	private final AccountStatusUserDetailsChecker detailsChecker = new AccountStatusUserDetailsChecker();
+    private final HashMap<String, LoginVO> userMap = new HashMap<String, LoginVO>();
+   
+	
+
 
 	/**
 	 * Add User
@@ -71,12 +83,12 @@ public class UserService implements IUserService {
 			Login loginDetails = setLoginDetails(user);
 			loginService.insertLoginDetails(loginDetails);
 			//build alert DTO
-			AlertDetailsInputVO alertDetailsInputVO = new AlertDetailsInputVO();
+			/*AlertDetailsInputVO alertDetailsInputVO = new AlertDetailsInputVO();
 			alertDetailsInputVO = buildAlertDetails(user,
 			                                        alertDetailsInputVO,
 			                                        "com.logicq.logicq.service.user.impl.UserService.addUser(UserRegistrationRequest, UserRegistrationResponse)");
 			//call to email sending service.
-			alertService.sendAlert(alertDetailsInputVO);
+			alertService.sendAlert(alertDetailsInputVO);*/
 		} else {
 			logger.info(" user already exist : uservalidation " + isUserValid);
 		}
@@ -85,7 +97,7 @@ public class UserService implements IUserService {
 
 	private AlertDetailsInputVO buildAlertDetails(User user, AlertDetailsInputVO alertDetailsInputVO, String serviceId) {
 
-		String emailId = user.getEmailId();
+		String emailId = user.getEmail();
 		Random ran = new Random();
 		int max = 999999;
 		int min = 100000;
@@ -103,21 +115,23 @@ public class UserService implements IUserService {
 	}
 
 	private Login setLoginDetails(User user) {
-
+		PasswordEncoder passwordEncoder=new BCryptPasswordEncoder(); 
 		Login loginDetails = new Login();
-		loginDetails.setEmail(user.getEmailId());
-		loginDetails.setPhonnumber(user.getMobileNo());
-		loginDetails.setPassword(user.getPassword());
-		loginDetails.setUserid(user.getId());
-		loginDetails.setLastlogindate(new Date());
-		loginDetails.setIpaddress("10.210.245.165");
+		loginDetails.setEmail(user.getEmail());
+		loginDetails.setUsername(user.getEmail());
+		loginDetails.setPassword(passwordEncoder.encode(user.getPassword()));
+		loginDetails.setLastPasswordResetDate(new Date());
+		loginDetails.setPhone(user.getPhone());
+		loginDetails.setEnabled(Boolean.TRUE);
+		//loginDetails.setLastlogindate(new Date());
+		//loginDetails.setIpaddress("10.210.245.165");
 		return loginDetails;
 	}
 
 	private Boolean validateUser(UserVO userVO) {
 
-		Boolean isNewEmail = checkEmail(userVO.getEmailId());
-		Boolean isNewMobileNo = checkMobileNo(userVO.getMobileno());
+		Boolean isNewEmail = checkEmail(userVO.getEmail());
+		Boolean isNewMobileNo = checkMobileNo(userVO.getPhone());
 		return (isNewEmail && isNewMobileNo);
 	}
 
@@ -196,6 +210,34 @@ public class UserService implements IUserService {
 			userVOs.add(userVO);
 		}
 		return request;
+	}
+
+	@Override
+	public UserVO createNewUser(BasicUserVO basicuservo) {
+		UserVO uservo=new UserVO();
+		uservo.setEmail(basicuservo.getEmail());
+		uservo.setPhone(basicuservo.getPhone());
+		uservo.setFirstName(basicuservo.getName());
+		uservo.setPassword(basicuservo.getPassword());
+		uservo.setIsMobileVerified(false);
+		uservo.setIsEmailVerified(false);
+		uservo.setIsUserVerified(false);
+		//this value is hardcode for testing purpose-- need to remove
+		uservo.setDateOfBirth(new Date());
+		return addUser(uservo);
+	}
+
+	@Override
+	public UserVO getUserIdFromEmailOrMobile(String inputid) {
+		User user = null;
+		if (!StringUtils.isEmpty(inputid)) {
+			if (inputid.contains("@")) {
+				user = userDAO.getUserIdFromEmailOrMobile(inputid, CommunicationType.EMAIL);
+			} else {
+				user = userDAO.getUserIdFromEmailOrMobile(inputid, CommunicationType.MOBILE);
+			}
+		}
+		return userConversion.conversionFromEntitytoVO(user, UserVO.class);
 	}
 	
 	

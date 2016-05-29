@@ -1,4 +1,4 @@
-package com.logicq.logicq.model.security;
+package com.logicq.logicq.model.login;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,7 +23,7 @@ public class Authority {
     private AuthorityName name;
 
     @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
-    private List<LoginUser> users;
+    private List<Login> users;
 
     public Long getId() {
         return id;
@@ -41,11 +41,11 @@ public class Authority {
         this.name = name;
     }
 
-    public List<LoginUser> getUsers() {
+    public List<Login> getUsers() {
         return users;
     }
 
-    public void setUsers(List<LoginUser> users) {
+    public void setUsers(List<Login> users) {
         this.users = users;
     }
 }

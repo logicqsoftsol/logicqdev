@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.logicq.logicq.security.service.TokenAuthenticationService;
 import com.logicq.logicq.service.user.IUserService;
-import com.logicq.logicq.service.user.impl.UserService;
+import com.logicq.logicq.ui.login.vo.LoginVO;
 import com.logicq.logicq.ui.security.LoginUserVO;
 import com.logicq.logicq.ui.user.vo.UserVO;
 
@@ -27,24 +27,25 @@ public class LoginController {
 	@Autowired
 	TokenAuthenticationService tokenAuthenticationService;	
 	
-	
-	@RequestMapping(value = "/login", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UserVO> login() {
-		UserVO userdetailsvo=null;
+@RequestMapping(value = "/login", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE,consumes= MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<LoginVO> login() {
+		
+		
+	LoginVO login=null;
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
-			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginUserVO) {
-				LoginUserVO	login = (LoginUserVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+				login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				if (StringUtils.isEmpty(login.getToken())) {
 					String token = tokenAuthenticationService.getTokenHandler().createTokenForUser(login);
 					login.setToken(token);
 				} else {
 					login = tokenAuthenticationService.getTokenHandler().parseUserFromToken(login.getToken());
 				}
-				userdetailsvo=userservice.getUserById(login.getId());
+				//userdetailsvo = userservice.getUserIdFromEmailOrMobile(login.getEmail());
 			}
-			
+
 		}
-		return new ResponseEntity<UserVO>(userdetailsvo, HttpStatus.OK);
+		return new ResponseEntity<LoginVO>(login, HttpStatus.OK);
 	}
 
 }

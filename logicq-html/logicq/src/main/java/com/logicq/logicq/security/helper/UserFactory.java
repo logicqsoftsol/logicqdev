@@ -6,22 +6,21 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import com.logicq.logicq.model.security.Authority;
-import com.logicq.logicq.model.security.LoginUser;
-import com.logicq.logicq.ui.security.LoginUserVO;
+import com.logicq.logicq.model.login.Authority;
+import com.logicq.logicq.model.login.Login;
+import com.logicq.logicq.ui.login.vo.LoginVO;
 
 public final class UserFactory {
 
     private UserFactory() {
     }
 
-    public static LoginUserVO create(LoginUser user) {
-        return new LoginUserVO(
+    public static LoginVO create(Login user) {
+        return new LoginVO(
                 user.getId(),
                 user.getUsername(),
-                user.getFirstname(),
-                user.getLastname(),
                 user.getEmail(),
+                user.getPhone(),
                 user.getPassword(),
                 mapToGrantedAuthorities(user.getAuthorities()),
                 user.getEnabled(),

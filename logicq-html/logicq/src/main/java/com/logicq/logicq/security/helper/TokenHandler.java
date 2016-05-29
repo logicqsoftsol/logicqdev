@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.logicq.logicq.security.service.UserService;
+import com.logicq.logicq.ui.login.vo.LoginVO;
 import com.logicq.logicq.ui.security.LoginUserVO;
 
 import io.jsonwebtoken.Claims;
@@ -25,12 +26,12 @@ public final class TokenHandler {
 		this.userService = userService;
 	}
 
-	public LoginUserVO parseUserFromToken(String token) {
+	public LoginVO parseUserFromToken(String token) {
 		String username = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
 		return userService.loadUserByUsername(username);
 	}
 
-	public String createTokenForUser(LoginUserVO user) {
+	public String createTokenForUser(LoginVO user) {
 		Date now = new Date();
 		return Jwts.builder().setId(UUID.randomUUID().toString()).setSubject(user.getUsername()).setIssuedAt(now)
 				.setExpiration(generateExpirationDate()).signWith(SignatureAlgorithm.HS512, secret).compact();

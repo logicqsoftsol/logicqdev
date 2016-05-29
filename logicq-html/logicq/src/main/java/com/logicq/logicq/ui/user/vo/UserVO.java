@@ -11,31 +11,19 @@ import com.logicq.logicq.constant.EntityType;
 import com.logicq.logicq.ui.address.vo.AddressVO;
 
 @ConvertClass(enable=true)
-public class UserVO implements Serializable {
+public class UserVO extends BasicUserVO implements Serializable {
 
 	private static final long serialVersionUID = 6692634947354854155L;
 	
 	private Long id;
-	@NotNull
+	
 	private String firstName;
-	
-	@NotNull
 	private String lastName;
-
-	@NotNull
 	private String gender;
-
-	@NotNull
-	private String mobileno;
 	
-	@NotNull
-	private String emailId;
-	
-	@NotNull
 	private Date dateOfBirth;
 	
-	@NotNull
-	private String password;
+	private String token;
 	
 	private Boolean isMobileVerified=false;
 	
@@ -59,6 +47,18 @@ public class UserVO implements Serializable {
 
 	private List<ServiceReportVO> serviceReport;
 
+	
+	
+
+	public String getToken() {
+		return token;
+	}
+
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -80,24 +80,12 @@ public class UserVO implements Serializable {
 	}
 
 
-	public String getMobileno() {
-		return mobileno;
-	}
-
-
-	public String getEmailId() {
-		return emailId;
-	}
-
 
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
 
-	public String getPassword() {
-		return password;
-	}
 
 
 	public Boolean getIsMobileVerified() {
@@ -165,25 +153,13 @@ public class UserVO implements Serializable {
 	}
 
 
-	public void setMobileno(String mobileno) {
-		this.mobileno = mobileno;
-	}
-
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
 
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
+	
 
 	public void setIsMobileVerified(Boolean isMobileVerified) {
 		this.isMobileVerified = isMobileVerified;
@@ -229,20 +205,15 @@ public class UserVO implements Serializable {
 		this.serviceReport = serviceReport;
 	}
 
-	
 
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender
-				+ ", mobileno=" + mobileno + ", emailId=" + emailId + ", dateOfBirth=" + dateOfBirth + ", password="
-				+ password + ", isMobileVerified=" + isMobileVerified + ", isEmailVerified=" + isEmailVerified
-				+ ", isUserVerified=" + isUserVerified + ", addresses=" + addresses + ", entityType=" + entityType
-				+ ", role=" + role + ", facilities=" + facilities + ", profile=" + profile + ", serviceReport="
-				+ serviceReport + "]";
+				+ ", dateOfBirth=" + dateOfBirth + ", token=" + token + ", isMobileVerified=" + isMobileVerified
+				+ ", isEmailVerified=" + isEmailVerified + ", isUserVerified=" + isUserVerified + ", addresses="
+				+ addresses + ", entityType=" + entityType + ", role=" + role + ", facilities=" + facilities
+				+ ", profile=" + profile + ", serviceReport=" + serviceReport + "]";
 	}
-	
-
-	
 
 
 }

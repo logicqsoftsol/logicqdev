@@ -3,7 +3,6 @@ package com.logicq.logicq.dao.login;
 import java.util.List;
 
 import com.logicq.logicq.model.login.Login;
-import com.logicq.logicq.model.security.LoginUser;
 
 /**
  * Login DAO Interface
@@ -18,5 +17,7 @@ public interface ILoginDAO {
 
 	public void insertLoginDetails(Login login);
 	
-	public LoginUser fethchUser(String username,String password);
+	public Login fethchLoginUser(String username,String password);
+	List<Login> load();
+	
 }
