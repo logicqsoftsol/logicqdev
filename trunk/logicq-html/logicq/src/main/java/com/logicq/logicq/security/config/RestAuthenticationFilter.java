@@ -7,6 +7,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -54,6 +55,7 @@ public class RestAuthenticationFilter extends GenericFilterBean {
 				Authentication authentication = tokenAuthenticationService
 						.getAuthentication((HttpServletRequest) request);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
+				httpResponse.addHeader(TokenAuthenticationConstant.AUTH_HEADER_NAME, token);
 
 			} else if (httpRequest.getRequestURI().endsWith("login")) {
 				String username = (String) httpRequest.getHeader("userName");
@@ -62,10 +64,9 @@ public class RestAuthenticationFilter extends GenericFilterBean {
 				UserDetails userDetails = userService.checkUserDetails(username, passwordEncoder.encode(password));
 				final String authtoken = tokenAuthenticationService.getTokenHandler()
 						.createTokenForUser((LoginVO) userDetails);
-				((LoginVO) userDetails).setToken(authtoken);
 				if (!StringUtils.isEmpty(authtoken)) {
 					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-							userDetails, null, userDetails.getAuthorities());
+							userDetails, authtoken, userDetails.getAuthorities());
 					authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
 					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}

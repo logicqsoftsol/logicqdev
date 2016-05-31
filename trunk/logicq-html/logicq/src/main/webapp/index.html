@@ -1,271 +1,153 @@
-<!DOCTYPE html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Doctor at Home</title>
-	<meta name="description" content="Pleasure is responsive, material admin dashboard panel">
-	<meta name="author" content="Teamfox">
-	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="apple-touch-fullscreen" content="yes">
-	<!-- BEGIN CORE CSS -->
-	<link rel="stylesheet" href="assets/admin1/css/admin1.css">
-	<link rel="stylesheet" href="assets/admin1/css/doctor-at-home.css">
-	<link rel="stylesheet" href="assets/globals/css/elements.css">
-	<!-- END CORE CSS -->
-	<link rel="stylesheet" href="assets/globals/css/plugins.css">
-	<!-- END PLUGINS CSS -->
-	<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
-	<link rel="shortcut icon" href="assets/globals/img/icons/favicon.ico">
-	<link rel="apple-touch-icon" href="assets/globals/img/icons/apple-touch-icon.png">
-		
-	<!-- BEGIN GLOBAL AND THEME VENDORS -->
-	<script src="assets/globals/js/global-vendors.js"></script>
-	<script src="assets/globals/plugins/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
-	<script src="assets/globals/scripts/forms-wizard.js"></script>
-	<script src="assets/globals/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-	<script src="assets/globals/plugins/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
-	<script src="assets/globals/js/pleasure.js"></script>
-	<script src="assets/admin1/js/layout.js"></script>
-	<script src="assets/globals/js/bootstrap-typeahead.js"></script>
-	<script>
-	$(document).ready(function () {
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Doctor at Home</title>
+<meta name="description"
+	content="Pleasure is responsive, material admin dashboard panel">
+<meta name="author" content="Teamfox">
+<meta name="viewport"
+	content="width=device-width, height=device-height, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style"
+	content="black-translucent">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- BEGIN CORE CSS -->
+<link rel="stylesheet" href="assets/admin1/css/admin1.css">
+<link rel="stylesheet" href="assets/admin1/css/doctor-at-home.css">
+<link rel="stylesheet" href="assets/globals/css/elements.css">
+<!-- END CORE CSS -->
+<link rel="stylesheet" href="assets/globals/css/plugins.css">
+<!-- END PLUGINS CSS -->
+<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+<link rel="shortcut icon" href="assets/globals/img/icons/favicon.ico">
+<link rel="apple-touch-icon"
+	href="assets/globals/img/icons/apple-touch-icon.png">
+
+<!-- BEGIN GLOBAL AND THEME VENDORS -->
+<script src="assets/globals/js/global-vendors.js"></script>
+<script
+	src="assets/globals/plugins/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+<script src="assets/globals/scripts/forms-wizard.js"></script>
+<script
+	src="assets/globals/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+<script
+	src="assets/globals/plugins/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="assets/globals/js/pleasure.js"></script>
+<script src="assets/admin1/js/layout.js"></script>
+<script src="assets/globals/js/bootstrap-typeahead.js"></script>
+<script src="assets/globals/service/js/location.js"></script>
+<script>
+	$(document).ready(function() {
 		Pleasure.init();
 		Layout.init();
 		FormsWizard.init();
 	});
 	$('#scroll').perfectScrollbar('update');
-	</script>
-	<script src="assets/globals/service/js/location.js"></script>
-	<script src="assets/globals/service/js/login.js"></script>
+</script>
 </head>
 <body class="bg-main-white">
 
 	<div class="nav-bar-container">
-	
+		<div class="nav-menu" style='display: none;'>
+			<div class="hamburger">
+				<span class="patty"></span>
+				<span class="patty"></span>
+				<span class="patty"></span>
+				<span class="patty"></span>
+				<span class="patty"></span>
+				<span class="patty"></span>
+			</div>
+		</div> <!--.nav-menu-->
+
 		<div class="nav-bar-border"></div>
 		<div class="overlay">
 			<div class="starting-point">
 				<span></span>
-			</div><!--.starting-point-->
-			<div class="logo">Doctor At Home</div><!--.logo-->
-		</div><!--.overlay-->
-		<div class="overlay-secondary"></div><!--.overlay-secondary-->
+			</div>
+			<!--.starting-point-->
+			<div class="logo">Doctor At Home</div>
+			<!--.logo-->
+		</div>
+		<!--.overlay-->
+		<div class="overlay-secondary"></div>
+		<!--.overlay-secondary-->
 		<!-- END OF OVERLAY HELPERS -->
-	</div><!--.nav-bar-container-->
+	</div>
+	<!--.nav-bar-container-->
 	<div class="content">
 		<div class="page-header full-content bg-main-color">
 			<div class="row">
 				<div class="left-box">
-					<a href="https://doctorathome.in/"><img src="assets/admin1/img/logo.png"/></a>
-				</div><!--.col-->
+					<a href="https://doctorathome.in/"><img
+						src="assets/admin1/img/logo.png" /></a>
+				</div>
+				<!--.col-->
 				<div class="right-box text-right">
-				<div class="display-animation" id="basicprofile">
-					<ul class="nav navbar-right top-nav"  style='display: none;'>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"><i class="fa fa-user"></i> Sudhanshu
-								Lenka<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-fw fa-user"></i>
-										Profile</a></li>
-								<li><a href="#"><i class="fa fa-fw fa-envelope"></i>
-										Inbox</a></li>
-								<li><a href="#"><i class="fa fa-fw fa-gear"></i>
-										Settings</a></li>
-								<li class="divider"></li>
-								<li><a href="#"><i class="fa fa-fw fa-power-off"></i>
-										Log Out</a></li>
-							</ul></li>
-					</ul>
+					<div class="display-animation" id="basicprofile">
+						<ul class="nav navbar-right top-nav">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown"><i class="fa fa-user"></i> Sudhanshu
+									Lenka<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li class="divider"></li>
+									<li><a href="#" id="logout"><i class="fa fa-fw fa-power-off"></i>
+											Log Out</a></li>
+								</ul></li>
+						</ul>
 					</div>
 					<div class="main-btn" id="login-reg">
-						<button class="btn btn-xs btn-primary" id="login" data-toggle="modal" data-target="#loginmodal">LogIn</button>
+						<a href="/logicq/assets/globals/views/login.html" class="btn btn-xs btn-primary" id="userlogin">LogIn</a>
+						<a href="/logicq/assets/globals/views/register.html" class="btn btn-xs btn-primary" id="register">Register</a>
+					</div>
+					<!--.col-->
+				</div>
+				<!--.row-->
+			</div>
+			<!--.page-header-->
 
-						<div class="modal scale fade" id="loginmodal" tabindex="-1" role="dialog" aria-hidden="true">
-						<form method="post" id="loginform" class="" novalidate="novalidate">
-							<!--  form method="post" action="home.html" class="" novalidate="novalidate"-->
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header bg-main-color">
-										<div class="col-sm-6">
-											<a href="https://doctorathome.in/"><img src="assets/admin1/img/logo.png"/></a>
-										</div><!--.col-->
-										<div class="col-sm-6 text-right">
-											<h4 class="modal-title">Login</h4>
-										</div><!--.col-->
-										<div class="clearfix"></div>
-									</div>
-									<div class="modal-body">
-										
-										<div id="pane-login" class="panel-body active">
-											<div class="form-group">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<input type="email" id="email" class="form-control" placeholder="Enter email address">
-													</div>
-												</div>
-											</div><!--.form-group-->
-											<div class="form-group">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<input type="password" id="password" class="form-control" placeholder="Enter password">
-													</div>
-												</div>
-											</div><!--.form-group-->
-											<div class="form-buttons clearfix">
-												<label class="pull-left"><input type="checkbox" name="remember" value="1"> Remember me</label>
-												<button id="loginsubmit" class="btn btn-success pull-right">Login</button>
-												 <!--input type="submit" id="login"  name="Login" class="btn btn-success pull-right" value="Login"-->
-											</div><!--.form-buttons-->
+			<div class="display-animation">
 
-											<ul class="extra-links margin-top-20 text-right">
-												<li><a href="#" class="show-pane-forgot-password">Forgot password</a></li>
-											</ul>
-											<div class="social-accounts margin-top-20">
-												<div class="btn-group btn-merged btn-group-justified">
-													<div class="btn-group">
-														<a class="fb-bg btn btn-social btn-blue"><i class="fa fa-facebook"></i> Facebook</a>
-													</div>
-													<div class="btn-group">
-														<a class="gmail-bg btn btn-google btn-red"><i class="fa fa-google-plus"></i> Gmail</a>
-													</div>
-												</div>
-											</div><!--.social-accounts-->
-
-											
-										</div><!--#login.panel-body-->
-										
-
-
-									</div>
-								</div><!--.modal-content-->
-							</div><!--.modal-dialog-->
-							</form>
-						</div><!--.modal-->
-						<!-- <a class="btn btn-xs btn-default btn-ripple" href="register.html">Register</a> --> 
-						<!--  div class="btn-group register-btn">
-							<button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">Register &nbsp;<span class="caret"></span></button>
-									< ul class="dropdown-menu" role="menu">
-										<li><a href="doctor_register.html">Doctor</a></li>
-										<li><a href="pathology_register.html">Pathology</a></li>
-										<li><a href="pharmacy_register.html">Pharmacy</a></li>
-									</ul>
-						</div-->
-						
-						<button class="btn btn-xs btn-primary" id="register" data-toggle="modal" data-target="#registermodal">Register</button>
-					  <div class="modal scale fade" id="registermodal" tabindex="-1" role="dialog" aria-hidden="true">
-						<form method="post" id="register" class="" novalidate="novalidate" method="post">
-							<!--  form method="post" action="home.html" class="" novalidate="novalidate"-->
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header bg-main-color">
-										<div class="col-sm-6">
-											<a href="https://doctorathome.in/"><img src="assets/admin1/img/logo.png"/></a>
-										</div><!--.col-->
-										<div class="col-sm-6 text-right">
-											<h4 class="modal-title">Register</h4>
-										</div><!--.col-->
-										<div class="clearfix"></div>
-									</div>
-									<div class="modal-body">
-										
-										<div id="pane-login" class="panel-body active">
-											<div class="form-group">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<input type="email" id="email" class="form-control" placeholder="Enter email address">
-													</div>
-												</div>
-											</div><!--.email form-group-->
-											<div class="form-group">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<input type="text" id="phone" class="form-control" placeholder="Enter Mobile Number">
-													</div>
-												</div>
-											</div><!--.phone form-group-->
-											<div class="form-group">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<input type="text" id="name" class="form-control" placeholder="First Name  Last Name">
-													</div>
-												</div>
-											</div><!--.name form-group-->
-													<div class="form-group">
-												<div class="inputer">
-													<div class="input-wrapper">
-														<input type="password" id="password" class="form-control" placeholder="Enter password">
-													</div>
-												</div>
-											</div><!--.form-group-->
-											<div class="form-buttons clearfix">
-												<input type="submit" id="register" class="btn btn-primary btn-space pull-right" value="Register"/>
-												<input type="button" class="btn btn-primary btn-space pull-right" id="reset" data-dismiss="modal"  value="Cancel"/>
-											</div><!-- button .form-buttons-->
-										</div><!--#register.panel-body-->
-											<div class="social-accounts margin-top-20">
-												<div class="btn-group btn-merged btn-group-justified">
-													<div class="btn-group">
-														<a class="fb-bg btn btn-social btn-blue"><i class="fa fa-facebook"></i> Facebook</a>
-													</div>
-													<div class="btn-group">
-														<a class="gmail-bg btn btn-google btn-red"><i class="fa fa-google-plus"></i> Gmail</a>
-													</div>
-												</div>
-											</div><!--.social-accounts-->
-									</div>
-								</div><!--.modal-content-->
-							</div><!--.modal-dialog-->
-							</form>
-						</div><!--.modal register-->
-					   
-						
-					<!--<ol class="breadcrumb">
-						<li><a href="#" class="active"><i class="ion-home"></i> Homepage</a></li>
-					</ol>-->
-				</div><!--.col-->
-			</div><!--.row-->
-		</div><!--.page-header-->
-
-		<div class="display-animation">
-
-			<div class="row image-row row-centered">
-				<div class="search-wizard panel bs-wizard bs-wizard-steps-with-progress">
+				<div class="row image-row row-centered">
+					<div
+						class="search-wizard panel bs-wizard bs-wizard-steps-with-progress">
 						<div class="panel-heading">
-							
+
 							<!--<div class="panel-title text-center"></div>-->
 							<div class="steps-centered">
 								<div class="progress progress-striped">
-									<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-									</div>
-								</div><!--.progress-->
+									<div class="progress-bar progress-bar-primary"
+										role="progressbar" aria-valuenow="40" aria-valuemin="0"
+										aria-valuemax="100"></div>
+								</div>
+								<!--.progress-->
 
 								<ul class="wizard-steps wizard-steps-name">
-									<li class="step active">
-											<span>Search</span>
-										<a href="#form3_tab1" data-toggle="tab" class="btn btn-primary"><i class="fa fa-search"></i></a>
-									</li>
-									<li class="step">
-										<span>Specialized</span>
-										<a href="#form3_tab2" data-toggle="tab" class="btn btn-white"><i class="fa fa-user-md"></i></a>
-									</li>
-									<li class="step">
-										<span>Schedule</span>
-										<a href="#form3_tab3" data-toggle="tab" class="btn btn-white"><i class="fa fa-clock-o"></i></a>
-									</li>
-									<li class="step">
-										<span>Conform</span>
-										<a href="#form3_tab4" data-toggle="tab" class="btn btn-white"><i class="fa fa-check"></i></a>
-									</li>
-								</ul><!--.wizard-steps-->
-							</div><!--.steps-centered-->
+									<li class="step active"><span>Search</span> <a
+										href="#form3_tab1" data-toggle="tab" class="btn btn-primary"><i
+											class="fa fa-search"></i></a></li>
+									<li class="step"><span>Specialized</span> <a
+										href="#form3_tab2" data-toggle="tab" class="btn btn-white"><i
+											class="fa fa-user-md"></i></a></li>
+									<li class="step"><span>Schedule</span> <a
+										href="#form3_tab3" data-toggle="tab" class="btn btn-white"><i
+											class="fa fa-clock-o"></i></a></li>
+									<li class="step"><span>Conform</span> <a
+										href="#form3_tab4" data-toggle="tab" class="btn btn-white"><i
+											class="fa fa-check"></i></a></li>
+								</ul>
+								<!--.wizard-steps-->
+							</div>
+							<!--.steps-centered-->
 
-						</div><!--.panel-heading-->
+						</div>
+						<!--.panel-heading-->
 						<ul class="wizard clearfix">
-								<li class="bs-wizard-prev pull-left"><button class="btn btn-blue btn-default"><i class="fa fa-arrow-left"></i></button></li>
-								<!-- <li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li> -->
-								<!-- <li class="bs-wizard-submit pull-right"><button type="submit" class="btn btn-blue">Complete setup</button></li> -->
+							<li class="bs-wizard-prev pull-left"><button
+									class="btn btn-blue btn-default">
+									<i class="fa fa-arrow-left"></i>
+								</button></li>
+							<!-- <li class="bs-wizard-next pull-right"><button class="btn btn-blue">Next</button></li> -->
+							<!-- <li class="bs-wizard-submit pull-right"><button type="submit" class="btn btn-blue">Complete setup</button></li> -->
 						</ul>
 						<div class="panel-body">
 
@@ -273,571 +155,619 @@
 
 								<div class="tab-content">
 									<div class="tab-pane active" id="form3_tab1">
-												<div class="col-md-6">
-												
-													<div class=" search-icon-home col-sm-5">
-														<div class="form-group">
-															<i class="fa fa-search"></i>
-															<img src="assets/admin1/img/gps27.png" class="gps-icon"/>
-															<img src="assets/admin1/img/show8.png" class="show-icon"/>
-															<input id="location" type="text" name="location" class="form-control" placeholder="Pune" value="Pune" required autocomplete="off" >
+										<div class="col-md-6">
+
+											<div class=" search-icon-home col-sm-5">
+												<div class="form-group">
+													<i class="fa fa-search"></i> <img
+														src="assets/admin1/img/gps27.png" class="gps-icon" /> <img
+														src="assets/admin1/img/show8.png" class="show-icon" /> <input
+														id="location" type="text" name="location"
+														class="form-control" placeholder="Pune" value="Pune"
+														required autocomplete="off">
+												</div>
+											</div>
+											<!--.card-->
+											<div class=" search-icon-home col-sm-5">
+												<div class="form-group">
+													<i class="fa fa-search"></i> <input id="entity"
+														name="doctor_hospital" class="form-control" type="text"
+														list="doctor" required autocomplete="off">
+
+												</div>
+											</div>
+											<!--.card-->
+											<div class="col-sm-2 wizard text-left">
+												<!-- <a class="btn btn-default btn-blue btn-lg btn-ripple" href="#tab_form3_tab2"><i class="ion-search"></i></a> -->
+												<button
+													class="btn btn-default btn-blue btn-lg btn-ripple bs-wizard-next"
+													type="submit">
+													<i class="fa fa-search"></i>
+												</button>
+											</div>
+
+											<div class="col-sm-12 margin-top-10 show-listing">
+
+												<div class="col-md-12">
+													<ul class="nav nav-tabs tabs-left search-doc-tabs">
+														<li class="active"><a href="#tab9_0"
+															data-toggle="tab">&nbsp;</a></li>
+														<li><a href="#tab9_1" data-toggle="tab"> <img
+																src="assets/admin1/img/doctor2.png">
+																<p>Doctor</p>
+														</a></li>
+														<li><a href="#tab9_2" data-toggle="tab"><img
+																src="assets/admin1/img/microscopes.png">
+															<p>Pathology</p></a></li>
+														<li><a href="#tab9_3" data-toggle="tab"><img
+																src="assets/admin1/img/pill16.png">
+															<p>Pharmacy</p></a></li>
+														<li><a href="#tab9_4" data-toggle="tab"><img
+																src="assets/admin1/img/beauty.png">
+															<p>Beauty</p></a></li>
+														<li><a href="#tab9_5" data-toggle="tab"><img
+																src="assets/admin1/img/yoga.png">
+															<p>Yoga</p></a></li>
+														<li><a href="#tab9_6" data-toggle="tab"><img
+																src="assets/admin1/img/hospital11.png">
+															<p>Hospital</p></a></li>
+													</ul>
+												</div>
+												<div class="col-md-12">
+													<div class="inner-tab tab-content">
+														<div class="tab-pane active" id="tab9_0"></div>
+														<div class="tab-pane" id="tab9_1">
+															<ul class="scroller">
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/nurse13.png">
+																		<p>Personal Care Taker</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/familydoctor.png">
+																		<p>Family Doctor</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/tooth18.png">
+																		<p>Dentist</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/eyeball13.png">
+																		<p>Ophthalmologist</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/dermatologist.png">
+																		<p>Dermatologist/Cosmetologist</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/homeopathic.png">
+																		<p>Homeopathic</p>
+																</a></li>
+
+																<li class="bs-wizard-next"><a href=""
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/oriental7.png">
+																		<p>Ayurveda</p>
+																</a></li>
+
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/heart8.png">
+																		<p>Cardiologist</p>
+																</a></li>
+
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/health.png">
+																		<p>Gastroenterologist</p>
+																</a></li>
+
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/ear-nose-throat.png">
+																		<p>Ear-Nose-Throat (ENT)</p>
+																</a></li>
+
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/gynecologist-obstetrician.png">
+																		<p>Gynecologist/Obstetrician</p>
+																</a></li>
+
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/psychiatrist.png">
+																		<p>Psychiatrist</p>
+																</a></li>
+
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/urologist.png">
+																		<p>Urologist</p>
+																</a></li>
+
+															</ul>
 														</div>
-													</div><!--.card-->
-													<div class=" search-icon-home col-sm-5">
-														<div class="form-group">
-															<i class="fa fa-search"></i>
-															<input id="entity" name="doctor_hospital" class="form-control" type="text" list="doctor" required autocomplete="off" >
-															
-														</div>	
-													</div><!--.card-->
-													<div class="col-sm-2 wizard text-left" >
-														<!-- <a class="btn btn-default btn-blue btn-lg btn-ripple" href="#tab_form3_tab2"><i class="ion-search"></i></a> -->
-														 <button class="btn btn-default btn-blue btn-lg btn-ripple bs-wizard-next" type="submit"><i class="fa fa-search"></i></button>
-													</div>
-												
-													<div class="col-sm-12 margin-top-10 show-listing">
-														
-															<div class="col-md-12">
-																<ul class="nav nav-tabs tabs-left search-doc-tabs">
-																	<li class="active">
-																		<a href="#tab9_0" data-toggle="tab">&nbsp;</a>
-																	</li>	
-																	<li><a href="#tab9_1" data-toggle="tab">
-																		<img src="assets/admin1/img/doctor2.png">
-																		<p>Doctor</p>
-																		</a>
-																	</li>
-																	<li><a href="#tab9_2" data-toggle="tab"><img src="assets/admin1/img/microscopes.png"><p>Pathology</p></a></li>
-																	<li><a href="#tab9_3" data-toggle="tab"><img src="assets/admin1/img/pill16.png"><p>Pharmacy</p></a></li>
-																	<li><a href="#tab9_4" data-toggle="tab"><img src="assets/admin1/img/beauty.png"><p>Beauty</p></a></li>
-																	<li><a href="#tab9_5" data-toggle="tab"><img src="assets/admin1/img/yoga.png"><p>Yoga</p></a></li>
-																	<li><a href="#tab9_6" data-toggle="tab"><img src="assets/admin1/img/hospital11.png"><p>Hospital</p></a></li>
-																	</ul>
-															</div>
-															<div class="col-md-12">
-																<div class="inner-tab tab-content">
-																	<div class="tab-pane active" id="tab9_0">
-																	</div>	
-																	<div class="tab-pane" id="tab9_1">
-																		<ul class="scroller">
-																			<li class="bs-wizard-next"><a data-speciality="dentist">
-																				<img src="assets/admin1/img/nurse13.png">
-																				<p>Personal Care Taker </p>	
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next"><a data-speciality="dentist">
-																				<img src="assets/admin1/img/familydoctor.png">
-																				<p>Family Doctor </p>	
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/tooth18.png">
-																					<p>Dentist</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/eyeball13.png">
-																					<p>Ophthalmologist</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/dermatologist.png">
-																					<p>Dermatologist/Cosmetologist</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/homeopathic.png">
-																					<p>Homeopathic</p>
-																				</a>
-																			</li>
+														<div class="tab-pane" id="tab9_2">
+															<ul class="scroller wizard">
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/chemistry42.png">
+																		<p>All Labs</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/drip5.png">
+																		<p>Thyroid Profile</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/test tube7.png">
+																		<p>Lipid Profile</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/science2.png">
+																		<p>Blood Test</p>
+																</a></li>
 
-																			<li class="bs-wizard-next">
-																				<a href="" data-speciality="dentist" >
-																					<img src="assets/admin1/img/oriental7.png">
-																					<p>Ayurveda</p>
-																				</a>
-																			</li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/test10.png">
+																		<p>Urine and Stool</p>
+																</a></li>
 
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/heart8.png">
-																					<p>Cardiologist</p>
-																				</a>
-																			</li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/urologist.png">
+																		<p>Semen Analysis</p>
+																</a></li>
 
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/health.png">
-																					<p>Gastroenterologist</p>
-																				</a>
-																			</li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/mri_scan.png">
+																		<p>MRI Scan</p>
+																</a></li>
 
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/ear-nose-throat.png">
-																					<p>Ear-Nose-Throat (ENT)</p>
-																				</a>
-																			</li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/xray2.png">
+																		<p>X-RAY Scan</p>
+																</a></li>
 
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/gynecologist-obstetrician.png">
-																					<p>Gynecologist/Obstetrician</p>
-																				</a>
-																			</li>
+															</ul>
+														</div>
+														<div class="tab-pane" id="tab9_3">
+															<ul class="wizard">
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/delivery.png">
+																		<p>Home Delivery</p>
+																</a></li>
 
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/psychiatrist.png">
-																					<p>Psychiatrist</p>
-																				</a>
-																			</li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/oriental7.png">
+																		<p>Ayrvedic</p>
+																</a></li>
 
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/urologist.png">
-																					<p>Urologist</p>
-																				</a>
-																			</li>
-
-																		</ul>
-																	</div>
-																	<div class="tab-pane" id="tab9_2">
-																		<ul class="scroller wizard">
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/chemistry42.png">
-																					<p>All Labs</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/drip5.png">
-																					<p>Thyroid Profile</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/test tube7.png">
-																					<p>Lipid Profile</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/science2.png">
-																					<p>Blood Test</p>
-																				</a>
-																			</li>
-
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/test10.png">
-																					<p>Urine and Stool</p>
-																				</a>
-																			</li>
-
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/urologist.png">
-																					<p>Semen Analysis</p>
-																				</a>
-																			</li>
-
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/mri_scan.png">
-																					<p>MRI Scan</p>
-																				</a>
-																			</li>
-
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/xray2.png">
-																					<p>X-RAY Scan</p>
-																				</a>
-																			</li>
-																			
-																		</ul>
-																	</div>
-																	<div class="tab-pane" id="tab9_3">
-																		<ul class="wizard">
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/delivery.png">
-																					<p>Home Delivery</p>
-																				</a>
-																			</li>
-
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/oriental7.png">
-																					<p>Ayrvedic</p>
-																				</a>
-																			</li>
-
-																			<!-- <li>
+																<!-- <li>
 																				<a href="" data-speciality="dentist" >
 																					<img src="assets/admin1/img/oriental7.png">
 																					<p>Lalopathy</p>
 																				</a>
 																			</li> -->
 
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/homeopathic.png">
-																					<p>Homepathy</p>
-																				</a>
-																			</li>
-	
-																		</ul>
-																	</div>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/homeopathic.png">
+																		<p>Homepathy</p>
+																</a></li>
 
-																	<div class="tab-pane" id="tab9_4">
-																		<ul class="wizard">
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/health care25.png">
-																					<p>Facials</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/massage2.png">
-																					<p>Relaxation Massage</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/spa10.png">
-																					<p>Skin & Hair Care</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/bride.png">
-																					<p>Bridal Makeup</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/man.png">
-																					<p>Only for Men</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/female.png">
-																					<p>Only for Women</p>
-																				</a>
-																			</li>
-																			
-																		</ul>	
-																	</div>
-																	<div class="tab-pane" id="tab9_5">
-																		<ul class="wizard">
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/basic_yoga.png">
-																					<p>Basic Yoga</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/disces.png">
-																					<p>Disesases</p>
-																				</a>
-																			</li>
-																			<li class="bs-wizard-next">
-																				<a data-speciality="dentist" >
-																					<img src="assets/admin1/img/joint.png">
-																					<p>Joint Pain</p>
-																				</a>
-																			</li>
-																			
-																			
-																		</ul>	
-																	</div>
-																	<div class="tab-pane" id="tab9_6">
+															</ul>
+														</div>
 
-																	</div>	
-															</div>
-															<div class="clearfix"></div>
-															</div>	
-												</div>	
-												</div>		
-												<div class="col-md-6">	
-													<div id="googleMap" style="width:580px;height:480px;"></div>
-													<!-- <div id="gmaps-dashboard" class="example-map"></div> -->
-													<!--div class="col-sm-12" ><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d60512.91950984214!2d73.73423198558297!3d18.57144763208247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1446128278051" frameborder="0" style="border:0; width:100%; height:400px;" allowfullscreen></iframe></div-->
-												</div><!--.col-->
-									</div><!--.tab-pane-->
+														<div class="tab-pane" id="tab9_4">
+															<ul class="wizard">
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/health care25.png">
+																		<p>Facials</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/massage2.png">
+																		<p>Relaxation Massage</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/spa10.png">
+																		<p>Skin & Hair Care</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/bride.png">
+																		<p>Bridal Makeup</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/man.png">
+																		<p>Only for Men</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/female.png">
+																		<p>Only for Women</p>
+																</a></li>
+
+															</ul>
+														</div>
+														<div class="tab-pane" id="tab9_5">
+															<ul class="wizard">
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/basic_yoga.png">
+																		<p>Basic Yoga</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/disces.png">
+																		<p>Disesases</p>
+																</a></li>
+																<li class="bs-wizard-next"><a
+																	data-speciality="dentist"> <img
+																		src="assets/admin1/img/joint.png">
+																		<p>Joint Pain</p>
+																</a></li>
+
+
+															</ul>
+														</div>
+														<div class="tab-pane" id="tab9_6"></div>
+													</div>
+													<div class="clearfix"></div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div id="googleMap" style="width: 580px; height: 480px;"></div>
+											<!-- <div id="gmaps-dashboard" class="example-map"></div> -->
+											<!--div class="col-sm-12" ><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d60512.91950984214!2d73.73423198558297!3d18.57144763208247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1446128278051" frameborder="0" style="border:0; width:100%; height:400px;" allowfullscreen></iframe></div-->
+										</div>
+										<!--.col-->
+									</div>
+									<!--.tab-pane-->
 
 									<div class="tab-pane mar-top-40m" id="form3_tab2">
 										<div class="col-sm-12">
-										<div class=" col-sm-8 col-centered">
-											<div class="col-sm-12 search-icon-home ">
-											<div class=" search-icon-home col-sm-6">
-												<div class="form-group">
-													<i class="fa fa-search"></i>
-													<input id="pac-input" type="text" name="location" class="form-control"value="Pune" readonly>
-												</div>		
-											</div><!--.card-->
-											<div class=" search-icon-home col-sm-6">
-												<div class="form-group">			
-													<i class="fa fa-search"></i>
-													<!--<i class="fa fa-microphone"></i>
+											<div class=" col-sm-8 col-centered">
+												<div class="col-sm-12 search-icon-home ">
+													<div class=" search-icon-home col-sm-6">
+														<div class="form-group">
+															<i class="fa fa-search"></i> <input id="pac-input"
+																type="text" name="location" class="form-control"
+																value="Pune" readonly>
+														</div>
+													</div>
+													<!--.card-->
+													<div class=" search-icon-home col-sm-6">
+														<div class="form-group">
+															<i class="fa fa-search"></i>
+															<!--<i class="fa fa-microphone"></i>
 													<input id="pac-input-location" type="text" placeholder="Spacility" required>-->
-													<input type="text" name="q" id="input-specialisation" list="search" class="form-control" placeholder="Cardiologist" autocomplete="off" required>
+															<input type="text" name="q" id="input-specialisation"
+																list="search" class="form-control"
+																placeholder="Cardiologist" autocomplete="off" required>
 
-													<datalist id="search">
-													<option>Dentist</option>
-													<option>Gynecologist/obstetrician</option>
-													<option>General Physician</option>
-													<option>Dermatologist/Cosmetologist</option>
-													<option>Ear-nose-throat (ent) Specialist</option>
-													<option>Homeopath</option>
-													</datalist>
-												</div>	
-											</div>
-											<!--<div class="col-sm-2 wizard" >
+															<datalist id="search">
+																<option>Dentist</option>
+																<option>Gynecologist/obstetrician</option>
+																<option>General Physician</option>
+																<option>Dermatologist/Cosmetologist</option>
+																<option>Ear-nose-throat (ent) Specialist</option>
+																<option>Homeopath</option>
+															</datalist>
+														</div>
+													</div>
+													<!--<div class="col-sm-2 wizard" >
 														 <a class="btn btn-default btn-blue btn-lg btn-ripple" href="#tab_form3_tab2"><i class="ion-search"></i></a> -->
-														<!--  <button class="btn btn-default btn-blue btn-lg btn-ripple bs-wizard-next"><i class="fa fa-arrow-circle-right"></i></button> 
+													<!--  <button class="btn btn-default btn-blue btn-lg btn-ripple bs-wizard-next"><i class="fa fa-arrow-circle-right"></i></button> 
 											</div>-->
-										</div>
-										</div>
+												</div>
+											</div>
 										</div>
 
 
 										<div class="col-sm-8 col-centered margin-top-20">
-										<div class="accordion search-spacility" id="accordion">	
+											<div class="accordion search-spacility" id="accordion">
 
-											
-										<div class="col-sm-12 box-border">
-											
-											<div class="col-sm-2">
-												<img class="user-image img-responsive" alt="" src="assets/admin1/img/male-doctor.jpg">
-											</div>	
-											<div class="col-sm-6 doctor-list-show">
-												<h4>Dr. Sudhanshu Lenka</h4>
-												<p>MBBS , MD - Medicine , DNB (Cardiology)</p>
-												<p>Cardiologist</p>
-												<p>11 Years Experience</p>
-												<p class="list-show-icon">
-													<img src="assets/admin1/img/vaccinationathome.png">
-													<img src="assets/admin1/img/emergency.png">
-													<img src="assets/admin1/img/familydoctor.png">
-													<img src="assets/admin1/img/nurse13.png">
-												</p>
-											</div>	
-											<div class="col-sm-4">
-												<div class="right-list-show">
-													<p><span><i class="fa fa-thumbs-o-up"></i> 200,</span> Recommendations</p>
-													<p><a href="#"><i class="fa fa-comment"></i> 15 Feedback</a></p>
-													<p><i class="fa fa-map-marker"></i> Pune</p>
-													<p><i class="fa fa-inr"></i> 300</p>
-												</div>
-											</div>
-											<div class="col-sm-12">
-												<div id="collapse1" class="panel-collapse collapse">
-													<div class="panel-body padding-zero">
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>Address</th>
-																	<th>Time</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>Vishrantwadi, Pune <i class="fa fa-map-marker"></i></td>
-																	<td>10 AM - 1 PM</td>
-																</tr>
-																<tr>
-																	<td>Kothrud, Pune <i class="fa fa-map-marker"></i></td>
-																	<td>6 PM - 10 PM</td>
-																</tr>
-															</tbody>
-														</table>
+
+												<div class="col-sm-12 box-border">
+
+													<div class="col-sm-2">
+														<img class="user-image img-responsive" alt=""
+															src="assets/admin1/img/male-doctor.jpg">
+													</div>
+													<div class="col-sm-6 doctor-list-show">
+														<h4>Dr. Sudhanshu Lenka</h4>
+														<p>MBBS , MD - Medicine , DNB (Cardiology)</p>
+														<p>Cardiologist</p>
+														<p>11 Years Experience</p>
+														<p class="list-show-icon">
+															<img src="assets/admin1/img/vaccinationathome.png">
+															<img src="assets/admin1/img/emergency.png"> <img
+																src="assets/admin1/img/familydoctor.png"> <img
+																src="assets/admin1/img/nurse13.png">
+														</p>
+													</div>
+													<div class="col-sm-4">
+														<div class="right-list-show">
+															<p>
+																<span><i class="fa fa-thumbs-o-up"></i> 200,</span>
+																Recommendations
+															</p>
+															<p>
+																<a href="#"><i class="fa fa-comment"></i> 15
+																	Feedback</a>
+															</p>
+															<p>
+																<i class="fa fa-map-marker"></i> Pune
+															</p>
+															<p>
+																<i class="fa fa-inr"></i> 300
+															</p>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div id="collapse1" class="panel-collapse collapse">
+															<div class="panel-body padding-zero">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Address</th>
+																			<th>Time</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td>Vishrantwadi, Pune <i
+																				class="fa fa-map-marker"></i></td>
+																			<td>10 AM - 1 PM</td>
+																		</tr>
+																		<tr>
+																			<td>Kothrud, Pune <i class="fa fa-map-marker"></i></td>
+																			<td>6 PM - 10 PM</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-12 text-right padding-btn">
+														<div class="wizard display-inline">
+															<button
+																class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next">Book
+																Appoinment</button>
+															<!-- <button class="btn btn-blue btn-xs btn-ripple"></button> -->
+															<a class="btn btn-blue btn-xs btn-ripple"
+																data-toggle="collapse" href="#collapse1"> Schedule <i
+																class="fa fa-arrow-down"></i></a>
+														</div>
 													</div>
 												</div>
-											</div>
-											<div class="col-sm-12 text-right padding-btn">
-												<div class="wizard display-inline">
-													<button class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next">Book Appoinment</button>
-													<!-- <button class="btn btn-blue btn-xs btn-ripple"></button> -->
-													<a class="btn btn-blue btn-xs btn-ripple"  data-toggle="collapse" href="#collapse1"> Schedule <i class="fa fa-arrow-down"></i></a>
-												</div>
-											</div>	
-											</div>	
 
-											<div class="col-sm-12 box-border">
-											
-											<div class="col-sm-2">
-												<img class="user-image img-responsive" alt="" src="assets/admin1/img/male-doctor.jpg">
-											</div>	
-											<div class="col-sm-6 doctor-list-show">
-												<h4>Dr. Rakesh Praphullan</h4>
-												<p>MBBS , MD - Medicine , DNB (Cardiology)</p>
-												<p>Cardiologist</p>
-												<p>12 Years Experience</p>
-												<p class="list-show-icon">
-													<img src="assets/admin1/img/vaccinationathome.png">
-													<img src="assets/admin1/img/emergency.png">
-													<img src="assets/admin1/img/familydoctor.png">
-													<img src="assets/admin1/img/nurse13.png">
-												</p>
-											</div>	
-											<div class="col-sm-4">
-												<div class="right-list-show">
-													<p><span><i class="fa fa-thumbs-o-up"></i> 200,</span> Recommendations</p>
-													<p><a href="#"><i class="fa fa-comment"></i> 25 Feedback</a></p>
-													<p><i class="fa fa-map-marker"></i> Pune</p>
-													<p><i class="fa fa-inr"></i> 300</p>
-												</div>
-											</div>
-											<div class="col-sm-12">
-												<div id="collapse3" class="panel-collapse collapse">
-													<div class="panel-body padding-zero">
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>Address</th>
-																	<th>Time</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>Vishrantwadi, Pune <i class="fa fa-map-marker"></i></td>
-																	<td>10 AM - 1 PM</td>
-																</tr>
-																<tr>
-																	<td>Kothrud, Pune <i class="fa fa-map-marker"></i></td>
-																	<td>6 PM - 10 PM</td>
-																</tr>
-															</tbody>
-														</table>
+												<div class="col-sm-12 box-border">
+
+													<div class="col-sm-2">
+														<img class="user-image img-responsive" alt=""
+															src="assets/admin1/img/male-doctor.jpg">
+													</div>
+													<div class="col-sm-6 doctor-list-show">
+														<h4>Dr. Rakesh Praphullan</h4>
+														<p>MBBS , MD - Medicine , DNB (Cardiology)</p>
+														<p>Cardiologist</p>
+														<p>12 Years Experience</p>
+														<p class="list-show-icon">
+															<img src="assets/admin1/img/vaccinationathome.png">
+															<img src="assets/admin1/img/emergency.png"> <img
+																src="assets/admin1/img/familydoctor.png"> <img
+																src="assets/admin1/img/nurse13.png">
+														</p>
+													</div>
+													<div class="col-sm-4">
+														<div class="right-list-show">
+															<p>
+																<span><i class="fa fa-thumbs-o-up"></i> 200,</span>
+																Recommendations
+															</p>
+															<p>
+																<a href="#"><i class="fa fa-comment"></i> 25
+																	Feedback</a>
+															</p>
+															<p>
+																<i class="fa fa-map-marker"></i> Pune
+															</p>
+															<p>
+																<i class="fa fa-inr"></i> 300
+															</p>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div id="collapse3" class="panel-collapse collapse">
+															<div class="panel-body padding-zero">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Address</th>
+																			<th>Time</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td>Vishrantwadi, Pune <i
+																				class="fa fa-map-marker"></i></td>
+																			<td>10 AM - 1 PM</td>
+																		</tr>
+																		<tr>
+																			<td>Kothrud, Pune <i class="fa fa-map-marker"></i></td>
+																			<td>6 PM - 10 PM</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-12 text-right padding-btn">
+														<div class="wizard display-inline">
+															<button
+																class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next">Book
+																Appoinment</button>
+															<!-- <button class="btn btn-blue btn-xs btn-ripple"></button> -->
+															<a class="btn btn-blue btn-xs btn-ripple"
+																data-toggle="collapse" href="#collapse3">Schedule <i
+																class="fa fa-arrow-down"></i></a>
+														</div>
+
 													</div>
 												</div>
-											</div>
-											<div class="col-sm-12 text-right padding-btn">
-												<div class="wizard display-inline">
-													<button class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next">Book Appoinment</button>
-													<!-- <button class="btn btn-blue btn-xs btn-ripple"></button> -->
-													<a class="btn btn-blue btn-xs btn-ripple" data-toggle="collapse" href="#collapse3">Schedule <i class="fa fa-arrow-down"></i></a>
-												</div>
 
-											</div>	
-											</div>	
+												<div class="col-sm-12 box-border">
 
-											<div class="col-sm-12 box-border">
-											
-											<div class="col-sm-2">
-												<img class="user-image img-responsive" alt="" src="assets/admin1/img/male-doctor.jpg">
-											</div>	
-											<div class="col-sm-6 doctor-list-show">
-												<h4>Dr. Fenil Patel</h4>
-												<p>MBBS , MD - Medicine , DNB (Cardiology)</p>
-												<p>Cardiologist</p>
-												<p>15 Years Experience</p>
-												<p class="list-show-icon">
-													<img src="assets/admin1/img/vaccinationathome.png">
-													<img src="assets/admin1/img/emergency.png">
-													<img src="assets/admin1/img/familydoctor.png">
-													<img src="assets/admin1/img/nurse13.png">
-												</p>
-											</div>	
-											<div class="col-sm-4">
-												<div class="right-list-show">
-													<p><span><i class="fa fa-thumbs-o-up"></i> 100,</span> Recommendations</p>
-													<p><a href="#"><i class="fa fa-comment"></i> 35 Feedback</a></p>
-													<p><i class="fa fa-map-marker"></i> Pune</p>
-													<p><i class="fa fa-inr"></i> 300</p>
-												</div>
-											</div>
-											<div class="col-sm-12">
-												<div id="collapse4" class="panel-collapse collapse">
-													<div class="panel-body padding-zero">
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>Address</th>
-																	<th>Time</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>Vishrantwadi, Pune <i class="fa fa-map-marker"></i></td>
-																	<td>10 AM - 1 PM</td>
-																</tr>
-																<tr>
-																	<td>Kothrud, Pune <i class="fa fa-map-marker"></i></td>
-																	<td>6 PM - 10 PM</td>
-																</tr>
-															</tbody>
-														</table>
+													<div class="col-sm-2">
+														<img class="user-image img-responsive" alt=""
+															src="assets/admin1/img/male-doctor.jpg">
+													</div>
+													<div class="col-sm-6 doctor-list-show">
+														<h4>Dr. Fenil Patel</h4>
+														<p>MBBS , MD - Medicine , DNB (Cardiology)</p>
+														<p>Cardiologist</p>
+														<p>15 Years Experience</p>
+														<p class="list-show-icon">
+															<img src="assets/admin1/img/vaccinationathome.png">
+															<img src="assets/admin1/img/emergency.png"> <img
+																src="assets/admin1/img/familydoctor.png"> <img
+																src="assets/admin1/img/nurse13.png">
+														</p>
+													</div>
+													<div class="col-sm-4">
+														<div class="right-list-show">
+															<p>
+																<span><i class="fa fa-thumbs-o-up"></i> 100,</span>
+																Recommendations
+															</p>
+															<p>
+																<a href="#"><i class="fa fa-comment"></i> 35
+																	Feedback</a>
+															</p>
+															<p>
+																<i class="fa fa-map-marker"></i> Pune
+															</p>
+															<p>
+																<i class="fa fa-inr"></i> 300
+															</p>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div id="collapse4" class="panel-collapse collapse">
+															<div class="panel-body padding-zero">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Address</th>
+																			<th>Time</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td>Vishrantwadi, Pune <i
+																				class="fa fa-map-marker"></i></td>
+																			<td>10 AM - 1 PM</td>
+																		</tr>
+																		<tr>
+																			<td>Kothrud, Pune <i class="fa fa-map-marker"></i></td>
+																			<td>6 PM - 10 PM</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-12 text-right padding-btn">
+														<div class="wizard display-inline">
+															<button
+																class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next">Book
+																Appoinment</button>
+															<!-- <button class="btn btn-blue btn-xs btn-ripple"></button> -->
+															<a class="btn btn-blue btn-xs btn-ripple"
+																data-toggle="collapse" href="#collapse4">Schedule <i
+																class="fa fa-arrow-down"></i></a>
+														</div>
+
 													</div>
 												</div>
+
 											</div>
-											<div class="col-sm-12 text-right padding-btn">
-												<div class="wizard display-inline">
-													<button class="btn btn-blue btn-blue btn-xs btn-ripple bs-wizard-next">Book Appoinment</button>
-													<!-- <button class="btn btn-blue btn-xs btn-ripple"></button> -->
-													<a class="btn btn-blue btn-xs btn-ripple" data-toggle="collapse" href="#collapse4">Schedule <i class="fa fa-arrow-down"></i></a>
-												</div>
-
-											</div>	
-											</div>	
-
 										</div>
-										</div>
-									</div><!--.tab-pane-->
+									</div>
+									<!--.tab-pane-->
 
 									<div class="tab-pane" id="form3_tab3">
 										<div class="col-sm-7 avaliable_doctor">
 											<div class="card card-user card-user-blue">
 												<div class="col-sm-12 box-border text-left">
-											
+
 													<div class="col-sm-2">
-														<img class="user-image img-responsive" alt="" src="assets/admin1/img/male-doctor.jpg">
-													</div>	
+														<img class="user-image img-responsive" alt=""
+															src="assets/admin1/img/male-doctor.jpg">
+													</div>
 													<div class="col-sm-6 doctor-list-show">
 														<h4>Dr. Fenil Patel</h4>
 														<p>MBBS , MD - Medicine , DNB (Cardiology)</p>
-														<p>Cardiologist </p>
+														<p>Cardiologist</p>
 														<p>15 Years Experience</p>
 														<p class="list-show-icon">
 															<img src="assets/admin1/img/vaccinationathome.png">
-															<img src="assets/admin1/img/emergency.png">
-															<img src="assets/admin1/img/familydoctor.png">
-															<img src="assets/admin1/img/nurse13.png">
+															<img src="assets/admin1/img/emergency.png"> <img
+																src="assets/admin1/img/familydoctor.png"> <img
+																src="assets/admin1/img/nurse13.png">
 														</p>
-													</div>	
+													</div>
 													<div class="col-sm-4">
 														<div class="right-list-show">
-															<p><span><i class="fa fa-thumbs-o-up"></i> 1000 Recommendations</span> </p>
-															<p><i class="fa fa-comment"></i> Feedback</p>
-															<p><i class="fa fa-map-marker"></i> Pune</p>
-															<p><i class="fa fa-inr"></i> 300</p>
+															<p>
+																<span><i class="fa fa-thumbs-o-up"></i> 1000
+																	Recommendations</span>
+															</p>
+															<p>
+																<i class="fa fa-comment"></i> Feedback
+															</p>
+															<p>
+																<i class="fa fa-map-marker"></i> Pune
+															</p>
+															<p>
+																<i class="fa fa-inr"></i> 300
+															</p>
 														</div>
 													</div>
+												</div>
+
+												<div class="card-footer">
+													<div class="col-sm-6 time-slot">
+														<h5>Time Slot</h5>
 													</div>
-													
-													<div class="card-footer">
-														<div class="col-sm-6 time-slot">
-															<h5>Time Slot</h5>
-														</div>
-														<div class="col-sm-6 text-right">
-															<input type="date" class="date-pic"> 
-														</div>	
+													<div class="col-sm-6 text-right">
+														<input type="date" class="date-pic">
+													</div>
 													<div>
 														<table class="table table-bordered">
 															<thead>
 																<tr>
-																	<th style="width:8%;"></th>
+																	<th style="width: 8%;"></th>
 																	<th>Address</th>
 																	<th>Time</th>
 																</tr>
@@ -856,161 +786,211 @@
 															</tbody>
 														</table>
 													</div>
-												</div><!--.card-footer-->
+												</div>
+												<!--.card-footer-->
 											</div>
-										</div>	
-										<div class="col-sm-5">		
-											<h3>Your Details </h3>							
+										</div>
+										<div class="col-sm-5">
+											<h3>Your Details</h3>
 											<div class="col-sm-12">
 												<div class="col-sm-12">
 													<label class="control-label col-md-3">First Name</label>
 													<div class="col-md-8">
 														<div class="form-group">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<input type="text" class="form-control" name="fname" required>
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<input type="text" class="form-control" name="fname"
+																		required>
+																</div>
 															</div>
 														</div>
 													</div>
-													</div>
-												</div><!--.form-group-->
+												</div>
+												<!--.form-group-->
 												<div class="col-sm-12">
 													<label class="control-label col-md-3">Last Name</label>
 													<div class="col-md-8">
 														<div class="form-group">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<input type="text" class="form-control" name="lanme" required>
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<input type="text" class="form-control" name="lanme"
+																		required>
+																</div>
 															</div>
 														</div>
 													</div>
-													</div>
-												</div><!--.form-group-->
+												</div>
+												<!--.form-group-->
 												<div class="col-sm-12">
 													<label class="control-label col-md-3">Email Id</label>
 													<div class="col-md-8">
 														<div class="form-group">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<input type="email" class="form-control" name="email" required>
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<input type="email" class="form-control" name="email"
+																		required>
+																</div>
 															</div>
 														</div>
-														</div>
 													</div>
-												</div><!--.form-group-->
+												</div>
+												<!--.form-group-->
 												<div class="col-sm-12">
 													<label class="control-label col-md-3">Contact No</label>
 													<div class="col-md-8">
 														<div class="form-group">
-														<div class="inputer">
-															<div class="input-wrapper">
-																<input type="text" class="form-control" name="contact" required>
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<input type="text" class="form-control" name="contact"
+																		required>
+																</div>
 															</div>
 														</div>
 													</div>
-													</div>
-												</div><!--.form-group-->	
-											</div><!--.form-content-->
+												</div>
+												<!--.form-group-->
+											</div>
+											<!--.form-content-->
 											<div class="col-sm-12">
 												<div class="col-md-offset-3 col-md-9 wizard text-right">
-															<button class="btn btn-blue btn-xs btn-ripple" data-toggle="modal" data-target="#defaultModal">Log In</button>
-															<button class="btn btn-blue btn-xs btn-ripple bs-wizard-next">Continue as Guest</button> 
+													<button class="btn btn-blue btn-xs btn-ripple"
+														data-toggle="modal" data-target="#defaultModal">Log
+														In</button>
+													<button
+														class="btn btn-blue btn-xs btn-ripple bs-wizard-next">Continue
+														as Guest</button>
 												</div>
 											</div>
-										</div>	
+										</div>
 
-									</div><!--.tab-pane-->
+									</div>
+									<!--.tab-pane-->
 
 									<div class="tab-pane" id="form3_tab4">
 										<div class="col-sm-5 col-centered">
 											<div class="text-center booking-box">
-											<p>Appoinment Ref. No. 12345678956</p>
-											<p>You have booked Appoinment For </p>
-											<p>Rajan T, 32</p>
-											<p><i class="fa fa-mail"></i> rajan.t@gmail.com</p>
-											<p><i class="fa fa-phone"></i> +91 9876543210  </p>
-											<p><i class="fa fa-date"></i> 5th Nov 2015</p>
-											<p><i class="fa fa-clock-o"></i> 6 PM - 10 PM </p>
-											<p><i class="fa fa-map-marker"></i> Pune </p>
-											<p><i class="fa fa-date"></i> Dr. Fenil Patel, Cardiologist</p>
-											<p>App ID: APP_BK_123</p>
-											<p>Doctors Approve Status: Yes</p>
-											<div>
-												<input type="text" value=" " style="width: 0px;box-shadow: none;border: none;outline: none" name="looplock" data-minlength="2" data-msg-required=" " data-error=" " required>
-											
+												<p>Appoinment Ref. No. 12345678956</p>
+												<p>You have booked Appoinment For</p>
+												<p>Rajan T, 32</p>
+												<p>
+													<i class="fa fa-mail"></i> rajan.t@gmail.com
+												</p>
+												<p>
+													<i class="fa fa-phone"></i> +91 9876543210
+												</p>
+												<p>
+													<i class="fa fa-date"></i> 5th Nov 2015
+												</p>
+												<p>
+													<i class="fa fa-clock-o"></i> 6 PM - 10 PM
+												</p>
+												<p>
+													<i class="fa fa-map-marker"></i> Pune
+												</p>
+												<p>
+													<i class="fa fa-date"></i> Dr. Fenil Patel, Cardiologist
+												</p>
+												<p>App ID: APP_BK_123</p>
+												<p>Doctors Approve Status: Yes</p>
+												<div>
+													<input type="text" value=" "
+														style="width: 0px; box-shadow: none; border: none; outline: none"
+														name="looplock" data-minlength="2" data-msg-required=" "
+														data-error=" " required>
+
+												</div>
 											</div>
 										</div>
-										</div>	
-									</div><!--.tab-pane-->
-								</div><!--.tab-content-->
+									</div>
+									<!--.tab-pane-->
+								</div>
+								<!--.tab-content-->
 
 							</form>
 
-						</div><!--.panel-body-->
+						</div>
+						<!--.panel-body-->
 
 
-				</div>
-				
-
-			</div><!--.row-->
-		</div><!--.display-animation-->
-	<div class="footer-links fot">
-			<div class="row no-gutters bg-light-gray">
-				<div class="col-sm-5 footer-box">
-					<ul class="bottom-link">
-						<li><a href="#">About Us</a></li>
-						<li> | </li>
-						<li><a href="#">Contact</a></li>
-						<li> | </li>
-						<li><a href="#">Privacy</a></li>
-						<li> | </li>
-						<li><a href="#">Carrers</a></li>
-					</ul>
-				</div>
-				<div class="col-sm-3 footer-box text-center">	
-					<div class="soc footer-box">
-						<a class="btn btn-default btn-ripple"><span class="fa fa-facebook"></span></a>
-						<a class="btn btn-default btn-ripple"><span class="fa fa-twitter"></span></a>
-						<a class="btn btn-default btn-ripple"><span class="fa fa-google-plus"></span></a>
-						<a class="btn btn-default btn-ripple"><span class="fa fa-linkedin"></span></a>
 					</div>
-					
+
+
 				</div>
-				<div class="col-sm-4 footer-box text-right">
-					<a href="#" class="powered-by font-size12">Powered by <img src="assets/admin1/img/logicq.png"></a>
-				</div>
-			</div><!--.row-->
-		</div><!--.footer-links-->
-
-	</div><!--.content-->
-
-	<div class="layer-container">
-
-		<!-- BEGIN MENU LAYER -->
-		<div class="menu-layer">
-			<ul>
-				<li data-open-after="true">
-					<a href="index.html">Dashboard</a>
-				</li>
-				
-			</ul>
-		</div><!--.menu-layer-->
-		<!-- END OF MENU LAYER -->
-
-		<!-- BEGIN SEARCH LAYER -->
-		<div class="search-layer">
-			<div class="search">
-				<form action="">
-					<div class="form-group">
-						<input type="text" id="input-search" class="form-control" placeholder="type something">
-						<button type="submit" class="btn btn-default disabled"><i class="ion-search"></i></button>
+				<!--.row-->
+			</div>
+			<!--.display-animation-->
+			<div class="footer-links fot">
+				<div class="row no-gutters bg-light-gray">
+					<div class="col-sm-5 footer-box">
+						<ul class="bottom-link">
+							<li><a href="#">About Us</a></li>
+							<li>|</li>
+							<li><a href="#">Contact</a></li>
+							<li>|</li>
+							<li><a href="#">Privacy</a></li>
+							<li>|</li>
+							<li><a href="#">Carrers</a></li>
+						</ul>
 					</div>
-				</form>
-			</div><!--.search-->
+					<div class="col-sm-3 footer-box text-center">
+						<div class="soc footer-box">
+							<a class="btn btn-default btn-ripple"><span
+								class="fa fa-facebook"></span></a> <a
+								class="btn btn-default btn-ripple"><span
+								class="fa fa-twitter"></span></a> <a
+								class="btn btn-default btn-ripple"><span
+								class="fa fa-google-plus"></span></a> <a
+								class="btn btn-default btn-ripple"><span
+								class="fa fa-linkedin"></span></a>
+						</div>
 
-			
-		</div><!--.search-layer-->
-	</div><!--.layer-container-->
-	<!-- END INITIALIZATION-->
+					</div>
+					<div class="col-sm-4 footer-box text-right">
+						<a href="#" class="powered-by font-size12">Powered by <img
+							src="assets/admin1/img/logicq.png"></a>
+					</div>
+				</div>
+				<!--.row-->
+			</div>
+			<!--.footer-links-->
+
+		</div>
+		<!--.content-->
+
+		<div class="layer-container">
+
+			<!-- BEGIN MENU LAYER -->
+			<div class="menu-layer">
+				<ul>
+					<li data-open-after="true"><a href="index.html">Dashboard</a>
+					</li>
+
+				</ul>
+			</div>
+			<!--.menu-layer-->
+			<!-- END OF MENU LAYER -->
+
+			<!-- BEGIN SEARCH LAYER -->
+			<div class="search-layer">
+				<div class="search">
+					<form action="">
+						<div class="form-group">
+							<input type="text" id="input-search" class="form-control"
+								placeholder="type something">
+							<button type="submit" class="btn btn-default disabled">
+								<i class="ion-search"></i>
+							</button>
+						</div>
+					</form>
+				</div>
+				<!--.search-->
+
+
+			</div>
+			<!--.search-layer-->
+		</div>
+		<!--.layer-container-->
+		<!-- END INITIALIZATION-->
+		</div>
 </body>
 </html>

@@ -31,6 +31,10 @@ public class UserService implements UserDetailsService {
         userMap.put(user.getUsername(), user);
     }
     
+    public static void removeUser(LoginVO user) {
+        userMap.remove(user.getUsername());
+    }
+    
     
     public static HashMap<String, LoginVO> getUserMap() {
 		return userMap;

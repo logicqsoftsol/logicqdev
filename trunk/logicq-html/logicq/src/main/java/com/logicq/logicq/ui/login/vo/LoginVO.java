@@ -23,7 +23,6 @@ public class LoginVO implements UserDetails {
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean enabled;
     private final Date lastPasswordResetDate;
-    private String token;
 
     public LoginVO(
           Long id,
@@ -50,16 +49,7 @@ public class LoginVO implements UserDetails {
 		return phone;
 	}
 
-
-	public String getToken() {
-		return token;
-	}
-
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
+ 
 
 	@JsonIgnore
     public Long getId() {
