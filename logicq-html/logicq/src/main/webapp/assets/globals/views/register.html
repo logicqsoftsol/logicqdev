@@ -1,0 +1,138 @@
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Doctor at Home</title>
+<meta name="description"
+	content="Pleasure is responsive, material admin dashboard panel">
+<meta name="author" content="Teamfox">
+<meta name="viewport"
+	content="width=device-width, height=device-height, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style"
+	content="black-translucent">
+<meta name="apple-touch-fullscreen" content="yes">
+<!-- BEGIN CORE CSS -->
+<link rel="stylesheet" href="/logicq/assets/admin1/css/admin1.css">
+<link rel="stylesheet" href="/logicq/assets/admin1/css/doctor-at-home.css">
+<link rel="stylesheet" href="/logicq/assets/globals/css/elements.css">
+<!-- END CORE CSS -->
+<link rel="stylesheet" href="/logicq/assets/globals/css/plugins.css">
+<!-- END PLUGINS CSS -->
+<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+<link rel="shortcut icon" href="/logicq/assets/globals/img/icons/favicon.ico">
+<link rel="apple-touch-icon"
+	href="/logicq/assets/globals/img/icons/apple-touch-icon.png">
+
+<!-- BEGIN GLOBAL AND THEME VENDORS -->
+<script src="/logicq/assets/globals/js/global-vendors.js"></script>
+<script
+	src="/logicq/assets/globals/plugins/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+<script src="/logicq/assets/globals/scripts/forms-wizard.js"></script>
+<script
+	src="/logicq/assets/globals/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+<script
+	src="/logicq/assets/globals/plugins/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="/logicq/assets/globals/js/pleasure.js"></script>
+<script src="/logicq/assets/admin1/js/layout.js"></script>
+<script src="/logicq/assets/globals/js/bootstrap-typeahead.js"></script>
+<script src="/logicq/assets/globals/service/js/location.js"></script>
+<script src="/logicq/assets/globals/service/js/login.js"></script>
+<script>
+	$(document).ready(function() {
+		Pleasure.init();
+		Layout.init();
+		FormsWizard.init();
+	});
+	$('#scroll').perfectScrollbar('update');
+</script>
+</head>
+<body class="bg-main-white">
+<div class="content">
+							<form method="post" id="register" class=""
+								novalidate="novalidate" method="post">
+								<!--  form method="post" action="home.html" class="" novalidate="novalidate"-->
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header bg-main-color">
+											<div class="col-sm-6">
+												<a href="https://doctorathome.in/"><img
+													src="/logicq/assets/admin1/img/logo.png" /></a>
+											</div>
+											<!--.col-->
+											<div class="col-sm-6 text-right">
+												<h4 class="modal-title">Register</h4>
+											</div>
+											<!--.col-->
+											<div class="clearfix"></div>
+										</div>
+										<div class="modal-body">
+
+											<div id="pane-login" class="panel-body active">
+												<div class="form-group">
+													<div class="inputer">
+														<div class="input-wrapper">
+															<input type="email" id="email" class="form-control"
+																placeholder="Enter email address">
+														</div>
+													</div>
+												</div>
+												<!--.email form-group-->
+												<div class="form-group">
+													<div class="inputer">
+														<div class="input-wrapper">
+															<input type="text" id="phone" class="form-control"
+																placeholder="Enter Mobile Number">
+														</div>
+													</div>
+												</div>
+												<!--.phone form-group-->
+												<div class="form-group">
+													<div class="inputer">
+														<div class="input-wrapper">
+															<input type="text" id="name" class="form-control"
+																placeholder="First Name  Last Name">
+														</div>
+													</div>
+												</div>
+												<!--.name form-group-->
+												<div class="form-group">
+													<div class="inputer">
+														<div class="input-wrapper">
+															<input type="password" id="password" class="form-control"
+																placeholder="Enter password">
+														</div>
+													</div>
+												</div>
+												<!--.form-group-->
+												<div class="form-buttons clearfix">
+													<input type="submit" id="register"
+														class="btn btn-primary btn-space pull-right"
+														value="Register" /> <input type="button"
+														class="btn btn-primary btn-space pull-right" id="reset"
+														data-dismiss="modal" value="Cancel" />
+												</div>
+												<!-- button .form-buttons-->
+											</div>
+											<!--#register.panel-body-->
+											<div class="social-accounts margin-top-20">
+												<div class="btn-group btn-merged btn-group-justified">
+													<div class="btn-group">
+														<a class="fb-bg btn btn-social btn-blue"><i
+															class="fa fa-facebook"></i> Facebook</a>
+													</div>
+													<div class="btn-group">
+														<a class="gmail-bg btn btn-google btn-red"><i
+															class="fa fa-google-plus"></i> Gmail</a>
+													</div>
+												</div>
+											</div>
+											<!--.social-accounts-->
+										</div>
+									</div>
+									<!--.modal-content-->
+								</div>
+								<!--.modal-dialog-->
+							</form>
+						</div>
+		</body>
+</html>
