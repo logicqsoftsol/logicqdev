@@ -14,7 +14,9 @@ $(document).ready(function(){
 			  dataType: "json",
 			  contentType:"application/json",
 			  success:function(res, status, xhr){ 
-				window.location.href='/logicq/index.html';
+				var token=xhr.getResponseHeader("AUTH-TOKEN");
+				$.redirect("/logicq/index.html",{"AUTH-TOKEN": token, user: xhr.name});
+				//window.location.href='/logicq/index.html?token='+token+'usrname=';
 			  },
 			  error: function (res, status, xhr) {
 				 $("#basicprofile").hide();

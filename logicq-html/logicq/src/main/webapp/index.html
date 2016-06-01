@@ -34,8 +34,7 @@
 	src="assets/globals/plugins/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 <script src="assets/globals/js/pleasure.js"></script>
 <script src="assets/admin1/js/layout.js"></script>
-<script src="assets/globals/js/bootstrap-typeahead.js"></script>
-<script src="assets/globals/service/js/location.js"></script>
+<script src="assets/globals/service/js/defaultload.js"></script>
 <script>
 	$(document).ready(function() {
 		Pleasure.init();
@@ -157,23 +156,26 @@
 									<div class="tab-pane active" id="form3_tab1">
 										<div class="col-md-6">
 
-											<div class=" search-icon-home col-sm-5">
-												<div class="form-group">
-													<i class="fa fa-search"></i> <img
-														src="assets/admin1/img/gps27.png" class="gps-icon" /> <img
-														src="assets/admin1/img/show8.png" class="show-icon" /> <input
-														id="location" type="text" name="location"
-														class="form-control" placeholder="Pune" value="Pune"
-														required autocomplete="off">
+											<div class="col-sm-5">
+												<div class="search-icon-home form-group">
+														<img
+														src="assets/admin1/img/gps27.png" class="gps-icon" />
+													<input
+														id="locationSearch" type="text" name="locationSearch" placeholder="Search Your Location"
+														class="form-control" list="locationlist"
+														required autocomplete="on">
+														<datalist id="locationlist"></datalist>
 												</div>
 											</div>
 											<!--.card-->
-											<div class=" search-icon-home col-sm-5">
-												<div class="form-group">
-													<i class="fa fa-search"></i> <input id="entity"
-														name="doctor_hospital" class="form-control" type="text"
-														list="doctor" required autocomplete="off">
-
+											<div class="col-sm-5">
+												<div class="search-icon-home form-group">
+												
+																<input id="entitysearch" placeholder="You Looking for..."
+														class="form-control fa-search" type="text"
+														list="entitylist" required autocomplete="on">
+														
+														<datalist id="entitylist"></datalist>
 												</div>
 											</div>
 											<!--.card-->
