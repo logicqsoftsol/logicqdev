@@ -47,7 +47,7 @@ public class LoginController {
 					basicuser.setEmail(login.getEmail());
 					basicuser.setName(login.getUsername());
 					basicuser.setPhone(login.getPhone());
-					return new ResponseEntity<BasicUserVO>(basicuser, HttpStatus.OK);
+					return new ResponseEntity<BasicUserVO>(basicuser,headers, HttpStatus.OK);
 				} else {
 					return new ResponseEntity<BasicUserVO>(basicuser, HttpStatus.UNAUTHORIZED);
 				}
@@ -75,6 +75,5 @@ public class LoginController {
 		}
 		return new ResponseEntity<LoginVO>(login, HttpStatus.OK);
 	}
-
 
 }
