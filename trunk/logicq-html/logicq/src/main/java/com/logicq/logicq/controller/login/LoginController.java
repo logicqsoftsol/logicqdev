@@ -1,5 +1,8 @@
 package com.logicq.logicq.controller.login;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -44,6 +47,8 @@ public class LoginController {
 				if (null != login) {
 					HttpHeaders headers = new HttpHeaders();
 					headers.add(TokenAuthenticationConstant.AUTH_HEADER_NAME, token);
+					headers.add("Location", "http://127.0.0.1:8090/logicq/index.html");
+					headers.add("passkey", login.getEmail());
 					basicuser.setEmail(login.getEmail());
 					basicuser.setName(login.getUsername());
 					basicuser.setPhone(login.getPhone());

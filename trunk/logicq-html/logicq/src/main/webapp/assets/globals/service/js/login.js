@@ -14,13 +14,12 @@ $(document).ready(function(){
 			  dataType: "json",
 			  contentType:"application/json",
 			  success:function(res, status, xhr){ 
-				var token=xhr.getResponseHeader("AUTH-TOKEN");
-				$.redirect("/logicq/index.html",{"AUTH-TOKEN": token, user: xhr.name});
-				//window.location.href='/logicq/index.html?token='+token+'usrname=';
+				localStorage.setItem("token", xhr.getResponseHeader("AUTH-TOKEN"));
+				localStorage.setItem("email", xhr.getResponseHeader("passkey"));
+				window.location = xhr.getResponseHeader("Location");
 			  },
 			  error: function (res, status, xhr) {
-				 $("#basicprofile").hide();
-				  window.location.href='/logicq/error.html';
+				window.location = xhr.getResponseHeader("Location");
               }
 			});
 });

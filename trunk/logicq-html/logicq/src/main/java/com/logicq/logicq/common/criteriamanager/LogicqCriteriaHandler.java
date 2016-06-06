@@ -8,7 +8,7 @@ import org.hibernate.criterion.Restrictions;
 
 public class LogicqCriteriaHandler {
 
-	public Criteria createCriteria(Session session, Class p_class) {
+	public static Criteria createCriteria(Session session, Class p_class) {
 		return session.createCriteria(p_class,p_class.getSimpleName().toLowerCase());
 	}
 
@@ -36,7 +36,7 @@ public class LogicqCriteriaHandler {
 		return null;
 	}
 
-	private List<? > findListObject(Criteria criteria) {
+	public static List<? > findListObject(Criteria criteria) {
 		return criteria.list();
 	}
 

@@ -50,8 +50,6 @@ public class User extends BaseEntity implements UserConstant, Serializable {
 	@Column(name = "ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-     
-	
 	@Column(name = "FIRST_NAME", nullable = true)
 	private String firstName;
 	@Column(name = "LAST_NAME", nullable = true)
