@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -72,6 +73,7 @@ public class UserService implements IUserService {
 	 *            user
 	 */
 	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public UserVO addUser(UserVO userRequest) {
 
 		UserVO userVO = userRequest;
@@ -217,8 +219,13 @@ public class UserService implements IUserService {
 		UserVO uservo=new UserVO();
 		uservo.setEmail(basicuservo.getEmail());
 		uservo.setPhone(basicuservo.getPhone());
-		uservo.setFirstName(basicuservo.getName());
-		uservo.setPassword(basicuservo.getPassword());
+		String name = basicuservo.getName();
+		if (!StringUtils.isEmpty(name)) {
+			String[] names = name.split(" ");
+			uservo.setFirstName(names[0].trim());
+			uservo.setLastName(names[1].trim());
+		}
+		uservo.setPassword(new BCryptPasswordEncoder().encode(basicuservo.getPassword()));
 		uservo.setIsMobileVerified(false);
 		uservo.setIsEmailVerified(false);
 		uservo.setIsUserVerified(false);

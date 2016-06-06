@@ -34,9 +34,8 @@
 	src="/logicq/assets/globals/plugins/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 <script src="/logicq/assets/globals/js/pleasure.js"></script>
 <script src="/logicq/assets/admin1/js/layout.js"></script>
-<script src="/logicq/assets/globals/js/bootstrap-typeahead.js"></script>
-<script src="/logicq/assets/globals/service/js/location.js"></script>
-<script src="/logicq/assets/globals/service/js/login.js"></script>
+<script src="/logicq/assets/globals/service/js/register.js"></script>
+<script src="/logicq/assets/globals/js/jquery.serializejson.js"></script>
 <script>
 	$(document).ready(function() {
 		Pleasure.init();
@@ -44,12 +43,14 @@
 		FormsWizard.init();
 	});
 	$('#scroll').perfectScrollbar('update');
+	$('#resetbutton').click(function(){
+        $('#register')[0].reset();
+	});
 </script>
 </head>
 <body class="bg-main-white">
 <div class="content">
-							<form method="post" id="register" class=""
-								novalidate="novalidate" method="post">
+							<form action="" method="post" id="registerform">
 								<!--  form method="post" action="home.html" class="" novalidate="novalidate"-->
 								<div class="modal-dialog">
 									<div class="modal-content">
@@ -71,7 +72,7 @@
 												<div class="form-group">
 													<div class="inputer">
 														<div class="input-wrapper">
-															<input type="email" id="email" class="form-control"
+															<input type="email" id="email" name="email" class="form-control"
 																placeholder="Enter email address">
 														</div>
 													</div>
@@ -80,7 +81,7 @@
 												<div class="form-group">
 													<div class="inputer">
 														<div class="input-wrapper">
-															<input type="text" id="phone" class="form-control"
+															<input type="text" id="phone"  name="phone" class="form-control"
 																placeholder="Enter Mobile Number">
 														</div>
 													</div>
@@ -89,8 +90,8 @@
 												<div class="form-group">
 													<div class="inputer">
 														<div class="input-wrapper">
-															<input type="text" id="name" class="form-control"
-																placeholder="First Name  Last Name">
+															<input type="text" id="name" name="name" class="form-control"
+																placeholder="First Name      Last Name">
 														</div>
 													</div>
 												</div>
@@ -98,18 +99,15 @@
 												<div class="form-group">
 													<div class="inputer">
 														<div class="input-wrapper">
-															<input type="password" id="password" class="form-control"
+															<input type="password" id="password" name="password"  class="form-control"
 																placeholder="Enter password">
 														</div>
 													</div>
 												</div>
 												<!--.form-group-->
 												<div class="form-buttons clearfix">
-													<input type="submit" id="register"
-														class="btn btn-primary btn-space pull-right"
-														value="Register" /> <input type="button"
-														class="btn btn-primary btn-space pull-right" id="reset"
-														data-dismiss="modal" value="Cancel" />
+												<button id="registerbutton" class="btn btn-primary btn-space pull-right">Register</button>
+												<button id="resetbutton" class="btn btn-primary btn-space pull-right" data-dismiss="modal">Reset</button>
 												</div>
 												<!-- button .form-buttons-->
 											</div>

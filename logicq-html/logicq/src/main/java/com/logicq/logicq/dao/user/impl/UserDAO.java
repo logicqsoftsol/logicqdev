@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 
@@ -142,14 +143,7 @@ public class UserDAO extends AbstractDAO<User> implements IUserDAO {
 	private Criteria formQueryParams(UserSearch usersearch,LogicqCriteriaHandler l_crietria) {
 		Criteria criteria=l_crietria.createCriteria(getSession(), User.class);
 		criteria.createAlias("user.addresses", "addr", JoinType.LEFT_OUTER_JOIN); 
-	//	criteria.createAlias("user.role", "role", JoinType.LEFT_OUTER_JOIN); 
-		Projections.projectionList()
-        .add(Projections.property("user.id"))
-        .add(Projections.property("addr.city"))
-        .add(Projections.property("addr.state"))
-        .add(Projections.property("addr.pincode"));
-        //.add(Projections.property("role.roleid"));
-		criteria.setProjection(Projections.projectionList());
+		//criteria.add(Restrictions.eq("patient.phone", phone))
 	return criteria;
 	}
 
