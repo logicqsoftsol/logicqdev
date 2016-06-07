@@ -36,20 +36,9 @@
 <script src="/logicq/assets/admin1/js/layout.js"></script>
 <script src="/logicq/assets/globals/service/js/register.js"></script>
 <script src="/logicq/assets/globals/js/jquery.serializejson.js"></script>
-<script>
-	$(document).ready(function() {
-		Pleasure.init();
-		Layout.init();
-		FormsWizard.init();
-	});
-	$('#scroll').perfectScrollbar('update');
-	$('#resetbutton').click(function(){
-        $('#register')[0].reset();
-	});
-</script>
 </head>
 <body class="bg-main-white">
-<div class="content">
+<div class="content" id="divregister">
 							<form action="" method="post" id="registerform">
 								<!--  form method="post" action="home.html" class="" novalidate="novalidate"-->
 								<div class="modal-dialog">
@@ -123,6 +112,50 @@
 															class="fa fa-google-plus"></i> Gmail</a>
 													</div>
 												</div>
+											</div>
+											<!--.social-accounts-->
+										</div>
+									</div>
+									<!--.modal-content-->
+								</div>
+								<!--.modal-dialog-->
+							</form>
+						</div>
+						
+						<div class="content"  style='display: none;'  id="divotpvalidation">
+						<form id="validateOTP">
+								<!--  form method="post" action="home.html" class="" novalidate="novalidate"-->
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header bg-main-color">
+											<div class="col-sm-6">
+												<a href="https://doctorathome.in/"><img
+													src="/logicq/assets/admin1/img/logo.png" /></a>
+											</div>
+											<!--.col-->
+											<div class="col-sm-6 text-right">
+												<h4 class="modal-title">OTP Validation</h4>
+											</div>
+											<!--.col-->
+											<div class="clearfix"></div>
+										</div>
+										<div class="modal-body">
+
+											<div id="pane-login" class="panel-body active">
+												<div class="form-group">
+													<div class="inputer">
+														<div class="input-wrapper">
+															<input type="text" id="otp" name="otp" class="form-control"
+																placeholder="Enter your OTP ">
+														</div>
+													</div>
+												</div>
+												<!--.form-group-->
+												<div class="form-buttons clearfix">
+												<button id="validateotp" class="btn btn-primary btn-space pull-right">Validate</button>
+												<button id="resendotp" class="btn btn-primary btn-space pull-right" data-dismiss="modal">Send OTP</button>
+												</div>
+												<!-- button .form-buttons-->
 											</div>
 											<!--.social-accounts-->
 										</div>
