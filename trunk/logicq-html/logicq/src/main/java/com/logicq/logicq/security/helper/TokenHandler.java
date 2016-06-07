@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.logicq.logicq.model.login.Login;
 import com.logicq.logicq.security.service.UserService;
 import com.logicq.logicq.ui.login.vo.LoginVO;
 import com.logicq.logicq.ui.security.LoginUserVO;
@@ -19,7 +20,7 @@ public final class TokenHandler {
 	private static final String CLAIM_KEY_CREATED = "created";
 	private final String secret;
 	private final UserService userService;
-	private Long expiration = new Long(100000);
+	private final static Long expiration = new Long(100000);
 
 	public TokenHandler(String secret, UserService userService) {
 		this.secret = Base64.getEncoder().encodeToString(secret.getBytes());
@@ -36,6 +37,16 @@ public final class TokenHandler {
 		return Jwts.builder().setId(UUID.randomUUID().toString()).setSubject(user.getUsername()).setIssuedAt(now)
 				.setExpiration(generateExpirationDate()).signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
+	
+	public static String parseMobileFromToken(String token) {
+		return Jwts.parser().setSigningKey("mobile").parseClaimsJws(token).getBody().getSubject();
+	}
+	
+	public static String createTokenForOTP(String mobilenumber) {
+		Date now = new Date();
+		return Jwts.builder().setId(UUID.randomUUID().toString()).setSubject(mobilenumber).setIssuedAt(now)
+				.setExpiration(generateExpirationDate()).signWith(SignatureAlgorithm.HS512, "mobile").compact();
+	}
 
 	public Boolean validateToken(String token, UserDetails userDetails) {
 		LoginUserVO user = (LoginUserVO) userDetails;
@@ -43,7 +54,7 @@ public final class TokenHandler {
 		return (username.equals(user.getUsername()) && !isTokenExpired(token));
 	}
 
-	private Date generateExpirationDate() {
+	private static Date generateExpirationDate() {
 		return new Date(System.currentTimeMillis() + expiration * 1000);
 	}
 
