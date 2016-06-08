@@ -28,6 +28,7 @@ import com.logicq.logicq.model.login.Authority;
 import com.logicq.logicq.model.login.AuthorityName;
 import com.logicq.logicq.model.login.Login;
 import com.logicq.logicq.model.user.User;
+import com.logicq.logicq.security.helper.TokenHandler;
 import com.logicq.logicq.service.alert.IAlertService;
 import com.logicq.logicq.service.login.IloginService;
 import com.logicq.logicq.service.task.ITaskManagerService;
@@ -84,6 +85,7 @@ public class UserService implements IUserService {
 			//insert into login table
 			Login loginDetails = setLoginDetails(user);
 			loginService.insertLoginDetails(loginDetails);
+			
 			//build alert DTO
 			/*AlertDetailsInputVO alertDetailsInputVO = new AlertDetailsInputVO();
 			alertDetailsInputVO = buildAlertDetails(user,
