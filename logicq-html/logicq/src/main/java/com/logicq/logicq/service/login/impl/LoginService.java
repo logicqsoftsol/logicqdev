@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.logicq.logicq.conversion.login.LoginConversion;
 import com.logicq.logicq.dao.login.ILoginDAO;
 import com.logicq.logicq.model.login.Login;
+import com.logicq.logicq.security.helper.TokenHandler;
 import com.logicq.logicq.security.helper.UserFactory;
 import com.logicq.logicq.security.service.UserService;
 import com.logicq.logicq.service.login.IloginService;
@@ -36,8 +37,8 @@ public class LoginService implements IloginService {
 	
 
 	public void insertLoginDetails(Login loginDetails) {
-
 		loginDAO.insertLoginDetails(loginDetails);
+
 	}
 
 	

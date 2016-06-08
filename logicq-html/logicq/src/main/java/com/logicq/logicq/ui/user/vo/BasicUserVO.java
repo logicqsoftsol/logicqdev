@@ -25,6 +25,28 @@ public class BasicUserVO implements Serializable{
 	
 	@NotNull
 	private String password;
+	
+	
+	private String otp;
+	
+	private String mobileVerified="false";
+
+
+	public String getMobileVerified() {
+		return mobileVerified;
+	}
+
+	public void setMobileVerified(String mobileVerified) {
+		this.mobileVerified = mobileVerified;
+	}
+
+	public String getOtp() {
+		return otp;
+	}
+
+	public void setOtp(String otp) {
+		this.otp = otp;
+	}
 
 	public String getEmail() {
 		return email;

@@ -49,8 +49,6 @@ public class SearchController {
 
 	@RequestMapping(value = "/getAllEntites", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<DropdownData>> getEntites() {
-		
-		//addressservice.getListofAllAddressandBasicUserinfo();
 		List<DropdownData> entities = searchservice.search("entity");
 		return new ResponseEntity<List<DropdownData>>(entities, HttpStatus.OK);
 	}
