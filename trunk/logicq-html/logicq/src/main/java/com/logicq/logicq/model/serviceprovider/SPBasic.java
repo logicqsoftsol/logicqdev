@@ -16,6 +16,14 @@ public class SPBasic {
 	private String fees;
 	private Set<Facility> facilites;
 	private String profileimage;
+	private String speciality;
+	
+	public String getSpeciality() {
+		return speciality;
+	}
+	public void setSpeciality(String speciality) {
+		this.speciality = speciality;
+	}
 	public String getFullname() {
 		return fullname;
 	}
