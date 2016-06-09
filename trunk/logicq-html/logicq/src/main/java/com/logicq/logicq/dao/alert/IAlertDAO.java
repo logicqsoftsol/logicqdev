@@ -11,4 +11,6 @@ public interface IAlertDAO {
 	public void updateAlert(Alert alert);
 
 	public void getAlert(Alert alert);
+
+	public Alert fetchAlertByUserId(Long userId);
 }

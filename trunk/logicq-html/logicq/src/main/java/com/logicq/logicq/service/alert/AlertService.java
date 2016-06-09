@@ -86,4 +86,10 @@ public class AlertService implements IAlertService {
 		}
 		return emailService;
 	}
+
+	public Alert fetchAlert(Long userId) {
+
+		Alert alert = alertDAO.fetchAlertByUserId(userId);
+		return alert;
+	}
 }

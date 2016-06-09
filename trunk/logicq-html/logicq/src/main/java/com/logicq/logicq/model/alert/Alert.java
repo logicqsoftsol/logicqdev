@@ -11,12 +11,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import com.logicq.logicq.common.criteriamanager.BaseEntity;
 import com.logicq.logicq.constant.AlertType;
 
 @Entity
 @Table(name = "ALERT_LOG")
-public class Alert extends BaseEntity implements Serializable {
+@NamedQueries({ @NamedQuery(name = Alert.GET_ALERT_BY_USER_ID, query = Alert.GET_ALERT_BY_USER_ID_QRY) })
+public class Alert extends BaseEntity implements Serializable, AlertConstants {
 
 	/**
 	 * 

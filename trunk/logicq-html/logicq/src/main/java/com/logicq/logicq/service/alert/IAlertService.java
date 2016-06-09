@@ -1,5 +1,6 @@
 package com.logicq.logicq.service.alert;
 
+import com.logicq.logicq.model.alert.Alert;
 import com.logicq.logicq.ui.alert.vo.AlertDetailsCompleteResponse;
 import com.logicq.logicq.ui.alert.vo.AlertDetailsInputVO;
 import com.logicq.logicq.ui.alert.vo.AlertRegistrationVO;
@@ -11,4 +12,6 @@ public interface IAlertService {
 	public void sendAlert(AlertDetailsInputVO alertDetailsVO);
 
 	public AlertDetailsCompleteResponse getAlertDetails(String serviceId);
+
+	public Alert fetchAlert(Long userId);
 }
