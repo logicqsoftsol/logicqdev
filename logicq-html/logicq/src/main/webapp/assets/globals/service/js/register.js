@@ -35,7 +35,13 @@ $("#validateotp").click(function() {
 	   var mobilenumber = $("#mobilenumber").val();
 		  $.ajax({
 			  type:'POST',
-			  url:'http://127.0.0.1:8090/logicq/user/validateOTP/'+otp+"/"+mobilenumber,
+			  beforeSend: function (request)
+	            {
+					request.setRequestHeader("contentType", "application/json");
+	                request.setRequestHeader("OTP", otp);
+					request.setRequestHeader("MobileNumber",mobilenumber);
+	            },
+			  url:'http://127.0.0.1:8090/logicq/user/validateOTP',
 			  data : '',
 			  dataType: "json",
 			  contentType: "application/json",
