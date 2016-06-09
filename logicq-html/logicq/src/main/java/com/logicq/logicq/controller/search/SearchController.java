@@ -35,9 +35,7 @@ public class SearchController {
 		   new ResponseEntity<List<SPBasic>>(spbasic, HttpStatus.BAD_REQUEST);
 	   }else{
 		   spbasic= searchservice.searchServiceProvider(location, entity);
-	   }
-		
-		
+	   }	
 		return new ResponseEntity<List<SPBasic>>(spbasic, HttpStatus.OK);
 	}
 

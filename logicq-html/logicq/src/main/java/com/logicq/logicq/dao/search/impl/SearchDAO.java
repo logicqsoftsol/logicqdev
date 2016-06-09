@@ -49,7 +49,6 @@ public class SearchDAO extends AbstractDAO<DropdownData> implements ISearchDAO{
 	public List<User> searchServiceProvider(String location, String entitype) {
 		Criteria criteria=LogicqCriteriaHandler.createCriteria(getSession(), User.class);
 		criteria.createAlias("user.addresses", "addr", JoinType.LEFT_OUTER_JOIN);
-		//criteria.createAlias("user.entityType", "entitytype", JoinType.LEFT_OUTER_JOIN); 
 		criteria.add(Restrictions.eq("addr.city", location));
 		criteria.add(Restrictions.eq("user.entityType", EntityType.DOCTOR));
 		List<User> userlist= (List<User>) LogicqCriteriaHandler.findListObject(criteria);

@@ -28,9 +28,10 @@ public class SearchServiceImpl implements ISearchService {
 	public List<SPBasic> searchServiceProvider(String location, String entitype) {
 		List<SPBasic> spbasiclist = new ArrayList<SPBasic>();
 		List<User> serviceproviderlist = searchdao.searchServiceProvider(location, entitype);
-		for (User sp : serviceproviderlist) {
+		
+		for (int i=0; i<10;i++) {
 			SPBasic spbasic = new SPBasic();
-			spbasic.setFullname(sp.getFirstName() + " " + sp.getLastName());
+			spbasic.setFullname("firstname"+i+ " " + "firstname"+i);
 			spbasic.setQualification("MBBS , MD - Medicine , DNB (Cardiology)");
 			//spbasic.setFacilites(sp.getFacilities());
 			spbasic.setAvilablelocation("pune");
@@ -45,4 +46,6 @@ public class SearchServiceImpl implements ISearchService {
 		return spbasiclist;
 	}
 
+	
+	
 }
