@@ -26,12 +26,24 @@ public class SearchDAO extends AbstractDAO<DropdownData> implements ISearchDAO{
 			String query = "select distinct addr.city as value ,addr.city as name from Address addr";
 			 List<Object[]> locationlist= (List<Object[]>) execcuteQuery(query);
 			 populateDropDown(locationlist,dropdownlist);
+
 		}
 		if ("entity".equalsIgnoreCase(searchfor)) {
 			String query = "select  ent.entityId as name ,ent.entityName as value from EntityRole ent";
 			 List<Object[]> entitylist=(List<Object[]>) execcuteQuery(query);
 			 populateDropDown(entitylist,dropdownlist);
 		}
+
+	
+		
+		return dropdownlist;
+	}
+	
+	public List<DropdownData> searchSpecialisation(String specialisation) {
+		List<DropdownData> dropdownlist=new ArrayList<DropdownData>();
+		String query = "select  fac.facilityId as name ,fac.facilityName as value from Facility fac where entityType="+EntityType.valueOf(specialisation);
+		List<Object[]> entitylist=(List<Object[]>) execcuteQuery(query);
+		populateDropDown(entitylist,dropdownlist);
 		return dropdownlist;
 	}
 
@@ -50,7 +62,7 @@ public class SearchDAO extends AbstractDAO<DropdownData> implements ISearchDAO{
 		Criteria criteria=LogicqCriteriaHandler.createCriteria(getSession(), User.class);
 		criteria.createAlias("user.addresses", "addr", JoinType.LEFT_OUTER_JOIN);
 		criteria.add(Restrictions.eq("addr.city", location));
-		criteria.add(Restrictions.eq("user.entityType", EntityType.DOCTOR));
+		criteria.add(Restrictions.eq("user.entityType", EntityType.valueOf(entitype)));
 		List<User> userlist= (List<User>) LogicqCriteriaHandler.findListObject(criteria);
 		return userlist;
 	}
