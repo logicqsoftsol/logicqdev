@@ -8,6 +8,7 @@ import com.logicq.logicq.model.serviceprovider.SPBasic;
 public interface ISearchService {
 	
 	public List<DropdownData> search(String searchfor);
+	public List<DropdownData> searchSpecialisation(String searchfor);
 	
 	public List<SPBasic> searchServiceProvider(String location,String entitype);
 

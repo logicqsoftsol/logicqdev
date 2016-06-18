@@ -8,6 +8,7 @@ import com.logicq.logicq.model.user.User;
 public interface ISearchDAO {
 	
 	public List<DropdownData> search(String searchfor);
+	public List<DropdownData> searchSpecialisation(String searchfor);
 	public List<User> searchServiceProvider(String location,String entitype);
 
 }

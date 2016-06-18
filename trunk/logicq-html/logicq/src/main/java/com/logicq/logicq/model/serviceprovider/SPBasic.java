@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.logicq.logicq.model.user.facility.Facility;
+import com.logicq.logicq.ui.user.vo.FacilityVO;
 
 public class SPBasic {
 	
@@ -14,7 +15,7 @@ public class SPBasic {
 	private String feedback;
 	private String avilablelocation;
 	private String fees;
-	private Set<Facility> facilites;
+	private List<FacilityVO> facilites;
 	private String profileimage;
 	private String speciality;
 	
@@ -66,10 +67,10 @@ public class SPBasic {
 	public void setFees(String fees) {
 		this.fees = fees;
 	}
-	public Set<Facility> getFacilites() {
+	public List<FacilityVO> getFacilites() {
 		return facilites;
 	}
-	public void setFacilites(Set<Facility> facilites) {
+	public void setFacilites(List<FacilityVO> facilites) {
 		this.facilites = facilites;
 	}
 	public String getProfileimage() {

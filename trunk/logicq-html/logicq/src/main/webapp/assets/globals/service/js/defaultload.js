@@ -1,10 +1,7 @@
 $(document)
 		.ready(
 				function() {
-					Pleasure.init();
-					Layout.init();
-					FormsWizard.init();
-					
+				
 					$
 							.ajax({
 								type : 'GET',
@@ -58,6 +55,5 @@ $(document)
 									$("#userlogin").show();
 									$("#register").show();
 								}
-	
-$('#scroll').perfectScrollbar('update');
+
 				});
