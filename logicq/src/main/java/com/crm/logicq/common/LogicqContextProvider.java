@@ -3,8 +3,6 @@ package com.crm.logicq.common;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.faces.context.FacesContext;
-
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -25,12 +23,6 @@ public class LogicqContextProvider implements ApplicationContextAware {
 		return context;
 	}
 	
-	public static Object getBean(String manageBean) {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		return facesContext.getApplication()
-	      .createValueBinding("#{"+manageBean+"}").getValue(facesContext);
-	}
-	
 	public static Object getElementFromApplicationMap(String key){
 		Object element=null;
 		if(conversationMap.containsKey(key)){
@@ -47,11 +39,9 @@ public class LogicqContextProvider implements ApplicationContextAware {
 	return element;
 	}
 
-	public static void addElementFromApplicationMap(String key ,Object value){
+	public static void addElementToApplicationMap(String key ,Object value){
 		conversationMap.put(key, value);
 	}
 	
-	public static Object getBeanFromContext(Class claz) {
-		return getApplicationContext().getBean(claz);
-	}
+	
 }

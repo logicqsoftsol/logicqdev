@@ -1,13 +1,23 @@
 package com.crm.logicq.model.user;
 
+import java.io.Serializable;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.crm.logicq.constant.EntityType;
 import com.crm.logicq.model.common.BaseEntity;
+import com.crm.logicq.model.communication.PhoneCommunication;
 
 /**
  * 
@@ -16,7 +26,7 @@ import com.crm.logicq.model.common.BaseEntity;
  */
 @Entity
 @Table(name = "USER")
-public class User  extends BaseEntity {
+public class User  extends BaseEntity implements Serializable {
 
 	/**
 	 * 
@@ -29,8 +39,11 @@ public class User  extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "IDENTIFICATION_ID", nullable = true)
+	@Column(name = "IDENTIFICATION_ID", nullable = false)
 	private String idetificationid;
+	
+	@Column(name = "USER_ID", nullable = false)
+	private String userid;
 	
 	@Column(name = "FIRST_NAME", nullable = true)
 	private String firstName;
@@ -38,14 +51,20 @@ public class User  extends BaseEntity {
 	@Column(name = "LAST_NAME", nullable = true)
 	private String lastName;
 	
-	@Column(name = "MOBILE_NUMBER", unique = true, nullable = false)
-	private String mobileNumber;
+
 	
-	@Column(name = "EMAIL_ID", unique = true, nullable = false)
+	@Column(name = "EMAIL_ID", unique = true, nullable = true)
 	private String email;
 	
 	@Column(name = "GENDER", nullable = true)
 	private String gender;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+	private Set<PhoneCommunication> communication;
+	
+	@Column(name = "ENTITY_TYPE", nullable = true)
+	@Enumerated(EnumType.STRING)
+	private EntityType entityType;
 
 	public Long getId() {
 		return id;
@@ -61,6 +80,14 @@ public class User  extends BaseEntity {
 
 	public void setIdetificationid(String idetificationid) {
 		this.idetificationid = idetificationid;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public String getFirstName() {
@@ -79,13 +106,7 @@ public class User  extends BaseEntity {
 		this.lastName = lastName;
 	}
 
-	public String getMobileNumber() {
-		return mobileNumber;
-	}
-
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
+	
 
 	public String getEmail() {
 		return email;
@@ -103,11 +124,29 @@ public class User  extends BaseEntity {
 		this.gender = gender;
 	}
 
+	public Set<PhoneCommunication> getCommunication() {
+		return communication;
+	}
+
+	public void setCommunication(Set<PhoneCommunication> communication) {
+		this.communication = communication;
+	}
+
+	public EntityType getEntityType() {
+		return entityType;
+	}
+
+	public void setEntityType(EntityType entityType) {
+		this.entityType = entityType;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", idetificationid=" + idetificationid + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", mobileNumber=" + mobileNumber + ", email=" + email + ", gender=" + gender + "]";
+		return "User [id=" + id + ", idetificationid=" + idetificationid + ", userid=" + userid + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", gender=" + gender + ", communication=" + communication + ", entityType=" + entityType + "]";
 	}
-	
+
+
 	
 }
