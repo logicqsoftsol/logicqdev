@@ -1,7 +1,7 @@
 package com.crm.logicq.constant;
 
 public enum ContactType {
-	MOBILE("mobile"), WORK("work"), HOME("home");
+	 WORK("work"), HOME("home"),EMERGENCY("emergency");
 
 	private String contactType;
 

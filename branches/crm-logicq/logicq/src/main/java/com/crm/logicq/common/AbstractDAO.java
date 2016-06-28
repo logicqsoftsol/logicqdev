@@ -154,4 +154,19 @@ public class AbstractDAO<T> {
 		Query query = getCurrentSession().createSQLQuery(queryString);
 		return query.list();
 	}
+	/**
+	 * Thsi method use for Bulk same 
+	 * @param entities
+	 */
+	public void bulkSave(List<T> entities) {
+		Session session = getCurrentSession();
+		for (int i = 0; i < entities.size(); i++) {
+			session.save(entities.get(i));
+			if (i % 200 == 0) {
+				session.flush();
+				session.clear();
+			}
+
+		}
+	}
 }
