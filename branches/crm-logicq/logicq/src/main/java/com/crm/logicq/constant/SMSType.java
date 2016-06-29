@@ -2,7 +2,7 @@ package com.crm.logicq.constant;
 
 public enum SMSType {
 
-	 ATTENDANCE("work"), SUMMERVACATION("home"),EMERGENCY("emergency");
+	 ATTENDANCE("attendance"), SUMMERVACATION("summerVacation"),EMERGENCY("emergency");
 
 		private String smsType;
 
