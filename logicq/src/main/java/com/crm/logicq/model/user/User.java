@@ -59,7 +59,7 @@ public class User  extends BaseEntity implements Serializable {
 	@Column(name = "GENDER", nullable = true)
 	private String gender;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<PhoneCommunication> communication;
 	
 	@Column(name = "ENTITY_TYPE", nullable = true)
