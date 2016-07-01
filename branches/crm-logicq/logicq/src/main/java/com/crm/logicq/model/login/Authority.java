@@ -1,16 +1,12 @@
 package com.crm.logicq.model.login;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -31,13 +27,7 @@ public class Authority {
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
 
-    @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
-    private List<Login> users;
-
-    public Long getId() {
-        return id;
-    }
-
+ 
     public void setId(Long id) {
         this.id = id;
     }
@@ -50,11 +40,10 @@ public class Authority {
         this.name = name;
     }
 
-    public List<Login> getUsers() {
-        return users;
-    }
+	@Override
+	public String toString() {
+		return "Authority [id=" + id + ", name=" + name + "]";
+	}
 
-    public void setUsers(List<Login> users) {
-        this.users = users;
-    }
+    
 }
