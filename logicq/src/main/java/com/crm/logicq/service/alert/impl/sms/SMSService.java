@@ -1,5 +1,8 @@
 package com.crm.logicq.service.alert.impl.sms;
 
-public class SMSService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class SMSService implements ISMSService {
 
 }
