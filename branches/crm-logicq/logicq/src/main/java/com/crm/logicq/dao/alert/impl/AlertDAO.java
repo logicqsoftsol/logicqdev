@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.crm.logicq.common.AbstractDAO;
 import com.crm.logicq.dao.alert.IAlertDAO;
 import com.crm.logicq.model.alert.Alert;
 
+@Repository
 public class AlertDAO extends AbstractDAO<Alert> implements IAlertDAO{
 	
 	public void addAlert(Alert alert) {
