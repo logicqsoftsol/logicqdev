@@ -14,12 +14,11 @@
 	   'get' : 'GET' ,  
 	   'post' : 'POST' , 
 	   'loadDefaultUserURL' : '/admin/loadDefaultUser',
+	   'addSMSTemplate' : '/admin/smstemplate/add',
+	   'updateSMSTemplate' : '/admin/smstemplate/update',
+	   'deleteSMSTemplate' : '/admin/smstemplate/delete',
+	   'searchSMSTemplate' : '/admin/smstemplate/search',
 	   'loginURL' :'/api/login',
-        'RoleEnum' :
-        	 {
-        	  admin:'ROLE_ADMIN',
-        	  user:'ROLE_USER'
-        	 }
 
 	}).directive('ngConfirmClick', [
 	                                   function(){

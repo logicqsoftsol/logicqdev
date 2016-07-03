@@ -62,11 +62,11 @@
 							class="fa fa-angle-left pull-right"></i>
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="#empreg" id="empregclick" ng-click="display = 1"><i class="fa fa-user"></i>Employee Registration</a></li>
-							<li><a href="#studreg" id="stduentregclick" ng-click="display = 2"><i class="fa fa-graduation-cap"></i>Student Registration</a></li>
-							<li><a href="#coursedetails" id="coursesetup" ng-click="display = 3"><i class="fa fa-cogs"></i>Configure SMS and Email</a></li>
-							<li><a href="#calendersetup" id="admincalndersetup" ng-click="display = 4"><i class="fa fa-calendar" aria-hidden="true"></i>Calendar Setup</a></li>
-							<li><a href="#broadcast" ng-click="display = 5"><i class="fa fa-calendar"  aria-hidden="true"></i>View Attendance Report</a></li>
+							<li ng-class="{active:display == 1}"><a href="#" id="empregclick" ng-click="display = 1"><i class="fa fa-user"></i>Employee Registration</a></li>
+							<li  ng-class="{active:display == 2}"><a href="#" id="stduentregclick" ng-click="display = 2"><i class="fa fa-graduation-cap"></i>Student Registration</a></li>
+							<li ng-class="{active:display == 3}"><a href="#" id="coursesetup" ng-click="display = 3"><i class="fa fa-cogs"></i>Configure SMS and Email</a></li>
+							<li ng-class="{active:display == 4}"><a href="#" id="admincalndersetup" ng-click="display = 4"><i class="fa fa-calendar" aria-hidden="true"></i>Calendar Setup</a></li>
+							<li ng-class="{active:display == 5}"><a href="#" ng-click="display = 5"><i class="fa fa-calendar"  aria-hidden="true"></i>View Attendance Report</a></li>
 						</ul></li>
 				
 				<li class="active treeview"><a href="#"> <i
@@ -103,8 +103,7 @@
 				</ol>
 			</section>
 			<section class="content">
-			<div id="empreg" ng-show="show==1">
-        				<div class="container" ng-show="employeeregistration">
+			<div id="empreg" ng-show='display == 1'>
 				<div class="row">
 					<br> <br>
 					<div class="panel with-nav-tabs panel-success">
@@ -112,7 +111,7 @@
 						<ul class="pull-right">
 							<button id="adddetails" data-toggle="modal"
 								data-target="#" class="btn btn-default">
-								<i class="fa fa-plus-circle" aria-hidden="true"></i>Save
+								<i class="fa fa-plus-circle" aria-hidden="true"></i>New
 							</button>
 							<button  id="updatedetails" data-toggle="modal"
 								data-target="#" class="btn btn-default">
@@ -125,11 +124,11 @@
 						</ul>
 						</div>
 						<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" href="/admin#empbasicdetails">Basic Details</a></li>
-							<li><a data-toggle="tab" href="/admin#empcontactdetails">Contact Details</a></li>
-							<li><a data-toggle="tab" href="/admin#empqualificationdetails">Qualification Details</a></li>
-							<li><a data-toggle="tab" href="/admin#employmentdetails">Employment Details</a></li>
-							<li><a data-toggle="tab" href="/admin#attendancedetails">Attendance Details</a></li>
+							<li class="active"><a data-toggle="tab" class="pull-center" href="/admin#empbasicdetails">Basic Details</a></li>
+							<li><a data-toggle="tab" class="pull-center" href="/admin#empcontactdetails">Contact Details</a></li>
+							<li><a data-toggle="tab" class="pull-center" href="/admin#empqualificationdetails">Qualification Details</a></li>
+							<li><a data-toggle="tab" class="pull-center" href="/admin#employmentdetails">Employment Details</a></li>
+							<li><a data-toggle="tab" class="pull-center" href="/admin#attendancedetails">Attendance Details</a></li>
 						</ul>
 
 						<div class="panel-body">
@@ -234,8 +233,40 @@
 						</div>
 					</div>
 				</div>
-			</div>
         	</div>
+			
+			<div id="studentreg" ng-show='display == 2'>
+			<h3>Student Registration</h3>	
+			</div>
+			<div id="configsms-email" ng-show='display == 3'>
+			<h3>Configure SMS and Email</h3>	
+			</div>
+			<div id="calndersetup" ng-show='display == 4'>
+			<h4>Calendar Setup</h4>
+			</div>
+			<div id="viewattendance" ng-show='display == 5'>
+				<h4>View Attendance Report</h4>
+	 <table st-table="rowCollection" class="table table-striped">
+	    <thead>
+	      <tr>
+		      <th>first name</th>
+		      <th>last name</th>
+		      <th>birth date</th>
+	      	<th>balance</th>
+	      	<th>email</th>
+      	</tr>
+    	</thead>
+    	<tbody>
+      	<tr ng-repeat="row in rowCollection">
+      		<td>{{row.firstName}}</td>
+        	<td>{{row.lastName}}</td>
+      		<td>{{row.birthDate | date:'shortDate'}}</td>
+    	  	<td>{{row.balance}}</td>
+      		<td>{{row.email}}</td>
+       	</tr>
+	    </tbody>
+    </table>
+			</div>
 			</section>
         </div> 	
 </div>

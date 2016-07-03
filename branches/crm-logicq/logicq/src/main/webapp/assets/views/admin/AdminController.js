@@ -1,32 +1,13 @@
 (function () {
 	'use strict';
-	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AuthenticationService','AppConstants',function ($scope, $http,  $location, AuthenticationService,AppConstants) {
-
-		$scope.login = function () {
-			$scope.error =false;
-			AuthenticationService.Login($scope).success(function(response, status, headers, config){
-				console.log(headers('AUTH-TOKEN'));
-				if(headers('AUTH-TOKEN') != '' && response.authorities != '' )
-				{
-					//AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'));
-				
-				//	AuthenticationService.saveMetadata().success(function(metadataResponse, metadataStatus, metadataHeaders, metadataConfig){
-					//						AuthenticationService.setMetaData(metadataResponse);
-						//				}).error(function(metadataResponse, metadataStatus) {  
-						//			console.log("The request failed with response " + metadataResponse + " and status code " + metadataStatus);
-						//				});
-
-						$location.path('/admin');
-						
-				}
-
-
-				$scope.loading = false;
-			}).error(function(response, status) {  
-				console.log("The request failed with response " + response + " and status code " + status);
-				$scope.error = response;
-			});
-
+	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AppConstants',function ($scope, $http,  $location, AdminService,AppConstants) {
+		$scope.rowCollection= function(){
+		 [
+			                  {firstName: 'Laurent', lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
+			                  {firstName: 'Blandine', lastName: 'Faivre', birthDate: new Date('1987-04-25'), balance: -2323.22, email: 'oufblandou@gmail.com'},
+			                  {firstName: 'Francoise', lastName: 'Frere', birthDate: new Date('1955-08-27'), balance: 42343, email: 'raymondef@gmail.com'}
+			              ];
+			
 		};
 	}]);
 }());

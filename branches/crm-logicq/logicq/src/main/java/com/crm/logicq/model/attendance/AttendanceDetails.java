@@ -1,4 +1,4 @@
-package com.crm.logicq.model;
+package com.crm.logicq.model.attendance;
 
 import java.util.Date;
 
