@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.crm.logicq.model.CardReadDetails;
+import com.crm.logicq.model.user.CardReadDetails;
 @Service("ReadFile")
 public class ReadFile {
 	public List<CardReadDetails> readAccessFileInTime() {
