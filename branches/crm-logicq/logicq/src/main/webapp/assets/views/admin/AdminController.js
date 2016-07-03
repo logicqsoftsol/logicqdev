@@ -8,13 +8,13 @@
 				console.log(headers('AUTH-TOKEN'));
 				if(headers('AUTH-TOKEN') != '' && response.authorities != '' )
 				{
-					AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'));
+					//AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'));
 				
-					AuthenticationService.saveMetadata().success(function(metadataResponse, metadataStatus, metadataHeaders, metadataConfig){
-											AuthenticationService.setMetaData(metadataResponse);
-										}).error(function(metadataResponse, metadataStatus) {  
-									console.log("The request failed with response " + metadataResponse + " and status code " + metadataStatus);
-										});
+				//	AuthenticationService.saveMetadata().success(function(metadataResponse, metadataStatus, metadataHeaders, metadataConfig){
+					//						AuthenticationService.setMetaData(metadataResponse);
+						//				}).error(function(metadataResponse, metadataStatus) {  
+						//			console.log("The request failed with response " + metadataResponse + " and status code " + metadataStatus);
+						//				});
 
 						$location.path('/admin');
 						

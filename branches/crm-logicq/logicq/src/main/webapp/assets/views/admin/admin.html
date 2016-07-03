@@ -7,9 +7,7 @@
 			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top">
 				<!-- Sidebar toggle button-->
-				<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
-					role="button">
-				</a>
+				<a href="#" role="button" class="sidebar-toggle" data-toggle="offcanvas"></a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<!-- Notifications: style can be found in dropdown.less -->
@@ -64,11 +62,11 @@
 							class="fa fa-angle-left pull-right"></i>
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="#empreg" id="empregclick"><i class="fa fa-user"></i>Employee Registration</a></li>
-							<li><a href="#studreg" id="stduentregclick"><i class="fa fa-graduation-cap"></i>Student Registration</a></li>
-							<li><a href="#coursedetails" id="coursesetup"><i class="fa fa-cogs"></i>Configure SMS and Email</a></li>
-							<li><a href="#calendersetup" id="admincalndersetup"><i class="fa fa-calendar" aria-hidden="true"></i>Calendar Setup</a></li>
-							<li><a href="#broadcast"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>View Attendance Report</a></li>
+							<li><a href="#empreg" id="empregclick" ng-click="display = 1"><i class="fa fa-user"></i>Employee Registration</a></li>
+							<li><a href="#studreg" id="stduentregclick" ng-click="display = 2"><i class="fa fa-graduation-cap"></i>Student Registration</a></li>
+							<li><a href="#coursedetails" id="coursesetup" ng-click="display = 3"><i class="fa fa-cogs"></i>Configure SMS and Email</a></li>
+							<li><a href="#calendersetup" id="admincalndersetup" ng-click="display = 4"><i class="fa fa-calendar" aria-hidden="true"></i>Calendar Setup</a></li>
+							<li><a href="#broadcast" ng-click="display = 5"><i class="fa fa-calendar"  aria-hidden="true"></i>View Attendance Report</a></li>
 						</ul></li>
 				
 				<li class="active treeview"><a href="#"> <i
@@ -104,5 +102,140 @@
 					<li class="active">Dashboard</li>
 				</ol>
 			</section>
-        </div>
+			<section class="content">
+			<div id="empreg" ng-show="show==1">
+        				<div class="container" ng-show="employeeregistration">
+				<div class="row">
+					<br> <br>
+					<div class="panel with-nav-tabs panel-success">
+						<div class="panel-heading">
+						<ul class="pull-right">
+							<button id="adddetails" data-toggle="modal"
+								data-target="#" class="btn btn-default">
+								<i class="fa fa-plus-circle" aria-hidden="true"></i>Save
+							</button>
+							<button  id="updatedetails" data-toggle="modal"
+								data-target="#" class="btn btn-default">
+								<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit
+							</button>
+							<button  id="deletedetails" data-toggle="modal"
+								data-target="#" class="btn btn-default">
+								<i class="fa fa-trash-o" aria-hidden="true"></i>Delete
+							</button>
+						</ul>
+						</div>
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="/admin#empbasicdetails">Basic Details</a></li>
+							<li><a data-toggle="tab" href="/admin#empcontactdetails">Contact Details</a></li>
+							<li><a data-toggle="tab" href="/admin#empqualificationdetails">Qualification Details</a></li>
+							<li><a data-toggle="tab" href="/admin#employmentdetails">Employment Details</a></li>
+							<li><a data-toggle="tab" href="/admin#attendancedetails">Attendance Details</a></li>
+						</ul>
+
+						<div class="panel-body">
+							<div class="tab-content col-md-10">
+								<div id="empbasicdetails" class="tab-pane fade in active">
+								<form role="form"  ng-submit="login()" role="form">
+								<h4>Employee Basic Details</h4>
+								<div class="row">
+										<div class="col-xs-6 col-sm-6 col-md-6">
+									
+										<div class="form-group">
+											<input type="text" name="title" id="title" list="datalisttitle"
+												class="form-control" ng-model="title" placeholder="Title">
+												<datalist id="datalisttitle">
+													<option>Mr</option>
+													<option>Mrs</option>
+												</datalist> 
+											</div>
+											
+											<div class="form-group">
+												<input type="text" name="middlename" id="middlename"
+													class="form-control" ng-model="middlename" placeholder="Middle Name">
+										      </div>
+											</div>
+											
+											<div class="col-xs-6 col-sm-6 col-md-6">
+										    <div class="form-group">
+											<input type="text" name="firstname" id="firstname"
+												class="form-control" ng-model="firstname" placeholder="First Name">
+											</div>
+											<div class="form-group">
+												<input type="text" name="lastname" id="lastname"
+													class="form-control" ng-model="lastname" placeholder="Last Name">
+										      </div>
+											</div>
+								</div>
+								<div class="row">
+														<div class="col-xs-6 col-sm-6 col-md-6">
+															<div class="form-group">
+																<label class="col-xs-2 control-label">Gender</label>
+																<div class="col-xs-6">
+																	<div class="btn-group" data-toggle="buttons">
+																		<label class="btn btn-default"> <input id="gender"
+																			type="radio" class="form-control" ng-model="gender" name="gender"
+																			value="male"/> Male
+																		</label> <label class="btn btn-default"> <input ng-model="gender"
+																			type="radio" class="form-control" name="gender"
+																			value="female"/> Female </label>
+																	</div>
+																</div>
+															</div>
+
+
+														</div>
+														<div class="col-xs-6 col-sm-6 col-md-6">
+															<label class="col-xs-3 control-label">Birth date</label>
+															<div class="col-xs-6 col-sm-6 col-md-6">
+																<div class="form-group">
+																	<input type="text" id="birthdate" class="form-control"
+																		name="birthdate" />
+																</div>
+															</div>
+														</div>
+								</div>
+								
+							</form>
+						</div>
+								
+								<div id="empcontactdetails" class="tab-pane fade">
+									
+										<h4>Employee Contact Details</h4>
+										<div class="">
+									
+										</div>
+								</div>
+								
+								<div id="empqualificationdetails" class="tab-pane fade">
+									
+										<h4>Employee Qualification Details</h4>
+										<div class="">
+									
+										</div>
+								</div>
+								
+								<div id="employmentdetails" class="tab-pane fade">
+									
+										<h4>Employment Details</h4>
+										<div class="">
+									
+										</div>
+								</div>
+									
+								<div id="employmentdetails" class="tab-pane fade">
+									
+										<h4>Attendance Details</h4>
+										<div class="">
+									
+										</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        	</div>
+			</section>
+        </div> 	
 </div>

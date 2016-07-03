@@ -2,7 +2,7 @@ package com.crm.logicq.service.user;
 
 import java.util.List;
 
-import com.crm.logicq.model.CardReadDetails;
+import com.crm.logicq.model.user.CardReadDetails;
 
 public interface IUserService {
 	
