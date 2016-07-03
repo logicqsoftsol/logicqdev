@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.crm.logicq.dao.readfile.ReadFile;
-import com.crm.logicq.model.CardReadDetails;
+import com.crm.logicq.model.user.CardReadDetails;
 
 @Service("ScheduleService")
 public class SchedulerService {

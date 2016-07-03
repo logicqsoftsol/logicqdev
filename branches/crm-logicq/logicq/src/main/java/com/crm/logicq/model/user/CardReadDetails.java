@@ -3,35 +3,50 @@ package com.crm.logicq.model.user;
 import java.util.Date;
 
 public class CardReadDetails {
-	
-	private String cardid;
-	private String  intime;
-	private String  outtime;
-	private Date cardswappdate;
-	
-	public String getCardid() {
+
+	private int cardid;
+	private int intime;
+	private int outtime;
+
+	public int getCardid() {
+
 		return cardid;
 	}
-	public void setCardid(String cardid) {
+
+	public void setCardid(int cardid) {
+
 		this.cardid = cardid;
 	}
-	public String getIntime() {
+
+	public int getIntime() {
+
 		return intime;
 	}
-	public void setIntime(String intime) {
+
+	public void setIntime(int intime) {
+
 		this.intime = intime;
 	}
-	public String getOuttime() {
+
+	public int getOuttime() {
+
 		return outtime;
 	}
-	public void setOuttime(String outtime) {
+
+	public void setOuttime(int outtime) {
+
 		this.outtime = outtime;
 	}
+
 	public Date getCardswappdate() {
+
 		return cardswappdate;
 	}
+
 	public void setCardswappdate(Date cardswappdate) {
+
 		this.cardswappdate = cardswappdate;
 	}
 
+	private Date cardswappdate;
 }
