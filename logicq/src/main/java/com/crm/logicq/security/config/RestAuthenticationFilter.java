@@ -37,12 +37,11 @@ public class RestAuthenticationFilter extends GenericFilterBean {
 	private final TokenAuthenticationService tokenAuthenticationService;
 	private UserService userService;
 	
-    private PasswordEncoder passwordEncoder;
+    private static final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 	
 	public RestAuthenticationFilter(UserService userService, TokenAuthenticationService tokenAuthenticationService) {
 		this.tokenAuthenticationService = tokenAuthenticationService;
 		this.userService = userService;
-		this.passwordEncoder=new BCryptPasswordEncoder();
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
