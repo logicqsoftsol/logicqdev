@@ -4,26 +4,26 @@ import java.util.Date;
 
 public class CardReadDetails {
 
-	private int cardid;
-	private int intime;
-	private int outtime;
+	private Integer cardid;
+	private Integer intime;
+	private Integer outtime;
 
-	public int getCardid() {
+	public Integer getCardid() {
 
 		return cardid;
 	}
 
-	public void setCardid(int cardid) {
+	public void setCardid(Integer cardid) {
 
 		this.cardid = cardid;
 	}
 
-	public int getIntime() {
+	public Integer getIntime() {
 
 		return intime;
 	}
 
-	public void setIntime(int intime) {
+	public void setIntime(Integer intime) {
 
 		this.intime = intime;
 	}
@@ -33,7 +33,7 @@ public class CardReadDetails {
 		return outtime;
 	}
 
-	public void setOuttime(int outtime) {
+	public void setOuttime(Integer outtime) {
 
 		this.outtime = outtime;
 	}
