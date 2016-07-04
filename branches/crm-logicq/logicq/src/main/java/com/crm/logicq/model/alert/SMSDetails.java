@@ -35,10 +35,10 @@ public class SMSDetails implements Serializable {
 	private SMSType smsType;
 	
 	@Column(name = "IN_TIME", nullable = true)
-	private String intime;
+	private Integer intime;
 	
 	@Column(name = "OUT_TIME", nullable = true)
-	private String outtime;
+	private Integer outtime;
 	
 	@Column(name = "COMMENTS", nullable = true)
 	private String comments;
@@ -74,18 +74,7 @@ public class SMSDetails implements Serializable {
 	public void setContactType(ContactType contactType) {
 		this.contactType = contactType;
 	}
-	public String getIntime() {
-		return intime;
-	}
-	public void setIntime(String intime) {
-		this.intime = intime;
-	}
-	public String getOuttime() {
-		return outtime;
-	}
-	public void setOuttime(String outtime) {
-		this.outtime = outtime;
-	}
+	
 	public String getComments() {
 		return comments;
 	}
@@ -116,7 +105,18 @@ public class SMSDetails implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+	public Integer getIntime() {
+		return intime;
+	}
+	public void setIntime(Integer intime) {
+		this.intime = intime;
+	}
+	public Integer getOuttime() {
+		return outtime;
+	}
+	public void setOuttime(Integer outtime) {
+		this.outtime = outtime;
+	}
 	@Override
 	public String toString() {
 		return "SMSDetails [mobileNumber=" + mobileNumber + ", contactType=" + contactType + ", smsType=" + smsType

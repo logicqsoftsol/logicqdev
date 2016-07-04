@@ -9,5 +9,5 @@ public interface IUserService {
 	public void loadUsers();
 
 	public void getUserForSMS(List<CardReadDetails> cardreadDeatils);
-	
+	public void triggerSMS(List<CardReadDetails> cardreadDeatils) throws Exception;
 }

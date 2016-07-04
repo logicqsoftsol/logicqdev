@@ -4,41 +4,42 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.crm.logicq.dao.readfile.ReadFile;
+import com.crm.logicq.dao.readfile.IReadFileDAO;
+import com.crm.logicq.dao.readfile.ReadFileDAO;
 import com.crm.logicq.model.user.CardReadDetails;
-
+import com.crm.logicq.service.user.IUserService;
+/**
+ * 
+ * @author Nihar 
+ *
+ */
 @Service("ScheduleService")
-public class SchedulerService {
-
-	private ReadFile readFile;
-
+public class SchedulerService implements ISchedulerService {
+	
 	@Autowired
-	public void setReadFile(ReadFile readFile) {
+	IReadFileDAO readFileDAO;
+	
+	@Autowired
+	IUserService userservice;
+	
 
-		this.readFile = readFile;
+	
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public void readAccessFile()  throws Exception{
+		List<CardReadDetails> userCardDeatils = readFileDAO.readAccessFile();
+		userservice.getUserForSMS(userCardDeatils);
 	}
 
-	public ReadFile getReadFile() {
-
-		return readFile;
-	}
-
-	public void readAccessFileInTime() {
-
-		List<CardReadDetails> inTimeList = readFile.readAccessFileInTime();
-	}
-
-	public void readAccessFileOutTime() {
-
-		List<CardReadDetails> outTimeList = readFile.readAccessFileOutTime();
-	}
-
-	public void specialJobTime() {
-
-		readFile.specialJob();
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public void performTask() {
+		
 	}
 }
-/**
- * NIHAR 04-Jul-2016 1:37:33 am
- */

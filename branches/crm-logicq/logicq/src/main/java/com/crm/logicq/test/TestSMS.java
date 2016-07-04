@@ -12,7 +12,7 @@ public class TestSMS {
 
 		  try {
 
-			URL url = new URL("http://login.cheapsmsbazaar.com/vendorsms/pushsms.aspx?user=demo&password=demo&msisdn=917057014118&sid=DEMOOO&msg=test%20message&fl=0&gwid=2");
+			URL url = new URL("http://login.cheapsmsbazaar.com/vendorsms/pushsms.aspx?user=demo&password=demo&msisdn=917276484647&sid=DEMOOO&msg=test%20message&fl=0&gwid=2");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
