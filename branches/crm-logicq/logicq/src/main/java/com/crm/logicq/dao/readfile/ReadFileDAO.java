@@ -22,15 +22,14 @@ import com.crm.logicq.model.user.CardReadDetails;
  *
  */
 @Repository("readFileDAO")
-public class ReadFileDAO extends AbstractDAO<CardReadDetails> implements IReadFileDAO{
+public class ReadFileDAO extends AbstractDAO<CardReadDetails> implements IReadFileDAO,IMSAcessQueryConstant{
 
 	@Autowired
 	MSAcessHelper msacesshelper;
 	
 	@Override
 	public List<CardReadDetails> readAccessFile() throws Exception {
-		String selectquery = "SELECT CARDID,INTIME,OUTTIME,INPUTDATE FROM CARDINFO";
-	return (List<CardReadDetails>) msacesshelper.executeQuery(selectquery, CardReadDetails.class);
+	return (List<CardReadDetails>) msacesshelper.executeQuery(SELECT_QUERY, CardReadDetails.class);
 	}
 	
 }
