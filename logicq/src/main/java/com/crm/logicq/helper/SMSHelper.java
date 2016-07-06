@@ -1,71 +1,105 @@
 package com.crm.logicq.helper;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
+import com.crm.logicq.common.vendor.sms.SMSVendor;
 import com.crm.logicq.model.alert.SMSDetails;
 import com.crm.logicq.model.communication.PhoneCommunication;
 import com.crm.logicq.model.user.CardReadDetails;
 import com.crm.logicq.model.user.User;
+import com.crm.logicq.security.helper.StringFormatHelper;
 
 public class SMSHelper {
 	
-	
+	/**
+	 * 
+	 * @param user
+	 * @param communication
+	 * @param cardetails
+	 * @return
+	 */
 	public static SMSDetails prepareSMSDetailsFromUser(User user, PhoneCommunication communication,
 			CardReadDetails cardetails) {
 		SMSDetails smsdetails = new SMSDetails();
+		ConcurrentMap<String,Object> concurrentMap = new ConcurrentHashMap<String,Object>();
 		smsdetails.setMobileNumber(communication.getMobilenumber());
-		smsdetails.setFirstName(user.getFirstName());
-		smsdetails.setLastName(user.getLastName());
 		smsdetails.setSmsdate(cardetails.getCardswappdate());
-		smsdetails.setIntime(cardetails.getIntime());
-		smsdetails.setOuttime(cardetails.getOuttime());
 		smsdetails.setContactType(communication.getContactType());
+		concurrentMap.put("Name", user.getFirstName());
+		concurrentMap.put("InTime", cardetails.getIntime());
+		concurrentMap.put("OutTime", cardetails.getOuttime());
+		String text=formSMSText(concurrentMap);
+		smsdetails.setText(text);
 		return smsdetails;
 	}
 	
-	public static void sendSMS(SMSDetails smsdetails) {
-
-		try {
-			StringBuilder string =new StringBuilder();
-			string.append("http://login.cheapsmsbazaar.com/vendorsms/pushsms.aspx?user=demo&password=demo&");
-			string.append("msisdn=").append(smsdetails.getMobileNumber()).append("&sid=DEMOOO&msg=").append(smsdetails.getText().trim()).append("%20message&fl=0&gwid=2");
-		//	URL url = new URL(
-		//			"http://login.cheapsmsbazaar.com/vendorsms/pushsms.aspx?user=demo&password=demo&msisdn=917276484647&sid=DEMOOO&msg=test%20message&fl=0&gwid=2");
-			
-			URL url = new URL(string.toString());
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Accept", "application/json");
-
-			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-			}
-
-			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-
-			String output;
-			System.out.println("Output from Server .... \n");
-			while ((output = br.readLine()) != null) {
-				System.out.println(output);
-			}
-
-			conn.disconnect();
-
-		} catch (MalformedURLException e) {
-
-			e.printStackTrace();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
+	/**
+	 * 
+	 * @param smsdetails
+	 * @throws Exception
+	 */
+	public static void sendSMS(SMSDetails smsdetails) throws Exception {
+		HttpURLConnection httpconnection=null;
+		try{
+			StringBuilder smsurldetails=formSMSURL(smsdetails);
+			URL url = new URL(smsurldetails.toString());
+			httpconnection = (HttpURLConnection) url.openConnection();
+			httpconnection.setRequestMethod("GET");
+			httpconnection.setRequestProperty("Accept", "application/json");
+			smsLogStatus(httpconnection);
+		}finally{
+			httpconnection.disconnect();
 		}
+	
 
 	}
+/**
+ * 
+ * @param smsdetails
+ * @return
+ * @throws Exception
+ */
+	private static StringBuilder formSMSURL(SMSDetails smsdetails) throws Exception{
+		StringBuilder urlString =new StringBuilder();
+		urlString.append(SMSVendor.url);
+		urlString.append("user="+SMSVendor.userid+"&");
+		urlString.append("password="+SMSVendor.password+"&");
+		urlString.append("msisdn="+smsdetails.getMobileNumber()+"&");
+		urlString.append("sid="+SMSVendor.sid+"&");
+		urlString.append("msg="+StringFormatHelper.formatStringForSMS(smsdetails.getText())+"&");
+		urlString.append("fl="+SMSVendor.flag+"&");
+		urlString.append("gwid="+SMSVendor.gwid);
+		return urlString;
+	}
+	
+	/**
+	 * 
+	 * @param conn
+	 * @throws Exception
+	 */
+	public static void smsLogStatus(HttpURLConnection conn) throws Exception{
+		if (conn.getResponseCode() != 200) {
+			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+			String output;
+				while ((output = br.readLine()) != null) {
+							System.out.println(output);
+				}
+			throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+		}
+	}
+	
+	private static String formSMSText(ConcurrentMap<String, Object> concurrentMap) {
+		StringBuilder smstext = new StringBuilder();
+		concurrentMap.forEach((k, v) -> {
+			smstext.append(k + "-" + v + " ");
+		});
 
+		return smstext.toString();
+
+	}
 }

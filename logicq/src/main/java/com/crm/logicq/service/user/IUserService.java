@@ -8,6 +8,8 @@ public interface IUserService {
 	
 	public void loadUsers();
 
-	public void getUserForSMS(List<CardReadDetails> cardreadDeatils);
+	public void getUserForSMS(List<CardReadDetails> cardreadDeatils)throws Exception;
 	public void triggerSMS(List<CardReadDetails> cardreadDeatils) throws Exception;
+	
+	public void getUser(String cardid) throws Exception;
 }
