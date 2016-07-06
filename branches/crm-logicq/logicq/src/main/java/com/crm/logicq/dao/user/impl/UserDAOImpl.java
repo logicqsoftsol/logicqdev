@@ -29,5 +29,12 @@ public class UserDAOImpl extends AbstractDAO<User> implements IUserDAO{
 		smsdao.insertSMSDetails(smsdetails);
 	}
 
+
+	@Override
+	public void getUser(String cardid) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

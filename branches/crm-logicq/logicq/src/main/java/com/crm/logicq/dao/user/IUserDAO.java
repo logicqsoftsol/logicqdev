@@ -9,5 +9,6 @@ public interface IUserDAO {
 	
 	public List<User> loadUsers();
 	public void insertSMSDetails(List<SMSDetails> smsdetails);
+	public void getUser(String cardid) throws Exception;
 
 }

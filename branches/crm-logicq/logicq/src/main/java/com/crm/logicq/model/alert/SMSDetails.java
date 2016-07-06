@@ -32,13 +32,7 @@ public class SMSDetails implements Serializable {
 	
 	@Column(name = "SMS_TYPE", nullable = false)
 	@Enumerated(EnumType.STRING)
-	private SMSType smsType;
-	
-	@Column(name = "IN_TIME", nullable = true)
-	private Integer intime;
-	
-	@Column(name = "OUT_TIME", nullable = true)
-	private Integer outtime;
+	private SMSType type;
 	
 	@Column(name = "COMMENTS", nullable = true)
 	private String comments;
@@ -49,79 +43,69 @@ public class SMSDetails implements Serializable {
 	@Column(name = "SMS_DATE", nullable = true)
 	private Date smsdate;
 	
-	@Column(name = "FIRST_NAME", nullable = true)
-	private String firstName;
-	
-	@Column(name = "LAST_NAME", nullable = true)
-	private String lastName;
-	
-	
-	public SMSType getSmsType() {
-		return smsType;
-	}
-	public void setSmsType(SMSType smsType) {
-		this.smsType = smsType;
-	}
+	@Column(name = "SMS_STATUS", nullable = true)
+	private boolean status;
+
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
+
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
+
 	public ContactType getContactType() {
 		return contactType;
 	}
+
 	public void setContactType(ContactType contactType) {
 		this.contactType = contactType;
 	}
-	
+
+	public SMSType getType() {
+		return type;
+	}
+
+	public void setType(SMSType type) {
+		this.type = type;
+	}
+
 	public String getComments() {
 		return comments;
 	}
+
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+
 	public String getText() {
 		return text;
 	}
+
 	public void setText(String text) {
 		this.text = text;
 	}
+
 	public Date getSmsdate() {
 		return smsdate;
 	}
+
 	public void setSmsdate(Date smsdate) {
 		this.smsdate = smsdate;
 	}
-	public String getFirstName() {
-		return firstName;
+
+	public boolean isStatus() {
+		return status;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public Integer getIntime() {
-		return intime;
-	}
-	public void setIntime(Integer intime) {
-		this.intime = intime;
-	}
-	public Integer getOuttime() {
-		return outtime;
-	}
-	public void setOuttime(Integer outtime) {
-		this.outtime = outtime;
-	}
+
 	@Override
 	public String toString() {
-		return "SMSDetails [mobileNumber=" + mobileNumber + ", contactType=" + contactType + ", smsType=" + smsType
-				+ ", intime=" + intime + ", outtime=" + outtime + ", comments=" + comments + ", text=" + text
-				+ ", smsdate=" + smsdate + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "SMSDetails [mobileNumber=" + mobileNumber + ", contactType=" + contactType + ", type=" + type
+				+ ", comments=" + comments + ", text=" + text + ", smsdate=" + smsdate + ", status=" + status + "]";
 	}
 	
 	

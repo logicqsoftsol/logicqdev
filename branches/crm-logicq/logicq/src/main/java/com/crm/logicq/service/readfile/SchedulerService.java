@@ -33,7 +33,7 @@ public class SchedulerService implements ISchedulerService {
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
 	public void readAccessFile()  throws Exception{
 		List<CardReadDetails> userCardDeatils = readFileDAO.readAccessFile();
-		userservice.getUserForSMS(userCardDeatils);
+		userservice.triggerSMS(userCardDeatils);
 	}
 
 	@Override

@@ -50,7 +50,7 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
-	public void getUserForSMS(List<CardReadDetails> cardreadDeatils) {
+	public void getUserForSMS(List<CardReadDetails> cardreadDeatils) throws Exception {
 		List<SMSDetails> allSMSDetails = new ArrayList<SMSDetails>();
 		for (CardReadDetails carddetail : cardreadDeatils) {
 			User user = new User();//(User) LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
@@ -74,18 +74,13 @@ public class UserServiceImpl implements IUserService{
 			for (PhoneCommunication communication : communications) {
 				if (null != communication && communication.isActive()) {
 					SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, communication, carddetail);
-					// AlertDetailsInputVO alertDetailsVO =
-					// prepareAlertMessage(smsdetails);
-					String alertMessage = "Welcome%20to%20End%20to%20End%20test%20intime%20:%20" + smsdetails.getIntime() + "%20outtime:"
-							+ smsdetails.getOuttime();
-					smsdetails.setText(alertMessage);
 					allSMSDetails.add(smsdetails);
 				}
 			}
 		}
 		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
 			for (SMSDetails smsinfo : allSMSDetails) {
-				//SMSHelper.sendSMS(smsinfo);
+				SMSHelper.sendSMS(smsinfo);
 			}
 			// userdao.insertSMSDetails(allSMSDetails);
 		}
@@ -101,7 +96,7 @@ public class UserServiceImpl implements IUserService{
 		nameValuePair.put("desc", "SMS for attendance"); //hard coded for now
 		alertDetailsInputVO.setAlertType(AlertType.SMS);
 		alertDetailsInputVO.setNameValuePair(nameValuePair);
-		alertDetailsInputVO.setAlertReason(smsdetails.getSmsType().toString());
+		//alertDetailsInputVO.setAlertReason(smsdetails.getSmsType().toString());
 		
 		return alertDetailsInputVO;
 	}
@@ -110,21 +105,49 @@ public class UserServiceImpl implements IUserService{
 	public void triggerSMS(List<CardReadDetails> cardreadDeatils) throws Exception {
 		List<SMSDetails> allSMSDetails = new ArrayList<SMSDetails>();
 		for (CardReadDetails carddetail : cardreadDeatils) {
-			User user = (User) LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
+			User userFromCache = (User) LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
+			if(null==userFromCache){
+				loadUsers();
+			}
+			User user = new User();//(User) LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
+			Set<PhoneCommunication> comset=new HashSet<PhoneCommunication>();
+			PhoneCommunication com=new PhoneCommunication();
+			com.setActive(Boolean.TRUE);
+			com.setContactType(ContactType.HOME);
+			com.setMobilenumber("919040590587");
+			comset.add(com);
+			user.setCommunication(comset);
+			user.setEmail("asd@gmail.com");
+			user.setEntityType(EntityType.STUDENT);
+			user.setFirstName("Sangarm");
+			user.setIdetificationid("1");
+			user.setUserid("STUD-1");
+			user.setLastName("Parida");
+			user.setGender("Male");
+			
 			Set<PhoneCommunication> communications = user.getCommunication();
 			for (PhoneCommunication communication : communications) {
 				if (null != communication && communication.isActive()) {
 					SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, communication, carddetail);
-					AlertDetailsInputVO alertDetailsVO = prepareAlertMessage(smsdetails);
-					String alertMessage = alertService.buildAlert(alertDetailsVO);
-					smsdetails.setText(alertMessage);
+					//AlertDetailsInputVO alertDetailsVO = prepareAlertMessage(smsdetails);
+					//String alertMessage = alertService.buildAlert(alertDetailsVO);
+					//smsdetails.setText(alertMessage);
 					allSMSDetails.add(smsdetails);
 				}
 			}
 		}
-		if(null!=allSMSDetails && !allSMSDetails.isEmpty()){
-			userdao.insertSMSDetails(allSMSDetails);
+		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
+			for (SMSDetails smsinfo : allSMSDetails) {
+				SMSHelper.sendSMS(smsinfo);
+			}
+			// userdao.insertSMSDetails(allSMSDetails);
 		}
+		
+	}
+
+	@Override
+	public void getUser(String cardid) throws Exception {
+		
 		
 	}
 
