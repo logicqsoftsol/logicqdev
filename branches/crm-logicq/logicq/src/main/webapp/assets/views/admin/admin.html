@@ -54,41 +54,41 @@
 		<section class="sidebar">
 			<ul class="sidebar-menu">
 				<li class="header">MAIN NAVIGATION</li>
-				<li class="active treeview"><a href="#"> <i
+				<li class="active treeview"><a href=""> <i
 						class="fa fa-dashboard"></i> <span>Admin Details</span> <i
 						class="fa fa-angle-left pull-right"></i>
 				</a>
 					<ul class="treeview-menu">
-						<li ng-class="{active:display == 1}"><a href="#"
+						<li ng-class="{active:display == 1}"><a href=""
 							id="empregclick" ng-click="display = 1"><i class="fa fa-user"></i>Employee
 								Registration</a></li>
-						<li ng-class="{active:display == 2}"><a href="#"
+						<li ng-class="{active:display == 2}"><a href=""
 							id="stduentregclick" ng-click="display = 2"><i
 								class="fa fa-graduation-cap"></i>Student Registration</a></li>
-						<li ng-class="{active:display == 3}"><a href="#"
+						<li ng-class="{active:display == 3}"><a href=""
 							id="coursesetup" ng-click="display = 3"><i class="fa fa-cogs"></i>Configure
 								SMS and Email</a></li>
-						<li ng-class="{active:display == 4}"><a href="#"
+						<li ng-class="{active:display == 4}"><a href=""
 							id="admincalndersetup" ng-click="display = 4"><i
 								class="fa fa-calendar" aria-hidden="true"></i>Calendar Setup</a></li>
-						<li ng-class="{active:display == 5}"><a href="#"
-							ng-click="display = 5"><i class="fa fa-calendar"
+						<li ng-class="{active:display == 5}"><a href=""
+							ng-click="display = 5;searchAttendanceDefault()"><i class="fa fa-calendar"
 								aria-hidden="true"></i>View Attendance Report</a></li>
 					</ul></li>
 
-				<li class="active treeview"><a href="#"> <i
+				<li class="active treeview"><a href=""> <i
 						class="fa fa-dashboard"></i> <span>Buget Details</span><i
 						class="fa fa-angle-left pull-right"></i>
 				</a>
-				<li class="active treeview"><a href="#"> <i
-						class="fa fa-dashboard"></i> <span>Payment&Collection
+				<li class="active treeview"><a href=""> <i
+						class="fa fa-dashboard"></i> <span>Income&Expense
 							Details</span><i class="fa fa-angle-left pull-right"></i>
 				</a>
-				<li class="active treeview"><a href="#"> <i
+				<li class="active treeview"><a href=""> <i
 						class="fa fa-dashboard"></i> <span>Student Details</span> <i
 						class="fa fa-angle-left pull-right"></i>
 				</a>
-				<li class="active treeview"><a href="#"> <i
+				<li class="active treeview"><a href=""> <i
 						class="fa fa-dashboard"></i> <span>Employee Details</span> <i
 						class="fa fa-angle-left pull-right"></i>
 				</a>
@@ -114,15 +114,15 @@
 					<div class="panel with-nav-tabs panel-success">
 						<div class="panel-heading">
 							<ul class="pull-right">
-								<button id="adddetails" data-toggle="modal" data-target="#"
+								<button id="adddetails" data-toggle="modal" data-target=""
 									class="btn btn-default">
 									<i class="fa fa-plus-circle" aria-hidden="true"></i>New
 								</button>
-								<button id="updatedetails" data-toggle="modal" data-target="#"
+								<button id="updatedetails" data-toggle="modal" data-target=""
 									class="btn btn-default">
 									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit
 								</button>
-								<button id="deletedetails" data-toggle="modal" data-target="#"
+								<button id="deletedetails" data-toggle="modal" data-target=""
 									class="btn btn-default">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>Delete
 								</button>
@@ -254,7 +254,7 @@
 			<div id="viewattendance" ng-show='display == 5'>
 				<div class="panel with-nav-tabs panel-success">
 					<div class="panel-heading">
-						<h4>View Attendance Report</h4>
+						<h3>View Attendance Report</h3>
 					</div>
 					<div class="panel-body">
 					<div class="col-md-10">
@@ -265,9 +265,24 @@
 							</button>
 						</ul>
 						</div>
-						<div class="col-md-10">
-					<div class="table-responsive">
-						<table class="table table-bordered table-fixed">
+					<div class="col-md-6">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" id="attentable" class="pull-center"  ng-click="searchAttendanceDefault()"
+							href="/admin#attendancetableview">Attendance Table View</a></li>
+							<li><a data-toggle="tab" id="attengraph" class="pull-center"  ng-click="searchAttendanceGraph()"
+								href="/admin#attendancegraphview">Attendance Graph View</a></li>
+						</ul>
+					</div>
+					<div class="col-md-10">
+					<div class="tab-content">
+						<div id="attendancegraphview" class="tab-pane fade">
+									<h4>Graph View</h4>
+							<zingchart id = "attendancepiechart" zc-json = "attendanceCountdetails" zc-height = 500 zc-width = 600 ></zingchart>  
+							</div>
+						<div id="attendancetableview" class="tab-pane fade in active">
+						<h4>Tabular View</h4>
+							<div class="table-responsive">
+							<table class="table table-bordered table-fixed sel-table">
 							<tr>
 								<th>Id</th>
 								<th>Name</t>
@@ -276,10 +291,9 @@
 								<th>Out Time</th>
 								<th>Date</th>
 							</tr>
-							<tr ng-repeat="attendance in attendanceDetails"
-								ng-class="{'selected':attendance == selectedRow}"
-								ng-click="setClickedRow(attendance)" class="sel-table">
-								<td>{{attendance.userid}}</td>
+							<tr ng-repeat="attendance in attendancedetails"
+								ng-click="setClickedRow(attendance)" >
+								<td>{{attendance.id}}</td>
 								<td>{{attendance.name}}</td>
 								<td>{{attendance.mobileno}}</td>
 								<td>{{attendance.intime}}</td>
@@ -290,12 +304,15 @@
 					</div>
 					</div>
 					</div>
+					</div>
+					</div>
 				</div>
 			</div>
 		</section>
 		
 			<!---Modal Search Attendance-->
 		<div id="attendancesearch" class="modal fade" role="dialog">
+		<form>
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -306,17 +323,17 @@
 							<div class="col-md-6">
 								<div class="form-group">
 								<label  class="control-label" for="section">User Id</label> 
-									<input type="text" class="form-control" id="userid" ng-model="userid"
-										placeholder="User Id" name="userid"> 
+									<input type="text" class="form-control" id="userid" ng-model="attendancecriteria.userid"
+										placeholder="User Id" name="userid"> 					  
 								</div>
 								<div class="form-group">
 								<label  class="control-label" for="section">Mobile No.</label> 
-									<input type="text" class="form-control" id="mobileno" ng-model="mobileno"
+									<input type="text" class="form-control" id="mobileno" ng-model="attendancecriteria.mobileno"
 										placeholder="Mobile Number" name="mobilenumber"> 
 								</div>
 								<div class="form-group">
 								<label  class="control-label" for="section">Card No.</label> 
-									<input type="text" class="form-control" id="cardno" ng-model="cardno"
+									<input type="text" class="form-control" id="cardno" ng-model="attendancecriteria.cardno"
 										placeholder="Card Number" name="cardno"> 
 								</div>
 								</div>
@@ -324,24 +341,25 @@
 								
 								<div class="form-group">
 								<label  class="control-label" for="section">From Date</label> 
-									<input type="Date" class="form-control" id="fromdate" ng-model="fromdate"
+									<input type="Date" class="form-control" id="fromdate" ng-model="attendancecriteria.fromdate"
 										placeholder="From Date" name="fromdate"> 
 								</div>
 								<div class="form-group">
 								<label  class="control-label" for="section">To Date</label> 
-									<input type="Date" class="form-control" id="todate" ng-model="todate" 
+									<input type="Date" class="form-control" id="todate" ng-model="attendancecriteria.todate" 
 										placeholder="To Date" name="todate"> 
 								</div>
 								</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" id="confirmfeeoper" class="btn btn-default" ng-click="searchAttendance()"
+							<button type="submit" id="confirmfeeoper" class="btn btn-default" ng-click="searchAttendanceTable()"
 								data-dismiss="modal"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
 						</div>
 				</div>
 			</div>
+			</form>
 		</div><!---End for Modal Search Attendance-->
 		
 	</div>

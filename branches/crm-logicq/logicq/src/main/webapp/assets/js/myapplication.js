@@ -5,7 +5,7 @@
 (function () {
     'use strict';
     
-   angular.module('crmlogicq', [
+   angular.module('crmlogicq', ['zingchart-angularjs',
         'ui.router','checklist-model','ngStorage'
   ]).constant('AppConstants', {
 	   'hostName':'http://127.0.0.1:', 
@@ -19,6 +19,9 @@
 	   'deleteSMSTemplate' : '/admin/smstemplate/delete',
 	   'searchSMSTemplate' : '/admin/smstemplate/search',
 	   'loginURL' :'/api/login',
+	   'searchcurrentAttedanceURL':'/admin/attendance/searchCurrentAttendance',
+	   'searchattendanceURL':'/admin/attendance/searchAttendance',
+	   'getattendanceCountURL':'/admin/attendance/getAttendanceCount',
 
 	}).directive('ngConfirmClick', [
 	                                   function(){

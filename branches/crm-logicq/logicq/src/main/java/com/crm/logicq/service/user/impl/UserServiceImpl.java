@@ -20,12 +20,15 @@ import com.crm.logicq.constant.alert.AlertType;
 import com.crm.logicq.dao.user.IUserDAO;
 import com.crm.logicq.helper.SMSHelper;
 import com.crm.logicq.model.alert.SMSDetails;
+import com.crm.logicq.model.attendance.AttendanceCriteria;
+import com.crm.logicq.model.attendance.AttendanceDetails;
 import com.crm.logicq.model.communication.PhoneCommunication;
 import com.crm.logicq.model.user.CardReadDetails;
 import com.crm.logicq.model.user.User;
 import com.crm.logicq.service.alert.IAlertService;
 import com.crm.logicq.service.user.IUserService;
 import com.crm.logicq.ui.alert.AlertDetailsInputVO;
+import com.crm.logicq.vo.attendance.AttendanceVO;
 
 @Service
 @Transactional
@@ -53,14 +56,14 @@ public class UserServiceImpl implements IUserService{
 	public void getUserForSMS(List<CardReadDetails> cardreadDeatils) throws Exception {
 		List<SMSDetails> allSMSDetails = new ArrayList<SMSDetails>();
 		for (CardReadDetails carddetail : cardreadDeatils) {
-			User user = new User();//(User) LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
-			Set<PhoneCommunication> comset=new HashSet<PhoneCommunication>();
-			PhoneCommunication com=new PhoneCommunication();
+			User user = new User();// (User)
+									// LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
+
+			PhoneCommunication com = new PhoneCommunication();
 			com.setActive(Boolean.TRUE);
 			com.setContactType(ContactType.HOME);
 			com.setMobilenumber("917276484647");
-			comset.add(com);
-			user.setCommunication(comset);
+			user.setCommunication(com);
 			user.setEmail("asd@gmail.com");
 			user.setEntityType(EntityType.STUDENT);
 			user.setFirstName("Nihar");
@@ -68,14 +71,11 @@ public class UserServiceImpl implements IUserService{
 			user.setUserid("STUD-1");
 			user.setLastName("Bhera");
 			user.setGender("Male");
-			
-			
-			Set<PhoneCommunication> communications = user.getCommunication();
-			for (PhoneCommunication communication : communications) {
-				if (null != communication && communication.isActive()) {
-					SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, communication, carddetail);
-					allSMSDetails.add(smsdetails);
-				}
+
+			PhoneCommunication communications = user.getCommunication();
+			if (null != communications && communications.isActive()) {
+				SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, communications, carddetail);
+				allSMSDetails.add(smsdetails);
 			}
 		}
 		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
@@ -102,6 +102,8 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public void triggerSMS(List<CardReadDetails> cardreadDeatils) throws Exception {
 		List<SMSDetails> allSMSDetails = new ArrayList<SMSDetails>();
 		for (CardReadDetails carddetail : cardreadDeatils) {
@@ -115,8 +117,7 @@ public class UserServiceImpl implements IUserService{
 			com.setActive(Boolean.TRUE);
 			com.setContactType(ContactType.HOME);
 			com.setMobilenumber("919040590587");
-			comset.add(com);
-			user.setCommunication(comset);
+			user.setCommunication(com);
 			user.setEmail("asd@gmail.com");
 			user.setEntityType(EntityType.STUDENT);
 			user.setFirstName("Sangarm");
@@ -125,16 +126,16 @@ public class UserServiceImpl implements IUserService{
 			user.setLastName("Parida");
 			user.setGender("Male");
 			
-			Set<PhoneCommunication> communications = user.getCommunication();
-			for (PhoneCommunication communication : communications) {
-				if (null != communication && communication.isActive()) {
-					SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, communication, carddetail);
+			PhoneCommunication communications = user.getCommunication();
+		
+				if (null != communications && communications.isActive()) {
+					SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, communications, carddetail);
 					//AlertDetailsInputVO alertDetailsVO = prepareAlertMessage(smsdetails);
 					//String alertMessage = alertService.buildAlert(alertDetailsVO);
 					//smsdetails.setText(alertMessage);
 					allSMSDetails.add(smsdetails);
 				}
-			}
+		
 		}
 		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
 			for (SMSDetails smsinfo : allSMSDetails) {
@@ -149,6 +150,14 @@ public class UserServiceImpl implements IUserService{
 	public void getUser(String cardid) throws Exception {
 		
 		
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public List<AttendanceVO> getAttendanceDetails(AttendanceCriteria attendancecriteria) throws Exception {
+		 List<AttendanceDetails> attendacedetails= userdao.getAttendanceDetails(attendancecriteria);
+		 return  AttendanceConversion.convertEntityToVO(attendacedetails);
 	}
 
 
