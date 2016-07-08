@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.crm.logicq.constant.EntityType;
@@ -59,8 +60,8 @@ public class User  extends BaseEntity implements Serializable {
 	@Column(name = "GENDER", nullable = true)
 	private String gender;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<PhoneCommunication> communication;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private PhoneCommunication communication;
 	
 	@Column(name = "ENTITY_TYPE", nullable = true)
 	@Enumerated(EnumType.STRING)
@@ -124,11 +125,11 @@ public class User  extends BaseEntity implements Serializable {
 		this.gender = gender;
 	}
 
-	public Set<PhoneCommunication> getCommunication() {
+	public PhoneCommunication getCommunication() {
 		return communication;
 	}
 
-	public void setCommunication(Set<PhoneCommunication> communication) {
+	public void setCommunication(PhoneCommunication communication) {
 		this.communication = communication;
 	}
 

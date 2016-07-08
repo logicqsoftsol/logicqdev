@@ -1,23 +1,15 @@
 (function () {
 	'use strict';
-	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AppConstants',function ($scope, $http,  $location, AdminService,AppConstants) {
-		 $scope.selectedRow = null;
-		 $scope.graphattendance=[];
-		 $scope.searchAttendanceTable= function() {
-			 AdminService.getAttendanceDetails($scope).success(function(data, status) {
-				 $scope.attendancedetails =data;
+	angular.module('crmlogicq').controller('AttendanceController',['$scope','$http', '$location', 'AttendanceService','AppConstants',function ($scope, $http,  $location, AttendanceService,AppConstants) {
+		 
+		 $scope.searchAttendance= function() {
+			 AttendanceService.getAttendanceDetails($scope).success(function(data, status) {
+				 $scope.attendancedetails = data;
 			});
 			};
-		 $scope.searchAttendanceDefault= function() {
-			 AdminService.getAttendanceDetailsdefault($scope).success(function(data, status) {
-				 $scope.attendancedetails =data;
-			});
-			};	
-			
-			$scope.searchAttendanceGraph= function() {
-				$scope.graphattendance.attedancefor="Students";
-				AdminService.getAttendanceCount($scope).success(function(data, status) {
-					$scope.attendanceCountdetails = {
+		 
+		 
+		$scope.attendancedetails = {
 			        globals: {
 			            shadow: false,
 			            fontFamily: "Verdana",
@@ -36,7 +28,7 @@
 			            }
 			        },
 			        tooltip: {
-			            text: "%v "+data.attendanceFor
+			            text: "%v students"
 			        },
 			        plot: {
 			            refAngle: "-90",
@@ -50,17 +42,14 @@
 			        },
 			        series: [{
 			            text: "Present",
-			            values:[data.presentcount],
+			            values: [870],
 			            backgroundColor: "#FA6E6E #FA9494",
 			        }, {
 			            text: "Absent",
-			            values:[data.absentcount],
+			            values: [130],
 			            backgroundColor: "#F1C795 #feebd2"
 			        }]
 			    };	 	
-				});
 		
-			};
-			
 	}]);
 }());

@@ -18,6 +18,7 @@
 <link href="assets/css/jquery-ui.css" rel="stylesheet">
 <link href="assets/plugins/common/fontawesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="assets/css/animations.css" rel="stylesheet">
+<link href="assets/css/graph/angular-chart.css" rel="stylesheet">
 <link href="assets/css/admin.min.css" rel="stylesheet">
 <link href="assets/css/all-skins.min.css" rel="stylesheet">
 <link href="assets/css/normalize.css" rel="stylesheet">
@@ -41,12 +42,13 @@
 <script type="text/javascript"  src="assets/plugins/lib/angular-ui-router.min.js"></script>
 
 								<!--External Plugins/JS  -->
+
+
 <script src="assets/plugins/lib/angular.treeview.js" type="text/javascript" ></script>
 <script src="assets/plugins/lib/checklist-model.js" type="text/javascript"></script>
 <script src="assets/plugins/lib/ngStorage.js"></script>
-<script src="assets/plugins/lib/table/smart-table.js"></script>
-
-
+<script src = "https://cdn.zingchart.com/zingchart.min.js" ></script>  
+<script src = "https://cdn.zingchart.com/angular/zingchart-angularjs.js" ></script> 
 								<!-- Custom Scripts -->
 <script type="text/javascript" src="assets/plugins/logicq/template.js"></script>
 <script type="text/javascript" src="assets/plugins/logicq/app.min.js"></script>
@@ -60,8 +62,13 @@
 <script src="assets/views/login/LoginController.js" type="text/javascript"></script>
 <script src="assets/views/login/AuthController.js" type="text/javascript"></script>
 <script src="assets/js/services/AuthenticationService.js" type="text/javascript"></script>
+
 <script src="assets/views/admin/AdminController.js" type="text/javascript"></script>
 <script src="assets/js/services/AdminService.js" type="text/javascript"></script>
+
+<script src="assets/views/admin/AttendanceController.js" type="text/javascript"></script>
+<script src="assets/js/services/AttedanceService.js" type="text/javascript"></script>
+
 <script src="assets/js/services/ManageDivService.js" type="text/javascript"></script>
 <script src="assets/js/config.js" type="text/javascript"></script>
 
@@ -73,7 +80,6 @@
 		<i class="icon-up-open-big"></i>
 	</div>
 	<header class="navbar navbar-info navbar-fixed-top">
-		<h1 class="text-center">Admin Login</h1>
 	</header>
  <div ui-view></div>
 </html>
