@@ -62,17 +62,17 @@ public class UserServiceImpl implements IUserService{
 			PhoneCommunication com = new PhoneCommunication();
 			com.setActive(Boolean.TRUE);
 			com.setContactType(ContactType.HOME);
-			com.setMobilenumber("917276484647");
+			com.setMobilenumber("919861318105");
 			user.setCommunication(com);
 			user.setEmail("asd@gmail.com");
 			user.setEntityType(EntityType.STUDENT);
-			user.setFirstName("Nihar");
+			user.setFirstName("Dinesh");
 			user.setIdetificationid("1");
 			user.setUserid("STUD-1");
 			user.setLastName("Bhera");
 			user.setGender("Male");
-
 			PhoneCommunication communications = user.getCommunication();
+			
 			if (null != communications && communications.isActive()) {
 				SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, communications, carddetail);
 				allSMSDetails.add(smsdetails);
@@ -107,16 +107,16 @@ public class UserServiceImpl implements IUserService{
 	public void triggerSMS(List<CardReadDetails> cardreadDeatils) throws Exception {
 		List<SMSDetails> allSMSDetails = new ArrayList<SMSDetails>();
 		for (CardReadDetails carddetail : cardreadDeatils) {
-			User userFromCache = (User) LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
-			if(null==userFromCache){
-				loadUsers();
-			}
+//			User userFromCache = (User) LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
+//			if(null==userFromCache){
+//				loadUsers();
+//			}
 			User user = new User();//(User) LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
 			Set<PhoneCommunication> comset=new HashSet<PhoneCommunication>();
 			PhoneCommunication com=new PhoneCommunication();
 			com.setActive(Boolean.TRUE);
 			com.setContactType(ContactType.HOME);
-			com.setMobilenumber("919040590587");
+			com.setMobilenumber("919604551123");
 			user.setCommunication(com);
 			user.setEmail("asd@gmail.com");
 			user.setEntityType(EntityType.STUDENT);

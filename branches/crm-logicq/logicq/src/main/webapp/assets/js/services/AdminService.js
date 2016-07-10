@@ -47,6 +47,52 @@
 				data : ''
 			})
 		},
+		
+		saveEventDetails:function ($scope){
+			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveEventDetailsURL;
+			return  $http.post(url,request)
+		},
+		
+		deleteEventDetails: function (request) {
+			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteEventDetailsURL;
+			return  $http.post(url,request)
+
+		},
+		getAllEventDetails: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllEventDetailsURL,
+				dataType :'json',
+				data : ''
+			})
+		},
+	
+		
+		getAllCalendarDetails: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllCalendarDetailsURL,
+				dataType :'json',
+				data : ''
+			})
+		},
+		getCalendarDetailsforCriteria: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getCalendarDetailsforCriteriaURL,
+				dataType :'json',
+				data : ''
+			})
+		},
+		saveCalendarDetails: function ($scope) {
+			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveCalendarDetailsURL;
+			return  $http.post(url,request)
+		},
+		deleteCalendarDetails: function ($scope) {
+			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteCalendarDetailsURL;
+			return  $http.post(url,request)
+		},
+		
 		}
 }]);
 

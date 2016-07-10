@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.crm.logicq.constant.EntityType;
 import com.crm.logicq.constant.EventType;
 
 @Entity
@@ -30,6 +31,10 @@ public class EventDetails {
 	@Column(name = "EVENT_TYPE", nullable = true)
 	@Enumerated(EnumType.STRING)
 	private EventType eventtype;
+	
+	@Column(name = "APPLICABLE_FOR", nullable = true)
+	@Enumerated(EnumType.STRING)
+	private EntityType applicablefor;
 
 	public Long getEventid() {
 		return eventid;
@@ -55,10 +60,23 @@ public class EventDetails {
 		this.eventtype = eventtype;
 	}
 
+	public EntityType getApplicablefor() {
+		return applicablefor;
+	}
+
+	public void setApplicablefor(EntityType applicablefor) {
+		this.applicablefor = applicablefor;
+	}
+	
+
 	@Override
 	public String toString() {
-		return "EventDetails [eventid=" + eventid + ", eventname=" + eventname + ", eventtype=" + eventtype + "]";
-	}  
+		return "EventDetails [eventid=" + eventid + ", eventname=" + eventname + ", eventtype=" + eventtype
+				+ ", applicablefor=" + applicablefor + "]";
+	}
+    
 	
+
+
 	
 }

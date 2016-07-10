@@ -19,9 +19,19 @@
 	   'deleteSMSTemplate' : '/admin/smstemplate/delete',
 	   'searchSMSTemplate' : '/admin/smstemplate/search',
 	   'loginURL' :'/api/login',
+	   
 	   'searchcurrentAttedanceURL':'/admin/attendance/searchCurrentAttendance',
 	   'searchattendanceURL':'/admin/attendance/searchAttendance',
 	   'getattendanceCountURL':'/admin/attendance/getAttendanceCount',
+	   
+	   'saveEventDetailsURL':'/admin/calendar/saveEventDetails',
+	   'deleteEventDetailsURL':'/admin/calendar/deleteEventDetails',
+	   'getAllEventDetailsURL':'/admin/calendar/getAllEventDetails',
+	   
+	   'getAllCalendarDetailsURL':'/admin/calendar/getAllCalendarDetails',
+	   'getCalendarDetailsforCriteriaURL':'/admin/calendar/getCalendarDetailsforCriteria',
+	   'saveCalendarDetailsURL':'/admin/calendar/saveCalendarDetails',
+	   'deleteCalendarDetailsURL':'/admin/calendar/deleteCalendarDetails',
 
 	}).directive('ngConfirmClick', [
 	                                   function(){

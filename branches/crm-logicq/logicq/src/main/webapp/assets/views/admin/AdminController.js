@@ -62,5 +62,56 @@
 		
 			};
 			
+			/*calendar and event details**/
+		     $scope.editEventDetails= function(event) {
+				 $scope.event.eventname=event.name;
+				 $scope.event.eventtype=event.type;
+				 $scope.event.applicablefor=event.applicablefor;
+				};	
+			
+			$scope.saveEventDetails= function() {
+				AdminService.saveEventDetails($scope).success(function(data, status) {
+					alert('Save  Sucess Fully');
+				        });
+					};		
+					
+		   $scope.deleteEventDetails= function(event) {
+			   AdminService.deleteEventDetails($scope).success(function(data, status) {
+					alert('Delete  Sucess Fully');
+						        });
+							};		
+					
+							$scope.getAllEventDetails= function() {
+								AdminService.getAllEventDetails($scope).success(function(data, status) {
+								  $scope.eventdetails =data;
+								 });
+							};					
+			
+							
+							$scope.getCalendarDetailsforCriteria= function() {
+								AdminService.getCalendarDetailsforCriteria($scope).success(function(data, status) {
+								  $scope.eventdetails =data;
+								 });
+							};	
+							
+							$scope.saveCalendarDetails= function(calendar) {
+								AdminService.saveCalendarDetails($scope).success(function(data, status) {
+								 alert('save sucess fully');       
+								});
+									};	
+									
+									$scope.editCalendarDetails= function(calendar) {
+										 $scope.calendar.eventname=calendar.eventname;
+										 $scope.calendar.eventtype=calendar.eventtype;
+										 $scope.calendar.applicablefor=calendar.applicablefor;
+										 $scope.calendar.eventstartdate=calendar.eventstartdate;
+										 $scope.calendar.eventenddate=calendar.eventenddate;
+										 $scope.calendar.comments=calendar.comments;
+									 };	
+									   $scope.deleteCalendarDetails= function(event) {
+										   AdminService.deleteCalendarDetails($scope).success(function(data, status) {
+								         alert('delete sucess fully');
+													        });
+														};		
 	}]);
 }());
