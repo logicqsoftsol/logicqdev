@@ -10,10 +10,6 @@
             $httpProvider.interceptors.push('APIInterceptor');
            
         }]);
-
- (function (ChartJsProvider) {
-	  ChartJsProvider.setOptions({ colors : [ '#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
-	}); 
  
   angular.module('crmlogicq').service('APIInterceptor', ['$sessionStorage', function ($sessionStorage) {
             var service = this;

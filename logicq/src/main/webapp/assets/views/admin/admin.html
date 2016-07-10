@@ -2,7 +2,7 @@
 	<header class="main-header">
 		<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 			<span class="logo-mini">Logicq</span> <!-- logo for regular state and mobile devices -->
-			<span class="logo-lg">School Management</span>
+			<span class="logo-lg fa fa-university">School Management</span>
 		</a>
 		<!-- Header Navbar: style can be found in header.less -->
 		<nav class="navbar navbar-static-top">
@@ -16,21 +16,8 @@
 						class="dropdown-toggle" data-toggle="dropdown"> <i
 							class="fa fa-bell-o"></i> <span class="label label-warning">10</span>
 					</a>
-						<ul class="dropdown-menu">
-							<li class="header">You have 10 notifications</li>
-							<li>
-								<!-- inner menu: contains the actual data -->
-								<ul class="menu">
-									<li><a href="#"> <i class="fa fa-users text-aqua"></i>
-											Payemnt Due
-									</a></li>
-								</ul>
-							</li>
-							<li class="footer"><a href="#">View all</a></li>
-						</ul></li>
-
 					<!-- User Account: style can be found in dropdown.less -->
-					<li class="dropdown user user-menu"><a href="#"
+					<li class="dropdown user user-menu"><a href=""
 						class="dropdown-toggle" data-toggle="dropdown"> <img
 							src="images/user2-160x160.jpg" class="user-image"
 							alt="User Image"> <span class="hidden-xs">Sudhanshu
@@ -43,7 +30,7 @@
 								<p>Sudhanshu Lenka - Accountant/Admin</p></li>
 							<!-- Menu Footer-->
 
-							<li class="user-footer"><a href="#"
+							<li class="user-footer"><a href="/index.html"
 								class="btn  btn-default btn-flat btn-responsive">Sign out</a></li>
 						</ul></li>
 				</ul>
@@ -60,19 +47,19 @@
 				</a>
 					<ul class="treeview-menu">
 						<li ng-class="{active:display == 1}"><a href=""
-							id="empregclick" ng-click="display = 1"><i class="fa fa-user"></i>Employee
+							id="empregclick" ng-click="display = 1;searchLatestEmployeeList()"><i class="fa fa-user"></i>Employee
 								Registration</a></li>
 						<li ng-class="{active:display == 2}"><a href=""
-							id="stduentregclick" ng-click="display = 2"><i
+							id="stduentregclick" ng-click="display = 2;searchLatestStudentList()"><i
 								class="fa fa-graduation-cap"></i>Student Registration</a></li>
 						<li ng-class="{active:display == 3}"><a href=""
-							id="coursesetup" ng-click="display = 3"><i class="fa fa-cogs"></i>Configure
+							id="coursesetup" ng-click="display = 3;searchConfigurSMSList()"><i class="fa fa-cogs"></i>Configure
 								SMS and Email</a></li>
 						<li ng-class="{active:display == 4}"><a href=""
-							id="admincalndersetup" ng-click="display = 4"><i
+							id="admincalndersetup" ng-click="display = 4;searchAllEventList()"><i
 								class="fa fa-calendar" aria-hidden="true"></i>Calendar Setup</a></li>
 						<li ng-class="{active:display == 5}"><a href=""
-							ng-click="display = 5;searchAttendanceDefault()"><i class="fa fa-calendar"
+							ng-click="display = 5;searchAttendanceDefault()"><i class="fa fa-clock-o"
 								aria-hidden="true"></i>View Attendance Report</a></li>
 					</ul></li>
 
@@ -103,7 +90,7 @@
 				Dashboard <small>Control panel</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
 				<li class="active">Dashboard</li>
 			</ol>
 		</section>
@@ -113,143 +100,363 @@
 					<br> <br>
 					<div class="panel with-nav-tabs panel-success">
 						<div class="panel-heading">
+						<h4> Employee Registration Details</h4>
+						<div class="col-md-10">
 							<ul class="pull-right">
-								<button id="adddetails" data-toggle="modal" data-target=""
-									class="btn btn-default">
-									<i class="fa fa-plus-circle" aria-hidden="true"></i>New
-								</button>
-								<button id="updatedetails" data-toggle="modal" data-target=""
-									class="btn btn-default">
-									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit
-								</button>
-								<button id="deletedetails" data-toggle="modal" data-target=""
-									class="btn btn-default">
-									<i class="fa fa-trash-o" aria-hidden="true"></i>Delete
-								</button>
+								<button id="adddetails" data-toggle="modal" data-toggle="modal"
+									data-target="#employeeregistration"
+									class="btn btn-default"><i class="fa fa-user-plus" aria-hidden="true"></i>New</button>
+								<button id="updatedetails" data-toggle="modal" data-target="#employeeregistration"
+									class="btn btn-default"><i class="fa fa-pencil-square" aria-hidden="true"></i>Edit</button>
+								<button id="deletedetails" data-toggle="modal" data-target="#usersearch"
+									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
 							</ul>
 						</div>
-						<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" class="pull-center"
-								href="/admin#empbasicdetails">Basic Details</a></li>
-							<li><a data-toggle="tab" class="pull-center"
-								href="/admin#empcontactdetails">Contact Details</a></li>
-							<li><a data-toggle="tab" class="pull-center"
-								href="/admin#empqualificationdetails">Qualification Details</a></li>
-							<li><a data-toggle="tab" class="pull-center"
-								href="/admin#employmentdetails">Employment Details</a></li>
-							<li><a data-toggle="tab" class="pull-center"
-								href="/admin#attendancedetails">Attendance Details</a></li>
-						</ul>
-
+						</div>
 						<div class="panel-body">
-							<div class="tab-content col-md-10">
-								<div id="empbasicdetails" class="tab-pane fade in active">
-									<form role="form" ng-submit="login()" role="form">
-										<h4>Employee Basic Details</h4>
-										<div class="row">
-											<div class="col-xs-6 col-sm-6 col-md-6">
-
-												<div class="form-group">
-													<input type="text" name="title" id="title"
-														list="datalisttitle" class="form-control" ng-model="title"
-														placeholder="Title">
-													<datalist id="datalisttitle">
-														<option>Mr</option>
-														<option>Mrs</option>
-													</datalist>
-												</div>
-
-												<div class="form-group">
-													<input type="text" name="middlename" id="middlename"
-														class="form-control" ng-model="middlename"
-														placeholder="Middle Name">
-												</div>
-											</div>
-
-											<div class="col-xs-6 col-sm-6 col-md-6">
-												<div class="form-group">
-													<input type="text" name="firstname" id="firstname"
-														class="form-control" ng-model="firstname"
-														placeholder="First Name">
-												</div>
-												<div class="form-group">
-													<input type="text" name="lastname" id="lastname"
-														class="form-control" ng-model="lastname"
-														placeholder="Last Name">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-6 col-sm-6 col-md-6">
-												<div class="form-group">
-													<label class="col-xs-2 control-label">Gender</label>
-													<div class="col-xs-6">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default"> <input
-																id="gender" type="radio" class="form-control"
-																ng-model="gender" name="gender" value="male" /> Male
-															</label> <label class="btn btn-default"> <input
-																ng-model="gender" type="radio" class="form-control"
-																name="gender" value="female" /> Female
-															</label>
-														</div>
-													</div>
-												</div>
-
-
-											</div>
-											<div class="col-xs-6 col-sm-6 col-md-6">
-												<label class="col-xs-3 control-label">Birth date</label>
-												<div class="col-xs-6 col-sm-6 col-md-6">
-													<div class="form-group">
-														<input type="text" id="birthdate" class="form-control"
-															name="birthdate" />
-													</div>
-												</div>
-											</div>
-										</div>
-
-									</form>
-								</div>
-
-								<div id="empcontactdetails" class="tab-pane fade">
-
-									<h4>Employee Contact Details</h4>
-									<div class=""></div>
-								</div>
-
-								<div id="empqualificationdetails" class="tab-pane fade">
-
-									<h4>Employee Qualification Details</h4>
-									<div class=""></div>
-								</div>
-
-								<div id="employmentdetails" class="tab-pane fade">
-
-									<h4>Employment Details</h4>
-									<div class=""></div>
-								</div>
-
-								<div id="employmentdetails" class="tab-pane fade">
-
-									<h4>Attendance Details</h4>
-									<div class=""></div>
-								</div>
-
-							</div>
+						<div class="col-md-10">
+						<div class="table-responsive">
+							<table class="table table-bordered table-fixed">
+							<tr>
+								<th> Id</th>
+								<th>Name</th>
+								<th> Date</th>
+								<th> Type</th>
+							</tr>
+							<tr ng-repeat="empreg in employeedetails"
+								ng-click="setClickedRow(empreg)" >
+								<td>{{empreg.regd_id}}</td>
+								<td>{{empreg.name}}</td>
+								<td>{{empreg.regd_date}}}}</td>
+								<td>{{empreg.regd_typee}}</td>
+	                            <td><a id="deleteempreg"  ng-click="deleteCalanderDetails(calander)"><i class="fa fa-user-times" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+						</div>
+						</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<div id="studentreg" ng-show='display == 2'>
-				<h3>Student Registration</h3>
+					<div class="row">
+					<br> <br>
+					
+					<div class="panel with-nav-tabs panel-success">
+					
+						<div class="panel-heading">
+						<h4> Student Registration Details</h4>
+						<div class="col-md-10">
+							<ul class="pull-right">
+								<button id="adddetails" data-toggle="modal" data-toggle="modal"
+									data-target="#studentregistration"
+									class="btn btn-default fa fa-user-plus">New</button>
+								<button id="updatedetails" data-toggle="modal" data-target="#studentregistration"
+									class="btn btn-default fa fa-pencil-square">Edit</button>
+								<button id="deletedetails" data-toggle="modal" data-target="#usersearch"
+									class="btn btn-default fa fa-search">Search</button>
+							</ul>
+						</div>
+						</div>
+						
+					<div class="panel-body">
+					<div class="col-md-10">
+						<div class="table-responsive">
+							<table class="table table-bordered table-fixed sel-table">
+							<tr>
+								<th> Id</th>
+								<th>Name</th>
+								<th> Date</th>
+								<th> Type</th>
+							</tr>
+							<tr ng-repeat="studentreg in studentdetails"
+								ng-click="setClickedRow(studentreg)" >
+								<td>{{studentreg.regd_id}}</td>
+								<td>{{studentreg.name}}</td>
+								<td>{{studentreg.regd_date}}}}</td>
+								<td>{{studentreg.regd_typee}}</td>
+	                            <td><a id="deletestudentreg"  ng-click="deleteStudent(studentreg)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+						</div>
+						</div>
+						</div>
+					</div>
+				</div>
 			</div>
+			
 			<div id="configsms-email" ng-show='display == 3'>
-				<h3>Configure SMS and Email</h3>
+				<div class="panel with-nav-tabs panel-success">
+					<div class="panel-heading">
+						<h3>Configur Notifications</h3>
+					</div>
+				<div class="panel-body">
+					<div class="col-md-10">
+						<ul class="pull-right">
+							<button id="searchtemplate" data-toggle="modal"
+								data-target="#templatesearch" class="btn btn-default">
+								<i class="fa fa-search" aria-hidden="true"></i>Search
+							</button>
+						</ul>
+						</div>
+					<div class="col-md-6">
+						<ul class="nav nav-tabs">
+							<li><a data-toggle="tab" id="template" class="pull-center"  ng-click="getAllTemplateDetails()"
+							href="/admin#templatedetails">Notifications Template Setup</a></li>
+							<li class="active"><a data-toggle="tab" id="msgsendingsetup" class="pull-center"  ng-click="getMessaageSendingDetails()"
+								href="/admin#notificationsendingdetails">Notifications Sending Setup </a></li>
+						</ul>
+					</div>
+				  <div class="col-md-10">
+					<div class="tab-content">
+					<div id="templatedetails" class="tab-pane fade">
+					<br></br>
+					<div class="col-md-4">
+									<div class="form-group">
+										<label  class="control-label" for="template.eventname">Event Name</label>
+											<input type="text" name="template.eventname" id="template.eventname"
+												class="form-control" ng-model="template.eventname"
+												placeholder="Event Name" list="eventnamelist">
+												<datalist id="eventnamelist">
+													<option>Durga Puja</option>
+													<option>Exam</option>
+													<option>Mid-Sem Exam</option>
+													<option>Summer Vaccation</option>
+												</datalist>
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="template.eventtype">Event Type</label>
+											<input type="text" name="template.eventtype" id="template.eventtype"
+												class="form-control" ng-model="template.eventtype"
+												placeholder="Event Type" readonly>
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="template.applicablefor">Event Applicable For</label>
+											<input type="text" name="template.applicablefor" id="template.applicablefor"
+												class="form-control" ng-model="template.applicablefor"
+												placeholder="Applicable For" readonly>
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="templaetmsg">Template</label>
+											<textarea type="text" name="templaetmsg" id="templaetmsg"
+												class="form-control" ng-model="templaetmsg"
+												placeholder="Template"></textarea>
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="templatetype">Template Type</label>
+											<input type="text" name="templatetype" id="templatetype"
+												class="form-control" ng-model="templatetype"
+												placeholder="Applicable For" list="templaettypelist">
+												<datalist id="templaettypelist">
+													<option>ALL</option>
+													<option>NOTIFICATION</option>
+													<option>SMS</option>
+													<option>E-MAIL</option>
+												</datalist>
+										</div>
+						
+							<button id="addtemplate"   ng-click="saveTemplateDetails()"  class="btn btn-default fa fa-floppy-o">save</button>
+								</div>
+									<div class="col-md-8">
+						<div class="table-responsive">
+							<table class="table table-bordered table-fixed sel-table">
+							<tr>
+								<th>Template Id</th>
+								<th>Event Details</th>
+								<th>Event Applicable To</th>
+								<th>Template Text</th>
+							</tr>
+							<tr ng-repeat="template in templateDetails"
+								ng-click="setClickedRow(template)" >
+								<td>{{template.id}}</td>
+								<td>{{template.eventdetails}}</td>
+								<td>{{template.applicableto}}</td>
+								<td>{{template.templatetext}}</td>
+								<td><a id="deleteevent"  ng-click="editCalanderDetails(template)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+								<td><a id="deleteevent"  ng-click="deleteCalanderDetails(template)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+					</div>
+					</div>
+								
+								
+					</div>
+					
+					
+					<div id="notificationsendingdetails" class="tab-pane fade in active">
+					<br></br>
+								<div class="col-md-4">
+										<div class="form-group">
+										<label  class="control-label" for="msg.templateid">Template Id</label>
+											<input type="text" name="msg.templateid" id="msg.templateid"
+												class="form-control" ng-model="msg.templateid"
+												placeholder="Template Id" list="templaetdetailslist">
+							                    <datalist id="templaetdetailslist">
+													<option>SMS-DURG-101</option>
+													<option>ALL-EXAM-102</option>
+													<option>TEACHER-TRANNING-103</option>
+												</datalist>
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="msgsenddate">Message Sending From Date</label>
+											<input type="Date" name="msgsendfromdate" id="msgsendfromdate"
+												class="form-control" ng-model="msgsendfromdate"
+												placeholder="Message Sending Date">
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="msgsendtodate">Message Sending To Date</label>
+											<input type="Date" name="msgsendtodate" id="msgsendtodate"
+												class="form-control" ng-model="msgsendtodate"
+												placeholder="Message Sending To Date">
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="msgsendingtime">Message Sending Time</label>
+											<input type="Time" name="msgsendingtime" id="msgsendingtime"
+												class="form-control" ng-model="msgsendingtime"
+												placeholder="Sending Time">
+										</div>
+										<button id="savedetails"   ng-click="saveMessageSeDetails()"  class="btn btn-default fa fa-floppy-o">save</button>
+									</div>
+					<div class="col-md-8">
+					<div class="table-responsive">
+							<table class="table table-bordered table-fixed sel-table">
+							<tr>
+								<th>Template Id</th>
+								<th>Sending From Date</t>
+								<th>Sending To Date</t>
+								<th>Sending Time</t>
+							</tr>
+							<tr ng-repeat="templatemsg in templatemsgdetsils"
+								ng-click="setClickedRow(templatemsg)" >
+								<td>{{templatemsg.templateid}}</td>
+								<td>{{templatemsg.msgsendfromdate}}</td>
+								<td>{{templatemsg.msgsendtodate}}</td>
+								<td>{{templatemsg.msgsendingtime}}</td>
+								<td><a id="deleteevent"  ng-click="editEventDetails(templatemsg)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+								<td><a id="deleteevent"  ng-click="deleteEventDetails(templatemsg)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+					</div>
+					</div>
+					</div><!--endof notification details-->
+					
+					
+					</div>
+					</div>
+					</div>
+					</div>
 			</div>
 			<div id="calndersetup" ng-show='display == 4'>
-				<h4>Calendar Setup</h4>
+				<div class="panel with-nav-tabs panel-success">
+					<div class="panel-heading">
+						<h3>Calendar Setup</h3>
+					</div>
+					<div class="panel-body">
+					<div class="col-md-10">
+						<ul class="pull-right">
+						<button id="searchattendancedetails" data-toggle="modal"
+								data-target="#calendaradd" class="btn btn-default">
+								<i class="fa fa-plus-circle" aria-hidden="true"></i>Add
+							</button>
+							<button id="searchattendancedetails" data-toggle="modal"
+								data-target="#calendarsearch" class="btn btn-default">
+								<i class="fa fa-search" aria-hidden="true"></i>Search
+							</button>
+						</ul>
+						</div>
+					<div class="col-md-6">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" id="attentable" class="pull-center"  ng-click="getAllEventDetails()"
+							href="/admin#eventdetails">Event Details</a></li>
+							<li><a data-toggle="tab" id="calendardetails" class="pull-center"  ng-click="getAllCalendarDetails()"
+								href="/admin#calanderdetails">Calander Details</a></li>
+						</ul>
+					</div>
+					<div class="col-md-10">
+					<div class="tab-content">
+						<div id="calanderdetails" class="tab-pane fade">
+						<div class="table-responsive">
+							<table class="table table-bordered table-fixed sel-table">
+							<tr>
+								<th>Event Details</th>
+								<th>Event Applicable To</t>
+								<th>Event Start Date</t>
+								<th>Event End Date</t>
+							</tr>
+							<tr ng-repeat="calander in calanderdetails"
+								ng-click="setClickedRow(calander)" >
+								<td>{{calander.eventdetails}}</td>
+								<td>{{calander.applicableto}}</td>
+								<td>{{calander.startdate}}</td>
+								<td>{{calander.enddate}}</td>
+								<td><a id="deleteevent"  ng-click="editCalanderDetails(calander)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+								<td><a id="deleteevent"  ng-click="deleteCalanderDetails(calander)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+						<div id="eventdetails" class="tab-pane fade in active">
+						<h4>Events Details</h4>
+									<div class="col-md-6">
+										<div class="form-group">
+											<input type="text" name="eventname" id="eventname"
+												class="form-control" ng-model="event.eventname"
+												placeholder="Event Name">
+										</div>
+										<div class="form-group">
+											<input type="text" name="eventtype" id="eventtype"
+												class="form-control" ng-model="event.eventtype"
+												placeholder="Event Type" list="eventtypelist">
+												<datalist id="eventtypelist">
+													<option>ANNUAL EXAM</option>
+													<option>MID-SEM EXAM</option>
+													<option>DURGA PUJA/DUSSEHRA</option>
+													<option>SUMMER VACATION</option>
+													<option>GANESH PUJA</option>
+													<option>ANNUAL FUNCTION</option>
+												</datalist>
+										</div>
+										<div class="form-group">
+											<input type="text" name="applicablefor" id="applicablefor"
+												class="form-control" ng-model="event.applicablefor"
+												placeholder="Applicable For" list="eventapplicableforlist">
+												<datalist id="eventapplicableforlist">
+													<option>STUDENT</option>
+													<option>TEACHER</option>
+													<option>CONTRACTOR</option>
+													<option>VENDOR</option>
+													<option>EMPLOYEE(permanent)</option>
+													<option>EMPLOYEE(contract)</option>
+												</datalist>
+										</div>
+										<button id="addevent"   ng-click="saveEventDetails()"  class="btn btn-default">
+								<i class="fa fa-plus-circle" aria-hidden="true"></i>save
+							</button>
+									</div>
+							<div class="table-responsive">
+							<table class="table table-bordered table-fixed sel-table">
+							<tr>
+								<th>Event Name</th>
+								<th>Event Type</t>
+								<th>Applicable For</t>
+							</tr>
+							<tr ng-repeat="event in eventdetails"
+								ng-click="setClickedRow(event)" >
+								<td>{{event.name}}</td>
+								<td>{{event.type}}</td>
+								<td>{{event.applicablefor}}</td>
+								<td><a id="deleteevent"  ng-click="editEventDetails(event)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+								<td><a id="deleteevent"  ng-click="deleteEventDetails(event)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
+				</div>
+				
 			</div>
 			<div id="viewattendance" ng-show='display == 5'>
 				<div class="panel with-nav-tabs panel-success">
@@ -267,20 +474,18 @@
 						</div>
 					<div class="col-md-6">
 						<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" id="attentable" class="pull-center"  ng-click="searchAttendanceDefault()"
+							<li class="active"><a data-toggle="tab" id="attentable" class="pull-center fa fa-table"  ng-click="searchAttendanceDefault()"
 							href="/admin#attendancetableview">Attendance Table View</a></li>
-							<li><a data-toggle="tab" id="attengraph" class="pull-center"  ng-click="searchAttendanceGraph()"
+							<li><a data-toggle="tab" id="attengraph" class="pull-center fa fa-pie-chart"  ng-click="searchAttendanceGraph()"
 								href="/admin#attendancegraphview">Attendance Graph View</a></li>
 						</ul>
 					</div>
 					<div class="col-md-10">
 					<div class="tab-content">
 						<div id="attendancegraphview" class="tab-pane fade">
-									<h4>Graph View</h4>
 							<zingchart id = "attendancepiechart" zc-json = "attendanceCountdetails" zc-height = 500 zc-width = 600 ></zingchart>  
 							</div>
 						<div id="attendancetableview" class="tab-pane fade in active">
-						<h4>Tabular View</h4>
 							<div class="table-responsive">
 							<table class="table table-bordered table-fixed sel-table">
 							<tr>
@@ -361,6 +566,511 @@
 			</div>
 			</form>
 		</div><!---End for Modal Search Attendance-->
+		
+		
+				<!---Modal Calendar-->
+		<div id="calendaradd" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Setup Calendar</h4>
+						</div>
+						<div class="modal-body">
+							<div class="col-md-6">
+								<div class="form-group">
+								<label  class="control-label" for="eventname">Event Name</label> 
+									<input type="text" class="form-control" id="eventname" ng-model="calendar.eventname"
+										placeholder="User Id" name="userid"> 					  
+								</div>
+								<div class="form-group">
+								<label  class="control-label" for="eventtype">Event Type</label> 
+									<input type="text" class="form-control" id="eventtype" ng-model="calendar.eventtype"
+										placeholder="Event Type" name="eventtype" readonly> 					  
+								</div>
+								<div class="form-group">
+								<label  class="control-label" for="eventapplicablefor">Event Applicable For</label> 
+									<input type="text" class="form-control" id="eventapplicablefor" ng-model="calendar.applicablefor"
+										placeholder="Event Applicable For" name="eventapplicablefor" readonly> 					  
+								</div>
+								</div>
+								<div class="col-md-6">
+								
+								<div class="form-group">
+								<label  class="control-label" for="fromdate">Start Date</label> 
+									<input type="Date" class="form-control" id="fromdate" ng-model="calendar.eventstartdate"
+										placeholder="From Date" name="fromdate"> 
+								</div>
+								<div class="form-group">
+								<label  class="control-label" for="todate">End Date</label> 
+									<input type="Date" class="form-control" id="todate" ng-model="calendar.eventenddate" 
+										placeholder="To Date" name="todate"> 
+								</div>
+									<div class="form-group">
+								<label  class="control-label" for="comments">Comments</label> 
+									<textarea  class="form-control" id="comments" ng-model="calendar.comments" 
+										placeholder="Comments" name="comments"> </textarea>
+								</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" id="confirmfeeoper" class="btn btn-default" ng-click="saveCalendarDetails(calendar)"
+								data-dismiss="modal"><i class="fa fa-plus-circle" aria-hidden="true"></i>save</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+				</div>
+			</div>
+			</form>
+		</div><!---End for Modal Calendar-->
+		
+		
+			<!---Modal Calendar search-->
+		<div id="calendarsearch" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Setup Calendar</h4>
+						</div>
+						<div class="modal-body">
+							<div class="col-md-6">
+								<div class="form-group">
+								<label  class="control-label" for="eventname">Event Name</label> 
+									<input type="text" class="form-control" id="eventname" ng-model="calendar.eventname"
+										placeholder="User Id" name="userid"> 					  
+								</div>
+								<div class="form-group">
+								<label  class="control-label" for="eventtype">Event Type</label> 
+									<input type="text" class="form-control" id="eventtype" ng-model="calendar.eventtype"
+										placeholder="Event Type" name="eventtype" readonly> 					  
+								</div>
+								<div class="form-group">
+								<label  class="control-label" for="eventapplicablefor">Event Applicable For</label> 
+									<input type="text" class="form-control" id="eventapplicablefor" ng-model="calendar.applicablefor"
+										placeholder="Event Applicable For" name="eventapplicablefor" readonly> 					  
+								</div>
+								</div>
+								<div class="col-md-6">
+								
+								<div class="form-group">
+								<label  class="control-label" for="fromdate">Start Date</label> 
+									<input type="Date" class="form-control" id="fromdate" ng-model="calendar.eventstartdate"
+										placeholder="From Date" name="fromdate"> 
+								</div>
+								<div class="form-group">
+								<label  class="control-label" for="todate">End Date</label> 
+									<input type="Date" class="form-control" id="todate" ng-model="calendar.eventenddate" 
+										placeholder="To Date" name="todate"> 
+								</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" id="confirmfeeoper" class="btn btn-default" ng-click="saveCalendarDetails(calendar)"
+								data-dismiss="modal"><i class="fa fa-plus-circle" aria-hidden="true"></i>save</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+				</div>
+			</div>
+			</form>
+		</div><!---End for Modal Calendar-->
+		
+		
+							<!---Modal employee  registration-->
+						<div class="modal fade" id="employeeregistration" role="dialog">
+						<form>
+                              <div class="modal-dialog modal-lg">
+                                  <div class="modal-content">
+                                     <div class="modal-header">
+									 <button type="button" class="close" data-dismiss="modal">&times;</button>
+									    <h3 class="pull-center">Employee registration</h3>
+									</div>	
+						 <div class="modal-body">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" class="pull-center"
+								href="/admin#empbasicdetails">Basic Details</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="/admin#empcontactdetails">Contact Details</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="/admin#empqualificationdetails">Qualification Details</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="/admin#employmentdetails">Employment Details</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="/admin#attendancedetails">Attendance Details</a></li>
+						</ul>
+
+						<div class="panel-body">
+							<div class="tab-content col-md-10">
+								<div id="empbasicdetails" class="tab-pane fade in active">
+								
+										<h4>Employee Basic Details</h4>
+										<div class="row">
+											<div class="col-xs-6 col-sm-6 col-md-6">
+
+												<div class="form-group">
+												 <label  class="control-label" for="emp.title">Title</label> 
+													<input type="text" name="emp.title" id="emp.title"
+														list="datalisttitle" class="form-control" ng-model="emp.title"
+														placeholder="Title">
+													<datalist id="datalisttitle">
+														<option>Mr</option>
+														<option>Mrs</option>
+													</datalist>
+												</div>
+
+												<div class="form-group">
+												 <label  class="control-label" for="emp.middlename">Middle Name</label> 
+													<input type="text" name="emp.middlename" id="emp.middlename"
+														class="form-control" ng-model="emp.middlename"
+														placeholder="Middle Name">
+												</div>
+											</div>
+
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<div class="form-group">
+												<label  class="control-label" for="emp.firstname">First Name</label>
+													<input type="text" name="emp.firstname" id="emp.firstname"
+														class="form-control" ng-model="emp.firstname"
+														placeholder="First Name">
+												</div>
+												<div class="form-group">
+												<label  class="control-label" for="emp.lastname">Last Name</label>
+													<input type="text" name="emp.lastname" id="emp.lastname"
+														class="form-control" ng-model="emp.lastname"
+														placeholder="Last Name">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<div class="form-group">
+													<label class="col-xs-2 control-label">Gender</label>
+													<div class="col-xs-6">
+														<div class="checkbox">
+                                                          <label><input type="checkbox" id="emp.male" name="emp.male">Male</label>
+                                                          </div>
+														  <div class="checkbox">
+                                                          <label><input type="checkbox" id="emp.female" name="emp.female">Female</label>
+                                                          </div>
+													</div>
+												</div>
+
+
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<label class="control-label">Birth date</label>
+													<div class="form-group">
+														<input type="Date" id="birthdate" class="form-control"
+															name="birthdate" />
+													</div>
+												
+											</div>
+										</div>
+								</div>
+
+								<div id="empcontactdetails" class="tab-pane fade">
+									<div class="row">
+									    <div class="col-xs-6 col-sm-6 col-md-6"> 
+									        <div class="form-group">
+										          <label  class="control-label" for="section">Address</label> 
+										            <input type="text" name="address" id="empreg.address"
+														class="form-control" ng-model="empreg.address"
+														 placeholder="Enter your address">
+										     </div>
+										      <div class="form-group">
+										           <label  class="control-label" for="section">Landmark</label> 
+										              <input type="text" name="landmark" id="empreg.landmark"
+														class="form-control" ng-model="empreg.landmark"
+														placeholder="Your Near by Land Mar">
+										       </div>
+										
+							                        <div class="form-group">
+								                     <label  class="control-label" for="section">City</label> 
+									                   <input type="text" class="form-control" id="empreg.city" ng-model="empreg.city"
+										                        placeholder="Your City" name="empreg.city"> 
+								                     </div>
+												       <div class="form-group">
+								                             <label  class="control-label" for="section">Pincode</label> 
+									                        <input type="text" class="form-control" id="empreg.pincode" ng-model="empreg.pincode"
+										                        placeholder="Enter Pincode" name="empreg.pincode"> 
+								                        </div>
+												          <div class="form-group">
+								                            <label  class="control-label" for="section">State</label> 
+									                          <input type="text" class="form-control" id="empreg.state" ng-model="empreg.state"
+										                        placeholder="Enter Your State" name="empreg.state"> 
+								                            </div>
+							             </div>
+										 <div class="col-xs-6 col-sm-6 col-md-6">
+									           <div class="form-group">
+										            <label  class="control-label" for="section">Mobile No</label> 
+										                <input type="text" name="address" id="empreg.address"
+														class="form-control" ng-model="empreg.address"
+														placeholder="Enter 10 digit mobileno">
+										         </div>
+										            <div class="form-group">
+										               <label  class="control-label" for="section">Email Id</label> 
+										                 <input type="email" name="landmark" id="empreg.emailid"
+														  class="form-control" ng-model="empreg.emailid"
+														  placeholder="Enter your emailid">
+										             </div>
+										
+							                             <div class="form-group">
+								                              <label  class="control-label" for="section">Emergency Contact Number</label> 
+									                           <input type="text" class="form-control" id="empreg.emgno" ng-model="empreg.emgno"
+										                        placeholder="Enter emergency contact number" name="empreg.emgno"> 
+								                           </div>
+                                             </div>
+									 </div>
+								</div>
+
+								<div id="empqualificationdetails" class="tab-pane fade">
+
+									<h4>Employee Qualification Details</h4>
+									<div class=""></div>
+								</div>
+
+								<div id="employmentdetails" class="tab-pane fade">
+
+									<h4>Employment Details</h4>
+									<div class=""></div>
+								</div>
+
+								<div id="employmentdetails" class="tab-pane fade">
+
+									<h4>Attendance Details</h4>
+									<div class=""></div>
+								</div>
+
+							</div>
+						</div>
+						</div>
+						<div class="modal-footer">
+						 <button type="submit" class="btn btn-default fa fa-floppy-o">Save</button>
+		                 <button type="button" class="btn btn-default fa fa-times-circle"class="close"data-dismiss="modal">Close</button>
+						</div>
+						</div>
+						</div>
+						</form>
+						</div><!---End for Modal employee registration-->
+						
+						
+				
+							<!---Modal student  registration-->
+						<div class="modal fade" id="studentregistration" role="dialog">
+						      <div class="modal-dialog modal-lg">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									 <h3 class="pull-center">Student Registration</h3>
+									</div>	
+									
+						 <div class="modal-body">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" class="pull-center"
+								href="/admin#studentbasicdetails">Basic Details</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="/admin#studentcontactdetails">Contact Details</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="/admin#educationdetails">Education Details</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="/admin#examdetails">Exam Details</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="/admin#attendancedetails">Attendance Details</a></li>
+						</ul>
+
+						<div class="panel-body">
+							<div class="tab-content col-md-10">
+								<div id="studentbasicdetails" class="tab-pane fade in active">
+										<div class="row">
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<div class="form-group">
+												<label  for="stu.title">Title</label> 
+													<input type="text" name="stu.title" id="stu.title"
+														list="datalisttitle" class="form-control" ng-model="stu.title"
+														placeholder="Title">
+													<datalist id="datalisttitle">
+														<option>Mr</option>
+														<option>Mrs</option>
+													</datalist>
+												</div>
+
+												<div class="form-group">
+												<label  for="stu.middlename">Middle Name</label> 
+													<input type="text" name="stu.middlename" id="stu.middlename"
+														class="form-control" ng-model="stu.middlename"
+														placeholder="Middle Name">
+												</div>
+											</div>
+
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<div class="form-group">
+												<label  for="stu.firstname">First Name</label> 
+													<input type="text" name="stu.firstname" id="stu.firstname"
+														class="form-control" ng-model="stu.firstname"
+														placeholder="First Name">
+												</div>
+												<div class="form-group">
+												<label  for="stu.lastname">Last Name</label> 
+													<input type="text" name="stu.lastname" id="stu.lastname"
+														class="form-control" ng-model="stu.lastname"
+														placeholder="Last Name">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<div class="form-group">
+														<label  for="gender">Gender</label> 
+														<div class="checkbox" ng-model="stu.gender">
+                                                          <label><input type="checkbox" id="stu.male"  name="stu.male">Male</label>
+                                                          </div>
+														  <div class="checkbox">
+                                                          <label><input type="checkbox" id="stu.female" name="stu.female">Female</label>
+                                                          </div>
+													
+													</div>
+												</div>
+												<div class="col-xs-6 col-sm-6 col-md-6">
+												<label class="control-label">Birth date</label>
+													<div class="form-group">
+														<input type="Date" id="birthdate" class="form-control"
+															name="birthdate" />
+													</div>
+											
+											</div>
+
+											</div>
+											
+										</div>
+
+								<div id="studentcontactdetails" class="tab-pane fade">
+	   							 <div class="row">
+									    <div class="col-xs-6 col-sm-6 col-md-6"> 
+									        <div class="form-group">
+										          <label  class="control-label" for="studentreg.address">Address</label> 
+										            <input type="text" name="studentreg.address" id="studentreg.address"
+														class="form-control" ng-model="studentreg.address"
+														 placeholder="Enter your address">
+										     </div>
+										      <div class="form-group">
+										           <label  class="control-label" for="studentreg.landmark">Landmark</label> 
+										              <input type="text" name="studentreg.landmark" id="studentreg.landmark"
+														class="form-control" ng-model="studentreg.landmark"
+														placeholder="Your Near by Land Mark">
+										       </div>
+										
+							                        <div class="form-group">
+								                     <label  class="control-label" for="studentreg.city">City</label> 
+									                   <input type="text" class="form-control" id="studentreg.city" ng-model="studentreg.city"
+										                        placeholder="Your City" name="studentreg.city"> 
+								                     </div>
+												       <div class="form-group">
+								                             <label  class="control-label" for="studentreg.pincode">Pincode</label> 
+									                        <input type="text" class="form-control" id="studentreg.pincode" ng-model="studentreg.pincode"
+										                        placeholder="Enter Pincode" name="studentreg.pincode"> 
+								                        </div>
+												          <div class="form-group">
+								                            <label  class="control-label" for="studentreg.state">State</label> 
+									                          <input type="text" class="form-control" id="studentreg.state" ng-model="studentreg.state"
+										                        placeholder="Enter Your State" name="studentreg.state"> 
+								                            </div>
+							             </div>
+										 <div class="col-xs-6 col-sm-6 col-md-6">
+									           <div class="form-group">
+										            <label  class="control-label" for="studentreg.address">Mobile No</label> 
+										                <input type="text" name="studentreg.address" id="studentreg.address"
+														class="form-control" ng-model="studentreg.address"
+														placeholder="Enter 10 digit mobile number">
+										         </div>
+										            <div class="form-group">
+										               <label  class="control-label" for="studentreg.emailid">Email Id</label> 
+										                 <input type="text" name="studentreg.emailid" id="studentreg.emailid"
+														  class="form-control" ng-model="studentreg.emailid"
+														  placeholder="your email ">
+										             </div>
+										
+							                             <div class="form-group">
+								                              <label  class="control-label" for="studentreg.emgno">Emergency Contact Number</label> 
+									                           <input type="text" class="form-control" id="studentreg.emgno" ng-model="studentreg.emgno"
+										                        placeholder="Emergency contact number" name="studentreg.emgno"> 
+								                           </div>
+                                             </div>
+									 </div>
+									<div class=""></div>
+								</div>
+
+								<div id="educationdetails" class="tab-pane fade">
+
+									<h4>Education Qualification Details</h4>
+									<div class=""></div>
+								</div>
+
+								<div id="examdetails" class="tab-pane fade">
+
+									<h4>Exam Details</h4>
+									<div class=""></div>
+								</div>
+
+								<div id="attendancedetails" class="tab-pane fade">
+
+									<h4>Attendance Details</h4>
+									<div class=""></div>
+								</div>
+
+							</div>
+						</div>
+						</div>
+						<div class="modal-footer">
+						 <button type="submit" class="btn btn-default fa fa-floppy-o">Save</button>
+		                 <button type="button" class="btn btn-default fa fa-times-circle"class="close"data-dismiss="modal">Close</button>
+						</div>
+						</div>
+						</div>
+						</div><!---End for Modal student registration-->	
+
+
+	<!---Modal Search User-->
+		<div id="usersearch" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Find Employee/Student</h4>
+						</div>
+						<div class="modal-body">
+							<div class="col-md-6">
+								<div class="form-group">
+								<label  class="control-label" for="section">User Id</label> 
+									<input type="text" class="form-control" id="userid" ng-model="usercriteria.userid"
+										placeholder="User Id" name="userid"> 					  
+								</div>
+								<div class="form-group">
+								<label  class="control-label" for="section">Mobile No.</label> 
+									<input type="text" class="form-control" id="mobileno" ng-model="usercriteria.mobileno"
+										placeholder="Mobile Number" name="mobilenumber"> 
+								</div>
+								<div class="form-group">
+								<label  class="control-label" for="section">Card No.</label> 
+									<input type="text" class="form-control" id="cardno" ng-model="usercriteria.cardno"
+										placeholder="Card Number" name="cardno"> 
+								</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="searchUser()"
+								data-dismiss="modal"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+				</div>
+			</div>
+			</form>
+		</div><!---End for Modal Search Attendance-->						
+		
 		
 	</div>
 </div>

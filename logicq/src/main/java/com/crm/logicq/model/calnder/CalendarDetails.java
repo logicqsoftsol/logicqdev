@@ -37,6 +37,9 @@ public class CalendarDetails {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "EVENT_END_DATE")
 	private  Date  eventenddate;
+	
+	@Column(name = "COMMENTS")
+	private String comments;
 
 	public Long getCalendarid() {
 		return calendarid;
@@ -70,11 +73,20 @@ public class CalendarDetails {
 		this.eventenddate = eventenddate;
 	}
 
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
 	@Override
 	public String toString() {
 		return "CalendarDetails [calendarid=" + calendarid + ", eventdetails=" + eventdetails + ", eventstartdate="
-				+ eventstartdate + ", eventenddate=" + eventenddate + "]";
+				+ eventstartdate + ", eventenddate=" + eventenddate + ", comments=" + comments + "]";
 	}
+
 
 	
 	
