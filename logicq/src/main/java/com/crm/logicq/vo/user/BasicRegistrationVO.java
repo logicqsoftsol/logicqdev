@@ -2,7 +2,7 @@ package com.crm.logicq.vo.user;
 
 import java.util.Date;
 
-public class EmployeeVO {
+public class BasicRegistrationVO{
 	
 	private String id;
 	

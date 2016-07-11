@@ -109,6 +109,22 @@
 			return  $http.post(url,request.employee)
 		},
 		
+		/*Student Details*/
+		
+		searchAllStudentList: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchAllStudentListURL,
+				dataType :'json',
+				data : ''
+			})
+		},	
+		
+		saveStudentDetails: function (request) {
+			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveStudentDetailsURL;
+			return  $http.post(url,request.student)
+		},
+		
 		}
 }]);
 

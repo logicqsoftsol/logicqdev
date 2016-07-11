@@ -163,5 +163,48 @@
 												$scope.employelist=data;
 											});
 								};	
+								
+									/* Student operation* */
+								$scope.searchAllStudentList = function() {
+									AdminService.searchAllStudentList($scope)
+											.success(function(data, status) {
+												$scope.studentdlist=data;
+											});
+								};	
+
+				   $scope.saveStudentDetails = function() {
+									$scope.request.student={
+										idetificationid : $scope.student.idetificationid,
+										basicdetails : {
+											title : $scope.student.title,
+											firstName : $scope.student.firstname,
+											middlename : $scope.student.middlename,
+											lastname : $scope.student.lastname,
+											gender : $scope.student.gender,
+											dateofbirth : new Date($scope.student.dateofbirth),
+										},
+										contactdetails : {
+											addressdetails : {
+												addresstext : $scope.student.address,
+												landmark : $scope.student.landmark,
+												city : $scope.student.city,
+												pincode : $scope.student.pincode,
+												state : $scope.student.state,
+												country : $scope.student.country,
+											},
+											communicationdetails : {
+												mobilenumber : $scope.student.mobilenumber,
+												emailid : $scope.student.emailid,
+												emergencycontactnumber : $scope.student.emergencycontactnumber,
+												communicationtype : $scope.student.communicationtype
+											}
+										}
+
+									};
+									AdminService.saveStudentDetails($scope.request)
+											.success(function(data, status) {
+												$scope.studentdlist=data;
+											});
+								};				
 	}]);
 }());
