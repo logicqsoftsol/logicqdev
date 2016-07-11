@@ -32,6 +32,9 @@
 	   'getCalendarDetailsforCriteriaURL':'/admin/calendar/getCalendarDetailsforCriteria',
 	   'saveCalendarDetailsURL':'/admin/calendar/saveCalendarDetails',
 	   'deleteCalendarDetailsURL':'/admin/calendar/deleteCalendarDetails',
+	   
+	   'searchAllEmployeeListURL':'/user/searchAllEmployeeList',
+	   'saveEmployeeDetailsURL':'/user/saveEmployeeDetails',
 
 	}).directive('ngConfirmClick', [
 	                                   function(){

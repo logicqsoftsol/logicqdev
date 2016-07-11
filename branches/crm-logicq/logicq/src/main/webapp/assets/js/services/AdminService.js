@@ -93,6 +93,22 @@
 			return  $http.post(url,request)
 		},
 		
+		
+		/*Employee Details*/
+		searchAllEmployeeList: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchAllEmployeeListURL,
+				dataType :'json',
+				data : ''
+			})
+		},	
+		
+		saveEmployeeDetails: function (request) {
+			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveEmployeeDetailsURL;
+			return  $http.post(url,request.employee)
+		},
+		
 		}
 }]);
 
