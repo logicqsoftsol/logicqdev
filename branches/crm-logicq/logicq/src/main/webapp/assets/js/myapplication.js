@@ -35,6 +35,10 @@
 	   
 	   'searchAllEmployeeListURL':'/user/searchAllEmployeeList',
 	   'saveEmployeeDetailsURL':'/user/saveEmployeeDetails',
+	   
+	   
+	   'searchAllStudentListURL':'/user/searchAllStudentList',
+	   'saveStudentDetailsURL':'/user/saveStudentDetails',
 
 	}).directive('ngConfirmClick', [
 	                                   function(){
