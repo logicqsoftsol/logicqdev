@@ -47,7 +47,7 @@
 				</a>
 					<ul class="treeview-menu">
 						<li ng-class="{active:display == 1}"><a href=""
-							id="empregclick" ng-click="display = 1;searchLatestEmployeeList()"><i class="fa fa-user"></i>Employee
+							id="empregclick" ng-click="display = 1;searchAllEmployeeList()"><i class="fa fa-user"></i>Employee
 								Registration</a></li>
 						<li ng-class="{active:display == 2}"><a href=""
 							id="stduentregclick" ng-click="display = 2;searchLatestStudentList()"><i
@@ -123,13 +123,13 @@
 								<th> Date</th>
 								<th> Type</th>
 							</tr>
-							<tr ng-repeat="empreg in employeedetails"
+							<tr ng-repeat="empreg in employelist"
 								ng-click="setClickedRow(empreg)" >
-								<td>{{empreg.regd_id}}</td>
+								<td>{{empreg.id}}</td>
 								<td>{{empreg.name}}</td>
-								<td>{{empreg.regd_date}}}}</td>
-								<td>{{empreg.regd_typee}}</td>
-	                            <td><a id="deleteempreg"  ng-click="deleteCalanderDetails(calander)"><i class="fa fa-user-times" aria-hidden="true"></i></a></td>
+								<td>{{empreg.date}}}}</td>
+								<td>{{empreg.type}}</td>
+	                            <td><a id="deleteempreg"  ng-click="deleteCalanderDetails(empreg)"><i class="fa fa-user-times" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 						</div>
@@ -682,7 +682,7 @@
 							<!---Modal employee  registration-->
 						<div class="modal fade" id="employeeregistration" role="dialog">
 						<form>
-                              <div class="modal-dialog modal-lg">
+                              <div class="modal-dialog modal-lg" id="employeeregistration">
                                   <div class="modal-content">
                                      <div class="modal-header">
 									 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -705,11 +705,14 @@
 						<div class="panel-body">
 							<div class="tab-content col-md-10">
 								<div id="empbasicdetails" class="tab-pane fade in active">
-								
-										<h4>Employee Basic Details</h4>
-										<div class="row">
-											<div class="col-xs-6 col-sm-6 col-md-6">
-
+										
+										<div class="col-xs-6 col-sm-6 col-md-6">
+										<div class="form-group">
+												 <label  class="control-label" for="emp.idetificationid">Card Id</label> 
+													<input type="text" name="emp.idetificationid" id="emp.idetificationid"
+														class="form-control" ng-model="emp.idetificationid"
+														placeholder="Card ID">
+												</div>
 												<div class="form-group">
 												 <label  class="control-label" for="emp.title">Title</label> 
 													<input type="text" name="emp.title" id="emp.title"
@@ -720,36 +723,39 @@
 														<option>Mrs</option>
 													</datalist>
 												</div>
-
-												<div class="form-group">
-												 <label  class="control-label" for="emp.middlename">Middle Name</label> 
-													<input type="text" name="emp.middlename" id="emp.middlename"
-														class="form-control" ng-model="emp.middlename"
-														placeholder="Middle Name">
+												
 												</div>
-											</div>
-
+										
 											<div class="col-xs-6 col-sm-6 col-md-6">
+											<div class="form-group">
+												 <label  class="control-label" for="emp.userid">User Id</label> 
+													<input type="text" name="emp.userid" id="emp.userid"
+														class="form-control" ng-model="emp.userid"
+														placeholder="User ID" readonly>
+												</div>
+												
 												<div class="form-group">
 												<label  class="control-label" for="emp.firstname">First Name</label>
 													<input type="text" name="emp.firstname" id="emp.firstname"
 														class="form-control" ng-model="emp.firstname"
 														placeholder="First Name">
 												</div>
-												<div class="form-group">
-												<label  class="control-label" for="emp.lastname">Last Name</label>
-													<input type="text" name="emp.lastname" id="emp.lastname"
-														class="form-control" ng-model="emp.lastname"
-														placeholder="Last Name">
-												</div>
+
+												
 											</div>
-										</div>
-										<div class="row">
+
 											<div class="col-xs-6 col-sm-6 col-md-6">
+												<div class="form-group">
+												 <label  class="control-label" for="emp.middlename">Middle Name</label> 
+													<input type="text" name="emp.middlename" id="emp.middlename"
+														class="form-control" ng-model="emp.middlename"
+														placeholder="Middle Name">
+												</div>
+													
 												<div class="form-group">
 													<label class="col-xs-2 control-label">Gender</label>
 													<div class="col-xs-6">
-														<div class="checkbox">
+														<div class="checkbox" ng-model="emp.gender">
                                                           <label><input type="checkbox" id="emp.male" name="emp.male">Male</label>
                                                           </div>
 														  <div class="checkbox">
@@ -757,70 +763,94 @@
                                                           </div>
 													</div>
 												</div>
+											
+											</div>
+										
+										
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<div class="form-group">
+												<label  class="control-label" for="emp.lastname">Last Name</label>
+													<input type="text" name="emp.lastname" id="emp.lastname"
+														class="form-control" ng-model="emp.lastname"
+														placeholder="Last Name">
+												</div>
+										
 
-
+												
 											</div>
 											<div class="col-xs-6 col-sm-6 col-md-6">
 												<label class="control-label">Birth date</label>
 													<div class="form-group">
-														<input type="Date" id="birthdate" class="form-control"
+														<input type="Date" id="birthdate" ng-model="emp.dateofbirth" class="form-control"
 															name="birthdate" />
 													</div>
 												
 											</div>
-										</div>
+											
+										
 								</div>
 
 								<div id="empcontactdetails" class="tab-pane fade">
 									<div class="row">
 									    <div class="col-xs-6 col-sm-6 col-md-6"> 
 									        <div class="form-group">
-										          <label  class="control-label" for="section">Address</label> 
-										            <input type="text" name="address" id="empreg.address"
-														class="form-control" ng-model="empreg.address"
+										          <label  class="control-label" for="emp.address">Address</label> 
+										            <input type="text" name="emp.address" id="emp.address"
+														class="form-control" ng-model="emp.address"
 														 placeholder="Enter your address">
 										     </div>
 										      <div class="form-group">
-										           <label  class="control-label" for="section">Landmark</label> 
-										              <input type="text" name="landmark" id="empreg.landmark"
-														class="form-control" ng-model="empreg.landmark"
+										           <label  class="control-label" for="emp.landmark">Landmark</label> 
+										              <input type="text" name="emp.landmark" id="emp.landmark"
+														class="form-control" ng-model="emp.landmark"
 														placeholder="Your Near by Land Mar">
 										       </div>
 										
 							                        <div class="form-group">
-								                     <label  class="control-label" for="section">City</label> 
-									                   <input type="text" class="form-control" id="empreg.city" ng-model="empreg.city"
-										                        placeholder="Your City" name="empreg.city"> 
+								                     <label  class="control-label" for="emp.city">City</label> 
+									                   <input type="text" class="form-control" id="emp.city" ng-model="emp.city"
+										                        placeholder="Your City" name="emp.city"> 
 								                     </div>
 												       <div class="form-group">
-								                             <label  class="control-label" for="section">Pincode</label> 
-									                        <input type="text" class="form-control" id="empreg.pincode" ng-model="empreg.pincode"
-										                        placeholder="Enter Pincode" name="empreg.pincode"> 
+								                             <label  class="control-label" for="emp.pincode">Pincode</label> 
+									                        <input type="text" class="form-control" id="emp.pincode" ng-model="emp.pincode"
+										                        placeholder="Enter Pincode" name="emp.pincode"> 
 								                        </div>
 												          <div class="form-group">
-								                            <label  class="control-label" for="section">State</label> 
-									                          <input type="text" class="form-control" id="empreg.state" ng-model="empreg.state"
-										                        placeholder="Enter Your State" name="empreg.state"> 
+								                            <label  class="control-label" for="emp.state">State</label> 
+									                          <input type="text" class="form-control" id="emp.state" ng-model="emp.state"
+										                        placeholder="Enter Your State" name="emp.state"> 
+								                            </div>
+								                              <div class="form-group">
+								                            <label  class="control-label" for="emp.country">Country</label> 
+									                          <input type="text" class="form-control" id="emp.country" ng-model="emp.country"
+										                        placeholder="Enter Your Country" name="emp.country"> 
 								                            </div>
 							             </div>
 										 <div class="col-xs-6 col-sm-6 col-md-6">
 									           <div class="form-group">
-										            <label  class="control-label" for="section">Mobile No</label> 
-										                <input type="text" name="address" id="empreg.address"
-														class="form-control" ng-model="empreg.address"
+										            <label  class="control-label" for="emp.mobilenumber">Mobile No</label> 
+										                <input type="text" name="emp.mobilenumber" id="emp.mobilenumber"
+														class="form-control" ng-model="emp.mobilenumber"
 														placeholder="Enter 10 digit mobileno">
 										         </div>
+										          <div class="form-group">
+										            <label  class="control-label" for="emp.communicationtype">Communication Preference</label> 
+										                <input type="text" name="emp.communicationtype" id="emp.communicationtype"
+														class="form-control" ng-model="emp.communicationtype"
+														placeholder="Prefrence Type">
+										         </div>
 										            <div class="form-group">
-										               <label  class="control-label" for="section">Email Id</label> 
-										                 <input type="email" name="landmark" id="empreg.emailid"
-														  class="form-control" ng-model="empreg.emailid"
+										               <label  class="control-label" for="emp.emailid">Email Id</label> 
+										                 <input type="email" name="emp.emailid" id="emp.emailid"
+														  class="form-control" ng-model="emp.emailid"
 														  placeholder="Enter your emailid">
 										             </div>
 										
 							                             <div class="form-group">
-								                              <label  class="control-label" for="section">Emergency Contact Number</label> 
-									                           <input type="text" class="form-control" id="empreg.emgno" ng-model="empreg.emgno"
-										                        placeholder="Enter emergency contact number" name="empreg.emgno"> 
+								                              <label  class="control-label" for="emp.emergencycontactnumber">Emergency Contact Number</label> 
+									                           <input type="text" class="form-control" id="emp.emergencycontactnumber" ng-model="empreg.emergencycontactnumber"
+										                        placeholder="Enter emergency contact number" name="emp.emergencycontactnumber"> 
 								                           </div>
                                              </div>
 									 </div>
@@ -848,8 +878,8 @@
 						</div>
 						</div>
 						<div class="modal-footer">
-						 <button type="submit" class="btn btn-default fa fa-floppy-o">Save</button>
-		                 <button type="button" class="btn btn-default fa fa-times-circle"class="close"data-dismiss="modal">Close</button>
+						 <button type="submit" class="btn btn-default fa fa-floppy-o" data-dismiss="modal" ng-click="saveEmployeeDetails()">Save</button>
+		                 <button type="button" class="btn btn-default fa fa-times-circle"  data-dismiss="modal">Close</button>
 						</div>
 						</div>
 						</div>

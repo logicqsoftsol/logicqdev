@@ -1,8 +1,10 @@
 (function () {
 	'use strict';
 	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AppConstants',function ($scope, $http,  $location, AdminService,AppConstants) {
-		 $scope.selectedRow = null;
+		
+   $scope.selectedRow = null;
 		 $scope.graphattendance=[];
+		 $scope.request = {};
 		 $scope.searchAttendanceTable= function() {
 			 AdminService.getAttendanceDetails($scope).success(function(data, status) {
 				 $scope.attendancedetails =data;
@@ -112,6 +114,54 @@
 										   AdminService.deleteCalendarDetails($scope).success(function(data, status) {
 								         alert('delete sucess fully');
 													        });
-														};		
+														};	
+														
+
+
+
+																						
+								/* Employee operation* */
+								$scope.searchAllEmployeeList = function() {
+									AdminService.searchAllEmployeeList($scope)
+											.success(function(data, status) {
+												$scope.employelist=data;
+											});
+								};	
+
+				   $scope.saveEmployeeDetails = function() {
+									$scope.request.employee={
+										idetificationid : $scope.emp.idetificationid,
+										basicdetails : {
+											title : $scope.emp.title,
+											firstName : $scope.emp.firstname,
+											middlename : $scope.emp.middlename,
+											lastname : $scope.emp.lastname,
+											gender : $scope.emp.gender,
+											dateofbirth : new Date(
+													$scope.emp.dateofbirth),
+										},
+										contactdetails : {
+											addressdetails : {
+												addresstext : $scope.emp.address,
+												landmark : $scope.emp.landmark,
+												city : $scope.emp.city,
+												pincode : $scope.emp.pincode,
+												state : $scope.emp.state,
+												country : $scope.emp.country,
+											},
+											communicationdetails : {
+												mobilenumber : $scope.emp.mobilenumber,
+												emailid : $scope.emp.emailid,
+												emergencycontactnumber : $scope.emp.emergencycontactnumber,
+												communicationtype : $scope.emp.communicationtype
+											}
+										}
+
+									};
+									AdminService.saveEmployeeDetails($scope.request)
+											.success(function(data, status) {
+												$scope.employelist=data;
+											});
+								};	
 	}]);
 }());
