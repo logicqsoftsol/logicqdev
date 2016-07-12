@@ -1,65 +1,24 @@
 (function () {
 	'use strict';
-	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AppConstants',function ($scope, $http,  $location, AdminService,AppConstants) {
-		
+	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','AppConstants',function ($scope, $http,  $location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,AppConstants) {
+		 $scope.display=6;
    $scope.selectedRow = null;
 		 $scope.graphattendance=[];
 		 $scope.request = {};
 		 $scope.searchAttendanceTable= function() {
-			 AdminService.getAttendanceDetails($scope).success(function(data, status) {
+			 AttendanceService.getAttendanceDetails($scope).success(function(data, status) {
 				 $scope.attendancedetails =data;
 			});
 			};
 		 $scope.searchAttendanceDefault= function() {
-			 AdminService.getAttendanceDetailsdefault($scope).success(function(data, status) {
+			 AttendanceService.getAttendanceDetailsdefault($scope).success(function(data, status) {
 				 $scope.attendancedetails =data;
 			});
 			};	
 			
 			$scope.searchAttendanceGraph= function() {
-				$scope.graphattendance.attedancefor="Students";
-				AdminService.getAttendanceCount($scope).success(function(data, status) {
-					$scope.attendanceCountdetails = {
-			        globals: {
-			            shadow: false,
-			            fontFamily: "Verdana",
-			            fontWeight: "100"
-			        },
-			        type: "pie",
-			        backgroundColor: "#fff",
-
-			        legend: {
-			            layout: "x5",
-			            position: "50%",
-			            borderColor: "transparent",
-			            marker: {
-			                borderRadius: 10,
-			                borderColor: "transparent"
-			            }
-			        },
-			        tooltip: {
-			            text: "%v "+data.attendanceFor
-			        },
-			        plot: {
-			            refAngle: "-90",
-			            borderWidth: "0px",
-			            valueBox: {
-			                placement: "in",
-			                text: "%npv %",
-			                fontSize: "15px",
-			                textAlpha: 1,
-			            }
-			        },
-			        series: [{
-			            text: "Present",
-			            values:[data.presentcount],
-			            backgroundColor: "#FA6E6E #FA9494",
-			        }, {
-			            text: "Absent",
-			            values:[data.absentcount],
-			            backgroundColor: "#F1C795 #feebd2"
-			        }]
-			    };	 	
+				AttendanceService.getAttendanceCount($scope).success(function(data, status) {
+				GraphHelper.populateAttendanceForGraphStudent($scope,data);
 				});
 		
 			};
@@ -117,94 +76,53 @@
 														};	
 														
 
-
-
 																						
 								/* Employee operation* */
 								$scope.searchAllEmployeeList = function() {
-									AdminService.searchAllEmployeeList($scope)
+									UserService.searchAllEmployeeList($scope)
 											.success(function(data, status) {
 												$scope.employelist=data;
 											});
 								};	
 
 				   $scope.saveEmployeeDetails = function() {
-									$scope.request.employee={
-										idetificationid : $scope.emp.idetificationid,
-										basicdetails : {
-											title : $scope.emp.title,
-											firstName : $scope.emp.firstname,
-											middlename : $scope.emp.middlename,
-											lastname : $scope.emp.lastname,
-											gender : $scope.emp.gender,
-											dateofbirth : new Date(
-													$scope.emp.dateofbirth),
-										},
-										contactdetails : {
-											addressdetails : {
-												addresstext : $scope.emp.address,
-												landmark : $scope.emp.landmark,
-												city : $scope.emp.city,
-												pincode : $scope.emp.pincode,
-												state : $scope.emp.state,
-												country : $scope.emp.country,
-											},
-											communicationdetails : {
-												mobilenumber : $scope.emp.mobilenumber,
-												emailid : $scope.emp.emailid,
-												emergencycontactnumber : $scope.emp.emergencycontactnumber,
-												communicationtype : $scope.emp.communicationtype
-											}
-										}
-
-									};
-									AdminService.saveEmployeeDetails($scope.request)
+					                UserHelper.populateEmployee($scope);
+									UserService.saveEmployeeDetails($scope.request)
 											.success(function(data, status) {
 												$scope.employelist=data;
 											});
-								};	
+								};
+								
+								/* Student operation* */
+								  $scope.saveStudentDetails = function() {
+									   UserHelper.populateStudent($scope);
+									   UserService.saveStudentDetails($scope.request)
+															.success(function(data, status) {
+																$scope.studentdlist=data;
+															});
+												};					
 								
 									/* Student operation* */
 								$scope.searchAllStudentList = function() {
-									AdminService.searchAllStudentList($scope)
+									UserService.searchAllStudentList($scope)
 											.success(function(data, status) {
 												$scope.studentdlist=data;
 											});
 								};	
 
-				   $scope.saveStudentDetails = function() {
-									$scope.request.student={
-										idetificationid : $scope.student.idetificationid,
-										basicdetails : {
-											title : $scope.student.title,
-											firstName : $scope.student.firstname,
-											middlename : $scope.student.middlename,
-											lastname : $scope.student.lastname,
-											gender : $scope.student.gender,
-											dateofbirth : new Date($scope.student.dateofbirth),
-										},
-										contactdetails : {
-											addressdetails : {
-												addresstext : $scope.student.address,
-												landmark : $scope.student.landmark,
-												city : $scope.student.city,
-												pincode : $scope.student.pincode,
-												state : $scope.student.state,
-												country : $scope.student.country,
-											},
-											communicationdetails : {
-												mobilenumber : $scope.student.mobilenumber,
-												emailid : $scope.student.emailid,
-												emergencycontactnumber : $scope.student.emergencycontactnumber,
-												communicationtype : $scope.student.communicationtype
-											}
-										}
+				 
 
-									};
-									AdminService.saveStudentDetails($scope.request)
-											.success(function(data, status) {
-												$scope.studentdlist=data;
-											});
-								};				
+								
+								 $scope.displayDashBoard = function() {
+									 AttendanceService.getAttendanceCount($scope).success(function(data, status) {
+									 GraphHelper.populateAttendanceForGraphStudent($scope,data);
+										});
+								     AttendanceService.getAttendanceCount($scope).success(function(data, status) {
+										 GraphHelper.populateAttendanceForEmployee($scope,data);
+										 });
+									 
+									 GraphHelper.populateExpenseandCollection($scope);
+								 };							
+			
 	}]);
 }());

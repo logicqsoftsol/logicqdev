@@ -21,32 +21,9 @@
 				return  $http.post(url,request)
 
 			}, 
+	
 			
-		getAttendanceDetails: function ($scope) {
-			return  $http({
-				method: 'GET',
-				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchattendanceURL+'/'+$scope.attendancecriteria.id+'/'+$scope.attendancecriteria.mobileno+'/'+$scope.attendancecriteria.cardno+'/'+$scope.attendancecriteria.fromdate+'/'+$scope.attendancecriteria.todate,
-				dataType :'json',
-				data : ''
-			})
-		},
-			getAttendanceDetailsdefault: function ($scope) {
-			return  $http({
-				method: 'GET',
-				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchcurrentAttedanceURL,
-				dataType :'json',
-				data : ''
-			})
-		},
 		
-			getAttendanceCount: function ($scope) {
-			return  $http({
-				method: 'GET',
-				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getattendanceCountURL+'/'+$scope.graphattendance.attedancefor+'/'+$scope.graphattendance.fromdate+'/'+$scope.graphattendance.todate,
-				dataType :'json',
-				data : ''
-			})
-		},
 		
 		saveEventDetails:function ($scope){
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveEventDetailsURL;
@@ -91,40 +68,7 @@
 		deleteCalendarDetails: function ($scope) {
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteCalendarDetailsURL;
 			return  $http.post(url,request)
-		},
-		
-		
-		/*Employee Details*/
-		searchAllEmployeeList: function ($scope) {
-			return  $http({
-				method: 'GET',
-				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchAllEmployeeListURL,
-				dataType :'json',
-				data : ''
-			})
-		},	
-		
-		saveEmployeeDetails: function (request) {
-			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveEmployeeDetailsURL;
-			return  $http.post(url,request.employee)
-		},
-		
-		/*Student Details*/
-		
-		searchAllStudentList: function ($scope) {
-			return  $http({
-				method: 'GET',
-				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchAllStudentListURL,
-				dataType :'json',
-				data : ''
-			})
-		},	
-		
-		saveStudentDetails: function (request) {
-			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveStudentDetailsURL;
-			return  $http.post(url,request.student)
-		},
-		
+		},		
 		}
 }]);
 
