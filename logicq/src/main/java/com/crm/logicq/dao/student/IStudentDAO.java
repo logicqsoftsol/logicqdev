@@ -9,4 +9,6 @@ public interface IStudentDAO {
 	public void saveStudent(Student student);
 	
 	public List<Student> getStudentList();
+	
+	public Student getStudentDetails(String studentid);
 }

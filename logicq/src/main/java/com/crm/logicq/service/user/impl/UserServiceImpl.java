@@ -203,9 +203,8 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
-	public Student getStudent(String student) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Student getStudent(String studentid) throws Exception {
+		return studentdao.getStudentDetails(studentid);
 	}
 
 

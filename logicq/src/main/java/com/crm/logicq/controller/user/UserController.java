@@ -72,6 +72,20 @@ public class UserController {
 
 	
 	
+	@RequestMapping(value = "/searchStudentDetails/{studentid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Student> searchStudentDetails(@PathVariable String studentid) {
+		
+		Student student=null;
+		try {
+			student=userservice.getStudent(studentid);
+		} catch (Exception e) {
+			return new ResponseEntity<Student>(student, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	
+		return new ResponseEntity<Student>(student, HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(value = "/saveEmployeeDetails", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<BasicRegistrationVO>> saveEmployeeDetails(@RequestBody Employee employee) {
 		List<BasicRegistrationVO> employelist = new ArrayList<BasicRegistrationVO>();
@@ -112,6 +126,9 @@ public class UserController {
 			if (null == student) {
 				return new ResponseEntity<List<BasicRegistrationVO>>(studentlistvo, HttpStatus.BAD_REQUEST);
 			} else {
+				if (null == student.getRegdate()) {
+					student.setRegdate(new Date());
+				}
 				userservice.saveStudent(student);
 				List<Student> studentlist=userservice.getStudentList();
 				studentlist.forEach((stu) -> {

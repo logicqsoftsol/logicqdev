@@ -31,6 +31,6 @@ public interface IUserService {
 	
 	public Employee getEmployee(String empid) throws Exception;
 	
-	public Student getStudent(String student) throws Exception;
+	public Student getStudent(String studentid) throws Exception;
 	
 }
