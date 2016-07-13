@@ -40,6 +40,7 @@
 	   
 	   'searchAllStudentListURL':'/user/searchAllStudentList',
 	   'saveStudentDetailsURL':'/user/saveStudentDetails',
+	   'searchStudentDetailsURL':'/user/searchStudentDetails',
 
 	}).directive('ngConfirmClick', [
 	                                   function(){

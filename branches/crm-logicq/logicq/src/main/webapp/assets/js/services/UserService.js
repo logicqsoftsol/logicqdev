@@ -43,6 +43,15 @@
 				return  $http.post(url,request.student)
 			},
 			
+			searchStudentDetails: function ($scope) {
+				return  $http({
+					method: 'GET',
+					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchStudentDetailsURL+'/'+$scope.selectedstudent,
+					dataType :'json',
+					data : ''
+				})
+			},
+			
 			getAttendanceDetailsdefault: function ($scope) {
 				return  $http({
 					method: 'GET',

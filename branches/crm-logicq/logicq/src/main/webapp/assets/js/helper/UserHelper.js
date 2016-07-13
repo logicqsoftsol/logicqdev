@@ -58,12 +58,14 @@
 					$scope.emp.communicationtype=data.contactdetails.communicationdetails.communicationtype;
 					},
 				
-				populateStudent: function ($scope) {
+				populateStudentForSave: function ($scope) {
 					return $scope.request.student={
 							idetificationid : $scope.student.idetificationid,
+							userid:$scope.student.userid,
+							id:$scope.selectedstudent,
 							basicdetails : {
 								title : $scope.student.title,
-								firstName : $scope.student.firstname,
+								firstname : $scope.student.firstname,
 								middlename : $scope.student.middlename,
 								lastname : $scope.student.lastname,
 								gender : $scope.student.gender,
@@ -87,7 +89,28 @@
 							}
 
 						};
-				}
+				},
+				populateStudentForEdit: function ($scope,data) {
+					$scope.student.idetificationid=data.idetificationid;
+					$scope.student.id=data.id;
+					$scope.student.userid=data.userid;
+					$scope.student.title=data.basicdetails.title;
+					$scope.student.firstname=data.basicdetails.firstname;
+					$scope.student.middlename=data.basicdetails.middlename;
+					$scope.student.lastname=data.basicdetails.lastname;
+					$scope.student.gender=data.basicdetails.gender;
+					$scope.student.dateofbirth=new Date(data.basicdetails.dateofbirth);
+					$scope.student.address=data.contactdetails.addressdetails.addresstext;
+					$scope.student.landmark=data.contactdetails.addressdetails.landmark;
+					$scope.student.city=data.contactdetails.addressdetails.city;
+					$scope.student.pincode=data.contactdetails.addressdetails.pincode;
+					$scope.student.state=data.contactdetails.addressdetails.state;
+					$scope.student.country=data.contactdetails.addressdetails.country;
+					$scope.student.mobilenumber=data.contactdetails.communicationdetails.mobilenumber;
+					$scope.student.emailid=data.contactdetails.communicationdetails.emailid;
+					$scope.student.emergencycontactnumber=data.contactdetails.communicationdetails.emergencycontactnumber;
+					$scope.student.communicationtype=data.contactdetails.communicationdetails.communicationtype;
+					},
 		}
 		
 		

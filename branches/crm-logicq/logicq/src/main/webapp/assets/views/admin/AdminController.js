@@ -6,7 +6,8 @@
 		 $scope.request = {};
 		 $scope.selectedemployee='';
 		 $scope.emp={};
-		 $scope.operationtype='';
+		 $scope.selectedstudent='';
+		 $scope.student={};
 		
 		$scope.searchAttendanceTable= function() {
 			 AttendanceService.getAttendanceDetails($scope).success(function(data, status) {
@@ -107,7 +108,8 @@
 								
 								/*New Employee**/
 								 $scope.newEmployee =  function() {
-									 $scope.emp.userid=null;
+									// $scope.emp.userid=null;
+									 $scope.emp={};
 									 $scope.selectedemployee=null;
 								 }
 								
@@ -119,25 +121,47 @@
 								};
 								
 								/* Student operation* */
-								  $scope.saveStudentDetails = function() {
-									   UserHelper.populateStudent($scope);
-									   UserService.saveStudentDetails($scope.request)
-															.success(function(data, status) {
-																$scope.studentdlist=data;
-															});
-												};					
 								
-									/* Student operation* */
+								/* Search Student**/
 								$scope.searchAllStudentList = function() {
 									UserService.searchAllStudentList($scope)
 											.success(function(data, status) {
 												$scope.studentdlist=data;
 											});
 								};	
-
+								
+								/*Save Student**/
+								  $scope.saveStudentDetails = function() {
+									   UserHelper.populateStudentForSave($scope);
+									   UserService.saveStudentDetails($scope.request)
+															.success(function(data, status) {
+																$scope.studentdlist=data;
+															});
+												};					
+								
+								
+												/*Set selected row for student**/
+												 $scope.setClickedRowForStudent =  function(student) {
+													$scope.selectedstudent=student.id;
+												};
+												
+												
+												/*New Student**/
+												 $scope.newStudent =  function() {
+													 $scope.student={};
+													 $scope.selectedstudent=null;
+												 }		
+												
+												 /*Edit Student**/
+												 $scope.editForStudent =  function() {
+													UserService.searchStudentDetails($scope).success(function(data, status) {
+														 UserHelper.populateStudentForEdit($scope,data);
+													});
+												};			 
 				 
 
-								
+												
+								/* DashBoard   Display**/				
 								 $scope.displayDashBoard = function() {
 									 AttendanceService.getAttendanceCount($scope).success(function(data, status) {
 									 GraphHelper.populateAttendanceForGraphStudent($scope,data);

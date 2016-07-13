@@ -26,4 +26,11 @@ public class StudentDAO extends AbstractDAO<Student> implements IStudentDAO{
 		return (List<Student>) loadClass(Student.class);
 	}
 
+	@Override
+	public Student getStudentDetails(String studentid) {
+		String query = " from Student stu where stu.id="+studentid;
+		// need to change currently for testing purpose bind with userid
+		return (Student) execcuteQuery(query).get(0);
+	}
+
 }
