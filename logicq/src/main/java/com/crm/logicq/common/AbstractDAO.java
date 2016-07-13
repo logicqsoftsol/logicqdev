@@ -41,6 +41,16 @@ public class AbstractDAO<T> {
              getCurrentSession().save(p_abstractentity);
 	}
 	
+	
+	/**
+	 * 
+	 * @param p_abstractentity
+	 * @param p_session
+	 */
+	public void saveOrUpdate(T p_abstractentity) {
+             getCurrentSession().saveOrUpdate(p_abstractentity);
+	}	
+	
 /**
  * 
  * @param p_abstractentity

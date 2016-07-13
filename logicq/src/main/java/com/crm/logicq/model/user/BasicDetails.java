@@ -32,7 +32,7 @@ public class BasicDetails extends BaseEntity implements Serializable{
 	private String title;
 	
 	@Column(name = "FIRST_NAME", nullable = true)
-	private String firstName;
+	private String firstname;
 	
 	@Column(name = "MIDDLE_NAME", nullable = true)
 	private String middlename;
@@ -59,13 +59,7 @@ public class BasicDetails extends BaseEntity implements Serializable{
 		this.title = title;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+	
 
 	public String getMiddlename() {
 		return middlename;
@@ -108,12 +102,21 @@ public class BasicDetails extends BaseEntity implements Serializable{
 		this.dateofbirth = dateofbirth;
 	}
 
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
 	@Override
 	public String toString() {
-		return "BasicDetails [title=" + title + ", firstName=" + firstName + ", middlename=" + middlename
-				+ ", lastName=" + lastname + ", gender=" + gender + ", dateofbirth=" + dateofbirth + "]";
+		return "BasicDetails [id=" + id + ", title=" + title + ", firstname=" + firstname + ", middlename=" + middlename
+				+ ", lastname=" + lastname + ", gender=" + gender + ", dateofbirth=" + dateofbirth + "]";
 	}
-	
+
+
 	
 		
 

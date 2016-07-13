@@ -19,6 +19,15 @@
 				return  $http.post(url,request.employee)
 			},
 			
+			searchEmployeeDetails: function ($scope) {
+				return  $http({
+					method: 'GET',
+					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchEmployeeDetailsURL+'/'+$scope.selectedemployee,
+					dataType :'json',
+					data : ''
+				})
+			},
+			
 			/*Student Details*/
 			
 			searchAllStudentList: function ($scope) {
