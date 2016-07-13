@@ -1,6 +1,7 @@
 package com.crm.logicq.model.user;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.crm.logicq.model.common.BaseEntity;
 
@@ -35,10 +38,14 @@ public class Employee extends BaseEntity implements Serializable{
 	@Column(name = "USER_ID", nullable = false)
 	private String userid;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@Temporal(TemporalType.DATE)
+	@Column(name = "REG_DATE", nullable = false)
+	private Date regdate;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private BasicDetails basicdetails;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private ContactDetails contactdetails;
 
 	public Long getId() {
@@ -81,12 +88,21 @@ public class Employee extends BaseEntity implements Serializable{
 		this.contactdetails = contactdetails;
 	}
 
+	public Date getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", idetificationid=" + idetificationid + ", userid=" + userid + ", basicdetails="
-				+ basicdetails + ", contactdetails=" + contactdetails + "]";
+		return "Employee [id=" + id + ", idetificationid=" + idetificationid + ", userid=" + userid + ", regdate="
+				+ regdate + ", basicdetails=" + basicdetails + ", contactdetails=" + contactdetails + "]";
 	}
+
 	
-	
+
 	
 }

@@ -17,6 +17,8 @@ import com.crm.logicq.common.LogicqContextProvider;
 import com.crm.logicq.constant.ContactType;
 import com.crm.logicq.constant.EntityType;
 import com.crm.logicq.constant.alert.AlertType;
+import com.crm.logicq.dao.employee.IEmployeeDAO;
+import com.crm.logicq.dao.student.IStudentDAO;
 import com.crm.logicq.dao.user.IUserDAO;
 import com.crm.logicq.helper.SMSHelper;
 import com.crm.logicq.model.alert.SMSDetails;
@@ -24,6 +26,8 @@ import com.crm.logicq.model.attendance.AttendanceCriteria;
 import com.crm.logicq.model.attendance.AttendanceDetails;
 import com.crm.logicq.model.communication.PhoneCommunication;
 import com.crm.logicq.model.user.CardReadDetails;
+import com.crm.logicq.model.user.Employee;
+import com.crm.logicq.model.user.Student;
 import com.crm.logicq.model.user.User;
 import com.crm.logicq.service.alert.IAlertService;
 import com.crm.logicq.service.user.IUserService;
@@ -38,6 +42,10 @@ public class UserServiceImpl implements IUserService{
 	IUserDAO userdao;
 	@Autowired
 	IAlertService alertService;
+	@Autowired
+	IEmployeeDAO employeedao;
+	@Autowired
+	IStudentDAO studentdao;
 	
 	
 	@Override
@@ -87,19 +95,6 @@ public class UserServiceImpl implements IUserService{
 		
 	}
 
-	private AlertDetailsInputVO prepareAlertMessage(SMSDetails smsdetails) {
-		
-		AlertDetailsInputVO alertDetailsInputVO = new AlertDetailsInputVO();
-		Map<String, Object> nameValuePair = new HashMap<String, Object>();
-		nameValuePair.put("mobileNo", smsdetails.getMobileNumber());
-		nameValuePair.put("day", "Monday"); //hard coded for now
-		nameValuePair.put("desc", "SMS for attendance"); //hard coded for now
-		alertDetailsInputVO.setAlertType(AlertType.SMS);
-		alertDetailsInputVO.setNameValuePair(nameValuePair);
-		//alertDetailsInputVO.setAlertReason(smsdetails.getSmsType().toString());
-		
-		return alertDetailsInputVO;
-	}
 
 	@Override
 	@ExceptionHandler(Exception.class)
@@ -158,6 +153,59 @@ public class UserServiceImpl implements IUserService{
 	public List<AttendanceVO> getAttendanceDetails(AttendanceCriteria attendancecriteria) throws Exception {
 		 List<AttendanceDetails> attendacedetails= userdao.getAttendanceDetails(attendancecriteria);
 		 return  AttendanceConversion.convertEntityToVO(attendacedetails);
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
+	public void saveEmployee(Employee employee) throws Exception {
+		employeedao.saveEmployee(employee);
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
+	public void saveStudent(Student student) throws Exception {
+		studentdao.saveStudent(student);
+		
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
+	public void saveUser(Student student) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public List<Employee> getEmployeeList() throws Exception {
+		return employeedao.getEmployeeList();
+		
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public List<Student>  getStudentList() throws Exception {
+		return studentdao.getStudentList();
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public Employee getEmployee(String empid) throws Exception {
+		return employeedao.getEmployee(empid);
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public Student getStudent(String student) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

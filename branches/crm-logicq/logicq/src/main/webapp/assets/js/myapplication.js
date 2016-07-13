@@ -35,6 +35,7 @@
 	   
 	   'searchAllEmployeeListURL':'/user/searchAllEmployeeList',
 	   'saveEmployeeDetailsURL':'/user/saveEmployeeDetails',
+	     'searchEmployeeDetailsURL':'/user/searchEmployeeDetails',
 	   
 	   
 	   'searchAllStudentListURL':'/user/searchAllStudentList',

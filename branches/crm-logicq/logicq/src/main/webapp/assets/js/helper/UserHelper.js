@@ -3,12 +3,14 @@
 	angular.module('crmlogicq').factory('UserHelper', ['$http' ,function ($http){
 
 		return {
-			populateEmployee: function ($scope) {
+			populateEmployeeForSave: function ($scope) {
 				return $scope.request.employee={
 						idetificationid : $scope.emp.idetificationid,
+						userid:$scope.emp.userid,
+						id:$scope.selectedemployee,
 						basicdetails : {
 							title : $scope.emp.title,
-							firstName : $scope.emp.firstname,
+							firstname : $scope.emp.firstname,
 							middlename : $scope.emp.middlename,
 							lastname : $scope.emp.lastname,
 							gender : $scope.emp.gender,
@@ -34,6 +36,28 @@
 
 					};
 				},
+				populateEmployeeForEdit: function ($scope,data) {
+					$scope.emp.idetificationid=data.idetificationid;
+					$scope.emp.id=data.id;
+					$scope.emp.userid=data.userid;
+					$scope.emp.title=data.basicdetails.title;
+					$scope.emp.firstname=data.basicdetails.firstname;
+					$scope.emp.middlename=data.basicdetails.middlename;
+					$scope.emp.lastname=data.basicdetails.lastname;
+					$scope.emp.gender=data.basicdetails.gender;
+					$scope.emp.dateofbirth=new Date(data.basicdetails.dateofbirth);
+					$scope.emp.address=data.contactdetails.addressdetails.addresstext;
+					$scope.emp.landmark=data.contactdetails.addressdetails.landmark;
+					$scope.emp.city=data.contactdetails.addressdetails.city;
+					$scope.emp.pincode=data.contactdetails.addressdetails.pincode;
+					$scope.emp.state=data.contactdetails.addressdetails.state;
+					$scope.emp.country=data.contactdetails.addressdetails.country;
+					$scope.emp.mobilenumber=data.contactdetails.communicationdetails.mobilenumber;
+					$scope.emp.emailid=data.contactdetails.communicationdetails.emailid;
+					$scope.emp.emergencycontactnumber=data.contactdetails.communicationdetails.emergencycontactnumber;
+					$scope.emp.communicationtype=data.contactdetails.communicationdetails.communicationtype;
+					},
+				
 				populateStudent: function ($scope) {
 					return $scope.request.student={
 							idetificationid : $scope.student.idetificationid,

@@ -2,15 +2,19 @@
 	'use strict';
 	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','AppConstants',function ($scope, $http,  $location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,AppConstants) {
 		 $scope.display=6;
-   $scope.selectedRow = null;
 		 $scope.graphattendance=[];
 		 $scope.request = {};
-		 $scope.searchAttendanceTable= function() {
+		 $scope.selectedemployee='';
+		 $scope.emp={};
+		 $scope.operationtype='';
+		
+		$scope.searchAttendanceTable= function() {
 			 AttendanceService.getAttendanceDetails($scope).success(function(data, status) {
 				 $scope.attendancedetails =data;
 			});
 			};
-		 $scope.searchAttendanceDefault= function() {
+
+			$scope.searchAttendanceDefault= function() {
 			 AttendanceService.getAttendanceDetailsdefault($scope).success(function(data, status) {
 				 $scope.attendancedetails =data;
 			});
@@ -20,7 +24,6 @@
 				AttendanceService.getAttendanceCount($scope).success(function(data, status) {
 				GraphHelper.populateAttendanceForGraphStudent($scope,data);
 				});
-		
 			};
 			
 			/*calendar and event details**/
@@ -77,20 +80,42 @@
 														
 
 																						
-								/* Employee operation* */
+								/* Employee operation**/
+														
+								/* Search Employee**/
 								$scope.searchAllEmployeeList = function() {
 									UserService.searchAllEmployeeList($scope)
 											.success(function(data, status) {
 												$scope.employelist=data;
 											});
 								};	
-
-				   $scope.saveEmployeeDetails = function() {
-					                UserHelper.populateEmployee($scope);
+								
+								/*Save Employee**/
+            				   $scope.saveEmployeeDetails = function() {
+					                UserHelper.populateEmployeeForSave($scope);
 									UserService.saveEmployeeDetails($scope.request)
 											.success(function(data, status) {
 												$scope.employelist=data;
 											});
+								};
+								
+								/*Set selected row for Employee**/
+								 $scope.setClickedRowForEmp =  function(empreg) {
+									$scope.selectedemployee=empreg.id;
+								};
+								
+								
+								/*New Employee**/
+								 $scope.newEmployee =  function() {
+									 $scope.emp.userid=null;
+									 $scope.selectedemployee=null;
+								 }
+								
+								/*Edit Employee**/
+								 $scope.editForEmployee =  function() {
+									UserService.searchEmployeeDetails($scope).success(function(data, status) {
+										 UserHelper.populateEmployeeForEdit($scope,data);
+									});
 								};
 								
 								/* Student operation* */
