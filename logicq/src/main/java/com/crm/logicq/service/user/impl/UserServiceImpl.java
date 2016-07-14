@@ -207,6 +207,13 @@ public class UserServiceImpl implements IUserService{
 		return studentdao.getStudentDetails(studentid);
 	}
 
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
+	public void deleteStudent(Student student) throws Exception {
+		studentdao.deleteStudent(student);
+	}
+
 
 	
 	

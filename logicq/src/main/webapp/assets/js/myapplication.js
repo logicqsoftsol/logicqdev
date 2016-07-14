@@ -41,6 +41,7 @@
 	   'searchAllStudentListURL':'/user/searchAllStudentList',
 	   'saveStudentDetailsURL':'/user/saveStudentDetails',
 	   'searchStudentDetailsURL':'/user/searchStudentDetails',
+	   'deleteStudentDetailsURL':'/user/deleteStudentDetails',
 
 	}).directive('ngConfirmClick', [
 	                                   function(){

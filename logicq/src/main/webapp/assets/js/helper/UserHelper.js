@@ -111,6 +111,11 @@
 					$scope.student.emergencycontactnumber=data.contactdetails.communicationdetails.emergencycontactnumber;
 					$scope.student.communicationtype=data.contactdetails.communicationdetails.communicationtype;
 					},
+					pouplateStudentForDelete: function ($scope,data) {
+						$scope.studentdel.id=data.id;
+						$scope.studentdel.userid=data.userid;
+						$scope.studentdel.name=data.name;
+						},
 		}
 		
 		

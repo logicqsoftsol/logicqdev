@@ -32,5 +32,6 @@ public interface IUserService {
 	public Employee getEmployee(String empid) throws Exception;
 	
 	public Student getStudent(String studentid) throws Exception;
+	public void deleteStudent(Student student) throws Exception;
 	
 }

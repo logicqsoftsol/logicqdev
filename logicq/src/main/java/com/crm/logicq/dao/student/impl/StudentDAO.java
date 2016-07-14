@@ -13,7 +13,7 @@ import com.crm.logicq.model.user.Student;
 public class StudentDAO extends AbstractDAO<Student> implements IStudentDAO{
 
 	@Override
-	public void saveStudent(Student student) {
+	public void saveStudent(Student student) throws Exception{
 		if(StringUtil.isEmpty(student.getUserid())){
 			student.setUserid(student.getBasicdetails().getFirstname().substring(0, 3)+"-"+student.getIdetificationid());
 		}
@@ -31,6 +31,11 @@ public class StudentDAO extends AbstractDAO<Student> implements IStudentDAO{
 		String query = " from Student stu where stu.id="+studentid;
 		// need to change currently for testing purpose bind with userid
 		return (Student) execcuteQuery(query).get(0);
+	}
+
+	@Override
+	public void deleteStudent(Student student) throws Exception {
+		delete(student);
 	}
 
 }
