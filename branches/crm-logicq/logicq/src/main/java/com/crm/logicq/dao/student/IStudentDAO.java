@@ -6,9 +6,11 @@ import com.crm.logicq.model.user.Student;
 
 public interface IStudentDAO {
 
-	public void saveStudent(Student student);
+	public void saveStudent(Student student)throws Exception;
 	
 	public List<Student> getStudentList();
 	
 	public Student getStudentDetails(String studentid);
+	
+	public void deleteStudent(Student student) throws Exception;
 }

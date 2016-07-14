@@ -8,6 +8,7 @@
 		 $scope.emp={};
 		 $scope.selectedstudent='';
 		 $scope.student={};
+		 $scope.studentdel={};
 		
 		$scope.searchAttendanceTable= function() {
 			 AttendanceService.getAttendanceDetails($scope).success(function(data, status) {
@@ -145,6 +146,7 @@
 													$scope.selectedstudent=student.id;
 												};
 												
+											
 												
 												/*New Student**/
 												 $scope.newStudent =  function() {
@@ -159,7 +161,19 @@
 													});
 												};			 
 				 
-
+												/*Set selected row for delete student**/
+												 $scope.pouplateStudentForDelete =  function(student) {
+													 UserHelper.pouplateStudentForDelete($scope,student);
+													 $scope.request.student=student;
+												};
+												
+												/*Delete student**/
+												 $scope.deleteStudent= function() {
+													 UserService.deleteStudent($scope.request).success(function(data, status) {
+														 $scope.request.student={};
+															$scope.studentdlist=data;
+														});
+													};
 												
 								/* DashBoard   Display**/				
 								 $scope.displayDashBoard = function() {

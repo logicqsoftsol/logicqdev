@@ -43,6 +43,11 @@
 				return  $http.post(url,request.student)
 			},
 			
+			deleteStudent: function (request) {
+				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteStudentDetailsURL;
+				return  $http.post(url,request.student)
+			},
+			
 			searchStudentDetails: function ($scope) {
 				return  $http({
 					method: 'GET',
