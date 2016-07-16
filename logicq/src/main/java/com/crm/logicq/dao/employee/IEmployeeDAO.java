@@ -12,4 +12,6 @@ public void saveEmployee(Employee employee)throws Exception;
 public List<Employee> getEmployeeList() throws Exception;
 
 public Employee getEmployee(String empid) throws Exception;
+
+public void deleteEmployee(Employee employee)throws Exception;
 }

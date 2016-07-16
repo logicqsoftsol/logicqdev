@@ -1,11 +1,18 @@
 package com.crm.logicq.model.user;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "ADDRESS_DETAILS")
@@ -35,6 +42,11 @@ public class AddressDetails {
 	
 	@Column(name = "COUNTRY", nullable = true)
 	private String country;
+	
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name="CONTACT_ID")
+	private ContactDetails contactdetails;
 
 	public Long getId() {
 		return id;
@@ -92,12 +104,21 @@ public class AddressDetails {
 		this.country = country;
 	}
 
+	public ContactDetails getContactdetails() {
+		return contactdetails;
+	}
+
+	public void setContactdetails(ContactDetails contactdetails) {
+		this.contactdetails = contactdetails;
+	}
+
 	
 	@Override
 	public String toString() {
 		return "AddressDetails [id=" + id + ", addresstext=" + addresstext + ", landmark=" + landmark + ", city=" + city
 				+ ", pincode=" + pincode + ", state=" + state + ", country=" + country + "]";
 	}
+
 	
 	
 }

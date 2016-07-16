@@ -165,7 +165,10 @@
 					<div class="panel with-nav-tabs panel-success">
 						<div class="panel-heading">
 						<h4> Employee Registration Details</h4>
+						</div>
+						<div class="panel-body">
 						<div class="col-md-10">
+						<div class="table-responsive">
 							<ul class="pull-right">
 								<button id="adddetails" data-toggle="modal" data-toggle="modal"
 									data-target="#employeeregistration"  ng-click="newEmployee()" 
@@ -175,11 +178,6 @@
 								<button id="deletedetails" data-toggle="modal" data-target="#usersearch"
 									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
 							</ul>
-						</div>
-						</div>
-						<div class="panel-body">
-						<div class="col-md-10">
-						<div class="table-responsive">
 							<table class="table table-bordered table-fixed">
 							<tr>
 								<th> Id</th>
@@ -187,13 +185,13 @@
 								<th> Date</th>
 								<th> Type</th>
 							</tr>
-							<tr ng-repeat="empreg in employelist"
-								ng-click="setClickedRowForEmp(empreg)" >
-								<td>{{empreg.userid}}</td>
-								<td>{{empreg.name}}</td>
-								<td>{{empreg.date}}</td>
-								<td>{{empreg.type}}</td>
-	                            <td><a id="deleteempreg"  ng-click="deleteCalanderDetails(empreg)"><i class="fa fa-user-times" aria-hidden="true"></i></a></td>
+							<tr ng-repeat="emp in employelist"
+								ng-click="setClickedRowForEmp(emp)" >
+								<td>{{emp.userid}}</td>
+								<td>{{emp.name}}</td>
+								<td>{{emp.date}}</td>
+								<td>{{emp.type}}</td>
+	                            <td><a id="deleteempreg"  data-toggle="modal"  data-target="#deleteemployee"   ng-click="pouplateEmployeeForDelete(emp)"><i class="fa fa-user-times" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 						</div>
@@ -211,7 +209,11 @@
 					
 						<div class="panel-heading">
 						<h4> Student Registration Details</h4>
-						<div class="col-md-10">
+						</div>
+						
+					<div class="panel-body">
+					<div class="col-md-10">
+						<div class="table-responsive">
 							<ul class="pull-right">
 								<button id="studentreg" data-toggle="modal" 
 									data-target="#studentregistration" 
@@ -221,12 +223,6 @@
 								<button id="deletedetails" data-toggle="modal" data-target="#usersearch"
 									class="btn btn-default fa fa-search">Search</button>
 							</ul>
-						</div>
-						</div>
-						
-					<div class="panel-body">
-					<div class="col-md-10">
-						<div class="table-responsive">
 							<table class="table table-bordered table-fixed">
 							<tr>
 								<th> Id</th>
@@ -414,19 +410,12 @@
 			<div id="calndersetup" ng-show='display == 4'>
 				<div class="panel with-nav-tabs panel-success">
 					<div class="panel-heading">
-						<h3>Calendar Setup</h3>
+						<h3>Event Calendar Setup</h3>
 					</div>
 					<div class="panel-body">
 					<div class="col-md-10">
 						<ul class="pull-right">
-						<button id="searchattendancedetails" data-toggle="modal"
-								data-target="#calendaradd" class="btn btn-default">
-								<i class="fa fa-plus-circle" aria-hidden="true"></i>Add
-							</button>
-							<button id="searchattendancedetails" data-toggle="modal"
-								data-target="#calendarsearch" class="btn btn-default">
-								<i class="fa fa-search" aria-hidden="true"></i>Search
-							</button>
+						
 						</ul>
 						</div>
 					<div class="col-md-6">
@@ -434,14 +423,18 @@
 							<li class="active"><a data-toggle="tab" id="attentable" class="pull-center"  ng-click="getAllEventDetails()"
 							href="/admin#eventdetails">Event Details</a></li>
 							<li><a data-toggle="tab" id="calendardetails" class="pull-center"  ng-click="getAllCalendarDetails()"
-								href="/admin#calanderdetails">Calander Details</a></li>
+								href="/admin#calanderdetails">Event Calander Details</a></li>
 						</ul>
 					</div>
-					<div class="col-md-10">
+					<div class="col-md-12">
 					<div class="tab-content">
 						<div id="calanderdetails" class="tab-pane fade">
 						<div class="table-responsive">
-							<table class="table table-bordered table-fixed sel-table">
+						<ul class="pull-right">
+								<button id="searchevent"  data-target="#calendarmodal" data-toggle="modal"ng-click="searchEventDetails()" 
+									class="btn btn-default fa fa-search">Search</button>
+								</ul>
+							<table class="table table-bordered table-fixed">
 							<tr>
 								<th>Event Details</th>
 								<th>Event Applicable To</t>
@@ -454,67 +447,39 @@
 								<td>{{calander.applicableto}}</td>
 								<td>{{calander.startdate}}</td>
 								<td>{{calander.enddate}}</td>
-								<td><a id="deleteevent"  ng-click="editCalanderDetails(calander)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
-								<td><a id="deleteevent"  ng-click="deleteCalanderDetails(calander)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+								<td><a id="deletecalnderdetails"  ng-click="deleteCalanderDetails(calander)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
 				</div>
 						<div id="eventdetails" class="tab-pane fade in active">
-						<h4>Events Details</h4>
-									<div class="col-md-6">
-										<div class="form-group">
-											<input type="text" name="eventname" id="eventname"
-												class="form-control" ng-model="event.eventname"
-												placeholder="Event Name">
-										</div>
-										<div class="form-group">
-											<input type="text" name="eventtype" id="eventtype"
-												class="form-control" ng-model="event.eventtype"
-												placeholder="Event Type" list="eventtypelist">
-												<datalist id="eventtypelist">
-													<option>ANNUAL EXAM</option>
-													<option>MID-SEM EXAM</option>
-													<option>DURGA PUJA/DUSSEHRA</option>
-													<option>SUMMER VACATION</option>
-													<option>GANESH PUJA</option>
-													<option>ANNUAL FUNCTION</option>
-												</datalist>
-										</div>
-										<div class="form-group">
-											<input type="text" name="applicablefor" id="applicablefor"
-												class="form-control" ng-model="event.applicablefor"
-												placeholder="Applicable For" list="eventapplicableforlist">
-												<datalist id="eventapplicableforlist">
-													<option>STUDENT</option>
-													<option>TEACHER</option>
-													<option>CONTRACTOR</option>
-													<option>VENDOR</option>
-													<option>EMPLOYEE(permanent)</option>
-													<option>EMPLOYEE(contract)</option>
-												</datalist>
-										</div>
-										<button id="addevent"   ng-click="saveEventDetails()"  class="btn btn-default">
-								<i class="fa fa-plus-circle" aria-hidden="true"></i>save
-							</button>
-									</div>
+						
 							<div class="table-responsive">
-							<table class="table table-bordered table-fixed sel-table">
+							<ul class="pull-right">
+								<button id="addeventdetails"  data-target="#eventdetailmodal" data-toggle="modal"ng-click="addEventDetails()" 
+									class="btn btn-default fa fa-plus-circle">Add</button>
+								<button id="editEventDetails"  data-target="#eventdetailmodal" data-toggle="modal"ng-click="editEventDetails()" 
+									class="btn btn-default fa fa-pencil-square">Edit</button>
+								<button id="searchevent"  data-target="#eventdetailmodal" data-toggle="modal"ng-click="searchEventDetails()" 
+									class="btn btn-default fa fa-search">Search</button>
+								</ul>
+							
+							<table class="table table-bordered table-fixed">
 							<tr>
 								<th>Event Name</th>
 								<th>Event Type</t>
 								<th>Applicable For</t>
 							</tr>
-							<tr ng-repeat="event in eventdetails"
-								ng-click="setClickedRow(event)" >
-								<td>{{event.name}}</td>
-								<td>{{event.type}}</td>
-								<td>{{event.applicablefor}}</td>
-								<td><a id="deleteevent"  ng-click="editEventDetails(event)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
-								<td><a id="deleteevent"  ng-click="deleteEventDetails(event)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							<tr ng-repeat="eventd in eventdetails"
+								ng-click="setClickedEventDetails(eventd)" >
+								<td>{{eventd.eventname}}</td>
+								<td>{{eventd.eventtype}}</td>
+								<td>{{eventd.applicablefor}}</td>
+								<td><a id="deleteevent"  ng-click="deleteEventDetails(eventd)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
+					
 					</div>
 					</div>
 					</div>
@@ -633,7 +598,7 @@
 		
 		
 				<!---Modal Calendar-->
-		<div id="calendaradd" class="modal fade" role="dialog">
+		<div id="calendarmodal" class="modal fade" role="dialog">
 		<form>
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -689,58 +654,6 @@
 			</form>
 		</div><!---End for Modal Calendar-->
 		
-		
-			<!---Modal Calendar search-->
-		<div id="calendarsearch" class="modal fade" role="dialog">
-		<form>
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Setup Calendar</h4>
-						</div>
-						<div class="modal-body">
-							<div class="col-md-6">
-								<div class="form-group">
-								<label  class="control-label" for="eventname">Event Name</label> 
-									<input type="text" class="form-control" id="eventname" ng-model="calendar.eventname"
-										placeholder="User Id" name="userid"> 					  
-								</div>
-								<div class="form-group">
-								<label  class="control-label" for="eventtype">Event Type</label> 
-									<input type="text" class="form-control" id="eventtype" ng-model="calendar.eventtype"
-										placeholder="Event Type" name="eventtype" readonly> 					  
-								</div>
-								<div class="form-group">
-								<label  class="control-label" for="eventapplicablefor">Event Applicable For</label> 
-									<input type="text" class="form-control" id="eventapplicablefor" ng-model="calendar.applicablefor"
-										placeholder="Event Applicable For" name="eventapplicablefor" readonly> 					  
-								</div>
-								</div>
-								<div class="col-md-6">
-								
-								<div class="form-group">
-								<label  class="control-label" for="fromdate">Start Date</label> 
-									<input type="Date" class="form-control" id="fromdate" ng-model="calendar.eventstartdate"
-										placeholder="From Date" name="fromdate"> 
-								</div>
-								<div class="form-group">
-								<label  class="control-label" for="todate">End Date</label> 
-									<input type="Date" class="form-control" id="todate" ng-model="calendar.eventenddate" 
-										placeholder="To Date" name="todate"> 
-								</div>
-								</div>
-						</div>
-						<div class="modal-footer">
-							<button type="submit" id="confirmfeeoper" class="btn btn-default" ng-click="saveCalendarDetails(calendar)"
-								data-dismiss="modal"><i class="fa fa-plus-circle" aria-hidden="true"></i>save</button>
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
-						</div>
-				</div>
-			</div>
-			</form>
-		</div><!---End for Modal Calendar-->
 		
 		
 							<!---Modal employee  registration-->
@@ -920,7 +833,7 @@
 										
 							                             <div class="form-group">
 								                              <label  class="control-label" for="emp.emergencycontactnumber">Emergency Contact Number</label> 
-									                           <input type="text" class="form-control" id="emp.emergencycontactnumber" ng-model="empreg.emergencycontactnumber"
+									                           <input type="text" class="form-control" id="emp.emergencycontactnumber" ng-model="emp.emergencycontactnumber"
 										                        placeholder="Enter emergency contact number" name="emp.emergencycontactnumber"> 
 								                           </div>
                                              </div>
@@ -1221,7 +1134,7 @@
 							<h4 class="modal-title">Delete Student</h4>
 						</div>
 						<div class="modal-body">
-						<h3 class="modal-title">Are you sure you want to delete student Data ?</h3>
+						<h3 class="modal-title">Are you sure you want to delete Student Data ?</h3>
 							<div class="col-md-6">
 								<div class="form-group">
 								<label  class="control-label" for="studentdel.name">Name</label> 
@@ -1245,8 +1158,93 @@
 				</div>
 			</div>
 			</form>
-		</div><!---End for Modal delete user-->								
+		</div><!---End for Modal delete Student-->								
 		
+		
+		<!---Modal Delete User-->
+		<div id="deleteemployee" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Delete Employee</h4>
+						</div>
+						<div class="modal-body">
+						<h3 class="modal-title">Are you sure you want to delete Student Data ?</h3>
+							<div class="col-md-6">
+								<div class="form-group">
+								<label  class="control-label" for="empdel.name">Name</label> 
+									<input type="text" class="form-control" id="empdel.name" ng-model="empdel.name"
+										placeholder="User Name" name="empdel.name" readonly> 					  
+								</div>
+							
+								<div class="form-group">
+								<label  class="control-label" for="empdel.userid">User Id</label> 
+									<input type="text" class="form-control" id="empdel.userid" ng-model="empdel.userid"
+										placeholder="User Id" name="empdel.userid" readonly> 					  
+								</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="deleteEmployee()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+				</div>
+			</div>
+			</form>
+		</div><!---End for Modal delete Employee-->	
+
+
+<!---Modal Event Details-->
+		<div id="eventdetailmodal" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">{{eventoperation}} Event Details</h4>	
+						</div>
+						<div class="modal-body">
+						
+								<div class="col-md-5">
+										<div class="form-group">
+										<label  class="control-label" for="eventd.name">Event Name</label> 
+											<input type="text" name="eventd.name" id="eventd.name"
+												class="form-control" ng-model="eventd.name"
+												placeholder="Event Name">
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="eventd.type">Event Type</label> 
+										<input type="text" class="form-control" id="eventd.type"  ng-model="eventd.type" class="input-search" list="eventtyplist" >
+												<datalist id="eventtyplist">
+												<option ng-repeat="eventtype in eventtyplist"   value="{{ eventtype.name }}">
+												</option>
+												</datalist> 
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="eventd.entity">Applicable For</label> 
+										<input type="text" class="form-control" id="eventd.entity"  ng-model="eventd.entity" class="input-search" list="entitylist" >
+												<datalist id="entitylist">
+												<option ng-repeat="entity in entitylist"   value="{{entity.name}}">
+												</option>
+												</datalist> 
+										</div>
+										
+						
+						</div>
+						<div class="modal-footer">
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="operationEventDetail()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+				</div>
+			</div>
+			</form>
+		</div><!---End for  Modal Event Details-->			
 		
 	</div>
 </div>

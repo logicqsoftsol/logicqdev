@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 import com.crm.logicq.model.event.EventDetails;
 
 @Entity
-@Table(name = "CALENDRA_DETAILS")
+@Table(name = "CALENDAR_DETAILS")
 public class CalendarDetails {
 	
 

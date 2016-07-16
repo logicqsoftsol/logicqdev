@@ -3,16 +3,22 @@ package com.crm.logicq.model.user;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 import com.crm.logicq.model.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "BASIC_DETAILS")
@@ -49,6 +55,17 @@ public class BasicDetails extends BaseEntity implements Serializable{
 	@Column(name = "BIRTH_DATE", nullable = true)
 	private Date dateofbirth;
 	
+
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name="EMP_ID")
+	private Employee employee;
+	
+	
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name="STUDENT_ID")
+	private Student student;
 	
 
 	public String getTitle() {
@@ -110,12 +127,31 @@ public class BasicDetails extends BaseEntity implements Serializable{
 		this.firstname = firstname;
 	}
 
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+	
+	
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
 	@Override
 	public String toString() {
 		return "BasicDetails [id=" + id + ", title=" + title + ", firstname=" + firstname + ", middlename=" + middlename
 				+ ", lastname=" + lastname + ", gender=" + gender + ", dateofbirth=" + dateofbirth + "]";
 	}
 
+	
 
 	
 		

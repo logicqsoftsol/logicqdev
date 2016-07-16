@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 import com.crm.logicq.model.common.BaseEntity;
 
 @Entity
@@ -42,11 +43,29 @@ public class Employee extends BaseEntity implements Serializable{
 	@Column(name = "REG_DATE", nullable = false)
 	private Date regdate;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, mappedBy="employee",cascade=CascadeType.ALL)
 	private BasicDetails basicdetails;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, mappedBy="employee",cascade=CascadeType.ALL)
 	private ContactDetails contactdetails;
+
+	
+	
+	public BasicDetails getBasicdetails() {
+		return basicdetails;
+	}
+
+	public void setBasicdetails(BasicDetails basicdetails) {
+		this.basicdetails = basicdetails;
+	}
+
+	public ContactDetails getContactdetails() {
+		return contactdetails;
+	}
+
+	public void setContactdetails(ContactDetails contactdetails) {
+		this.contactdetails = contactdetails;
+	}
 
 	public Long getId() {
 		return id;
@@ -72,22 +91,8 @@ public class Employee extends BaseEntity implements Serializable{
 		this.userid = userid;
 	}
 
-	public BasicDetails getBasicdetails() {
-		return basicdetails;
-	}
 
-	public void setBasicdetails(BasicDetails basicdetails) {
-		this.basicdetails = basicdetails;
-	}
-
-	public ContactDetails getContactdetails() {
-		return contactdetails;
-	}
-
-	public void setContactdetails(ContactDetails contactdetails) {
-		this.contactdetails = contactdetails;
-	}
-
+	
 	public Date getRegdate() {
 		return regdate;
 	}
@@ -96,12 +101,7 @@ public class Employee extends BaseEntity implements Serializable{
 		this.regdate = regdate;
 	}
 
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", idetificationid=" + idetificationid + ", userid=" + userid + ", regdate="
-				+ regdate + ", basicdetails=" + basicdetails + ", contactdetails=" + contactdetails + "]";
-	}
-
+	
 	
 
 	
