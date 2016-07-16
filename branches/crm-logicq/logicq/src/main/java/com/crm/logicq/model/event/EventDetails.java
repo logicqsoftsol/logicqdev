@@ -25,16 +25,14 @@ public class EventDetails {
 
     @Column(name = "NAME", length = 40, unique = true)
     @NotNull
-    @Size( max = 40)
+    @Size( max = 60)
     private String eventname;
 
 	@Column(name = "EVENT_TYPE", nullable = true)
-	@Enumerated(EnumType.STRING)
-	private EventType eventtype;
+	private String eventtype;
 	
 	@Column(name = "APPLICABLE_FOR", nullable = true)
-	@Enumerated(EnumType.STRING)
-	private EntityType applicablefor;
+	private String applicablefor;
 
 	public Long getEventid() {
 		return eventid;
@@ -52,29 +50,28 @@ public class EventDetails {
 		this.eventname = eventname;
 	}
 
-	public EventType getEventtype() {
+	public String getEventtype() {
 		return eventtype;
 	}
 
-	public void setEventtype(EventType eventtype) {
+	public void setEventtype(String eventtype) {
 		this.eventtype = eventtype;
 	}
 
-	public EntityType getApplicablefor() {
+	public String getApplicablefor() {
 		return applicablefor;
 	}
 
-	public void setApplicablefor(EntityType applicablefor) {
+	public void setApplicablefor(String applicablefor) {
 		this.applicablefor = applicablefor;
 	}
-	
 
 	@Override
 	public String toString() {
 		return "EventDetails [eventid=" + eventid + ", eventname=" + eventname + ", eventtype=" + eventtype
 				+ ", applicablefor=" + applicablefor + "]";
 	}
-    
+
 	
 
 

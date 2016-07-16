@@ -28,6 +28,11 @@
 				})
 			},
 			
+			deleteEmployee: function (request) {
+				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteEmployeeDetailsURL;
+				return  $http.post(url,request.emp)
+			},
+			
 			/*Student Details*/
 			
 			searchAllStudentList: function ($scope) {

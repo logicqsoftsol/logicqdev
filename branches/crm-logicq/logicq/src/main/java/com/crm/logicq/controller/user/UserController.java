@@ -119,6 +119,35 @@ public class UserController {
 	}
 	
 	
+	@RequestMapping(value = "/deleteEmployeeDetails", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<BasicRegistrationVO>> deleteEmployeeDetails(@RequestBody Employee employee) {
+		List<BasicRegistrationVO> employelist = new ArrayList<BasicRegistrationVO>();
+		try {
+			if (null == employee) {
+				return new ResponseEntity<List<BasicRegistrationVO>>(employelist, HttpStatus.BAD_REQUEST);
+			} else {
+				userservice.deleteEmployee(employee);
+				List<Employee> employeelist = userservice.getEmployeeList();
+				employeelist.forEach((emp) -> {
+					BasicRegistrationVO bsaicregvo = new BasicRegistrationVO();
+					bsaicregvo.setDate(emp.getRegdate());
+					bsaicregvo.setId(emp.getId());
+					bsaicregvo.setUserid(emp.getUserid());
+					bsaicregvo
+							.setName(emp.getBasicdetails().getFirstname() + " " + emp.getBasicdetails().getLastname());
+					bsaicregvo.setType(EntityType.EMPLOYEE.toString());
+					employelist.add(bsaicregvo);
+				});
+				
+			}
+		} catch (Exception ex) {
+			return new ResponseEntity<List<BasicRegistrationVO>>(employelist, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		
+		return new ResponseEntity<List<BasicRegistrationVO>>(employelist, HttpStatus.OK);
+	} 
+	
 	@RequestMapping(value = "/saveStudentDetails", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<BasicRegistrationVO>> saveStudentDetails(@RequestBody Student student) {
 		List<BasicRegistrationVO> studentlistvo = new ArrayList<BasicRegistrationVO>();

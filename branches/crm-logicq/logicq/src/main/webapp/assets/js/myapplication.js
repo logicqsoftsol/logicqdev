@@ -24,9 +24,9 @@
 	   'searchattendanceURL':'/admin/attendance/searchAttendance',
 	   'getattendanceCountURL':'/admin/attendance/getAttendanceCount',
 	   
-	   'saveEventDetailsURL':'/admin/calendar/saveEventDetails',
-	   'deleteEventDetailsURL':'/admin/calendar/deleteEventDetails',
-	   'getAllEventDetailsURL':'/admin/calendar/getAllEventDetails',
+	   'saveEventDetailsURL':'/admin/calendar/event/saveEventDetails',
+	   'deleteEventDetailsURL':'/admin/calendar/event/deleteEventDetails',
+	   'getAllEventDetailsURL':'/admin/calendar/event/getAllEventDetails',
 	   
 	   'getAllCalendarDetailsURL':'/admin/calendar/getAllCalendarDetails',
 	   'getCalendarDetailsforCriteriaURL':'/admin/calendar/getCalendarDetailsforCriteria',
@@ -35,8 +35,8 @@
 	   
 	   'searchAllEmployeeListURL':'/user/searchAllEmployeeList',
 	   'saveEmployeeDetailsURL':'/user/saveEmployeeDetails',
-	     'searchEmployeeDetailsURL':'/user/searchEmployeeDetails',
-	   
+	   'searchEmployeeDetailsURL':'/user/searchEmployeeDetails',
+	   'deleteEmployeeDetailsURL':'/user/deleteEmployeeDetails',
 	   
 	   'searchAllStudentListURL':'/user/searchAllStudentList',
 	   'saveStudentDetailsURL':'/user/saveStudentDetails',

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.crm.logicq.common.AbstractDAO;
 import com.crm.logicq.dao.student.IStudentDAO;
+import com.crm.logicq.model.user.ContactDetails;
 import com.crm.logicq.model.user.Student;
 
 @Repository
@@ -17,8 +18,20 @@ public class StudentDAO extends AbstractDAO<Student> implements IStudentDAO{
 		if(StringUtil.isEmpty(student.getUserid())){
 			student.setUserid(student.getBasicdetails().getFirstname().substring(0, 3)+"-"+student.getIdetificationid());
 		}
+		if (null != student.getBasicdetails()) {
+			student.getBasicdetails().setStudent(student);
+		}
+		ContactDetails contactdetails = student.getContactdetails();
+		if (null != contactdetails) {
+			student.getContactdetails().setStudent(student);
+		}
+		if (null != contactdetails.getAddressdetails()) {
+			contactdetails.getAddressdetails().setContactdetails(contactdetails);
+		}
+		if (null != contactdetails.getCommunicationdetails()) {
+			contactdetails.getCommunicationdetails().setContactdetails(contactdetails);
+		}
 		saveOrUpdate(student);
-		
 	}
 
 	@Override
@@ -35,7 +48,7 @@ public class StudentDAO extends AbstractDAO<Student> implements IStudentDAO{
 
 	@Override
 	public void deleteStudent(Student student) throws Exception {
-		delete(student);
+		delete(getStudentDetails(String.valueOf(student.getId())));
 	}
 
 }

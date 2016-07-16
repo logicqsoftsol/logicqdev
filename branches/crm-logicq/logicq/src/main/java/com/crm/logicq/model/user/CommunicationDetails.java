@@ -1,11 +1,19 @@
 package com.crm.logicq.model.user;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "COMMUNICATION_DETAILS")
@@ -27,6 +35,12 @@ public class CommunicationDetails {
 	
 	@Column(name = "TYPE", nullable = true)
 	private String communicationtype;
+	
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name="CONTACT_ID")
+	private ContactDetails contactdetails;
+	
 
 	public Long getId() {
 		return id;
@@ -68,12 +82,21 @@ public class CommunicationDetails {
 		this.communicationtype = communicationtype;
 	}
 
+	public ContactDetails getContactdetails() {
+		return contactdetails;
+	}
+
+	public void setContactdetails(ContactDetails contactdetails) {
+		this.contactdetails = contactdetails;
+	}
+
 	@Override
 	public String toString() {
 		return "CommunicationDetails [id=" + id + ", mobilenumber=" + mobilenumber + ", emailid=" + emailid
 				+ ", emergencycontactnumber=" + emergencycontactnumber + ", communicationtype=" + communicationtype
 				+ "]";
 	}
+
 	
 	
 	

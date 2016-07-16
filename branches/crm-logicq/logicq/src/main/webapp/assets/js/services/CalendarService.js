@@ -4,17 +4,11 @@
 	angular.module('crmlogicq').factory('CalendarService', ['$http' ,'AuthenticationService','AppConstants' ,function ($http ,AuthenticationService,AppConstants){
 
 		return {
-			saveEventDetails:function ($scope){
+			saveEventDetails:function (request){
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveEventDetailsURL;
-				return  $http.post(url,request)
+				return  $http.post(url,request.eventd)
 			},
-			
-			deleteEventDetails: function (request) {
-				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteEventDetailsURL;
-				return  $http.post(url,request)
-
-			},
-			getAllEventDetails: function ($scope) {
+			searchAllEventList: function ($scope) {
 				return  $http({
 					method: 'GET',
 					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllEventDetailsURL,
@@ -22,32 +16,7 @@
 					data : ''
 				})
 			},
-		
 			
-			getAllCalendarDetails: function ($scope) {
-				return  $http({
-					method: 'GET',
-					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllCalendarDetailsURL,
-					dataType :'json',
-					data : ''
-				})
-			},
-			getCalendarDetailsforCriteria: function ($scope) {
-				return  $http({
-					method: 'GET',
-					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getCalendarDetailsforCriteriaURL,
-					dataType :'json',
-					data : ''
-				})
-			},
-			saveCalendarDetails: function ($scope) {
-				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveCalendarDetailsURL;
-				return  $http.post(url,request)
-			},
-			deleteCalendarDetails: function ($scope) {
-				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteCalendarDetailsURL;
-				return  $http.post(url,request)
-			},
 		}
 }]);
 

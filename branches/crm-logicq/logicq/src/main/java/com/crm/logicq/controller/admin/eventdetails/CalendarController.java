@@ -3,6 +3,7 @@ package com.crm.logicq.controller.admin.eventdetails;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,30 +14,59 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crm.logicq.model.calnder.CalendarDetails;
 import com.crm.logicq.model.event.EventDetails;
+import com.crm.logicq.service.calendar.ICalendarService;
 
 @RestController
 @RequestMapping("/admin/calendar")
 public class CalendarController {
 	
+	@Autowired
+	ICalendarService calendarService;
 	
-	@RequestMapping(value = "/saveEventDetails", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<EventDetails>> saveEventDetails(@RequestBody EventDetails eventdteails) {
+	@RequestMapping(value = "/event/saveEventDetails", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<EventDetails>> saveEventDetails(@RequestBody EventDetails event) {
+	
 		List<EventDetails> eventdetails = new ArrayList<EventDetails>();
-        System.out.println("saveEventDetails()");
+		try {
+			if(null!=event){
+			calendarService.saveEventDetails(event);
+			eventdetails=calendarService.getAllEventDetails();
+			}else{
+				return	new ResponseEntity<List<EventDetails>>(eventdetails, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		} catch (Exception ex) {
+			return new ResponseEntity<List<EventDetails>>(eventdetails, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		 
+		
+	
 		return new ResponseEntity<List<EventDetails>>(eventdetails, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/deleteEventDetails", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<EventDetails>> deleteEventDetails(@RequestBody EventDetails eventdteails) {
+	@RequestMapping(value = "/event/deleteEventDetails", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<EventDetails>> deleteEventDetails(@RequestBody EventDetails event) {
 		List<EventDetails> eventdetails = new ArrayList<EventDetails>();
-		System.out.println("deleteEventDetails()");
+		try {
+			if(null!=event){
+			calendarService.deleteEventDetails(event);
+			eventdetails=calendarService.getAllEventDetails();
+			}else{
+				return	new ResponseEntity<List<EventDetails>>(eventdetails, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		} catch (Exception ex) {
+			return new ResponseEntity<List<EventDetails>>(eventdetails, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return new ResponseEntity<List<EventDetails>>(eventdetails, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/getAllEventDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/event/getAllEventDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<EventDetails>> getAllEventDetails() {
 		List<EventDetails> eventdetails = new ArrayList<EventDetails>();
-		System.out.println("getAllEventDetails()");
+		try {
+			eventdetails = calendarService.getAllEventDetails();
+		} catch (Exception ex) {
+			return new ResponseEntity<List<EventDetails>>(eventdetails, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return new ResponseEntity<List<EventDetails>>(eventdetails, HttpStatus.OK);
 	}
 

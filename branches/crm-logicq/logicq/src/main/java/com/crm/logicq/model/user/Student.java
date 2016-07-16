@@ -10,10 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 import com.crm.logicq.model.common.BaseEntity;
 
@@ -41,10 +43,10 @@ public class Student extends BaseEntity implements Serializable{
 	@Column(name = "REG_DATE", nullable = false)
 	private Date regdate;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy="student", fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private BasicDetails basicdetails;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy="student",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private ContactDetails contactdetails;
 
 	
@@ -103,6 +105,7 @@ public class Student extends BaseEntity implements Serializable{
 				+ regdate + ", basicdetails=" + basicdetails + ", contactdetails=" + contactdetails + "]";
 	}
 
+	
 
 
 }
