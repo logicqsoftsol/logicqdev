@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.crm.logicq.model.event.EventDetails;
 
-public interface IEventDetails {
+public interface IEventDetailsDAO {
 	
 	public List<EventDetails> getAllEventDetails() throws Exception;	
 	

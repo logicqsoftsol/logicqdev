@@ -16,7 +16,27 @@
 					data : ''
 				})
 			},
-			
+			deleteEventDetails: function (request) {
+				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteEventDetailsURL;
+				return  $http.post(url,request.eventd)
+			},
+		
+			saveEventCalendarDetails :function (request){
+				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveCalendarDetailsURL;
+				return  $http.post(url,request.eventd)
+			},
+		    searchAllEventCalendarList: function ($scope) {
+				return  $http({
+					method: 'GET',
+					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllCalendarDetailsURL,
+					dataType :'json',
+					data : ''
+				})
+			},
+			deleteEventCalendarDetails: function (request) {
+				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteCalendarDetailsURL;
+				return  $http.post(url,request.eventd)
+			},
 		}
 }]);
 

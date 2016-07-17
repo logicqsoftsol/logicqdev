@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.crm.logicq.dao.eventdetails.IEventDetails;
+import com.crm.logicq.dao.calendar.ICalendarDAO;
+import com.crm.logicq.dao.eventdetails.IEventDetailsDAO;
+import com.crm.logicq.model.calnder.CalendarDetails;
 import com.crm.logicq.model.event.EventDetails;
 import com.crm.logicq.service.calendar.ICalendarService;
 
@@ -17,14 +19,17 @@ import com.crm.logicq.service.calendar.ICalendarService;
 public class CalendarServiceImpl implements ICalendarService {
 
 	@Autowired
-	IEventDetails eventdetail;
+	IEventDetailsDAO eventdetailDAO;
+	
+	@Autowired
+	ICalendarDAO calendarDAO;
 	
 	
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
 	public List<EventDetails> getAllEventDetails() throws Exception {
-		return eventdetail.getAllEventDetails();
+		return eventdetailDAO.getAllEventDetails();
 		
 	}
 
@@ -32,7 +37,7 @@ public class CalendarServiceImpl implements ICalendarService {
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public void saveEventDetails(EventDetails eventdetails) throws Exception {
-		eventdetail.saveEventDetails(eventdetails);
+		eventdetailDAO.saveEventDetails(eventdetails);
 		
 	}
 
@@ -40,7 +45,30 @@ public class CalendarServiceImpl implements ICalendarService {
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
 	public void deleteEventDetails(EventDetails eventdetails) throws Exception {
-		eventdetail.deleteEventDetails(eventdetails);
+		eventdetailDAO.deleteEventDetails(eventdetails);
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public List<CalendarDetails> getAllEventCalendarDetails() throws Exception {
+		
+		return calendarDAO.getAllEventCalendarDetails();
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
+	public void saveEventCalendarDetails(CalendarDetails eventcalendardetail) throws Exception {
+		calendarDAO.saveEventCalendarDetails(eventcalendardetail);
+		
+	}
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
+	public void deleteEventCalendarDetails(CalendarDetails eventcalendardetail) throws Exception {
+		calendarDAO.deleteEventCalendarDetails(eventcalendardetail);
 	}
 
 }

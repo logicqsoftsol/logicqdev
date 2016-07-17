@@ -26,6 +26,8 @@
           {id:4, name:'VENDOR'},
 		  {id:5, name:'EMPLOYEE(permanent)'},
 		  {id:6, name:'EMPLOYEE(contract)'}];
+		  
+		
 		
 		
 								/* DashBoard   Display**/				
@@ -61,59 +63,8 @@
 				});
 			};
 			
-			/*calendar and event details**/
-		     $scope.editEventDetails= function(event) {
-				 $scope.event.eventname=event.name;
-				 $scope.event.eventtype=event.type;
-				 $scope.event.applicablefor=event.applicablefor;
-				};	
-			
-			$scope.saveEventDetails= function() {
-				AdminService.saveEventDetails($scope).success(function(data, status) {
-					alert('Save  Sucess Fully');
-				        });
-					};		
-					
-		   $scope.deleteEventDetails= function(event) {
-			   AdminService.deleteEventDetails($scope).success(function(data, status) {
-					alert('Delete  Sucess Fully');
-						        });
-							};		
-					
-							$scope.getAllEventDetails= function() {
-								AdminService.getAllEventDetails($scope).success(function(data, status) {
-								  $scope.eventdetails =data;
-								 });
-							};					
-			
-							
-							$scope.getCalendarDetailsforCriteria= function() {
-								AdminService.getCalendarDetailsforCriteria($scope).success(function(data, status) {
-								  $scope.eventdetails =data;
-								 });
-							};	
-							
-							$scope.saveCalendarDetails= function(calendar) {
-								AdminService.saveCalendarDetails($scope).success(function(data, status) {
-								 alert('save sucess fully');       
-								});
-									};	
-									
-									$scope.editCalendarDetails= function(calendar) {
-										 $scope.calendar.eventname=calendar.eventname;
-										 $scope.calendar.eventtype=calendar.eventtype;
-										 $scope.calendar.applicablefor=calendar.applicablefor;
-										 $scope.calendar.eventstartdate=calendar.eventstartdate;
-										 $scope.calendar.eventenddate=calendar.eventenddate;
-										 $scope.calendar.comments=calendar.comments;
-									 };	
-									   $scope.deleteCalendarDetails= function(event) {
-										   AdminService.deleteCalendarDetails($scope).success(function(data, status) {
-								         alert('delete sucess fully');
-													        });
-														};	
-														
-
+		
+		   
 																						
 								/* Employee operation**/
 												
@@ -235,12 +186,12 @@
 													};
 													
 													
-										/*Event Details and Calendar Details**/	
+										 /*Event Details**/	
 												$scope.eventd={};
 												$scope.eventd.eventid='';
 												$scope.eventoperation='';
-												$scope.eventoperationtype='';
-												
+												$scope.operationtype='';
+												$scope.eventid='';
 											$scope.searchAllEventList=	function() {
 														CalendarService.searchAllEventList($scope)
 																.success(function(data, status) {
@@ -251,26 +202,29 @@
 												/*Add Event Details**/
 											 $scope.addEventDetails= function() {
 													 $scope.eventoperation='Create New';
-                                                     $scope.eventoperationtype='+';
+                                                     $scope.operationtype='+';
+													
 													};
 													
 													/*Edit Event Details**/
 											$scope.editEventDetails= function() {
 													 $scope.eventoperation='Edit Existing';
-													 $scope.eventoperationtype='*';
+													 $scope.operationtype='*';
 													};
 													
 													/*Search Event Details**/
 											$scope.searchEventDetails= function() {
 													 $scope.eventoperation='Looking for Existing';
-													  $scope.eventoperationtype='';
+													  $scope.operationtype='';
 													
 													};
 													
 													/*Delete Event Details**/
                                                $scope.deleteEventDetails=function(eventd) {
 													 $scope.eventoperation='Are you sure want to delete this  ';
-													 $scope.eventoperationtype='-';
+													 $scope.operationtype='-';
+													// UserHelper.populateEventDetailsForRowClick($scope,eventd);
+													 $scope.request.eventd=eventd;
 													};
 													
 													/*Populate Event Details for row clicked**/
@@ -280,11 +234,11 @@
 													
 													/*Operation Event Details**/
 													$scope.operationEventDetail=function(){
-														var operation=$scope.eventoperationtype;
+														var operation=$scope.operationtype;
 														$scope.request.eventd={};
 														UserHelper.populateEventDetailsForOperation($scope);
 														if ('+'==operation) {
-															$scope.eventid='';
+															
 															CalendarService.saveEventDetails($scope.request)
 																.success(function(data, status) {
 																	$scope.eventdetails=data;
@@ -302,11 +256,102 @@
 														}
 														else if('-'==operation){
 															$scope.eventid=$scope.eventd.eventid;
+															CalendarService.deleteEventDetails($scope.request)
+															.success(function(data, status) {
+																	$scope.eventdetails=data;
+																});
 														}else{
 															
 														}
 													};
 													
+													
+											/*Calendar  Details**/
+												$scope.calendar={};
+												$scope.calendar.calendarid='';
+												$scope.eventcalendarid='';
+												$scope.eventdetailslist=[];
+												
+												 /*Add Event calender details**/
+												$scope.addEventCalendarDetails=	function() {
+													$scope.eventoperation='Setup new ';
+                                                     $scope.eventoperationtype='+';
+													 $scope.eventdetailslist=$scope.eventdetails;
+														
+													};
+													
+												/*select event details**/
+												$scope.$watch('calendar.eventname', function(newVal, oldVal){
+												angular.forEach($scope.eventdetailslist, function(value, key) {
+													if(value.eventname==newVal){
+													$scope.calendar.eventtype=value.eventtype;
+													$scope.calendar.applicablefor=value.applicablefor;
+													}	
+													});
+													
+													});
+													
+												/*Edit Event calender details**/	
+                                                 $scope.editEventCalendarDetails=	function() {
+														$scope.eventoperation='Modify Existing';
+													    $scope.operationtype='*';
+														$scope.readonlyprop='readonly';
+														$scope.eventdetailslist=$scope.eventdetails;
+													};
+													
+													/*Search Event calender details**/
+                                                  $scope.searchEventCalendarDetails=	function() {
+													  $scope.eventoperation='Looking for Existing';
+													  $scope.operationtype='';
+													
+													};		
+													
+													/*Delete Event calender details**/
+                                                $scope.deleteEventCalendarDetails=	function(calander) {
+													 $scope.eventoperation='Are you sure want to delete this ';
+													 $scope.operationtype='-';
+													$scope.readonlyprop='readonly';
+													
+													};	
+
+													/*Set Event calender details row**/
+                                                $scope.setClickedRowForEventCalendarDetails=function(calander) {
+														UserHelper.setClickedRowForEventCalendarDetails($scope,calander);
+													};	
+													
+											/*Set Event calender details operation**/
+										  $scope.operationCalendarDetailForEvent=function(){
+													var operation=$scope.operationtype;
+														$scope.request.calander={};
+														UserHelper.populateEventCalendarDetailsForOperation($scope);
+														if ('+'==operation) {
+															
+															CalendarService.saveEventCalendarDetails($scope.request)
+																.success(function(data, status) {
+																	$scope.calendardetailslist=data;
+																});
+															
+															
+														}
+														else if('*'===operation){
+															$scope.eventid=$scope.eventd.eventid;
+															CalendarService.saveEventCalendarDetails($scope.request)
+																.success(function(data, status) {
+																	$scope.calendardetailslist=data;
+																});
+															
+														}
+														else if('-'==operation){
+															$scope.eventid=$scope.eventd.eventid;
+															CalendarService.deleteEventCalendar($scope.request)
+															.success(function(data, status) {
+																	$scope.calendardetailslist=data;
+																});
+														}else{
+															
+														}
+											  
+										  };														
 							
 	}]);
 }());
