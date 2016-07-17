@@ -175,9 +175,9 @@
 		};
 		},
 	setClickedRowForEventCalendarDetails: function ($scope,data) {
-			$scope.eventcalendarid=data.eventcalendarid;
-			$scope.calendar.eventstartdate=data.eventstartdate;
-			$scope.calendar.eventenddate=data.eventenddate;
+			$scope.eventcalendarid=data.calendarid;
+			$scope.calendar.eventstartdate=new Date(data.eventstartdate);
+			$scope.calendar.eventenddate=new Date(data.eventenddate);
 			$scope.calendar.comments=data.comments;
 			$scope.calendar.eventid=data.eventdetails.eventid;
 			$scope.calendar.eventname=data.eventdetails.eventname;

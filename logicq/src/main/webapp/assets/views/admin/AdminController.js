@@ -284,7 +284,7 @@
 															CalendarService.searchAllEventCalendarList($scope)
 																.success(function(data, status) {
 																	$scope.calendardetailslist=data;
-																	UserHelper.formatEventCalendarDateType($scope);
+																	//UserHelper.formatEventCalendarDateType($scope);
 																});
 													};
 												/*select event details**/
@@ -303,7 +303,6 @@
                                                  $scope.editEventCalendarDetails=	function() {
 														$scope.eventoperation='Modify Existing';
 													    $scope.operationtype='*';
-														$scope.readonlyprop='readonly';
 														$scope.eventdetailslist=$scope.eventdetails;
 													};
 													
@@ -337,7 +336,7 @@
 															CalendarService.saveEventCalendarDetails($scope.request)
 																.success(function(data, status) {
 																	$scope.calendardetailslist=data;
-																	UserHelper.formatEventCalendarDateType($scope);
+																	//UserHelper.formatEventCalendarDateType($scope);
 																});
 															
 															
@@ -347,6 +346,7 @@
 															CalendarService.saveEventCalendarDetails($scope.request)
 																.success(function(data, status) {
 																	$scope.calendardetailslist=data;
+																	//UserHelper.formatEventCalendarDateType($scope);
 																});
 															
 														}
