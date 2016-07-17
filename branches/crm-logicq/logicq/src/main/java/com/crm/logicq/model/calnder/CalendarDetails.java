@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -17,6 +19,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.crm.logicq.model.event.EventDetails;
+import com.crm.logicq.model.user.Student;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "CALENDAR_DETAILS")
@@ -28,7 +32,9 @@ public class CalendarDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long calendarid;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="EVENT_ID")
 	private EventDetails eventdetails;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -88,9 +94,5 @@ public class CalendarDetails {
 		return "CalendarDetails [calendarid=" + calendarid + ", eventdetails=" + eventdetails + ", eventstartdate="
 				+ eventstartdate + ", eventenddate=" + eventenddate + ", comments=" + comments + "]";
 	}
-
-	
-
-	
-	
+		
 }

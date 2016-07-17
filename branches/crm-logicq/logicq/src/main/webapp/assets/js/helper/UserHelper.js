@@ -167,9 +167,10 @@
 			eventenddate:$scope.calendar.eventenddate,	
 			comments:$scope.calendar.comments,
 			eventdetails : {
-				eventname:$scope.calendar.eventname,
-				eventtype:$scope.calendar.eventtype,
-				applicablefor:$scope.calendar.applicablefor
+				eventid:$scope.calendar.eventid,
+				eventname :$scope.calendar.eventname,
+				eventtype : $scope.calendar.eventtype,
+				applicablefor : $scope.calendar.applicablefor,
 			}
 		};
 		},
@@ -178,10 +179,19 @@
 			$scope.calendar.eventstartdate=data.eventstartdate;
 			$scope.calendar.eventenddate=data.eventenddate;
 			$scope.calendar.comments=data.comments;
+			$scope.calendar.eventid=data.eventdetails.eventid;
 			$scope.calendar.eventname=data.eventdetails.eventname;
 			$scope.calendar.eventtype=data.eventdetails.eventtype;
 			$scope.calendar.applicablefor=data.eventdetails.applicablefor;
-		},		
+		},	
+		formatEventCalendarDateType: function ($scope) {
+			angular.forEach($scope.calendardetailslist, function(value, key) {
+			$scope.calendar.eventstartdate=new Date(value.eventstartdate);
+			$scope.calendar.eventenddate==new Date(value.eventenddate);
+													});
+		},	
+
+	
 		}
 		
 }]);

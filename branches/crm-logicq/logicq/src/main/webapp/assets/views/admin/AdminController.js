@@ -271,19 +271,27 @@
 												$scope.calendar.calendarid='';
 												$scope.eventcalendarid='';
 												$scope.eventdetailslist=[];
-												
+												$scope.calendar.eventid='';
 												 /*Add Event calender details**/
 												$scope.addEventCalendarDetails=	function() {
 													$scope.eventoperation='Setup new ';
-                                                     $scope.eventoperationtype='+';
+                                                     $scope.operationtype='+';
 													 $scope.eventdetailslist=$scope.eventdetails;
 														
 													};
-													
+													/*Search all calnder details*/
+													$scope.getAllCalendarDetails=function() {
+															CalendarService.searchAllEventCalendarList($scope)
+																.success(function(data, status) {
+																	$scope.calendardetailslist=data;
+																	UserHelper.formatEventCalendarDateType($scope);
+																});
+													};
 												/*select event details**/
 												$scope.$watch('calendar.eventname', function(newVal, oldVal){
 												angular.forEach($scope.eventdetailslist, function(value, key) {
 													if(value.eventname==newVal){
+												    $scope.calendar.eventid=value.eventid;
 													$scope.calendar.eventtype=value.eventtype;
 													$scope.calendar.applicablefor=value.applicablefor;
 													}	
@@ -329,6 +337,7 @@
 															CalendarService.saveEventCalendarDetails($scope.request)
 																.success(function(data, status) {
 																	$scope.calendardetailslist=data;
+																	UserHelper.formatEventCalendarDateType($scope);
 																});
 															
 															
