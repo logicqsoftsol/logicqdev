@@ -23,7 +23,7 @@
 		
 			saveEventCalendarDetails :function (request){
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveCalendarDetailsURL;
-				return  $http.post(url,request.eventd)
+				return  $http.post(url,request.calendar)
 			},
 		    searchAllEventCalendarList: function ($scope) {
 				return  $http({
@@ -35,7 +35,7 @@
 			},
 			deleteEventCalendarDetails: function (request) {
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteCalendarDetailsURL;
-				return  $http.post(url,request.eventd)
+				return  $http.post(url,request.calendar)
 			},
 		}
 }]);
