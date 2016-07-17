@@ -74,29 +74,38 @@ public class CalendarController {
 	
 	@RequestMapping(value = "/getAllCalendarDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CalendarDetails>> getAllCalendarDetails() {
-		List<CalendarDetails> calendardetails = new ArrayList<CalendarDetails>();
-		System.out.println("getAllCalendarDetails()");
-		return new ResponseEntity<List<CalendarDetails>>(calendardetails, HttpStatus.OK);
-	}
 
-	@RequestMapping(value = "/getCalendarDetailsforCriteria", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<CalendarDetails>> getCalendarDetailsforCriteria() {
-		List<CalendarDetails> calendardetails = new ArrayList<CalendarDetails>();
-		System.out.println("getCalendarDetailsforCriteria()");
+		List<CalendarDetails> calendardetails = null;
+		try {
+			calendardetails = calendarService.getAllEventCalendarDetails();
+		} catch (Exception ex) {
+			return new ResponseEntity<List<CalendarDetails>>(calendardetails, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
 		return new ResponseEntity<List<CalendarDetails>>(calendardetails, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/saveCalendarDetails", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CalendarDetails>> saveCalendarDetails(@RequestBody CalendarDetails calendarDetails) {
-		List<CalendarDetails> calendardetails = new ArrayList<CalendarDetails>();
-		System.out.println("saveCalendarDetails()");
+		List<CalendarDetails> calendardetails = null;
+		try {
+			calendarService.saveEventCalendarDetails(calendarDetails);
+			calendardetails = calendarService.getAllEventCalendarDetails();
+		} catch (Exception ex) {
+			return new ResponseEntity<List<CalendarDetails>>(calendardetails, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return new ResponseEntity<List<CalendarDetails>>(calendardetails, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/deleteCalendarDetails", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CalendarDetails>> deleteCalendarDetails(@RequestBody CalendarDetails calendarDetails) {
-		List<CalendarDetails> calendardetails = new ArrayList<CalendarDetails>();
-		System.out.println("deleteCalendarDetails()");            
+		List<CalendarDetails> calendardetails = null;
+		try {
+			calendarService.deleteEventCalendarDetails(calendarDetails);
+			calendardetails = calendarService.getAllEventCalendarDetails();
+		} catch (Exception ex) {
+			return new ResponseEntity<List<CalendarDetails>>(calendardetails, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return new ResponseEntity<List<CalendarDetails>>(calendardetails, HttpStatus.OK);
 	}
 }

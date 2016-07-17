@@ -28,6 +28,7 @@
 	   'deleteEventDetailsURL':'/admin/calendar/event/deleteEventDetails',
 	   'getAllEventDetailsURL':'/admin/calendar/event/getAllEventDetails',
 	   
+	   
 	   'getAllCalendarDetailsURL':'/admin/calendar/getAllCalendarDetails',
 	   'getCalendarDetailsforCriteriaURL':'/admin/calendar/getCalendarDetailsforCriteria',
 	   'saveCalendarDetailsURL':'/admin/calendar/saveCalendarDetails',

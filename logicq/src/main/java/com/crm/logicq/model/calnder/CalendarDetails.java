@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,8 +28,8 @@ public class CalendarDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long calendarid;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<EventDetails> eventdetails;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private EventDetails eventdetails;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "EVENT_START_DATE")
@@ -49,13 +50,6 @@ public class CalendarDetails {
 		this.calendarid = calendarid;
 	}
 
-	public Set<EventDetails> getEventdetails() {
-		return eventdetails;
-	}
-
-	public void setEventdetails(Set<EventDetails> eventdetails) {
-		this.eventdetails = eventdetails;
-	}
 
 	public Date getEventstartdate() {
 		return eventstartdate;
@@ -81,12 +75,21 @@ public class CalendarDetails {
 		this.comments = comments;
 	}
 
+	public EventDetails getEventdetails() {
+		return eventdetails;
+	}
+
+	public void setEventdetails(EventDetails eventdetails) {
+		this.eventdetails = eventdetails;
+	}
+
 	@Override
 	public String toString() {
 		return "CalendarDetails [calendarid=" + calendarid + ", eventdetails=" + eventdetails + ", eventstartdate="
 				+ eventstartdate + ", eventenddate=" + eventenddate + ", comments=" + comments + "]";
 	}
 
+	
 
 	
 	

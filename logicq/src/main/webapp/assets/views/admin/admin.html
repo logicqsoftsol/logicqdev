@@ -423,7 +423,7 @@
 							<li class="active"><a data-toggle="tab" id="attentable" class="pull-center"  ng-click="getAllEventDetails()"
 							href="/admin#eventdetails">Event Details</a></li>
 							<li><a data-toggle="tab" id="calendardetails" class="pull-center"  ng-click="getAllCalendarDetails()"
-								href="/admin#calanderdetails">Event Calander Details</a></li>
+								href="/admin#calanderdetails">Event Calendar Details</a></li>
 						</ul>
 					</div>
 					<div class="col-md-12">
@@ -431,23 +431,30 @@
 						<div id="calanderdetails" class="tab-pane fade">
 						<div class="table-responsive">
 						<ul class="pull-right">
-								<button id="searchevent"  data-target="#calendarmodal" data-toggle="modal"ng-click="searchEventDetails()" 
-									class="btn btn-default fa fa-search">Search</button>
+								<button id="addcalevtdetails"  data-target="#calendarmodal" data-toggle="modal"ng-click="addEventCalendarDetails()" 
+									class="btn btn-default fa fa-plus-circle">Add</button>
+								<button id="editcalevtdetails"  data-target="#calendarmodal" data-toggle="modal"ng-click="editEventCalendarDetails()" 
+									class="btn btn-default fa fa-pencil-square">Edit</button>
+								<button id="searchcalevtdetails"  data-target="#calendarmodal" data-toggle="modal" ng-click="searchEventCalendarDetails()" 
+									class="btn btn-default fa fa-search">Search</button>	
+									
 								</ul>
 							<table class="table table-bordered table-fixed">
 							<tr>
-								<th>Event Details</th>
+								<th>Event Name</th>
+								<th>Event Type</th>
 								<th>Event Applicable To</t>
 								<th>Event Start Date</t>
 								<th>Event End Date</t>
 							</tr>
-							<tr ng-repeat="calander in calanderdetails"
-								ng-click="setClickedRow(calander)" >
-								<td>{{calander.eventdetails}}</td>
-								<td>{{calander.applicableto}}</td>
-								<td>{{calander.startdate}}</td>
-								<td>{{calander.enddate}}</td>
-								<td><a id="deletecalnderdetails"  ng-click="deleteCalanderDetails(calander)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							<tr ng-repeat="calendar in calendardetailslist"
+								ng-click="setClickedRowForEventCalendarDetails(calendar)" >
+								<td>{{calendar.eventdetails.eventname}}</td>
+								<td>{{calendar.eventdetails.eventtype}}</td>
+								<td>{{calendar.eventdetails.applicablefor}}</td>
+								<td>{{calendar.startdate}}</td>
+								<td>{{calendar.enddate}}</td>
+								<td><a id="deletecalnderdetails"  ng-click="deleteEventCalendarDetails(calendar)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
@@ -460,7 +467,7 @@
 									class="btn btn-default fa fa-plus-circle">Add</button>
 								<button id="editEventDetails"  data-target="#eventdetailmodal" data-toggle="modal"ng-click="editEventDetails()" 
 									class="btn btn-default fa fa-pencil-square">Edit</button>
-								<button id="searchevent"  data-target="#eventdetailmodal" data-toggle="modal"ng-click="searchEventDetails()" 
+								<button id="searchevent"  data-target="#eventdetailmodal" data-toggle="modal" ng-click="searchEventDetails()" 
 									class="btn btn-default fa fa-search">Search</button>
 								</ul>
 							
@@ -475,7 +482,7 @@
 								<td>{{eventd.eventname}}</td>
 								<td>{{eventd.eventtype}}</td>
 								<td>{{eventd.applicablefor}}</td>
-								<td><a id="deleteevent"  ng-click="deleteEventDetails(eventd)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+								<td><a id="deleteevent"  data-target="#eventdetailmodal" data-toggle="modal"  ng-click="deleteEventDetails(eventd)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
@@ -597,62 +604,7 @@
 		</div><!---End for Modal Search Attendance-->
 		
 		
-				<!---Modal Calendar-->
-		<div id="calendarmodal" class="modal fade" role="dialog">
-		<form>
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Setup Calendar</h4>
-						</div>
-						<div class="modal-body">
-							<div class="col-md-6">
-								<div class="form-group">
-								<label  class="control-label" for="eventname">Event Name</label> 
-									<input type="text" class="form-control" id="eventname" ng-model="calendar.eventname"
-										placeholder="User Id" name="userid"> 					  
-								</div>
-								<div class="form-group">
-								<label  class="control-label" for="eventtype">Event Type</label> 
-									<input type="text" class="form-control" id="eventtype" ng-model="calendar.eventtype"
-										placeholder="Event Type" name="eventtype" readonly> 					  
-								</div>
-								<div class="form-group">
-								<label  class="control-label" for="eventapplicablefor">Event Applicable For</label> 
-									<input type="text" class="form-control" id="eventapplicablefor" ng-model="calendar.applicablefor"
-										placeholder="Event Applicable For" name="eventapplicablefor" readonly> 					  
-								</div>
-								</div>
-								<div class="col-md-6">
-								
-								<div class="form-group">
-								<label  class="control-label" for="fromdate">Start Date</label> 
-									<input type="Date" class="form-control" id="fromdate" ng-model="calendar.eventstartdate"
-										placeholder="From Date" name="fromdate"> 
-								</div>
-								<div class="form-group">
-								<label  class="control-label" for="todate">End Date</label> 
-									<input type="Date" class="form-control" id="todate" ng-model="calendar.eventenddate" 
-										placeholder="To Date" name="todate"> 
-								</div>
-									<div class="form-group">
-								<label  class="control-label" for="comments">Comments</label> 
-									<textarea  class="form-control" id="comments" ng-model="calendar.comments" 
-										placeholder="Comments" name="comments"> </textarea>
-								</div>
-								</div>
-						</div>
-						<div class="modal-footer">
-							<button type="submit" id="confirmfeeoper" class="btn btn-default" ng-click="saveCalendarDetails(calendar)"
-								data-dismiss="modal"><i class="fa fa-plus-circle" aria-hidden="true"></i>save</button>
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
-						</div>
-				</div>
-			</div>
-			</form>
-		</div><!---End for Modal Calendar-->
+	
 		
 		
 		
@@ -1232,19 +1184,82 @@
 												</option>
 												</datalist> 
 										</div>
-										
-						
 						</div>
-						<div class="modal-footer">
+				</div>
+					<div class="modal-footer">
 							<button type="submit" id="usersearch" class="btn btn-default" ng-click="operationEventDetail()"
 								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
 						</div>
-				</div>
+			</div>
 			</div>
 			</form>
-		</div><!---End for  Modal Event Details-->			
+		</div><!---End for  Modal Event Details-->	
+
+
+	<!---Modal Calendar-->
+		<div id="calendarmodal" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">{{eventoperation}} Calendar Details for event</h4>
+						</div>
+						<div class="modal-body">
+							<div class="col-md-6">
+								<div class="form-group">
+								<div class="form-group">
+										<label  class="control-label" for="calendar.eventname">Event Name</label> 
+										<input type="text" class="form-control" id="calendar.eventname"  ng-model="calendar.eventname" class="input-search" list="eventdetailslist" >
+												<datalist id="eventdetailslist">
+												<option ng-repeat="eventeach in eventdetailslist"   value="{{eventeach.eventname}}">
+												</option>
+												</datalist> 
+										</div>
+								<div class="form-group">
+								<label  class="control-label" for="calendar.eventtype">Event Type</label> 
+									<input type="text" class="form-control" id="calendar.eventtype" ng-model="calendar.eventtype"
+										placeholder="Event Type" name="calendar.eventtype" readonly> 					  
+								</div>
+								<div class="form-group">
+								<label  class="control-label" for="calendar.applicablefor">Event Applicable For</label> 
+									<input type="text" class="form-control" id="calendar.applicablefor" ng-model="calendar.applicablefor"
+										placeholder="Event Applicable For" name="calendar.applicablefor" readonly> 					  
+								</div>
+								</div>
+								<div class="col-md-10">
+								
+								<div class="form-group">
+								<label  class="control-label" for="calendar.eventstartdate">Event Start Date</label> 
+									<input type="Date" class="form-control" id="calendar.eventstartdate" ng-model="calendar.eventstartdate"
+										placeholder="Start Date" name="calendar.eventstartdate"> 
+								</div>
+								<div class="form-group">
+								<label  class="control-label" for="calendar.eventenddate">Event End Date</label> 
+									<input type="Date" class="form-control" id="calendar.eventenddate" ng-model="calendar.eventenddate" 
+										placeholder="Event End Date" name="calendar.eventenddate"> 
+								</div>
+									<div class="form-group">
+								<label  class="control-label" for="calendar.comments">Comments</label> 
+									<textarea  class="form-control" id="calendar.comments" ng-model="calendar.comments" 
+										placeholder="Comments" name="calendar.comments"> </textarea>
+								</div>
+								</div>
+						</div>
+				</div>
+				<div class="modal-footer">
+							<button type="submit" id="confirmcalendar" class="btn btn-default" ng-click="operationCalendarDetailForEvent()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+			</div>
+			</div>
+			</form>
+		</div><!---End for Modal Calendar-->		
 		
 	</div>
+
 </div>

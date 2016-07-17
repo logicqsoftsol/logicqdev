@@ -158,6 +158,30 @@
 			$scope.eventd.type=data.eventtype;
 			$scope.eventd.entity=data.applicablefor;
 		},	
+		
+		
+	populateEventCalendarDetailsForOperation: function ($scope) {
+		return $scope.request.calendar={
+			calendarid:$scope.eventcalendarid,
+			eventstartdate:$scope.calendar.eventstartdate,
+			eventenddate:$scope.calendar.eventenddate,	
+			comments:$scope.calendar.comments,
+			eventdetails : {
+				eventname:$scope.calendar.eventname,
+				eventtype:$scope.calendar.eventtype,
+				applicablefor:$scope.calendar.applicablefor
+			}
+		};
+		},
+	setClickedRowForEventCalendarDetails: function ($scope,data) {
+			$scope.eventcalendarid=data.eventcalendarid;
+			$scope.calendar.eventstartdate=data.eventstartdate;
+			$scope.calendar.eventenddate=data.eventenddate;
+			$scope.calendar.comments=data.comments;
+			$scope.calendar.eventname=data.eventdetails.eventname;
+			$scope.calendar.eventtype=data.eventdetails.eventtype;
+			$scope.calendar.applicablefor=data.eventdetails.applicablefor;
+		},		
 		}
 		
 }]);
