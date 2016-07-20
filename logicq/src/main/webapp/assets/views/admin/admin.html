@@ -253,153 +253,88 @@
 					</div>
 				<div class="panel-body">
 					<div class="col-md-10">
-						<ul class="pull-right">
-							<button id="searchtemplate" data-toggle="modal"
-								data-target="#templatesearch" class="btn btn-default">
-								<i class="fa fa-search" aria-hidden="true"></i>Search
-							</button>
+						
+							
 						</ul>
 						</div>
 					<div class="col-md-6">
 						<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" id="template" class="pull-center"  ng-click="getAllTemplateDetails()"
-							href="/admin#templatedetails">Notifications Template Setup</a></li>
-							<li class="active"><a data-toggle="tab" id="msgsendingsetup" class="pull-center"  ng-click="getMessaageSendingDetails()"
-								href="/admin#notificationsendingdetails">Notifications Sending Setup </a></li>
+							<li><a data-toggle="tab" id="template" class="pull-center"  ng-click="getAllNotificationTemplateList()"
+							href="/admin#notificationtemplatedetails">Notifications Template Setup</a></li>
+							<li class="active"><a data-toggle="tab" id="msgsendingsetup" class="pull-center"  ng-click="getNotificationSendingConfigurationDetails()"
+								href="/admin#notificationsendingsetup">Notifications Sending Setup </a></li>
 						</ul>
 					</div>
 				  <div class="col-md-10">
 					<div class="tab-content">
-					<div id="templatedetails" class="tab-pane fade">
+					<div id="notificationtemplatedetails" class="tab-pane fade">
 					<br></br>
-					<div class="col-md-4">
-									<div class="form-group">
-										<label  class="control-label" for="template.eventname">Event Name</label>
-											<input type="text" name="template.eventname" id="template.eventname"
-												class="form-control" ng-model="template.eventname"
-												placeholder="Event Name" list="eventnamelist">
-												<datalist id="eventnamelist">
-													<option>Durga Puja</option>
-													<option>Exam</option>
-													<option>Mid-Sem Exam</option>
-													<option>Summer Vaccation</option>
-												</datalist>
-										</div>
-										<div class="form-group">
-										<label  class="control-label" for="template.eventtype">Event Type</label>
-											<input type="text" name="template.eventtype" id="template.eventtype"
-												class="form-control" ng-model="template.eventtype"
-												placeholder="Event Type" readonly>
-										</div>
-										<div class="form-group">
-										<label  class="control-label" for="template.applicablefor">Event Applicable For</label>
-											<input type="text" name="template.applicablefor" id="template.applicablefor"
-												class="form-control" ng-model="template.applicablefor"
-												placeholder="Applicable For" readonly>
-										</div>
-										<div class="form-group">
-										<label  class="control-label" for="templaetmsg">Template</label>
-											<textarea type="text" name="templaetmsg" id="templaetmsg"
-												class="form-control" ng-model="templaetmsg"
-												placeholder="Template"></textarea>
-										</div>
-										<div class="form-group">
-										<label  class="control-label" for="templatetype">Template Type</label>
-											<input type="text" name="templatetype" id="templatetype"
-												class="form-control" ng-model="templatetype"
-												placeholder="Applicable For" list="templaettypelist">
-												<datalist id="templaettypelist">
-													<option>ALL</option>
-													<option>NOTIFICATION</option>
-													<option>SMS</option>
-													<option>E-MAIL</option>
-												</datalist>
-										</div>
-						
-							<button id="addtemplate"   ng-click="saveTemplateDetails()"  class="btn btn-default fa fa-floppy-o">save</button>
-								</div>
-									<div class="col-md-8">
 						<div class="table-responsive">
-							<table class="table table-bordered table-fixed sel-table">
+						<ul class="pull-right">
+						<button id="studentreg" data-toggle="modal" 
+									data-target="#notificationtemplate" 
+									class="btn btn-default fa fa-plus-circle" ng-click="addNotificationTemplate()">Add</button>
+						<button id="updatedetails" data-toggle="modal" data-target="#notificationtemplate"
+									class="btn btn-default fa fa-pencil-square" ng-click="editNotificationTemplate()">Edit</button>
+						<button id="deletedetails" data-toggle="modal" data-target="#notificationtemplate" ng-click="searchNotificationTemplate()"
+									class="btn btn-default fa fa-search">Search</button>
+                         </ul>									
+							<table class="table table-bordered table-fixed">
 							<tr>
 								<th>Template Id</th>
-								<th>Event Details</th>
+								<th>Event Name</th>
+								<th>Event Type</th>
 								<th>Event Applicable To</th>
 								<th>Template Text</th>
 							</tr>
-							<tr ng-repeat="template in templateDetails"
-								ng-click="setClickedRow(template)" >
-								<td>{{template.id}}</td>
-								<td>{{template.eventdetails}}</td>
-								<td>{{template.applicableto}}</td>
-								<td>{{template.templatetext}}</td>
-								<td><a id="deleteevent"  ng-click="editCalanderDetails(template)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
-								<td><a id="deleteevent"  ng-click="deleteCalanderDetails(template)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							<tr ng-repeat="notificationtemplate in notificationtemplatelist"
+								ng-click="setRowForNotificationTemplate(notificationtemplate)" >
+								<td>{{notificationtemplate.templateid}}</td>
+								<td>{{notificationtemplate.eventdetails.eventname}}</td>
+								<td>{{notificationtemplate.eventdetails.eventtype}}</td>
+								<td>{{notificationtemplate.eventdetails.applicablefor}}</td>
+								<td>{{notificationtemplate.templatetext}}</td>
+								<td><a id="deleteevent"  ng-click="deleteTemplateForNotification(notificationtemplate)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
-					</div>
-								
-								
+	
 					</div>
 					
 					
-					<div id="notificationsendingdetails" class="tab-pane fade in active">
+					<div id="notificationsendingsetup" class="tab-pane fade in active">
 					<br></br>
-								<div class="col-md-4">
-										<div class="form-group">
-										<label  class="control-label" for="msg.templateid">Template Id</label>
-											<input type="text" name="msg.templateid" id="msg.templateid"
-												class="form-control" ng-model="msg.templateid"
-												placeholder="Template Id" list="templaetdetailslist">
-							                    <datalist id="templaetdetailslist">
-													<option>SMS-DURG-101</option>
-													<option>ALL-EXAM-102</option>
-													<option>TEACHER-TRANNING-103</option>
-												</datalist>
-										</div>
-										<div class="form-group">
-										<label  class="control-label" for="msgsenddate">Message Sending From Date</label>
-											<input type="Date" name="msgsendfromdate" id="msgsendfromdate"
-												class="form-control" ng-model="msgsendfromdate"
-												placeholder="Message Sending Date">
-										</div>
-										<div class="form-group">
-										<label  class="control-label" for="msgsendtodate">Message Sending To Date</label>
-											<input type="Date" name="msgsendtodate" id="msgsendtodate"
-												class="form-control" ng-model="msgsendtodate"
-												placeholder="Message Sending To Date">
-										</div>
-										<div class="form-group">
-										<label  class="control-label" for="msgsendingtime">Message Sending Time</label>
-											<input type="Time" name="msgsendingtime" id="msgsendingtime"
-												class="form-control" ng-model="msgsendingtime"
-												placeholder="Sending Time">
-										</div>
-										<button id="savedetails"   ng-click="saveMessageSeDetails()"  class="btn btn-default fa fa-floppy-o">save</button>
-									</div>
+							
 					<div class="col-md-8">
 					<div class="table-responsive">
-							<table class="table table-bordered table-fixed sel-table">
+					<ul class="pull-right">
+						<button id="notimsgsetupadd" data-toggle="modal" 
+									data-target="#notificationsendingdetails" 
+									class="btn btn-default fa fa-plus-circle" ng-click="addnotificationSendingSetup()">Add</button>
+						<button id="notimsgsetupupdate" data-toggle="modal" data-target="#notificationsendingdetails"
+									class="btn btn-default fa fa-pencil-square" ng-click="updatenotificationSendingSetup()">Edit</button>
+						<button id="notimsgsetupsearch" data-toggle="modal" data-target="#notificationsendingdetails" ng-click="searchNotificationSendingSetup()"
+									class="btn btn-default fa fa-search">Search</button>
+                         </ul>			
+							<table class="table table-bordered table-fixed">
 							<tr>
 								<th>Template Id</th>
 								<th>Sending From Date</t>
 								<th>Sending To Date</t>
 								<th>Sending Time</t>
 							</tr>
-							<tr ng-repeat="templatemsg in templatemsgdetsils"
-								ng-click="setClickedRow(templatemsg)" >
-								<td>{{templatemsg.templateid}}</td>
-								<td>{{templatemsg.msgsendfromdate}}</td>
-								<td>{{templatemsg.msgsendtodate}}</td>
-								<td>{{templatemsg.msgsendingtime}}</td>
-								<td><a id="deleteevent"  ng-click="editEventDetails(templatemsg)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
-								<td><a id="deleteevent"  ng-click="deleteEventDetails(templatemsg)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							<tr ng-repeat="notisendsetup in notificationsendingsetupdetails"
+								ng-click="setRowForNotificationSendingSetup(notisendsetup)" >
+								<td>{{notisendsetup.templateid}}</td>
+								<td>{{notisendsetup.msgsendfromdate}}</td>
+								<td>{{notisendsetup.msgsendtodate}}</td>
+								<td>{{notisendsetup.msgsendingtime}}</td>
+								<td><a id="deletenotitempsetup"  ng-click="deletenotificationSendingSetup(notisendsetup)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
 					</div>
-					</div><!--endof notification details-->
+					</div><!--endof notification setingsetup details-->
 					
 					
 					</div>
@@ -1258,7 +1193,121 @@
 			</div>
 			</div>
 			</form>
-		</div><!---End for Modal Calendar-->		
+		</div><!---End for Modal Calendar-->	
+
+		
+		
+		<!---End for Modal Notifications Template-->
+		<div id="notificationtemplate" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">{{eventoperation}} Message Sending Details</h4>
+						</div>
+						<div class="modal-body">
+						<div class="col-md-7">
+							<div class="form-group">
+										<label  class="control-label" for="notificationtemplate.templateid">Template Id</label>
+											<input type="text" name="notificationtemplate.templateid" id="notificationtemplate.templateid"
+												class="form-control" ng-model="notificationtemplate.templateid"
+												placeholder="Template Id" readonly>
+									</div>
+									
+										<div class="form-group">
+										<label  class="control-label" for="notificationtemplate.eventname">Event Name</label> 
+										<input type="text" class="form-control" id="notificationtemplate.eventname"  ng-model="notificationtemplate.eventname" class="input-search" list="eventfortemplatelist" >
+												<datalist id="eventfortemplatelist">
+												<option ng-repeat="eventeach in eventfortemplatelist"   value="{{eventeach.eventname}}">
+												</option>
+												</datalist> 
+										</div>
+										<div class="form-group">
+											<label  class="control-label" for="notificationtemplate.eventtype">Event Type</label> 
+											<input type="text" class="form-control" id="notificationtemplate.eventtype" ng-model="notificationtemplate.eventtype"
+												placeholder="Event Type" name="notificationtemplate.eventtype" readonly> 
+										</div>
+										
+										<div class="form-group">
+										<label  class="control-label" for="notificationtemplate.applicablefor">Event Applicable For</label> 
+											<input type="text" class="form-control" id="notificationtemplate.applicablefor" ng-model="notificationtemplate.applicablefor"
+												placeholder="Event Applicable For" name="notificationtemplate.applicablefor" readonly> 					  
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="notificationtemplate.templatetext">Template Text</label> 
+											<textarea type="text" class="form-control" id="notificationtemplate.templatetext" ng-model="notificationtemplate.templatetext"
+												placeholder="Template Text" name="notificationtemplate.templatetext"> </textarea>					  
+											</div>
+										</div>
+				</div>
+				<div class="modal-footer">
+							<button type="submit" id="confirmcalendar" class="btn btn-default" ng-click="setupTemplateForNotification()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+			</div>
+			</div>
+			</form>
+		</div><!---End for Modal Notifications Template-->		
+		
+		
+		
+
+	<!---End for Modal Notifications Template sending setup-->
+		<div id="notificationsendingdetails" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">{{eventoperation}} Message Sending Details</h4>
+						</div>
+						<div class="modal-body">
+						<div class="col-md-7">
+							<div class="form-group">
+										<label  class="control-label" for="notimsgsend.templateid">Template Id</label>
+											<input type="text" name="notimsgsend.templateid" id="notimsgsend.templateid"
+												class="form-control" ng-model="notimsgsend.templateid"
+												placeholder="Template Id" list="templaetdetailslist">
+							                    <datalist id="templaetdetailslist">
+													<option>SMS-DURG-101</option>
+													<option>ALL-EXAM-102</option>
+													<option>TEACHER-TRANNING-103</option>
+												</datalist>
+										</div>
+										
+										<div class="form-group">
+										<label  class="control-label" for="notimsgsend.msgsendfromdate">Message Sending From Date</label>
+											<input type="Date" name="notimsgsend.msgsendfromdate" id="notimsgsend.msgsendfromdate"
+												class="form-control" ng-model="notimsgsend.msgsendfromdate"
+												placeholder="Message Sending Date">
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="notimsgsend.msgsendtodate">Message Sending To Date</label>
+											<input type="Date" name="notimsgsend.msgsendtodate" id="notimsgsend.msgsendtodate"
+												class="form-control" ng-model="notimsgsend.msgsendtodate"
+												placeholder="Message Sending To Date">
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="notimsgsend.msgsendingtime">Message Sending Time</label>
+											<input type="Time" name="notimsgsend.msgsendingtime" id="notimsgsend.msgsendingtime"
+												class="form-control" ng-model="notimsgsend.msgsendingtime"
+												placeholder="Sending Time">
+										</div>
+										</div>
+				</div>
+				<div class="modal-footer">
+							<button type="submit" id="confirmcalendar" class="btn btn-default" ng-click="setupTemplateForNotification()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+			</div>
+			</div>
+			</form>
+		</div><!---End for Modal Notifications Template sending setup-->				
 		
 	</div>
 

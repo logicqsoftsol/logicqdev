@@ -1,6 +1,6 @@
 (function () {
 	'use strict';
-	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','AppConstants',function ($scope, $http,  $location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,AppConstants) {
+	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope, $http,  $location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
 		 $scope.display=6;
 		 $scope.graphattendance=[];
 		 $scope.request = {};
@@ -272,13 +272,7 @@
 												$scope.eventcalendarid='';
 												$scope.eventdetailslist=[];
 												$scope.calendar.eventid='';
-												 /*Add Event calender details**/
-												$scope.addEventCalendarDetails=	function() {
-													$scope.eventoperation='Setup new ';
-                                                     $scope.operationtype='+';
-													 $scope.eventdetailslist=$scope.eventdetails;
-														
-													};
+											
 													/*Search all calnder details*/
 													$scope.getAllCalendarDetails=function() {
 															CalendarService.searchAllEventCalendarList($scope)
@@ -299,6 +293,14 @@
 													
 													});
 													
+												 /*Add Event calender details**/
+												$scope.addEventCalendarDetails=	function() {
+													$scope.eventoperation='Setup new ';
+                                                     $scope.operationtype='+';
+													 $scope.eventdetailslist=$scope.eventdetails;
+														
+													};
+												
 												/*Edit Event calender details**/	
                                                  $scope.editEventCalendarDetails=	function() {
 														$scope.eventoperation='Modify Existing';
@@ -360,7 +362,127 @@
 															
 														}
 											  
-										  };														
-							
+										  };
+										  
+											/*Set Template Configuration operation**/
+											$scope.eventfortemplatelist=null;
+											$scope.notificationtemplate={};
+											$scope.notificationtemplate.eventid='';
+											$scope.notitemplatetypelist=[{id:1, value:'SMS'},
+																		{id:2, value:'E-MAIL'},
+																		{id:3, value:'NOTIFICATION'},
+																		{id:4, value:'ALL'}];
+											$scope.notificationtemplatelist={};
+											
+													/* Fetch all event list*/
+												if(null==$scope.eventfortemplatelist){
+												 CalendarService.searchAllEventList($scope)
+																	.success(function(data, status) {
+																		$scope.eventfortemplatelist=data;
+														});
+											  };
+											/*select event details**/
+										$scope.$watch('notificationtemplate.eventname', function(newVal, oldVal){
+												angular.forEach($scope.eventfortemplatelist, function(value, key) {
+													if(value.eventname==newVal){
+												    $scope.notificationtemplate.eventid=value.eventid;
+													$scope.notificationtemplate.eventtype=value.eventtype;
+													$scope.notificationtemplate.applicablefor=value.applicablefor;
+													}	
+													});
+													
+													});
+										
+										  $scope.addNotificationTemplate=function(){
+												$scope.eventoperation='Setup new ';
+                                                $scope.operationtype='+';
+									
+												
+										  };
+										  $scope.editNotificationTemplate =function(){
+											  $scope.eventoperation='Modify Existing';
+											    $scope.operationtype='*';
+											
+													
+											
+										  };
+										  $scope.searchNotificationTemplate =function(){
+											  $scope.eventoperation='Looking for Existing';
+											  $scope.operationtype='';
+										  };
+										  
+										  $scope.deleteTemplateForNotification=function(notificationtemplate){
+											  $scope.eventoperation='Are you sure want to delete this ';
+											  $scope.operationtype='-';
+										  };
+										  
+										  $scope.setRowForNotificationTemplate=function(notificationtemplate){
+											  UserHelper.setRowForNotificationTemplate($scope,notificationtemplate);
+											  };	
+											  
+											  /* Get All Notification**/
+											$scope.getAllNotificationTemplateList=function(){
+												NotificationService.getAllNotificationTemplateList($scope)
+												.success(function(data, status) {
+													$scope.notificationtemplatelist=data;
+								                	});
+											  };
+										  
+											/*Set Event calender details operation**/
+										
+										  $scope.setupTemplateForNotification=function(){
+											   UserHelper.populateNotificationDetailsForOperation($scope);
+													var operation=$scope.operationtype;
+														if ('+'==operation) {
+															NotificationService.saveNotificationTemplate($scope.request)
+															.success(function(data, status) {
+																$scope.notificationtemplatelist=data;
+															});
+															
+														}
+														else if('*'===operation){
+															NotificationService.saveNotificationTemplate($scope.request)
+															.success(function(data, status) {
+																//UserHelper.populateUINotificationTemplate(,data);
+																$scope.notificationtemplatelist=data;
+															});
+														}
+														else if('-'==operation){
+															$scope.eventid=$scope.eventd.eventid;
+														
+														}else{
+															
+														}
+											  
+										  };
+										  
+										  
+										 /*Set Notification Template Setup Configuration operation**/
+											$scope.notisendsetup={};
+											$scope.notificationsendingsetupdetails={};
+											$scope.notificationtemplate.eventid='';
+											$scope.notitemplatetypelist=[{id:1, value:'SMS'},
+																		{id:2, value:'E-MAIL'},
+																		{id:3, value:'NOTIFICATION'},
+																		{id:4, value:'ALL'}];
+											$scope.notificationtemplatelist={};
+											
+										   $scope.addnotificationSendingSetup =function(){
+											  $scope.eventoperation='Looking for Existing';
+											  $scope.operationtype='';
+											
+										  };
+										  
+										  $scope.updatenotificationSendingSetup =function(){
+											  $scope.eventoperation='Looking for Existing';
+											  $scope.operationtype='';
+										  };
+										  $scope.searchNotificationSendingSetup =function(){
+											  $scope.eventoperation='Looking for Existing';
+											  $scope.operationtype='';
+										  };
+							$scope.setRowForNotificationSendingSetup =function(notisendsetup){
+											 
+										  };
 	}]);
 }());
