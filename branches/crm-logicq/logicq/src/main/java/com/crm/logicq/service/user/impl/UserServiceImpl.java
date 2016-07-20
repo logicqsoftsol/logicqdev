@@ -221,7 +221,23 @@ public class UserServiceImpl implements IUserService{
 		employeedao.deleteEmployee(emp);
 	}
 
-
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public void loadEmployees() throws Exception{
+		List<Employee> employeeDetails= employeedao.loadEmployees();
+		for(Employee employee: employeeDetails){
+			LogicqContextProvider.addElementToEmployeeMap(employee.getIdetificationid(), employee);
+		}
+	}
 	
-	
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public void loadStudents() throws Exception{
+		List<Student> students= studentdao.loadStudents();
+		for(Student student: students){
+			LogicqContextProvider.addElementToEmployeeMap(student.getIdetificationid(), student);
+		}
+	}
 }
