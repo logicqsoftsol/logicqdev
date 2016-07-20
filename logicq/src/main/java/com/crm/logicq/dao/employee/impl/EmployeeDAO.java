@@ -10,6 +10,7 @@ import com.crm.logicq.dao.employee.IEmployeeDAO;
 import com.crm.logicq.model.user.ContactDetails;
 import com.crm.logicq.model.user.Employee;
 import com.crm.logicq.model.user.Student;
+import com.crm.logicq.model.user.User;
 
 @Repository
 public class EmployeeDAO extends AbstractDAO<Employee> implements IEmployeeDAO{
@@ -53,6 +54,11 @@ public class EmployeeDAO extends AbstractDAO<Employee> implements IEmployeeDAO{
 	@Override
 	public void deleteEmployee(Employee emp) throws Exception {
 		delete(getEmployee(String.valueOf(emp.getId())));
+	}
+	
+	@Override
+	public List<Employee> loadEmployees() {
+		return (List<Employee>) loadClass(Employee.class);
 	}
 	
 }

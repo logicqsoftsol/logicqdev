@@ -42,6 +42,29 @@ public class AttendanceDetails {
 	@Column(name = "IS_PRESENT", nullable = false)
 	private boolean isPresent;
 
+	@Column(name = "MOBILE", nullable = true)
+	private String mobile;
+	
+	@Column(name = "FULL_NAME", nullable = true)
+	private String fullName;
+	
+	
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
 	public String getId() {
 		return id;
 	}
