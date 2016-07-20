@@ -1,4 +1,4 @@
-package com.crm.logicq.controller.message.sms;
+package com.crm.logicq.controller.admin.message.sms;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

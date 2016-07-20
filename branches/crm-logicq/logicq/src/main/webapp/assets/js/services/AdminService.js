@@ -21,10 +21,6 @@
 				return  $http.post(url,request)
 
 			}, 
-	
-			
-		
-		
 		saveEventDetails:function ($scope){
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveEventDetailsURL;
 			return  $http.post(url,request)

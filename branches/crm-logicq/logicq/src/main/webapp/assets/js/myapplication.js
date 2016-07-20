@@ -43,6 +43,17 @@
 	   'saveStudentDetailsURL':'/user/saveStudentDetails',
 	   'searchStudentDetailsURL':'/user/searchStudentDetails',
 	   'deleteStudentDetailsURL':'/user/deleteStudentDetails',
+	   
+	   
+	   'saveNotificationTemplateURL':'/admin/notification/saveNotificationTemplate',
+	   'deleteNotificationTemplateURL':'/admin/notification/deleteNotificationTemplate',
+	   'getNotificationTemplatesURL':'/admin/notification/getNotificationTemplates',
+	  
+	   'saveNotificationTemplateSetupURL':'/admin/notification/saveNotificationTemplateSetup',
+	   'deleteNotificationTemplateSetupURL':'/admin/notification/deleteNotificationTemplateSetup',
+	   'getNotificationSetupDetailsURL':'/admin/notification/getNotificationSetupDetails',
+	   
+	   
 
 	}).directive('ngConfirmClick', [
 	                                   function(){
