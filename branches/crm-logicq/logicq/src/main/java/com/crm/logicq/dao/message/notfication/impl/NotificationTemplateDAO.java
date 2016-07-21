@@ -27,4 +27,10 @@ public class NotificationTemplateDAO  extends AbstractDAO<NotificationTemplate> 
 		return (List<NotificationTemplate>) loadClass(NotificationTemplate.class);
 	}
 
+	@Override
+	public List<NotificationTemplate> getNotificationTemplatesForEntity(String entitytype) throws Exception {
+		String query=" from NotificationTemplate notitemp where notitemp.eventdetails.applicablefor='"+entitytype+"'";
+		return execcuteQuery(query);
+	}
+
 }

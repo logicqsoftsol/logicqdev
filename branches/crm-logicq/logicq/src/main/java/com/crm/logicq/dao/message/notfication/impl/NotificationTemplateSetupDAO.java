@@ -26,4 +26,6 @@ public class NotificationTemplateSetupDAO extends AbstractDAO<NotificationSetupD
 		return (List<NotificationSetupDetails>) loadClass(NotificationSetupDetails.class);
 	}
 
+	
+
 }
