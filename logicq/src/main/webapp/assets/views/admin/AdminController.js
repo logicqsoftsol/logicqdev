@@ -428,8 +428,7 @@
 								                	});
 											  };
 										  
-											/*Set Event calender details operation**/
-										
+											/*Set Notification Template Setup details operation**/
 										  $scope.setupTemplateForNotification=function(){
 											   UserHelper.populateNotificationDetailsForOperation($scope);
 													var operation=$scope.operationtype;
@@ -459,30 +458,92 @@
 										  
 										 /*Set Notification Template Setup Configuration operation**/
 											$scope.notisendsetup={};
+											$scope.notimsgsend={};
 											$scope.notificationsendingsetupdetails={};
-											$scope.notificationtemplate.eventid='';
+											$scope.notificationtemplate={};
 											$scope.notitemplatetypelist=[{id:1, value:'SMS'},
 																		{id:2, value:'E-MAIL'},
 																		{id:3, value:'NOTIFICATION'},
 																		{id:4, value:'ALL'}];
 											$scope.notificationtemplatelist={};
+											$scope.entitytype='';
+											$scope.templatelistforentity={};
+											$scope.notimsgsend.templateid='';
+											$scope.notimsgsend.setupid='';
+											/*select msg applicable for **/
+											$scope.$watch('notimsgsend.msgapplicablefor', function(newVal, oldVal){
+													angular.forEach($scope.entitylist, function(value, key) {
+														if(value.name==newVal){
+															$scope.entitytype=newVal;
+															NotificationService.getNotificationDetailsForEntity($scope)
+															.success(function(data, status) {
+																$scope.templatelistforentity=data;
+											                	});
+														}	
+														});
+														
+														});
+											
+											$scope.$watch('notimsgsend.templatename', function(newVal, oldVal){
+												angular.forEach($scope.templatelistforentity, function(value, key) {
+													if(value.templatename==newVal){
+														$scope.notimsgsend.templatetext=value.templatetext;
+														$scope.notimsgsend.templateid=value.templateid;
+														$scope.notificationtemplate=value;
+													}	
+													});
+													
+													});
 											
 										   $scope.addnotificationSendingSetup =function(){
 											  $scope.eventoperation='Looking for Existing';
-											  $scope.operationtype='';
+											  $scope.operationtype='+';
 											
 										  };
 										  
 										  $scope.updatenotificationSendingSetup =function(){
 											  $scope.eventoperation='Looking for Existing';
-											  $scope.operationtype='';
+											  $scope.operationtype='*';
+										  };
+										  
+										  $scope.deletenotificationSendingSetup=function(notisendsetup){
+											  $scope.eventoperation='Are you sure want to delete this ';
+											  $scope.operationtype='-';
 										  };
 										  $scope.searchNotificationSendingSetup =function(){
 											  $scope.eventoperation='Looking for Existing';
 											  $scope.operationtype='';
 										  };
-							$scope.setRowForNotificationSendingSetup =function(notisendsetup){
+										
+										  
+										  $scope.setRowForNotificationSendingSetup =function(notisendsetup){
 											 
+										  };
+										  
+											/*Set Notification Template Setup details operation**/
+										  $scope.setupTemplateForNotificationSending=function(){
+											   UserHelper.populateNotificationSetupDetailsForOperation($scope);
+													var operation=$scope.operationtype;
+														if ('+'==operation) {
+															NotificationService.saveNotificationTemplateSetup($scope.request)
+															.success(function(data, status) {
+																$scope.notificationtemplatelist=data;
+															});
+															
+														}
+														else if('*'===operation){
+															NotificationService.saveNotificationTemplateSetup($scope.request)
+															.success(function(data, status) {
+																$scope.notificationtemplatelist=data;
+															});
+														}
+														else if('-'==operation){
+															$scope.eventid=$scope.eventd.eventid;
+														
+														}else{
+															
+														}
+											  
 										  };
 	}]);
 }());

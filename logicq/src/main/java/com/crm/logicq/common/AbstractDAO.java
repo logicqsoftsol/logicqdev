@@ -155,7 +155,7 @@ public class AbstractDAO<T> {
 		return criteria.list();
 	}
 	
-	public List<?> execcuteQuery(String queryString) {
+	public List<T> execcuteQuery(String queryString) {
 		Query query = getCurrentSession().createQuery(queryString);
 		return query.list();
 	}

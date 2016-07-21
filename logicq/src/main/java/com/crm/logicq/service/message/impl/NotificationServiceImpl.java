@@ -68,4 +68,17 @@ public class NotificationServiceImpl implements INotificationService {
 		return notificationTemplateSetupDAO.getNotificationSetupDetails();
 	}
 
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public List<NotificationSetupDetails> getNotificationSetupDetailsForEntity(String entitytype) throws Exception {
+		
+		return null;
+	}
+
+	@Override
+	public List<NotificationTemplate> getNotificationTemplatesForEntity(String entitytype) throws Exception {
+		return notificationTemplateDAO.getNotificationTemplatesForEntity(entitytype);
+	}
+
 }

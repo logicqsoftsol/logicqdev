@@ -194,6 +194,7 @@
 			return $scope.request.notificationtemplate={
 					templateid:$scope.notificationtemplate.templateid,
 					templatetext:$scope.notificationtemplate.templatetext,
+					templatename:$scope.notificationtemplate.templatename,
 				eventdetails : {
 					eventid:$scope.notificationtemplate.eventid,
 					eventname :$scope.notificationtemplate.eventname,
@@ -205,11 +206,37 @@
 	
 			setRowForNotificationTemplate: function ($scope,data) {
 				$scope.notificationtemplate.templateid=data.templateid;
+				$scope.notificationtemplate.templatename=data.templatename;
 				$scope.notificationtemplate.templatetext=data.templatetext;
 				$scope.notificationtemplate.eventid=data.eventdetails.eventid;
 				$scope.notificationtemplate.eventname=data.eventdetails.eventname;
 				$scope.notificationtemplate.applicablefor=data.eventdetails.applicablefor;
-			},		
+			},	
+			
+			
+			populateNotificationSetupDetailsForOperation: function ($scope) {
+				return $scope.request.notimsgsend={
+						setupid:$scope.notimsgsend.setupid,
+						msgsendfromdate:$scope.notimsgsend.msgsendfromdate,
+						msgsendtodate:$scope.notimsgsend.msgsendtodate,
+						msgsendingtime:$scope.notimsgsend.msgsendingtime,
+					notificationtemplate : {
+						templateid:$scope.notimsgsend.templateid,
+					}
+				};
+				},
+				
+				setRowForNotificationTemplate: function ($scope,data) {
+					$scope.notimsgsend.setupid=data.setupid;
+					$scope.notimsgsend.msgsendfromdate=data.msgsendfromdate;
+					$scope.notimsgsend.msgsendtodate=data.msgsendtodate;
+					$scope.notimsgsend.msgsendingtime=data.msgsendingtime;
+					$scope.notimsgsend.msgapplicablefor =data.msgapplicablefor;
+					$scope.notimsgsend.templatename =data.templatename;
+					$scope.notimsgsend.templatetext =data.templatetext;
+				},	
+					
+			
 			
 		}
 		

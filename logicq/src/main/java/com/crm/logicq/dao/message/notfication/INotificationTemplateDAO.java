@@ -12,5 +12,7 @@ public interface INotificationTemplateDAO {
 	public void deleteNotificationTemplate(NotificationTemplate notificationtemplate)throws Exception;
 	
 	public List<NotificationTemplate> getNotificationTemplates()throws Exception;
+	
+	public List<NotificationTemplate> getNotificationTemplatesForEntity(String entitytype) throws Exception;
 
 }

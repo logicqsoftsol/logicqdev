@@ -20,9 +20,9 @@
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteNotificationTemplateURL;
 				return  $http.post(url,request.eventd)
 			},
-			saveNotificationTemplateSetup :function (request){
+			saveNotificationTemplateSetup: function (request){
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveNotificationTemplateSetupURL;
-				return  $http.post(url,request.calendar)
+				return  $http.post(url,request.notimsgsend)
 			},
 			getNotificationSetupDetails: function ($scope) {
 				return  $http({
@@ -36,6 +36,15 @@
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteNotificationTemplateSetupURL;
 				return  $http.post(url,request.calendar)
 			},
+			getNotificationDetailsForEntity: function ($scope) {
+				return  $http({
+					method: 'GET',
+					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getNotificationDetailsForEntityURL+'/'+$scope.entitytype,
+					dataType :'json',
+					data : ''
+				})
+			},
+			
 		}
 }]);
 

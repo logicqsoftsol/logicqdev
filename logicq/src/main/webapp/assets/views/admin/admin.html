@@ -282,6 +282,7 @@
 							<table class="table table-bordered table-fixed">
 							<tr>
 								<th>Template Id</th>
+								<th>Template Name</th>
 								<th>Event Name</th>
 								<th>Event Type</th>
 								<th>Event Applicable To</th>
@@ -290,6 +291,7 @@
 							<tr ng-repeat="notificationtemplate in notificationtemplatelist"
 								ng-click="setRowForNotificationTemplate(notificationtemplate)" >
 								<td>{{notificationtemplate.templateid}}</td>
+								<td>{{notificationtemplate.templatename}}</td>
 								<td>{{notificationtemplate.eventdetails.eventname}}</td>
 								<td>{{notificationtemplate.eventdetails.eventtype}}</td>
 								<td>{{notificationtemplate.eventdetails.applicablefor}}</td>
@@ -325,7 +327,7 @@
 							</tr>
 							<tr ng-repeat="notisendsetup in notificationsendingsetupdetails"
 								ng-click="setRowForNotificationSendingSetup(notisendsetup)" >
-								<td>{{notisendsetup.templateid}}</td>
+								<td>{{notisendsetup.notificationtemplate.templatename}}</td>
 								<td>{{notisendsetup.msgsendfromdate}}</td>
 								<td>{{notisendsetup.msgsendtodate}}</td>
 								<td>{{notisendsetup.msgsendingtime}}</td>
@@ -1215,6 +1217,13 @@
 												placeholder="Template Id" readonly>
 									</div>
 									
+									<div class="form-group">
+										<label  class="control-label" for="notificationtemplate.templatename">Template Name</label>
+											<input type="text" name="notificationtemplate.templatename" id="notificationtemplate.templatename"
+												class="form-control" ng-model="notificationtemplate.templatename"
+												placeholder="Template Name">
+									</div>
+									
 										<div class="form-group">
 										<label  class="control-label" for="notificationtemplate.eventname">Event Name</label> 
 										<input type="text" class="form-control" id="notificationtemplate.eventname"  ng-model="notificationtemplate.eventname" class="input-search" list="eventfortemplatelist" >
@@ -1265,17 +1274,31 @@
 							<h4 class="modal-title">{{eventoperation}} Message Sending Details</h4>
 						</div>
 						<div class="modal-body">
-						<div class="col-md-7">
-							<div class="form-group">
-										<label  class="control-label" for="notimsgsend.templateid">Template Id</label>
-											<input type="text" name="notimsgsend.templateid" id="notimsgsend.templateid"
-												class="form-control" ng-model="notimsgsend.templateid"
-												placeholder="Template Id" list="templaetdetailslist">
-							                    <datalist id="templaetdetailslist">
-													<option>SMS-DURG-101</option>
-													<option>ALL-EXAM-102</option>
-													<option>TEACHER-TRANNING-103</option>
+						<div class="col-md-8">
+						<div class="form-group">
+										<label  class="control-label" for="notimsgsend.msgapplicablefor">Template Applicable For</label>
+											<input type="text" name="notimsgsend.msgapplicablefor" id="notimsgsend.msgapplicablefor"
+												class="form-control" ng-model="notimsgsend.msgapplicablefor"
+												placeholder="Notification Applicable For" list="entitylist">
+							                    <datalist id="entitylist"></datalist>
+										</div>
+						
+									<div class="form-group">
+										<label  class="control-label" for="notimsgsend.templatename">Template Name</label>
+											<input type="text" name="notimsgsend.templatename" id="notimsgsend.templatename"
+												class="form-control" ng-model="notimsgsend.templatename"
+												placeholder="Template Name" list="templatelistforentity">
+							                    <datalist id="templatelistforentity">
+												<option ng-repeat="templateeach in templatelistforentity"   value="{{templateeach.templatename}}">
+												</option>
 												</datalist>
+										</div>
+										
+										<div class="form-group">
+										<label  class="control-label" for="notimsgsend.templatetext">Template Text</label>
+											<textarea name="notimsgsend.templatetext" id="notimsgsend.templatetext"
+												class="form-control" ng-model="notimsgsend.templatetext"
+												placeholder="Message Template Text" readonly></textarea>
 										</div>
 										
 										<div class="form-group">
@@ -1299,7 +1322,7 @@
 										</div>
 				</div>
 				<div class="modal-footer">
-							<button type="submit" id="confirmcalendar" class="btn btn-default" ng-click="setupTemplateForNotification()"
+							<button type="submit" id="confirmcalendar" class="btn btn-default" ng-click="setupTemplateForNotificationSending()"
 								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>confirm</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>

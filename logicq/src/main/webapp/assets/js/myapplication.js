@@ -52,6 +52,7 @@
 	   'saveNotificationTemplateSetupURL':'/admin/notification/saveNotificationTemplateSetup',
 	   'deleteNotificationTemplateSetupURL':'/admin/notification/deleteNotificationTemplateSetup',
 	   'getNotificationSetupDetailsURL':'/admin/notification/getNotificationSetupDetails',
+	   'getNotificationDetailsForEntityURL':'/admin/notification/getNotificationDetailsForEntity',
 	   
 	   
 

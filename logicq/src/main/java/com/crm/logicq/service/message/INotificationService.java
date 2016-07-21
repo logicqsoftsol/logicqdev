@@ -13,10 +13,14 @@ public interface INotificationService {
 	
 	public List<NotificationTemplate> getNotificationTemplates()throws Exception;
 	
+	public List<NotificationTemplate> getNotificationTemplatesForEntity(String entitytype) throws Exception;
+	
 	public void saveNotificationTemplateSetup(NotificationSetupDetails notificationsetupdetails) throws Exception;
 	
 	public void deleteNotificationTemplateSetup(NotificationSetupDetails notificationsetupdetails)throws Exception;
 	
 	public List<NotificationSetupDetails> getNotificationSetupDetails()throws Exception;
+	
+	public List<NotificationSetupDetails> getNotificationSetupDetailsForEntity(String entitytype)throws Exception;
 
 }
