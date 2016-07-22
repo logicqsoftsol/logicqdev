@@ -25,6 +25,9 @@ public class NotificationTemplate {
 	@JoinColumn(name="EVENT_ID")
 	private EventDetails eventdetails;
 	
+	@Column(name = "TEMPLATE_NAME")
+	private String templatename;
+	
 	@Column(name = "TEMPLATE_TEXT")
 	private String templatetext;
 
@@ -53,11 +56,20 @@ public class NotificationTemplate {
 	}
 
 	
+	public String getTemplatename() {
+		return templatename;
+	}
+
+	public void setTemplatename(String templatename) {
+		this.templatename = templatename;
+	}
+
 	@Override
 	public String toString() {
-		return "NotificationTemplate [templateid=" + templateid + ", eventdetails=" + eventdetails + ", templatetext="
-				+ templatetext + "]";
+		return "NotificationTemplate [templateid=" + templateid + ", eventdetails=" + eventdetails + ", templatename="
+				+ templatename + ", templatetext=" + templatetext + "]";
 	}
+
 	
 	
 
