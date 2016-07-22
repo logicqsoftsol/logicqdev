@@ -44,6 +44,7 @@ public class QuartzConfiguration {
 		obj.setTargetBeanName("ScheduleService");
 		obj.setTargetMethod("performTask");
 		return obj;
+		
 	}
 
 	@Bean
@@ -91,8 +92,9 @@ public class QuartzConfiguration {
 		stFactory.setStartDelay(3000);
 		stFactory.setName("mytriggerSpecialTime");
 		stFactory.setGroup("mygroupSpecialTime");
-		//stFactory.setCronExpression("0 13 12 ? * MON-SUN *");
-		stFactory.setCronExpression("0 " + startTimeMin + " " + startTimeHr + " ? * MON-SUN *");
+		//stFactory.setCronExpression("0 33 22 ? * MON-SUN *");
+		stFactory.setCronExpression("0 0/1 * * * ?");
+		//stFactory.setCronExpression("0 " + startTimeMin + " " + startTimeHr + " ? * MON-SUN *");
 		return stFactory;
 	}
 

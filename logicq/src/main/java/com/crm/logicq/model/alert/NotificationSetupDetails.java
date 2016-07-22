@@ -36,7 +36,7 @@ public class NotificationSetupDetails {
 	private  Date  msgsendtodate;
 	
 	@Column(name = "MSG_SENDING_TIME")
-	private String msgsendingtime;
+	private int msgsendingtime;
 
 	public Long getSetupid() {
 		return setupid;
@@ -70,11 +70,11 @@ public class NotificationSetupDetails {
 		this.msgsendtodate = msgsendtodate;
 	}
 
-	public String getMsgsendingtime() {
+	public int getMsgsendingtime() {
 		return msgsendingtime;
 	}
 
-	public void setMsgsendingtime(String msgsendingtime) {
+	public void setMsgsendingtime(int msgsendingtime) {
 		this.msgsendingtime = msgsendingtime;
 	}
 
