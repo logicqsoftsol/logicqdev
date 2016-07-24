@@ -82,7 +82,7 @@ public class UserServiceImpl implements IUserService{
 			PhoneCommunication communications = user.getCommunication();
 			
 			if (null != communications && communications.isActive()) {
-				SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, communications, carddetail);
+				SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user.getFirstName(), communications, carddetail, null);
 				allSMSDetails.add(smsdetails);
 			}
 		}
@@ -124,7 +124,7 @@ public class UserServiceImpl implements IUserService{
 			PhoneCommunication communications = user.getCommunication();
 		
 				if (null != communications && communications.isActive()) {
-					SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, communications, carddetail);
+					SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user.getFirstName(), communications, carddetail, null);
 					//AlertDetailsInputVO alertDetailsVO = prepareAlertMessage(smsdetails);
 					//String alertMessage = alertService.buildAlert(alertDetailsVO);
 					//smsdetails.setText(alertMessage);
