@@ -47,7 +47,7 @@
 				</a>
 					<ul class="treeview-menu">
 					<li ng-class="{active:display == 6}"><a href=""
-							id="dashborad" ng-click="display = 6;displayDashBoard()" ng-init="displayDashBoard()"><i class="fa fa-dashboard"></i>Your Dashboard</a></li>
+							id="dashborad" ng-click="display = 6;displayDashBoard();getAllCalendarDetails()" ng-init="displayDashBoard();getAllCalendarDetails()"><i class="fa fa-dashboard"></i>Your Dashboard</a></li>
 						<li ng-class="{active:display == 1}"><a href=""
 							id="empregclick" ng-click="display = 1;searchAllEmployeeList()"><i class="fa fa-user"></i>Employee
 								Registration</a></li>
@@ -114,17 +114,14 @@
                                 <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i>Up Coming Events</h3>
                             </div>
                             <div class="panel-body">
-                                <div class="list-group">
-                                    <a href="#" class="list-group-item">
-                                           Durga Puja
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                         Tri-sem exam
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                         Class Exam for Standard 1
-                                    </a>
-                                </div>
+                              
+						<table class="table table-bordered table-fixed">
+							<tr ng-repeat="upcomingevent in eventdetails">
+									<tr ng-repeat="upcomingcalendar in calendardetailslist">
+								<td>{{upcomingcalendar.eventdetails.eventname}}</td>
+								<td><a id="messagesetup"  data-target="#notificationtemplate" data-toggle="modal"  ng-click="setupMessageForEvent(upcomingevent)"><i class="fa fa-cogs" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
                                 <div class="text-right">
                                     <a href="#">View All Events <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
@@ -167,34 +164,30 @@
 						<h4> Employee Registration Details</h4>
 						</div>
 						<div class="panel-body">
-						<div class="col-md-10">
 						<div class="table-responsive">
 							<ul class="pull-right">
 								<button id="adddetails" data-toggle="modal" data-toggle="modal"
 									data-target="#employeeregistration"  ng-click="newEmployee()" 
 									class="btn btn-default"><i class="fa fa-user-plus" aria-hidden="true"></i>New</button>
-								<button id="updatedetails" data-toggle="modal" data-target="#employeeregistration" ng-click="editForEmployee()"
-									class="btn btn-default"><i class="fa fa-pencil-square" aria-hidden="true"></i>Edit</button>
 								<button id="deletedetails" data-toggle="modal" data-target="#usersearch"
 									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
 							</ul>
 							<table class="table table-bordered table-fixed">
-							<tr>
-								<th> Id</th>
-								<th>Name</th>
-								<th> Date</th>
-								<th> Type</th>
+							<tr class ="success">
+								<th class="pull-center">ID</th>
+								<th class="pull-center">NAME</th>
+								<th class="pull-center">DATE</th>
+								<th class="pull-center">TYPE</th>
 							</tr>
-							<tr ng-repeat="emp in employelist"
-								ng-click="setClickedRowForEmp(emp)" >
+							<tr ng-repeat="emp in employelist">
 								<td>{{emp.userid}}</td>
 								<td>{{emp.name}}</td>
 								<td>{{emp.date}}</td>
 								<td>{{emp.type}}</td>
-	                            <td><a id="deleteempreg"  data-toggle="modal"  data-target="#deleteemployee"   ng-click="pouplateEmployeeForDelete(emp)"><i class="fa fa-user-times" aria-hidden="true"></i></a></td>
+								<td><a id="updateempreg"  data-toggle="modal"  data-target="#employeeregistration"   ng-click="editForEmployee(emp)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+	                            <td><a id="deleteempreg"  data-toggle="modal"  data-target="#deleteemployee"   ng-click="pouplateEmployeeForDelete(emp)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
-						</div>
 						</div>
 						</div>
 					</div>
@@ -212,35 +205,33 @@
 						</div>
 						
 					<div class="panel-body">
-					<div class="col-md-10">
+					
 						<div class="table-responsive">
 							<ul class="pull-right">
 								<button id="studentreg" data-toggle="modal" 
 									data-target="#studentregistration" 
 									class="btn btn-default fa fa-user-plus" ng-click="newStudent()">New</button>
-								<button id="updatedetails" data-toggle="modal" data-target="#studentregistration"
-									class="btn btn-default fa fa-pencil-square" ng-click="editForStudent()">Edit</button>
 								<button id="deletedetails" data-toggle="modal" data-target="#usersearch"
 									class="btn btn-default fa fa-search">Search</button>
 							</ul>
 							<table class="table table-bordered table-fixed">
-							<tr>
-								<th> Id</th>
-								<th>Name</th>
-								<th> Date</th>
-								<th> Type</th>
+							<tr class ="success">
+								<th class="pull-center">ID</th>
+								<th class="pull-center">NAME</th>
+								<th class="pull-center">DATE</th>
+								<th class="pull-center">TYPE</th>
 							</tr>
-							<tr ng-repeat="student in studentdlist"
-								ng-click="setClickedRowForStudent(student)" >
+							<tr ng-repeat="student in studentdlist">
 								<td>{{student.userid}}</td>
 								<td>{{student.name}}</td>
 								<td>{{student.date}}</td>
 								<td>{{student.type}}</td>
+								<td><a id="updatestudentreg"  data-toggle="modal"  data-target="#studentregistration"   ng-click="editForStudent(student)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 	                            <td><a id="deletestudentreg" data-toggle="modal"  data-target="#deletestudent"   ng-click="pouplateStudentForDelete(student)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 						</div>
-						</div>
+					
 						</div>
 					</div>
 				</div>
@@ -252,20 +243,16 @@
 						<h3>Configur Notifications</h3>
 					</div>
 				<div class="panel-body">
-					<div class="col-md-10">
-						
-							
-						</ul>
-						</div>
-					<div class="col-md-6">
+					
+					
 						<ul class="nav nav-tabs">
 							<li><a data-toggle="tab" id="template" class="pull-center"  ng-click="getAllNotificationTemplateList()"
 							href="/admin#notificationtemplatedetails">Notifications Template Setup</a></li>
 							<li class="active"><a data-toggle="tab" id="msgsendingsetup" class="pull-center"  ng-click="getNotificationSendingConfigurationDetails()"
 								href="/admin#notificationsendingsetup">Notifications Sending Setup </a></li>
 						</ul>
-					</div>
-				  <div class="col-md-10">
+					
+				 
 					<div class="tab-content">
 					<div id="notificationtemplatedetails" class="tab-pane fade">
 					<br></br>
@@ -274,29 +261,25 @@
 						<button id="studentreg" data-toggle="modal" 
 									data-target="#notificationtemplate" 
 									class="btn btn-default fa fa-plus-circle" ng-click="addNotificationTemplate()">Add</button>
-						<button id="updatedetails" data-toggle="modal" data-target="#notificationtemplate"
-									class="btn btn-default fa fa-pencil-square" ng-click="editNotificationTemplate()">Edit</button>
 						<button id="deletedetails" data-toggle="modal" data-target="#notificationtemplate" ng-click="searchNotificationTemplate()"
 									class="btn btn-default fa fa-search">Search</button>
                          </ul>									
 							<table class="table table-bordered table-fixed">
-							<tr>
-								<th>Template Id</th>
-								<th>Template Name</th>
-								<th>Event Name</th>
-								<th>Event Type</th>
-								<th>Event Applicable To</th>
-								<th>Template Text</th>
+							<tr class ="success">
+								<th class="pull-center">TEMPLATE NAME</th>
+								<th class="pull-center">EVENT NAME</th>
+								<th class="pull-center">EVENT TYPE</th>
+								<th class="pull-center">EVENT FOR</th>
+								<th class="pull-center">TEMPLATE TEXT</th>
 							</tr>
-							<tr ng-repeat="notificationtemplate in notificationtemplatelist"
-								ng-click="setRowForNotificationTemplate(notificationtemplate)" >
-								<td>{{notificationtemplate.templateid}}</td>
+							<tr ng-repeat="notificationtemplate in notificationtemplatelist">
 								<td>{{notificationtemplate.templatename}}</td>
 								<td>{{notificationtemplate.eventdetails.eventname}}</td>
 								<td>{{notificationtemplate.eventdetails.eventtype}}</td>
 								<td>{{notificationtemplate.eventdetails.applicablefor}}</td>
 								<td>{{notificationtemplate.templatetext}}</td>
-								<td><a id="deleteevent"  ng-click="deleteTemplateForNotification(notificationtemplate)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+								<td><a id="updateevent" data-toggle="modal" data-target="#notificationtemplate" ng-click="editNotificationTemplate(notificationtemplate)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+								<td><a id="deleteevent"  data-toggle="modal" data-target="#notificationtemplate"  ng-click="deleteTemplateForNotification(notificationtemplate)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
@@ -307,35 +290,30 @@
 					<div id="notificationsendingsetup" class="tab-pane fade in active">
 					<br></br>
 							
-					<div class="col-md-8">
 					<div class="table-responsive">
 					<ul class="pull-right">
 						<button id="notimsgsetupadd" data-toggle="modal" 
 									data-target="#notificationsendingdetails" 
 									class="btn btn-default fa fa-plus-circle" ng-click="addnotificationSendingSetup()">Add</button>
-						<button id="notimsgsetupupdate" data-toggle="modal" data-target="#notificationsendingdetails"
-									class="btn btn-default fa fa-pencil-square" ng-click="updatenotificationSendingSetup()">Edit</button>
 						<button id="notimsgsetupsearch" data-toggle="modal" data-target="#notificationsendingdetails" ng-click="searchNotificationSendingSetup()"
 									class="btn btn-default fa fa-search">Search</button>
                          </ul>			
 							<table class="table table-bordered table-fixed">
-							<tr>
-								<th>Template Id</th>
-								<th>Sending From Date</t>
-								<th>Sending To Date</t>
-								<th>Sending Time</t>
+							<tr class ="success">
+								<th>TEMPLATE NAME</th>
+								<th>SENDING FROM DATE</t>
+								<th>SENDING TO DATE</t>
+								<th>SENDING TIME</t>
 							</tr>
-							<tr ng-repeat="notisendsetup in notificationsendingsetupdetails"
-								ng-click="setRowForNotificationSendingSetup(notisendsetup)" >
+							<tr ng-repeat="notisendsetup in notificationsendingsetupdetails">
 								<td>{{notisendsetup.notificationtemplate.templatename}}</td>
 								<td>{{notisendsetup.msgsendfromdate}}</td>
 								<td>{{notisendsetup.msgsendtodate}}</td>
 								<td>{{notisendsetup.msgsendingtime}}</td>
+								<td><a id="notimsgsetupupdate" data-toggle="modal" data-target="#notificationsendingdetails" ng-click="updatenotificationSendingSetup(notisendsetup)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 								<td><a id="deletenotitempsetup"  ng-click="deletenotificationSendingSetup(notisendsetup)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
-					</div>
-					</div>
 					</div><!--endof notification setingsetup details-->
 					
 					
@@ -350,48 +328,38 @@
 						<h3>Event Calendar Setup</h3>
 					</div>
 					<div class="panel-body">
-					<div class="col-md-10">
-						<ul class="pull-right">
-						
-						</ul>
-						</div>
-					<div class="col-md-6">
 						<ul class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab" id="attentable" class="pull-center"  ng-click="getAllEventDetails()"
 							href="/admin#eventdetails">Event Details</a></li>
 							<li><a data-toggle="tab" id="calendardetails" class="pull-center"  ng-click="getAllCalendarDetails()"
 								href="/admin#calanderdetails">Event Calendar Details</a></li>
 						</ul>
-					</div>
-					<div class="col-md-12">
 					<div class="tab-content">
 						<div id="calanderdetails" class="tab-pane fade">
 						<div class="table-responsive">
 						<ul class="pull-right">
 								<button id="addcalevtdetails"  data-target="#calendarmodal" data-toggle="modal"ng-click="addEventCalendarDetails()" 
 									class="btn btn-default fa fa-plus-circle">Add</button>
-								<button id="editcalevtdetails"  data-target="#calendarmodal" data-toggle="modal"ng-click="editEventCalendarDetails()" 
-									class="btn btn-default fa fa-pencil-square">Edit</button>
 								<button id="searchcalevtdetails"  data-target="#calendarmodal" data-toggle="modal" ng-click="searchEventCalendarDetails()" 
 									class="btn btn-default fa fa-search">Search</button>	
 									
 								</ul>
 							<table class="table table-bordered table-fixed">
-							<tr>
-								<th>Event Name</th>
-								<th>Event Type</th>
-								<th>Event Applicable To</t>
-								<th>Event Start Date</t>
-								<th>Event End Date</t>
+							<tr class ="success">
+								<th>EVENT Name</th>
+								<th>EVENT TYPE</th>
+								<th>EVENT For</t>
+								<th>EVENT START DATE</t>
+								<th>EVENT END DATE</t>
 							</tr>
-							<tr ng-repeat="calendar in calendardetailslist"
-								ng-click="setClickedRowForEventCalendarDetails(calendar)" >
+							<tr ng-repeat="calendar in calendardetailslist">
 								<td>{{calendar.eventdetails.eventname}}</td>
 								<td>{{calendar.eventdetails.eventtype}}</td>
 								<td>{{calendar.eventdetails.applicablefor}}</td>
 								<td>{{calendar.eventstartdate}}</td>
 								<td>{{calendar.eventenddate}}</td>
-								<td><a id="deletecalnderdetails"  ng-click="deleteEventCalendarDetails(calendar)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+								<td><a id="updatecalevtdetails"  data-target="#calendarmodal" data-toggle="modal" ng-click="editEventCalendarDetails(calendar)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+								<td><a id="deletecalnderdetails"  data-target="#calendarmodal" data-toggle="modal" ng-click="deleteEventCalendarDetails(calendar)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
@@ -402,29 +370,26 @@
 							<ul class="pull-right">
 								<button id="addeventdetails"  data-target="#eventdetailmodal" data-toggle="modal"ng-click="addEventDetails()" 
 									class="btn btn-default fa fa-plus-circle">Add</button>
-								<button id="editEventDetails"  data-target="#eventdetailmodal" data-toggle="modal"ng-click="editEventDetails()" 
-									class="btn btn-default fa fa-pencil-square">Edit</button>
 								<button id="searchevent"  data-target="#eventdetailmodal" data-toggle="modal" ng-click="searchEventDetails()" 
 									class="btn btn-default fa fa-search">Search</button>
 								</ul>
 							
 							<table class="table table-bordered table-fixed">
-							<tr>
-								<th>Event Name</th>
-								<th>Event Type</t>
-								<th>Applicable For</t>
+							<tr class ="success">
+								<th>EVENT NAME</th>
+								<th>EVENT TYPE</t>
+								<th>APPLICABLE FOR</t>
 							</tr>
-							<tr ng-repeat="eventd in eventdetails"
-								ng-click="setClickedEventDetails(eventd)" >
+							<tr ng-repeat="eventd in eventdetails">
 								<td>{{eventd.eventname}}</td>
 								<td>{{eventd.eventtype}}</td>
 								<td>{{eventd.applicablefor}}</td>
+								<td><a id="deleteevent"   data-target="#eventdetailmodal" data-toggle="modal"ng-click="editEventDetails(eventd)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 								<td><a id="deleteevent"  data-target="#eventdetailmodal" data-toggle="modal"  ng-click="deleteEventDetails(eventd)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
 					
-					</div>
 					</div>
 					</div>
 					</div>
@@ -460,17 +425,16 @@
 							</div>
 						<div id="attendancetableview" class="tab-pane fade in active">
 							<div class="table-responsive">
-							<table class="table table-bordered table-fixed sel-table">
-							<tr>
-								<th>Id</th>
-								<th>Name</t>
-								<th>Mobile No</th>
-								<th>In Time</th>
-								<th>Out Time</th>
-								<th>Date</th>
+							<table class="table table-bordered table-fixed">
+							<tr class ="success">
+								<th>ID</th>
+								<th>NAME</t>
+								<th>MOBILE NO</th>
+								<th>IN TIME</th>
+								<th>OUT TIME</th>
+								<th>DATE</th>
 							</tr>
-							<tr ng-repeat="attendance in attendancedetails"
-								ng-click="setClickedRow(attendance)" >
+							<tr ng-repeat="attendance in attendancedetails">
 								<td>{{attendance.id}}</td>
 								<td>{{attendance.name}}</td>
 								<td>{{attendance.mobileno}}</td>
@@ -571,19 +535,19 @@
 						<div class="panel-body">
 							<div class="tab-content col-md-10">
 								<div id="empbasicdetails" class="tab-pane fade in active">
-										
+										<form name="empbasicdetailsform"  novalidate>
 										<div class="col-xs-6 col-sm-6 col-md-6">
-										<div class="form-group">
+										<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="emp.idetificationid">Card Id</label> 
 													<input type="text" name="emp.idetificationid" id="emp.idetificationid"
 														class="form-control" ng-model="emp.idetificationid"
-														placeholder="Card ID">
+														 placeholder="Card ID" pattern="^[0-9]{1,}$" required ng-minlength='5' ng-maxlength='10'>
 												</div>
-												<div class="form-group">
+												<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="emp.title">Title</label> 
 													<input type="text" name="emp.title" id="emp.title"
 														list="datalisttitle" class="form-control" ng-model="emp.title"
-														placeholder="Title">
+														placeholder="Title" required>
 													<datalist id="datalisttitle">
 														<option>Mr</option>
 														<option>Mrs</option>
@@ -600,33 +564,29 @@
 														placeholder="User ID" readonly>
 												</div>
 												
-												<div class="form-group">
+												<div class="form-group" show-errors='{showSuccess: true}'>
 												<label  class="control-label" for="emp.firstname">First Name</label>
 													<input type="text" name="emp.firstname" id="emp.firstname"
-														class="form-control" ng-model="emp.firstname"
-														placeholder="First Name">
+														class="form-control" ng-model="emp.firstname" pattern="^[a-zA-Z]{1,}$"
+														placeholder="First Name" required>
 												</div>
 
 												
 											</div>
 
 											<div class="col-xs-6 col-sm-6 col-md-6">
-												<div class="form-group">
+												<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="emp.middlename">Middle Name</label> 
 													<input type="text" name="emp.middlename" id="emp.middlename"
-														class="form-control" ng-model="emp.middlename"
-														placeholder="Middle Name">
+														class="form-control" ng-model="emp.middlename" pattern="^[a-zA-Z]{1,}$"
+														placeholder="Middle Name" pattern="^[a-zA-Z]{1,}$">
 												</div>
 													
-												<div class="form-group">
+												<div class="form-group" show-errors='{showSuccess: true}'>
 													<label class="col-xs-2 control-label">Gender</label>
 													<div class="col-xs-6">
-														<div class="checkbox" ng-model="emp.gender">
-                                                          <label><input type="checkbox" id="emp.male" name="emp.male">Male</label>
-                                                          </div>
-														  <div class="checkbox">
-                                                          <label><input type="checkbox" id="emp.female" name="emp.female">Female</label>
-                                                          </div>
+															<label><input type="radio" id="emp.male" name="emp.male" ng-model="emp.gender" value="Male" /> Male &#160; </label>	
+															<label><input type="radio" name="emp.female"  ng-model="emp.gender" value="Female" /> Female </label>
 													</div>
 												</div>
 											
@@ -634,99 +594,104 @@
 										
 										
 											<div class="col-xs-6 col-sm-6 col-md-6">
-												<div class="form-group">
+												<div class="form-group" show-errors='{showSuccess: true}'>
 												<label  class="control-label" for="emp.lastname">Last Name</label>
 													<input type="text" name="emp.lastname" id="emp.lastname"
 														class="form-control" ng-model="emp.lastname"
-														placeholder="Last Name">
+														placeholder="Last Name" required pattern="^[a-zA-Z]{1,}$">
 												</div>
 										
 
 												
 											</div>
 											<div class="col-xs-6 col-sm-6 col-md-6">
+												<div class="form-group" show-errors='{showSuccess: true}'>
 												<label class="control-label">Birth date</label>
-													<div class="form-group">
 														<input type="Date" id="birthdate" ng-model="emp.dateofbirth" class="form-control"
-															name="birthdate" />
+															name="birthdate" required/>
 													</div>
 												
 											</div>
-											
+											</form>
 										
 								</div>
 
 								<div id="empcontactdetails" class="tab-pane fade">
+								<form name="empcontactdetailsform"  novalidate>
 									<div class="row">
 									    <div class="col-xs-6 col-sm-6 col-md-6"> 
-									        <div class="form-group">
+									        <div class="form-group" show-errors='{showSuccess: true}'>
 										          <label  class="control-label" for="emp.address">Address</label> 
 										            <input type="text" name="emp.address" id="emp.address"
 														class="form-control" ng-model="emp.address"
-														 placeholder="Enter your address">
+														 placeholder="Enter your address" required ng-minlength='3' ng-maxlength='150'>
 										     </div>
-										      <div class="form-group">
+										      <div class="form-group" show-errors='{showSuccess: true}'>
 										           <label  class="control-label" for="emp.landmark">Landmark</label> 
 										              <input type="text" name="emp.landmark" id="emp.landmark"
 														class="form-control" ng-model="emp.landmark"
-														placeholder="Your Near by Land Mar">
+														placeholder="Your Near by Land Mar" required>
 										       </div>
 										
-							                        <div class="form-group">
+							                        <div class="form-group" show-errors='{showSuccess: true}'>
 								                     <label  class="control-label" for="emp.city">City</label> 
 									                   <input type="text" class="form-control" id="emp.city" ng-model="emp.city"
-										                        placeholder="Your City" name="emp.city"> 
+										                        placeholder="Your City" name="emp.city" required> 
 								                     </div>
-												       <div class="form-group">
+												       <div class="form-group" show-errors='{showSuccess: true}'>
 								                             <label  class="control-label" for="emp.pincode">Pincode</label> 
-									                        <input type="text" class="form-control" id="emp.pincode" ng-model="emp.pincode"
-										                        placeholder="Enter Pincode" name="emp.pincode"> 
+									                        <input type="text" class="form-control" id="emp.pincode" ng-model="emp.pincode" ng-minlength='6' ng-maxlength='6'
+										                        placeholder="Enter Pincode" name="emp.pincode" required pattern="^[0-9]{1,}$"> 
 								                        </div>
-												          <div class="form-group">
+												          <div class="form-group" show-errors='{showSuccess: true}'>
 								                            <label  class="control-label" for="emp.state">State</label> 
 									                          <input type="text" class="form-control" id="emp.state" ng-model="emp.state"
-										                        placeholder="Enter Your State" name="emp.state" list="statelist"> 
-										                        <datalist id="statelist">
+										                        placeholder="Enter Your State" name="emp.state" list="statelist" required> 
+										                        <datalist id="statelist" >
 														<option>ODISHA</option>
 													</datalist> 
 								                            </div>
-								                              <div class="form-group">
+								                              <div class="form-group" show-errors='{showSuccess: true}'>
 								                            <label  class="control-label" for="emp.country">Country</label> 
 									                          <input type="text" class="form-control" id="emp.country" ng-model="emp.country"
-										                        placeholder="Enter Your Country" name="emp.country" list="coutrylist">
-														<datalist id="coutrylist">
+										                        placeholder="Country Name" name="emp.country" value="INDIA" required list="coutrylist">
+																<datalist id="coutrylist">
 														<option>INDIA</option>
-														<option>US</option>
-													</datalist> 
+													</datalist>
 								                            </div>
 							             </div>
 										 <div class="col-xs-6 col-sm-6 col-md-6">
-									           <div class="form-group">
+									           <div class="form-group" show-errors='{showSuccess: true}'>
 										            <label  class="control-label" for="emp.mobilenumber">Mobile No</label> 
 										                <input type="text" name="emp.mobilenumber" id="emp.mobilenumber"
 														class="form-control" ng-model="emp.mobilenumber"
-														placeholder="Enter 10 digit mobileno">
+														placeholder="Enter 10 digit mobileno" required pattern="^[0-9]{1,}$" ng-minlength='10' ng-maxlength='10'>
 										         </div>
-										          <div class="form-group">
+										          <div class="form-group" show-errors='{showSuccess: true}'>
 										            <label  class="control-label" for="emp.communicationtype">Communication Preference</label> 
 										                <input type="text" name="emp.communicationtype" id="emp.communicationtype"
 														class="form-control" ng-model="emp.communicationtype"
-														placeholder="Prefrence Type" list="communicationprefrencelist">
+														placeholder="Prefrence Type" value="PRIMARY" required list="communicationprefrencelist">
+														<datalist id="communicationprefrencelist">
+														<option>PRIMARY</option>
+														<option>SECONDARY</option>
+													</datalist>
 										         </div>
-										            <div class="form-group">
+										            <div class="form-group" show-errors='{showSuccess: true}'>
 										               <label  class="control-label" for="emp.emailid">Email Id</label> 
 										                 <input type="email" name="emp.emailid" id="emp.emailid"
-														  class="form-control" ng-model="emp.emailid"
-														  placeholder="Enter your emailid">
+														  class="form-control" ng-model="emp.emailid" ng-maxlength='200'
+														  placeholder="Enter your emailid" required patteren="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$">
 										             </div>
 										
-							                             <div class="form-group">
+							                             <div class="form-group" show-errors='{showSuccess: true}'>
 								                              <label  class="control-label" for="emp.emergencycontactnumber">Emergency Contact Number</label> 
 									                           <input type="text" class="form-control" id="emp.emergencycontactnumber" ng-model="emp.emergencycontactnumber"
-										                        placeholder="Enter emergency contact number" name="emp.emergencycontactnumber"> 
+										                        placeholder="Enter emergency contact number" name="emp.emergencycontactnumber" required pattern="^[0-9]{1,}$" ng-minlength='10' ng-maxlength='10'> 
 								                           </div>
                                              </div>
 									 </div>
+									 </form>
 								</div>
 
 								<div id="empqualificationdetails" class="tab-pane fade">
@@ -786,19 +751,21 @@
 
 						<div class="panel-body">
 							<div class="tab-content col-md-10">
+							
 								<div id="studentbasicdetails" class="tab-pane fade in active">
+								<form id="studentbasicdetailsform"  novalidate>
 										<div class="col-xs-6 col-sm-6 col-md-6">
-										<div class="form-group">
+										<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="student.idetificationid">Card Id</label> 
 													<input type="text" name="student.idetificationid" id="student.idetificationid"
 														class="form-control" ng-model="student.idetificationid"
-														placeholder="Card ID">
+														placeholder="Card ID" pattern="^[0-9]{1,}$" required ng-minlength='5' ng-maxlength='10'>
 												</div>
-												<div class="form-group">
+												<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="student.title">Title</label> 
 													<input type="text" name="student.title" id="student.title"
 														list="datalisttitle" class="form-control" ng-model="student.title"
-														placeholder="Title">
+														placeholder="Title" required>
 													<datalist id="datalisttitle">
 														<option>Mr</option>
 														<option>Mrs</option>
@@ -806,142 +773,140 @@
 												</div>
 												
 												</div>
-										
-										
-										
 		                                 		<div class="col-xs-6 col-sm-6 col-md-6">
-											<div class="form-group">
+											<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="student.userid">User Id</label> 
 													<input type="text" name="student.userid" id="student.userid"
 														class="form-control" ng-model="student.userid"
 														placeholder="User ID" readonly>
 												</div>
 												
-												<div class="form-group">
+												<div class="form-group" show-errors='{showSuccess: true}'>
 												<label  class="control-label" for="student.firstname">First Name</label>
 													<input type="text" name="student.firstname" id="student.firstname"
-														class="form-control" ng-model="student.firstname"
-														placeholder="First Name">
+														class="form-control" ng-model="student.firstname" pattern="^[a-zA-Z]{1,}$"
+														placeholder="First Name" required>
 												</div>
 
 												
 											</div>
 
 											<div class="col-xs-6 col-sm-6 col-md-6">
-												<div class="form-group">
+												<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="student.middlename">Middle Name</label> 
 													<input type="text" name="student.middlename" id="student.middlename"
-														class="form-control" ng-model="student.middlename"
+														class="form-control" ng-model="student.middlename" pattern="^[a-zA-Z]{1,}$"
 														placeholder="Middle Name">
 												</div>
 													
-												<div class="form-group">
-													<label class="col-xs-2 control-label">Gender</label>
+												<div class="form-group" show-errors='{showSuccess: true}'>
+                                                     <label class="col-xs-2 control-label">Gender</label>
 													<div class="col-xs-6">
-														<div class="checkbox" ng-model="student.gender">
-                                                          <label><input type="checkbox" id="emp.male" name="emp.male">Male</label>
-                                                          </div>
-														  <div class="checkbox">
-                                                          <label><input type="checkbox" id="emp.female" name="emp.female">Female</label>
-                                                          </div>
+															<label><input type="radio" id="student.male" name="student.male" ng-model="student.gender" value="Male" /> Male </label>	
+															<label><input type="radio" name="student.female"  ng-model="student.gender" value="Female" /> Female </label>
 													</div>
+                                                     
 												</div>
 											
 											</div>
 										
 										
 											<div class="col-xs-6 col-sm-6 col-md-6">
-												<div class="form-group">
+												<div class="form-group" show-errors='{showSuccess: true}'>
 												<label  class="control-label" for="student.lastname">Last Name</label>
 													<input type="text" name="student.lastname" id="student.lastname"
-														class="form-control" ng-model="student.lastname"
+														class="form-control" ng-model="student.lastname" pattern="^[a-zA-Z]{1,}$"
 														placeholder="Last Name">
 												</div>
 										
 
 												
 											</div>
-											<div class="col-xs-6 col-sm-6 col-md-6">
+											<div class="col-xs-6 col-sm-6 col-md-6" >
+												<div class="form-group" show-errors='{showSuccess: true}'>
 												<label class="control-label">Birth date</label>
-													<div class="form-group">
 														<input type="Date" id="birthdate" ng-model="student.dateofbirth" class="form-control"
 															name="birthdate" />
 													</div>
 												
 											</div>								
-										
+										</form>
 										</div>
 
 								<div id="studentcontactdetails" class="tab-pane fade">
 	   							 <div class="row">
+								 <form id="studentcontactform"  novalidate>
 									    <div class="col-xs-6 col-sm-6 col-md-6"> 
-									        <div class="form-group">
+									        <div class="form-group" show-errors='{showSuccess: true}'>
 										          <label  class="control-label" for="student.address">Address</label> 
 										            <input type="text" name="student.address" id="student.address"
 														class="form-control" ng-model="student.address"
 														 placeholder="Enter your address">
 										     </div>
-										      <div class="form-group">
+										      <div class="form-group" show-errors='{showSuccess: true}'>
 										           <label  class="control-label" for="student.landmark">Landmark</label> 
 										              <input type="text" name="student.landmark" id="student.landmark"
 														class="form-control" ng-model="student.landmark"
 														placeholder="Your Near by Land Mark">
 										       </div>
 										
-							                        <div class="form-group">
+							                        <div class="form-group" show-errors='{showSuccess: true}'>
 								                     <label  class="control-label" for="student.city">City</label> 
 									                   <input type="text" class="form-control" id="student.city" ng-model="student.city"
-										                        placeholder="Your City" name="student.city"> 
+										                        placeholder="Your City" name="student.city" pattern="^[a-zA-Z]{1,}$"> 
 								                     </div>
-												       <div class="form-group">
+												       <div class="form-group" show-errors='{showSuccess: true}'>
 								                             <label  class="control-label" for="student.pincode">Pincode</label> 
 									                        <input type="text" class="form-control" id="student.pincode" ng-model="student.pincode"
-										                        placeholder="Enter Pincode" name="student.pincode"> 
+										                        placeholder="Enter Pincode" name="student.pincode" required pattern="^[0-9]{1,}$" ng-minlength='6' ng-maxlength='6'> 
 								                        </div>
-												          <div class="form-group">
+												          <div class="form-group" show-errors='{showSuccess: true}'>
 								                            <label  class="control-label" for="student.state">State</label> 
 									                          <input type="text" class="form-control" id="student.state" ng-model="student.state"
-										                        placeholder="Enter Your State" name="student.state" list="statelist"> 
+										                        placeholder="Enter Your State" name="student.state" list="statelist" required> 
+																 <datalist id="statelist" ></datalist>
 								                            </div>
 								                            
-								                            <div class="form-group">
+								                            <div class="form-group" show-errors='{showSuccess: true}'>
 								                            <label  class="control-label" for="student.country">Country</label> 
 									                          <input type="text" class="form-control" id="student.country" ng-model="student.country"
-										                        placeholder="Enter Your State" name="student.country" list="coutrylist"> 
+										                        placeholder="Enter Your Country" name="student.country" list="coutrylist" required> 
+																 <datalist id="coutrylist" ></datalist>
 								                            </div>   
 							             </div>
 										 <div class="col-xs-6 col-sm-6 col-md-6">
-									           <div class="form-group">
+									           <div class="form-group" show-errors='{showSuccess: true}'>
 										            <label  class="control-label" for="student.mobilenumber">Mobile No</label> 
 										                <input type="text" name="student.mobilenumber" id="student.mobilenumber"
-														class="form-control" ng-model="student.mobilenumber"
+														class="form-control" ng-model="student.mobilenumber" required pattern="^[0-9]{1,}$" ng-minlength='10' ng-maxlength='10'
 														placeholder="Enter 10 digit mobile no">
 										         </div>
-										           <div class="form-group">
+										           <div class="form-group" show-errors='{showSuccess: true}'>
 										            <label  class="control-label" for="student.communicationtype">Communication Preference</label> 
 										                <input type="text" name="student.communicationtype" id="student.communicationtype"
 														class="form-control" ng-model="student.communicationtype"
-														placeholder="Prefrence Type" list="communicationprefrencelist">
+														placeholder="Prefrence Type" list="communicationprefrencelist" required>
 														<datalist id="communicationprefrencelist">
 														<option>PRIMARY</option>
 														<option>SECONDARY</option>
 													</datalist>
 										         </div>
-										            <div class="form-group">
+										            <div class="form-group" show-errors='{showSuccess: true}'>
 										               <label  class="control-label" for="student.emailid">Email Id</label> 
 										                 <input type="text" name="student.emailid" id="student.emailid"
-														  class="form-control" ng-model="student.emailid"
-														  placeholder="your email ">
+														  class="form-control" ng-model="student.emailid" 
+														  placeholder="your email details" required patteren="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$">
 										             </div>
 										
-							                             <div class="form-group">
+							                             <div class="form-group" show-errors='{showSuccess: true}'>
 								                              <label  class="control-label" for="student.emergencycontactnumber">Emergency Contact Number</label> 
 									                           <input type="text" class="form-control" id="student.emergencycontactnumber" ng-model="student.emergencycontactnumber"
-										                        placeholder="Emergency contact number" name="student.emergencycontactnumber"> 
+										                        placeholder="Emergency contact number" name="student.emergencycontactnumber" required pattern="^[0-9]{1,}$" ng-minlength='10' ng-maxlength='10'> 
 								                           </div>
                                              </div>
+											 </form>
 									 </div>
-									<div class=""></div>
+									
 								</div>
 
 								<div id="educationdetails" class="tab-pane fade">
@@ -1097,31 +1062,32 @@
 										<h4 class="modal-title">{{eventoperation}} Event Details</h4>	
 						</div>
 						<div class="modal-body">
-						
-								<div class="col-md-5">
-										<div class="form-group">
+						 <form id="eventdetailsform"  novalidate>
+								<div class="col-md-6">
+										<div class="form-group" show-errors='{showSuccess: true}'>
 										<label  class="control-label" for="eventd.name">Event Name</label> 
 											<input type="text" name="eventd.name" id="eventd.name"
 												class="form-control" ng-model="eventd.name"
-												placeholder="Event Name">
+												placeholder="Event Name" required>
 										</div>
-										<div class="form-group">
+										<div class="form-group" show-errors='{showSuccess: true}'>
 										<label  class="control-label" for="eventd.type">Event Type</label> 
-										<input type="text" class="form-control" id="eventd.type"  ng-model="eventd.type" class="input-search" list="eventtyplist" >
+										<input type="text" class="form-control" name="eventd.type" id="eventd.type"  ng-model="eventd.type" class="input-search" list="eventtyplist" required>
 												<datalist id="eventtyplist">
 												<option ng-repeat="eventtype in eventtyplist"   value="{{ eventtype.name }}">
 												</option>
 												</datalist> 
 										</div>
-										<div class="form-group">
+										<div class="form-group" show-errors='{showSuccess: true}'>
 										<label  class="control-label" for="eventd.entity">Applicable For</label> 
-										<input type="text" class="form-control" id="eventd.entity"  ng-model="eventd.entity" class="input-search" list="entitylist" >
+										<input type="text" class="form-control" name="eventd.entity" id="eventd.entity"  ng-model="eventd.entity" class="input-search" list="entitylist" required>
 												<datalist id="entitylist">
 												<option ng-repeat="entity in entitylist"   value="{{entity.name}}">
 												</option>
 												</datalist> 
 										</div>
 						</div>
+						</form>
 				</div>
 					<div class="modal-footer">
 							<button type="submit" id="usersearch" class="btn btn-default" ng-click="operationEventDetail()"
@@ -1149,7 +1115,7 @@
 								<div class="form-group">
 								<div class="form-group">
 										<label  class="control-label" for="calendar.eventname">Event Name</label> 
-										<input type="text" class="form-control" id="calendar.eventname"  ng-model="calendar.eventname" class="input-search" list="eventdetailslist" >
+										<input type="text" class="form-control" id="calendar.eventname"  ng-model="calendar.eventname" class="input-search" list="eventdetailslist" ng-disabled="calendar.disabledc" >
 												<datalist id="eventdetailslist">
 												<option ng-repeat="eventeach in eventdetailslist"   value="{{eventeach.eventname}}">
 												</option>
@@ -1166,23 +1132,20 @@
 										placeholder="Event Applicable For" name="calendar.applicablefor" readonly> 					  
 								</div>
 								</div>
-								<div class="col-md-10">
-								
 								<div class="form-group">
 								<label  class="control-label" for="calendar.eventstartdate">Event Start Date</label> 
 									<input type="Date" class="form-control" id="calendar.eventstartdate" ng-model="calendar.eventstartdate"
-										placeholder="Start Date" name="calendar.eventstartdate"> 
+										placeholder="Start Date" name="calendar.eventstartdate" ng-disabled="calendar.disabledc"> 
 								</div>
 								<div class="form-group">
 								<label  class="control-label" for="calendar.eventenddate">Event End Date</label> 
 									<input type="Date" class="form-control" id="calendar.eventenddate" ng-model="calendar.eventenddate" 
-										placeholder="Event End Date" name="calendar.eventenddate"> 
+										placeholder="Event End Date" name="calendar.eventenddate" ng-disabled="calendar.disabledc"> 
 								</div>
 									<div class="form-group">
 								<label  class="control-label" for="calendar.comments">Comments</label> 
 									<textarea  class="form-control" id="calendar.comments" ng-model="calendar.comments" 
-										placeholder="Comments" name="calendar.comments"> </textarea>
-								</div>
+										placeholder="Comments" name="calendar.comments" ng-disabled="calendar.disabledc"> </textarea>
 								</div>
 						</div>
 				</div>
@@ -1210,11 +1173,11 @@
 						</div>
 						<div class="modal-body">
 						<div class="col-md-7">
-							<div class="form-group">
+							<div class="form-group" ng-show="IsNotiTempVisible">
 										<label  class="control-label" for="notificationtemplate.templateid">Template Id</label>
 											<input type="text" name="notificationtemplate.templateid" id="notificationtemplate.templateid"
 												class="form-control" ng-model="notificationtemplate.templateid"
-												placeholder="Template Id" readonly>
+												placeholder="Template Id" readonly >
 									</div>
 									
 									<div class="form-group">
@@ -1232,18 +1195,18 @@
 												</option>
 												</datalist> 
 										</div>
-										<div class="form-group">
+										<div class="form-group" ng-show="IsNotiTempVisible">
 											<label  class="control-label" for="notificationtemplate.eventtype">Event Type</label> 
 											<input type="text" class="form-control" id="notificationtemplate.eventtype" ng-model="notificationtemplate.eventtype"
-												placeholder="Event Type" name="notificationtemplate.eventtype" readonly> 
+												placeholder="Event Type" name="notificationtemplate.eventtype" readonly > 
 										</div>
 										
-										<div class="form-group">
+										<div class="form-group" ng-show="IsNotiTempVisible">
 										<label  class="control-label" for="notificationtemplate.applicablefor">Event Applicable For</label> 
 											<input type="text" class="form-control" id="notificationtemplate.applicablefor" ng-model="notificationtemplate.applicablefor"
 												placeholder="Event Applicable For" name="notificationtemplate.applicablefor" readonly> 					  
 										</div>
-										<div class="form-group">
+										<div class="form-group" ng-show="IsNotiTempVisible">
 										<label  class="control-label" for="notificationtemplate.templatetext">Template Text</label> 
 											<textarea type="text" class="form-control" id="notificationtemplate.templatetext" ng-model="notificationtemplate.templatetext"
 												placeholder="Template Text" name="notificationtemplate.templatetext"> </textarea>					  
@@ -1315,8 +1278,8 @@
 										</div>
 										<div class="form-group">
 										<label  class="control-label" for="notimsgsend.msgsendingtime">Message Sending Time</label>
-											<input type="Time" name="notimsgsend.msgsendingtime" id="notimsgsend.msgsendingtime"
-												class="form-control" ng-model="notimsgsend.msgsendingtime"
+											<input type="number" name="notimsgsend.msgsendingtime" id="notimsgsend.msgsendingtime"
+												class="form-control" ng-model="notimsgsend.msgsendingtime" min="0000" max="2359"
 												placeholder="Sending Time">
 										</div>
 										</div>

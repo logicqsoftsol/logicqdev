@@ -10,22 +10,29 @@
 		 $scope.selectedstudent='';
 		 $scope.student={};
 		 $scope.studentdel={};
+		 $scope.emp.country='INDIA';
 		 $scope.eventtyplist=[
-          {id:1, name:'ANNUAL EXAM'},
-          {id:2, name:'MID-SEM EXAM'},
-          {id:3, name:'DURGA PUJA/DUSSEHRA'},
-          {id:4, name:'SUMMER VACATION'},
-		  {id:5, name:'GANESH PUJA'},
-		  {id:6, name:'ANNUAL FUNCTION'},
+          {id:1, name:'EXAM'},
+          {id:2, name:'DAILY'},
+		  {id:3, name:'WEEK DAYS ONLY'},
+		  {id:4, name:'WEEK ENDS ONLY'},
+          {id:5, name:'FUNCTION'},
+          {id:6, name:'VACATION'},
+		  {id:7, name:'REGIONAL FUNCTION'},
+		  {id:8, name:'NATIONAL HOLIDAY'},
+		  {id:9, name:'EMERGENCY'},
+		  {id:10, name:'OTHER'}
         ];
 		$scope.entitylist=[
 		  {id:1, name:'ALL'},
-		  {id:1, name:'STUDENT'},
-          {id:2, name:'TEACHER'},
-          {id:3, name:'CONTRACTOR'},
-          {id:4, name:'VENDOR'},
-		  {id:5, name:'EMPLOYEE(permanent)'},
-		  {id:6, name:'EMPLOYEE(contract)'}];
+		  {id:2, name:'STUDENT'},
+          {id:3, name:'TEACHER(permanent)'},
+		  {id:4, name:'TEACHER(contract)'},
+          {id:5, name:'CONTRACTOR'},
+          {id:6, name:'VENDOR'},
+		  {id:7, name:'EMPLOYEE(permanent)'},
+		  {id:8, name:'EMPLOYEE(contract)'},
+		  {id:9, name:'GUARDIAN'}];
 		  
 		
 		
@@ -90,11 +97,6 @@
 											});
 								};
 								
-								/*Set selected row for Employee**/
-								 $scope.setClickedRowForEmp =  function(emp) {
-									$scope.selectedemployee=emp.id;
-								};
-								
 								
 								/*New Employee**/
 								 $scope.newEmployee =  function() {
@@ -104,7 +106,8 @@
 								 }
 								
 								/*Edit Employee**/
-								 $scope.editForEmployee =  function() {
+								 $scope.editForEmployee =  function(emp) {
+									 $scope.selectedemployee=emp.id;
 									UserService.searchEmployeeDetails($scope).success(function(data, status) {
 										 UserHelper.populateEmployeeForEdit($scope,data);
 									});
@@ -149,14 +152,6 @@
 																$scope.studentdlist=data;
 															});
 												};					
-								
-								
-												/*Set selected row for student**/
-												 $scope.setClickedRowForStudent =  function(student) {
-													$scope.selectedstudent=student.id;
-												};
-												
-											
 												
 												/*New Student**/
 												 $scope.newStudent =  function() {
@@ -165,7 +160,8 @@
 												 }		
 												
 												 /*Edit Student**/
-												 $scope.editForStudent =  function() {
+												 $scope.editForStudent =  function(student) {
+													 $scope.selectedstudent=student.id;
 													UserService.searchStudentDetails($scope).success(function(data, status) {
 														 UserHelper.populateStudentForEdit($scope,data);
 													});
@@ -203,13 +199,15 @@
 											 $scope.addEventDetails= function() {
 													 $scope.eventoperation='Create New';
                                                      $scope.operationtype='+';
-													
+													$scope.eventd={};
+													$scope.eventd.eventid='';
 													};
 													
 													/*Edit Event Details**/
-											$scope.editEventDetails= function() {
+											$scope.editEventDetails= function(eventd) {
 													 $scope.eventoperation='Edit Existing';
 													 $scope.operationtype='*';
+													  UserHelper.populateEventDetailsForRowClick($scope,eventd);
 													};
 													
 													/*Search Event Details**/
@@ -223,14 +221,11 @@
                                                $scope.deleteEventDetails=function(eventd) {
 													 $scope.eventoperation='Are you sure want to delete this  ';
 													 $scope.operationtype='-';
-													// UserHelper.populateEventDetailsForRowClick($scope,eventd);
+													 UserHelper.populateEventDetailsForRowClick($scope,eventd);
 													 $scope.request.eventd=eventd;
 													};
 													
-													/*Populate Event Details for row clicked**/
-													 $scope.setClickedEventDetails=function(eventd) {
-														 UserHelper.populateEventDetailsForRowClick($scope,eventd);
-													 };
+													
 													
 													/*Operation Event Details**/
 													$scope.operationEventDetail=function(){
@@ -272,7 +267,7 @@
 												$scope.eventcalendarid='';
 												$scope.eventdetailslist=[];
 												$scope.calendar.eventid='';
-											
+												$scope.calendar.deletec=false;
 													/*Search all calnder details*/
 													$scope.getAllCalendarDetails=function() {
 															CalendarService.searchAllEventCalendarList($scope)
@@ -294,17 +289,21 @@
 													});
 													
 												 /*Add Event calender details**/
-												$scope.addEventCalendarDetails=	function() {
+												$scope.addEventCalendarDetails=function() {
 													$scope.eventoperation='Setup new ';
                                                      $scope.operationtype='+';
+													 $scope.calendar={};
+													 $scope.calendar.calendarid='';
 													 $scope.eventdetailslist=$scope.eventdetails;
 														
 													};
 												
 												/*Edit Event calender details**/	
-                                                 $scope.editEventCalendarDetails=	function() {
+                                                 $scope.editEventCalendarDetails=function(calendar) {
 														$scope.eventoperation='Modify Existing';
 													    $scope.operationtype='*';
+														$scope.calendar.disabledc=false;
+														UserHelper.setClickedRowForEventCalendarDetails($scope,calendar);
 														$scope.eventdetailslist=$scope.eventdetails;
 													};
 													
@@ -312,21 +311,19 @@
                                                   $scope.searchEventCalendarDetails=	function() {
 													  $scope.eventoperation='Looking for Existing';
 													  $scope.operationtype='';
+													  $scope.calendar.disabledc=false;
 													
 													};		
 													
 													/*Delete Event calender details**/
-                                                $scope.deleteEventCalendarDetails=	function(calander) {
+                                                $scope.deleteEventCalendarDetails=	function(calendar) {
 													 $scope.eventoperation='Are you sure want to delete this ';
 													 $scope.operationtype='-';
-													$scope.readonlyprop='readonly';
+													UserHelper.setClickedRowForEventCalendarDetails($scope,calendar);
+													$scope.calendar.disabledc=true;
 													
 													};	
 
-													/*Set Event calender details row**/
-                                                $scope.setClickedRowForEventCalendarDetails=function(calander) {
-														UserHelper.setClickedRowForEventCalendarDetails($scope,calander);
-													};	
 													
 											/*Set Event calender details operation**/
 										  $scope.operationCalendarDetailForEvent=function(){
@@ -354,7 +351,7 @@
 														}
 														else if('-'==operation){
 															$scope.eventid=$scope.eventd.eventid;
-															CalendarService.deleteEventCalendar($scope.request)
+															CalendarService.deleteEventCalendarDetails($scope.request)
 															.success(function(data, status) {
 																	$scope.calendardetailslist=data;
 																});
@@ -373,14 +370,15 @@
 																		{id:3, value:'NOTIFICATION'},
 																		{id:4, value:'ALL'}];
 											$scope.notificationtemplatelist={};
-											
-													/* Fetch all event list*/
-												if(null==$scope.eventfortemplatelist){
-												 CalendarService.searchAllEventList($scope)
+											$scope.IsNotiTempVisible=true;
+											if($scope.eventfortemplatelist==null){
+											CalendarService.searchAllEventList($scope)
 																	.success(function(data, status) {
 																		$scope.eventfortemplatelist=data;
 														});
-											  };
+												};
+									
+												
 											/*select event details**/
 										$scope.$watch('notificationtemplate.eventname', function(newVal, oldVal){
 												angular.forEach($scope.eventfortemplatelist, function(value, key) {
@@ -396,15 +394,15 @@
 										  $scope.addNotificationTemplate=function(){
 												$scope.eventoperation='Setup new ';
                                                 $scope.operationtype='+';
-									
+												$scope.IsNotiTempVisible=true;
+											
 												
 										  };
-										  $scope.editNotificationTemplate =function(){
+										  $scope.editNotificationTemplate =function(notificationtemplate){
 											  $scope.eventoperation='Modify Existing';
 											    $scope.operationtype='*';
-											
-													
-											
+												$scope.IsNotiTempVisible=true;
+												UserHelper.setRowForNotificationTemplate($scope,notificationtemplate);
 										  };
 										  $scope.searchNotificationTemplate =function(){
 											  $scope.eventoperation='Looking for Existing';
@@ -414,11 +412,10 @@
 										  $scope.deleteTemplateForNotification=function(notificationtemplate){
 											  $scope.eventoperation='Are you sure want to delete this ';
 											  $scope.operationtype='-';
+											  $scope.IsNotiTempVisible=false;
+											  UserHelper.setRowForNotificationTemplate($scope,notificationtemplate);
 										  };
 										  
-										  $scope.setRowForNotificationTemplate=function(notificationtemplate){
-											  UserHelper.setRowForNotificationTemplate($scope,notificationtemplate);
-											  };	
 											  
 											  /* Get All Notification**/
 											$scope.getAllNotificationTemplateList=function(){
@@ -495,13 +492,20 @@
 													
 													});
 											
+												  
+										 $scope.getNotificationSendingConfigurationDetails =function(){
+										  NotificationService.getNotificationSetupDetails($scope).success(function(data, status) {
+																$scope.notificationsendingsetupdetails=data;
+															});
+										}
+											
 										   $scope.addnotificationSendingSetup =function(){
 											  $scope.eventoperation='Looking for Existing';
 											  $scope.operationtype='+';
 											
 										  };
 										  
-										  $scope.updatenotificationSendingSetup =function(){
+										  $scope.updatenotificationSendingSetup =function(notisendsetup){
 											  $scope.eventoperation='Looking for Existing';
 											  $scope.operationtype='*';
 										  };
@@ -514,11 +518,8 @@
 											  $scope.eventoperation='Looking for Existing';
 											  $scope.operationtype='';
 										  };
+									
 										
-										  
-										  $scope.setRowForNotificationSendingSetup =function(notisendsetup){
-											 
-										  };
 										  
 											/*Set Notification Template Setup details operation**/
 										  $scope.setupTemplateForNotificationSending=function(){
@@ -527,19 +528,21 @@
 														if ('+'==operation) {
 															NotificationService.saveNotificationTemplateSetup($scope.request)
 															.success(function(data, status) {
-																$scope.notificationtemplatelist=data;
+																$scope.notificationsendingsetupdetails=data;
 															});
 															
 														}
 														else if('*'===operation){
 															NotificationService.saveNotificationTemplateSetup($scope.request)
 															.success(function(data, status) {
-																$scope.notificationtemplatelist=data;
+																$scope.notificationsendingsetupdetails=data;
 															});
 														}
 														else if('-'==operation){
-															$scope.eventid=$scope.eventd.eventid;
-														
+															NotificationService.deleteNotificationTemplateSetup($scope.request)
+															.success(function(data, status) {
+																$scope.notificationsendingsetupdetails=data;
+															});
 														}else{
 															
 														}

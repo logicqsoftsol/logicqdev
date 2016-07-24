@@ -176,8 +176,8 @@
 		},
 	setClickedRowForEventCalendarDetails: function ($scope,data) {
 			$scope.eventcalendarid=data.calendarid;
-			$scope.calendar.eventstartdate=data.eventstartdate;
-			$scope.calendar.eventenddate=data.eventenddate;
+			$scope.calendar.eventstartdate=new Date(data.eventstartdate);
+			$scope.calendar.eventenddate=new Date(data.eventenddate);
 			$scope.calendar.comments=data.comments;
 			$scope.calendar.eventid=data.eventdetails.eventid;
 			$scope.calendar.eventname=data.eventdetails.eventname;
@@ -210,6 +210,7 @@
 				$scope.notificationtemplate.templatetext=data.templatetext;
 				$scope.notificationtemplate.eventid=data.eventdetails.eventid;
 				$scope.notificationtemplate.eventname=data.eventdetails.eventname;
+				$scope.notificationtemplate.eventtype=data.eventdetails.eventtype;
 				$scope.notificationtemplate.applicablefor=data.eventdetails.applicablefor;
 			},	
 			
@@ -226,7 +227,7 @@
 				};
 				},
 				
-				setRowForNotificationTemplate: function ($scope,data) {
+				setRowForNotificationTemplateSetUp: function ($scope,data) {
 					$scope.notimsgsend.setupid=data.setupid;
 					$scope.notimsgsend.msgsendfromdate=data.msgsendfromdate;
 					$scope.notimsgsend.msgsendtodate=data.msgsendtodate;
