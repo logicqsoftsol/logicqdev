@@ -55,7 +55,7 @@
 							id="stduentregclick" ng-click="display = 2;searchAllStudentList()"><i
 								class="fa fa-graduation-cap"></i>Student Registration</a></li>
 						<li ng-class="{active:display == 3}"><a href=""
-							id="coursesetup" ng-click="display = 3;searchConfigurSMSList()"><i class="fa fa-cogs"></i>Configure
+							id="coursesetup" ng-click="display = 3;getNotificationSendingConfigurationDetails()"><i class="fa fa-cogs"></i>Configure
 								SMS and Email</a></li>
 						<li ng-class="{active:display == 4}"><a href=""
 							id="admincalndersetup" ng-click="display = 4;searchAllEventList()"><i
@@ -305,13 +305,13 @@
 								<th>SENDING TO DATE</t>
 								<th>SENDING TIME</t>
 							</tr>
-							<tr ng-repeat="notisendsetup in notificationsendingsetupdetails">
+							<tr ng-repeat="notisendsetup in notisendingdetails">
 								<td>{{notisendsetup.notificationtemplate.templatename}}</td>
 								<td>{{notisendsetup.msgsendfromdate}}</td>
 								<td>{{notisendsetup.msgsendtodate}}</td>
 								<td>{{notisendsetup.msgsendingtime}}</td>
 								<td><a id="notimsgsetupupdate" data-toggle="modal" data-target="#notificationsendingdetails" ng-click="updatenotificationSendingSetup(notisendsetup)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
-								<td><a id="deletenotitempsetup"  ng-click="deletenotificationSendingSetup(notisendsetup)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+								<td><a id="deletenotitempsetup" data-toggle="modal" data-target="#notificationsendingdetails"  ng-click="deletenotificationSendingSetup(notisendsetup)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div><!--endof notification setingsetup details-->
@@ -425,7 +425,7 @@
 							</div>
 						<div id="attendancetableview" class="tab-pane fade in active">
 							<div class="table-responsive">
-							<table class="table table-bordered table-fixed">
+							<table class="table table-bordered table-fixed sel-table">
 							<tr class ="success">
 								<th>ID</th>
 								<th>NAME</t>
@@ -1239,18 +1239,18 @@
 						<div class="modal-body">
 						<div class="col-md-8">
 						<div class="form-group">
-										<label  class="control-label" for="notimsgsend.msgapplicablefor">Template Applicable For</label>
-											<input type="text" name="notimsgsend.msgapplicablefor" id="notimsgsend.msgapplicablefor"
-												class="form-control" ng-model="notimsgsend.msgapplicablefor"
-												placeholder="Notification Applicable For" list="entitylist">
+										<label  class="control-label" for="notisendsetup.msgapplicablefor">Template Applicable For</label>
+											<input type="text" name="notisendsetup.msgapplicablefor" id="notisendsetup.msgapplicablefor"
+												class="form-control" ng-model="notisendsetup.msgapplicablefor"
+												placeholder="Notification Applicable For" list="entitylist" ng-disabled="notisendsetup.isdisabled">
 							                    <datalist id="entitylist"></datalist>
 										</div>
 						
 									<div class="form-group">
-										<label  class="control-label" for="notimsgsend.templatename">Template Name</label>
-											<input type="text" name="notimsgsend.templatename" id="notimsgsend.templatename"
-												class="form-control" ng-model="notimsgsend.templatename"
-												placeholder="Template Name" list="templatelistforentity">
+										<label  class="control-label" for="notisendsetup.templatename">Template Name</label>
+											<input type="text" name="notisendsetup.templatename" id="notisendsetup.templatename"
+												class="form-control" ng-model="notisendsetup.templatename"
+												placeholder="Template Name" list="templatelistforentity" ng-disabled="notisendsetup.isdisabled">
 							                    <datalist id="templatelistforentity">
 												<option ng-repeat="templateeach in templatelistforentity"   value="{{templateeach.templatename}}">
 												</option>
@@ -1258,34 +1258,34 @@
 										</div>
 										
 										<div class="form-group">
-										<label  class="control-label" for="notimsgsend.templatetext">Template Text</label>
-											<textarea name="notimsgsend.templatetext" id="notimsgsend.templatetext"
-												class="form-control" ng-model="notimsgsend.templatetext"
+										<label  class="control-label" for="notisendsetup.templatetext">Template Text</label>
+											<textarea name="notisendsetup.templatetext" id="notisendsetup.templatetext"
+												class="form-control" ng-model="notisendsetup.templatetext"
 												placeholder="Message Template Text" readonly></textarea>
 										</div>
 										
 										<div class="form-group">
-										<label  class="control-label" for="notimsgsend.msgsendfromdate">Message Sending From Date</label>
-											<input type="Date" name="notimsgsend.msgsendfromdate" id="notimsgsend.msgsendfromdate"
-												class="form-control" ng-model="notimsgsend.msgsendfromdate"
-												placeholder="Message Sending Date">
+										<label  class="control-label" for="notisendsetup.msgsendfromdate">Message Sending From Date</label>
+											<input type="Date" name="notisendsetup.msgsendfromdate" id="notisendsetup.msgsendfromdate"
+												class="form-control" ng-model="notisendsetup.msgsendfromdate"
+												placeholder="Message Sending Date" ng-disabled="notisendsetup.isdisabled">
 										</div>
 										<div class="form-group">
-										<label  class="control-label" for="notimsgsend.msgsendtodate">Message Sending To Date</label>
-											<input type="Date" name="notimsgsend.msgsendtodate" id="notimsgsend.msgsendtodate"
-												class="form-control" ng-model="notimsgsend.msgsendtodate"
-												placeholder="Message Sending To Date">
+										<label  class="control-label" for="notisendsetup.msgsendtodate">Message Sending To Date</label>
+											<input type="Date" name="notisendsetup.msgsendtodate" id="notisendsetup.msgsendtodate"
+												class="form-control" ng-model="notisendsetup.msgsendtodate"
+												placeholder="Message Sending To Date" ng-disabled="notisendsetup.isdisabled">
 										</div>
 										<div class="form-group">
-										<label  class="control-label" for="notimsgsend.msgsendingtime">Message Sending Time</label>
-											<input type="number" name="notimsgsend.msgsendingtime" id="notimsgsend.msgsendingtime"
-												class="form-control" ng-model="notimsgsend.msgsendingtime" min="0000" max="2359"
-												placeholder="Sending Time">
+										<label  class="control-label" for="notisendsetup.msgsendingtime">Message Sending Time</label>
+											<input type="number" name="notisendsetup.msgsendingtime" id="notisendsetup.msgsendingtime"
+												class="form-control" ng-model="notisendsetup.msgsendingtime" min="0001" max="2359"
+												placeholder="Sending Time" ng-disabled="notisendsetup.isdisabled">
 										</div>
 										</div>
 				</div>
 				<div class="modal-footer">
-							<button type="submit" id="confirmcalendar" class="btn btn-default" ng-click="setupTemplateForNotificationSending()"
+							<button type="submit" id="confirmcalendar" class="btn btn-default" ng-click="setupNotificationSendingForTemplate()"
 								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>confirm</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>

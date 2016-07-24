@@ -18,7 +18,8 @@ public class NotificationTemplateSetupDAO extends AbstractDAO<NotificationSetupD
 
 	@Override
 	public void deleteNotificationTemplateSetup(NotificationSetupDetails notificationsetupdetails) throws Exception {
-		deleteNotificationTemplateSetup(notificationsetupdetails);
+		
+		delete(notificationsetupdetails);
 	}
 
 	@Override

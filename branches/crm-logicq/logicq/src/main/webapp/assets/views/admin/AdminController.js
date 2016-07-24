@@ -395,6 +395,7 @@
 												$scope.eventoperation='Setup new ';
                                                 $scope.operationtype='+';
 												$scope.IsNotiTempVisible=true;
+												$scope.notificationtemplate={};
 											
 												
 										  };
@@ -425,11 +426,12 @@
 								                	});
 											  };
 										  
-											/*Set Notification Template Setup details operation**/
+											/*Set Notification Template  details operation**/
 										  $scope.setupTemplateForNotification=function(){
-											   UserHelper.populateNotificationDetailsForOperation($scope);
+											   
 													var operation=$scope.operationtype;
 														if ('+'==operation) {
+															UserHelper.populateNotificationDetailsForOperation($scope);
 															NotificationService.saveNotificationTemplate($scope.request)
 															.success(function(data, status) {
 																$scope.notificationtemplatelist=data;
@@ -437,14 +439,17 @@
 															
 														}
 														else if('*'===operation){
+															UserHelper.populateNotificationDetailsForOperation($scope);
 															NotificationService.saveNotificationTemplate($scope.request)
 															.success(function(data, status) {
-																//UserHelper.populateUINotificationTemplate(,data);
 																$scope.notificationtemplatelist=data;
 															});
 														}
 														else if('-'==operation){
-															$scope.eventid=$scope.eventd.eventid;
+															UserHelper.populateNotificationDetailsForDelete($scope);
+															NotificationService.deleteNotificationTemplate($scope.request).success(function(data, status) {
+																$scope.notificationtemplatelist=data;
+															});
 														
 														}else{
 															
@@ -455,9 +460,7 @@
 										  
 										 /*Set Notification Template Setup Configuration operation**/
 											$scope.notisendsetup={};
-											$scope.notimsgsend={};
-											$scope.notificationsendingsetupdetails={};
-											$scope.notificationtemplate={};
+											$scope.notisendingdetails={};
 											$scope.notitemplatetypelist=[{id:1, value:'SMS'},
 																		{id:2, value:'E-MAIL'},
 																		{id:3, value:'NOTIFICATION'},
@@ -465,10 +468,12 @@
 											$scope.notificationtemplatelist={};
 											$scope.entitytype='';
 											$scope.templatelistforentity={};
-											$scope.notimsgsend.templateid='';
-											$scope.notimsgsend.setupid='';
+											$scope.notisendsetup.templateid='';
+											$scope.notisendsetup.setupid='';
+											$scope.notificationtemplate={};
+											$scope.notisendsetup.isdisabled=false;
 											/*select msg applicable for **/
-											$scope.$watch('notimsgsend.msgapplicablefor', function(newVal, oldVal){
+											$scope.$watch('notisendsetup.msgapplicablefor', function(newVal, oldVal){
 													angular.forEach($scope.entitylist, function(value, key) {
 														if(value.name==newVal){
 															$scope.entitytype=newVal;
@@ -481,11 +486,11 @@
 														
 														});
 											
-											$scope.$watch('notimsgsend.templatename', function(newVal, oldVal){
+											$scope.$watch('notisendsetup.templatename', function(newVal, oldVal){
 												angular.forEach($scope.templatelistforentity, function(value, key) {
 													if(value.templatename==newVal){
-														$scope.notimsgsend.templatetext=value.templatetext;
-														$scope.notimsgsend.templateid=value.templateid;
+														$scope.notisendsetup.templatetext=value.templatetext;
+														$scope.notisendsetup.templateid=value.templateid;
 														$scope.notificationtemplate=value;
 													}	
 													});
@@ -495,24 +500,31 @@
 												  
 										 $scope.getNotificationSendingConfigurationDetails =function(){
 										  NotificationService.getNotificationSetupDetails($scope).success(function(data, status) {
-																$scope.notificationsendingsetupdetails=data;
+																$scope.notisendingdetails=data;
 															});
 										}
 											
 										   $scope.addnotificationSendingSetup =function(){
 											  $scope.eventoperation='Looking for Existing';
 											  $scope.operationtype='+';
+											  $scope.notisendsetup={};
+											  $scope.notisendsetup.isdisabled=false;
 											
 										  };
 										  
 										  $scope.updatenotificationSendingSetup =function(notisendsetup){
 											  $scope.eventoperation='Looking for Existing';
 											  $scope.operationtype='*';
+											  UserHelper.setRowForNotificationTemplateSetUP($scope,notisendsetup);
+											   $scope.notisendsetup.isdisabled=false;
 										  };
 										  
 										  $scope.deletenotificationSendingSetup=function(notisendsetup){
 											  $scope.eventoperation='Are you sure want to delete this ';
 											  $scope.operationtype='-';
+											  $scope.notisendsetup.isdisabled=true;
+											  UserHelper.setRowForNotificationTemplateSetUP($scope,notisendsetup);
+											   
 										  };
 										  $scope.searchNotificationSendingSetup =function(){
 											  $scope.eventoperation='Looking for Existing';
@@ -522,26 +534,29 @@
 										
 										  
 											/*Set Notification Template Setup details operation**/
-										  $scope.setupTemplateForNotificationSending=function(){
-											   UserHelper.populateNotificationSetupDetailsForOperation($scope);
+										  $scope.setupNotificationSendingForTemplate=function(){
+											 
 													var operation=$scope.operationtype;
 														if ('+'==operation) {
+															  UserHelper.populateNotificationSetupDetailsForOperation($scope);
 															NotificationService.saveNotificationTemplateSetup($scope.request)
 															.success(function(data, status) {
-																$scope.notificationsendingsetupdetails=data;
+																$scope.notisendingdetails=data;
 															});
 															
 														}
 														else if('*'===operation){
+															UserHelper.populateNotificationSetupDetailsForOperation($scope);
 															NotificationService.saveNotificationTemplateSetup($scope.request)
 															.success(function(data, status) {
-																$scope.notificationsendingsetupdetails=data;
+																$scope.notisendingdetails=data;
 															});
 														}
 														else if('-'==operation){
+															UserHelper.populateNotificationSetupDetailsForDelete($scope);
 															NotificationService.deleteNotificationTemplateSetup($scope.request)
 															.success(function(data, status) {
-																$scope.notificationsendingsetupdetails=data;
+																$scope.notisendingdetails=data;
 															});
 														}else{
 															

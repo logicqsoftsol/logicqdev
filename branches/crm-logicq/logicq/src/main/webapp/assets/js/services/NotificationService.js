@@ -18,11 +18,11 @@
 			},
 			deleteNotificationTemplate: function (request) {
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteNotificationTemplateURL;
-				return  $http.post(url,request.eventd)
+				return  $http.post(url,request.notificationtemplate)
 			},
 			saveNotificationTemplateSetup: function (request){
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveNotificationTemplateSetupURL;
-				return  $http.post(url,request.notimsgsend)
+				return  $http.post(url,request.notisendsetup)
 			},
 			getNotificationSetupDetails: function ($scope) {
 				return  $http({
@@ -34,7 +34,7 @@
 			},
 			deleteNotificationTemplateSetup: function (request) {
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteNotificationTemplateSetupURL;
-				return  $http.post(url,request.calendar)
+				return  $http.post(url,request.notisendsetup)
 			},
 			getNotificationDetailsForEntity: function ($scope) {
 				return  $http({
