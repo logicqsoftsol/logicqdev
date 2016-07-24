@@ -49,24 +49,24 @@ public class EventService implements IEventService {
 	private void triggerEventAndSendSMS(EventDetailsVO eventDetailsVO) throws Exception {
 		
 		List<CardReadDetails> cardReadDetails= readFileDAO.readAccessFile();
-		
 		List<SMSDetails> allSMSDetails = new ArrayList<SMSDetails>();
 		for (CardReadDetails cardDetail : cardReadDetails) {
 			Integer cardId = cardDetail.getCardid();
 			Object employee = LogicqContextProvider.getElementFromEmployeeMap(String.valueOf(cardId));
 			String name = null;
+			PhoneCommunication com=new PhoneCommunication();
 			if(employee != null){
 				Employee emp = (Employee) employee;
 				name = emp.getBasicdetails().getFirstname();
+				com.setActive(Boolean.TRUE);
+				com.setMobilenumber(emp.getContactdetails().getCommunicationdetails().getMobilenumber());
 			} else {
 				Object student = LogicqContextProvider.getElementFromStudentMap(String.valueOf(cardId));
 				Student stu = (Student)student;
 				name = stu.getBasicdetails().getFirstname();
+				com.setActive(Boolean.TRUE);
+				com.setMobilenumber(stu.getContactdetails().getCommunicationdetails().getMobilenumber());
 			}
-			PhoneCommunication com=new PhoneCommunication();
-			com.setActive(Boolean.TRUE);
-			com.setContactType(ContactType.HOME);
-			com.setMobilenumber("919604551123");
 			SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(name, com, cardDetail, eventDetailsVO.getTemplatetext());
 			allSMSDetails.add(smsdetails);
 		}
