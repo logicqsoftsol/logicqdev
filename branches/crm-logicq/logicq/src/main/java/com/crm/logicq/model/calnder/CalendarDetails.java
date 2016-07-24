@@ -37,11 +37,11 @@ public class CalendarDetails {
 	@JoinColumn(name="EVENT_ID")
 	private EventDetails eventdetails;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "EVENT_START_DATE")
 	private  Date  eventstartdate;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "EVENT_END_DATE")
 	private  Date  eventenddate;
 	
