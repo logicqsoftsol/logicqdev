@@ -10,10 +10,10 @@ public class SMSVendor {
 	public static String url="http://login.cheapsmsbazaar.com/vendorsms/pushsms.aspx?";
 	
 	@Value("${smsvendor.userid}")
-	public static String userid="demo";
+	public static String userid="logicqsoftsol";
 	
 	@Value("${smsvendor.password}")
-	public static String password="demo";
+	public static String password="babu@0701402098";
 	
 	@Value("${smsvendor.sid}")
 	public static String sid="DEMOOO";
@@ -22,7 +22,7 @@ public class SMSVendor {
 	public static int flag=0;
 	
 	@Value("${smsvendor.gwid}")
-	public static int gwid;
+	public static int gwid=2;
 
 	public String getUrl() {
 		return url;

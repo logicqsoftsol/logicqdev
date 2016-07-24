@@ -19,9 +19,6 @@
 						$location.path('/admin');
 						
 				}
-
-
-				$scope.loading = false;
 			}).error(function(response, status) {  
 				console.log("The request failed with response " + response + " and status code " + status);
 				$scope.error = response;

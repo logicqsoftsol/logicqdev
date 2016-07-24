@@ -298,3 +298,16 @@ a:active {
 	background-color: #fafafa;
 	border-color: #339BEB;
 }
+.pull-center-popup
+{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 100;
+
+    height: 400px;
+    margin-top: -200px;
+
+    width: 600px;
+    margin-left: -300px;
+}

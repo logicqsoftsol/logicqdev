@@ -93,7 +93,7 @@ public class QuartzConfiguration {
 		stFactory.setName("mytriggerSpecialTime");
 		stFactory.setGroup("mygroupSpecialTime");
 		//stFactory.setCronExpression("0 33 22 ? * MON-SUN *");
-		stFactory.setCronExpression("0 0/1 * * * ?");
+		stFactory.setCronExpression("0 0/3 * * * ?");
 		//stFactory.setCronExpression("0 " + startTimeMin + " " + startTimeHr + " ? * MON-SUN *");
 		return stFactory;
 	}
