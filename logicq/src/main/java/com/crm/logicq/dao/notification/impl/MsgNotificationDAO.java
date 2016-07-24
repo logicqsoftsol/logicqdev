@@ -24,7 +24,7 @@ public class MsgNotificationDAO extends AbstractDAO<NotificationSetupDetails> im
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
 		int cur_time = Integer.valueOf((sdf.format(cal.getTime())).toString());
-		cal.add(Calendar.MINUTE, 15);
+		cal.add(Calendar.MINUTE, 2);
 		int added_time = Integer.valueOf((sdf.format(cal.getTime())).toString());
 		Session session = getCurrentSession();
 		String hql = "FROM NotificationSetupDetails nsd WHERE DATE_FORMAT(NOW(),'%Y-%m-%d') BETWEEN nsd.msgsendfromdate and nsd.msgsendtodate and nsd.msgsendingtime BETWEEN "+cur_time+" AND "+added_time;

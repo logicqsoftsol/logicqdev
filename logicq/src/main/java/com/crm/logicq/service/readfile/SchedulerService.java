@@ -44,7 +44,7 @@ public class SchedulerService {
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public void performTask() throws Exception {
-      List list=new ArrayList();
+
 		System.out.println("performTask");
 		List<NotificationSetupDetails> notificationList = msgNotificationDAO.getMsgNotifyDetails();
 		for (NotificationSetupDetails notificationSetupDetails : notificationList) {
@@ -56,11 +56,7 @@ public class SchedulerService {
 			eventDetailsVO.setEventtype(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventtype());
 			eventDetailsVO.setTemplatetext(notificationSetupDetails.getNotificationtemplate().getTemplatetext());
 			eventDetailsVO.setEventName(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventname());
-			if(!list.contains(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventid())){
-				list.add(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventid());
-				prepareCornJOB(startTimeHr, startTimeMin, eventDetailsVO);
-			}
-			
+			prepareCornJOB(startTimeHr, startTimeMin, eventDetailsVO);
 		}
 	}
 
