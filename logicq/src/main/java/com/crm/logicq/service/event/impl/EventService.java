@@ -31,11 +31,10 @@ public class EventService implements IEventService {
 	@Override
 	public void triggerEvent(EventDetailsVO eventDetailsVO) throws Exception{
 
-		String eventName = eventDetailsVO.getEventName();
-		switch(eventName){
-			case "AttendanceAll" : 
+		String eventType = eventDetailsVO.getEventtype();
+		switch(eventType){
+			case "ATTENDANCE" : 
 				triggerEventAndSendSMS(eventDetailsVO);
-				
 				break;
 			case "DurgaPuja" :
 				System.out.println("Durga Puja Alert");
@@ -55,24 +54,31 @@ public class EventService implements IEventService {
 			Object employee = LogicqContextProvider.getElementFromEmployeeMap(String.valueOf(cardId));
 			String name = null;
 			PhoneCommunication com=new PhoneCommunication();
-			if(employee != null){
+			if(employee != null &&  employee instanceof Employee){
 				Employee emp = (Employee) employee;
 				name = emp.getBasicdetails().getFirstname();
 				com.setActive(Boolean.TRUE);
 				com.setMobilenumber(emp.getContactdetails().getCommunicationdetails().getMobilenumber());
+				SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(name, com, cardDetail, eventDetailsVO.getTemplatetext());
+				allSMSDetails.add(smsdetails);
 			} else {
 				Object student = LogicqContextProvider.getElementFromStudentMap(String.valueOf(cardId));
+				if(null!=student && student instanceof Student ){
 				Student stu = (Student)student;
 				name = stu.getBasicdetails().getFirstname();
 				com.setActive(Boolean.TRUE);
 				com.setMobilenumber(stu.getContactdetails().getCommunicationdetails().getMobilenumber());
+				SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(name, com, cardDetail, eventDetailsVO.getTemplatetext());
+				allSMSDetails.add(smsdetails);
+				}
+				
 			}
-			SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(name, com, cardDetail, eventDetailsVO.getTemplatetext());
-			allSMSDetails.add(smsdetails);
+		
 		}
 		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
 			for (SMSDetails smsinfo : allSMSDetails) {
-				SMSHelper.sendSMS(smsinfo);
+				System.out.println("Call SMS");
+			//	SMSHelper.sendSMS(smsinfo);
 			}
 			// userdao.insertSMSDetails(allSMSDetails);
 		}

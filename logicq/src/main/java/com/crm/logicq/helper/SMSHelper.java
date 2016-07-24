@@ -96,7 +96,7 @@ public class SMSHelper {
 	private static String formSMSText(ConcurrentMap<String, Object> concurrentMap, String text) {
 		
 		for(String key : concurrentMap.keySet()){
-			text.replace("#"+key, String.valueOf(concurrentMap.get(key)));
+			text = text.replace("#"+key, String.valueOf(concurrentMap.get(key)));
 		}
 		return text.toString();
 

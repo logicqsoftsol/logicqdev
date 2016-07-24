@@ -1,6 +1,6 @@
 (function () {
 	'use strict';
-	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope, $http,  $location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
+	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope, $http, $location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
 		 $scope.display=6;
 		 $scope.graphattendance=[];
 		 $scope.request = {};
@@ -21,7 +21,8 @@
 		  {id:7, name:'REGIONAL FUNCTION'},
 		  {id:8, name:'NATIONAL HOLIDAY'},
 		  {id:9, name:'EMERGENCY'},
-		  {id:10, name:'OTHER'}
+		  {id:10, name:'ATTENDANCE'},
+		  {id:11, name:'OTHER'}
         ];
 		$scope.entitylist=[
 		  {id:1, name:'ALL'},
@@ -33,8 +34,6 @@
 		  {id:7, name:'EMPLOYEE(permanent)'},
 		  {id:8, name:'EMPLOYEE(contract)'},
 		  {id:9, name:'GUARDIAN'}];
-		  
-		
 		
 		
 								/* DashBoard   Display**/				
@@ -89,7 +88,6 @@
 								
 								/*Save Employee**/
             				   $scope.saveEmployeeDetails = function() {
-								
 					                UserHelper.populateEmployeeForSave($scope);
 									UserService.saveEmployeeDetails($scope.request)
 											.success(function(data, status) {

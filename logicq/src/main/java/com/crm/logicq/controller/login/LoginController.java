@@ -1,5 +1,6 @@
 package com.crm.logicq.controller.login;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crm.logicq.security.service.UserService;
+import com.crm.logicq.service.user.IUserService;
 import com.crm.logicq.ui.security.LoginVO;
 
 @RestController
@@ -17,6 +19,8 @@ import com.crm.logicq.ui.security.LoginVO;
 public class LoginController {
 
 
+	  @Autowired
+	  IUserService userservice;
 
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -26,12 +30,21 @@ public class LoginController {
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
 				login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-				String token=(String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+				String token = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
 				if (StringUtils.isEmpty(token)) {
-					//token = tokenAuthenticationService.getTokenHandler().createTokenForUser(login);
-				} 
-				//login = tokenAuthenticationService.getTokenHandler().parseUserFromToken(token);
-				
+					// token =
+					// tokenAuthenticationService.getTokenHandler().createTokenForUser(login);
+				}
+				// login =
+				// tokenAuthenticationService.getTokenHandler().parseUserFromToken(token);
+
+				try {
+					userservice.loadEmployees();
+					userservice.loadStudents();
+				} catch (Exception e) {
+					return new ResponseEntity<LoginVO>(login, HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+
 			}
 
 		}

@@ -5,10 +5,9 @@
 (function () {
     'use strict';
     
- angular.module('crmlogicq').config(['$httpProvider', function ($httpProvider) {
-            
-            $httpProvider.interceptors.push('APIInterceptor');
-           
+ angular.module('crmlogicq').config(['$httpProvider', function ($httpProvider) {  
+    $httpProvider.interceptors.push('APIInterceptor');
+	
         }]);
  
   angular.module('crmlogicq').service('APIInterceptor', ['$sessionStorage', function ($sessionStorage) {
@@ -20,8 +19,36 @@
                 }
                 return config;
             };
+			
+	return {
+     'request': function(config) {
+         $('#processing').show();
+         return config;
+      },
+
+      'response': function(response) {
+         $('#processing').hide();
+         return response;
+      }
+    };   
 
         }]);
+  
+  angular.module('crmlogicq').directive('loading', function () {
+      return {
+        restrict: 'E',
+        replace:true,
+        template: '<div class="loading"><img src="loading_pleasewait.gif"/>LOADING...</div>',
+        link: function (scope, element, attr) {
+              scope.$watch('loading', function (val) {
+                  if (val)
+                      $(element).show();
+                  else
+                      $(element).hide();
+              });
+        }
+      }
+  });
 		
 angular.module('crmlogicq').directive('showErrors', function ($timeout, showErrorsConfig) {
       var getShowSuccess, linkFn;
