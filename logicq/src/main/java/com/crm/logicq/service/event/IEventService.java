@@ -7,6 +7,6 @@ import com.crm.logicq.vo.event.EventDetailsVO;
  */
 
 public interface IEventService {
-	public void triggerEvent(EventDetailsVO eventDetailsVO);
+	public void triggerEvent(EventDetailsVO eventDetailsVO) throws Exception;
 	
 }
