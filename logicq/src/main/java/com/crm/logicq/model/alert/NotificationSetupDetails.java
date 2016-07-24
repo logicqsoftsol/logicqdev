@@ -23,15 +23,15 @@ public class NotificationSetupDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long setupid;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="NOTIFICATION_TEMPLATE_ID")
 	private NotificationTemplate notificationtemplate;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "MSG_SEND_START_DATE")
 	private  Date  msgsendfromdate;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "MSG_SEND_END_DATE")
 	private  Date  msgsendtodate;
 	

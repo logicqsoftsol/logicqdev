@@ -204,6 +204,13 @@
 			};
 			},
 	
+	populateNotificationDetailsForDelete: function ($scope) {
+			return $scope.request.notificationtemplate={
+					templateid:$scope.notificationtemplate.templateid
+			};
+			},
+	
+	
 			setRowForNotificationTemplate: function ($scope,data) {
 				$scope.notificationtemplate.templateid=data.templateid;
 				$scope.notificationtemplate.templatename=data.templatename;
@@ -216,25 +223,32 @@
 			
 			
 			populateNotificationSetupDetailsForOperation: function ($scope) {
-				return $scope.request.notimsgsend={
-						setupid:$scope.notimsgsend.setupid,
-						msgsendfromdate:$scope.notimsgsend.msgsendfromdate,
-						msgsendtodate:$scope.notimsgsend.msgsendtodate,
-						msgsendingtime:$scope.notimsgsend.msgsendingtime,
-					notificationtemplate : {
-						templateid:$scope.notimsgsend.templateid,
-					}
+				return $scope.request.notisendsetup={
+						setupid:$scope.notisendsetup.setupid,
+						msgsendfromdate:$scope.notisendsetup.msgsendfromdate,
+						msgsendtodate:$scope.notisendsetup.msgsendtodate,
+						msgsendingtime:$scope.notisendsetup.msgsendingtime,
+						notificationtemplate :{
+								templateid:$scope.notisendsetup.templateid
+						}
 				};
 				},
 				
-				setRowForNotificationTemplateSetUp: function ($scope,data) {
-					$scope.notimsgsend.setupid=data.setupid;
-					$scope.notimsgsend.msgsendfromdate=data.msgsendfromdate;
-					$scope.notimsgsend.msgsendtodate=data.msgsendtodate;
-					$scope.notimsgsend.msgsendingtime=data.msgsendingtime;
-					$scope.notimsgsend.msgapplicablefor =data.msgapplicablefor;
-					$scope.notimsgsend.templatename =data.templatename;
-					$scope.notimsgsend.templatetext =data.templatetext;
+			populateNotificationSetupDetailsForDelete: function ($scope) {
+				return $scope.request.notisendsetup={
+						setupid:$scope.notisendsetup.setupid
+				};
+				},	
+				
+		setRowForNotificationTemplateSetUP: function ($scope,data) {
+					$scope.notisendsetup.setupid=data.setupid;
+					$scope.notisendsetup.msgsendfromdate=new Date(data.msgsendfromdate);
+					$scope.notisendsetup.msgsendtodate=new Date(data.msgsendtodate);
+					$scope.notisendsetup.msgsendingtime=data.msgsendingtime;
+					$scope.notisendsetup.msgapplicablefor =data.notificationtemplate.eventdetails.applicablefor;
+					$scope.notisendsetup.templatename =data.notificationtemplate.templatename;
+					$scope.notisendsetup.templatetext =data.notificationtemplate.templatetext;
+					$scope.notisendsetup.templateid=data.notificationtemplate.templateid;
 				},	
 					
 			
