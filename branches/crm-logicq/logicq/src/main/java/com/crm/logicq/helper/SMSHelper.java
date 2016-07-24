@@ -23,17 +23,17 @@ public class SMSHelper {
 	 * @param cardetails
 	 * @return
 	 */
-	public static SMSDetails prepareSMSDetailsFromUser(User user, PhoneCommunication communication,
-			CardReadDetails cardetails) {
+	public static SMSDetails prepareSMSDetailsFromUser(String name, PhoneCommunication communication,
+			CardReadDetails cardetails, String messageText) {
 		SMSDetails smsdetails = new SMSDetails();
 		ConcurrentMap<String,Object> concurrentMap = new ConcurrentHashMap<String,Object>();
 		smsdetails.setMobileNumber(communication.getMobilenumber());
 		smsdetails.setSmsdate(cardetails.getCardswappdate());
 		smsdetails.setContactType(communication.getContactType());
-		concurrentMap.put("Name", user.getFirstName());
+		concurrentMap.put("Name", name);
 		concurrentMap.put("InTime", cardetails.getIntime());
 		concurrentMap.put("OutTime", cardetails.getOuttime());
-		String text=formSMSText(concurrentMap);
+		String text=formSMSText(concurrentMap, messageText);
 		smsdetails.setText(text);
 		return smsdetails;
 	}
@@ -93,13 +93,12 @@ public class SMSHelper {
 		}
 	}
 	
-	private static String formSMSText(ConcurrentMap<String, Object> concurrentMap) {
-		StringBuilder smstext = new StringBuilder();
-		concurrentMap.forEach((k, v) -> {
-			smstext.append(k + "-" + v + " ");
-		});
-
-		return smstext.toString();
+	private static String formSMSText(ConcurrentMap<String, Object> concurrentMap, String text) {
+		
+		for(String key : concurrentMap.keySet()){
+			text.replace("#"+key, String.valueOf(concurrentMap.get(key)));
+		}
+		return text.toString();
 
 	}
 }
