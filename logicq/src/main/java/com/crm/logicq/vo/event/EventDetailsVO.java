@@ -6,6 +6,7 @@ package com.crm.logicq.vo.event;
 public class EventDetailsVO {
 
 	private long eventID;
+	private String eventName;
 	private String templatetext;
 	private String eventtype;
 
@@ -38,4 +39,20 @@ public class EventDetailsVO {
 
 		this.eventtype = eventtype;
 	}
+
+	
+    public String getEventName() {
+    
+    	return eventName;
+    }
+
+	
+    public void setEventName(String eventName) {
+    
+    	this.eventName = eventName;
+    }
+
+	
+   
+	
 }

@@ -1,14 +1,17 @@
 package com.crm.logicq.service.readfile;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
 import com.crm.logicq.dao.notification.IMsgNotificationDAO;
 import com.crm.logicq.dao.readfile.IReadFileDAO;
 import com.crm.logicq.model.alert.NotificationSetupDetails;
@@ -41,7 +44,7 @@ public class SchedulerService {
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public void performTask() throws Exception {
-
+      List list=new ArrayList();
 		System.out.println("performTask");
 		List<NotificationSetupDetails> notificationList = msgNotificationDAO.getMsgNotifyDetails();
 		for (NotificationSetupDetails notificationSetupDetails : notificationList) {
@@ -52,7 +55,12 @@ public class SchedulerService {
 			eventDetailsVO.setEventID(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventid());
 			eventDetailsVO.setEventtype(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventtype());
 			eventDetailsVO.setTemplatetext(notificationSetupDetails.getNotificationtemplate().getTemplatetext());
-			prepareCornJOB(startTimeHr, startTimeMin, eventDetailsVO);
+			eventDetailsVO.setEventName(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventname());
+			if(!list.contains(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventid())){
+				list.add(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventid());
+				prepareCornJOB(startTimeHr, startTimeMin, eventDetailsVO);
+			}
+			
 		}
 	}
 
