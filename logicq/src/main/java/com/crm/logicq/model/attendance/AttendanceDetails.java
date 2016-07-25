@@ -1,5 +1,6 @@
 package com.crm.logicq.model.attendance;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -17,19 +18,23 @@ import javax.persistence.TemporalType;
 import com.crm.logicq.model.user.User;
 
 @Entity
-@Table(name = "ATTENDANCE_DETAILS")
-public class AttendanceDetails {
+@Table(name = "ATTENDANCE_REPORT")
+public class AttendanceDetails implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4648837621536487884L;
+
+
+
 	@Id
     @Column(name = "ID",unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private Long id;
+
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "USER_ID", nullable = true)
-	private User user;
-	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "DATE")
 	private  Date  date;
 	
@@ -48,7 +53,38 @@ public class AttendanceDetails {
 	@Column(name = "FULL_NAME", nullable = true)
 	private String fullName;
 	
+	@Column(name = "IDENTIFICATION_ID", nullable = true)
+	private String idetificationid;
 	
+	@Column(name = "ATTENDANCE_FOR", nullable = false)
+	private String attendancefor;
+	
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getIdetificationid() {
+		return idetificationid;
+	}
+
+	public void setIdetificationid(String idetificationid) {
+		this.idetificationid = idetificationid;
+	}
+
+	public String getAttendancefor() {
+		return attendancefor;
+	}
+
+	public void setAttendancefor(String attendancefor) {
+		this.attendancefor = attendancefor;
+	}
+
 	public String getMobile() {
 		return mobile;
 	}
@@ -65,21 +101,7 @@ public class AttendanceDetails {
 		this.fullName = fullName;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 
 	public Date getDate() {
 		return date;
@@ -112,11 +134,13 @@ public class AttendanceDetails {
 	public void setPresent(boolean isPresent) {
 		this.isPresent = isPresent;
 	}
+	
 
 	@Override
 	public String toString() {
-		return "AttendanceDetails [id=" + id + ", user=" + user + ", date=" + date + ", intime=" + intime + ", outtime="
-				+ outtime + ", isPresent=" + isPresent + "]";
+		return "AttendanceDetails [id=" + id +", date=" + date + ", intime=" + intime + ", outtime="
+				+ outtime + ", isPresent=" + isPresent + ", mobile=" + mobile + ", fullName=" + fullName
+				+ ", idetificationid=" + idetificationid + ", attendancefor=" + attendancefor + "]";
 	}
 
 	

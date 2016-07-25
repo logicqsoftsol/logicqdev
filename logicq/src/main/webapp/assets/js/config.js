@@ -23,11 +23,13 @@
 	return {
      'request': function(config) {
          $('#processing').show();
+		  $('#displaydata').hide();
          return config;
       },
 
       'response': function(response) {
          $('#processing').hide();
+		  $('#displaydata').show();
          return response;
       }
     };   
