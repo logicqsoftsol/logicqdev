@@ -34,17 +34,24 @@
 		  {id:7, name:'EMPLOYEE(permanent)'},
 		  {id:8, name:'EMPLOYEE(contract)'},
 		  {id:9, name:'GUARDIAN'}];
+
+		$scope.studentattendace={};
+		$scope.employeattendace={};
 		
 		
 								/* DashBoard   Display**/				
 								 $scope.displayDashBoard = function() {
 									 AttendanceService.getAttendanceCount($scope).success(function(data, status) {
-									 GraphHelper.populateAttendanceForGraphStudent($scope,data);
+										angular.forEach(data,function(value,index){
+												if(data.applicablefor="STUDENT"){
+													$scope.studentattendace=GraphHelper.populateAttendanceGraph($scope,data);
+												}
+                                                if(data.applicablefor="EMPLOYEE"){
+													$scope.employeattendace=GraphHelper.populateAttendanceGraph($scope,data);
+											    }
+											});
+									
 										});
-								     AttendanceService.getAttendanceCount($scope).success(function(data, status) {
-										 GraphHelper.populateAttendanceForEmployee($scope,data);
-										 });
-									 
 									 GraphHelper.populateExpenseandCollection($scope);
 								 };							
 			

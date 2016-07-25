@@ -8,6 +8,9 @@ public class AttendanceCriteria {
 	private String cardno;
 	private Date fromdate;
 	private Date todate;
+	private String applicablefor;
+	
+	
 	public String getUserid() {
 		return userid;
 	}
@@ -38,11 +41,18 @@ public class AttendanceCriteria {
 	public void setTodate(Date todate) {
 		this.todate = todate;
 	}
+	public String getApplicablefor() {
+		return applicablefor;
+	}
+	public void setApplicablefor(String applicablefor) {
+		this.applicablefor = applicablefor;
+	}
 	
 	@Override
 	public String toString() {
 		return "AttendanceCriteria [userid=" + userid + ", mobileno=" + mobileno + ", cardno=" + cardno + ", fromdate="
-				+ fromdate + ", todate=" + todate + "]";
+				+ fromdate + ", todate=" + todate + ", applicablefor=" + applicablefor + "]";
 	}
 
+	
 }

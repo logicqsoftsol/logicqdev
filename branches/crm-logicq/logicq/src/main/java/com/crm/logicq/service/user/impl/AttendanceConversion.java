@@ -14,11 +14,8 @@ public class AttendanceConversion {
 		List<AttendanceVO> attendancevo = new ArrayList<AttendanceVO>();
 		attendanceDetails.stream().forEach((attendance) -> {
 			AttendanceVO attednace = new AttendanceVO();
-			attednace.setId(attendance.getUser().getUserid());
 			attednace.setIntime(attendance.getIntime());
 			attednace.setOuttime(attendance.getOuttime());
-			attednace.setMobileno(attendance.getUser().getCommunication().getMobilenumber());
-			attednace.setName(attendance.getUser().getFirstName() + " " + attendance.getUser().getLastName());
 			attednace.setDate(DateHelper.convertDatetoString(attendance.getDate()));
 			attendancevo.add(attednace);
 		});

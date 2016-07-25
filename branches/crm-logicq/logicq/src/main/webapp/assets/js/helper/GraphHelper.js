@@ -3,8 +3,8 @@
 		angular.module('crmlogicq').factory('GraphHelper', ['$http' ,function ($http){
 
 		return {
-			populateAttendanceForGraphStudent: function ($scope,data) {
-								return  $scope.studentattendace = {
+			populateAttendanceGraph: function ($scope,data) {
+								return  $scope.graphattendance = {
 								        globals: {
 								            shadow: false,
 								            fontFamily: "Verdana",
@@ -23,7 +23,7 @@
 								            }
 								        },
 								        tooltip: {
-								            text: "%v "+"Students"//data.attendanceFor
+								            text: "%v "+data.applicablefor
 								        },
 								        plot: {
 								            refAngle: "-90",
@@ -37,58 +37,15 @@
 								        },
 								        series: [{
 								            text: "Present",
-								            values:[100],//data.presentcount
+								            values:[data.presentcount],
 								            backgroundColor: "#FA6E6E #FA9494",
 								        }, {
 								            text: "Absent",
-								            values:[30],//data.absentcount
+								            values:[data.absentcount],
 								            backgroundColor: "#F1C795 #feebd2"
 								        }]
 								    };
 								    
-							},
-				populateAttendanceForEmployee: function ($scope,data) {
-								return $scope.employeattendace = {
-									        globals: {
-									            shadow: false,
-									            fontFamily: "Verdana",
-									            fontWeight: "100"
-									        },
-									        type: "pie",
-									        backgroundColor: "#fff",
-
-									        legend: {
-									            layout: "x5",
-									            position: "50%",
-									            borderColor: "transparent",
-									            marker: {
-									                borderRadius: 10,
-									                borderColor: "transparent"
-									            }
-									        },
-									        tooltip: {
-									            text: "%v Employee"
-									        },
-									        plot: {
-									            refAngle: "-90",
-									            borderWidth: "0px",
-									            valueBox: {
-									                placement: "in",
-									                text: "%npv %",
-									                fontSize: "15px",
-									                textAlpha: 1,
-									            }
-									        },
-									        series: [{
-									            text: "present",
-									            values: [100],
-									            backgroundColor: "#FA6E6E #FA9494",
-									        }, {
-									            text: "Absent",
-									            values: [10],
-									            backgroundColor: "#F1C795 #feebd2"
-									        }]
-									    };
 							},
 				populateExpenseandCollection: function ($scope) {
 								return $scope.businessdata = {
