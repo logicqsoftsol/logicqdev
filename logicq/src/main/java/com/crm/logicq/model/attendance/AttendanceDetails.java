@@ -35,7 +35,7 @@ public class AttendanceDetails implements Serializable {
 
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "DATE")
+	@Column(name = "ATTD_DATE")
 	private  Date  date;
 	
 	@Column(name = "IN_TIME",nullable = true)
@@ -45,7 +45,7 @@ public class AttendanceDetails implements Serializable {
 	private String outtime;
 	
 	@Column(name = "IS_PRESENT", nullable = false)
-	private boolean isPresent;
+	private String isPresent;
 
 	@Column(name = "MOBILE", nullable = true)
 	private String mobile;
@@ -127,20 +127,19 @@ public class AttendanceDetails implements Serializable {
 		this.outtime = outtime;
 	}
 
-	public boolean isPresent() {
+	public String getIsPresent() {
 		return isPresent;
 	}
 
-	public void setPresent(boolean isPresent) {
+	public void setIsPresent(String isPresent) {
 		this.isPresent = isPresent;
 	}
-	
 
 	@Override
 	public String toString() {
-		return "AttendanceDetails [id=" + id +", date=" + date + ", intime=" + intime + ", outtime="
-				+ outtime + ", isPresent=" + isPresent + ", mobile=" + mobile + ", fullName=" + fullName
-				+ ", idetificationid=" + idetificationid + ", attendancefor=" + attendancefor + "]";
+		return "AttendanceDetails [id=" + id + ", date=" + date + ", intime=" + intime + ", outtime=" + outtime
+				+ ", isPresent=" + isPresent + ", mobile=" + mobile + ", fullName=" + fullName + ", idetificationid="
+				+ idetificationid + ", attendancefor=" + attendancefor + "]";
 	}
 
 	

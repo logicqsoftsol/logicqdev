@@ -16,44 +16,50 @@ public class DateHelper {
 		return dateFormat.format(inputdate);
 	}
 
+	public static String convertDatetoStringWituoutTime(Date inputdate){
+		return new SimpleDateFormat("yyyy-MM-dd").format(inputdate);
+	}
 	
 	public static Date convertStringtoDate(String inputdate) throws ParseException{
 		return dateFormat.parse(inputdate);
 	}
 	
 
-	public static Date convertDateAccordingToString(String datestring) {
-
+	public static Date convertDateAccordingToString(String datestring) throws Exception {
+     Date simpledate=null;
 		if (!StringUtil.isEmpty(datestring)) {
+			String formatdatestring=datestring.replaceFirst("Last","").trim();
 			Date sysdate = new Date();
 			DateTime formateddate = new DateTime(sysdate);
-			if (datestring.contains("hours")) {
-				String stringhour = datestring.replace("hours", "").trim();
+			if (formatdatestring.contains("hours")) {
+				String stringhour = formatdatestring.replace("hours", "").trim();
 				int hour = Integer.valueOf(stringhour);
-				return formateddate.minusHours(hour).toDate();
+				simpledate=formateddate.minusHours(hour).toDate();
 			}
-			if (datestring.contains("days")) {
-				String stringdays = datestring.replace("days", "").trim();
+			if (formatdatestring.contains("days")) {
+				String stringdays = formatdatestring.replace("days", "").trim();
 				int days = Integer.valueOf(stringdays);
-				return formateddate.minusDays(days).toDate();
+				simpledate=formateddate.minusDays(days).toDate();
 			}
-			if (datestring.contains("weeks")) {
-				String stringweeks = datestring.replace("weeks", "").trim();
+			if (formatdatestring.contains("weeks")) {
+				String stringweeks = formatdatestring.replace("weeks", "").trim();
 				int weeks = Integer.valueOf(stringweeks);
-				return formateddate.minusWeeks(weeks).toDate();
+				simpledate=formateddate.minusWeeks(weeks).toDate();
 			}
-			if (datestring.contains("months")) {
-				String stringmonths = datestring.replace("months", "").trim();
+			if (formatdatestring.contains("months")) {
+				String stringmonths = formatdatestring.replace("months", "").trim();
 				int months = Integer.valueOf(stringmonths);
-				return formateddate.minusWeeks(months).toDate();
+				simpledate=formateddate.minusWeeks(months).toDate();
 			}
-			if (datestring.contains("years")) {
-				String stringyears = datestring.replace("years", "").trim();
+			if (formatdatestring.contains("years")) {
+				String stringyears = formatdatestring.replace("years", "").trim();
 				int years = Integer.valueOf(stringyears);
-				return formateddate.minusWeeks(years).toDate();
+				simpledate= formateddate.minusWeeks(years).toDate();
+			
 			}
+			
 		}
-
-		return null;
+		
+		return simpledate;
 	}	
 }

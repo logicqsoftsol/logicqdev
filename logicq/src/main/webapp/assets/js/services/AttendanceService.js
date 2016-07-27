@@ -5,32 +5,27 @@
 
 		return {
 
-			
-			getAttendanceDetails: function ($scope) {
-				return  $http({
-					method: 'GET',
-					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchattendanceURL+'/'+$scope.attendancecriteria.id+'/'+$scope.attendancecriteria.mobileno+'/'+$scope.attendancecriteria.cardno+'/'+$scope.attendancecriteria.fromdate+'/'+$scope.attendancecriteria.todate,
-					dataType :'json',
-					data : ''
-				})
-			},
-			getAttendanceDetailsdefault: function ($scope) {
-				return  $http({
-					method: 'GET',
-					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchcurrentAttedanceURL,
-					dataType :'json',
-					data : ''
-				})
-			},
-
-			getAttendanceCount: function ($scope) {
+			getAttendanceAsGraph: function ($scope) {
 			return  $http({
 				method: 'GET',
-				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getattendanceCountURL+'/'+$scope.graphattendance.attedancefor+'/'+$scope.graphattendance.fromdate+'/'+$scope.graphattendance.todate,
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAttendanceAsGraphURL
+															    +'/'+$scope.attendancecriteria.criteriadate+'/'+$scope.attendancecriteria.attedancefor
+															    +'/'+$scope.attendancecriteria.mobileno+'/'+$scope.attendancecriteria.cardno,
 				dataType :'json',
 				data : ''
 			})
 		},
+		getAttendanceAsTabular: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAttendanceAsTabularURL
+																	+'/'+$scope.attendancecriteria.criteriadate+'/'+$scope.attendancecriteria.attedancefor
+																	+'/'+$scope.attendancecriteria.mobileno+'/'+$scope.attendancecriteria.cardno,
+				dataType :'json',
+				data : ''
+			})
+		},
+		
 		}
 		
 }]);

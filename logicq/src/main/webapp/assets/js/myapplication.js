@@ -20,9 +20,9 @@
 	   'searchSMSTemplate' : '/admin/smstemplate/search',
 	   'loginURL' :'/api/login',
 	   
-	   'searchcurrentAttedanceURL':'/admin/attendance/searchCurrentAttendance',
-	   'searchattendanceURL':'/admin/attendance/searchAttendance',
-	   'getattendanceCountURL':'/admin/attendance/getAttendanceCount',
+	
+	   'getAttendanceAsTabularURL':'/admin/attendance/getAttendanceAsTabular',
+	   'getAttendanceAsGraphURL':'/admin/attendance/getAttendanceAsGraph',
 	   
 	   'saveEventDetailsURL':'/admin/calendar/event/saveEventDetails',
 	   'deleteEventDetailsURL':'/admin/calendar/event/deleteEventDetails',
