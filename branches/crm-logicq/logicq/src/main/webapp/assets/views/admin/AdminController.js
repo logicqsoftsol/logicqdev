@@ -2,7 +2,7 @@
 	'use strict';
 	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope, $http, $location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
 		 $scope.display=6;
-		 $scope.graphattendance=[];
+		
 		 $scope.request = {};
 		 $scope.selectedemployee='';
 		 $scope.emp={};
@@ -24,6 +24,20 @@
 		  {id:10, name:'ATTENDANCE'},
 		  {id:11, name:'OTHER'}
         ];
+		 
+		 $scope.criteriadatelist=[ {id:1, value:'Last 1days'},
+		                           {id:1, value:'Last 2days'},
+		                           {id:1, value:'Last 3days'},
+		                           {id:1, value:'Last 4days'},
+		                 		  {id:2, name:'Last 1weeks'},
+		                          {id:3, name:'Last 2weeks'},
+		                          {id:3, name:'Last 3weeks'},
+		                		  {id:4, name:'Last 1months'},
+		                          {id:5, name:'Last 2months'},
+		                          {id:6, name:'Last 4months'},
+		                		  {id:7, name:'Last 6months'},
+		                		  {id:8, name:'Last 1years'},
+		                		  {id:9, name:'Last 2years'}];
 		$scope.entitylist=[
 		  {id:1, name:'ALL'},
 		  {id:2, name:'STUDENT'},
@@ -35,19 +49,24 @@
 		  {id:8, name:'EMPLOYEE(contract)'},
 		  {id:9, name:'GUARDIAN'}];
 
+		$scope.attendancecriteria={};
 		$scope.studentattendace={};
 		$scope.employeattendace={};
-		
+		$scope.attendancedetails={};
+		$scope.attendancecriteria.criteriadate ='Last1days';
+		$scope.attendancecriteria.attedancefor ='EMPSTD';
+		$scope.attendancecriteria.mobileno='ISEMPTY';
+		$scope.attendancecriteria.cardno='ISEMPTY';
 		
 								/* DashBoard   Display**/				
 								 $scope.displayDashBoard = function() {
-									 AttendanceService.getAttendanceCount($scope).success(function(data, status) {
+									 AttendanceService.getAttendanceAsGraph($scope).success(function(data, status) {
 										angular.forEach(data,function(value,index){
-												if(data.applicablefor="STUDENT"){
-													$scope.studentattendace=GraphHelper.populateAttendanceGraph($scope,data);
+												if(value.applicablefor=="STUDENT"){
+													$scope.studentattendace=GraphHelper.populateAttendanceGraph($scope,value);
 												}
-                                                if(data.applicablefor="EMPLOYEE"){
-													$scope.employeattendace=GraphHelper.populateAttendanceGraph($scope,data);
+                                                if(value.applicablefor=="EMPLOYEE"){
+													$scope.employeattendace=GraphHelper.populateAttendanceGraph($scope,value);
 											    }
 											});
 									
@@ -55,28 +74,18 @@
 									 GraphHelper.populateExpenseandCollection($scope);
 								 };							
 			
-		
-		
-		
-		$scope.searchAttendanceTable= function() {
-			 AttendanceService.getAttendanceDetails($scope).success(function(data, status) {
-				 $scope.attendancedetails =data;
-			});
-			};
 
-			$scope.searchAttendanceDefault= function() {
-			 AttendanceService.getAttendanceDetailsdefault($scope).success(function(data, status) {
-				 $scope.attendancedetails =data;
-			});
-			};	
-			
-			$scope.searchAttendanceGraph= function() {
-				AttendanceService.getAttendanceCount($scope).success(function(data, status) {
-				GraphHelper.populateAttendanceForGraphStudent($scope,data);
-				});
-			};
-			
-		
+			$scope.getAttendanceAsTabular=function() {
+				 AttendanceService.getAttendanceAsTabular($scope).success(function(data, status){
+					 $scope.attendancedetails=data;
+				 });
+				};
+				
+			$scope.getAttendanceAsGraph = function() {
+				    AttendanceService.getAttendanceAsGraph($scope).success(function(data, status){
+					$scope.studentattendace = GraphHelper.populateAttendanceGraph($scope,data);
+					});
+				};
 		   
 																						
 								/* Employee operation**/

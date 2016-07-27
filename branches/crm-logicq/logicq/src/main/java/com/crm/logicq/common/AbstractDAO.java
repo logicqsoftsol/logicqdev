@@ -160,6 +160,12 @@ public class AbstractDAO<T> {
 		return query.list();
 	}
 	
+	public List<T> execcuteQuery(String query, Map<String, Object> paramMap) {
+		Query qry = getCurrentSession().createQuery(query);
+		bindParameters(qry, paramMap);
+		return qry.list();
+	}
+	
 	public List<?> execcuteSQLQuery(String queryString) {
 		Query query = getCurrentSession().createSQLQuery(queryString);
 		return query.list();

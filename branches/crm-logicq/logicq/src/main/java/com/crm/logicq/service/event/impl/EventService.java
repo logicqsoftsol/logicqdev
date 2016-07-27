@@ -78,7 +78,7 @@ public class EventService implements IEventService {
 		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
 			for (SMSDetails smsinfo : allSMSDetails) {
 				System.out.println("Call SMS");
-			//	SMSHelper.sendSMS(smsinfo);
+				//SMSHelper.sendSMS(smsinfo);
 			}
 			// userdao.insertSMSDetails(allSMSDetails);
 		}

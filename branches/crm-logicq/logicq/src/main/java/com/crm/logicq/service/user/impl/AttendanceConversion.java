@@ -14,10 +14,10 @@ public class AttendanceConversion {
 		List<AttendanceVO> attendancevo = new ArrayList<AttendanceVO>();
 		attendanceDetails.stream().forEach((attendance) -> {
 			AttendanceVO attednace = new AttendanceVO();
-			attednace.setIntime(attendance.getIntime());
+		//	attednace.setIntime(attendance.getIntime());
 			attednace.setOuttime(attendance.getOuttime());
 			attednace.setDate(DateHelper.convertDatetoString(attendance.getDate()));
-			attendancevo.add(attednace);
+		//	attendancevo.add(attednace);
 		});
 		return attendancevo;
 	}

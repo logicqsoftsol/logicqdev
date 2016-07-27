@@ -99,8 +99,9 @@
 		<section class="content">
 		<div class="panel" ng-show='display == 6'>
 				<div class="panel-heading">
-				<h4>Last 1 week Report</h4>
-				</div>
+				
+										</div>
+			
 				
 				<div class="panel-body">
 					<div class="col-md-8">
@@ -412,41 +413,44 @@
 						</div>
 					<div class="col-md-6">
 						<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" id="attentable" class="pull-center fa fa-table"  ng-click="searchAttendanceDefault()"
+							<li class="tab"><a data-toggle="tab" id="attentable" class="pull-center fa fa-table"  ng-click="getAttendanceAsTabular()"
 							href="/admin#attendancetableview">Attendance Table View</a></li>
-							<li><a data-toggle="tab" id="attengraph" class="pull-center fa fa-pie-chart"  ng-click="searchAttendanceGraph()"
+							<li class="tab"><a data-toggle="active" id="attengraph" class="pull-center fa fa-pie-chart"  ng-click="getAttendanceAsGraph()"
 								href="/admin#attendancegraphview">Attendance Graph View</a></li>
 						</ul>
 					</div>
-					<div class="col-md-10">
+					
 					<div class="tab-content">
-						<div id="attendancegraphview" class="tab-pane fade">
+						<div id="attendancegraphview" class="tab-pane fade in active">
+						    <!-- h4 class="modal-title">Attendance Of {{graphattendance.name}} Card ID {{graphattendance.cardno}} || For {{graphattendance.criteriadate}}</h4-->	
 							<zingchart id = "attendancepiechart" zc-json = "studentattendace" zc-height = 500 zc-width = 600 ></zingchart>  
 							</div>
-						<div id="attendancetableview" class="tab-pane fade in active">
+						<div id="attendancetableview" class="tab-pane fade">
 							<div class="table-responsive">
-							<table class="table table-bordered table-fixed sel-table">
+							<table class="table table-bordered table-fixed">
 							<tr class ="success">
-								<th>ID</th>
+								<th>CARD ID</th>
 								<th>NAME</t>
 								<th>MOBILE NO</th>
 								<th>IN TIME</th>
 								<th>OUT TIME</th>
 								<th>DATE</th>
+								<th>STATUS</th>
 							</tr>
 							<tr ng-repeat="attendance in attendancedetails">
-								<td>{{attendance.id}}</td>
-								<td>{{attendance.name}}</td>
-								<td>{{attendance.mobileno}}</td>
+								<td>{{attendance.idetificationid}}</td>
+								<td>{{attendance.fullName}}</td>
+								<td>{{attendance.mobile}}</td>
 								<td>{{attendance.intime}}</td>
 								<td>{{attendance.outtime}}</td>
 								<td>{{attendance.date}}</td>
+								<td>{{attendance.isPresent}}</td>
 							</tr>
 						</table>
 					</div>
 					</div>
 					</div>
-					</div>
+					
 					</div>
 				</div>
 			</div>
@@ -464,37 +468,37 @@
 						<div class="modal-body">
 							<div class="col-md-6">
 								<div class="form-group">
-								<label  class="control-label" for="section">User Id</label> 
-									<input type="text" class="form-control" id="userid" ng-model="attendancecriteria.userid"
-										placeholder="User Id" name="userid"> 					  
+								<label  class="control-label" for="attendancecriteria.mobileno">Mobile Number</label> 
+									<input type="text" class="form-control" id="attendancecriteria.mobileno" ng-model="attendancecriteria.mobileno"
+										placeholder="Mobile Number" name="attendancecriteria.mobileno"> 
 								</div>
 								<div class="form-group">
-								<label  class="control-label" for="section">Mobile No.</label> 
-									<input type="text" class="form-control" id="mobileno" ng-model="attendancecriteria.mobileno"
-										placeholder="Mobile Number" name="mobilenumber"> 
-								</div>
-								<div class="form-group">
-								<label  class="control-label" for="section">Card No.</label> 
-									<input type="text" class="form-control" id="cardno" ng-model="attendancecriteria.cardno"
-										placeholder="Card Number" name="cardno"> 
+								<label  class="control-label" for="attendancecriteria.cardno">Card Number</label> 
+									<input type="text" class="form-control" id="attendancecriteria.cardno" ng-model="attendancecriteria.cardno"
+										placeholder="Card Number" name="attendancecriteria.cardno"> 
 								</div>
 								</div>
+								  <div class="form-group">
+								       <label  class="control-label" for="attendancecriteria.criteriadate">Looking Attendance For</label> 
+									   <input type="text" class="form-control" id="attendancecriteria.criteriadate" ng-model="attendancecriteria.criteriadate"
+										placeholder="Looking Attendance for" name="attendancecriteria.criteriadate" list="criteriadatelist"> 
+										<datalist id="criteriadatelist" ></datalist>
+								   </div>
 								<div class="col-md-6">
-								
 								<div class="form-group">
-								<label  class="control-label" for="section">From Date</label> 
-									<input type="Date" class="form-control" id="fromdate" ng-model="attendancecriteria.fromdate"
-										placeholder="From Date" name="fromdate"> 
+								<label  class="control-label" for="attendancecriteria.fromdate">From Date</label> 
+									<input type="Date" class="form-control" id="attendancecriteria.fromdate" ng-model="attendancecriteria.fromdate"
+										placeholder="From Date" name="attendancecriteria.fromdate"> 
 								</div>
 								<div class="form-group">
-								<label  class="control-label" for="section">To Date</label> 
-									<input type="Date" class="form-control" id="todate" ng-model="attendancecriteria.todate" 
-										placeholder="To Date" name="todate"> 
+								<label  class="control-label" for="attendancecriteria.todate">To Date</label> 
+									<input type="Date" class="form-control" id="attendancecriteria.todate" ng-model="attendancecriteria.todate" 
+										placeholder="To Date" name="attendancecriteria.todate"> 
 								</div>
 								</div>
 						</div>
 						<div class="modal-footer">
-							<button type="submit" id="confirmfeeoper" class="btn btn-default" ng-click="searchAttendanceTable()"
+							<button type="submit" id="searchattendacebutton" class="btn btn-default" ng-click="getAttendanceAsGraph()"
 								data-dismiss="modal"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
