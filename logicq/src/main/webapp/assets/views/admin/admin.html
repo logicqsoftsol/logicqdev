@@ -173,7 +173,7 @@
 								<button id="deletedetails" data-toggle="modal" data-target="#usersearch"
 									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
 							</ul>
-							<table class="table table-bordered table-fixed">
+							<table class="table table-bordered table-fixed table-hover">
 							<tr class ="success">
 								<th class="pull-center">ID</th>
 								<th class="pull-center">NAME</th>
@@ -215,7 +215,7 @@
 								<button id="deletedetails" data-toggle="modal" data-target="#usersearch"
 									class="btn btn-default fa fa-search">Search</button>
 							</ul>
-							<table class="table table-bordered table-fixed">
+							<table class="table table-bordered table-fixed table-hover">
 							<tr class ="success">
 								<th class="pull-center">ID</th>
 								<th class="pull-center">NAME</th>
@@ -265,7 +265,7 @@
 						<button id="deletedetails" data-toggle="modal" data-target="#notificationtemplate" ng-click="searchNotificationTemplate()"
 									class="btn btn-default fa fa-search">Search</button>
                          </ul>									
-							<table class="table table-bordered table-fixed">
+							<table class="table table-bordered table-fixed table-hover">
 							<tr class ="success">
 								<th class="pull-center">TEMPLATE NAME</th>
 								<th class="pull-center">EVENT NAME</th>
@@ -299,7 +299,7 @@
 						<button id="notimsgsetupsearch" data-toggle="modal" data-target="#notificationsendingdetails" ng-click="searchNotificationSendingSetup()"
 									class="btn btn-default fa fa-search">Search</button>
                          </ul>			
-							<table class="table table-bordered table-fixed">
+							<table class="table table-bordered table-fixed table-hover">
 							<tr class ="success">
 								<th>TEMPLATE NAME</th>
 								<th>SENDING FROM DATE</t>
@@ -345,7 +345,7 @@
 									class="btn btn-default fa fa-search">Search</button>	
 									
 								</ul>
-							<table class="table table-bordered table-fixed">
+							<table class="table table-bordered table-fixed table-hover">
 							<tr class ="success">
 								<th>EVENT Name</th>
 								<th>EVENT TYPE</th>
@@ -375,7 +375,7 @@
 									class="btn btn-default fa fa-search">Search</button>
 								</ul>
 							
-							<table class="table table-bordered table-fixed">
+							<table class="table table-bordered table-fixed  table-hover">
 							<tr class ="success">
 								<th>EVENT NAME</th>
 								<th>EVENT TYPE</t>
@@ -403,22 +403,13 @@
 						<h3>View Attendance Report</h3>
 					</div>
 					<div class="panel-body">
-					<div class="col-md-10">
-						<ul class="pull-right">
-							<button id="searchattendancedetails" data-toggle="modal"
-								data-target="#attendancesearch" class="btn btn-default">
-								<i class="fa fa-search" aria-hidden="true"></i>Search
-							</button>
-						</ul>
-						</div>
-					<div class="col-md-6">
+					
 						<ul class="nav nav-tabs">
-							<li class="tab"><a data-toggle="tab" id="attentable" class="pull-center fa fa-table"  ng-click="getAttendanceAsTabular()"
+							<li><a data-toggle="tab" id="attentable" class="pull-center fa fa-table"  ng-click="getAttendaceAccordingToPage(1)"
 							href="/admin#attendancetableview">Attendance Table View</a></li>
-							<li class="tab"><a data-toggle="active" id="attengraph" class="pull-center fa fa-pie-chart"  ng-click="getAttendanceAsGraph()"
+							<li class="active"><a data-toggle="tab" id="attengraph" class="pull-center fa fa-pie-chart"  ng-click="getAttendanceAsGraph()"
 								href="/admin#attendancegraphview">Attendance Graph View</a></li>
 						</ul>
-					</div>
 					
 					<div class="tab-content">
 						<div id="attendancegraphview" class="tab-pane fade in active">
@@ -426,28 +417,42 @@
 							<zingchart id = "attendancepiechart" zc-json = "studentattendace" zc-height = 500 zc-width = 600 ></zingchart>  
 							</div>
 						<div id="attendancetableview" class="tab-pane fade">
-							<div class="table-responsive">
-							<table class="table table-bordered table-fixed">
-							<tr class ="success">
-								<th>CARD ID</th>
-								<th>NAME</t>
-								<th>MOBILE NO</th>
-								<th>IN TIME</th>
-								<th>OUT TIME</th>
-								<th>DATE</th>
-								<th>STATUS</th>
-							</tr>
-							<tr ng-repeat="attendance in attendancedetails">
-								<td>{{attendance.idetificationid}}</td>
-								<td>{{attendance.fullName}}</td>
-								<td>{{attendance.mobile}}</td>
-								<td>{{attendance.intime}}</td>
-								<td>{{attendance.outtime}}</td>
-								<td>{{attendance.date}}</td>
-								<td>{{attendance.isPresent}}</td>
-							</tr>
-						</table>
-					</div>
+						
+									<paging>
+									<div class="table-responsive">
+									<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="getAttendaceAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="getAttendaceAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="getAttendaceAccordingToPage()">&raquo;</a></li>
+									</ul>
+									<table class="table table-bordered table-fixed table-hover">
+										<tr class="success">
+											<th>CARD ID</th>
+											<th>NAME</t>
+											<th>MOBILE NO</th>
+											<th>IN TIME</th>
+											<th>OUT TIME</th>
+											<th>DATE</th>
+											<th>STATUS</th>
+										</tr>
+										<tr ng-repeat="attendance in attendancedetails">
+											<td>{{attendance.idetificationid}}</td>
+											<td>{{attendance.fullName}}</td>
+											<td>{{attendance.mobile}}</td>
+											<td>{{attendance.intime}}</td>
+											<td>{{attendance.outtime}}</td>
+											<td>{{attendance.date}}</td>
+											<td>{{attendance.isPresent}}</td>
+										</tr>
+									</table>
+									</div>
+									</paging>
+								
 					</div>
 					</div>
 					

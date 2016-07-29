@@ -21,7 +21,7 @@ public class EventDetailsDAOImpl extends AbstractDAO<EventDetails> implements IE
 	@Override
 	public EventDetails getEventDetails(Long eventid) throws Exception  {
 		String query = " from EventDetails event where event.eventid="+eventid;
-		return (EventDetails) execcuteQuery(query).get(0);
+		return (EventDetails) executeQuery(query).get(0);
 	}
 
 	

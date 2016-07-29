@@ -14,6 +14,7 @@ import com.crm.logicq.dao.attendance.IAttendanceReportDAO;
 import com.crm.logicq.model.attendance.AttendanceAggregationResult;
 import com.crm.logicq.model.attendance.AttendanceCriteria;
 import com.crm.logicq.model.attendance.AttendanceDetails;
+import com.crm.logicq.model.common.CommonProperty;
 import com.crm.logicq.model.user.User;
 import com.crm.logicq.service.attendance.IAttendanceService;
 

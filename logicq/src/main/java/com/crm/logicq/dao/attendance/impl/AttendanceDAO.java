@@ -9,6 +9,7 @@ import com.crm.logicq.common.AbstractDAO;
 import com.crm.logicq.dao.attendance.IAttendanceDAO;
 import com.crm.logicq.model.attendance.AttendanceCriteria;
 import com.crm.logicq.model.attendance.AttendanceDetails;
+import com.crm.logicq.model.common.CommonProperty;
 
 @Repository
 public class AttendanceDAO extends AbstractDAO<AttendanceDetails> implements IAttendanceDAO{
@@ -39,8 +40,11 @@ public class AttendanceDAO extends AbstractDAO<AttendanceDetails> implements IAt
 				selectquery.append("('EMPLOYEE')");
 			}
 		}
-		
-		return execcuteQuery(selectquery.toString());
+		if (1 == attedancecriteria.getPagenumber()) {
+			Long recordcount=getRecordCount(AttendanceDetails.class);
+			attedancecriteria.setTotalrecordcount(recordcount.intValue());
+		}
+		return executeQueryWithPagination(selectquery.toString(),attedancecriteria.getPagenumber(),attedancecriteria.getPagesize());
 	}
 
 	

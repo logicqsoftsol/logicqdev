@@ -155,12 +155,24 @@ public class AbstractDAO<T> {
 		return criteria.list();
 	}
 	
-	public List<T> execcuteQuery(String queryString) {
+	public List<T> executeQuery(String queryString) {
 		Query query = getCurrentSession().createQuery(queryString);
 		return query.list();
 	}
 	
-	public List<T> execcuteQuery(String query, Map<String, Object> paramMap) {
+	public Long getRecordCount(Class claz) {
+		return (Long) getCurrentSession().createQuery("select count(*) from "+claz.getSimpleName()).uniqueResult();
+	}
+	
+	
+	public List<T> executeQueryWithPagination(String queryString,int pagenumber,int pagesize) {
+		Query query = getCurrentSession().createQuery(queryString);
+		query.setFirstResult((pagenumber - 1) * pagesize);
+		query.setMaxResults(pagesize);
+		return query.list();
+	}
+	
+	public List<T> executeQuery(String query, Map<String, Object> paramMap) {
 		Query qry = getCurrentSession().createQuery(query);
 		bindParameters(qry, paramMap);
 		return qry.list();
