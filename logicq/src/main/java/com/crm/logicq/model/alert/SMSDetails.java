@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -22,20 +24,22 @@ public class SMSDetails implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5128579721058235062L;
-    @Id
+  
+	@Id
+    @Column(name = "ID",unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+	
 	@Column(name = "MOBILE_NUMBER", nullable = false)
 	private String mobileNumber;
 	
-	@Column(name = "CONTACT_TYPE", nullable = false)
-	@Enumerated(EnumType.STRING)
-	private ContactType contactType;
-	
+
 	@Column(name = "SMS_TYPE", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private SMSType type;
 	
-	@Column(name = "COMMENTS", nullable = true)
-	private String comments;
+	@Column(name = "STATUS_CODE", nullable = true)
+	private String statuscode;
 	
 	@Column(name = "TEXT", nullable = true)
 	private String text;
@@ -44,8 +48,10 @@ public class SMSDetails implements Serializable {
 	private Date smsdate;
 	
 	@Column(name = "SMS_STATUS", nullable = true)
-	private boolean status;
+	private String status;
 
+	
+	
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
@@ -54,28 +60,12 @@ public class SMSDetails implements Serializable {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public ContactType getContactType() {
-		return contactType;
-	}
-
-	public void setContactType(ContactType contactType) {
-		this.contactType = contactType;
-	}
-
 	public SMSType getType() {
 		return type;
 	}
 
 	public void setType(SMSType type) {
 		this.type = type;
-	}
-
-	public String getComments() {
-		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
 	}
 
 	public String getText() {
@@ -94,21 +84,37 @@ public class SMSDetails implements Serializable {
 		this.smsdate = smsdate;
 	}
 
-	public boolean isStatus() {
+	public String getStatuscode() {
+		return statuscode;
+	}
+
+	public void setStatuscode(String statuscode) {
+		this.statuscode = statuscode;
+	}
+
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	@Override
 	public String toString() {
-		return "SMSDetails [mobileNumber=" + mobileNumber + ", contactType=" + contactType + ", type=" + type
-				+ ", comments=" + comments + ", text=" + text + ", smsdate=" + smsdate + ", status=" + status + "]";
+		return "SMSDetails [id=" + id + ", mobileNumber=" + mobileNumber + ", type=" + type + ", statuscode="
+				+ statuscode + ", text=" + text + ", smsdate=" + smsdate + ", status=" + status + "]";
 	}
+
 	
-	
-	
+
 	
 }

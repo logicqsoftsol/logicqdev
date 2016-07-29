@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.usertype.UserVersionType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -33,6 +34,7 @@ import com.crm.logicq.service.alert.IAlertService;
 import com.crm.logicq.service.user.IUserService;
 import com.crm.logicq.ui.alert.AlertDetailsInputVO;
 import com.crm.logicq.vo.attendance.AttendanceVO;
+import com.crm.logicq.vo.user.UserVO;
 
 @Service
 @Transactional
@@ -58,88 +60,6 @@ public class UserServiceImpl implements IUserService{
 		});
 	}
 
-	@Override
-	@ExceptionHandler(Exception.class)
-	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
-	public void getUserForSMS(List<CardReadDetails> cardreadDeatils) throws Exception {
-		List<SMSDetails> allSMSDetails = new ArrayList<SMSDetails>();
-		for (CardReadDetails carddetail : cardreadDeatils) {
-			User user = new User();// (User)
-									// LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
-
-			PhoneCommunication com = new PhoneCommunication();
-			com.setActive(Boolean.TRUE);
-			com.setContactType(ContactType.HOME);
-			com.setMobilenumber("919861318105");
-			user.setCommunication(com);
-			user.setEmail("asd@gmail.com");
-			user.setEntityType(EntityType.STUDENT);
-			user.setFirstName("Dinesh");
-			user.setIdetificationid("1");
-			user.setUserid("STUD-1");
-			user.setLastName("Bhera");
-			user.setGender("Male");
-			PhoneCommunication communications = user.getCommunication();
-			
-			if (null != communications && communications.isActive()) {
-				SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user.getFirstName(), communications, carddetail, null);
-				allSMSDetails.add(smsdetails);
-			}
-		}
-		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
-			for (SMSDetails smsinfo : allSMSDetails) {
-				SMSHelper.sendSMS(smsinfo);
-			}
-			// userdao.insertSMSDetails(allSMSDetails);
-		}
-		
-	}
-
-
-	@Override
-	@ExceptionHandler(Exception.class)
-	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
-	public void triggerSMS(List<CardReadDetails> cardreadDeatils) throws Exception {
-		List<SMSDetails> allSMSDetails = new ArrayList<SMSDetails>();
-		for (CardReadDetails carddetail : cardreadDeatils) {
-//			User userFromCache = (User) LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
-//			if(null==userFromCache){
-//				loadUsers();
-//			}
-			User user = new User();//(User) LogicqContextProvider.getElementFromApplicationMap(String.valueOf(carddetail.getCardid()));
-			Set<PhoneCommunication> comset=new HashSet<PhoneCommunication>();
-			PhoneCommunication com=new PhoneCommunication();
-			com.setActive(Boolean.TRUE);
-			com.setContactType(ContactType.HOME);
-			com.setMobilenumber("919604551123");
-			user.setCommunication(com);
-			user.setEmail("asd@gmail.com");
-			user.setEntityType(EntityType.STUDENT);
-			user.setFirstName("Sangarm");
-			user.setIdetificationid("1");
-			user.setUserid("STUD-1");
-			user.setLastName("Parida");
-			user.setGender("Male");
-			
-			PhoneCommunication communications = user.getCommunication();
-		
-				if (null != communications && communications.isActive()) {
-					SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user.getFirstName(), communications, carddetail, null);
-					//AlertDetailsInputVO alertDetailsVO = prepareAlertMessage(smsdetails);
-					//String alertMessage = alertService.buildAlert(alertDetailsVO);
-					//smsdetails.setText(alertMessage);
-					allSMSDetails.add(smsdetails);
-				}
-		
-		}
-		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
-			for (SMSDetails smsinfo : allSMSDetails) {
-				SMSHelper.sendSMS(smsinfo);
-			}
-			// userdao.insertSMSDetails(allSMSDetails);
-		}
-		
-	}
 
 	@Override
 	public void getUser(String cardid) throws Exception {
@@ -147,13 +67,7 @@ public class UserServiceImpl implements IUserService{
 		
 	}
 
-	@Override
-	@ExceptionHandler(Exception.class)
-	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
-	public List<AttendanceVO> getAttendanceDetails(AttendanceCriteria attendancecriteria) throws Exception {
-		 List<AttendanceDetails> attendacedetails= userdao.getAttendanceDetails(attendancecriteria);
-		 return  AttendanceConversion.convertEntityToVO(attendacedetails);
-	}
+	
 
 	@Override
 	@ExceptionHandler(Exception.class)
@@ -221,23 +135,70 @@ public class UserServiceImpl implements IUserService{
 		employeedao.deleteEmployee(emp);
 	}
 
+	
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
 	public void loadEmployees() throws Exception{
 		List<Employee> employeeDetails= employeedao.loadEmployees();
-		for(Employee employee: employeeDetails){
-			LogicqContextProvider.addElementToEmployeeMap(employee.getIdetificationid(), employee);
+		Map<String,UserVO> allusermapdetails = (Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
+		if(null==allusermapdetails || allusermapdetails.isEmpty()){
+			allusermapdetails=new HashMap<String, UserVO>();
+			LogicqContextProvider.addElementToApplicationMap("CACHEDUSER", allusermapdetails);
 		}
+		
+		employeeDetails.forEach((employee)->{
+			Map<String,UserVO> allusermap=(Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
+			UserVO uservo=new UserVO();
+			if (null != employee.getContactdetails()
+					&& null != employee.getContactdetails().getCommunicationdetails()) {
+				uservo.setEmail(employee.getContactdetails().getCommunicationdetails().getEmailid());
+				uservo.setMobilenumber(employee.getContactdetails().getCommunicationdetails().getMobilenumber());
+			}
+			if(null!=employee.getBasicdetails()){
+			uservo.setName(employee.getBasicdetails().getFirstname()+" "+employee.getBasicdetails().getLastname());
+			uservo.setFirstName(employee.getBasicdetails().getFirstname());
+			uservo.setLastName(employee.getBasicdetails().getLastname());
+			}
+			uservo.setEntityType(EntityType.EMPLOYEE);
+			uservo.setIdetificationid(employee.getIdetificationid());
+			uservo.setUserid(employee.getUserid());
+			allusermap.put(employee.getIdetificationid(), uservo);
+		});
 	}
+	
+	
 	
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
 	public void loadStudents() throws Exception{
 		List<Student> students= studentdao.loadStudents();
-		for(Student student: students){
-			LogicqContextProvider.addElementToEmployeeMap(student.getIdetificationid(), student);
+		Map<String,UserVO> allusermapdetails = (Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
+		if(null==allusermapdetails || allusermapdetails.isEmpty()){
+			allusermapdetails=new HashMap<String, UserVO>();
+			LogicqContextProvider.addElementToApplicationMap("CACHEDUSER", allusermapdetails);
 		}
+		
+		students.forEach((student)->{
+			Map<String,UserVO> allusermap=(Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
+			UserVO uservo=new UserVO();
+			if (null != student.getContactdetails()
+					&& null != student.getContactdetails().getCommunicationdetails()) {
+				uservo.setEmail(student.getContactdetails().getCommunicationdetails().getEmailid());
+				uservo.setMobilenumber(student.getContactdetails().getCommunicationdetails().getMobilenumber());
+			}
+			if(null!=student.getBasicdetails()){
+				uservo.setName(student.getBasicdetails().getFirstname()+" "+student.getBasicdetails().getLastname());
+				uservo.setFirstName(student.getBasicdetails().getFirstname());
+				uservo.setLastName(student.getBasicdetails().getLastname());
+				}
+			uservo.setEntityType(EntityType.STUDENT);
+			uservo.setIdetificationid(student.getIdetificationid());
+			uservo.setUserid(student.getUserid());
+			allusermap.put(student.getIdetificationid(), uservo);
+		});
 	}
+
+
 }

@@ -51,9 +51,7 @@ public class User  extends BaseEntity implements Serializable {
 	
 	@Column(name = "LAST_NAME", nullable = true)
 	private String lastName;
-	
 
-	
 	@Column(name = "EMAIL_ID", unique = true, nullable = true)
 	private String email;
 	

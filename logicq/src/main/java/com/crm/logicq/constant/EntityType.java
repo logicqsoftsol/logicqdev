@@ -1,16 +1,20 @@
 package com.crm.logicq.constant;
 
 public enum EntityType {
-	EMPLOYEE("employee"), STUDENT("student");
+	EMPLOYEE("EMPLOYEE"), STUDENT("STUDENT");
 
-	private String type;
+	private final  String type;
 
-	EntityType(String type) {
+	private  EntityType(final String type) {
 		this.type = type;
 	}
 
-	String getValue() {
+  public String getValue() {
 
-		return type;
+		return this.type;
 	}
+  @Override
+  public String toString() {
+      return this.type;
+  }
 }

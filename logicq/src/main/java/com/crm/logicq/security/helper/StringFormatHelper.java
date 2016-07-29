@@ -1,6 +1,10 @@
 package com.crm.logicq.security.helper;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
+
+import org.hsqldb.lib.StringUtil;
 
 public class StringFormatHelper {
 
@@ -15,4 +19,17 @@ public class StringFormatHelper {
 		return smsMsgString.toString();
 	}
 
+	public static List<String> getSMSTemplateKey(String smstemplate) {
+		List<String> keytokens = new ArrayList<String>();
+		StringTokenizer smskeytokens = new StringTokenizer(smstemplate);
+		while (smskeytokens.hasMoreTokens()) {
+			String key = smskeytokens.nextToken();
+			if (!StringUtil.isEmpty(key) && key.startsWith("#")) {
+				key = key.replace("#", "").trim();
+				keytokens.add(key);
+			}
+		}
+		return keytokens;
+	}
+	
 }
