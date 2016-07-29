@@ -2,7 +2,10 @@
 	'use strict';
 	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope, $http, $location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
 		 $scope.display=6;
-		
+		 $scope.totalrecordcount=null;
+		 $scope.currentPage = 1;
+	     $scope.numPages = 1;
+	     $scope.pageSize = 12;
 		 $scope.request = {};
 		 $scope.selectedemployee='';
 		 $scope.emp={};
@@ -58,6 +61,9 @@
 		$scope.attendancecriteria.mobileno='ISEMPTY';
 		$scope.attendancecriteria.cardno='ISEMPTY';
 		
+		
+		
+		
 								/* DashBoard   Display**/				
 								 $scope.displayDashBoard = function() {
 									 AttendanceService.getAttendanceAsGraph($scope).success(function(data, status) {
@@ -75,18 +81,26 @@
 								 };							
 			
 
-			$scope.getAttendanceAsTabular=function() {
+			$scope.getAttendaceAccordingToPage=function(page) {
+				$scope.currentPage=page;
 				 AttendanceService.getAttendanceAsTabular($scope).success(function(data, status){
-					 $scope.attendancedetails=data;
+					 $scope.attendancedetails=data.attendacedetails;
+					 if(null==$scope.totalrecordcount){
+					    $scope.totalrecordcount=data.attendanceCriteria.totalrecordcount;
+				    	$scope.numPages= Math.round($scope.totalrecordcount/$scope.pageSize);
+					 }
+					
+					 
 				 });
 				};
+				
+				
 				
 			$scope.getAttendanceAsGraph = function() {
 				    AttendanceService.getAttendanceAsGraph($scope).success(function(data, status){
 					$scope.studentattendace = GraphHelper.populateAttendanceGraph($scope,data);
 					});
 				};
-		   
 																						
 								/* Employee operation**/
 												
@@ -577,5 +591,6 @@
 														}
 											  
 										  };
+	
 	}]);
 }());

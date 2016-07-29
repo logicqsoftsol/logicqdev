@@ -2,7 +2,9 @@ package com.crm.logicq.model.attendance;
 
 import java.util.Date;
 
-public class AttendanceCriteria {
+import com.crm.logicq.model.common.CommonProperty;
+
+public class AttendanceCriteria extends CommonProperty {
 	private String userid;
 	private String mobileno;
 	private String cardno;

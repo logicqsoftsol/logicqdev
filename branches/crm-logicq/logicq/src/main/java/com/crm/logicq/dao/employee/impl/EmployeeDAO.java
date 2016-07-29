@@ -40,7 +40,7 @@ public class EmployeeDAO extends AbstractDAO<Employee> implements IEmployeeDAO{
 	@Override
 	public List<Employee> getEmployeeList() throws Exception {
 		String query = " from Employee emp where emp.basicdetails.id!=null and emp.contactdetails.id!=null";
-		return (List<Employee>)execcuteQuery(query);
+		return (List<Employee>)executeQuery(query);
 		
 	}
 
@@ -48,7 +48,7 @@ public class EmployeeDAO extends AbstractDAO<Employee> implements IEmployeeDAO{
 	public Employee getEmployee(String empid) throws Exception {
 		String query = " from Employee emp where emp.id="+empid;
 		// need to change currently for testing purpose bind with userid
-		return (Employee) execcuteQuery(query).get(0);
+		return (Employee) executeQuery(query).get(0);
 	}
 
 	@Override

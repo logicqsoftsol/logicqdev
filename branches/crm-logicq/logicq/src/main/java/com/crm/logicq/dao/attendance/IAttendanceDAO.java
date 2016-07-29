@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.crm.logicq.model.attendance.AttendanceCriteria;
 import com.crm.logicq.model.attendance.AttendanceDetails;
+import com.crm.logicq.model.common.CommonProperty;
 
 public interface IAttendanceDAO {
 	public void saveAttendanceDetails(AttendanceDetails attendanceDetails) throws Exception;
