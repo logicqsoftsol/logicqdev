@@ -2,38 +2,52 @@ package com.crm.logicq.helper;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
 import com.crm.logicq.common.vendor.sms.SMSVendor;
+import com.crm.logicq.constant.SMSType;
 import com.crm.logicq.model.alert.SMSDetails;
 import com.crm.logicq.model.communication.PhoneCommunication;
 import com.crm.logicq.model.user.CardReadDetails;
 import com.crm.logicq.model.user.User;
 import com.crm.logicq.security.helper.StringFormatHelper;
+import com.crm.logicq.service.event.impl.EventService;
+import com.crm.logicq.ui.alert.NotificationParamVO;
+import com.crm.logicq.vo.user.UserVO;
+
 
 public class SMSHelper {
-	
+	private final static Logger logger = Logger.getLogger(SMSHelper.class);
+ 
 	/**
 	 * 
 	 * @param user
 	 * @param communication
 	 * @param cardetails
 	 * @return
+	 * @throws Exception 
 	 */
-	public static SMSDetails prepareSMSDetailsFromUser(String name, PhoneCommunication communication,
-			CardReadDetails cardetails, String messageText) {
+	public static SMSDetails prepareSMSDetailsFromUser(UserVO userdetails,
+			CardReadDetails cardetails, String templaet,List<String> templatekeys) throws Exception {
 		SMSDetails smsdetails = new SMSDetails();
-		ConcurrentMap<String,Object> concurrentMap = new ConcurrentHashMap<String,Object>();
-		smsdetails.setMobileNumber(communication.getMobilenumber());
+		NotificationParamVO paramvo=new NotificationParamVO();
+		paramvo.setIntime(String.valueOf(cardetails.getIntime()));
+		paramvo.setOuttime(String.valueOf(cardetails.getOuttime()));
+		paramvo.setName(userdetails.getFirstName());
+		smsdetails.setMobileNumber(userdetails.getMobilenumber());
 		smsdetails.setSmsdate(cardetails.getCardswappdate());
-		smsdetails.setContactType(communication.getContactType());
-		concurrentMap.put("Name", name);
-		concurrentMap.put("InTime", cardetails.getIntime());
-		concurrentMap.put("OutTime", cardetails.getOuttime());
-		String text=formSMSText(concurrentMap, messageText);
+		smsdetails.setType(SMSType.ATTENDANCE);
+		String text=formSMSText(paramvo,templaet,templatekeys);
 		smsdetails.setText(text);
 		return smsdetails;
 	}
@@ -41,9 +55,11 @@ public class SMSHelper {
 	/**
 	 * 
 	 * @param smsdetails
+	 * @throws Exception 
 	 * @throws Exception
 	 */
-	public static void sendSMS(SMSDetails smsdetails) throws Exception {
+	public static SMSDetails sendSMS(SMSDetails smsdetails) throws Exception{
+		
 		HttpURLConnection httpconnection=null;
 		try{
 			StringBuilder smsurldetails=formSMSURL(smsdetails);
@@ -51,12 +67,13 @@ public class SMSHelper {
 			httpconnection = (HttpURLConnection) url.openConnection();
 			httpconnection.setRequestMethod("GET");
 			httpconnection.setRequestProperty("Accept", "application/json");
-			smsLogStatus(httpconnection);
-		}finally{
+			smsLogStatus(httpconnection,smsdetails);
+		}
+		finally{
 			httpconnection.disconnect();
 		}
 	
-
+		return smsdetails;
 	}
 /**
  * 
@@ -82,23 +99,26 @@ public class SMSHelper {
 	 * @param conn
 	 * @throws Exception
 	 */
-	public static void smsLogStatus(HttpURLConnection conn) throws Exception{
+	public static void smsLogStatus(HttpURLConnection conn,SMSDetails smsdetails) throws Exception{
 		if (conn.getResponseCode() != 200) {
 			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 			String output;
 				while ((output = br.readLine()) != null) {
-							System.out.println(output);
+					smsdetails.setStatus(output);
+					smsdetails.setStatuscode(String.valueOf(conn.getResponseCode()));
 				}
-			throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
 		}
 	}
 	
-	private static String formSMSText(ConcurrentMap<String, Object> concurrentMap, String text) {
+	private static String formSMSText(NotificationParamVO parameter, String template,List<String> templatekeys) throws Exception {
 		
-		for(String key : concurrentMap.keySet()){
-			text = text.replace("#"+key, String.valueOf(concurrentMap.get(key)));
-		}
-		return text.toString();
+		for(String tempkey:templatekeys){
+		Field field = parameter.getClass().getDeclaredField(tempkey);
+		field.setAccessible(Boolean.TRUE);
+	    String keyvalue=String.valueOf(field.get(parameter)) ;
+	    template=template.replace("#"+tempkey, keyvalue);
+		};
+		return template;
 
 	}
 }

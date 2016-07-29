@@ -2,6 +2,7 @@ package com.crm.logicq.service.notification;
 
 import java.util.TimerTask;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import com.crm.logicq.dao.readfile.IReadFileDAO;
 import com.crm.logicq.dao.readfile.ReadFileDAO;
 import com.crm.logicq.security.service.UserService;
 import com.crm.logicq.service.event.IEventService;
+import com.crm.logicq.service.event.impl.EventService;
 import com.crm.logicq.service.user.IUserService;
 import com.crm.logicq.vo.event.EventDetailsVO;
 
@@ -21,7 +23,10 @@ import com.crm.logicq.vo.event.EventDetailsVO;
 @Service
 @Transactional
 public class SendMsgService extends TimerTask {
-
+	
+	private final static Logger logger = Logger.getLogger(SendMsgService.class);
+	
+	
 	EventDetailsVO eventDetailsVO;
 
 	public SendMsgService() {
@@ -40,9 +45,8 @@ public class SendMsgService extends TimerTask {
 			ApplicationContext context = LogicqContextProvider.getApplicationContext();
 			IEventService eventService = (IEventService) context.getBean("eventService");
 			eventService.triggerEvent(eventDetailsVO);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception ex) {
+			logger.error(" IEventService :"+ex.getMessage(),ex);
 		}
 	}
 }

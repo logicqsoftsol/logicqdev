@@ -1,6 +1,5 @@
 package com.crm.logicq.service.readfile;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.crm.logicq.dao.notification.IMsgNotificationDAO;
 import com.crm.logicq.dao.readfile.IReadFileDAO;
 import com.crm.logicq.model.alert.NotificationSetupDetails;
-import com.crm.logicq.model.user.CardReadDetails;
 import com.crm.logicq.service.notification.SendMsgService;
 import com.crm.logicq.service.user.IUserService;
 import com.crm.logicq.vo.event.EventDetailsVO;
@@ -24,7 +22,7 @@ import com.crm.logicq.vo.event.EventDetailsVO;
  * @author Nihar
  */
 @Service("ScheduleService")
-public class SchedulerService {
+public class SchedulerService  {
 
 	@Autowired
 	IMsgNotificationDAO msgNotificationDAO;
@@ -33,19 +31,11 @@ public class SchedulerService {
 	@Autowired
 	IUserService userservice;
 
-	@ExceptionHandler(Exception.class)
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public void readAccessFile() throws Exception {
-
-		List<CardReadDetails> userCardDeatils = readFileDAO.readAccessFile();
-		userservice.triggerSMS(userCardDeatils);
-	}
+	
 
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public void performTask() throws Exception {
-
-		System.out.println("performTask");
 		List<NotificationSetupDetails> notificationList = msgNotificationDAO.getMsgNotifyDetails();
 		for (NotificationSetupDetails notificationSetupDetails : notificationList) {
 			int msgSendTime = notificationSetupDetails.getMsgsendingtime();
@@ -61,8 +51,6 @@ public class SchedulerService {
 	}
 
 	public void prepareCornJOB(int hr, int min, EventDetailsVO eventDetailsVO) {
-
-		System.out.println("prepare cron job");
 		Calendar today = Calendar.getInstance();
 		today.set(Calendar.HOUR_OF_DAY, hr);
 		today.set(Calendar.MINUTE, min);

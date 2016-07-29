@@ -16,7 +16,7 @@ public class SMSVendor {
 	public static String password="babu@0701402098";
 	
 	@Value("${smsvendor.sid}")
-	public static String sid="DEMOOO";
+	public static String sid="LOGICQ";
 	
 	@Value("${smsvendor.flag}")
 	public static int flag=0;

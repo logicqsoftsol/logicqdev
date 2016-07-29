@@ -13,19 +13,12 @@ public class LogicqContextProvider implements ApplicationContextAware {
 
 	private static ApplicationContext context;
 	private static Map<String, Object> conversationMap;
-	private static Map<String, Object> employeeMap;
-	private static Map<String, Object> studentMap;
-
 	public void setApplicationContext(ApplicationContext appcontext) throws BeansException {
-
 		context = appcontext;
 		conversationMap = new HashMap<String, Object>();
-		employeeMap = new HashMap<String, Object>();
-		studentMap = new HashMap<String, Object>();
 	}
 	
 	public static ApplicationContext getApplicationContext() {
-
 		return context;
 	}
 	
@@ -48,44 +41,5 @@ public class LogicqContextProvider implements ApplicationContextAware {
 	public static void addElementToApplicationMap(String key ,Object value){
 		conversationMap.put(key, value);
 	}
-	
-	public static Object getElementFromEmployeeMap(String key){
-		Object element=null;
-		if(employeeMap.containsKey(key)){
-			element=employeeMap.get(key);
-		}
-	return element;
-	}
-	
-	public static Object removeElementFromEmployeeMap(String key){
-		Object element=null;
-		if(employeeMap.containsKey(key)){
-			element=employeeMap.remove(key);
-		}
-	return element;
-	}
 
-	public static void addElementToEmployeeMap(String key ,Object value){
-		employeeMap.put(key, value);
-	}
-	
-	public static Object getElementFromStudentMap(String key){
-		Object element=null;
-		if(studentMap.containsKey(key)){
-			element=studentMap.get(key);
-		}
-	return element;
-	}
-	
-	public static Object removeElementFromStudentMap(String key){
-		Object element=null;
-		if(studentMap.containsKey(key)){
-			element=studentMap.remove(key);
-		}
-	return element;
-	}
-
-	public static void addElementToStudentMap(String key ,Object value){
-		studentMap.put(key, value);
-	}
 }

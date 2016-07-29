@@ -1,9 +1,6 @@
 package com.crm.logicq.dao.attendance.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.hsqldb.lib.StringUtil;
 import org.springframework.stereotype.Repository;
@@ -16,10 +13,16 @@ import com.crm.logicq.model.attendance.AttendanceDetails;
 @Repository
 public class AttendanceDAO extends AbstractDAO<AttendanceDetails> implements IAttendanceDAO{
 
+	@Override
 	public void saveAttendanceDetails(AttendanceDetails attendanceDetails) throws Exception{
 		save(attendanceDetails);
 	}
 
+	@Override
+	public void saveBulkAttendanceDetails(List<AttendanceDetails> attendanceDetails) throws Exception{
+		bulkSave(attendanceDetails);
+	}
+	
 	@Override
 	public List<AttendanceDetails> getAttendanceDetailsAccordingToCriteria(AttendanceCriteria attedancecriteria)
 			throws Exception {

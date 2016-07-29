@@ -12,14 +12,9 @@ public interface IUserService {
 	
 	public void loadUsers();
 
-	public void getUserForSMS(List<CardReadDetails> cardreadDeatils)throws Exception;
-	public void triggerSMS(List<CardReadDetails> cardreadDeatils) throws Exception;
-	
 	public void getUser(String cardid) throws Exception;
 	
-	public List<AttendanceVO> getAttendanceDetails(AttendanceCriteria attendancecriteria) throws Exception;
 	
-
 	public void saveEmployee(Employee employee) throws Exception;
 	
 	public void saveStudent(Student student) throws Exception;

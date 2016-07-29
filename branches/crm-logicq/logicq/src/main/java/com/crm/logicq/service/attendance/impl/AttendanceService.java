@@ -28,8 +28,11 @@ public class AttendanceService  implements IAttendanceService{
 	@Autowired
 	IAttendanceReportDAO attendanceReportDAO;
 	
-	public void saveAttendance(List<User> cardDetails) throws Exception{
-	
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
+	public void saveAttendance(List<AttendanceDetails> attendancedetails) throws Exception{
+		attendanceDAO.saveBulkAttendanceDetails(attendancedetails);
 	}
 	
 	@Override
