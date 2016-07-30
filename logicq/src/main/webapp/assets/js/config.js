@@ -5,10 +5,20 @@
 (function () {
     'use strict';
     
- angular.module('crmlogicq').config(['$httpProvider', function ($httpProvider) {  
+ angular.module('crmlogicq').config(['$httpProvider','$provide', function ($httpProvider,$provide) {  
     $httpProvider.interceptors.push('APIInterceptor');
+    $provide.decorator("$exceptionHandler", function ($delegate, $injector) {
+        return function (exception, cause) {
+			   var rootScope = $injector.get("$rootScope");
+			  $('#processing').hide();
+		      $('#displaydata').show();             
+		      $delegate(exception, cause);
+			  alert(cause+'\n'+exception);
+        };
+    });
 	
         }]);
+	
  
   angular.module('crmlogicq').service('APIInterceptor', ['$sessionStorage', function ($sessionStorage) {
             var service = this;
