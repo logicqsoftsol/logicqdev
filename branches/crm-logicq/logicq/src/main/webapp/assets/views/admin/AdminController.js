@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
-	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope, $http, $location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
-		 $scope.display=6;
+	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$exceptionHandler','$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope, $http,$exceptionHandler,$location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
+		$scope.display=6;
 		 $scope.totalrecordcount=null;
 		 $scope.currentPage = 1;
 	     $scope.numPages = 1;
@@ -76,6 +76,8 @@
 											    }
 											});
 									
+										}).error(function(data, status) {
+											$exceptionHandler('Unable to Populate for Graph ',' Status Code : '+status);
 										});
 									 GraphHelper.populateExpenseandCollection($scope);
 								 };							
@@ -91,7 +93,9 @@
 					 }
 					
 					 
-				 });
+				 }).error(function(data, status) {
+						$exceptionHandler('Unable to Find all attendance ',' Status Code : '+status);
+					});
 				};
 				
 				
@@ -113,6 +117,8 @@
 									UserService.searchAllEmployeeList($scope)
 											.success(function(data, status) {
 												$scope.employelist=data;
+											}).error(function(data, status) {
+												$exceptionHandler('Unable to Search Employee ',' Status Code : '+status);
 											});
 								};	
 								
@@ -122,6 +128,8 @@
 									UserService.saveEmployeeDetails($scope.request)
 											.success(function(data, status) {
 												$scope.employelist=data;
+											}).error(function(data, status) {
+												$exceptionHandler('Unable to Save Employee ',' Status Code : '+status);
 											});
 								};
 								
@@ -138,6 +146,8 @@
 									 $scope.selectedemployee=emp.id;
 									UserService.searchEmployeeDetails($scope).success(function(data, status) {
 										 UserHelper.populateEmployeeForEdit($scope,data);
+									}).error(function(data, status) {
+										$exceptionHandler('Unable to Find employee details for edit ',' Status Code : '+status);
 									});
 								};
 								
@@ -154,8 +164,9 @@
 									 UserService.deleteEmployee($scope.request).success(function(data, status) {
 										 $scope.request.student={};
 											$scope.employelist=data;
+										}).error(function(data, status) {
+											$exceptionHandler('Unable to Delete Employee ',' Status Code : '+status);
 										});
-									};
 								
 								
 								/* Student operation* */
@@ -168,6 +179,8 @@
 									UserService.searchAllStudentList($scope)
 											.success(function(data, status) {
 												$scope.studentdlist=data;
+											}).error(function(data, status) {
+												$exceptionHandler('Unable to Search All Student ',' Status Code : '+status);
 											});
 								};	
 								
@@ -178,6 +191,8 @@
 									   UserService.saveStudentDetails($scope.request)
 															.success(function(data, status) {
 																$scope.studentdlist=data;
+															}).error(function(data, status) {
+																$exceptionHandler('Unable to Save Student ',' Status Code : '+status);
 															});
 												};					
 												
@@ -192,6 +207,8 @@
 													 $scope.selectedstudent=student.id;
 													UserService.searchStudentDetails($scope).success(function(data, status) {
 														 UserHelper.populateStudentForEdit($scope,data);
+													}).error(function(data, status) {
+														$exceptionHandler('Unable to Search Student Details ',' Status Code : '+status);
 													});
 												};			 
 				 
@@ -206,6 +223,8 @@
 													 UserService.deleteStudent($scope.request).success(function(data, status) {
 														 $scope.request.student={};
 															$scope.studentdlist=data;
+														}).error(function(data, status) {
+															$exceptionHandler('Unable to Delete Student ',' Status Code : '+status);
 														});
 													};
 													
@@ -220,6 +239,8 @@
 														CalendarService.searchAllEventList($scope)
 																.success(function(data, status) {
 																	$scope.eventdetails=data;
+																}).error(function(data, status) {
+																	$exceptionHandler('Unable to Search All Event ',' Status Code : '+status);
 																});
 													};
 												
@@ -265,6 +286,8 @@
 															CalendarService.saveEventDetails($scope.request)
 																.success(function(data, status) {
 																	$scope.eventdetails=data;
+																}).error(function(data, status) {
+																	$exceptionHandler('Unable to Save Event Details',' Status Code : '+status);
 																});
 															
 															
@@ -274,6 +297,8 @@
 															CalendarService.saveEventDetails($scope.request)
 																.success(function(data, status) {
 																	$scope.eventdetails=data;
+																}).error(function(data, status) {
+																	$exceptionHandler('Unable to Modifyt Event Details',' Status Code : '+status);
 																});
 															
 														}
@@ -282,6 +307,8 @@
 															CalendarService.deleteEventDetails($scope.request)
 															.success(function(data, status) {
 																	$scope.eventdetails=data;
+																}).error(function(data, status) {
+																	$exceptionHandler('Unable to Delet Event Details',' Status Code : '+status);
 																});
 														}else{
 															
@@ -301,8 +328,10 @@
 															CalendarService.searchAllEventCalendarList($scope)
 																.success(function(data, status) {
 																	$scope.calendardetailslist=data;
-																	//UserHelper.formatEventCalendarDateType($scope);
+																}).error(function(data, status) {
+																	$exceptionHandler('Unable to search Event Calendar List',' Status Code : '+status);
 																});
+															
 													};
 												/*select event details**/
 												$scope.$watch('calendar.eventname', function(newVal, oldVal){
@@ -364,6 +393,8 @@
 																.success(function(data, status) {
 																	$scope.calendardetailslist=data;
 																	//UserHelper.formatEventCalendarDateType($scope);
+																}).error(function(data, status) {
+																	$exceptionHandler('Unable to Add Event Calendar Details',' Status Code : '+status);
 																});
 															
 															
@@ -374,6 +405,8 @@
 																.success(function(data, status) {
 																	$scope.calendardetailslist=data;
 																	//UserHelper.formatEventCalendarDateType($scope);
+																}).error(function(data, status) {
+																	$exceptionHandler('Unable to Modify Event Calendar Details',' Status Code : '+status);
 																});
 															
 														}
@@ -382,7 +415,11 @@
 															CalendarService.deleteEventCalendarDetails($scope.request)
 															.success(function(data, status) {
 																	$scope.calendardetailslist=data;
-																});
+																})
+															.error(function(data, status) {
+															   $exceptionHandler('Unable to delete Event Calendar Details ',' Status Code : '+status);
+															});
+															
 														}else{
 															
 														}
@@ -403,6 +440,8 @@
 											CalendarService.searchAllEventList($scope)
 																	.success(function(data, status) {
 																		$scope.eventfortemplatelist=data;
+														}).error(function(data, status) {
+															   $exceptionHandler('Unable to Search EventList ',' Status Code : '+status);
 														});
 												};
 									
@@ -451,7 +490,9 @@
 												NotificationService.getAllNotificationTemplateList($scope)
 												.success(function(data, status) {
 													$scope.notificationtemplatelist=data;
-								                	});
+								                	}).error(function(data, status) {
+														   $exceptionHandler('Unable to Search Notification Template List ',' Status Code : '+status);
+													});
 											  };
 										  
 											/*Set Notification Template  details operation**/
@@ -463,6 +504,8 @@
 															NotificationService.saveNotificationTemplate($scope.request)
 															.success(function(data, status) {
 																$scope.notificationtemplatelist=data;
+															}).error(function(data, status) {
+																   $exceptionHandler('Unable to Save Notification Template List ',' Status Code : '+status);
 															});
 															
 														}
@@ -471,12 +514,16 @@
 															NotificationService.saveNotificationTemplate($scope.request)
 															.success(function(data, status) {
 																$scope.notificationtemplatelist=data;
+															}).error(function(data, status) {
+																   $exceptionHandler('Unable to Modify Notification Template List ',' Status Code : '+status);
 															});
 														}
 														else if('-'==operation){
 															UserHelper.populateNotificationDetailsForDelete($scope);
 															NotificationService.deleteNotificationTemplate($scope.request).success(function(data, status) {
 																$scope.notificationtemplatelist=data;
+															}).error(function(data, status) {
+																   $exceptionHandler('Unable to Delete Notification Template List ',' Status Code : '+status);
 															});
 														
 														}else{
@@ -508,7 +555,9 @@
 															NotificationService.getNotificationDetailsForEntity($scope)
 															.success(function(data, status) {
 																$scope.templatelistforentity=data;
-											                	});
+											                	}).error(function(data, status) {
+																	   $exceptionHandler('Unable to get Notification Template List For Entity',' Status Code : '+status);
+																});
 														}	
 														});
 														
@@ -529,6 +578,8 @@
 										 $scope.getNotificationSendingConfigurationDetails =function(){
 										  NotificationService.getNotificationSetupDetails($scope).success(function(data, status) {
 																$scope.notisendingdetails=data;
+															}).error(function(data, status) {
+																   $exceptionHandler('Unable to get Notification Setup Details ',' Status Code : '+status);
 															});
 										}
 											
@@ -570,6 +621,8 @@
 															NotificationService.saveNotificationTemplateSetup($scope.request)
 															.success(function(data, status) {
 																$scope.notisendingdetails=data;
+															}).error(function(data, status) {
+																   $exceptionHandler('Unable to Add Notification Setup Details ',' Status Code : '+status);
 															});
 															
 														}
@@ -578,6 +631,8 @@
 															NotificationService.saveNotificationTemplateSetup($scope.request)
 															.success(function(data, status) {
 																$scope.notisendingdetails=data;
+															}).error(function(data, status) {
+																   $exceptionHandler('Unable to Modify Notification Setup Details ',' Status Code : '+status);
 															});
 														}
 														else if('-'==operation){
@@ -585,6 +640,8 @@
 															NotificationService.deleteNotificationTemplateSetup($scope.request)
 															.success(function(data, status) {
 																$scope.notisendingdetails=data;
+															}).error(function(data, status) {
+																   $exceptionHandler('Unable to Delete Notification Setup Details ',' Status Code : '+status);
 															});
 														}else{
 															
