@@ -5,7 +5,7 @@
 (function () {
     'use strict';
     
-   angular.module('crmlogicq', ['zingchart-angularjs',
+   angular.module('crmlogicq', ['ui.bootstrap','zingchart-angularjs',
         'ui.router','checklist-model','ngStorage'
   ]).constant('AppConstants', {
 	   'hostName':'http://127.0.0.1:', 
