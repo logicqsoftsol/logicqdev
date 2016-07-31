@@ -28,7 +28,7 @@ public class NotificationTemplateSetupDAO extends AbstractDAO<NotificationSetupD
 	public List<NotificationSetupDetails> getNotificationSetupDetails(NotificationTemplateSetupCriteria notitempsetupcriteria) throws Exception {
 		String query=" from NotificationSetupDetails ";
 		if (1 == notitempsetupcriteria.getPagenumber()) {
-			Long recordcount=getRecordCount(AttendanceDetails.class);
+			Long recordcount=getRecordCount(NotificationSetupDetails.class);
 			notitempsetupcriteria.setTotalrecordcount(recordcount.intValue());
 		}
 		
