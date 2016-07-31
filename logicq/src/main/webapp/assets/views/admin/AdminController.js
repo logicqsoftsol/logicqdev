@@ -64,6 +64,10 @@
 		$scope.attendancecriteria.numPages=$scope.numPages;
 		$scope.attendancecriteria.pageSize=$scope.pageSize;
 		$scope.attendancecriteria.currentPage=$scope.currentPage;
+		$scope.sucessmsg='Save Successfully';
+		$scope.createmsg='Create Successfully';
+		$scope.editmsg='Edit Successfully';
+		$scope.deletemsg='Delete Successfully';
 		
 								/* DashBoard   Display**/				
 								 $scope.displayDashBoard = function() {
@@ -95,8 +99,9 @@
 					 $scope.attendancedetails=data.attendacedetails;
 					 if(null==$scope.attendancecriteria.totalrecordcount){
 						 $scope.attendancecriteria.totalrecordcount=data.attendanceCriteria.totalrecordcount;
-						 $scope.attendancecriteria.numPages= Math.ceil($scope.attendancecriteria.totalrecordcount/$scope.attendancecriteria.pageSize);
+						 
 					}
+					$scope.attendancecriteria.numPages= Math.ceil($scope.attendancecriteria.totalrecordcount/$scope.attendancecriteria.pageSize);
 					 $scope.numPages=$scope.attendancecriteria.numPages;
 				 }).error(function(data, status) {
 					 var errormsg='Unable to Find Last 1 day attendance Status Code : '+status;
@@ -134,8 +139,9 @@
 												$scope.employelist=data.employeelist;
 												 if(null==$scope.emp.totalrecordcount){
 													 $scope.emp.totalrecordcount=data.employeecriteria.totalrecordcount;
-													 $scope.emp.numPages= Math.ceil($scope.emp.totalrecordcount/$scope.emp.pageSize);				
+													 				
 												}
+												$scope.emp.numPages= Math.ceil($scope.emp.totalrecordcount/$scope.emp.pageSize);
 												$scope.numPages=$scope.emp.numPages;
 											}).error(function(data, status) {
 												var errormsg='Unable to Search Employee Status Code : '+status;
@@ -152,9 +158,11 @@
 												$scope.employelist=data.employeelist;
 												 if(null==$scope.emp.totalrecordcount){
 													 $scope.emp.totalrecordcount=data.employeecriteria.totalrecordcount;
-													 $scope.emp.numPages= Math.ceil($scope.emp.totalrecordcount/$scope.emp.pageSize);		
+													 		
 												}
+												$scope.emp.numPages= Math.ceil($scope.emp.totalrecordcount/$scope.emp.pageSize);
 												$scope.numPages=$scope.emp.numPages;	
+												$rootScope.$emit("callAddAlert", {type:'success',msg:'Employee '+$scope.sucessmsg});
 											}).error(function(data, status) {
 												var errormsg='Unable to Save Employee Status Code : '+status;
 												 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -197,9 +205,11 @@
 											$scope.employelist=data.employeelist;
 											 if(null==$scope.emp.totalrecordcount){
 												 $scope.emp.totalrecordcount=data.employeecriteria.totalrecordcount;
-												 $scope.emp.numPages= Math.ceil($scope.emp.totalrecordcount/$scope.emp.pageSize);
+												 
 											 }
+											 $scope.emp.numPages= Math.ceil($scope.emp.totalrecordcount/$scope.emp.pageSize);
 											 $scope.numPages=$scope.emp.numPages;
+											 $rootScope.$emit("callAddAlert", {type:'success',msg:'Employee '+$scope.deletemsg});
 										}).error(function(data, status) {
 											var errormsg='Unable to Delete Employee Status Code : '+status;
 											 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -224,8 +234,9 @@
 												$scope.studentdlist=data.studentlist;
 												if(null==$scope.student.totalrecordcount){
 													$scope.student.totalrecordcount=data.studentcriteria.totalrecordcount;
-													$scope.student.numPages= Math.ceil($scope.student.totalrecordcount/$scope.student.pageSize);
+													
 												 }
+												 $scope.student.numPages= Math.ceil($scope.student.totalrecordcount/$scope.student.pageSize);
 												 $scope.numPages=$scope.student.numPages;
 											}).error(function(data, status) {
 												var errormsg='Unable to Search All Student  Status Code : '+status;
@@ -243,9 +254,11 @@
 																$scope.studentdlist=data.studentlist;
 																if(null==$scope.student.totalrecordcount){
 																	$scope.student.totalrecordcount=data.studentcriteria.totalrecordcount;
-																	$scope.student.numPages= Math.ceil($scope.student.totalrecordcount/$scope.student.pageSize);
+																	
 																 }
+																 $scope.student.numPages= Math.ceil($scope.student.totalrecordcount/$scope.student.pageSize);
 																  $scope.numPages=$scope.student.numPages;
+																  $rootScope.$emit("callAddAlert", {type:'success',msg:'Student '+$scope.sucessmsg});
 															}).error(function(data, status) {
 																 var errormsg='Unable to Save Student  Status Code : '+status;
 																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -282,6 +295,7 @@
 													 UserService.deleteStudent($scope.request).success(function(data, status) {
 														 $scope.request.student={};
 															$scope.studentdlist=data.studentlist;
+															$rootScope.$emit("callAddAlert", {type:'success',msg:'Student '+$scope.deletemsg});
 														}).error(function(data, status) {
 															 var errormsg='Unable to Delete Student  Status Code : '+status;
 															 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -309,8 +323,9 @@
 																$scope.eventdetails=data.eventdetails;
 																 if(null==$scope.eventd.totalrecordcount){
 																	 $scope.eventd.totalrecordcount=data.eventcriteria.totalrecordcount;
-																	 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
+																	 
 																 }
+																 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
 																 $scope.numPages=$scope.eventd.numPages;
 															 }).error(function(data, status) {
 																 var errormsg='Unable to Find Event Details  Status Code : '+status;
@@ -364,9 +379,11 @@
 																	$scope.eventdetails=data.eventdetails;
 																	 if(null==$scope.eventd.totalrecordcount){
 																		 $scope.eventd.totalrecordcount=data.eventcriteria.totalrecordcount;
-																		 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
+																		 
 																	 }
+																	 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
 																	 $scope.numPages=$scope.eventd.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'EventDetails '+$scope.createmsg});
 																}).error(function(data, status) {
 																	 var errormsg='Unable to Save Event Details Status Code : '+status;
 																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -382,9 +399,11 @@
 																	$scope.eventdetails=data.eventdetails;
 																	 if(null==$scope.eventd.totalrecordcount){
 																		 $scope.eventd.totalrecordcount=data.eventcriteria.totalrecordcount;
-																		 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
+																		 
 																	 }
+																	 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
 																	 $scope.numPages=$scope.eventd.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'EventDetails '+$scope.editmsg});
 																}).error(function(data, status) {
 																	 var errormsg='Unable to Modifyt Event Details Status Code : '+status;
 																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -399,9 +418,11 @@
 																	$scope.eventdetails=data.eventdetails;
 																	 if(null==$scope.eventd.totalrecordcount){
 																		 $scope.eventd.totalrecordcount=data.eventcriteria.totalrecordcount;
-																		 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
+																		 
 																	 }
+																	 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
 																	 $scope.numPages=$scope.eventd.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'EventDetails '+$scope.deletemsg});
 																}).error(function(data, status) {
 																	var errormsg='Unable to Delet Event Details Status Code : '+status;
 																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -433,8 +454,9 @@
 																	$scope.calendardetailslist=data.calendardetailslist;
 																	 if(null==$scope.calendar.totalrecordcount){
 																		 $scope.calendar.totalrecordcount=data.calendarcriteria.totalrecordcount;
-																		 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
+																		 
 																	 }
+																	 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
 																	 $scope.numPages=$scope.calendar.numPages;
 																}).error(function(data, status) {
 																	var errormsg='Unable to search Event Calendar List  Status Code : '+status;
@@ -504,9 +526,11 @@
 																	$scope.calendardetailslist=data.calendardetailslist;
 																	 if(null==$scope.calendar.totalrecordcount){
 																		 $scope.calendar.totalrecordcount=data.calendarcriteria.totalrecordcount;
-																		 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
+																		 
 																	 }
+																	 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
 																	 $scope.numPages=$scope.calendar.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'EventCalendar Details '+$scope.createmsg});
 																}).error(function(data, status) {
 																	var errormsg='Unable to Add Event Calendar Details Status Code : '+status;
 																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -522,9 +546,11 @@
 																	$scope.calendardetailslist=data.calendardetailslist;
 																	 if(null==$scope.calendar.totalrecordcount){
 																		 $scope.calendar.totalrecordcount=data.calendarcriteria.totalrecordcount;
-																		 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
+																		 
 																	 }
+																	 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
 																	 $scope.numPages=$scope.calendar.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'Event Calendar Details '+$scope.editmsg});
 																}).error(function(data, status) {
 																	var errormsg='Unable to Modify Event Calendar Details Status Code : '+status;
 																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -539,9 +565,11 @@
 																$scope.calendardetailslist=data.calendardetailslist;
 																 if(null==$scope.calendar.totalrecordcount){
 																	 $scope.calendar.totalrecordcount=data.calendarcriteria.totalrecordcount;
-																	 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
+																	 
 																 }
+																 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
 																 $scope.numPages=$scope.calendar.numPages;
+																 $rootScope.$emit("callAddAlert", {type:'success',msg:'Event Calendar Details '+$scope.deletemsg});
 																})
 															.error(function(data, status) {
 																var errormsg='Unable to delete Event Calendar Details  Status Code : '+status;
@@ -580,8 +608,9 @@
 													$scope.notificationtemplatelist=data.notificationtemplatelist;
 													 if(null==$scope.notificationtemplate.totalrecordcount){
 														 $scope.notificationtemplate.totalrecordcount=data.notificationtemplatecriteria.totalrecordcount;
-														 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
+														 
 													 }
+													 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
 													 $scope.numPages=$scope.notificationtemplate.numPages;
 								                	}).error(function(data, status) {
 								                		var errormsg='Unable to Search Notification Template List  Status Code : '+status;
@@ -654,9 +683,11 @@
 																$scope.notificationtemplatelist=data.notificationtemplatelist;
 																 if(null==$scope.notificationtemplate.totalrecordcount){
 																	 $scope.notificationtemplate.totalrecordcount=data.notificationtemplatecriteria.totalrecordcount;
-																	 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
+																	 
 																 }
+																 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
 																 $scope.numPages=$scope.notificationtemplate.numPages;
+																 $rootScope.$emit("callAddAlert", {type:'success',msg:'Notification Details '+$scope.createmsg});
 															}).error(function(data, status) {
 																var errormsg='Unable to Save Notification Template List  Status Code : '+status;
 																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -671,9 +702,11 @@
 																$scope.notificationtemplatelist=data.notificationtemplatelist;
 																 if(null==$scope.notificationtemplate.totalrecordcount){
 																	 $scope.notificationtemplate.totalrecordcount=data.notificationtemplatecriteria.totalrecordcount;
-																	 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
+																	 
 																 }
+																 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
 																 $scope.numPages=$scope.notificationtemplate.numPages;
+																 $rootScope.$emit("callAddAlert", {type:'success',msg:'Notification Details '+$scope.editmsg});
 															}).error(function(data, status) {
 																var errormsg='Unable to Modify Notification Template List  Status Code : '+status;
 																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -686,9 +719,11 @@
 																$scope.notificationtemplatelist=data.notificationtemplatelist;
 																 if(null==$scope.notificationtemplate.totalrecordcount){
 																	 $scope.notificationtemplate.totalrecordcount=data.notificationtemplatecriteria.totalrecordcount;
-																	 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
+																	
 																 }
+																  $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
 																 $scope.numPages=$scope.notificationtemplate.numPages;
+																 $rootScope.$emit("callAddAlert", {type:'success',msg:'Notification Details '+$scope.deletemsg});
 															}).error(function(data, status) {
 																var errormsg='Unable to Delete Notification Template List  Status Code : '+status;
 																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -728,9 +763,11 @@
 																$scope.notisendingdetails=data.notisendingdetails;
 																 if(null==$scope.notisendsetup.totalrecordcount){
 																	 $scope.notisendsetup.totalrecordcount=data.notisendingdetailscriteria.totalrecordcount;
-																	 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
+																	 
 																 }
+																 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
 																 $scope.numPages=$scope.notisendsetup.numPages;
+																 
 															}).error(function(data, status) {
 																var errormsg='Unable to get Notification Setup Details  Status Code : '+status;
 																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -809,9 +846,10 @@
 																$scope.notisendingdetails=data.notisendingdetails;
 																if(null==$scope.notisendsetup.totalrecordcount){
 																	 $scope.notisendsetup.totalrecordcount=data.notisendingdetailscriteria.totalrecordcount;
-																	 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
-																 }
+																	 }
+																 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
 																 $scope.numPages=$scope.notisendsetup.numPages;
+																 $rootScope.$emit("callAddAlert", {type:'success',msg:'Notification Sending Setup Details '+$scope.createmsg});
 															}).error(function(data, status) {
 																var errormsg='Unable to Add Notification Setup Details Status Code : '+status;
 																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -826,9 +864,10 @@
 																$scope.notisendingdetails=data.notisendingdetails;
 																if(null==$scope.notisendsetup.totalrecordcount){
 																	 $scope.notisendsetup.totalrecordcount=data.notisendingdetailscriteria.totalrecordcount;
-																	 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
 																 }
+																 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
 																 $scope.numPages=$scope.notisendsetup.numPages;
+																 $rootScope.$emit("callAddAlert", {type:'success',msg:'Notification Sending Setup Details '+$scope.editmsg});
 															}).error(function(data, status) {
 																var errormsg='Unable to Modify Notification Setup Details  Status Code : '+status;
 																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -842,9 +881,11 @@
 																$scope.notisendingdetails=data.notisendingdetails;
 																if(null==$scope.notisendsetup.totalrecordcount){
 																	 $scope.notisendsetup.totalrecordcount=data.notisendingdetailscriteria.totalrecordcount;
-																	 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
+																	 
 																 }
+																 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
 																 $scope.numPages=$scope.notisendsetup.numPages;
+																 $rootScope.$emit("callAddAlert", {type:'success',msg:'Notification Sending Setup Details '+$scope.deletemsg});
 															}).error(function(data, status) {
 																var errormsg='Unable to Delete Notification Setup Details Status Code : '+status;
 																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
