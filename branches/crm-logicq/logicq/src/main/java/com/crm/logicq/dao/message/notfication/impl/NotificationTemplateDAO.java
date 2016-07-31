@@ -28,7 +28,7 @@ public class NotificationTemplateDAO  extends AbstractDAO<NotificationTemplate> 
 	public List<NotificationTemplate> getNotificationTemplates(NotificationTemplateCriteria notificationtemplatecriteria) throws Exception {
 		String query=" from NotificationTemplate ";
 		if (1 == notificationtemplatecriteria.getPagenumber()) {
-			Long recordcount=getRecordCount(AttendanceDetails.class);
+			Long recordcount=getRecordCount(NotificationTemplate.class);
 			notificationtemplatecriteria.setTotalrecordcount(recordcount.intValue());
 		}
 		return executeQueryWithPagination(query, notificationtemplatecriteria.getPagenumber(), notificationtemplatecriteria.getPagesize());
