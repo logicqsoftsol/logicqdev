@@ -13,7 +13,8 @@
 			  $('#processing').hide();
 		      $('#displaydata').show();             
 		      $delegate(exception, cause);
-			  alert(cause+'\n'+exception);
+			//Not requird as added error message
+		     //  alert(cause+'\n'+exception);
         };
     });
 	
@@ -180,5 +181,7 @@ angular.module('crmlogicq').directive('showErrors', function ($timeout, showErro
           }
       };
   });   
-  
+ 
+ 
+ 
 }());

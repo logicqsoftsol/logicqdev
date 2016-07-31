@@ -1,6 +1,6 @@
 (function () {
 	'use strict';
-	angular.module('crmlogicq').controller('AdminController',['$scope','$http', '$exceptionHandler','$location', 'AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope, $http,$exceptionHandler,$location, AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
+	angular.module('crmlogicq').controller('AdminController',['$scope','$rootScope','$http', '$exceptionHandler','$location','AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope,$rootScope,$http,$exceptionHandler,$location,AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
 		$scope.display=6;
 		 $scope.totalrecordcount=null;
 		 $scope.currentPage = 1;
@@ -65,8 +65,6 @@
 		$scope.attendancecriteria.pageSize=$scope.pageSize;
 		$scope.attendancecriteria.currentPage=$scope.currentPage;
 		
-		
-		
 								/* DashBoard   Display**/				
 								 $scope.displayDashBoard = function() {
 									 AttendanceService.getAttendanceAsGraph($scope).success(function(data, status) {
@@ -82,7 +80,9 @@
 											});
 									
 										}).error(function(data, status) {
-											$exceptionHandler('Unable to Populate for Graph ',' Status Code : '+status);
+											 var errormsg='Unable to Populate for Graph  Status Code : '+status;
+											 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+											$exceptionHandler(errormsg);
 										});
 									 GraphHelper.populateExpenseandCollection($scope);
 								 };							
@@ -98,7 +98,9 @@
 						 $scope.attendancecriteria.numPages= Math.ceil($scope.attendancecriteria.totalrecordcount/$scope.attendancecriteria.pageSize);
 					 }
 				 }).error(function(data, status) {
-						$exceptionHandler('Unable to Find Last 1 day attendance ',' Status Code : '+status);
+					 var errormsg='Unable to Find Last 1 day attendance Status Code : '+status;
+					 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+					 $exceptionHandler(errormsg);
 					});
 				};
 				
@@ -108,7 +110,9 @@
 				    AttendanceService.getAttendanceAsGraph($scope).success(function(data, status){
 					$scope.studentattendace = GraphHelper.populateAttendanceGraph($scope,data);
 					}).error(function(data, status) {
-						$exceptionHandler('Unable to Find Last 1 Day attendance ',' Status Code : '+status);
+						 var errormsg='Unable to Find Last 1 Day attendance  Status Code : '+status;
+						 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+						$exceptionHandler(errormsg);
 					});
 				};
 																						
@@ -132,7 +136,9 @@
 													 $scope.emp.numPages= Math.ceil($scope.emp.totalrecordcount/$scope.emp.pageSize);
 												 }
 											}).error(function(data, status) {
-												$exceptionHandler('Unable to Search Employee ',' Status Code : '+status);
+												var errormsg='Unable to Search Employee Status Code : '+status;
+												 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+												$exceptionHandler(errormsg);
 											});
 								};	
 								
@@ -147,7 +153,9 @@
 													 $scope.emp.numPages= Math.ceil($scope.emp.totalrecordcount/$scope.emp.pageSize);
 												 }
 											}).error(function(data, status) {
-												$exceptionHandler('Unable to Save Employee ',' Status Code : '+status);
+												var errormsg='Unable to Save Employee Status Code : '+status;
+												 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+												$exceptionHandler(errormsg);
 											});
 								};
 								
@@ -165,7 +173,9 @@
 									UserService.searchEmployeeDetails($scope).success(function(data, status) {
 										 UserHelper.populateEmployeeForEdit($scope,data);
 									}).error(function(data, status) {
-										$exceptionHandler('Unable to Find employee details for edit ',' Status Code : '+status);
+										 var errormsg='Unable to Find employee details for edit  Status Code : '+status;
+										 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+										 $exceptionHandler(errormsg);
 									});
 								};
 								
@@ -187,7 +197,9 @@
 												 $scope.emp.numPages= Math.ceil($scope.emp.totalrecordcount/$scope.emp.pageSize);
 											 }
 										}).error(function(data, status) {
-											$exceptionHandler('Unable to Delete Employee ',' Status Code : '+status);
+											var errormsg='Unable to Delete Employee Status Code : '+status;
+											 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+											$exceptionHandler(errormsg);
 										});
 								 };
 								
@@ -211,7 +223,9 @@
 													$scope.student.numPages= Math.ceil($scope.student.totalrecordcount/$scope.student.pageSize);
 												 }
 											}).error(function(data, status) {
-												$exceptionHandler('Unable to Search All Student ',' Status Code : '+status);
+												var errormsg='Unable to Search All Student  Status Code : '+status;
+												 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+												$exceptionHandler(errormsg);
 											});
 								};	
 								
@@ -227,7 +241,9 @@
 																	$scope.student.numPages= Math.ceil($scope.student.totalrecordcount/$scope.student.pageSize);
 																 }
 															}).error(function(data, status) {
-																$exceptionHandler('Unable to Save Student ',' Status Code : '+status);
+																 var errormsg='Unable to Save Student  Status Code : '+status;
+																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																 $exceptionHandler(errormsg);
 															});
 												};					
 												
@@ -243,7 +259,9 @@
 													UserService.searchStudentDetails($scope).success(function(data, status) {
 														 UserHelper.populateStudentForEdit($scope,data);
 													}).error(function(data, status) {
-														$exceptionHandler('Unable to Search Student Details ',' Status Code : '+status);
+														 var errormsg='Unable to Search Student Details Status Code : '+status;
+														 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+														$exceptionHandler(errormsg);
 													});
 												};			 
 				 
@@ -259,7 +277,9 @@
 														 $scope.request.student={};
 															$scope.studentdlist=data.studentlist;
 														}).error(function(data, status) {
-															$exceptionHandler('Unable to Delete Student ',' Status Code : '+status);
+															 var errormsg='Unable to Delete Student  Status Code : '+status;
+															 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+															$exceptionHandler(errormsg);
 														});
 													};
 													
@@ -286,7 +306,9 @@
 																	 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
 																 }
 															 }).error(function(data, status) {
-																	$exceptionHandler('Unable to Find Event Details ',' Status Code : '+status);
+																 var errormsg='Unable to Find Event Details  Status Code : '+status;
+																  $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	$exceptionHandler(errormsg);
 																});
 															};
 													  
@@ -338,7 +360,9 @@
 																		 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
 																	 }
 																}).error(function(data, status) {
-																	$exceptionHandler('Unable to Save Event Details',' Status Code : '+status);
+																	 var errormsg='Unable to Save Event Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	$exceptionHandler(errormsg);
 																});
 															
 															
@@ -353,7 +377,9 @@
 																		 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
 																	 }
 																}).error(function(data, status) {
-																	$exceptionHandler('Unable to Modifyt Event Details',' Status Code : '+status);
+																	 var errormsg='Unable to Modifyt Event Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	$exceptionHandler(errormsg);
 																});
 															
 														}
@@ -367,7 +393,9 @@
 																		 $scope.eventd.numPages= Math.ceil($scope.eventd.totalrecordcount/$scope.eventd.pageSize);
 																	 }
 																}).error(function(data, status) {
-																	$exceptionHandler('Unable to Delet Event Details',' Status Code : '+status);
+																	var errormsg='Unable to Delet Event Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	$exceptionHandler(errormsg);
 																});
 														}else{
 															
@@ -398,7 +426,9 @@
 																		 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
 																	 }
 																}).error(function(data, status) {
-																	$exceptionHandler('Unable to search Event Calendar List',' Status Code : '+status);
+																	var errormsg='Unable to search Event Calendar List  Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	$exceptionHandler(errormsg);
 																});
 															
 													};
@@ -466,7 +496,9 @@
 																		 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
 																	 }
 																}).error(function(data, status) {
-																	$exceptionHandler('Unable to Add Event Calendar Details',' Status Code : '+status);
+																	var errormsg='Unable to Add Event Calendar Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	$exceptionHandler(errormsg);
 																});
 															
 															
@@ -481,7 +513,9 @@
 																		 $scope.calendar.numPages= Math.ceil($scope.calendar.totalrecordcount/$scope.calendar.pageSize);
 																	 }
 																}).error(function(data, status) {
-																	$exceptionHandler('Unable to Modify Event Calendar Details',' Status Code : '+status);
+																	var errormsg='Unable to Modify Event Calendar Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	$exceptionHandler(errormsg);
 																});
 															
 														}
@@ -496,7 +530,9 @@
 																 }
 																})
 															.error(function(data, status) {
-															   $exceptionHandler('Unable to delete Event Calendar Details ',' Status Code : '+status);
+																var errormsg='Unable to delete Event Calendar Details  Status Code : '+status;
+																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+															   $exceptionHandler(errormsg);
 															});
 															
 														}else{
@@ -533,7 +569,9 @@
 														 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
 													 }
 								                	}).error(function(data, status) {
-														   $exceptionHandler('Unable to Search Notification Template List ',' Status Code : '+status);
+								                		var errormsg='Unable to Search Notification Template List  Status Code : '+status;
+														 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+														   $exceptionHandler(errormsg);
 													});
 											  };
 										  
@@ -541,9 +579,11 @@
 											if($scope.eventfortemplatelist==null){
 											CalendarService.searchAllEventList($scope)
 																	.success(function(data, status) {
-																		$scope.eventfortemplatelist=data;
+																		$scope.eventfortemplatelist=data.eventdetails;
 														}).error(function(data, status) {
-															   $exceptionHandler('Unable to Search EventList ',' Status Code : '+status);
+															var errormsg='Unable to Search EventList Status Code : '+status;
+															 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+															   $exceptionHandler(errormsg);
 														});
 												};
 									
@@ -602,7 +642,9 @@
 																	 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
 																 }
 															}).error(function(data, status) {
-																   $exceptionHandler('Unable to Save Notification Template List ',' Status Code : '+status);
+																var errormsg='Unable to Save Notification Template List  Status Code : '+status;
+																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																   $exceptionHandler(errormsg);
 															});
 															
 														}
@@ -616,7 +658,9 @@
 																	 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
 																 }
 															}).error(function(data, status) {
-																   $exceptionHandler('Unable to Modify Notification Template List ',' Status Code : '+status);
+																var errormsg='Unable to Modify Notification Template List  Status Code : '+status;
+																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																   $exceptionHandler(errormsg);
 															});
 														}
 														else if('-'==operation){
@@ -628,7 +672,9 @@
 																	 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
 																 }
 															}).error(function(data, status) {
-																   $exceptionHandler('Unable to Delete Notification Template List ',' Status Code : '+status);
+																var errormsg='Unable to Delete Notification Template List  Status Code : '+status;
+																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																   $exceptionHandler(errormsg);
 															});
 														
 														}else{
@@ -665,7 +711,9 @@
 															.success(function(data, status) {
 																$scope.templatelistforentity=data;
 											                	}).error(function(data, status) {
-																	   $exceptionHandler('Unable to get Notification Template List For Entity',' Status Code : '+status);
+											                		var errormsg='Unable to get Notification Template List For Entity Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	   $exceptionHandler(errormsg);
 																});
 														}	
 														});
@@ -693,7 +741,9 @@
 																	 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
 																 }
 															}).error(function(data, status) {
-																   $exceptionHandler('Unable to get Notification Setup Details ',' Status Code : '+status);
+																var errormsg='Unable to get Notification Setup Details  Status Code : '+status;
+																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																   $exceptionHandler(errormsg);
 															});
 										};
 											
@@ -740,7 +790,9 @@
 																	 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
 																 }
 															}).error(function(data, status) {
-																   $exceptionHandler('Unable to Add Notification Setup Details ',' Status Code : '+status);
+																var errormsg='Unable to Add Notification Setup Details Status Code : '+status;
+																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																   $exceptionHandler(errormsg);
 															});
 															
 														}
@@ -754,7 +806,9 @@
 																	 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
 																 }
 															}).error(function(data, status) {
-																   $exceptionHandler('Unable to Modify Notification Setup Details ',' Status Code : '+status);
+																var errormsg='Unable to Modify Notification Setup Details  Status Code : '+status;
+																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																   $exceptionHandler(errormsg);
 															});
 														}
 														else if('-'==operation){
@@ -767,7 +821,9 @@
 																	 $scope.notisendsetup.numPages= Math.ceil($scope.notisendsetup.totalrecordcount/$scope.notisendsetup.pageSize);
 																 }
 															}).error(function(data, status) {
-																   $exceptionHandler('Unable to Delete Notification Setup Details ',' Status Code : '+status);
+																var errormsg='Unable to Delete Notification Setup Details Status Code : '+status;
+																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																   $exceptionHandler(errormsg);
 															});
 														}else{
 															

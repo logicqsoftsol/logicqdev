@@ -54,6 +54,9 @@
 <script type="text/javascript" src="assets/plugins/logicq/app.min.js"></script>
 <script type="text/javascript" src="assets/plugins/logicq/custom.js"></script>
 
+<script type="text/javascript" src="assets/plugins/common/angular-animate.js"></script>
+<script type="text/javascript" src="assets/plugins/common/ui-bootstrap-tpls-2.0.0.js"></script>
+
 							<!-- Angular JS Controllers/Services -->
 <script src="assets/js/myapplication.js" type="text/javascript"></script>
 <script src="assets/js/router.js" type="text/javascript"></script>
@@ -74,6 +77,8 @@
 <script src="assets/js/services/CalendarService.js" type="text/javascript"></script>
 <script src="assets/js/services/NotificationService.js" type="text/javascript"></script>
 
+<script src="assets/views/alert/AlertController.js" type="text/javascript"></script>
+
 <script src="assets/js/services/ManageDivService.js" type="text/javascript"></script>
 <script src="assets/js/config.js" type="text/javascript"></script>
 
@@ -87,5 +92,11 @@
 	<header class="navbar navbar-info navbar-fixed-top">
 	</header>
 	<div id="processing" style="display: none" class="pull-center-popup"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span>Loading...</span></div>
+ 
+ <div ng-controller="AlertController">
+  <script type="text/ng-template" id="alert.html">
+    <div ng-transclude></div>
+  </script>
+  <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
  <div ui-view  id="displaydata"></div>
 </html>
