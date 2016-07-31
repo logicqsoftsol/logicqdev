@@ -11,7 +11,7 @@
 			searchAllEventList: function ($scope) {
 				return  $http({
 					method: 'GET',
-					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllEventDetailsURL,
+					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllEventDetailsURL+"/"+$scope.eventd.pageSize+"/"+$scope.eventd.currentPage,
 					dataType :'json',
 					data : ''
 				})
@@ -28,7 +28,7 @@
 		    searchAllEventCalendarList: function ($scope) {
 				return  $http({
 					method: 'GET',
-					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllCalendarDetailsURL,
+					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllCalendarDetailsURL+"/"+$scope.calendar.pageSize+"/"+$scope.calendar.currentPage,
 					dataType :'json',
 					data : ''
 				})

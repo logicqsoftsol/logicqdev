@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import com.crm.logicq.common.AbstractDAO;
 import com.crm.logicq.dao.message.notfication.INotificationTemplateSetupDAO;
 import com.crm.logicq.model.alert.NotificationSetupDetails;
+import com.crm.logicq.model.attendance.AttendanceDetails;
+import com.crm.logicq.vo.notificationtemplate.NotificationTemplateSetupCriteria;
 
 @Repository
 public class NotificationTemplateSetupDAO extends AbstractDAO<NotificationSetupDetails> implements INotificationTemplateSetupDAO{
@@ -23,8 +25,14 @@ public class NotificationTemplateSetupDAO extends AbstractDAO<NotificationSetupD
 	}
 
 	@Override
-	public List<NotificationSetupDetails> getNotificationSetupDetails() throws Exception {
-		return (List<NotificationSetupDetails>) loadClass(NotificationSetupDetails.class);
+	public List<NotificationSetupDetails> getNotificationSetupDetails(NotificationTemplateSetupCriteria notitempsetupcriteria) throws Exception {
+		String query=" from NotificationSetupDetails ";
+		if (1 == notitempsetupcriteria.getPagenumber()) {
+			Long recordcount=getRecordCount(AttendanceDetails.class);
+			notitempsetupcriteria.setTotalrecordcount(recordcount.intValue());
+		}
+		
+		return executeQueryWithPagination(query, notitempsetupcriteria.getPagenumber(), notitempsetupcriteria.getPagesize());
 	}
 
 	

@@ -3,10 +3,11 @@ package com.crm.logicq.dao.eventdetails;
 import java.util.List;
 
 import com.crm.logicq.model.event.EventDetails;
+import com.crm.logicq.vo.event.EventCriteria;
 
 public interface IEventDetailsDAO {
 	
-	public List<EventDetails> getAllEventDetails() throws Exception;	
+	public List<EventDetails> getAllEventDetails(EventCriteria eventcriteria) throws Exception;	
 	
 	public EventDetails getEventDetails(Long eventid) throws Exception;
 	

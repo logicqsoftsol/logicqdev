@@ -9,7 +9,7 @@
 			searchAllEmployeeList: function ($scope) {
 				return  $http({
 					method: 'GET',
-					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchAllEmployeeListURL,
+					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchAllEmployeeListURL+"/"+$scope.emp.pageSize+'/'+$scope.emp.currentPage,
 					dataType :'json',
 					data : ''
 				})
@@ -38,7 +38,7 @@
 			searchAllStudentList: function ($scope) {
 				return  $http({
 					method: 'GET',
-					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchAllStudentListURL,
+					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.searchAllStudentListURL+'/'+$scope.student.pageSize+'/'+$scope.student.currentPage,
 					dataType :'json',
 					data : ''
 				})

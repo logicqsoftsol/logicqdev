@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crm.logicq.model.alert.NotificationSetupDetails;
 import com.crm.logicq.model.alert.NotificationTemplate;
 import com.crm.logicq.service.message.INotificationService;
+import com.crm.logicq.vo.notificationtemplate.NotificationTemplateCriteria;
+import com.crm.logicq.vo.notificationtemplate.NotificationTemplateSetupCriteria;
+import com.crm.logicq.vo.notificationtemplate.NotificationTemplateSetupVO;
+import com.crm.logicq.vo.notificationtemplate.NotificationTemplateVO;
 
 @RestController
 @RequestMapping("/admin/notification")
@@ -25,86 +29,117 @@ public class NotificationController {
 	INotificationService notificationservice;
 
 	@RequestMapping(value = "/saveNotificationTemplate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<NotificationTemplate>> saveNotificationTemplate(
+	public ResponseEntity<NotificationTemplateVO> saveNotificationTemplate(
 			@RequestBody NotificationTemplate notificationtemplate) {
-		List<NotificationTemplate> notificationtemplatelist = new ArrayList<NotificationTemplate>();
+		NotificationTemplateVO notitemplatevo=new NotificationTemplateVO();
+		NotificationTemplateCriteria notificationtemplatecriteria=new NotificationTemplateCriteria();
+		notificationtemplatecriteria.setPagesize(15);	
+		notificationtemplatecriteria.setPagenumber(1);
 		try {
 			notificationservice.saveNotificationTemplate(notificationtemplate);
-			notificationtemplatelist = notificationservice.getNotificationTemplates();
+			List<NotificationTemplate> notificationtemplatelist=notificationservice.getNotificationTemplates(notificationtemplatecriteria);
+			notitemplatevo.setNotificationtemplatelist(notificationtemplatelist);
+			notitemplatevo.setNotificationtemplatecriteria(notificationtemplatecriteria);
 		} catch (Exception ex) {
-			return new ResponseEntity<List<NotificationTemplate>>(notificationtemplatelist,
+			return new ResponseEntity<NotificationTemplateVO>(notitemplatevo,
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return new ResponseEntity<List<NotificationTemplate>>(notificationtemplatelist, HttpStatus.OK);
+		return new ResponseEntity<NotificationTemplateVO>(notitemplatevo, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/deleteNotificationTemplate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<NotificationTemplate>> deleteNotificationTemplate(
+	public ResponseEntity<NotificationTemplateVO> deleteNotificationTemplate(
 			@RequestBody NotificationTemplate notificationtemplate) {
-		List<NotificationTemplate> notificationtemplatelist = new ArrayList<NotificationTemplate>();
+		NotificationTemplateVO notitemplatevo=new NotificationTemplateVO();
+		NotificationTemplateCriteria notificationtemplatecriteria=new NotificationTemplateCriteria();
+		notificationtemplatecriteria.setPagesize(15);	
+		notificationtemplatecriteria.setPagenumber(1);
 		try {
 			notificationservice.deleteNotificationTemplate(notificationtemplate);
-			notificationtemplatelist = notificationservice.getNotificationTemplates();
+			List<NotificationTemplate> notificationtemplatelist  = notificationservice.getNotificationTemplates(notificationtemplatecriteria);
+			notitemplatevo.setNotificationtemplatelist(notificationtemplatelist);
+			notitemplatevo.setNotificationtemplatecriteria(notificationtemplatecriteria);
 		} catch (Exception ex) {
-			return new ResponseEntity<List<NotificationTemplate>>(notificationtemplatelist,
+			return new ResponseEntity<NotificationTemplateVO>(notitemplatevo,
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return new ResponseEntity<List<NotificationTemplate>>(notificationtemplatelist, HttpStatus.OK);
+		return new ResponseEntity<NotificationTemplateVO>(notitemplatevo, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/getNotificationTemplates", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<NotificationTemplate>> getNotificationTemplates() {
-		List<NotificationTemplate> notificationtemplatelist = new ArrayList<NotificationTemplate>();
+	@RequestMapping(value = "/getNotificationTemplates/{pagesize}/{pageno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<NotificationTemplateVO> getNotificationTemplates(@PathVariable int pagesize,@PathVariable int pageno) {
+		NotificationTemplateVO notitemplatevo=new NotificationTemplateVO();
+		NotificationTemplateCriteria notificationtemplatecriteria=new NotificationTemplateCriteria();
+		notificationtemplatecriteria.setPagesize(15);	
+		notificationtemplatecriteria.setPagenumber(1);
 		try {
-			notificationtemplatelist = notificationservice.getNotificationTemplates();
+			List<NotificationTemplate> notificationtemplatelist = notificationservice.getNotificationTemplates(notificationtemplatecriteria);
+			notitemplatevo.setNotificationtemplatelist(notificationtemplatelist);
+			notitemplatevo.setNotificationtemplatecriteria(notificationtemplatecriteria);
 		} catch (Exception ex) {
-			return new ResponseEntity<List<NotificationTemplate>>(notificationtemplatelist,
+			return new ResponseEntity<NotificationTemplateVO>(notitemplatevo,
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return new ResponseEntity<List<NotificationTemplate>>(notificationtemplatelist, HttpStatus.OK);
+		return new ResponseEntity<NotificationTemplateVO>(notitemplatevo, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/saveNotificationTemplateSetup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<NotificationSetupDetails>> saveNotificationTemplateSetup(
+	public ResponseEntity<NotificationTemplateSetupVO> saveNotificationTemplateSetup(
 			@RequestBody NotificationSetupDetails notificationsetupdetails) {
-		List<NotificationSetupDetails> notificationtemplatesetuplist = new ArrayList<NotificationSetupDetails>();
+		NotificationTemplateSetupVO notitempsetupvo=new NotificationTemplateSetupVO();
+		NotificationTemplateSetupCriteria notitempsetupcriteria= new NotificationTemplateSetupCriteria();
+		notitempsetupcriteria.setPagenumber(1);
+		notitempsetupcriteria.setPagesize(15);
 		try {
 			notificationservice.saveNotificationTemplateSetup(notificationsetupdetails);
-			notificationtemplatesetuplist = notificationservice.getNotificationSetupDetails();
+			List<NotificationSetupDetails> notificationtemplatesetuplist = notificationservice.getNotificationSetupDetails(notitempsetupcriteria);
+			notitempsetupvo.setNotisendingdetails(notificationtemplatesetuplist);
+			notitempsetupvo.setNotisendingdetailscriteria(notitempsetupcriteria);
 		} catch (Exception ex) {
-			return new ResponseEntity<List<NotificationSetupDetails>>(notificationtemplatesetuplist,
+			return new ResponseEntity<NotificationTemplateSetupVO>(notitempsetupvo,
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<List<NotificationSetupDetails>>(notificationtemplatesetuplist, HttpStatus.OK);
+		return new ResponseEntity<NotificationTemplateSetupVO>(notitempsetupvo, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/deleteNotificationTemplateSetup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<NotificationSetupDetails>> deleteNotificationTemplate(
+	public ResponseEntity<NotificationTemplateSetupVO> deleteNotificationTemplate(
 			@RequestBody NotificationSetupDetails notificationsetupdetails) {
-		List<NotificationSetupDetails> notificationtemplatesetuplist = new ArrayList<NotificationSetupDetails>();
+		NotificationTemplateSetupVO notitempsetupvo=new NotificationTemplateSetupVO();
+		NotificationTemplateSetupCriteria notitempsetupcriteria= new NotificationTemplateSetupCriteria();
+		notitempsetupcriteria.setPagenumber(1);
+		notitempsetupcriteria.setPagesize(15);
 		try {
 			notificationservice.deleteNotificationTemplateSetup(notificationsetupdetails);
-			notificationtemplatesetuplist = notificationservice.getNotificationSetupDetails();
+			List<NotificationSetupDetails> notificationtemplatesetuplist = notificationservice.getNotificationSetupDetails(notitempsetupcriteria);
+			notitempsetupvo.setNotisendingdetails(notificationtemplatesetuplist);
+			notitempsetupvo.setNotisendingdetailscriteria(notitempsetupcriteria);
 		} catch (Exception ex) {
-			return new ResponseEntity<List<NotificationSetupDetails>>(notificationtemplatesetuplist,
+			return new ResponseEntity<NotificationTemplateSetupVO>(notitempsetupvo,
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<List<NotificationSetupDetails>>(notificationtemplatesetuplist, HttpStatus.OK);
+		return new ResponseEntity<NotificationTemplateSetupVO>(notitempsetupvo, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/getNotificationSetupDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<NotificationSetupDetails>> getNotificationSetupDetails() {
-		List<NotificationSetupDetails> notificationtemplatesetuplist = new ArrayList<NotificationSetupDetails>();
+	@RequestMapping(value = "/getNotificationSetupDetails/{pagesize}/{pageno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<NotificationTemplateSetupVO> getNotificationSetupDetails(@PathVariable int pagesize,@PathVariable int pageno) {
+		NotificationTemplateSetupVO notitempsetupvo=new NotificationTemplateSetupVO();
+		NotificationTemplateSetupCriteria notitempsetupcriteria= new NotificationTemplateSetupCriteria();
+		notitempsetupcriteria.setPagenumber(pageno);
+		notitempsetupcriteria.setPagesize(pagesize);
+
 		try {
-			notificationtemplatesetuplist = notificationservice.getNotificationSetupDetails();
+			List<NotificationSetupDetails> notificationtemplatesetuplist = notificationservice.getNotificationSetupDetails(notitempsetupcriteria);
+			notitempsetupvo.setNotisendingdetails(notificationtemplatesetuplist);
+			notitempsetupvo.setNotisendingdetailscriteria(notitempsetupcriteria);
 		} catch (Exception ex) {
-			return new ResponseEntity<List<NotificationSetupDetails>>(notificationtemplatesetuplist,
+			return new ResponseEntity<NotificationTemplateSetupVO>(notitempsetupvo,
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<List<NotificationSetupDetails>>(notificationtemplatesetuplist, HttpStatus.OK);
+		return new ResponseEntity<NotificationTemplateSetupVO>(notitempsetupvo, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/getNotificationDetailsForEntity/{entitytype}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

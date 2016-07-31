@@ -1,5 +1,7 @@
 package com.crm.logicq.model.event;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,8 +18,13 @@ import com.crm.logicq.constant.EventType;
 
 @Entity
 @Table(name = "EVENT")
-public class EventDetails {
+public class EventDetails implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3633810045890581675L;
+
 	@Id
     @Column(name = "ID",unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

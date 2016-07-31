@@ -10,6 +10,7 @@ import com.crm.logicq.dao.student.IStudentDAO;
 import com.crm.logicq.model.user.ContactDetails;
 import com.crm.logicq.model.user.Employee;
 import com.crm.logicq.model.user.Student;
+import com.crm.logicq.vo.user.StudentCriteria;
 
 @Repository
 public class StudentDAO extends AbstractDAO<Student> implements IStudentDAO{
@@ -36,8 +37,13 @@ public class StudentDAO extends AbstractDAO<Student> implements IStudentDAO{
 	}
 
 	@Override
-	public List<Student> getStudentList() {
-		return (List<Student>) loadClass(Student.class);
+	public List<Student> getStudentList(StudentCriteria studentcriteria) {
+		String query = " from Student std where std.basicdetails.id!=null and std.contactdetails.id!=null";
+		if (1 == studentcriteria.getPagenumber()) {
+			Long recordcount=getRecordCount(Student.class);
+			studentcriteria.setTotalrecordcount(recordcount.intValue());
+		}
+		return executeQueryWithPagination(query, studentcriteria.getPagenumber(), studentcriteria.getPagesize());
 	}
 
 	@Override

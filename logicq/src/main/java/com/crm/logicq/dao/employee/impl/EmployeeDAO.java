@@ -7,10 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import com.crm.logicq.common.AbstractDAO;
 import com.crm.logicq.dao.employee.IEmployeeDAO;
+import com.crm.logicq.model.attendance.AttendanceDetails;
 import com.crm.logicq.model.user.ContactDetails;
 import com.crm.logicq.model.user.Employee;
 import com.crm.logicq.model.user.Student;
 import com.crm.logicq.model.user.User;
+import com.crm.logicq.vo.user.EmployeeCriteria;
 
 @Repository
 public class EmployeeDAO extends AbstractDAO<Employee> implements IEmployeeDAO{
@@ -38,9 +40,13 @@ public class EmployeeDAO extends AbstractDAO<Employee> implements IEmployeeDAO{
 	}
 
 	@Override
-	public List<Employee> getEmployeeList() throws Exception {
+	public List<Employee> getEmployeeList(EmployeeCriteria employeecriteria) throws Exception {
 		String query = " from Employee emp where emp.basicdetails.id!=null and emp.contactdetails.id!=null";
-		return (List<Employee>)executeQuery(query);
+		if (1 == employeecriteria.getPagenumber()) {
+			Long recordcount=getRecordCount(Employee.class);
+			employeecriteria.setTotalrecordcount(recordcount.intValue());
+		}
+		return executeQueryWithPagination(query, employeecriteria.getPagenumber(), employeecriteria.getPagesize());
 		
 	}
 
