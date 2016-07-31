@@ -49,19 +49,19 @@
 					<li ng-class="{active:display == 6}"><a href=""
 							id="dashborad" ng-click="display = 6;displayDashBoard();getAllCalendarDetails()" ng-init="displayDashBoard();getAllCalendarDetails()"><i class="fa fa-dashboard"></i>Your Dashboard</a></li>
 						<li ng-class="{active:display == 1}"><a href=""
-							id="empregclick" ng-click="display = 1;searchAllEmployeeList()"><i class="fa fa-user"></i>Employee
+							id="empregclick" ng-click="display = 1;searchAllEmployeeListAccordingToPage(1)"><i class="fa fa-user"></i>Employee
 								Registration</a></li>
 						<li ng-class="{active:display == 2}"><a href=""
-							id="stduentregclick" ng-click="display = 2;searchAllStudentList()"><i
+							id="stduentregclick" ng-click="display = 2;searchAllStudentListAccordingToPage(1)"><i
 								class="fa fa-graduation-cap"></i>Student Registration</a></li>
 						<li ng-class="{active:display == 3}"><a href=""
-							id="coursesetup" ng-click="display = 3;getNotificationSendingConfigurationDetails()"><i class="fa fa-cogs"></i>Configure
+							id="coursesetup" ng-click="display = 3;getNotificationTemplateSetupAccordingToPage(1)"><i class="fa fa-cogs"></i>Configure
 								SMS and Email</a></li>
 						<li ng-class="{active:display == 4}"><a href=""
-							id="admincalndersetup" ng-click="display = 4;searchAllEventList()"><i
+							id="admincalndersetup" ng-click="display = 4;getAllEventDetailsAccordingToPage(1)"><i
 								class="fa fa-calendar" aria-hidden="true"></i>Calendar Setup</a></li>
 						<li ng-class="{active:display == 5}"><a href=""
-							ng-click="display = 5;searchAttendanceDefault()"><i class="fa fa-clock-o"
+							ng-click="display = 5;getAttendaceAccordingToPage(1)"><i class="fa fa-clock-o"
 								aria-hidden="true"></i>View Attendance Report</a></li>
 					</ul></li>
 
@@ -165,7 +165,19 @@
 						<h4> Employee Registration Details</h4>
 						</div>
 						<div class="panel-body">
+						<paging>
 						<div class="table-responsive">
+							<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllEmployeeListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllEmployeeListAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllEmployeeListAccordingToPage()">&raquo;</a></li>
+									</ul>
+						
 							<ul class="pull-right">
 								<button id="adddetails" data-toggle="modal" data-toggle="modal"
 									data-target="#employeeregistration"  ng-click="newEmployee()" 
@@ -190,6 +202,7 @@
 							</tr>
 						</table>
 						</div>
+						</paging>
 						</div>
 					</div>
 				</div>
@@ -206,8 +219,19 @@
 						</div>
 						
 					<div class="panel-body">
-					
+						<paging>
 						<div class="table-responsive">
+							<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllStudentListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllStudentListAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllStudentListAccordingToPage()">&raquo;</a></li>
+									</ul>
+						
 							<ul class="pull-right">
 								<button id="studentreg" data-toggle="modal" 
 									data-target="#studentregistration" 
@@ -232,7 +256,7 @@
 							</tr>
 						</table>
 						</div>
-					
+						</paging>
 						</div>
 					</div>
 				</div>
@@ -247,9 +271,9 @@
 					
 					
 						<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" id="template" class="pull-center"  ng-click="getAllNotificationTemplateList()"
+							<li><a data-toggle="tab" id="template" class="pull-center"  ng-click="getNotificationTemplateListAccordingToPage(1)"
 							href="/admin#notificationtemplatedetails">Notifications Template Setup</a></li>
-							<li class="active"><a data-toggle="tab" id="msgsendingsetup" class="pull-center"  ng-click="getNotificationSendingConfigurationDetails()"
+							<li class="active"><a data-toggle="tab" id="msgsendingsetup" class="pull-center"  ng-click="getNotificationTemplateSetupDetailsAccordingToPage(1)"
 								href="/admin#notificationsendingsetup">Notifications Sending Setup </a></li>
 						</ul>
 					
@@ -258,11 +282,21 @@
 					<div id="notificationtemplatedetails" class="tab-pane fade">
 					<br></br>
 						<div class="table-responsive">
+						<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="getNotificationTemplateListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="getNotificationTemplateListAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="getNotificationTemplateListAccordingToPage()">&raquo;</a></li>
+									</ul>		
 						<ul class="pull-right">
 						<button id="studentreg" data-toggle="modal" 
-									data-target="#notificationtemplate" 
+									data-target="#notificationtemplatemodal" 
 									class="btn btn-default fa fa-plus-circle" ng-click="addNotificationTemplate()">Add</button>
-						<button id="deletedetails" data-toggle="modal" data-target="#notificationtemplate" ng-click="searchNotificationTemplate()"
+						<button id="deletedetails" data-toggle="modal" data-target="#notificationtemplatemodal" ng-click="searchNotificationTemplate()"
 									class="btn btn-default fa fa-search">Search</button>
                          </ul>									
 							<table class="table table-bordered table-fixed table-hover">
@@ -279,8 +313,8 @@
 								<td>{{notificationtemplate.eventdetails.eventtype}}</td>
 								<td>{{notificationtemplate.eventdetails.applicablefor}}</td>
 								<td>{{notificationtemplate.templatetext}}</td>
-								<td><a id="updateevent" data-toggle="modal" data-target="#notificationtemplate" ng-click="editNotificationTemplate(notificationtemplate)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
-								<td><a id="deleteevent"  data-toggle="modal" data-target="#notificationtemplate"  ng-click="deleteTemplateForNotification(notificationtemplate)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+								<td><a id="updateevent" data-toggle="modal" data-target="#notificationtemplatemodal" ng-click="editNotificationTemplate(notificationtemplate)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+								<td><a id="deleteevent"  data-toggle="modal" data-target="#notificationtemplatemodal"  ng-click="deleteTemplateForNotification(notificationtemplate)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
@@ -292,6 +326,16 @@
 					<br></br>
 							
 					<div class="table-responsive">
+						<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="getNotificationTemplateSetupDetailsAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="getNotificationTemplateSetupDetailsAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="getNotificationTemplateSetupDetailsAccordingToPage()">&raquo;</a></li>
+									</ul>		
 					<ul class="pull-right">
 						<button id="notimsgsetupadd" data-toggle="modal" 
 									data-target="#notificationsendingdetails" 
@@ -330,15 +374,25 @@
 					</div>
 					<div class="panel-body">
 						<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" id="attentable" class="pull-center"  ng-click="getAllEventDetails()"
+							<li class="active"><a data-toggle="tab" id="attentable" class="pull-center"  ng-click="getAllEventDetailsAccordingToPage(1)"
 							href="/admin#eventdetails">Event Details</a></li>
-							<li><a data-toggle="tab" id="calendardetails" class="pull-center"  ng-click="getAllCalendarDetails()"
+							<li><a data-toggle="tab" id="calendardetails" class="pull-center"  ng-click="getAllCalendarDetailsAccordingToPage(1)"
 								href="/admin#calanderdetails">Event Calendar Details</a></li>
 						</ul>
 					<div class="tab-content">
 						<div id="calanderdetails" class="tab-pane fade">
 						<div class="table-responsive">
-						<ul class="pull-right">
+						<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="getAllCalendarDetailsAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="getAllCalendarDetailsAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="getAllCalendarDetailsAccordingToPage()">&raquo;</a></li>
+									</ul>
+						 <ul class="pull-right">
 								<button id="addcalevtdetails"  data-target="#calendarmodal" data-toggle="modal"ng-click="addEventCalendarDetails()" 
 									class="btn btn-default fa fa-plus-circle">Add</button>
 								<button id="searchcalevtdetails"  data-target="#calendarmodal" data-toggle="modal" ng-click="searchEventCalendarDetails()" 
@@ -349,7 +403,7 @@
 							<tr class ="success">
 								<th>EVENT Name</th>
 								<th>EVENT TYPE</th>
-								<th>EVENT For</t>
+								<th>EVENT FOR</t>
 								<th>EVENT START DATE</t>
 								<th>EVENT END DATE</t>
 							</tr>
@@ -366,8 +420,19 @@
 					</div>
 				</div>
 						<div id="eventdetails" class="tab-pane fade in active">
-						
+						<paging>
 							<div class="table-responsive">
+								<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="getEventsAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="getEventsAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="getAttendaceAccordingToPage()">&raquo;</a></li>
+									</ul>
+							
 							<ul class="pull-right">
 								<button id="addeventdetails"  data-target="#eventdetailmodal" data-toggle="modal"ng-click="addEventDetails()" 
 									class="btn btn-default fa fa-plus-circle">Add</button>
@@ -390,7 +455,7 @@
 							</tr>
 						</table>
 					</div>
-					
+					</paging>
 					</div>
 					</div>
 					</div>
@@ -1172,7 +1237,7 @@
 		
 		
 		<!---End for Modal Notifications Template-->
-		<div id="notificationtemplate" class="modal fade" role="dialog">
+		<div id="notificationtemplatemodal" class="modal fade" role="dialog">
 		<form>
 				<div class="modal-dialog">
 					<div class="modal-content">

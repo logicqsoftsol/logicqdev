@@ -7,6 +7,8 @@ import com.crm.logicq.model.user.CardReadDetails;
 import com.crm.logicq.model.user.Employee;
 import com.crm.logicq.model.user.Student;
 import com.crm.logicq.vo.attendance.AttendanceVO;
+import com.crm.logicq.vo.user.EmployeeCriteria;
+import com.crm.logicq.vo.user.StudentCriteria;
 
 public interface IUserService {
 	
@@ -21,8 +23,8 @@ public interface IUserService {
 	
 	public void saveUser(Student student) throws Exception;
 	
-	public List<Employee> getEmployeeList() throws Exception;
-	public List<Student> getStudentList() throws Exception;
+	public List<Employee> getEmployeeList(EmployeeCriteria employeecriteria) throws Exception;
+	public List<Student> getStudentList(StudentCriteria studentcriteria) throws Exception;
 	
 	public Employee getEmployee(String empid) throws Exception;
 	

@@ -13,6 +13,8 @@ import com.crm.logicq.dao.message.notfication.INotificationTemplateSetupDAO;
 import com.crm.logicq.model.alert.NotificationSetupDetails;
 import com.crm.logicq.model.alert.NotificationTemplate;
 import com.crm.logicq.service.message.INotificationService;
+import com.crm.logicq.vo.notificationtemplate.NotificationTemplateCriteria;
+import com.crm.logicq.vo.notificationtemplate.NotificationTemplateSetupCriteria;
 
 @Service
 @Transactional
@@ -41,8 +43,8 @@ public class NotificationServiceImpl implements INotificationService {
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
-	public List<NotificationTemplate> getNotificationTemplates() throws Exception {
-		return notificationTemplateDAO.getNotificationTemplates();
+	public List<NotificationTemplate> getNotificationTemplates(NotificationTemplateCriteria notificationtemplatecriteria) throws Exception {
+		return notificationTemplateDAO.getNotificationTemplates(notificationtemplatecriteria);
 	}
 
 	@Override
@@ -64,8 +66,8 @@ public class NotificationServiceImpl implements INotificationService {
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
-	public List<NotificationSetupDetails> getNotificationSetupDetails() throws Exception {
-		return notificationTemplateSetupDAO.getNotificationSetupDetails();
+	public List<NotificationSetupDetails> getNotificationSetupDetails(NotificationTemplateSetupCriteria notitempsetupcriteria) throws Exception {
+		return notificationTemplateSetupDAO.getNotificationSetupDetails(notitempsetupcriteria);
 	}
 
 	@Override

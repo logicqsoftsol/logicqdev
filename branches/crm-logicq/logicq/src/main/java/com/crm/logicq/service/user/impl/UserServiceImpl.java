@@ -34,6 +34,8 @@ import com.crm.logicq.service.alert.IAlertService;
 import com.crm.logicq.service.user.IUserService;
 import com.crm.logicq.ui.alert.AlertDetailsInputVO;
 import com.crm.logicq.vo.attendance.AttendanceVO;
+import com.crm.logicq.vo.user.EmployeeCriteria;
+import com.crm.logicq.vo.user.StudentCriteria;
 import com.crm.logicq.vo.user.UserVO;
 
 @Service
@@ -95,16 +97,16 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
-	public List<Employee> getEmployeeList() throws Exception {
-		return employeedao.getEmployeeList();
+	public List<Employee> getEmployeeList(EmployeeCriteria employeecriteria) throws Exception {
+		return employeedao.getEmployeeList(employeecriteria);
 		
 	}
 
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
-	public List<Student>  getStudentList() throws Exception {
-		return studentdao.getStudentList();
+	public List<Student>  getStudentList(StudentCriteria studentcriteria) throws Exception {
+		return studentdao.getStudentList(studentcriteria);
 	}
 
 	@Override

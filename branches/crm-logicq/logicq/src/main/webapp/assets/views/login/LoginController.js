@@ -1,6 +1,6 @@
 (function () {
 	'use strict';
-	angular.module('crmlogicq').controller('LoginController',['$scope','$http', '$location', 'AuthenticationService','AppConstants',function ($scope, $http,  $location, AuthenticationService,AppConstants) {
+	angular.module('crmlogicq').controller('LoginController',['$scope','$http', '$exceptionHandler','$location', 'AuthenticationService','AppConstants',function ($scope, $http, $exceptionHandler, $location, AuthenticationService,AppConstants) {
 
 		$scope.login = function () {
 			$scope.error =false;
@@ -20,8 +20,7 @@
 						
 				}
 			}).error(function(response, status) {  
-				console.log("The request failed with response " + response + " and status code " + status);
-				$scope.error = response;
+				$exceptionHandler('Unable to Login Check setting or Loging Details ',' Status Code : '+status);
 			});
 
 		};

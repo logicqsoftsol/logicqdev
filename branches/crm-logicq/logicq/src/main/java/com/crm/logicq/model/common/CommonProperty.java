@@ -1,6 +1,13 @@
 package com.crm.logicq.model.common;
 
-public class CommonProperty {
+import java.io.Serializable;
+
+public class CommonProperty implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8978381770742166074L;
 	
 	private int pagenumber;
 	private int pagesize;

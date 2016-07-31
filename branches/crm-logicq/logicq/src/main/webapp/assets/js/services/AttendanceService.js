@@ -20,7 +20,7 @@
 				method: 'GET',
 				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAttendanceAsTabularURL
 																	+'/'+$scope.attendancecriteria.criteriadate+'/'+$scope.attendancecriteria.attedancefor
-																	+'/'+$scope.attendancecriteria.mobileno+'/'+$scope.attendancecriteria.cardno+'/'+$scope.pageSize+'/'+$scope.currentPage,
+																	+'/'+$scope.attendancecriteria.mobileno+'/'+$scope.attendancecriteria.cardno+'/'+$scope.attendancecriteria.pageSize+'/'+$scope.attendancecriteria.currentPage,
 				dataType :'json',
 				data : ''
 			})

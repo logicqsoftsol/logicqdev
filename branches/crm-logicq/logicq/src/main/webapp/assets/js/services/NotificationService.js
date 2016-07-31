@@ -11,7 +11,7 @@
 			getAllNotificationTemplateList: function ($scope) {
 				return  $http({
 					method: 'GET',
-					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getNotificationTemplatesURL,
+					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getNotificationTemplatesURL+'/'+$scope.notificationtemplate.pageSize+'/'+$scope.notificationtemplate.currentPage,
 					dataType :'json',
 					data : ''
 				})
@@ -27,7 +27,7 @@
 			getNotificationSetupDetails: function ($scope) {
 				return  $http({
 					method: 'GET',
-					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getNotificationSetupDetailsURL,
+					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getNotificationSetupDetailsURL+'/'+$scope.notisendsetup.pageSize+'/'+$scope.notisendsetup.currentPage,
 					dataType :'json',
 					data : ''
 				})

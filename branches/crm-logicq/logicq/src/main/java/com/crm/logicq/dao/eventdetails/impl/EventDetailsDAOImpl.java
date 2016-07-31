@@ -7,14 +7,19 @@ import org.springframework.stereotype.Repository;
 import com.crm.logicq.common.AbstractDAO;
 import com.crm.logicq.dao.eventdetails.IEventDetailsDAO;
 import com.crm.logicq.model.event.EventDetails;
-import com.crm.logicq.model.user.Student;
+import com.crm.logicq.vo.event.EventCriteria;
 
 @Repository
 public class EventDetailsDAOImpl extends AbstractDAO<EventDetails> implements IEventDetailsDAO{
 
 	@Override
-	public List<EventDetails> getAllEventDetails() throws Exception {
-		return (List<EventDetails>) loadClass(EventDetails.class);
+	public List<EventDetails> getAllEventDetails(EventCriteria eventcriteria) throws Exception {
+		StringBuilder  selectquery= new StringBuilder(" from EventDetails");
+		if (1 == eventcriteria.getPagenumber()) {
+			Long recordcount=getRecordCount(EventDetails.class);
+			eventcriteria.setTotalrecordcount(recordcount.intValue());
+		}
+		return executeQueryWithPagination(selectquery.toString(), eventcriteria.getPagenumber(), eventcriteria.getPagesize());
 	}
 
 	
