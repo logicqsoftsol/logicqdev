@@ -1,8 +1,10 @@
 package com.crm.logicq.controller.admin.eventdetails;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.hsqldb.lib.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crm.logicq.model.calnder.CalendarDetails;
 import com.crm.logicq.model.common.CommonProperty;
 import com.crm.logicq.model.event.EventDetails;
+import com.crm.logicq.security.helper.DateHelper;
 import com.crm.logicq.service.calendar.ICalendarService;
 import com.crm.logicq.vo.event.CalendarCriteria;
+import com.crm.logicq.vo.event.CalendarDashBoardVO;
 import com.crm.logicq.vo.event.CalendarVO;
 import com.crm.logicq.vo.event.EventCriteria;
 import com.crm.logicq.vo.event.EventVO;
@@ -91,6 +95,32 @@ public class CalendarController {
 		return new ResponseEntity<EventVO>(eventvo, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/getAllCalendarListForDashBoard/{criteriadate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CalendarDashBoardVO>> getAllCalendarListForDashBoard(@PathVariable String criteriadate) {
+		List<CalendarDashBoardVO> calendarlistvo=new ArrayList<CalendarDashBoardVO>();
+		CalendarCriteria calendarcriteria=new CalendarCriteria();
+		calendarcriteria.setPagesize(1);
+		calendarcriteria.setPagenumber(8);
+		try {
+			Date converttodate = DateHelper.convertDateAccordingToString(criteriadate);
+			calendarcriteria.setFromdate(new Date());
+			calendarcriteria.setTodate(converttodate);
+			List<CalendarDetails>	calendardetailslist = calendarService.getAllEventCalendarDetails(calendarcriteria);
+			calendardetailslist.forEach((calnder)->{
+				CalendarDashBoardVO calendardashboardvo=new CalendarDashBoardVO();
+				calendardashboardvo.setEventdate(calnder.getEventstartdate());
+				calendardashboardvo.setEventname(calnder.getEventdetails().getEventname());
+				calendardashboardvo.setEventid(calnder.getEventdetails().getEventid());
+				calendarlistvo.add(calendardashboardvo);
+			});
+			
+		} catch (Exception ex) {
+			return new ResponseEntity<List<CalendarDashBoardVO>>(calendarlistvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<List<CalendarDashBoardVO>>(calendarlistvo, HttpStatus.OK);
+	}
+	
 	
 	
 	@RequestMapping(value = "/getAllCalendarDetails/{pagesize}/{pageno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

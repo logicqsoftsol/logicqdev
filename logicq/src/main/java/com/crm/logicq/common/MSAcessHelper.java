@@ -30,10 +30,9 @@ public class MSAcessHelper {
 	
 	@PostConstruct
 	public void msAcessConnection() throws Exception {
-		url="jdbc:ucanaccess://F:/Project/workspace/logicq-client/crm-logicq/logicq/src/main/resources/CARDINFO.accdb";
+		url="jdbc:ucanaccess://F:/Project/workspace/logicq-client/crm-logicq/logicq/src/main/resources/ontime_att.mdb;READONLY=true";
 		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-		msacessconnectio=DriverManager.getConnection(url);
-	
+		msacessconnectio=DriverManager.getConnection(url, "", "sss");
 	}
 	
 	private Statement createStatement() throws Exception {
@@ -53,17 +52,16 @@ public class MSAcessHelper {
 		while ((resultset != null) && (resultset.next())) {
 			Object newObject = claz.newInstance();
 			for (Field field : fields) {
+			 String fieldname=field.getAnnotation(MSColumn.class).name();
+			 field.setAccessible(Boolean.TRUE);
 				if (field.getType().isAssignableFrom(Integer.class)) {
-					field.setAccessible(Boolean.TRUE);
-					field.set(newObject, resultset.getInt(field.getName().toUpperCase()));
+					field.set(newObject, resultset.getInt(fieldname));
 				}
 				if (field.getType().isAssignableFrom(String.class)) {
-					field.setAccessible(Boolean.TRUE);
-					field.set(newObject, resultset.getString(field.getName().toUpperCase()));
+					field.set(newObject, resultset.getString(fieldname));
 				}
 				if (field.getType().isAssignableFrom(Date.class)) {
-					field.setAccessible(Boolean.TRUE);
-					//field.set(newObject, resultset.getDate(field.getName().toUpperCase()));
+					field.set(newObject, resultset.getTimestamp(fieldname));
 				}
 			}
 			result.add(newObject);

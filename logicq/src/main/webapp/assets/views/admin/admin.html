@@ -47,7 +47,7 @@
 				</a>
 					<ul class="treeview-menu">
 					<li ng-class="{active:display == 6}"><a href=""
-							id="dashborad" ng-click="display = 6;displayDashBoard();getAllCalendarDetails()" ng-init="displayDashBoard();getAllCalendarDetails()"><i class="fa fa-dashboard"></i>Your Dashboard</a></li>
+							id="dashborad" ng-click="display = 6;displayDashBoard();getAllCalendarDetailsForDashBoard()" ng-init="displayDashBoard();getAllCalendarDetails()"><i class="fa fa-dashboard"></i>Your Dashboard</a></li>
 						<li ng-class="{active:display == 1}"><a href=""
 							id="empregclick" ng-click="display = 1;searchAllEmployeeListAccordingToPage(1)"><i class="fa fa-user"></i>Employee
 								Registration</a></li>
@@ -118,8 +118,9 @@
                               
 						<table class="table table-bordered table-fixed">
 							<tr ng-repeat="upcomingevent in eventdetails">
-									<tr ng-repeat="upcomingcalendar in calendardetailslist">
-								<td>{{upcomingcalendar.eventdetails.eventname}}</td>
+									<tr ng-repeat="upcomingcalendar in calendardashboardlist">
+								<td>{{upcomingcalendar.eventname}}</td>
+								<td>{{upcomingcalendar.eventdate}}</td>
 								<td><a id="messagesetup"  data-target="#notificationtemplate" data-toggle="modal"  ng-click="setupMessageForEvent(upcomingevent)"><i class="fa fa-cogs" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>

@@ -16,7 +16,7 @@ public class AttendanceConversion {
 			AttendanceVO attednace = new AttendanceVO();
 		//	attednace.setIntime(attendance.getIntime());
 			attednace.setOuttime(attendance.getOuttime());
-			attednace.setDate(DateHelper.convertDatetoString(attendance.getDate()));
+//			attednace.setDate(DateHelper.convertDatetoString(attendance.getKey().getDate()));
 		//	attendancevo.add(attednace);
 		});
 		return attendancevo;

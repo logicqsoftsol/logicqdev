@@ -1,5 +1,7 @@
 package com.crm.logicq.test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -8,16 +10,13 @@ import org.joda.time.DateTime;
 public class TestDate {
 	
 	public static void main(String args[]){
-		Date dt=new Date();
-   //   LocalDateTime.from(dt.toInstant()).plusDays(1);	
-	 
-		DateTime dtOrg = new DateTime(dt);
-		DateTime plusoneday = dtOrg.plusDays(1);
+		DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+		String	converteddate = dateFormat.format(new Date());
 		
 		//DateTime dtOrg = new DateTime(dt);
 		//DateTime plusoneday = dtOrg.minusDays(1);
 	
-		System.out.println(plusoneday);
+		System.out.println(converteddate);
 	}
 
 }

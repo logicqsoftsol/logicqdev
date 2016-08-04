@@ -2,51 +2,45 @@ package com.crm.logicq.model.user;
 
 import java.util.Date;
 
+import com.crm.logicq.common.MSColumn;
+import com.crm.logicq.common.MSTable;
+
+@MSTable(name="Tran_DeviceAttRec")
 public class CardReadDetails {
 
-	private Integer cardid;
-	private Integer intime;
-	private Integer outtime;
+	@MSColumn(name="Card_Number")
+	private String cardid;
+	
+	@MSColumn(name="Att_PunchRecDate")
+	private Date punchdate;
+	
+	@MSColumn(name="Punch_month")
+	private Date  punchmonth;
 
-	public Integer getCardid() {
-
+	
+	public String getCardid() {
 		return cardid;
 	}
 
-	public void setCardid(Integer cardid) {
-
+	public void setCardid(String cardid) {
 		this.cardid = cardid;
 	}
 
-	public Integer getIntime() {
-
-		return intime;
+	public Date getPunchdate() {
+		return punchdate;
 	}
 
-	public void setIntime(Integer intime) {
-
-		this.intime = intime;
+	public void setPunchdate(Date punchdate) {
+		this.punchdate = punchdate;
 	}
 
-	public int getOuttime() {
-
-		return outtime;
+	public Date getPunchmonth() {
+		return punchmonth;
 	}
 
-	public void setOuttime(Integer outtime) {
-
-		this.outtime = outtime;
+	public void setPunchmonth(Date punchmonth) {
+		this.punchmonth = punchmonth;
 	}
+	
 
-	public Date getCardswappdate() {
-
-		return cardswappdate;
-	}
-
-	public void setCardswappdate(Date cardswappdate) {
-
-		this.cardswappdate = cardswappdate;
-	}
-
-	private Date cardswappdate;
 }
