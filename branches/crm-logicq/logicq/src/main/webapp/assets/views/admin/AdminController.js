@@ -17,12 +17,12 @@
 		 $scope.eventtyplist=[
           {id:1, name:'EXAM'},
           {id:2, name:'DAILY'},
-		  {id:3, name:'WEEK DAYS ONLY'},
-		  {id:4, name:'WEEK ENDS ONLY'},
+		  {id:3, name:'WEEK-DAYS-ONLY'},
+		  {id:4, name:'WEEK-ENDS-ONLY'},
           {id:5, name:'FUNCTION'},
           {id:6, name:'VACATION'},
-		  {id:7, name:'REGIONAL FUNCTION'},
-		  {id:8, name:'NATIONAL HOLIDAY'},
+		  {id:7, name:'REGIONAL-FUNCTION'},
+		  {id:8, name:'NATIONAL-HOLIDAY'},
 		  {id:9, name:'EMERGENCY'},
 		  {id:10, name:'ATTENDANCE'},
 		  {id:11, name:'OTHER'}
@@ -91,6 +91,19 @@
 									 GraphHelper.populateExpenseandCollection($scope);
 								 };							
 				
+								 /* DashBoard   Display for calendar**/	
+								 $scope.calendardashboard={};
+								 $scope.calendardashboardlist={};
+								 $scope.getAllCalendarDetailsForDashBoard=function() {
+									 $scope.calendardashboard.criteriadate="Next 1months";
+									 CalendarService.getAllCalendarListForDashBoard( $scope).success(function(data, status) {
+										 $scope.calendardashboardlist=data;
+									 }).error(function(data, status) {
+										 var errormsg='Unable to Populate for Calnder event details : '+status;
+										 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+										$exceptionHandler(errormsg);
+									});
+								 };
 					
 					/*Attendance details According to page**/	
 			$scope.getAttendaceAccordingToPage=function(page) {
@@ -520,7 +533,7 @@
 														$scope.request.calander={};
 														UserHelper.populateEventCalendarDetailsForOperation($scope);
 														if ('+'==operation) {
-															
+															$scope.eventcalendarid=null;
 															CalendarService.saveEventCalendarDetails($scope.request)
 																.success(function(data, status) {
 																	$scope.calendardetailslist=data.calendardetailslist;
@@ -595,8 +608,8 @@
 											$scope.notificationtemplatelist={};
 											$scope.IsNotiTempVisible=true;
 											$scope.notificationtemplate.totalrecordcount=null;
-											$scope.notificationtemplate.numPages=null;
-											$scope.notificationtemplate.pageSize=$scope.pageSize;
+											$scope.notificationtemplate.numPages='1';
+											$scope.notificationtemplate.pagesize='15';
 											$scope.notificationtemplate.currentPage=$scope.currentPage;
 											
 											

@@ -26,4 +26,6 @@ public class ReadFileDAO extends AbstractDAO<CardReadDetails> implements IReadFi
 	return (List<CardReadDetails>) msacesshelper.executeQuery(SELECT_QUERY, CardReadDetails.class);
 	}
 	
+	
+	
 }

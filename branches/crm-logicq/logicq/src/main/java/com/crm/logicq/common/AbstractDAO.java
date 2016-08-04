@@ -189,7 +189,7 @@ public class AbstractDAO<T> {
 	public void bulkSave(List<T> entities) {
 		Session session = getCurrentSession();
 		for (int i = 0; i < entities.size(); i++) {
-			session.save(entities.get(i));
+			session.saveOrUpdate(entities.get(i));
 			if (i % 200 == 0) {
 				session.flush();
 				session.clear();

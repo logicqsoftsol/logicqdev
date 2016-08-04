@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,15 +29,10 @@ public class AttendanceDetails implements Serializable {
 
 
 
-	@Id
-    @Column(name = "ID",unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "ATTD_DATE")
-	private  Date  date;
+	@EmbeddedId
+	private Attendancekey  key;
+
 	
 	@Column(name = "IN_TIME",nullable = true)
 	private String intime;
@@ -53,30 +49,11 @@ public class AttendanceDetails implements Serializable {
 	@Column(name = "FULL_NAME", nullable = true)
 	private String fullName;
 	
-	@Column(name = "IDENTIFICATION_ID", nullable = true)
-	private String idetificationid;
 	
 	@Column(name = "ATTENDANCE_FOR", nullable = false)
 	private String attendancefor;
 	
 	
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getIdetificationid() {
-		return idetificationid;
-	}
-
-	public void setIdetificationid(String idetificationid) {
-		this.idetificationid = idetificationid;
-	}
-
 	public String getAttendancefor() {
 		return attendancefor;
 	}
@@ -101,15 +78,6 @@ public class AttendanceDetails implements Serializable {
 		this.fullName = fullName;
 	}
 
-	
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
 
 	public String getIntime() {
 		return intime;
@@ -135,11 +103,19 @@ public class AttendanceDetails implements Serializable {
 		this.isPresent = isPresent;
 	}
 
+	public Attendancekey getKey() {
+		return key;
+	}
+
+	public void setKey(Attendancekey key) {
+		this.key = key;
+	}
+
 	@Override
 	public String toString() {
-		return "AttendanceDetails [id=" + id + ", date=" + date + ", intime=" + intime + ", outtime=" + outtime
-				+ ", isPresent=" + isPresent + ", mobile=" + mobile + ", fullName=" + fullName + ", idetificationid="
-				+ idetificationid + ", attendancefor=" + attendancefor + "]";
+		return "AttendanceDetails [key=" + key + ", intime=" + intime + ", outtime=" + outtime + ", isPresent="
+				+ isPresent + ", mobile=" + mobile + ", fullName=" + fullName + ", attendancefor=" + attendancefor
+				+ "]";
 	}
 
 	

@@ -37,6 +37,14 @@
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteCalendarDetailsURL;
 				return  $http.post(url,request.calendar)
 			},
+			  getAllCalendarListForDashBoard: function ($scope) {
+					return  $http({
+						method: 'GET',
+						url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllCalendarDetailsURL+"/"+$scope.calendardashboard.criteriadate,
+						dataType :'json',
+						data : ''
+					})
+				},
 		}
 }]);
 

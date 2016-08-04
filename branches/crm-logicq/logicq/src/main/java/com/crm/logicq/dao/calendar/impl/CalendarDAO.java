@@ -15,10 +15,13 @@ public class CalendarDAO extends AbstractDAO<CalendarDetails> implements ICalend
 
 	@Override
 	public List<CalendarDetails> getAllEventCalendarDetails(CalendarCriteria calendarcriteria) throws Exception {
-		StringBuilder  selectquery= new StringBuilder(" from CalendarDetails ");
+		StringBuilder  selectquery= new StringBuilder(" from CalendarDetails cal ");
 		if (1 == calendarcriteria.getPagenumber()) {
 			Long recordcount=getRecordCount(CalendarDetails.class);
 			calendarcriteria.setTotalrecordcount(recordcount.intValue());
+		}
+		if(null!=calendarcriteria.getFromdate() && null!=calendarcriteria.getTodate()){
+			selectquery.append(" Where cal.eventstartdate in between '"+calendarcriteria.getFromdate()+"'"+" and '"+calendarcriteria.getTodate()+"'");
 		}
 		return executeQueryWithPagination(selectquery.toString(), calendarcriteria.getPagenumber(), calendarcriteria.getPagesize());
 	}

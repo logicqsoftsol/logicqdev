@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,6 +24,7 @@ import com.crm.logicq.model.user.User;
 import com.crm.logicq.security.helper.StringFormatHelper;
 import com.crm.logicq.service.event.impl.EventService;
 import com.crm.logicq.ui.alert.NotificationParamVO;
+import com.crm.logicq.vo.attendance.CardDetailsVO;
 import com.crm.logicq.vo.user.UserVO;
 
 
@@ -38,14 +40,21 @@ public class SMSHelper {
 	 * @throws Exception 
 	 */
 	public static SMSDetails prepareSMSDetailsFromUser(UserVO userdetails,
-			CardReadDetails cardetails, String templaet,List<String> templatekeys) throws Exception {
+			CardDetailsVO cardvo, String templaet,List<String> templatekeys) throws Exception {
 		SMSDetails smsdetails = new SMSDetails();
 		NotificationParamVO paramvo=new NotificationParamVO();
-		paramvo.setIntime(String.valueOf(cardetails.getIntime()));
-		paramvo.setOuttime(String.valueOf(cardetails.getOuttime()));
+		if(null!=cardvo.getIntime()){
+	    paramvo.setIntime(cardvo.getIntime());
+		}
+	    if(null!=cardvo.getOuttime()){
+		paramvo.setOuttime(cardvo.getOuttime());
+	    }
+	    if(null==cardvo.getCardswapdate()){
+	    	paramvo.setDate(new Date());
+	    }
 		paramvo.setName(userdetails.getFirstName());
 		smsdetails.setMobileNumber(userdetails.getMobilenumber());
-		smsdetails.setSmsdate(cardetails.getCardswappdate());
+		smsdetails.setSmsdate(cardvo.getCardswapdate());
 		smsdetails.setType(SMSType.ATTENDANCE);
 		String text=formSMSText(paramvo,templaet,templatekeys);
 		smsdetails.setText(text);
@@ -58,7 +67,7 @@ public class SMSHelper {
 	 * @throws Exception 
 	 * @throws Exception
 	 */
-	public static SMSDetails sendSMS(SMSDetails smsdetails) throws Exception{
+	public static SMSDetails sendSMS(SMSDetails smsdetails){
 		
 		HttpURLConnection httpconnection=null;
 		try{
@@ -68,9 +77,13 @@ public class SMSHelper {
 			httpconnection.setRequestMethod("GET");
 			httpconnection.setRequestProperty("Accept", "application/json");
 			smsLogStatus(httpconnection,smsdetails);
+		}catch(Exception ex){
+			smsdetails.setStatus("Fail");
 		}
 		finally{
+			if(null!=httpconnection){
 			httpconnection.disconnect();
+			}
 		}
 	
 		return smsdetails;
@@ -107,6 +120,9 @@ public class SMSHelper {
 					smsdetails.setStatus(output);
 					smsdetails.setStatuscode(String.valueOf(conn.getResponseCode()));
 				}
+		}else{
+			smsdetails.setStatus("Sucess");
+			smsdetails.setStatuscode(String.valueOf(conn.getResponseCode()));
 		}
 	}
 	
