@@ -125,8 +125,9 @@ public class EventService implements IEventService , ICommonConstant {
 					absentdetails.setCardetails(cardvo);
 					absentdetails.setUserdetails(user);
 					absetdetails.add(absentdetails);
+					
 				} else {
-					attendance.setIsPresent(ISPRESENT_VALUE);
+					   attendance.setIsPresent(ISPRESENT_VALUE);
 						SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, cardvo,
 								eventDetailsVO.getTemplatetext(), templatekeys);
 						smspresentlist.add(smsdetails);
@@ -177,7 +178,7 @@ public class EventService implements IEventService , ICommonConstant {
 			    public void run() {
 			    	List<SMSDetails> smsdetailslist=new ArrayList<SMSDetails>();
 			    	allSMSDetails.forEach((smsinfo) -> {
-			    		SMSDetails	smslogdetails= SMSHelper.sendSMS(smsinfo);
+			    	   SMSDetails	smslogdetails= SMSHelper.sendSMS(smsinfo);
 			    		smsdetailslist.add(smslogdetails);
 			    		
 			    	});

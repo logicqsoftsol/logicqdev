@@ -20,6 +20,10 @@ public class DateHelper {
 		return new SimpleDateFormat("yyyy-MM-dd").format(inputdate);
 	}
 	
+	public static String convertTodayDatetoStringWituoutTime(){
+		return new SimpleDateFormat("dd-mm-yyyy").format(new Date());
+	}
+	
 	public static Date convertStringtoDate(String inputdate) throws ParseException{
 		return dateFormat.parse(inputdate);
 	}
