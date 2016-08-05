@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.crm.logicq.common.AbstractDAO;
 import com.crm.logicq.common.MSAcessHelper;
 import com.crm.logicq.model.user.CardReadDetails;
+import com.crm.logicq.security.helper.DateHelper;
 
 /**
  * 
@@ -23,7 +24,9 @@ public class ReadFileDAO extends AbstractDAO<CardReadDetails> implements IReadFi
 	
 	@Override
 	public List<CardReadDetails> readAccessFile() throws Exception {
-	return (List<CardReadDetails>) msacesshelper.executeQuery(SELECT_QUERY, CardReadDetails.class);
+		String attednacequery="select Punch_month,Card_Number,Att_PunchRecDate  "
+				+ " from Tran_DeviceAttRec ";
+	return (List<CardReadDetails>) msacesshelper.executeQuery(attednacequery, CardReadDetails.class);
 	}
 	
 	

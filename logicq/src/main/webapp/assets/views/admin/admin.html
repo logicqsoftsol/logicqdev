@@ -507,12 +507,12 @@
 											<th>STATUS</th>
 										</tr>
 										<tr ng-repeat="attendance in attendancedetails">
-											<td>{{attendance.idetificationid}}</td>
+											<td>{{attendance.key.idetificationid}}</td>
 											<td>{{attendance.fullName}}</td>
 											<td>{{attendance.mobile}}</td>
 											<td>{{attendance.intime}}</td>
 											<td>{{attendance.outtime}}</td>
-											<td>{{attendance.date}}</td>
+											<td>{{attendance.key.date}}</td>
 											<td>{{attendance.isPresent}}</td>
 										</tr>
 									</table>
