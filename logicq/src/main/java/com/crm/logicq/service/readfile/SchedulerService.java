@@ -46,6 +46,7 @@ public class SchedulerService  {
 			eventDetailsVO.setEventtype(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventtype());
 			eventDetailsVO.setTemplatetext(notificationSetupDetails.getNotificationtemplate().getTemplatetext());
 			eventDetailsVO.setEventName(notificationSetupDetails.getNotificationtemplate().getEventdetails().getEventname());
+			eventDetailsVO.setApplicablefor(notificationSetupDetails.getNotificationtemplate().getEventdetails().getApplicablefor());
 			prepareCornJOB(startTimeHr, startTimeMin, eventDetailsVO);
 		}
 	}

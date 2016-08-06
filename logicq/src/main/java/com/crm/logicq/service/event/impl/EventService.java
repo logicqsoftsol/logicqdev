@@ -115,23 +115,24 @@ public class EventService implements IEventService , ICommonConstant {
 			attendance.setKey(key);
 			
 			AttendanceAbsentDetails absentdetails=new AttendanceAbsentDetails();
-			if (user.getEntityType().equals(EntityType.STUDENT)) {
+			if ((user.getEntityType().equals(eventDetailsVO.getApplicablefor()))
+					|| ("ALL".equals(eventDetailsVO.getApplicablefor()))) {
 				try {
-				cardvo = carddetailsvomap.get(usermap.getKey());
-				if (null == cardvo) {
-					cardvo = new CardDetailsVO();
-					cardvo.setCardid(usermap.getKey());
-					attendance.setIsPresent(ISABSENT_VALUE);
-					absentdetails.setCardetails(cardvo);
-					absentdetails.setUserdetails(user);
-					absetdetails.add(absentdetails);
-					
-				} else {
-					   attendance.setIsPresent(ISPRESENT_VALUE);
+					cardvo = carddetailsvomap.get(usermap.getKey());
+					if (null == cardvo) {
+						cardvo = new CardDetailsVO();
+						cardvo.setCardid(usermap.getKey());
+						attendance.setIsPresent(ISABSENT_VALUE);
+						absentdetails.setCardetails(cardvo);
+						absentdetails.setUserdetails(user);
+						absetdetails.add(absentdetails);
+
+					} else {
+						attendance.setIsPresent(ISPRESENT_VALUE);
 						SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, cardvo,
 								eventDetailsVO.getTemplatetext(), templatekeys);
 						smspresentlist.add(smsdetails);
-				}
+					}
 				} catch (Exception ex) {
 					logger.error("unable to prepare SMS Details ", ex);
 				}

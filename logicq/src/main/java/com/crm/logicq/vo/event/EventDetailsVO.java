@@ -1,5 +1,7 @@
 package com.crm.logicq.vo.event;
 
+import com.crm.logicq.constant.EntityType;
+
 /**
  * NIHAR 24-Jul-2016 2:27:50 pm
  */
@@ -9,6 +11,7 @@ public class EventDetailsVO {
 	private String eventName;
 	private String templatetext;
 	private String eventtype;
+	private String applicablefor;
 
 	public long getEventID() {
 
@@ -51,6 +54,14 @@ public class EventDetailsVO {
     
     	this.eventName = eventName;
     }
+
+	public String getApplicablefor() {
+		return applicablefor;
+	}
+
+	public void setApplicablefor(String applicablefor) {
+		this.applicablefor = applicablefor;
+	}
 
 	
    
