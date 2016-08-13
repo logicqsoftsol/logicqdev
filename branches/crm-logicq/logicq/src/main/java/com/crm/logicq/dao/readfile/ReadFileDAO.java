@@ -25,7 +25,7 @@ public class ReadFileDAO extends AbstractDAO<CardReadDetails> implements IReadFi
 	@Override
 	public List<CardReadDetails> readAccessFile() throws Exception {
 		String attednacequery="select Punch_month,Card_Number,Att_PunchRecDate  "
-				+ " from Tran_DeviceAttRec ";
+				+ " from Tran_DeviceAttRec where Punch_month=#"+DateHelper.convertTodayDatetoStringWituoutTime()+"#";
 	return (List<CardReadDetails>) msacesshelper.executeQuery(attednacequery, CardReadDetails.class);
 	}
 	
