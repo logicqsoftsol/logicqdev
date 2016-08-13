@@ -3,6 +3,7 @@ package com.crm.logicq.security.helper;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.hsqldb.lib.StringUtil;
@@ -20,8 +21,17 @@ public class DateHelper {
 		return new SimpleDateFormat("yyyy-MM-dd").format(inputdate);
 	}
 	
-	public static String convertTodayDatetoStringWituoutTime(){
-		return new SimpleDateFormat("dd-mm-yyyy").format(new Date());
+	public static java.sql.Date convertTodayDatetoStringWituoutTime(){
+		//Calendar calendar = Calendar.getInstance();
+		
+		try {
+			String currentdate= new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+			java.util.Date javadate = new SimpleDateFormat("dd-MM-yyyy").parse(currentdate);
+			return new java.sql.Date(javadate.getTime());
+		} catch (ParseException e) {
+		
+		}
+		return null;
 	}
 	
 	public static Date convertStringtoDate(String inputdate) throws ParseException{

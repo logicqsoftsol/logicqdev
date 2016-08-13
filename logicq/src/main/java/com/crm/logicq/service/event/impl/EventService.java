@@ -59,13 +59,44 @@ public class EventService implements IEventService , ICommonConstant {
 			case "ATTENDANCE" : 
 				triggerAttendanceEventAndSendSMS(eventDetailsVO);
 				break;
-		
+			case "EXAM" : 
+				triggerExamEventAndSendSMS(eventDetailsVO);
+				break;
+			case "DAILY" : 	
+				triggerDailyEventAndSendSMS(eventDetailsVO);
+				break;
+			case "WEEK-DAYS-ONLY" : 
+				triggerWeekdaysOnlyEventAndSendSMS(eventDetailsVO);
+				break;
+			case "WEEK-ENDS-ONLY" : 	
+				triggerWeekEndsOnlyEventAndSendSMS(eventDetailsVO);
+				break;
+			case "FUNCTION" : 	
+				triggerFunctionEventAndSendSMS(eventDetailsVO);
+				break;
+			case "VACATION" : 	
+				triggerVacationEventAndSendSMS(eventDetailsVO);
+				break;
+			case "REGIONAL-FUNCTION" : 	
+				triggerRegionalFunctionEventAndSendSMS(eventDetailsVO);
+				break;	
+			case "NATIONAL-HOLIDAY" : 	
+				triggerNationalHolidayEventAndSendSMS(eventDetailsVO);
+				break;	
+			case "EMERGENCY" : 	
+				triggerEmergencyEventAndSendSMS(eventDetailsVO);
+				break;	
+			case "OTHER" : 	
+				triggerOtherEventAndSendSMS(eventDetailsVO);
+				break;	
+				
 			default :
 				System.out.println("Default Alert");
 			
 		} 
 	}
 	
+
 	private void triggerAttendanceEventAndSendSMS(EventDetailsVO eventDetailsVO) throws Exception {
 		if ((eventDetailsVO.getEventID() == 11) || ("ATTENDANCE-ABSENT".equals(eventDetailsVO.getEventName()))) {
 			attendancedetailsForAbsentDetails(eventDetailsVO);
@@ -83,13 +114,13 @@ public class EventService implements IEventService , ICommonConstant {
 		List<String> templatekeys = StringFormatHelper.getSMSTemplateKey(eventDetailsVO.getTemplatetext());
 		if(null!=absentdetails){
 		for(AttendanceAbsentDetails absent:absentdetails){
-			SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(absent.getUserdetails(), absent.getCardetails(),
+			SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUserForAttendance(absent.getUserdetails(), absent.getCardetails(),
 					eventDetailsVO.getTemplatetext(), templatekeys);
 			smsabsentlist.add(smsdetails);
 		}
 		}
 		if (null != smsabsentlist && !smsabsentlist.isEmpty()) {
-			runSMSExecutor(smsabsentlist);
+			SMSHelper.executeSMS(smsabsentlist);
 		}
 		
 		LogicqContextProvider.removeElementFromApplicationMap(ABSETUSER);
@@ -115,7 +146,7 @@ public class EventService implements IEventService , ICommonConstant {
 			attendance.setKey(key);
 			
 			AttendanceAbsentDetails absentdetails=new AttendanceAbsentDetails();
-			if ((user.getEntityType().equals(eventDetailsVO.getApplicablefor()))
+			if ((user.getEntityType().getValue().equals(eventDetailsVO.getApplicablefor()))
 					|| ("ALL".equals(eventDetailsVO.getApplicablefor()))) {
 				try {
 					cardvo = carddetailsvomap.get(usermap.getKey());
@@ -129,7 +160,7 @@ public class EventService implements IEventService , ICommonConstant {
 
 					} else {
 						attendance.setIsPresent(ISPRESENT_VALUE);
-						SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUser(user, cardvo,
+						SMSDetails smsdetails = SMSHelper.prepareSMSDetailsFromUserForAttendance(user, cardvo,
 								eventDetailsVO.getTemplatetext(), templatekeys);
 						smspresentlist.add(smsdetails);
 					}
@@ -162,35 +193,56 @@ public class EventService implements IEventService , ICommonConstant {
 		}
 		//put map for abset user
 		LogicqContextProvider.addElementToApplicationMap(ABSETUSER, absetdetails);
-		
-		if (null != smspresentlist && !smspresentlist.isEmpty()) {
-			runSMSExecutor(smspresentlist);
-		}
+		//Execute SMS
+		SMSHelper.executeSMS(smspresentlist);
+	
 		if(!attendancedetails.isEmpty()){
 			attendanceservice.saveAttendance(attendancedetails);
 		}
 	}
 
-	private void runSMSExecutor(List<SMSDetails> allSMSDetails) {
-		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
-			ExecutorService executorService = Executors.newFixedThreadPool(2);
-			try{
-			executorService.execute(new Runnable() {
-			    public void run() {
-			    	List<SMSDetails> smsdetailslist=new ArrayList<SMSDetails>();
-			    	allSMSDetails.forEach((smsinfo) -> {
-			    	   SMSDetails	smslogdetails= SMSHelper.sendSMS(smsinfo);
-			    		smsdetailslist.add(smslogdetails);
-			    		
-			    	});
-			    	ISMSService smsservice=LogicqContextProvider.getApplicationContext().getBean(ISMSService.class);
-		    		smsservice.logsmsdetails(smsdetailslist);
-			    }
-			});
-			}finally{
-			executorService.shutdown();
-			}
-		}
+	
+
+	
+	private void triggerOtherEventAndSendSMS(EventDetailsVO eventDetailsVO) {
+		SMSHelper.prepareTemplateAndExecuteSMS(eventDetailsVO);
 	}
 
+	private void triggerEmergencyEventAndSendSMS(EventDetailsVO eventDetailsVO) {
+		SMSHelper.prepareTemplateAndExecuteSMS(eventDetailsVO);
+	}
+
+	private void triggerNationalHolidayEventAndSendSMS(EventDetailsVO eventDetailsVO) {
+		SMSHelper.prepareTemplateAndExecuteSMS(eventDetailsVO);
+	}
+
+	private void triggerRegionalFunctionEventAndSendSMS(EventDetailsVO eventDetailsVO) {
+		SMSHelper.prepareTemplateAndExecuteSMS(eventDetailsVO);
+	}
+
+	private void triggerVacationEventAndSendSMS(EventDetailsVO eventDetailsVO) {
+		SMSHelper.prepareTemplateAndExecuteSMS(eventDetailsVO);
+	}
+
+	private void triggerFunctionEventAndSendSMS(EventDetailsVO eventDetailsVO) {
+		SMSHelper.prepareTemplateAndExecuteSMS(eventDetailsVO);
+	}
+
+	private void triggerWeekEndsOnlyEventAndSendSMS(EventDetailsVO eventDetailsVO) {
+		SMSHelper.prepareTemplateAndExecuteSMS(eventDetailsVO);
+	}
+
+	private void triggerWeekdaysOnlyEventAndSendSMS(EventDetailsVO eventDetailsVO) {
+		SMSHelper.prepareTemplateAndExecuteSMS(eventDetailsVO);
+	}
+
+	private void triggerDailyEventAndSendSMS(EventDetailsVO eventDetailsVO) {
+		SMSHelper.prepareTemplateAndExecuteSMS(eventDetailsVO);
+	}
+
+	private void triggerExamEventAndSendSMS(EventDetailsVO eventDetailsVO) {
+		SMSHelper.prepareTemplateAndExecuteSMS(eventDetailsVO);
+	}
+	
+	
 }

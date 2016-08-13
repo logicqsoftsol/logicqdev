@@ -15,8 +15,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 
-@PropertySource("classpath:MSAcessConnection.properties")
+
 @Repository
+@PropertySource("classpath:MSAcessConnection.properties")
 public class MSAcessHelper {
 	
 	private static Connection msacessconnectio=null;
@@ -28,11 +29,47 @@ public class MSAcessHelper {
 	@Value("${msacess.databasepath}")
 	private String dbpath;
 	
+	@Value("${msacess.password}")
+	private String password;
+	
+	
+	
+	public String getDrivername() {
+		return drivername;
+	}
+
+	public void setDrivername(String drivername) {
+		this.drivername = drivername;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getDbpath() {
+		return dbpath;
+	}
+
+	public void setDbpath(String dbpath) {
+		this.dbpath = dbpath;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@PostConstruct
 	public void msAcessConnection() throws Exception {
-		url="jdbc:ucanaccess://F:/Project/workspace/logicq-client/crm-logicq/logicq/src/main/resources/ontime_att.mdb;READONLY=true";
-		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-		msacessconnectio=DriverManager.getConnection(url, "", "sss");
+		Class.forName(drivername);
+		msacessconnectio=DriverManager.getConnection(url, "", password);
 	}
 	
 	private Statement createStatement() throws Exception {
