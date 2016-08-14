@@ -1,0 +1,156 @@
+<div class="wrapper" id="admin">
+	<header class="main-header">
+		<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<span class="logo-mini">issuetracker</span> <!-- logo for regular state and mobile devices -->
+			<span class="logo-lg fa fa-university">School Management</span>
+		</a>
+		<!-- Header Navbar: style can be found in header.less -->
+		<nav class="navbar navbar-static-top">
+			<!-- Sidebar toggle button-->
+			<a href="#" role="button" class="sidebar-toggle"
+				data-toggle="offcanvas"></a>
+			<div class="top-nav notification-row">
+				<ul class="nav pull-right top-menu">
+				       <!-- task notificatoin start -->
+                    <li id="task_notificatoin_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="icon-task-l"></i>
+                            <span class="badge bg-critical">10</span>
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="notify-arrow notify-arrow-red"></div>
+                            <li>
+                                <p class="red">You have 6 pending Issue</p>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Issue Id :45454</div>
+										<span> Client id : XXY , Location : Remuna</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Issue Id :33565</div>
+										<span> Client id : ASDpq , Location : Baripada</span>
+                                    </div>
+                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                   <div class="task-info">
+                                        <div class="desc">Issue Id :33589 </div>
+										<span>  Client id : llasd , Location : Haripur</span>
+                                    </div>
+                                  
+                                </a>
+                            </li>
+                            <li class="external">
+                                <a href="#">See All Tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- task notificatoin end -->
+				
+					     <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt="" src="img/avatar1_small.jpg">
+                            </span>
+                            <span class="username">Service Engg XYZ</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li>
+                                <a href="#"><i class="icon_chat_alt"></i> Chats</a>
+                            </li>
+                            <li>
+                                <a href="/login.html"><i class="icon_key_alt"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<aside class="main-sidebar">
+		<section class="sidebar">
+			<ul class="sidebar-menu">
+				<li class="header">MAIN NAVIGATION</li>
+				<li class="active treeview"><a href=""> <i
+						class="fa fa-dashboard"></i> <span>Service Engineer Details</span><i class="fa fa-angle-left pull-right"></i>
+				</a>
+				<ul class="treeview-menu">
+					<li ng-class="{active:display == 1}"><a href=""
+							id="stduentregclick" ng-click="display = 1"><i
+								class="fa fa-graduation-cap"></i>Issue Dashboard</a></li>
+					<li ng-class="{active:display == 2}"><a href=""
+							id="dashborad" ng-click="display = 2"><i class="fa fa-dashboard"></i>Issue Bill</a></li>
+						<li ng-class="{active:display == 3}"><a href=""
+							id="empregclick" ng-click="display = 3"><i class="fa fa-user"></i>Log Issue</a></li>
+					    <li ng-class="{active:display == 4}"><a href=""
+							id="stduentregclick" ng-click="display = 4"><i
+								class="fa fa-graduation-cap"></i>Log Complain</a></li>
+						<li ng-class="{active:display == 6}"><a href=""
+							id="stduentregclick" ng-click="display = 6"><i
+								class="fa fa-graduation-cap"></i>Profile Details</a></li>
+						<li ng-class="{active:display == 5}"><a href=""
+							id="stduentregclick" ng-click="display = 5"><i
+								class="fa fa-graduation-cap"></i>Salary Details</a></li>
+							<li ng-class="{active:display == 7}"><a href=""
+							id="stduentregclick" ng-click="display = 7"><i
+								class="fa fa-graduation-cap"></i>TimeSheet Details</a></li>					
+					</ul></li>
+			</ul>
+		</section>
+		<!-- /.sidebar -->
+	</aside>
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				Dashboard <small>Control panel</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Dashboard</li>
+			</ol>
+		</section>
+		<section class="content">
+		<div class="panel" ng-show='display == 6'>
+				<div class="panel-heading">
+				
+				</div>
+			
+				
+				<div class="panel-body">
+					
+					</div>	
+				</div>				
+		
+			<div id="empreg" ng-show='display == 1'>
+
+			</div>
+
+			<div id="studentreg" ng-show='display == 2'>
+
+			</div>
+			
+			<div id="configsms-email" ng-show='display == 3'>
+	
+			</div>
+			<div id="calndersetup" ng-show='display == 4'>
+
+				
+			</div>
+			<div id="viewattendance" ng-show='display == 5'>
+
+			</div>
+		</section>
+	</div>
+
+</div>
