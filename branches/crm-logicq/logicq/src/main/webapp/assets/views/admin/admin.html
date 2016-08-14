@@ -826,13 +826,14 @@
 							<div class="tab-content col-md-10">
 							
 								<div id="studentbasicdetails" class="tab-pane fade in active">
-								<form id="studentbasicdetailsform"  novalidate>
+								<form id="studentbasicdetailsform" name="studentbasicdetailsform"  novalidate>
 										<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="student.idetificationid">Card Id</label> 
-													<input type="text" name="student.idetificationid" id="student.idetificationid"
+													<input type="text" name="idetificationid" id="student.idetificationid"
 														class="form-control" ng-model="student.idetificationid"
 														placeholder="Card ID" pattern="^[0-9]{1,}$" required ng-minlength='5' ng-maxlength='10'>
+										 <span style="color:red" ng-show="studentbasicdetailsform.idetificationid.$touched && studentbasicdetailsform.idetificationid.$invalid">CardID is required.</span>
 												</div>
 												<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="student.title">Title</label> 
@@ -856,9 +857,10 @@
 												
 												<div class="form-group" show-errors='{showSuccess: true}'>
 												<label  class="control-label" for="student.firstname">First Name</label>
-													<input type="text" name="student.firstname" id="student.firstname"
+													<input type="text" name="firstname" id="student.firstname"
 														class="form-control" ng-model="student.firstname" pattern="^[a-zA-Z]{1,}$"
 														placeholder="First Name" required>
+														<span style="color:red"ng-show="studentbasicdetailsform.firstname.$touched && studentbasicdetailsform.firstname.$invalid">Firstname is required.</span>
 												</div>
 
 												
@@ -867,9 +869,10 @@
 											<div class="col-xs-6 col-sm-6 col-md-6">
 												<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="student.middlename">Middle Name</label> 
-													<input type="text" name="student.middlename" id="student.middlename"
+													<input type="text" name="middlename" id="student.middlename"
 														class="form-control" ng-model="student.middlename" pattern="^[a-zA-Z]{1,}$"
 														placeholder="Middle Name">
+													
 												</div>
 													
 												<div class="form-group" show-errors='{showSuccess: true}'>
@@ -887,9 +890,10 @@
 											<div class="col-xs-6 col-sm-6 col-md-6">
 												<div class="form-group" show-errors='{showSuccess: true}'>
 												<label  class="control-label" for="student.lastname">Last Name</label>
-													<input type="text" name="student.lastname" id="student.lastname"
+													<input type="text" name="lastname" id="student.lastname"
 														class="form-control" ng-model="student.lastname" pattern="^[a-zA-Z]{1,}$"
-														placeholder="Last Name">
+														placeholder="Last Name" required>
+															<span style="color:red" ng-show="studentbasicdetailsform.lastname.$touched && studentbasicdetailsform.lastname.$invalid">LastName is required.</span>
 												</div>
 										
 
@@ -897,9 +901,11 @@
 											</div>
 											<div class="col-xs-6 col-sm-6 col-md-6" >
 												<div class="form-group" show-errors='{showSuccess: true}'>
-												<label class="control-label">Birth date</label>
+												<label class="control-label">DOB</label>
 														<input type="Date" id="birthdate" ng-model="student.dateofbirth" class="form-control"
-															name="birthdate" />
+															name="birthdate" required/>
+												<spanstyle="color:red"  ng-show="studentbasicdetailsform.birthdate.$touched && studentbasicdetailsform.birthdate.$invalid">DOB is required.</span>
+											 
 													</div>
 												
 											</div>								
@@ -908,7 +914,7 @@
 
 								<div id="studentcontactdetails" class="tab-pane fade">
 	   							 <div class="row">
-								 <form id="studentcontactform"  novalidate>
+								 <form id="studentcontactform" name="studentcontactform" novalidate>
 									    <div class="col-xs-6 col-sm-6 col-md-6"> 
 									        <div class="form-group" show-errors='{showSuccess: true}'>
 										          <label  class="control-label" for="student.address">Address</label> 
@@ -926,33 +932,38 @@
 							                        <div class="form-group" show-errors='{showSuccess: true}'>
 								                     <label  class="control-label" for="student.city">City</label> 
 									                   <input type="text" class="form-control" id="student.city" ng-model="student.city"
-										                        placeholder="Your City" name="student.city" pattern="^[a-zA-Z]{1,}$"> 
+										                        placeholder="Your City" name="city" pattern="^[a-zA-Z]{1,}$" required> 
+																 <span style="color:red" ng-show="studentcontactform.city.$touched && studentcontactform.city.$invalid">Please Enter the CITY.</span>
 								                     </div>
 												       <div class="form-group" show-errors='{showSuccess: true}'>
 								                             <label  class="control-label" for="student.pincode">Pincode</label> 
 									                        <input type="text" class="form-control" id="student.pincode" ng-model="student.pincode"
-										                        placeholder="Enter Pincode" name="student.pincode" required pattern="^[0-9]{1,}$" ng-minlength='6' ng-maxlength='6'> 
+										                        placeholder="Enter Pincode" name="pincode" required pattern="^[0-9]{1,}$" ng-minlength='6' ng-maxlength='6' required> 
+																 <span style="color:red" ng-show="studentcontactform.pincode.$touched && studentcontactform.pincode.$invalid">Please Enter the PINCODE.</span>
 								                        </div>
 												          <div class="form-group" show-errors='{showSuccess: true}'>
 								                            <label  class="control-label" for="student.state">State</label> 
 									                          <input type="text" class="form-control" id="student.state" ng-model="student.state"
-										                        placeholder="Enter Your State" name="student.state" list="statelist" required> 
+										                        placeholder="Enter Your State" name="state" list="statelist" required> 
+																<span style="color:red" ng-show="studentcontactform.state.$touched && studentcontactform.state.$invalid">Please Enter the State.</span>
 																 <datalist id="statelist" ></datalist>
 								                            </div>
 								                            
 								                            <div class="form-group" show-errors='{showSuccess: true}'>
 								                            <label  class="control-label" for="student.country">Country</label> 
 									                          <input type="text" class="form-control" id="student.country" ng-model="student.country"
-										                        placeholder="Enter Your Country" name="student.country" list="coutrylist" required> 
+										                        placeholder="Enter Your Country" name="country" list="coutrylist" required> 
+																<span style="color:red" ng-show="studentcontactform.country.$touched && studentcontactform.country.$invalid">Please Choose the COUNTRY.</span>
 																 <datalist id="coutrylist" ></datalist>
 								                            </div>   
 							             </div>
 										 <div class="col-xs-6 col-sm-6 col-md-6">
 									           <div class="form-group" show-errors='{showSuccess: true}'>
 										            <label  class="control-label" for="student.mobilenumber">Mobile No</label> 
-										                <input type="text" name="student.mobilenumber" id="student.mobilenumber"
+										                <input type="text" name="mobilenumber" id="student.mobilenumber"
 														class="form-control" ng-model="student.mobilenumber" required pattern="^[0-9]{1,}$" ng-minlength='10' ng-maxlength='10'
 														placeholder="Enter 10 digit mobile no">
+														<span style="color:red" ng-show="studentcontactform.mobilenumber.$touched && studentcontactform.mobilenumber.$invalid">Please Enter Your the Mobile No.</span>
 										         </div>
 										           <div class="form-group" show-errors='{showSuccess: true}'>
 										            <label  class="control-label" for="student.communicationtype">Communication Preference</label> 
@@ -966,15 +977,17 @@
 										         </div>
 										            <div class="form-group" show-errors='{showSuccess: true}'>
 										               <label  class="control-label" for="student.emailid">Email Id</label> 
-										                 <input type="text" name="student.emailid" id="student.emailid"
+										                 <input type="email" name="emailid" id="student.emailid"
 														  class="form-control" ng-model="student.emailid" 
 														  placeholder="your email details" required patteren="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$">
-										             </div>
+										            <span style="color:red" ng-show="studentcontactform.emailid.$touched && studentcontactform.emailid.$invalid">Please Enter Your Email ID.</span>
+													</div>
 										
 							                             <div class="form-group" show-errors='{showSuccess: true}'>
 								                              <label  class="control-label" for="student.emergencycontactnumber">Emergency Contact Number</label> 
 									                           <input type="text" class="form-control" id="student.emergencycontactnumber" ng-model="student.emergencycontactnumber"
-										                        placeholder="Emergency contact number" name="student.emergencycontactnumber" required pattern="^[0-9]{1,}$" ng-minlength='10' ng-maxlength='10'> 
+										                        placeholder="Emergency contact number" name="emergencycontactnumber" required pattern="^[0-9]{1,}$" ng-minlength='10' ng-maxlength='10'> 
+																<span style="color:red" ng-show="studentcontactform.emergencycontactnumber.$touched && studentcontactform.emergencycontactnumber.$invalid">Please Enter Emergency Contact No.</span>
 								                           </div>
                                              </div>
 											 </form>
