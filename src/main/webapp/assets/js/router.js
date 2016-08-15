@@ -48,6 +48,13 @@
                     
                 }),
                 $stateProvider
+                .state('fieldengg', {
+                    url: "/fieldengg",
+                    templateUrl:"assets/views/serviceengg/fieldengg/fieldengg.html",
+                    controller:'FieldEnginerController'
+                    
+                }),
+                $stateProvider
                 .state('authusers', {
                     url: "/",
                     controller:'AuthController'

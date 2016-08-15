@@ -14,6 +14,9 @@
 			if($scope.username=='serviceengg'){
 				$location.path('/serviceengg');
 			} else
+			if($scope.username=='fieldengg'){
+					$location.path('/fieldengg');
+				} else
 			if($scope.username=='inventory'){
 				$location.path('/inventory');
 			}else{
