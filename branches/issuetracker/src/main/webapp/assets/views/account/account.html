@@ -37,7 +37,7 @@
 				           <li id="task_notificatoin_bar" class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="fa fa-bell-o"></i>
-                            <span class="badge label-danger">10</span>
+                            <span class="badge label-danger">3</span>
                         </a>
                         <ul class="dropdown-menu extended tasks-bar">
                             <div class="panel-heading">
@@ -84,14 +84,22 @@
 						class="fa fa-angle-left pull-right"></i>
 				</a>
 					<ul class="treeview-menu">
-					<li ng-class="{active:display == 1}"><a href=""
-							id="admindashborad" ng-click="display = 1" ng-init=""><i class="fa fa-dashboard"></i>Inventory Dashboard</a></li>
-						<li ng-class="{active:display == 2}"><a href=""
-							id="invcreatecomplain" ng-click="display = 2"><i class="fa fa-exclamation-circle"></i>Create  Complain</a></li>													
-						<li ng-class="{active:display == 3}"><a href=""
-							id="invviewcomplain" ng-click="display = 3"><i class="fa fa-exclamation-circle"></i>View/Modify  Complain</a></li>													
-						<li ng-class="{active:display == 4}"><a href=""
-							id="invcreatedeal" ng-click="display = 4"><i class="fa fa-database"></i>View/Update Deal</a></li>
+					<li ng-class="{active:display == 11}"><a href=""
+							id="accountdashboard" ng-click="display = 11" ng-init=""><i class="fa fa-dashboard"></i>Account Dashboard</a></li>
+						<li ng-class="{active:display == 12}"><a href=""
+							id="createcomplainaccount" ng-click="display = 12"><i class="fa fa-bug"></i>Create  Complain</a></li>													
+						<li ng-class="{active:display == 13}"><a href=""
+							id="viewmodcomplainaccount" ng-click="display = 13"><i class="fa fa-pencil-square"></i>View/Modify  Complain</a></li>													
+						<li ng-class="{active:display == 14}"><a href=""
+							id="viewmodifydealaccount" ng-click="display = 14"><i class="fa fa-suitcase"></i>View/Modify Deal</a></li>
+						<li ng-class="{active:display == 15}"><a href=""
+							id="viewmodifyinvetoryprice" ng-click="display = 15"><i class="fa fa-database"></i>View/Modify Inventory Price</a></li>
+						<li ng-class="{active:display == 16}"><a href=""
+							id="viewmodifytaskprice" ng-click="display = 16"><i class="fa fa-tasks"></i>View/Modify Task Price</a></li>	
+						<li ng-class="{active:display == 17}"><a href=""
+							id="issuerecipt" ng-click="display = 17"><i class="fa fa-money"></i>Issue Receipt</a></li>	
+						<li ng-class="{active:display == 18}"><a href=""
+							id="issuebill" ng-click="display = 18"><i class="fa fa-paper-plane"></i>Issue Bill</a></li>				
 					</ul></li>
 			</ul>
 		</section>
@@ -109,19 +117,30 @@
 			</ol>
 		</section>
 		<section class="content">
-		<div class="panel" ng-show='display == 1'>
+		<div class="panel" ng-show='display == 11'>
 			<span> Inventory Dash Board</span>
 				  </div>
-                  <div class="panel" ng-show='display == 2'>
+                  <div class="panel" ng-show='display == 12'>
 			<span> Create Complain</span>
 				  </div>
-				  <div class="panel" ng-show='display == 3'>
+				  <div class="panel" ng-show='display == 13'>
 			<span> View and Modifiy Complain</span>
+				  </div>
+				  
+				    <div class="panel" ng-show='display == 15'>
+			<span> View/Modify Inventory Price</span>
+				  </div>
+				  
+				    <div class="panel" ng-show='display == 16'>
+			<span> Issue Receipt</span>
+				  </div>
+				   <div class="panel" ng-show='display == 17'>
+			<span> Issue Bill</span>
 				  </div>
                   
 
    				<!---Client  Registration-->
-             <div id="invetoryclientapproval" ng-show='display == 4'>
+             <div id="invetoryclientapproval" ng-show='display == 14'>
           <div class="panel-header pull-right">
 			<button type="submit" class="btn btn-default fa fa-paper-plane" data-dismiss="modal" ng-click="saveStudentDetails()">Verify Accounts</button>
 		    <button type="button" class="btn btn-default fa fa-times-circle"class="close"data-dismiss="modal">Close</button>
@@ -214,7 +233,7 @@
 						</div>
 						
 						</div>
-
+         </section>
               </div>
 
 		</div>					
