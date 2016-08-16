@@ -41,6 +41,9 @@
 					<ul class="treeview-menu">
 					<li ng-class="{active:display == 6}"><a href=""
 							id="dashborad" ng-click="display = 6;displayDashBoard();getAllCalendarDetailsForDashBoard()" ng-init="displayDashBoard();getAllCalendarDetails()"><i class="fa fa-dashboard"></i>Your Dashboard</a></li>
+					<li ng-class="{active:display == 7}"><a href=""
+							id="classessetup" ng-click="display = 7"><i class="fa fa-sitemap"></i>Setup Classes</a>
+							</li>
 						<li ng-class="{active:display == 1}"><a href=""
 							id="empregclick" ng-click="display = 1;searchAllEmployeeListAccordingToPage(1)"><i class="fa fa-user"></i>Employee
 								Registration</a></li>
@@ -95,12 +98,114 @@
 			</ol>
 		</section>
 		<section class="content">
+		
+					<div id="setupclass" ng-show='display == 7'>
+				<div class="panel with-nav-tabs panel-success">
+					<div class="panel-heading">
+						<h3>Setup Classes</h3>
+					</div>
+				<div class="panel-body">
+					
+					
+						<ul class="nav nav-tabs">
+							<li><a data-toggle="tab" id="subjectsetup" class="pull-center"  ng-click="getSubjectListAccordingToPage(1)"
+							href="/admin#subjectsetupdetails">Subject Setup</a></li>
+							<li class="active"><a data-toggle="tab" id="classsetup" class="pull-center"  ng-click="getClassSetupDetailsAccordingToPage(1)"
+								href="/admin#classsetupdetails">Class Setup</a></li>
+						</ul>
+					
+				 
+					<div class="tab-content">
+					<div id="subjectsetupdetails" class="tab-pane fade">
+					<br></br>
+						<div class="table-responsive">
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+									</ul>	
+							<ul class="pull-right">
+								<button id="addsubject" data-toggle="modal" data-toggle="modal"
+									data-target="#addsubjectmodal"  ng-click="addNewSubject()" 
+									class="btn btn-default"><i class="fa fa-book" aria-hidden="true"></i>Add Subject</button>
+								<button id="deletedetails" data-toggle="modal" data-target="#searchsubject"
+									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
+							</ul>
+							<table class="table table-bordered table-fixed table-hover">
+							<tr class ="success">
+								<th class="pull-center">NAME</th>
+								<th class="pull-center">SHORT NAME</th>
+								<th class="pull-center">APPLICABLE FOR</th>
+							</tr>
+							<tr ng-repeat="sub in subjectlist">
+								<td>{{sub.name}}</td>
+								<td>{{sub.shortname}}</td>
+								<td>{{sub.applicablefor}}</td>
+								<td><a id="updateempreg"  data-toggle="modal"  data-target="#addsubjectmodal"   ng-click="editExistingSubject(emp)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+	                            <td><a id="deleteempreg"  data-toggle="modal"  data-target="#addsubjectmodal"   ng-click="pouplateSubjectForDelete(emp)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+					</div>
+	
+					</div>
+					
+					
+					<div id="classsetupdetails" class="tab-pane fade in active">
+					<br></br>
+							
+					<div class="table-responsive">
+						<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="getClassSetupDetailsAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="getClassSetupDetailsAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="getClassSetupDetailsAccordingToPage()">&raquo;</a></li>
+									</ul>		
+					<ul class="pull-right">
+						<button id="setupnewclass" data-toggle="modal" 
+									data-target="#classsetupdetailsmodal" 
+									class="btn btn-default fa fa-plus-circle" ng-click="addclassetupgSetup()">setup new class</button>
+						<button id="classsetupsearch" data-toggle="modal" data-target="#classsetupdetailsmodal" ng-click="searchNotificationSendingSetup()"
+									class="btn btn-default fa fa-search">Search</button>
+                         </ul>			
+							<table class="table table-bordered table-fixed table-hover">
+							<tr class ="success">
+								<th>CLASS NAME</th>
+								<th>SECTION NAME</t>
+								<th>COMPULSORY SUBJECT</t>
+								<th>OPTIONAL SUBJECT</t>
+								<th>APPLICABLE YEAR</t>
+							</tr>
+							<tr ng-repeat="classsetup in classsetupdetails">
+								<td>{{classsetup.classname}}</td>
+								<td>{{classsetup.setionname}}</td>
+								<td>{{classsetup.compulsorysubject}}</td>
+								<td>{{classsetup.optionalsubject}}</td>
+								<td><a id="classetupupdate" data-toggle="modal" data-target="#classsetupdetailsmodal" ng-click="updateClassSetup(classsetup)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+								<td><a id="deletenotitempsetup" data-toggle="modal" data-target="#classsetupdetailsmodal"  ng-click="deleteClassSetup(classsetup)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+					</div><!--endof notification setingsetup details-->
+					
+					
+					</div>
+					</div>
+					</div>
+					</div>
+			</div>
+		
+
 		<div class="panel" ng-show='display == 6'>
 				<div class="panel-heading">
-				
-										</div>
-			
-				
+				</div>
 				<div class="panel-body">
 					<div class="col-md-8">
 					<h4>Business Report</h4>
@@ -1380,6 +1485,111 @@
 			</div>
 			</form>
 		</div><!---End for Modal Notifications Template sending setup-->				
+		
+		
+		<!---Modal Subject Add Details-->
+		<div id="addsubjectmodal" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">{{subjectoperation}} Subject Details</h4>	
+						</div>
+						<div class="modal-body">
+						 <form id="addsubjectform"  novalidate>
+								<div class="col-md-6">
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="subject.name">Subject Name</label> 
+											<input type="text" name="subject.name" id="subject.name"
+												class="form-control" ng-model="subject.name"
+												placeholder="Subject Name" required>
+										</div>
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="subject.name">Subject Short Name</label> 
+											<input type="text" name="subject.sname" id="subject.sname"
+												class="form-control" ng-model="subject.sname"
+												placeholder="Subject Short Name" required>
+										</div>
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="subject.applicablefor">Applicable For</label> 
+										<input type="text" class="form-control" name="subject.applicablefor" id="subject.applicablefor"  ng-model="subject.applicablefor" class="input-search" list="subjecttypelist" required>
+												<datalist id="subjecttypelist">
+												<option ng-repeat="subjecttype in subjecttypelist"   value="{{subjecttype.name}}">
+												</option>
+												</datalist> 
+										</div>
+						</div>
+						</form>
+				</div>
+					<div class="modal-footer">
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="operationSubjectDetail()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+			</div>
+			</div>
+			</form>
+		</div><!---End of Modal Subject Add Details-->
+		
+		
+		<!---Modal Class Setup Details-->
+		<div id="classsetupdetailsmodal" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">{{classoperation}} Class Setup Details</h4>	
+						</div>
+						<div class="modal-body">
+						 <form id="addsubjectform"  novalidate>
+								<div class="col-md-6">
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="classsetup.name">Class Name</label> 
+											<input type="text" name="subject.name" id="classsetup.name"
+												class="form-control" ng-model="classsetup.name"
+												placeholder="Class Name" required>
+										</div>
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="classsetup.sectionname">Section Name</label> 
+											<input type="text" name="classsetup.sectionname" id="classsetup.sectionname"
+												class="form-control" ng-model="classsetup.sectionname"
+												placeholder="Class Section Name" required>
+										</div>
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="classsetup.compsubject">Compulsory Subject</label> 
+											<input type="text" name="classsetup.compsubject" id="classsetup.compsubject"
+												class="form-control" ng-model="classsetup.compsubject"
+												placeholder="Compulsory Subject" required>
+										</div>
+									<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="classsetup.optsubject">Optional Subject</label> 
+											<input type="text" name="classsetup.optsubject" id="classsetup.optsubject"
+												class="form-control" ng-model="classsetup.optsubject"
+												placeholder="Optional Subject" required>
+										</div>
+									<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="classsetup.applicableyear">Applicable Year</label> 
+											<input type="text" name="classsetup.applicableyear" id="classsetup.applicableyear"
+												class="form-control" ng-model="classsetup.applicableyear"
+												placeholder="Applicable Year" required>
+										</div>	
+						</div>
+						</form>
+				</div>
+					<div class="modal-footer">
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="operationSubjectDetail()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+			</div>
+			</div>
+			</form>
+		</div><!---End of Modal Class Setup Details-->
+		
 		
 	</div>
 

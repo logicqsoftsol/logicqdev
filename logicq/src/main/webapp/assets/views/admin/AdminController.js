@@ -51,6 +51,11 @@
 		  {id:7, name:'EMPLOYEE(permanent)'},
 		  {id:8, name:'EMPLOYEE(contract)'},
 		  {id:9, name:'GUARDIAN'}];
+		
+		$scope.subjecttypelist=[
+		         		  {id:1, name:'ALL'},
+		         		  {id:2, name:'COMPULSORY'},
+		                   {id:3, name:'OPTIONAL'}];
 
 		$scope.attendancecriteria={};
 		$scope.studentattendace={};
