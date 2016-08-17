@@ -1,58 +1,117 @@
 package com.crm.logicq.common.vendor.sms;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
+
 
 @PropertySource("classpath:SMSVendor.properties")
 public class SMSVendor {
 	
-	@Value("${smsvendor.url}")
-	public static String url="http://login.cheapsmsbazaar.com/vendorsms/pushsms.aspx?";
+   private static  SMSVendor instance=getInstance();
 	
-	@Value("${smsvendor.userid}")
-	public static String userid="logicqsoftsol";
+	@Value("smsvendor.url")
+	public  String url;
 	
-	@Value("${smsvendor.password}")
-	public static String password="babu@0701402098";
+	@Value("smsvendor.userid")
+	public   String userid;
 	
-	@Value("${smsvendor.sid}")
-	public static String sid="LOGICQ";
+	@Value("smsvendor.password")
+	public  String password;
 	
-	@Value("${smsvendor.flag}")
-	public static int flag=0;
+	@Value("smsvendor.sid")
+	public  String sid;
 	
-	@Value("${smsvendor.gwid}")
-	public static int gwid=2;
-
+	@Value("smsvendor.flag")
+	public  String flag;
+	
+	@Value("smsvendor.gwid")
+	public  String gwid;
+	
 	public String getUrl() {
 		return url;
 	}
 
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	public String getUserid() {
 		return userid;
 	}
 
-	
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	public String getPassword() {
 		return password;
 	}
-
-	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getSid() {
 		return sid;
 	}
-
-
-	public int getFlag() {
+	public void setSid(String sid) {
+		this.sid = sid;
+	}
+	public String getFlag() {
 		return flag;
 	}
-
-	public int getGwid() {
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+	public String getGwid() {
 		return gwid;
 	}
+	public void setGwid(String gwid) {
+		this.gwid = gwid;
+	}
 
+
+
+	private SMSVendor(){}
 	
+	public static SMSVendor getInstance() {
+		try {
+			if (null == instance) {
+				instance = new SMSVendor();
+				Properties prop = PropertiesLoaderUtils
+						.loadAllProperties("SMSVendor.properties");
+				
+				setPropertyValue(instance,prop);
+			}
+		} catch (Exception ex) {
+             ex.printStackTrace();
+		}
+		return instance;
+	}
+	
+	private static void setPropertyValue(SMSVendor instance, Properties prop) throws Exception {
+		Field[] fields = instance.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			Annotation valueanotation = field.getAnnotation(Value.class);
+			String propvalue=null;
+			if(null!=valueanotation){
+			propvalue = ((Value) valueanotation).value();
+			}
+			field.setAccessible(Boolean.TRUE);
+			if (field.getType().isAssignableFrom(String.class)) {
+				field.set(instance, (String) prop.get(propvalue));
+			}
+		}
+
+	}
+
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "SMSVendor [url=" + url + ", userid=" + userid + ", password=" + password + ", sid=" + sid + ", flag="

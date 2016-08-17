@@ -13,6 +13,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.crm.logicq.common.ICommonConstant;
 import com.crm.logicq.common.LogicqContextProvider;
@@ -29,7 +31,7 @@ import com.crm.logicq.vo.user.UserVO;
 
 public class SMSHelper {
 	private final static Logger logger = Logger.getLogger(SMSHelper.class);
- 
+	private final static  SMSVendor smsvendor=SMSVendor.getInstance();
 	/**
 	 * 
 	 * @param user
@@ -116,14 +118,14 @@ public class SMSHelper {
  */
 	private static StringBuilder formSMSURL(SMSDetails smsdetails) throws Exception{
 		StringBuilder urlString =new StringBuilder();
-		urlString.append(SMSVendor.url);
-		urlString.append("user="+SMSVendor.userid+"&");
-		urlString.append("password="+SMSVendor.password+"&");
+		urlString.append(smsvendor.getUrl());
+		urlString.append("user="+smsvendor.getUserid()+"&");
+		urlString.append("password="+smsvendor.getPassword()+"&");
 		urlString.append("msisdn="+smsdetails.getMobileNumber()+"&");
-		urlString.append("sid="+SMSVendor.sid+"&");
+		urlString.append("sid="+smsvendor.getSid()+"&");
 		urlString.append("msg="+StringFormatHelper.formatStringForSMS(smsdetails.getText())+"&");
-		urlString.append("fl="+SMSVendor.flag+"&");
-		urlString.append("gwid="+SMSVendor.gwid);
+		urlString.append("fl="+smsvendor.getFlag()+"&");
+		urlString.append("gwid="+smsvendor.getGwid());
 		return urlString;
 	}
 	
@@ -166,7 +168,7 @@ public class SMSHelper {
 	
 	private static void runSMSExecutor(List<SMSDetails> allSMSDetails) {
 		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
-			ExecutorService executorService = Executors.newFixedThreadPool(2);
+			ExecutorService executorService = Executors.newFixedThreadPool(5);
 			try{
 			executorService.execute(new Runnable() {
 			    public void run() {

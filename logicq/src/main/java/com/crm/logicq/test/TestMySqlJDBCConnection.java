@@ -23,9 +23,13 @@ public class TestMySqlJDBCConnection {
 		final SessionFactory factory;
 		 
 		try {
-		    conn =
-		       DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/sakila?" + "user=root&password=root");
-System.out.println("conn is "+conn);
+			
+		    conn =DriverManager.getConnection("jdbc:mysql://45.113.136.152:3306/docathou_prod", "docathou_prod", "logicq@123");
+		     
+		    //Never possible : Because my code running in different system
+		      // DriverManager.getConnection("jdbc:mysql://localhost:3306/docathou_prod?user=docathou_prod&password=J-(=N9zd1vD)");
+
+		    System.out.println("conn is "+conn);
 
    	  factory=new Configuration().configure().buildSessionFactory();
    	  Session session=factory.openSession();
