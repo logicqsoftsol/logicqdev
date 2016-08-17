@@ -1101,9 +1101,24 @@
 								</div>
 
 								<div id="educationdetails" class="tab-pane fade">
-
-									<h4>Education Qualification Details</h4>
-									<div class=""></div>
+<h4>Education Qualification Details</h4>
+									 <div class="form-group" show-errors='{showSuccess: true}'>
+								                            <label  class="control-label" for="emp.state">Class</label> 
+									                          <input type="text" class="form-control" id="student.class" ng-model="student.class"
+										                        placeholder="Enter Your Class" name="class" list="classlist" required> 
+										                        <datalist id="classlist" >
+										                        <option ng-repeat="entity in classlist"   value="{{entity.name}}">
+												                </option>
+												 				</datalist> 
+								                            <label  class="control-label" for="student.section">Section</label> 
+									                          <input type="text" class="form-control" id="student.section" ng-model="student.section"
+										                        placeholder="Enter Your Section" name="section" list="sectionlist" required> 
+										                        <datalist id="sectionlist" >
+										                        <option ng-repeat="entity in sectionlist"   value="{{entity.value}}">
+												                </option>
+												                </datalist>
+											 </div>
+									 
 								</div>
 
 								<div id="examdetails" class="tab-pane fade">
