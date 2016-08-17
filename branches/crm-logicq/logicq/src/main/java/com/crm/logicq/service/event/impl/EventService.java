@@ -28,6 +28,7 @@ import com.crm.logicq.security.helper.StringFormatHelper;
 import com.crm.logicq.service.alert.impl.sms.ISMSService;
 import com.crm.logicq.service.attendance.IAttendanceService;
 import com.crm.logicq.service.event.IEventService;
+import com.crm.logicq.service.user.IUserService;
 import com.crm.logicq.vo.attendance.AttendanceAbsentDetails;
 import com.crm.logicq.vo.attendance.CardDetailsVO;
 import com.crm.logicq.vo.event.EventDetailsVO;
@@ -50,6 +51,9 @@ public class EventService implements IEventService , ICommonConstant {
 	
 	@Autowired
 	IAttendanceService attendanceservice;
+	
+	@Autowired
+	IUserService userservice;
 	
 	@Override
 	public void triggerEvent(EventDetailsVO eventDetailsVO) throws Exception{
@@ -137,7 +141,15 @@ public class EventService implements IEventService , ICommonConstant {
 		List<String> templatekeys = StringFormatHelper.getSMSTemplateKey(eventDetailsVO.getTemplatetext());
 		List<AttendanceDetails> attendancedetails = new ArrayList<AttendanceDetails>();
 		List<AttendanceAbsentDetails> absetdetails = new ArrayList<AttendanceAbsentDetails>();
-
+		
+        //if user not login or not loaded .
+		if(null==allusermapdetails || allusermapdetails.isEmpty()){
+        	    userservice.loadEmployees();
+				userservice.loadStudents();
+				allusermapdetails = (Map<String, UserVO>) LogicqContextProvider
+						.getElementFromApplicationMap(CACHEDUSER);
+         }
+		
 		for (Map.Entry<String, UserVO> usermap : allusermapdetails.entrySet()) {
 			UserVO user = usermap.getValue();
 			CardDetailsVO cardvo = null;
