@@ -51,6 +51,24 @@
 		  {id:7, name:'EMPLOYEE(permanent)'},
 		  {id:8, name:'EMPLOYEE(contract)'},
 		  {id:9, name:'GUARDIAN'}];
+		$scope.classlist=[
+		         		  {id:1, name:'STD 1'},
+		         		  {id:2, name:'STD 2'},
+		                   {id:3, name:'STD 3'},
+		         		  {id:4, name:'STD 4'},
+		                   {id:5, name:'STD 5'},
+		                   {id:6, name:'STD 6'},
+		         		  {id:7, name:'STD 7'},
+		         		  {id:8, name:'STD 8'},
+		         		  {id:9, name:'STD 9'},
+		         		 {id:9, name:'STD 10'},
+		         		 { id:9, name:'STD 11'},
+		         		 { id:9, name:'STD 12'}];
+		$scope.sectionlist=[
+		         		  {id:1, value:'A'},
+		         		  {id:2, value:'B'},
+		                   {id:3, value:'C'},
+		         		  {id:4, value:'D'}];
 		
 		$scope.subjecttypelist=[
 		         		  {id:1, name:'ALL'},
