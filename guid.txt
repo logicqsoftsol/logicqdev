@@ -1,0 +1,5 @@
+Step TO run file transfer using logicq file transfer
+
+ 1. Import maven project
+ 2. creat  jar file /Build maven project
+ 3. run bat file on jar created location.means move to exact path using cd command and run bat file .
