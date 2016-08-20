@@ -1,7 +1,7 @@
 package com.crm.logicq.security.helper;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,14 +22,19 @@ public final class LoginFactory {
                 user.getMobilenumber(),
                 user.getPassword(),
                 mapToGrantedAuthorities(user.getAuthorities()),
-                user.getEnabled(),
-                user.getLastPasswordResetDate()
+                user.getEnabled()
         );
     }
 
-    private static List<GrantedAuthority> mapToGrantedAuthorities(List<Authority> authorities) {
-        return authorities.stream()
-                .map(authority -> new SimpleGrantedAuthority(authority.getName().name()))
-                .collect(Collectors.toList());
+	private static List<GrantedAuthority> mapToGrantedAuthorities(List<Authority> authorities) {
+		List<GrantedAuthority> grantedauth = new ArrayList<GrantedAuthority>();
+		for (Authority auth : authorities) {
+			GrantedAuthority grandauth = new SimpleGrantedAuthority(auth.getName());
+			grantedauth.add(grandauth);
+		}
+//        return authorities.stream()
+//                .map(authority -> new SimpleGrantedAuthority(authority.getName().name()))
+//                .collect(Collectors.toList());
+		return grantedauth;
     }
 }

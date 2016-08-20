@@ -22,22 +22,14 @@ public class LoginController {
 	  @Autowired
 	  IUserService userservice;
 
-
+	  
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<LoginVO> login() {
 		LoginVO login = null;
 	
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
-				login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-				String token = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
-				if (StringUtils.isEmpty(token)) {
-					// token =
-					// tokenAuthenticationService.getTokenHandler().createTokenForUser(login);
-				}
-				// login =
-				// tokenAuthenticationService.getTokenHandler().parseUserFromToken(token);
-
+				login=(LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				try {
 					userservice.loadEmployees();
 					userservice.loadStudents();

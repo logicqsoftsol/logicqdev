@@ -22,7 +22,7 @@ import com.crm.logicq.vo.notificationtemplate.NotificationTemplateSetupVO;
 import com.crm.logicq.vo.notificationtemplate.NotificationTemplateVO;
 
 @RestController
-@RequestMapping("/admin/notification")
+@RequestMapping("/api/admin/notification")
 public class NotificationController {
 
 	@Autowired

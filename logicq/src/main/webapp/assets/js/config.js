@@ -22,17 +22,20 @@
 	
  
   angular.module('crmlogicq').service('APIInterceptor', ['$sessionStorage', function ($sessionStorage) {
-            var service = this;
-            service.request = function (config) {
-                config.headers = config.headers || {};
-                if ($sessionStorage.authToken) {
-                    config.headers['AUTH-TOKEN'] = $sessionStorage.authToken;
-                }
-                return config;
-            };
-			
+//            var service = this;
+//            service.request = function (config) {
+//                config.headers = config.headers || {};
+//                if ($sessionStorage.authToken) {
+//                    config.headers['AUTH-TOKEN'] = $sessionStorage.authToken;
+//                }
+//                return config;
+//            };
+//			
 	return {
      'request': function(config) {
+    	  if ($sessionStorage.authToken) {
+              config.headers['AUTH-TOKEN'] = $sessionStorage.authToken;
+          }
          $('#processing').show();
 		  $('#displaydata').hide();
          return config;
@@ -51,7 +54,7 @@
       return {
         restrict: 'E',
         replace:true,
-        template: '<div class="loading"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span>Loading...</span></div>',
+        template: '<div class="loading"><i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i><span>Please Wait...</span></div>',
         link: function (scope, element, attr) {
               scope.$watch('loading', function (val) {
                   if (val)

@@ -27,7 +27,7 @@ import com.crm.logicq.vo.event.EventCriteria;
 import com.crm.logicq.vo.event.EventVO;
 
 @RestController
-@RequestMapping("/admin/calendar")
+@RequestMapping("/api/admin/calendar")
 public class CalendarController {
 	
 	@Autowired
@@ -106,13 +106,15 @@ public class CalendarController {
 			calendarcriteria.setFromdate(new Date());
 			calendarcriteria.setTodate(converttodate);
 			List<CalendarDetails>	calendardetailslist = calendarService.getAllEventCalendarDetails(calendarcriteria);
-			calendardetailslist.forEach((calnder)->{
+			//calendardetailslist.forEach((calnder)->{
+			for(CalendarDetails calnder:calendardetailslist){
 				CalendarDashBoardVO calendardashboardvo=new CalendarDashBoardVO();
 				calendardashboardvo.setEventdate(calnder.getEventstartdate());
 				calendardashboardvo.setEventname(calnder.getEventdetails().getEventname());
 				calendardashboardvo.setEventid(calnder.getEventdetails().getEventid());
 				calendarlistvo.add(calendardashboardvo);
-			});
+			}
+			//});
 			
 		} catch (Exception ex) {
 			return new ResponseEntity<List<CalendarDashBoardVO>>(calendarlistvo, HttpStatus.INTERNAL_SERVER_ERROR);

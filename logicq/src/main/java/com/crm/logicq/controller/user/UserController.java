@@ -25,7 +25,7 @@ import com.crm.logicq.vo.user.StudentCriteria;
 import com.crm.logicq.vo.user.StudentVO;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 	
   @Autowired	
@@ -42,7 +42,8 @@ public class UserController {
 		List<Employee> employeelist=null;
 		try {
 			employeelist = userservice.getEmployeeList(employeecriteria);
-			employeelist.forEach((emp) -> {
+			//employeelist.forEach((emp) -> {
+			for(Employee emp:employeelist){
 				BasicRegistrationVO bsaicregvo = new BasicRegistrationVO();
 				bsaicregvo.setDate(emp.getRegdate());
 				bsaicregvo.setId(emp.getId());
@@ -51,7 +52,8 @@ public class UserController {
 						.setName(emp.getBasicdetails().getFirstname() + " " + emp.getBasicdetails().getLastname());
 				bsaicregvo.setType(EntityType.EMPLOYEE.toString());
 				basicemployeelist.add(bsaicregvo);
-			});
+			}
+		//	});
 			employeevo.setEmployeelist(basicemployeelist);
 			employeevo.setEmployeecriteria(employeecriteria);
 		} catch (Exception e) {
@@ -111,7 +113,8 @@ public class UserController {
 				}
 				userservice.saveEmployee(employee);
 				List<Employee> employeelist = userservice.getEmployeeList(employeecriteria);
-				employeelist.forEach((emp) -> {
+				for(Employee emp:employeelist){
+			//	employeelist.forEach((emp) -> {
 					BasicRegistrationVO bsaicregvo = new BasicRegistrationVO();
 					bsaicregvo.setDate(emp.getRegdate());
 					bsaicregvo.setId(emp.getId());
@@ -120,7 +123,8 @@ public class UserController {
 							.setName(emp.getBasicdetails().getFirstname() + " " + emp.getBasicdetails().getLastname());
 					bsaicregvo.setType(EntityType.EMPLOYEE.toString());
 					basicemployeelist.add(bsaicregvo);
-				});
+				//});
+				}
 				employeevo.setEmployeelist(basicemployeelist);
 				employeevo.setEmployeecriteria(employeecriteria);
 			
@@ -148,7 +152,8 @@ public class UserController {
 			} else {
 				userservice.deleteEmployee(employee);
 				List<Employee> employeelist = userservice.getEmployeeList(employeecriteria);
-				employeelist.forEach((emp) -> {
+				for(Employee emp:employeelist){
+			//	employeelist.forEach((emp) -> {
 					BasicRegistrationVO bsaicregvo = new BasicRegistrationVO();
 					bsaicregvo.setDate(emp.getRegdate());
 					bsaicregvo.setId(emp.getId());
@@ -157,7 +162,8 @@ public class UserController {
 							.setName(emp.getBasicdetails().getFirstname() + " " + emp.getBasicdetails().getLastname());
 					bsaicregvo.setType(EntityType.EMPLOYEE.toString());
 					basicemployeelist.add(bsaicregvo);
-				});
+				//});
+				}
 				employeevo.setEmployeelist(basicemployeelist);
 				employeevo.setEmployeecriteria(employeecriteria);
 			}
@@ -180,7 +186,8 @@ public class UserController {
 		List<Student> studentlist=null;
 		try {
 			studentlist = userservice.getStudentList(studentcriteria);
-			studentlist.forEach((stu) -> {
+			for(Student stu:studentlist){
+			//studentlist.forEach((stu) -> {
 				BasicRegistrationVO bsaicregvo = new BasicRegistrationVO();
 				bsaicregvo.setDate(stu.getRegdate());
 				bsaicregvo.setId(stu.getId());
@@ -189,7 +196,8 @@ public class UserController {
 						.setName(stu.getBasicdetails().getFirstname() + " " + stu.getBasicdetails().getLastname());
 				bsaicregvo.setType(EntityType.STUDENT.toString());
 				basicstudentlist.add(bsaicregvo);
-			});
+			//});
+			}
 			studentvo.setStudentlist(basicstudentlist);
 			studentvo.setStudentcriteria(studentcriteria);
 		} catch (Exception ex) {
@@ -216,7 +224,7 @@ public class UserController {
 				}
 				userservice.saveStudent(student);
 				List<Student> studentlist=userservice.getStudentList(studentcriteria);
-				studentlist.forEach((stu) -> {
+				for(Student stu:studentlist){
 					BasicRegistrationVO bsaicregvo = new BasicRegistrationVO();
 					bsaicregvo.setDate(stu.getRegdate());
 					bsaicregvo.setId(stu.getId());
@@ -225,7 +233,8 @@ public class UserController {
 							.setName(stu.getBasicdetails().getFirstname() + " " + stu.getBasicdetails().getLastname());
 					bsaicregvo.setType(EntityType.STUDENT.toString());
 					basicstudentlist.add(bsaicregvo);
-				});
+				//});
+				}
 				studentvo.setStudentlist(basicstudentlist);
 				studentvo.setStudentcriteria(studentcriteria);
 			}
@@ -254,7 +263,8 @@ public class UserController {
 				List<BasicRegistrationVO> basicstudentlist = new ArrayList<BasicRegistrationVO>();
 				userservice.deleteStudent(student);
 				List<Student> studentlist=userservice.getStudentList(studentcriteria);
-				studentlist.forEach((stu) -> {
+				for(Student stu:studentlist){
+				//studentlist.forEach((stu) -> {
 					BasicRegistrationVO bsaicregvo = new BasicRegistrationVO();
 					bsaicregvo.setDate(stu.getRegdate());
 					bsaicregvo.setId(stu.getId());
@@ -263,7 +273,8 @@ public class UserController {
 							.setName(stu.getBasicdetails().getFirstname() + " " + stu.getBasicdetails().getLastname());
 					bsaicregvo.setType(EntityType.STUDENT.toString());
 					basicstudentlist.add(bsaicregvo);
-				});
+				//});
+				}
 				
 			}
 		} catch (Exception ex) {

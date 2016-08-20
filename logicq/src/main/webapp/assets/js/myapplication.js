@@ -13,46 +13,46 @@
 	   'applicationName' : '/crmlogicq' ,
 	   'get' : 'GET' ,  
 	   'post' : 'POST' , 
-	   'loadDefaultUserURL' : '/admin/loadDefaultUser',
-	   'addSMSTemplate' : '/admin/smstemplate/add',
-	   'updateSMSTemplate' : '/admin/smstemplate/update',
-	   'deleteSMSTemplate' : '/admin/smstemplate/delete',
-	   'searchSMSTemplate' : '/admin/smstemplate/search',
+	   'loadDefaultUserURL' : '/admin/login/loadDefaultUser',
+	   'addSMSTemplate' : '/api/admin/smstemplate/add',
+	   'updateSMSTemplate' : '/api/admin/smstemplate/update',
+	   'deleteSMSTemplate' : '/api/admin/smstemplate/delete',
+	   'searchSMSTemplate' : '/api/admin/smstemplate/search',
 	   'loginURL' :'/api/login',
 	   
 	
-	   'getAttendanceAsTabularURL':'/admin/attendance/getAttendanceAsTabular',
-	   'getAttendanceAsGraphURL':'/admin/attendance/getAttendanceAsGraph',
+	   'getAttendanceAsTabularURL':'/api/admin/attendance/getAttendanceAsTabular',
+	   'getAttendanceAsGraphURL':'/api/admin/attendance/getAttendanceAsGraph',
 	   
-	   'saveEventDetailsURL':'/admin/calendar/event/saveEventDetails',
-	   'deleteEventDetailsURL':'/admin/calendar/event/deleteEventDetails',
-	   'getAllEventDetailsURL':'/admin/calendar/event/getAllEventDetails',
-	   
-	   
-	   'getAllCalendarDetailsURL':'/admin/calendar/getAllCalendarDetails',
-	   'getCalendarDetailsforCriteriaURL':'/admin/calendar/getCalendarDetailsforCriteria',
-	   'saveCalendarDetailsURL':'/admin/calendar/saveCalendarDetails',
-	   'deleteCalendarDetailsURL':'/admin/calendar/deleteCalendarDetails',
-	   
-	   'searchAllEmployeeListURL':'/user/searchAllEmployeeList',
-	   'saveEmployeeDetailsURL':'/user/saveEmployeeDetails',
-	   'searchEmployeeDetailsURL':'/user/searchEmployeeDetails',
-	   'deleteEmployeeDetailsURL':'/user/deleteEmployeeDetails',
-	   
-	   'searchAllStudentListURL':'/user/searchAllStudentList',
-	   'saveStudentDetailsURL':'/user/saveStudentDetails',
-	   'searchStudentDetailsURL':'/user/searchStudentDetails',
-	   'deleteStudentDetailsURL':'/user/deleteStudentDetails',
+	   'saveEventDetailsURL':'/api/admin/calendar/event/saveEventDetails',
+	   'deleteEventDetailsURL':'/api/admin/calendar/event/deleteEventDetails',
+	   'getAllEventDetailsURL':'/api/admin/calendar/event/getAllEventDetails',
 	   
 	   
-	   'saveNotificationTemplateURL':'/admin/notification/saveNotificationTemplate',
-	   'deleteNotificationTemplateURL':'/admin/notification/deleteNotificationTemplate',
-	   'getNotificationTemplatesURL':'/admin/notification/getNotificationTemplates',
+	   'getAllCalendarDetailsURL':'/api/admin/calendar/getAllCalendarDetails',
+	   'getCalendarDetailsforCriteriaURL':'/api/admin/calendar/getCalendarDetailsforCriteria',
+	   'saveCalendarDetailsURL':'/api/admin/calendar/saveCalendarDetails',
+	   'deleteCalendarDetailsURL':'/api/admin/calendar/deleteCalendarDetails',
+	   
+	   'searchAllEmployeeListURL':'/api/user/searchAllEmployeeList',
+	   'saveEmployeeDetailsURL':'/api/user/saveEmployeeDetails',
+	   'searchEmployeeDetailsURL':'/api/user/searchEmployeeDetails',
+	   'deleteEmployeeDetailsURL':'/api/user/deleteEmployeeDetails',
+	   
+	   'searchAllStudentListURL':'/api/user/searchAllStudentList',
+	   'saveStudentDetailsURL':'/api/user/saveStudentDetails',
+	   'searchStudentDetailsURL':'/api/user/searchStudentDetails',
+	   'deleteStudentDetailsURL':'/api/user/deleteStudentDetails',
+	   
+	   
+	   'saveNotificationTemplateURL':'/api/admin/notification/saveNotificationTemplate',
+	   'deleteNotificationTemplateURL':'/api/admin/notification/deleteNotificationTemplate',
+	   'getNotificationTemplatesURL':'/api/admin/notification/getNotificationTemplates',
 	  
-	   'saveNotificationTemplateSetupURL':'/admin/notification/saveNotificationTemplateSetup',
-	   'deleteNotificationTemplateSetupURL':'/admin/notification/deleteNotificationTemplateSetup',
-	   'getNotificationSetupDetailsURL':'/admin/notification/getNotificationSetupDetails',
-	   'getNotificationDetailsForEntityURL':'/admin/notification/getNotificationDetailsForEntity',
+	   'saveNotificationTemplateSetupURL':'/api/admin/notification/saveNotificationTemplateSetup',
+	   'deleteNotificationTemplateSetupURL':'/api/admin/notification/deleteNotificationTemplateSetup',
+	   'getNotificationSetupDetailsURL':'/api/admin/notification/getNotificationSetupDetails',
+	   'getNotificationDetailsForEntityURL':'/api/admin/notification/getNotificationDetailsForEntity',
 	   
 	   
 

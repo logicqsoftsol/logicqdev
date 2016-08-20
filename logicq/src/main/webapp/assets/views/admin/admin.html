@@ -13,7 +13,7 @@
 			<ul class="nav pull-right top-menu">
 					     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="fa fa-user">Admin</span>
+                            <span class="fa fa-user">{{logedinusername}}</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
@@ -41,9 +41,9 @@
 					<ul class="treeview-menu">
 					<li ng-class="{active:display == 6}"><a href=""
 							id="dashborad" ng-click="display = 6;displayDashBoard();getAllCalendarDetailsForDashBoard()" ng-init="displayDashBoard();getAllCalendarDetails()"><i class="fa fa-dashboard"></i>Your Dashboard</a></li>
-					<li ng-class="{active:display == 7}"><a href=""
+						<li ng-class="{active:display == 7}"><a href=""
 							id="classessetup" ng-click="display = 7"><i class="fa fa-sitemap"></i>Setup Classes</a>
-							</li>
+						</li>
 						<li ng-class="{active:display == 1}"><a href=""
 							id="empregclick" ng-click="display = 1;searchAllEmployeeListAccordingToPage(1)"><i class="fa fa-user"></i>Employee
 								Registration</a></li>
@@ -99,110 +99,7 @@
 		</section>
 		<section class="content">
 		
-					<div id="setupclass" ng-show='display == 7'>
-				<div class="panel with-nav-tabs panel-success">
-					<div class="panel-heading">
-						<h3>Setup Classes</h3>
-					</div>
-				<div class="panel-body">
-					
-					
-						<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" id="subjectsetup" class="pull-center"  ng-click="getSubjectListAccordingToPage(1)"
-							href="/admin#subjectsetupdetails">Subject Setup</a></li>
-							<li class="active"><a data-toggle="tab" id="classsetup" class="pull-center"  ng-click="getClassSetupDetailsAccordingToPage(1)"
-								href="/admin#classsetupdetails">Class Setup</a></li>
-						</ul>
-					
-				 
-					<div class="tab-content">
-					<div id="subjectsetupdetails" class="tab-pane fade">
-					<br></br>
-						<div class="table-responsive">
-					<ul class="pagination pull-left" num-pages="tasks.pageCount"
-										current-page="tasks.currentPage">
-										<li ng-class="{disabled: noPrevious()}"><a
-											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
-										<li ng-repeat="page in pages"
-											ng-class="{active: isActive(page)}"><a
-											ng-click="searchAllSubjectListAccordingToPage(page)">{{page}}</a></li>
-										<li ng-class="{disabled: noNext()}"><a
-											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
-									</ul>	
-							<ul class="pull-right">
-								<button id="addsubject" data-toggle="modal" data-toggle="modal"
-									data-target="#addsubjectmodal"  ng-click="addNewSubject()" 
-									class="btn btn-default"><i class="fa fa-book" aria-hidden="true"></i>Add Subject</button>
-								<button id="deletedetails" data-toggle="modal" data-target="#searchsubject"
-									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
-							</ul>
-							<table class="table table-bordered table-fixed table-hover">
-							<tr class ="success">
-								<th class="pull-center">NAME</th>
-								<th class="pull-center">SHORT NAME</th>
-								<th class="pull-center">APPLICABLE FOR</th>
-							</tr>
-							<tr ng-repeat="sub in subjectlist">
-								<td>{{sub.name}}</td>
-								<td>{{sub.shortname}}</td>
-								<td>{{sub.applicablefor}}</td>
-								<td><a id="updateempreg"  data-toggle="modal"  data-target="#addsubjectmodal"   ng-click="editExistingSubject(emp)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
-	                            <td><a id="deleteempreg"  data-toggle="modal"  data-target="#addsubjectmodal"   ng-click="pouplateSubjectForDelete(emp)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-							</tr>
-						</table>
-					</div>
-	
-					</div>
-					
-					
-					<div id="classsetupdetails" class="tab-pane fade in active">
-					<br></br>
-							
-					<div class="table-responsive">
-						<ul class="pagination pull-left" num-pages="tasks.pageCount"
-										current-page="tasks.currentPage">
-										<li ng-class="{disabled: noPrevious()}"><a
-											ng-click="getClassSetupDetailsAccordingToPage()">&laquo;</a></li>
-										<li ng-repeat="page in pages"
-											ng-class="{active: isActive(page)}"><a
-											ng-click="getClassSetupDetailsAccordingToPage(page)">{{page}}</a></li>
-										<li ng-class="{disabled: noNext()}"><a
-											ng-click="getClassSetupDetailsAccordingToPage()">&raquo;</a></li>
-									</ul>		
-					<ul class="pull-right">
-						<button id="setupnewclass" data-toggle="modal" 
-									data-target="#classsetupdetailsmodal" 
-									class="btn btn-default fa fa-plus-circle" ng-click="addclassetupgSetup()">setup new class</button>
-						<button id="classsetupsearch" data-toggle="modal" data-target="#classsetupdetailsmodal" ng-click="searchNotificationSendingSetup()"
-									class="btn btn-default fa fa-search">Search</button>
-                         </ul>			
-							<table class="table table-bordered table-fixed table-hover">
-							<tr class ="success">
-								<th>CLASS NAME</th>
-								<th>SECTION NAME</t>
-								<th>COMPULSORY SUBJECT</t>
-								<th>OPTIONAL SUBJECT</t>
-								<th>APPLICABLE YEAR</t>
-							</tr>
-							<tr ng-repeat="classsetup in classsetupdetails">
-								<td>{{classsetup.classname}}</td>
-								<td>{{classsetup.setionname}}</td>
-								<td>{{classsetup.compulsorysubject}}</td>
-								<td>{{classsetup.optionalsubject}}</td>
-								<td><a id="classetupupdate" data-toggle="modal" data-target="#classsetupdetailsmodal" ng-click="updateClassSetup(classsetup)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
-								<td><a id="deletenotitempsetup" data-toggle="modal" data-target="#classsetupdetailsmodal"  ng-click="deleteClassSetup(classsetup)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-							</tr>
-						</table>
-					</div><!--endof notification setingsetup details-->
-					
-					
-					</div>
-					</div>
-					</div>
-					</div>
-			</div>
-		
-
+		<!--Start  of Dash-board display -->
 		<div class="panel" ng-show='display == 6'>
 				<div class="panel-heading">
 				</div>
@@ -259,8 +156,113 @@
 							</div>
                         </div>
 					</div>	
-				</div>				
-		
+				</div><!--End of Dash-board display -->				
+				
+				
+				<!--Start  of Setup class display -->
+			<div id="setupclass" ng-show='display == 7'>
+				<div class="panel with-nav-tabs panel-success">
+					<div class="panel-heading">
+						<h3>Setup Classes</h3>
+					</div>
+				<div class="panel-body">
+					
+					
+						<ul class="nav nav-tabs">
+							<li><a data-toggle="tab" id="subjectsetup" class="pull-center"  ng-click="getSubjectListAccordingToPage(1)"
+							href="/admin#subjectsetupdetails">Subject Setup</a></li>
+							<li class="active"><a data-toggle="tab" id="classsetup" class="pull-center"  ng-click="getClassSetupDetailsAccordingToPage(1)"
+								href="/admin#classsetupdetails">Class Setup</a></li>
+						</ul>
+					
+				 
+					<div class="tab-content">
+					<div id="subjectsetupdetails" class="tab-pane fade">
+					<br></br>
+						<div class="table-responsive">
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+									</ul>	
+							<ul class="pull-right">
+								<button id="addsubject" data-toggle="modal" data-toggle="modal"
+									data-target="#addsubjectmodal"  ng-click="addNewSubject()" 
+									class="btn btn-default"><i class="fa fa-book" aria-hidden="true"></i>Add Subject</button>
+								<button id="deletedetails" data-toggle="modal" data-target="#searchsubject"
+									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
+							</ul>
+							<table class="table table-bordered table-fixed table-hover">
+							<tr class ="success">
+								<th class="pull-center">NAME</th>
+								<th class="pull-center">SHORT NAME</th>
+								<th class="pull-center">APPLICABLE FOR</th>
+							</tr>
+							<tr ng-repeat="sub in subjectlist">
+								<td>{{sub.name}}</td>
+								<td>{{sub.shortname}}</td>
+								<td>{{sub.applicablefor}}</td>
+								<td><a id="updateempreg"  data-toggle="modal"  data-target="#addsubjectmodal"   ng-click="editExistingSubject(emp)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+	                            <td><a id="deleteempreg"  data-toggle="modal"  data-target="#addsubjectmodal"   ng-click="pouplateSubjectForDelete(emp)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+					</div>
+					</div>
+					<div id="classsetupdetails" class="tab-pane fade in active">
+					<br></br>
+					<div class="table-responsive">
+						<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="getClassSetupDetailsAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="getClassSetupDetailsAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="getClassSetupDetailsAccordingToPage()">&raquo;</a></li>
+									</ul>		
+					<ul class="pull-right">
+						<button id="setupnewclass" data-toggle="modal" 
+									data-target="#classsetupdetailsmodal" 
+									class="btn btn-default fa fa-plus-circle" ng-click="addclassetupgSetup()">setup new class</button>
+						<button id="classsetupsearch" data-toggle="modal" data-target="#classsetupdetailsmodal" ng-click="searchNotificationSendingSetup()"
+									class="btn btn-default fa fa-search">Search</button>
+                         </ul>			
+							<table class="table table-bordered table-fixed table-hover">
+							<tr class ="success">
+								<th>CLASS NAME</th>
+								<th>SECTION NAME</t>
+								<th>COMPULSORY SUBJECT</t>
+								<th>OPTIONAL SUBJECT</t>
+								<th>APPLICABLE YEAR</t>
+							</tr>
+							<tr ng-repeat="classsetup in classsetupdetails">
+								<td>{{classsetup.classname}}</td>
+								<td>{{classsetup.setionname}}</td>
+								<td>{{classsetup.compulsorysubject}}</td>
+								<td>{{classsetup.optionalsubject}}</td>
+								<td><a id="classetupupdate" data-toggle="modal" data-target="#classsetupdetailsmodal" ng-click="updateClassSetup(classsetup)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+								<td><a id="deletenotitempsetup" data-toggle="modal" data-target="#classsetupdetailsmodal"  ng-click="deleteClassSetup(classsetup)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
+			</div><!--Start  of Setup class display -->
+				
+				
+				
+				
+				
+				
+		<!--Employee Registration Details -->
 			<div id="empreg" ng-show='display == 1'>
 				<div class="row">
 					<br> <br>
@@ -310,8 +312,10 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div><!--End of Employee Registration Details -->
 
+
+            <!--Student Registration Details -->
 			<div id="studentreg" ng-show='display == 2'>
 					<div class="row">
 					<br> <br>
@@ -364,16 +368,15 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div><!--End of Student Registration Details -->
 			
+			<!--Start of Configuration email and sms Details -->
 			<div id="configsms-email" ng-show='display == 3'>
 				<div class="panel with-nav-tabs panel-success">
 					<div class="panel-heading">
 						<h3>Configur Notifications</h3>
 					</div>
 				<div class="panel-body">
-					
-					
 						<ul class="nav nav-tabs">
 							<li><a data-toggle="tab" id="template" class="pull-center"  ng-click="getNotificationTemplateListAccordingToPage(1)"
 							href="/admin#notificationtemplatedetails">Notifications Template Setup</a></li>
@@ -422,10 +425,10 @@
 							</tr>
 						</table>
 					</div>
-	
-					</div>
+					</div><!--End of Template email and sms Details -->
 					
 					
+					<!--Start of Notification setup  Details -->
 					<div id="notificationsendingsetup" class="tab-pane fade in active">
 					<br></br>
 							
@@ -464,13 +467,14 @@
 							</tr>
 						</table>
 					</div><!--endof notification setingsetup details-->
-					
-					
 					</div>
 					</div>
 					</div>
 					</div>
-			</div>
+			</div><!--End of Configuration email and sms Details -->
+			
+			
+			
 			<div id="calndersetup" ng-show='display == 4'>
 				<div class="panel with-nav-tabs panel-success">
 					<div class="panel-heading">
@@ -687,10 +691,10 @@
 		
 		
 		
-							<!---Modal employee  registration-->
+			<!---Modal employee  registration-->
 						<div class="modal fade" id="employeeregistration" role="dialog">
-						<form>
-                              <div class="modal-dialog modal-lg" id="employeeregistration">
+					
+                              <div class="modal-dialog modal-lg">
                                   <div class="modal-content">
                                      <div class="modal-header">
 									 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -712,14 +716,15 @@
 
 						<div class="panel-body">
 							<div class="tab-content col-md-10">
-								<div id="empbasicdetails" class="tab-pane fade in active">
-										<form name="empbasicdetailsform"  novalidate>
+								<div id="empbasicdetails"  class="tab-pane fade in active">
+										<form name="empbasicdetailsform" id="empbasicdetailsform"  novalidate>
 										<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="emp.idetificationid">Card Id</label> 
-													<input type="text" name="emp.idetificationid" id="emp.idetificationid"
+													<input type="text" name="idetificationid" id="emp.idetificationid"
 														class="form-control" ng-model="emp.idetificationid"
 														 placeholder="Card ID" pattern="^[0-9]{1,}$" required ng-minlength='5' ng-maxlength='10'>
+												 <span style="color:red" ng-show="empbasicdetailsform.idetificationid.$touched && empbasicdetailsform.idetificationid.$invalid">CardID is required.</span>
 												</div>
 												<div class="form-group" show-errors='{showSuccess: true}'>
 												 <label  class="control-label" for="emp.title">Title</label> 
@@ -894,13 +899,14 @@
 						</div>
 						</div>
 						<div class="modal-footer">
-						 <button type="submit" class="btn btn-default fa fa-floppy-o" data-dismiss="modal" ng-click="saveEmployeeDetails()">Save</button>
+						 <button type="submit" class="btn btn-default fa fa-floppy-o" ng-disabled="empbasicdetailsform.$invalid" data-dismiss="modal" ng-click="saveEmployeeDetails()">Save</button>
 		                 <button type="button" class="btn btn-default fa fa-times-circle"  data-dismiss="modal">Close</button>
 						</div>
 						</div>
 						</div>
-						</form>
+					
 						</div><!---End for Modal employee registration-->
+						
 						
 						
 				
@@ -1101,24 +1107,9 @@
 								</div>
 
 								<div id="educationdetails" class="tab-pane fade">
-<h4>Education Qualification Details</h4>
-									 <div class="form-group" show-errors='{showSuccess: true}'>
-								                            <label  class="control-label" for="emp.state">Class</label> 
-									                          <input type="text" class="form-control" id="student.class" ng-model="student.class"
-										                        placeholder="Enter Your Class" name="class" list="classlist" required> 
-										                        <datalist id="classlist" >
-										                        <option ng-repeat="entity in classlist"   value="{{entity.name}}">
-												                </option>
-												 				</datalist> 
-								                            <label  class="control-label" for="student.section">Section</label> 
-									                          <input type="text" class="form-control" id="student.section" ng-model="student.section"
-										                        placeholder="Enter Your Section" name="section" list="sectionlist" required> 
-										                        <datalist id="sectionlist" >
-										                        <option ng-repeat="entity in sectionlist"   value="{{entity.value}}">
-												                </option>
-												                </datalist>
-											 </div>
-									 
+
+									<h4>Education Qualification Details</h4>
+									<div class=""></div>
 								</div>
 
 								<div id="examdetails" class="tab-pane fade">
@@ -1137,7 +1128,7 @@
 						</div>
 						</div>
 						<div class="modal-footer">
-						 <button type="submit" class="btn btn-default fa fa-floppy-o" data-dismiss="modal" ng-click="saveStudentDetails()" >Save</button>
+						 <button type="submit" class="btn btn-default fa fa-floppy-o" ng-disabled="studentbasicdetailsform.$invalid" data-dismiss="modal" ng-click="saveStudentDetails()" >Save</button>
 		                 <button type="button" class="btn btn-default fa fa-times-circle"class="close"data-dismiss="modal">Close</button>
 						</div>
 						</div>
@@ -1499,9 +1490,10 @@
 			</div>
 			</div>
 			</form>
-		</div><!---End for Modal Notifications Template sending setup-->				
-		
-		
+		</div><!---End for Modal Notifications Template sending setup-->	
+
+
+     
 		<!---Modal Subject Add Details-->
 		<div id="addsubjectmodal" class="modal fade" role="dialog">
 		<form>
@@ -1527,7 +1519,7 @@
 												placeholder="Subject Short Name" required>
 										</div>
 										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="subject.applicablefor">Applicable For</label> 
+										<label  class="control-label" for="subject.applicablefor">Applicable As</label> 
 										<input type="text" class="form-control" name="subject.applicablefor" id="subject.applicablefor"  ng-model="subject.applicablefor" class="input-search" list="subjecttypelist" required>
 												<datalist id="subjecttypelist">
 												<option ng-repeat="subjecttype in subjecttypelist"   value="{{subjecttype.name}}">
@@ -1547,9 +1539,9 @@
 			</div>
 			</form>
 		</div><!---End of Modal Subject Add Details-->
-		
-		
-		<!---Modal Class Setup Details-->
+
+
+      <!---Modal Class Setup Details-->
 		<div id="classsetupdetailsmodal" class="modal fade" role="dialog">
 		<form>
 				<div class="modal-dialog">
@@ -1603,8 +1595,7 @@
 			</div>
 			</div>
 			</form>
-		</div><!---End of Modal Class Setup Details-->
-		
+		</div><!---End of Modal Class Setup Details-->			
 		
 	</div>
 

@@ -3,6 +3,7 @@ package com.crm.logicq.security.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
 import com.crm.logicq.security.helper.TokenHandler;
@@ -23,11 +24,10 @@ public class TokenAuthenticationService implements  TokenAuthenticationConstant 
         tokenHandler = new TokenHandler(secret, userService);
     }
 
-    public String addAuthentication(HttpServletResponse response, UserAuthentication authentication) {
-        final LoginVO user = authentication.getDetails();
-        String token = tokenHandler.createTokenForUser(user);
-        response.addHeader(AUTH_HEADER_NAME, token);
-        return token;
+    public void addAuthentication(HttpServletResponse response, UsernamePasswordAuthenticationToken authentication) {
+       if(null!=authentication && null!=authentication.getCredentials()){
+    	response.addHeader(AUTH_HEADER_NAME, String.valueOf(authentication.getCredentials()));
+       }
     }
 
     public Authentication getAuthentication(HttpServletRequest request) {

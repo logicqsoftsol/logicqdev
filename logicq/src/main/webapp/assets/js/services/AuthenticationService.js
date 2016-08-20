@@ -25,10 +25,10 @@
 			},
 
 
+			   
 			setAuthenticationToken: function (token) {
-
 				$sessionStorage.authToken = token;
-			},
+			    },
 
 
 		}

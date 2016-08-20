@@ -13,8 +13,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import com.crm.logicq.common.ICommonConstant;
 import com.crm.logicq.common.LogicqContextProvider;
@@ -166,18 +164,20 @@ public class SMSHelper {
 		}
 	}
 	
-	private static void runSMSExecutor(List<SMSDetails> allSMSDetails) {
+	private static void runSMSExecutor(final List<SMSDetails> allSMSDetails) {
 		if (null != allSMSDetails && !allSMSDetails.isEmpty()) {
 			ExecutorService executorService = Executors.newFixedThreadPool(5);
 			try{
 			executorService.execute(new Runnable() {
 			    public void run() {
 			    	List<SMSDetails> smsdetailslist=new ArrayList<SMSDetails>();
-			    	allSMSDetails.forEach((smsinfo) -> {
+			    	for(SMSDetails smsinfo:allSMSDetails){
+			    //	allSMSDetails.forEach((smsinfo) -> {
 			    	   SMSDetails	smslogdetails= SMSHelper.sendSMS(smsinfo);
 			    		smsdetailslist.add(smslogdetails);
 			    		
-			    	});
+			    //	});
+			    	}
 			    	ISMSService smsservice=LogicqContextProvider.getApplicationContext().getBean(ISMSService.class);
 		    		smsservice.logsmsdetails(smsdetailslist);
 			    }

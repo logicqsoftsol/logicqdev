@@ -12,13 +12,15 @@ public class AttendanceConversion {
 	
 	public static List<AttendanceVO> convertEntityToVO(List<AttendanceDetails> attendanceDetails) {
 		List<AttendanceVO> attendancevo = new ArrayList<AttendanceVO>();
-		attendanceDetails.stream().forEach((attendance) -> {
+		//attendanceDetails.stream().forEach((attendance) -> {
+		for(AttendanceDetails attendance:attendanceDetails){
 			AttendanceVO attednace = new AttendanceVO();
 		//	attednace.setIntime(attendance.getIntime());
 			attednace.setOuttime(attendance.getOuttime());
 //			attednace.setDate(DateHelper.convertDatetoString(attendance.getKey().getDate()));
 		//	attendancevo.add(attednace);
-		});
+		//});
+		}
 		return attendancevo;
 	}
 
