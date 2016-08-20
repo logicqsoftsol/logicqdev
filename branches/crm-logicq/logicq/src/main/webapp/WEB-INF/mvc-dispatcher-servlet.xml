@@ -26,9 +26,9 @@
 	<bean id="ds"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/crmlogicq" />
-		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="url" value="jdbc:mysql://45.113.136.152:3306/docathouse_crmlogicq" />
+		<property name="username" value="crmlogicq" />
+		<property name="password" value="crmlogicq123" />
 	</bean>
 
 

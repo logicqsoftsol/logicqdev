@@ -1,6 +1,5 @@
 package com.crm.logicq.security.helper;
 
-import java.util.Base64;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,7 +20,7 @@ public final class TokenHandler {
 	private final static Long expiration = new Long(100000);
 
 	public TokenHandler(String secret, UserService userService) {
-		this.secret = Base64.getEncoder().encodeToString(secret.getBytes());
+		this.secret = secret;//Base64.encode(secret.getBytes());
 		this.userService = userService;
 	}
 

@@ -12,6 +12,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @ConvertClass
 public class LoginVO implements UserDetails {
    
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1773038650761872642L;
 	private final String username;
     private  String firstname;
     private  String lastname;
@@ -20,7 +24,6 @@ public class LoginVO implements UserDetails {
     private final String mobilenumber;
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean enabled;
-    private final Date lastPasswordResetDate;
 
 
     public LoginVO(
@@ -28,8 +31,7 @@ public class LoginVO implements UserDetails {
           String email,
           String mobilenumber,
           String password, Collection<? extends GrantedAuthority> authorities,
-          boolean enabled,
-          Date lastPasswordResetDate
+          boolean enabled
     ) {
         this.username = username;
         this.email = email;
@@ -37,7 +39,7 @@ public class LoginVO implements UserDetails {
         this.password = password;
         this.authorities = authorities;
         this.enabled = enabled;
-        this.lastPasswordResetDate = lastPasswordResetDate;
+   
     }
 
 
@@ -80,10 +82,6 @@ public class LoginVO implements UserDetails {
         return enabled;
     }
 
-    @JsonIgnore
-    public Date getLastPasswordResetDate() {
-        return lastPasswordResetDate;
-    }
 
 
 

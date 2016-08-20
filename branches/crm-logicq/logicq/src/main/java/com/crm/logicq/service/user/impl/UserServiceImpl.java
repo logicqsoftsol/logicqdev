@@ -1,13 +1,9 @@
 package com.crm.logicq.service.user.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import org.hibernate.usertype.UserVersionType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -15,25 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.crm.logicq.common.LogicqContextProvider;
-import com.crm.logicq.constant.ContactType;
 import com.crm.logicq.constant.EntityType;
-import com.crm.logicq.constant.alert.AlertType;
 import com.crm.logicq.dao.employee.IEmployeeDAO;
 import com.crm.logicq.dao.student.IStudentDAO;
 import com.crm.logicq.dao.user.IUserDAO;
-import com.crm.logicq.helper.SMSHelper;
-import com.crm.logicq.model.alert.SMSDetails;
-import com.crm.logicq.model.attendance.AttendanceCriteria;
-import com.crm.logicq.model.attendance.AttendanceDetails;
-import com.crm.logicq.model.communication.PhoneCommunication;
-import com.crm.logicq.model.user.CardReadDetails;
 import com.crm.logicq.model.user.Employee;
 import com.crm.logicq.model.user.Student;
 import com.crm.logicq.model.user.User;
 import com.crm.logicq.service.alert.IAlertService;
 import com.crm.logicq.service.user.IUserService;
-import com.crm.logicq.ui.alert.AlertDetailsInputVO;
-import com.crm.logicq.vo.attendance.AttendanceVO;
 import com.crm.logicq.vo.user.EmployeeCriteria;
 import com.crm.logicq.vo.user.StudentCriteria;
 import com.crm.logicq.vo.user.UserVO;
@@ -57,9 +43,11 @@ public class UserServiceImpl implements IUserService{
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
 	public void loadUsers() {
 		List<User> userdetails= userdao.loadUsers();
-		userdetails.stream().forEach((user) -> {
+		for(User user:userdetails){
+	//	userdetails.stream().forEach((user) -> {
 			LogicqContextProvider.addElementToApplicationMap(user.getIdetificationid(), user);
-		});
+		//});
+		}
 	}
 
 
@@ -148,8 +136,8 @@ public class UserServiceImpl implements IUserService{
 			allusermapdetails=new HashMap<String, UserVO>();
 			LogicqContextProvider.addElementToApplicationMap("CACHEDUSER", allusermapdetails);
 		}
-		
-		employeeDetails.forEach((employee)->{
+		for(Employee employee:employeeDetails){
+	//	employeeDetails.forEach((employee)->{
 			Map<String,UserVO> allusermap=(Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
 			UserVO uservo=new UserVO();
 			if (null != employee.getContactdetails()
@@ -166,7 +154,8 @@ public class UserServiceImpl implements IUserService{
 			uservo.setIdetificationid(employee.getIdetificationid());
 			uservo.setUserid(employee.getUserid());
 			allusermap.put(employee.getIdetificationid(), uservo);
-		});
+		//});
+		}
 	}
 	
 	
@@ -182,7 +171,8 @@ public class UserServiceImpl implements IUserService{
 			LogicqContextProvider.addElementToApplicationMap("CACHEDUSER", allusermapdetails);
 		}
 		
-		students.forEach((student)->{
+		//students.forEach((student)->{
+		for(Student student:students){
 			Map<String,UserVO> allusermap=(Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
 			UserVO uservo=new UserVO();
 			if (null != student.getContactdetails()
@@ -199,7 +189,8 @@ public class UserServiceImpl implements IUserService{
 			uservo.setIdetificationid(student.getIdetificationid());
 			uservo.setUserid(student.getUserid());
 			allusermap.put(student.getIdetificationid(), uservo);
-		});
+		}
+		//});
 	}
 
 

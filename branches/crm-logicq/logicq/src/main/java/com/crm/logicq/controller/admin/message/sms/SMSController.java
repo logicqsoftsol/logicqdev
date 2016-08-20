@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crm.logicq.model.alert.SMSDetails;
 
 @RestController
-@RequestMapping("/admin/smstemplate")
+@RequestMapping("/api/admin/smstemplate")
 public class SMSController {
 	
 	

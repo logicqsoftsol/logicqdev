@@ -10,13 +10,14 @@ import com.crm.logicq.vo.attendance.CardDetailsVO;
 
 public class CardDetailsConversionHelper {
 
-	public static Map<String, CardDetailsVO> convertEntityToVO(List<CardReadDetails> carddetails) {
+	public static Map<String, CardDetailsVO> convertEntityToVO(List<CardReadDetails> carddetailslist) {
 		Map<String, CardDetailsVO> cardetails=new HashMap<>();
-		carddetails.forEach((eachcard) -> {
+		//carddetails.forEach((eachcard) -> {
+		for(CardReadDetails  eachcard:carddetailslist){
 			if (cardetails.containsKey(eachcard.getCardid())) {
 				CardDetailsVO cardvo = cardetails.get(eachcard.getCardid());
 				cardvo.setOuttime(DateUtils.getTimeFromDate(eachcard.getPunchdate()));
-				cardetails.replace(eachcard.getCardid(), cardvo);
+				cardetails.put(eachcard.getCardid(), cardvo);
 			} else {
 				CardDetailsVO cardvo = new CardDetailsVO();
 				cardvo.setCardid(eachcard.getCardid());
@@ -24,7 +25,8 @@ public class CardDetailsConversionHelper {
 				cardvo.setIntime(DateUtils.getTimeFromDate(eachcard.getPunchdate()));
 				cardetails.put(eachcard.getCardid(), cardvo);
 			}
-		});
+		}
+		//});
 		
 		return cardetails;
 

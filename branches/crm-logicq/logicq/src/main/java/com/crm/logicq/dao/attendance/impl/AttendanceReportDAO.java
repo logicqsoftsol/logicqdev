@@ -69,15 +69,17 @@ public class AttendanceReportDAO  extends AbstractDAO<AttendanceAggregationResul
 			resultquery = attendaceselectquery.append(attendacewherequery).toString();
 		}
 		//whole code need to change temporary add this code to handle issue
-		List<Object> resultobject = (List<Object>) execcuteSQLQuery(resultquery);
-		resultobject.forEach((obj) -> {
+		List<Object> resultobjectlist = (List<Object>) execcuteSQLQuery(resultquery);
+		for(Object obj:resultobjectlist){
+		//resultobject.forEach((obj) -> {
 			Object[] fetchobject=(Object[]) obj;
 			AttendanceAggregationResult attendaceresult=new AttendanceAggregationResult();
 			attendaceresult.setApplicablefor(String.valueOf(fetchobject[0]));
 			attendaceresult.setAbsentcount(Integer.valueOf(String.valueOf(fetchobject[1])));
 			attendaceresult.setPresentcount(Integer.valueOf(String.valueOf(fetchobject[2])));
 			attendanceresult.add(attendaceresult);
-		});
+		//});
+		}
 		return attendanceresult;
 	}
 

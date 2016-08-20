@@ -36,8 +36,7 @@ public class RestAuthenticationFilter extends GenericFilterBean {
 	private static final Logger LOGGER = Logger.getLogger(RestAuthenticationFilter.class);
 	private final TokenAuthenticationService tokenAuthenticationService;
 	private UserService userService;
-	
-    private static final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+
 	
 	public RestAuthenticationFilter(UserService userService, TokenAuthenticationService tokenAuthenticationService) {
 		this.tokenAuthenticationService = tokenAuthenticationService;
@@ -57,21 +56,31 @@ public class RestAuthenticationFilter extends GenericFilterBean {
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 				httpResponse.addHeader(TokenAuthenticationConstant.AUTH_HEADER_NAME, token);
 
-			} else if (httpRequest.getRequestURI().endsWith("login")) {
-				String username = (String) httpRequest.getHeader("userName");
-				String password = (String) httpRequest.getHeader("password");
-				if(!StringUtils.isEmpty(password) && !StringUtils.isEmpty(username)){
-				UserDetails userDetails = userService.checkUserDetails(username, passwordEncoder.encode(password));
-				final String authtoken = tokenAuthenticationService.getTokenHandler()
-						.createTokenForUser((LoginVO) userDetails);
-				if (!StringUtils.isEmpty(authtoken)) {
-					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-							userDetails, authtoken, userDetails.getAuthorities());
-					authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
-					SecurityContextHolder.getContext().setAuthentication(authentication);
+			} else{
+				if (httpRequest.getRequestURI().endsWith("login")) {
+					String username = (String) httpRequest.getHeader("userName");
+					String password = (String) httpRequest.getHeader("password");
+					if(!StringUtils.isEmpty(password) && !StringUtils.isEmpty(username)){
+					UserDetails userDetails = userService.checkUserDetails(username, password);
+					final String authtoken = tokenAuthenticationService.getTokenHandler()
+							.createTokenForUser((LoginVO) userDetails);
+					if (!StringUtils.isEmpty(authtoken)) {
+						UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+								userDetails, authtoken, userDetails.getAuthorities());
+						authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
+						SecurityContextHolder.getContext().setAuthentication(authentication);
+						tokenAuthenticationService.addAuthentication(httpResponse, authentication);
+					}
+					}
+				}else{
+				if (StringUtils.isEmpty(token)) {
+					Exception ex=new Exception(" un authorized due to token : "+token );
+					LOGGER.error(" un authorized due to token null: " );
+					SetResponse(httpResponse, HttpStatus.UNAUTHORIZED, 403,ex);
+				 }
 				}
-				}
-			}
+			} 
+			
 			if (SecurityContextHolder.getContext().getAuthentication() != null
 					&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 				filterChain.doFilter(request, response);

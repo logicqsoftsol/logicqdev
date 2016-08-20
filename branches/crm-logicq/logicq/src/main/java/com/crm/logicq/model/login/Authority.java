@@ -24,26 +24,28 @@ public class Authority {
 
     @Column(name = "NAME", length = 50)
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private AuthorityName name;
+    private String name;
 
- 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public AuthorityName getName() {
-        return name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setName(AuthorityName name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	@Override
 	public String toString() {
 		return "Authority [id=" + id + ", name=" + name + "]";
 	}
 
-    
+
 }

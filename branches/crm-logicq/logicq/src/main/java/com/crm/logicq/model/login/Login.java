@@ -23,7 +23,7 @@ import com.crm.logicq.common.criteriamanager.BaseEntity;
 
 @Entity
 @Table(name = "LOGIN")
-public class Login extends BaseEntity implements LoginConstant,Serializable {
+public class Login implements LoginConstant,Serializable {
 	/**
 	 * 
 	 */
@@ -50,19 +50,15 @@ public class Login extends BaseEntity implements LoginConstant,Serializable {
     private String mobilenumber;
     
     
-    @Column(name = "EMAIL", length = 200)
+    @Column(name = "EMAIL")
     @NotNull
-    @Size(min = 4, max = 200)
     private String email;
 
     @Column(name = "ENABLED")
     @NotNull
     private Boolean enabled;
 
-    @Column(name = "LASTPASSWORDRESETDATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
-    private Date lastPasswordResetDate;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -121,14 +117,7 @@ public class Login extends BaseEntity implements LoginConstant,Serializable {
         this.authorities = authorities;
     }
 
-    public Date getLastPasswordResetDate() {
-        return lastPasswordResetDate;
-    }
-
-    public void setLastPasswordResetDate(Date lastPasswordResetDate) {
-        this.lastPasswordResetDate = lastPasswordResetDate;
-    }
-
+   
 	public String getMobilenumber() {
 		return mobilenumber;
 	}
@@ -137,12 +126,13 @@ public class Login extends BaseEntity implements LoginConstant,Serializable {
 		this.mobilenumber = mobilenumber;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Login [id=" + id + ", username=" + username + ", password=" + password + ", mobilenumber=" + mobilenumber + ", email="
-				+ email + ", enabled=" + enabled + ", lastPasswordResetDate=" + lastPasswordResetDate + ", authorities="
-				+ authorities + "]";
+		return "Login [id=" + id + ", username=" + username + ", password=" + password + ", mobilenumber="
+				+ mobilenumber + ", email=" + email + ", enabled=" + enabled + ", authorities=" + authorities + "]";
 	}
+
 
 
     
