@@ -26,8 +26,9 @@
 
 
 			   
-			setAuthenticationToken: function (token) {
+			setAuthenticationToken: function (token,username) {
 				$sessionStorage.authToken = token;
+                $sessionStorage.username=username;
 			    },
 
 

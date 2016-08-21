@@ -1,7 +1,8 @@
 (function () {
 	'use strict';
-	angular.module('crmlogicq').controller('AdminController',['$scope','$rootScope','$http', '$exceptionHandler','$location','AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope,$rootScope,$http,$exceptionHandler,$location,AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
-		$scope.display=6;
+	angular.module('crmlogicq').controller('AdminController',['$scope','$sessionStorage','$rootScope','$http', '$exceptionHandler','$location','AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope,$sessionStorage,$rootScope,$http,$exceptionHandler,$location,AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
+		 $scope.logedinusername=$sessionStorage.username;
+         $scope.display=6;
 		 $scope.totalrecordcount=null;
 		 $scope.currentPage = 1;
 	     $scope.numPages = 1;

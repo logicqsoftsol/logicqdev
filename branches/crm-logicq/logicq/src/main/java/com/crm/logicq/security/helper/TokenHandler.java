@@ -26,7 +26,7 @@ public final class TokenHandler {
 
 	public LoginVO parseUserFromToken(String token) {
 		String username = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
-		return null;//userService.loadUserByUsername(username);
+		return userService.loadUserByUsername(username);
 	}
 
 	public String createTokenForUser(LoginVO user) {

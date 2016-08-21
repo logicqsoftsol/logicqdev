@@ -2,12 +2,11 @@
 	'use strict';
 	angular.module('crmlogicq').controller('LoginController',['$scope','$rootScope','$http', '$exceptionHandler','$location','AuthenticationService','AppConstants',function ($scope,$rootScope,$http,$exceptionHandler,$location,AuthenticationService,AppConstants) {
 		$scope.login = function () {
-			$scope.logedinusername ='';
 			AuthenticationService.Login($scope).success(function(response, status, headers, config){
 				if(headers('AUTH-TOKEN') != '' && response.authorities != '' )
 				{
                  $scope.logedinusername=response.username;
-				 AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'));
+				 AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'),$scope.logedinusername);
 				  $location.path('/admin');	
 				}
 			}).error(function(response, status) {

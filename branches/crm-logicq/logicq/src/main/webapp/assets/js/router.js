@@ -11,7 +11,12 @@
                     templateUrl:"assets/views/login/login.html",
                     controller:'LoginController'
                 }),
-                
+               $stateProvider
+                .state('logout', {
+                    url: "/logout",
+                    templateUrl:"assets/views/login/login.html",
+                    controller:'LoginController'
+                }),
                 $stateProvider
                 .state('admin', {
                     url: "/admin",

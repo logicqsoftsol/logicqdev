@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
 import com.crm.logicq.security.helper.TokenHandler;
 import com.crm.logicq.ui.security.LoginVO;
@@ -35,7 +36,11 @@ public class TokenAuthenticationService implements  TokenAuthenticationConstant 
         if (token != null) {
             final LoginVO user = tokenHandler.parseUserFromToken(token);
             if (user != null) {
-                return new UserAuthentication(user);
+            	UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+            			user, token, user.getAuthorities());
+				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            	
+                return authentication;
             }
         }
         return null;
