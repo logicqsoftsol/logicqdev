@@ -55,6 +55,7 @@ public class RestAuthenticationFilter extends GenericFilterBean {
 						.getAuthentication((HttpServletRequest) request);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 				httpResponse.addHeader(TokenAuthenticationConstant.AUTH_HEADER_NAME, token);
+				
 
 			} else{
 				if (httpRequest.getRequestURI().endsWith("login")) {

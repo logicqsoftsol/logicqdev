@@ -1,7 +1,7 @@
 <div class="wrapper" id="admin">
 	<header class="main-header">
 		<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini">Logicq</span> <!-- logo for regular state and mobile devices -->
+			<span class="logo-mini">Logicq SoftSol Private LTD.</span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg fa fa-university">School Management</span>
 		</a>
 		<!-- Header Navbar: style can be found in header.less -->
@@ -22,7 +22,7 @@
                                 <a href="#"><i class="icon_chat_alt"></i> Chats</a>
                             </li>
                             <li>
-                                <a href="assets/views/login/login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                <a href="#/logout"><i class="icon_key_alt"></i> Log Out</a>
                             </li>
                         </ul>
                     </li>
@@ -171,8 +171,10 @@
 						<ul class="nav nav-tabs">
 							<li><a data-toggle="tab" id="subjectsetup" class="pull-center"  ng-click="getSubjectListAccordingToPage(1)"
 							href="/admin#subjectsetupdetails">Subject Setup</a></li>
-							<li class="active"><a data-toggle="tab" id="classsetup" class="pull-center"  ng-click="getClassSetupDetailsAccordingToPage(1)"
-								href="/admin#classsetupdetails">Class Setup</a></li>
+							<li><a data-toggle="tab" id="classsetup" class="pull-center"  ng-click="getClassSetupDetailsAccordingToPage(1)"
+								href="/admin#classes-setupdetails">Classes Setup</a></li>
+							<li class="active"><a data-toggle="tab" id="classsubjsetup" class="pull-center"  ng-click="getClassSetupDetailsAccordingToPage(1)"
+								href="/admin#class-subject-setup">Class-Subject Setup</a></li>
 						</ul>
 					
 				 
@@ -213,7 +215,49 @@
 						</table>
 					</div>
 					</div>
-					<div id="classsetupdetails" class="tab-pane fade in active">
+					
+					<div id="classes-setupdetails" class="tab-pane fade">
+					<br></br>
+						<div class="table-responsive">
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllClassesListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllClassesListAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllClassesListAccordingToPage()">&raquo;</a></li>
+									</ul>	
+							<ul class="pull-right">
+								<button id="addsubject" data-toggle="modal" data-toggle="modal"
+									data-target="#addnewclassmodal"  ng-click="addNewClass()" 
+									class="btn btn-default"><i class="fa fa-book" aria-hidden="true"></i>Add New Class</button>
+								<button id="searchclass" data-toggle="modal" data-target="#searchclass"
+									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
+							</ul>
+							<table class="table table-bordered table-fixed table-hover">
+							<tr class ="success">
+								<th class="pull-center">NAME</th>
+								<th class="pull-center">CUSTOM NAME</th>
+								<th class="pull-center">SECTIONS</th>
+								<th class="pull-center">TOTAL STRENGTH</th>
+								<th class="pull-center">CLASS SHIFT</th>
+							</tr>
+							<tr ng-repeat="class in classlist">
+								<td>{{class.name}}</td>
+								<td>{{class.customname}}</td>
+								<td>{{class.sections}}</td>
+								<td>{{class.totalstrength}}</td>
+								<td><a id="updatenewclass"  data-toggle="modal"  data-target="#addnewclassmodal"   ng-click="editExistingClass(emp)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+	                            <td><a id="deletenewclass"  data-toggle="modal"  data-target="#addnewclassmodal"   ng-click="pouplateExistingClassForDelete(emp)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+					</div>
+					</div>
+					
+					
+					<div id="class-subject-setup" class="tab-pane fade in active">
 					<br></br>
 					<div class="table-responsive">
 						<ul class="pagination pull-left" num-pages="tasks.pageCount"
@@ -1541,7 +1585,7 @@
 		</div><!---End of Modal Subject Add Details-->
 
 
-      <!---Modal Class Setup Details-->
+      <!---Modal Class-subject Setup Details-->
 		<div id="classsetupdetailsmodal" class="modal fade" role="dialog">
 		<form>
 				<div class="modal-dialog">
