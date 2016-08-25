@@ -3,6 +3,7 @@ package com.crm.logicq.dao.notification.impl;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,9 +21,11 @@ public class MsgNotificationDAO extends AbstractDAO<NotificationSetupDetails> im
 
 	@Override
 	public List<NotificationSetupDetails> getMsgNotifyDetails() throws Exception {
-
+		TimeZone timeZoneIndia = TimeZone.getTimeZone("Asia/Kolkata");
 		Calendar cal = Calendar.getInstance();
+		cal.setTimeZone(timeZoneIndia);
 		SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
+		sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
 		int cur_time = Integer.valueOf((sdf.format(cal.getTime())).toString());
 		cal.add(Calendar.MINUTE, 2);
 		int added_time = Integer.valueOf((sdf.format(cal.getTime())).toString());
