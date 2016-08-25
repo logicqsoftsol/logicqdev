@@ -2,6 +2,7 @@ package com.crm.logicq.service.readfile;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -52,7 +53,9 @@ public class SchedulerService  {
 	}
 
 	public void prepareCornJOB(int hr, int min, EventDetailsVO eventDetailsVO) {
+		TimeZone timeZoneIndia = TimeZone.getTimeZone("Asia/Kolkata");
 		Calendar today = Calendar.getInstance();
+		today.setTimeZone(timeZoneIndia);
 		today.set(Calendar.HOUR_OF_DAY, hr);
 		today.set(Calendar.MINUTE, min);
 		today.set(Calendar.SECOND, 0);
