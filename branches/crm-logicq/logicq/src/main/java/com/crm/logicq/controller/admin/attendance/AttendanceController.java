@@ -24,7 +24,7 @@ import com.crm.logicq.vo.attendance.AttendanceVO;
 
 
 @RestController
-@RequestMapping("/api/admin/attendance")
+@RequestMapping("/admin/attendance")
 public class AttendanceController {
 
   @Autowired

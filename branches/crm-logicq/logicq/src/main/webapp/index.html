@@ -19,13 +19,12 @@
 <link href="assets/plugins/common/fontawesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="assets/css/animations.css" rel="stylesheet">
 <link href="assets/css/graph/angular-chart.css" rel="stylesheet">
+<link href="assets/css/multiple-select.min.css" rel="stylesheet">
 <link href="assets/css/admin.min.css" rel="stylesheet">
 <link href="assets/css/all-skins.min.css" rel="stylesheet">
 <link href="assets/css/normalize.css" rel="stylesheet">
 <link href="assets/css/main.css" rel="stylesheet">
 <link href="assets/css/custom.css" rel="stylesheet">
-
-
 
 							<!-- Common Scripts -->
 <script type="text/javascript" src="assets/plugins/common/jquery-2.0.3.min.js"></script>
@@ -36,6 +35,8 @@
 <script type="text/javascript" src="assets/plugins/common/modernizr.js"></script>					
 <script type="text/javascript" src="assets/plugins/common/isotope.pkgd.min.js"></script>
 <script type="text/javascript" src="assets/plugins/common/moment.min.js"></script>	
+
+	
 			
 							<!--Angular JS Scripts  -->
 <script type="text/javascript"  src="assets/plugins/lib/angular.min.js"></script>
@@ -47,8 +48,14 @@
 <script src="assets/plugins/lib/angular.treeview.js" type="text/javascript" ></script>
 <script src="assets/plugins/lib/checklist-model.js" type="text/javascript"></script>
 <script src="assets/plugins/lib/ngStorage.js"></script>
+
 <script src = "assets/plugins/graph/zingchart.min.js" ></script>  
 <script src = "assets/plugins/graph/zingchart-angularjs.js" ></script> 
+
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
 								<!-- Custom Scripts -->
 <script type="text/javascript" src="assets/plugins/logicq/template.js"></script>
 <script type="text/javascript" src="assets/plugins/logicq/app.min.js"></script>
@@ -56,7 +63,7 @@
 
 <script type="text/javascript" src="assets/plugins/common/angular-animate.js"></script>
 <script type="text/javascript" src="assets/plugins/common/ui-bootstrap-tpls-2.0.0.js"></script>
-
+<script src="assets/plugins/lib/multiple-select.js"></script>
 							<!-- Angular JS Controllers/Services -->
 <script src="assets/js/myapplication.js" type="text/javascript"></script>
 <script src="assets/js/router.js" type="text/javascript"></script>
@@ -96,6 +103,8 @@
   <script type="text/ng-template" id="alert.html">
     <div ng-transclude></div>
   </script>
+  
+
   <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
  <div ui-view  id="displaydata">
   

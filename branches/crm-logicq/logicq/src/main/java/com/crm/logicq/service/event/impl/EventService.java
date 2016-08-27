@@ -132,6 +132,7 @@ public class EventService implements IEventService , ICommonConstant {
 	
 	private void attendancedetailsForPresentDetails(EventDetailsVO eventDetailsVO) throws Exception {
 		List<CardReadDetails> cardReadDetails = readFileDAO.readAccessFile();
+		logger.error(" Fetch data from msacess :"+ cardReadDetails);
 		Map<String, CardDetailsVO> carddetailsvomap = CardDetailsConversionHelper.convertEntityToVO(cardReadDetails);
 
 		@SuppressWarnings("unchecked")
@@ -205,8 +206,10 @@ public class EventService implements IEventService , ICommonConstant {
 		}
 		//put map for abset user
 		LogicqContextProvider.addElementToApplicationMap(ABSETUSER, absetdetails);
+		logger.error("Befor Execute SMS Details "+smspresentlist);
 		//Execute SMS
 		SMSHelper.executeSMS(smspresentlist);
+		logger.error("After Execute SMS Details "+smspresentlist);
 	
 		if(!attendancedetails.isEmpty()){
 			attendanceservice.saveAttendance(attendancedetails);

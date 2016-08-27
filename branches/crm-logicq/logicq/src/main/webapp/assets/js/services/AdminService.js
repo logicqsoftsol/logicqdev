@@ -65,6 +65,13 @@
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteCalendarDetailsURL;
 			return  $http.post(url,request)
 		},		
+		  
+        downloadReport :function ($scope){
+        	return $http({
+                method: 'GET',
+                url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getDownloadAttendaceReportURL+'/'+$scope.exportdata.reporttype+'/'+$scope.exportdata.applicableto+'/'+$scope.exportdata.applicableid+'/'+$scope.exportdata.exportfor+'/'+$scope.exportdata.exporttype,
+          })
+        },
 		}
 }]);
 

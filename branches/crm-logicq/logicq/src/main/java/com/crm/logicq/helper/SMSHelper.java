@@ -92,13 +92,16 @@ public class SMSHelper {
 		HttpURLConnection httpconnection=null;
 		try{
 			StringBuilder smsurldetails=formSMSURL(smsdetails);
+			logger.error("From  SMS URL Details "+smsurldetails);
 			URL url = new URL(smsurldetails.toString());
 			httpconnection = (HttpURLConnection) url.openConnection();
 			httpconnection.setRequestMethod("GET");
 			httpconnection.setRequestProperty("Accept", "application/json");
 			smsLogStatus(httpconnection,smsdetails);
+			logger.error("SMS  stastus "+smsdetails);
 		}catch(Exception ex){
 			smsdetails.setStatus("Fail");
+			logger.error("From  SMS URL Details "+ex.getMessage(),ex);
 		}
 		finally{
 			if(null!=httpconnection){

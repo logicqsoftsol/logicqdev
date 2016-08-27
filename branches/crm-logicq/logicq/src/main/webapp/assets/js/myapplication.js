@@ -5,13 +5,12 @@
 (function () {
     'use strict';
     
-   angular.module('crmlogicq', ['ui.bootstrap','zingchart-angularjs',
-        'ui.router','checklist-model','ngStorage'
+   angular.module('crmlogicq', ['ui.bootstrap','zingchart-angularjs','ui.router','multipleSelect','checklist-model','ngStorage'
   ]).constant('AppConstants', {
 	  'hostName':'http://127.0.0.1:', 
 	  //'hostName':'http://45.113.136.152:',
 	  'hostPort': '8090' ,
-	   // 'hostPort': '8059' ,
+	  //'hostPort': '8059' ,
 	   'applicationName' : '/crmlogicq' ,
 	   'get' : 'GET' ,  
 	   'post' : 'POST' , 
@@ -55,6 +54,8 @@
 	   'deleteNotificationTemplateSetupURL':'/api/admin/notification/deleteNotificationTemplateSetup',
 	   'getNotificationSetupDetailsURL':'/api/admin/notification/getNotificationSetupDetails',
 	   'getNotificationDetailsForEntityURL':'/api/admin/notification/getNotificationDetailsForEntity',
+	   
+	   'getDownloadAttendaceReportURL':'/api/admin/report/downloadAttendanceReport',
 	   
 	   
 

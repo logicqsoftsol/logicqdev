@@ -36,10 +36,48 @@ public class Subject implements Serializable {
     @Column(name = "SHORT_NAME")
     private String shortname;
     
-    @ManyToMany(mappedBy="subjectlist",fetch=FetchType.LAZY)
-	private List<ClassSetup> classdetails = new ArrayList<ClassSetup>();
-    
     @Column(name = "type")
     private String type;
+
+	public Long getSubjectid() {
+		return subjectid;
+	}
+
+	public void setSubjectid(Long subjectid) {
+		this.subjectid = subjectid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getShortname() {
+		return shortname;
+	}
+
+	public void setShortname(String shortname) {
+		this.shortname = shortname;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	@Override
+	public String toString() {
+		return "Subject [subjectid=" + subjectid + ", name=" + name + ", shortname=" + shortname + ", type=" + type
+				+ "]";
+	}
+    
+    
+    
 
 }
