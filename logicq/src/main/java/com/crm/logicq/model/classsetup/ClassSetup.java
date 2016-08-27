@@ -33,7 +33,7 @@ public class ClassSetup implements Serializable{
 
     @Column(name = "NAME")
     @NotNull
-    private String cal;
+    private String classname;
     
     @Column(name = "SECTION")
     private String section;
@@ -47,5 +47,57 @@ public class ClassSetup implements Serializable{
     
     @Column(name = "YEAR")
     private Integer applicableyear;
+
+
+	public Long getClassid() {
+		return classid;
+	}
+
+
+	public void setClassid(Long classid) {
+		this.classid = classid;
+	}
+
+
+	public String getClassname() {
+		return classname;
+	}
+
+
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
+
+
+	public String getSection() {
+		return section;
+	}
+
+
+	public void setSection(String section) {
+		this.section = section;
+	}
+
+
+	public List<Subject> getSubjectlist() {
+		return subjectlist;
+	}
+
+
+	public void setSubjectlist(List<Subject> subjectlist) {
+		this.subjectlist = subjectlist;
+	}
+
+
+	public Integer getApplicableyear() {
+		return applicableyear;
+	}
+
+
+	public void setApplicableyear(Integer applicableyear) {
+		this.applicableyear = applicableyear;
+	}
+    
+    
 
 }

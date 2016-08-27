@@ -1,7 +1,7 @@
 package com.crm.logicq.test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TestDate {
 	
@@ -13,13 +13,18 @@ public class TestDate {
 		//DateTime plusoneday = dtOrg.minusDays(1);
 	
 		//System.out.println(converteddate);
-		try{
-		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-		Connection	msacessconnectio=DriverManager.getConnection("jdbc:ucanaccess://F:/Project/workspace/test/ontime_att.mdb;READONLY=true", "", "sss");
-	   System.out.println(msacessconnectio);
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}
+//		try{
+//		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+//		Connection	msacessconnectio=DriverManager.getConnection("jdbc:ucanaccess://F:/Project/workspace/test/ontime_att.mdb;READONLY=true", "", "sss");
+//	   System.out.println(msacessconnectio);
+//		}catch(Exception ex){
+//			ex.printStackTrace();
+//		}
+		
+		SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE"); // the day of the week spelled out completely
+        System.out.println(simpleDateformat.format(new Date()));
+	
+	
 	}
 
 }

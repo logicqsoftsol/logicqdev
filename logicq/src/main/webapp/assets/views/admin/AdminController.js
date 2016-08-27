@@ -93,6 +93,10 @@
 		$scope.editmsg='Edit Successfully';
 		$scope.deletemsg='Delete Successfully';
 		
+		//testing
+	    	$scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
+		  $scope.data = [300, 500, 100, 40, 120];
+		
 								/* DashBoard   Display**/				
 								 $scope.displayDashBoard = function() {
 									 AttendanceService.getAttendanceAsGraph($scope).success(function(data, status) {
@@ -933,6 +937,99 @@
 														}
 											  
 										  };
+										  
+										  /*Subject Details **/	
+										  $scope.subject={};
+										  $scope.subject.currentPage='';
+										  $scope.subjectlist=[
+										                      {id: 1,  name : "History"},
+										                      {id: 2,  name : "Math"},
+										                      {id: 3,  name : "Oriya"},
+										                      {id: 4,  name : "English"},
+										                      {id: 5,  name : "Hindi"},
+										                      {id: 5,  name : "Science"},
+										                      {id: 5,  name : "Drawing"}
+										                    ];
+								
+											 $scope.getSubjectListAccordingToPage=function(page){
+												 $scope.notisendsetup.currentPage=page;
+											    
+											};
+											
+											 /*Classes  Details **/		
+											$scope.classes={};
+											$scope.classes.currentPage='';
+											$scope.classeslist={};
+											 $scope.getClassesDetailsAccordingToPage=function(page){
+												 $scope.notisendsetup.currentPage=page;
+											    
+											};	
+											
+											 /*Classes-Subject Details **/		
+											  $scope.applicableyearlist=[
+													                      {id: 1,  year : "Current"},
+													                      {id: 2,  name : "All"},
+													                      {id: 3,  name : "Next 2 years"},
+													                      {id: 4,  name : "Next 5 years"}
+													                    ];
+											$scope.classessubject={};
+											$scope.classessubject.currentPage='';
+											$scope.classsubdetails={};
+											$scope.compsubjectlist={};
+											$scope.optsubjectlist={};
+											 $scope.getClassesDetailsAccordingToPage=function(page){
+												 $scope.classessubject.currentPage=page;
+											    
+											};	
+											
+											/* export report details---*/
+											$scope.exportdata={};
+											$scope.downloadAttendaceReport=function(){			
+												switch($scope.exportdata.exporttype){
+												case 'XLS':
+												{
+													AdminService.downloadReport($scope).success(function(response) {
+														var xlsinput = new Blob([response]); 
+														window.navigator.msSaveOrOpenBlob(xlsinput, 'attendancereport.xlsx'); 
+													});
+												};
+												break;
+												case 'CSV':
+												{
+													AdminService.downloadReport($scope).success(function(response) {
+														var csvData = new Blob([response]); 
+														const url = URL.createObjectURL(csvData);
+														const link = document.createElement('a');
+														link.href = url;
+														link.style = 'visibility:hidden';
+														link.download = $scope.exportdata.exportfor+'.csv';
+														document.body.appendChild(link);
+														link.click();
+														document.body.removeChild(link);
+													});
+												};
+												break;
+												case 'PDF':
+												{
+													AdminService.downloadReport($scope).success(function(response) {
+														var file = new Blob([response]);
+														window.navigator.msSaveOrOpenBlob(file, 'attendancereport.pdf');        
+
+
+													});
+												};
+												break;
+												default:
+													break;
+												}
+											    
+											};
+											 /*download file  Details **/	
+										//	$scope.$watch('exportdata.type', function(newVal, oldVal){
+						
+											//});			
+											
+											
 	
 	}]);
 }());
