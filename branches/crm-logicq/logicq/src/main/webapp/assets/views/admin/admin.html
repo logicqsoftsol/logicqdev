@@ -212,9 +212,9 @@
 								<th class="pull-center">APPLICABLE FOR</th>
 							</tr>
 							<tr ng-repeat="subrow in subjectlist">
-								<td>{{subrow.subjectname}}</td>
-								<td>{{subrow.subjectshortname}}</td>
-								<td>{{subrow.applicablefor}}</td>
+								<td>{{subrow.name}}</td>
+								<td>{{subrow.shortname}}</td>
+								<td>{{subrow.type}}</td>
 								<td><a id="updateempreg"  data-toggle="modal"  data-target="#addsubjectmodal"   ng-click="editExistingSubject(subrow)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 	                            <td><a id="deleteempreg"  data-toggle="modal"  data-target="#addsubjectmodal"   ng-click="pouplateSubjectForDelete(subrow)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
