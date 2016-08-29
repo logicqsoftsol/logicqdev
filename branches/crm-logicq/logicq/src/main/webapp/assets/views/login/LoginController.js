@@ -8,6 +8,11 @@
                  $scope.logedinusername=response.username;
 				 AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'),$scope.logedinusername);
 				  $location.path('/admin');	
+				}else{
+					$location.path('/login');
+					var errormsg='Unable to Login Check setting or Loging Details '+' Status Code : '+status;
+					 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+					 $exceptionHandler(errormsg);
 				}
 			}).error(function(response, status) {
 				$location.path('/login');

@@ -2,7 +2,9 @@ package com.crm.logicq.vo.classessetup;
 
 import java.io.Serializable;
 
-public class ClassSetupCriteria  implements Serializable {
+import com.crm.logicq.model.common.CommonProperty;
+
+public class ClassSetupCriteria extends CommonProperty  implements Serializable {
 
 	/**
 	 * 

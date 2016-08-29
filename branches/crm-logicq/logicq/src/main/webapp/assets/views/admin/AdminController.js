@@ -1,6 +1,6 @@
 (function () {
 	'use strict';
-	angular.module('crmlogicq').controller('AdminController',['$scope','$sessionStorage','$rootScope','$http', '$exceptionHandler','$location','AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','AppConstants',function ($scope,$sessionStorage,$rootScope,$http,$exceptionHandler,$location,AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,AppConstants) {
+	angular.module('crmlogicq').controller('AdminController',['$scope','$sessionStorage','$rootScope','$http', '$exceptionHandler','$location','AdminService','AttendanceService','UserService','GraphHelper','UserHelper','CalendarService','NotificationService','ClassesSetupService','AppConstants',function ($scope,$sessionStorage,$rootScope,$http,$exceptionHandler,$location,AdminService,AttendanceService,UserService,GraphHelper,UserHelper,CalendarService,NotificationService,ClassesSetupService,AppConstants) {
 		 $scope.logedinusername=$sessionStorage.username;
          $scope.display=6;
 		 $scope.totalrecordcount=null;
@@ -673,7 +673,7 @@
 												};
 									
 												
-											/*select event details**/
+											/*select Notification Template  details**/
 										$scope.$watch('notificationtemplate.eventname', function(newVal, oldVal){
 												angular.forEach($scope.eventfortemplatelist, function(value, key) {
 													if(value.eventname==newVal){
@@ -941,6 +941,7 @@
 										  /*Subject Details **/	
 										  $scope.subject={};
 										  $scope.subject.currentPage='';
+										  
 										  $scope.subjectlist=[
 										                      {id: 1,  name : "History"},
 										                      {id: 2,  name : "Math"},
@@ -955,6 +956,92 @@
 												 $scope.notisendsetup.currentPage=page;
 											    
 											};
+											
+											$scope.searchSubject =function(){
+												  $scope.subjectoperation='Looking for Existing';
+												  $scope.operationtype='';
+											  };
+											  
+											$scope.addNewSubject=function(){
+													$scope.subjectoperation='Add new ';
+	                                                $scope.operationtype='+';
+													$scope.subject={};
+													$scope.subject.subjectid='';
+											  };
+											  
+											  $scope.editExistingSubject =function(subrow){
+												  $scope.subjectoperation='Modify Existing';
+												    $scope.operationtype='*';
+													UserHelper.setRowForSubjectSetup($scope,subrow);
+											  };
+											 
+											  $scope.pouplateSubjectForDelete =function(subrow){
+												  $scope.subjectoperation='Are you sure want to delete this ';
+												  $scope.operationtype='-';
+												  UserHelper.setRowForSubjectSetup($scope,subrow);
+											  };
+											
+											  
+											  /*Set Subject  details operation**/
+											  $scope.operationSubjectDetail=function(){
+												 
+														var operation=$scope.operationtype;
+															if ('+'==operation) {
+																  UserHelper.setSubjectDetails($scope);
+																ClassesSetupService.saveSubjectDetails($scope.request)
+																.success(function(data, status) {
+																	$scope.subjectlist=data.subjectlist;
+																	if(null==$scope.subject.totalrecordcount){
+																		 $scope.subject.totalrecordcount=data.subjectcriteria.totalrecordcount;
+																		 }
+																	 $scope.subject.numPages= Math.ceil($scope.subject.totalrecordcount/$scope.subject.pageSize);
+																	 $scope.numPages=$scope.subject.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'Notification Sending Setup Details '+$scope.createmsg});
+																}).error(function(data, status) {
+																	var errormsg='Unable to Save Subject Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	   $exceptionHandler(errormsg);
+																});
+																
+															}
+															else if('*'===operation){
+																UserHelper.setSubjectDetails($scope);
+																ClassesSetupService.saveSubjectDetails($scope.request)
+																.success(function(data, status) {
+																	$scope.subjectlist=data.subjectlist;
+																	if(null==$scope.subject.totalrecordcount){
+																		 $scope.subject.totalrecordcount=data.subjectcriteria.totalrecordcount;
+																	 }
+																	 $scope.subject.numPages= Math.ceil($scope.subject.totalrecordcount/$scope.subject.pageSize);
+																	 $scope.numPages=$scope.subject.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'Notification Sending Setup Details '+$scope.editmsg});
+																}).error(function(data, status) {
+																	var errormsg='Unable to Modify Subject Details  Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	   $exceptionHandler(errormsg);
+																});
+															}
+															else if('-'==operation){
+																UserHelper.setSubjectDetails($scope);
+																ClassesSetupService.deleteExistingSubject($scope.request)
+																.success(function(data, status) {
+																	$scope.subjectlist=data.subjectlist;
+																	if(null==$scope.subject.totalrecordcount){
+																		 $scope.subject.totalrecordcount=data.subjectcriteria.totalrecordcount;
+																		 
+																	 }
+																	 $scope.subject.numPages= Math.ceil($scope.subject.totalrecordcount/$scope.subject.pageSize);
+																	 $scope.numPages=$scope.subject.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'Notification Sending Setup Details '+$scope.deletemsg});
+																}).error(function(data, status) {
+																	var errormsg='Unable to Delete Subject Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	   $exceptionHandler(errormsg);
+																});
+															}
+												  
+											  };
+											  
 											
 											 /*Classes  Details **/		
 											$scope.classes={};
@@ -982,8 +1069,15 @@
 											    
 											};	
 											
+											
+											
 											/* export report details---*/
 											$scope.exportdata={};
+											$scope.exportdata.applicableto='';
+											 $scope.isReportExportApplicable = function(reportapplicableto) {
+											 return reportapplicableto === $scope.exportdata.applicableto;
+											    };
+											
 											$scope.downloadAttendaceReport=function(){			
 												switch($scope.exportdata.exporttype){
 												case 'XLS':
@@ -1025,9 +1119,7 @@
 											    
 											};
 											 /*download file  Details **/	
-										//	$scope.$watch('exportdata.type', function(newVal, oldVal){
-						
-											//});			
+							
 											
 											
 	

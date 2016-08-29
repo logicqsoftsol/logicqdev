@@ -251,7 +251,23 @@
 					$scope.notisendsetup.templateid=data.notificationtemplate.templateid;
 				},	
 					
-			
+
+				setRowForSubjectSetup: function ($scope,data) {
+					$scope.subject.subjectid=data.subjectid;
+					$scope.subject.name=data.name;
+					$scope.subject.sname=data.sname;
+					$scope.subject.applicableas=data.applicableas;
+				},
+				
+				setSubjectDetails: function ($scope) {
+					return $scope.request.subject={
+							subjectid:$scope.subject.subjectid,
+							name:$scope.subject.name,
+							shortname:$scope.subject.sname,
+							type:$scope.$scope.subject.applicableas,
+					};
+					},
+					
 			
 		}
 		

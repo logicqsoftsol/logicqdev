@@ -1,6 +1,5 @@
 package com.crm.logicq.controller.admin.classessetup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,81 +15,245 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crm.logicq.model.classsetup.ClassSetup;
 import com.crm.logicq.model.classsetup.ClassSubjectSetup;
 import com.crm.logicq.model.classsetup.Subject;
+import com.crm.logicq.service.classessetup.IClassesSetupService;
+import com.crm.logicq.vo.classessetup.ClassSetupCriteria;
+import com.crm.logicq.vo.classessetup.ClassSetupVO;
+import com.crm.logicq.vo.classessetup.ClassSubjectSetupVO;
+import com.crm.logicq.vo.classessetup.SubjectVO;
 
 @RestController
 @RequestMapping("/api/admin/classessetup")
 public class ClassesSetupController {
 
-	//@Autowired
-	//INotificationService notificationservice;
-
+	@Autowired
+	IClassesSetupService classessetupservices;
+/**
+ * 
+ * @param newsubject
+ * @return
+ */
 	@RequestMapping(value = "/saveSubject", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Subject>> saveNotificationTemplate(
+	public ResponseEntity<SubjectVO> saveNotificationTemplate(
 			@RequestBody Subject newsubject) {
-		List<Subject> subjectlist=new ArrayList<Subject>();
-		
+		SubjectVO subjectvo=new SubjectVO();
+		try {
+			if(null!=newsubject){
+			classessetupservices.saveSubjectDetails(newsubject);
+			}else{
+				return	new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			
+			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
+			classsetupcriteria.setPagenumber(1);
+			classsetupcriteria.setPagesize(15);
+			List<Subject> subjectlist=classessetupservices.getSubjectDetails(classsetupcriteria);
+			subjectvo.setSubjectcriteria(classsetupcriteria);
+			subjectvo.setSubjectlist(subjectlist);
+		} catch (Exception e) {
+			return	new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	
-		return new ResponseEntity<List<Subject>>(subjectlist, HttpStatus.OK);
+		return new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.OK);
 	}
-
+/**
+ * 
+ * @param subjectdetails
+ * @return
+ */
 	@RequestMapping(value = "/deleteSubject", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Subject>> deleteNotificationTemplate(
-			@RequestBody Subject notificationtemplate) {
-		List<Subject> subjectlist=new ArrayList<Subject>();
-		
-		return new ResponseEntity<List<Subject>>(subjectlist, HttpStatus.OK);
+	public ResponseEntity<SubjectVO> deleteNotificationTemplate(
+			@RequestBody Subject subjectdetails) {
+		SubjectVO subjectvo=new SubjectVO();
+		try {
+			if(null!=subjectdetails){
+			classessetupservices.deleteSubject(subjectdetails);
+			}else{
+				return	new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
+			classsetupcriteria.setPagenumber(1);
+			classsetupcriteria.setPagesize(15);
+			List<Subject> subjectlist=classessetupservices.getSubjectDetails(classsetupcriteria);
+			subjectvo.setSubjectcriteria(classsetupcriteria);
+			subjectvo.setSubjectlist(subjectlist);
+		} catch (Exception e) {
+			return	new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.OK);
 	}
-
+/**
+ * 
+ * @param pagesize
+ * @param pageno
+ * @return
+ */
 	@RequestMapping(value = "/getSubjectList/{pagesize}/{pageno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Subject>> getNotificationTemplates(@PathVariable int pagesize,@PathVariable int pageno) {
-		List<Subject> subjectlist=new ArrayList<Subject>();
-		return new ResponseEntity<List<Subject>>(subjectlist, HttpStatus.OK);
+	public ResponseEntity<SubjectVO> getNotificationTemplates(@PathVariable int pagesize,@PathVariable int pageno) {
+		SubjectVO subjectvo=new SubjectVO();
+		try {
+			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
+			classsetupcriteria.setPagenumber(pageno);
+			classsetupcriteria.setPagesize(pagesize);
+			List<Subject> subjectlist = classessetupservices.getSubjectDetails(classsetupcriteria);
+			subjectvo.setSubjectcriteria(classsetupcriteria);
+			subjectvo.setSubjectlist(subjectlist);
+		} catch (Exception e) {
+			return	new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.OK);
 	}
-
-	@RequestMapping(value = "/saveClasses", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ClassSetup>> saveNotificationTemplateSetup(
-			@RequestBody ClassSetup classes) {
-		List<ClassSetup> classessetuplist=new ArrayList<ClassSetup>();
+/**
+ * 
+ * @param classsetup
+ * @return
+ */
+	@RequestMapping(value = "/saveClass", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ClassSetupVO> saveNotificationTemplateSetup(
+			@RequestBody ClassSetup classsetup) {
+		ClassSetupVO classsetupvo=new ClassSetupVO();
+		try {
+			if(null!=classsetup){
+			classessetupservices.saveClassesDetails(classsetup);
+			}else{
+				return	new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
+			classsetupcriteria.setPagenumber(1);
+			classsetupcriteria.setPagesize(15);
+			List<ClassSetup> classlist=classessetupservices.getClassesDetails(classsetupcriteria);
+			classsetupvo.setClasssetupcriteria(classsetupcriteria);
+			classsetupvo.setClasssetup(classlist);
+		} catch (Exception e) {
+			return	new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	
-		return new ResponseEntity<List<ClassSetup>>(classessetuplist, HttpStatus.OK);
+		return new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.OK);
 	}
-
+/**
+ * 
+ * @param classesetup
+ * @return
+ */
 	@RequestMapping(value = "/deleteClassesSetup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ClassSetup>> deleteNotificationTemplate(
+	public ResponseEntity<ClassSetupVO> deleteNotificationTemplate(
 			@RequestBody ClassSetup classesetup) {
-	
-		List<ClassSetup> classessetuplist=new ArrayList<ClassSetup>();
+		ClassSetupVO classsetupvo=new ClassSetupVO();
+		try {
+			if(null!=classesetup){
+			classessetupservices.deleteClass(classesetup);
+			}else{
+				return	new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
+			classsetupcriteria.setPagenumber(1);
+			classsetupcriteria.setPagesize(15);
+			List<ClassSetup> classlist=classessetupservices.getClassesDetails(classsetupcriteria);
+			classsetupvo.setClasssetupcriteria(classsetupcriteria);
+			classsetupvo.setClasssetup(classlist);
+		} catch (Exception e) {
+			return	new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		
-		return new ResponseEntity<List<ClassSetup>>(classessetuplist, HttpStatus.OK);
+		return new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.OK);
 	}
-
+/**
+ * 
+ * @param pagesize
+ * @param pageno
+ * @return
+ */
 	@RequestMapping(value = "/getClasseslist/{pagesize}/{pageno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ClassSetup>> getClassesSetupDetails(@PathVariable int pagesize,@PathVariable int pageno) {
-		List<ClassSetup> classessetuplist=new ArrayList<ClassSetup>(); 
-		return new ResponseEntity<List<ClassSetup>>(classessetuplist, HttpStatus.OK);
+	public ResponseEntity<ClassSetupVO> getClassesSetupDetails(@PathVariable int pagesize,@PathVariable int pageno) {
+		ClassSetupVO classsetupvo=new ClassSetupVO();
+		try {
+			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
+			classsetupcriteria.setPagenumber(pageno);
+			classsetupcriteria.setPagesize(pagesize);
+			List<ClassSetup> classsetuplist = classessetupservices.getClassesDetails(classsetupcriteria);
+			classsetupvo.setClasssetup(classsetuplist);
+			classsetupvo.setClasssetupcriteria(classsetupcriteria);
+		} catch (Exception e) {
+			return	new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.OK);
 	}
-
+/**
+ * 
+ * @param classsubject
+ * @return
+ */
 	@RequestMapping(value = "/saveClassSubjectSetup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ClassSubjectSetup>> saveNotificationTemplateSetup(
+	public ResponseEntity<ClassSubjectSetupVO> saveNotificationTemplateSetup(
 			@RequestBody ClassSubjectSetup classsubject) {
-		List<ClassSubjectSetup> classSubjectlist=new ArrayList<ClassSubjectSetup>();
+		ClassSubjectSetupVO classsubjectsetupvo=new ClassSubjectSetupVO();
+		try {
+			if(null!=classsubject){
+			classessetupservices.saveClassesSubjectDetails(classsubject);
+			}else{
+				return	new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
+			classsetupcriteria.setPagenumber(1);
+			classsetupcriteria.setPagesize(15);
+			List<ClassSubjectSetup> classsubjectlist=classessetupservices.getClassesSubjectDetails(classsetupcriteria);
+			classsubjectsetupvo.setClasssubjectcriteria(classsetupcriteria);
+			classsubjectsetupvo.setClasssubjectlist(classsubjectlist);
+		} catch (Exception e) {
+			return	new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	
-		return new ResponseEntity<List<ClassSubjectSetup>>(classSubjectlist, HttpStatus.OK);
+	
+		return new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.OK);
 	}
 	
+	/**
+	 * 
+	 * @param classsubjectsetup
+	 * @return
+	 */
 	@RequestMapping(value = "/deleteClassSubjectSetup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ClassSubjectSetup>> deleteNotificationTemplate(
-			@RequestBody ClassSubjectSetup classesetup) {
-	
-		List<ClassSubjectSetup> classSubjectlist=new ArrayList<ClassSubjectSetup>();
-		
-		return new ResponseEntity<List<ClassSubjectSetup>>(classSubjectlist, HttpStatus.OK);
+	public ResponseEntity<ClassSubjectSetupVO> deleteNotificationTemplate(
+			@RequestBody ClassSubjectSetup classsubjectsetup) {
+		ClassSubjectSetupVO classsubjectsetupvo=new ClassSubjectSetupVO();
+		try {
+			if(null!=classsubjectsetup){
+			classessetupservices.deleteClassesSubjectDetails(classsubjectsetup);
+			}else{
+				return	new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
+			classsetupcriteria.setPagenumber(1);
+			classsetupcriteria.setPagesize(15);
+			List<ClassSubjectSetup> classsubjectlist=classessetupservices.getClassesSubjectDetails(classsetupcriteria);
+			classsubjectsetupvo.setClasssubjectcriteria(classsetupcriteria);
+			classsubjectsetupvo.setClasssubjectlist(classsubjectlist);
+		} catch (Exception e) {
+			return	new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.OK);
 	}
 	
+	/**
+	 * 
+	 * @param pagesize
+	 * @param pageno
+	 * @return
+	 */
 	@RequestMapping(value = "/getClassSubjectlist/{pagesize}/{pageno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ClassSubjectSetup>> getNotificationSetupDetails(@PathVariable int pagesize,@PathVariable int pageno) {
-		List<ClassSubjectSetup> classSubjectSetuplist=new ArrayList<ClassSubjectSetup>(); 
-		return new ResponseEntity<List<ClassSubjectSetup>>(classSubjectSetuplist, HttpStatus.OK);
+	public ResponseEntity<ClassSubjectSetupVO> getNotificationSetupDetails(@PathVariable int pagesize,@PathVariable int pageno) {
+		ClassSubjectSetupVO classsubjectsetupvo=new ClassSubjectSetupVO();
+		try {
+			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
+			classsetupcriteria.setPagenumber(1);
+			classsetupcriteria.setPagesize(15);
+			List<ClassSubjectSetup> classsubjectlist=classessetupservices.getClassesSubjectDetails(classsetupcriteria);
+			classsubjectsetupvo.setClasssubjectcriteria(classsetupcriteria);
+			classsubjectsetupvo.setClasssubjectlist(classsubjectlist);
+		} catch (Exception e) {
+			return	new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.OK);
 	}
 
 

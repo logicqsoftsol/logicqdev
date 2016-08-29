@@ -202,7 +202,7 @@
 								<button id="addsubject" data-toggle="modal" data-toggle="modal"
 									data-target="#addsubjectmodal"  ng-click="addNewSubject()" 
 									class="btn btn-default"><i class="fa fa-book" aria-hidden="true"></i>Add Subject</button>
-								<button id="deletedetails" data-toggle="modal" data-target="#searchsubject"
+								<button id="deletedetails" data-toggle="modal" data-target="#searchsubject"  ng-click="searchSubject()" 
 									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
 							</ul>
 							<table class="table table-bordered table-fixed table-hover">
@@ -212,8 +212,8 @@
 								<th class="pull-center">APPLICABLE FOR</th>
 							</tr>
 							<tr ng-repeat="subrow in subjectlist">
-								<td>{{subrow.name}}</td>
-								<td>{{subrow.shortname}}</td>
+								<td>{{subrow.subjectname}}</td>
+								<td>{{subrow.subjectshortname}}</td>
 								<td>{{subrow.applicablefor}}</td>
 								<td><a id="updateempreg"  data-toggle="modal"  data-target="#addsubjectmodal"   ng-click="editExistingSubject(subrow)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 	                            <td><a id="deleteempreg"  data-toggle="modal"  data-target="#addsubjectmodal"   ng-click="pouplateSubjectForDelete(subrow)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
@@ -236,10 +236,10 @@
 											ng-click="searchAllClassesListAccordingToPage()">&raquo;</a></li>
 									</ul>	
 							<ul class="pull-right">
-								<button id="addsubject" data-toggle="modal" data-toggle="modal"
+								<button id="classsetup" data-toggle="modal" data-toggle="modal"
 									data-target="#classsetupmodal"  ng-click="addNewClass()" 
 									class="btn btn-default"><i class="fa fa-book" aria-hidden="true"></i>Add New Class</button>
-								<button id="searchclass" data-toggle="modal" data-target="#classsetupmodal"
+								<button id="classsearch" data-toggle="modal" data-target="#classsetupmodal"
 									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
 							</ul>
 							<table class="table table-bordered table-fixed table-hover">
@@ -1609,10 +1609,10 @@
 			</div>
 			</div>
 			</form>
-		</div><!---End for Modal Notifications Template sending setup-->				
+		</div><!---End for Modal Notifications Template sending setup-->
 
-
-     
+		
+		
 		<!---Modal Subject Add Details-->
 		<div id="addsubjectmodal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
@@ -1637,8 +1637,8 @@
 												placeholder="Subject Short Name" required>
 										</div>
 										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="subject.applicablefor">Applicable As</label> 
-										<input type="text" class="form-control" name="subject.applicablefor" id="subject.applicablefor"  ng-model="subject.applicablefor" class="input-search" list="subjecttypelist" required>
+										<label  class="control-label" for="subject.applicableas">Applicable As</label> 
+										<input type="text" class="form-control" name="subject.applicableas" id="subject.applicableas"  ng-model="subject.applicableas" class="input-search" list="subjecttypelist" required>
 												<datalist id="subjecttypelist">
 												<option ng-repeat="subjecttype in subjecttypelist"   value="{{subjecttype.name}}">
 												</option>
@@ -1648,7 +1648,7 @@
 						</form>
 				</div>
 					<div class="modal-footer">
-							<button type="submit" id="usersearch" class="btn btn-default" ng-click="operationSubjectDetail()"
+							<button type="submit" id="addnewsubject" class="btn btn-default" ng-click="operationSubjectDetail()"
 								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
@@ -1656,10 +1656,9 @@
 			</div>
 			</div>
 		</div><!---End of Modal Subject Add Details-->
-		
-		
-		
-		<!---Modal Classes Add Details-->
+     
+	 
+	 	<!---Modal Classes Add Details-->
 		<div id="classsetupmodal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -1701,10 +1700,9 @@
 						</div>
 			</div>
 			</div>
-		</div><!---End of Modal Subject Add Details-->
+		</div><!---End of Modal Classes setup Details-->
 
-
-      <!---Modal Class-subject Setup Details-->
+		  <!---Modal Class-subject Setup Details-->
 		<div id="classsubjectdetailsmodal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -1729,13 +1727,11 @@
 										</div>
 										<div class="form-group" show-errors='{showSuccess: true}'>
 										<label  class="control-label" for="classsubject.compulsorysubject">Compulsory Subject</label> 
-										<multiple-autocomplete ng-model="classsubject.compsubjectlist"  object-property="name"  suggestions-arr="compsubjectlist">
-                                        </multiple-autocomplete>
+										
 										</div>
 									<div class="form-group" show-errors='{showSuccess: true}'>
 										<label  class="control-label" for="classsubject.optsubjectlist">Optional Subject</label> 
-										<multiple-autocomplete ng-model="optsubjectlist"  object-property="name"  suggestions-arr="optsubjectlist">
-                                        </multiple-autocomplete>
+										
 										</div>
 									<div class="form-group" show-errors='{showSuccess: true}'>
 										<label  class="control-label" for="classsubject.applicableyear">Applicable Year</label> 
@@ -1768,7 +1764,8 @@
 		</div><!---End of Modal Class subject Setup Details-->		
 		
 		
-				<!---Modal Subject Add Details-->
+		
+						<!---Modal Export Details Details-->
 		<div id="exportdatamodal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -1778,7 +1775,8 @@
 						</div>
 						<div class="modal-body">
 						 <form id="exportreportform"  novalidate>
-								<div class="col-md-6">
+								<div class="col-md-12">
+								<div class="col-md-5">
 										<div class="form-group" show-errors='{showSuccess: true}'>
 										<label  class="control-label" for="exportdata.reporttype">Report Type</label> 
 											<input type="text" name="exportdata.reporttype" id="exportdata.reporttype"
@@ -1788,33 +1786,95 @@
 														<option>Attendance</option>
 													</datalist>
 										</div>
-										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="exportdata.applicableto">Applicable To</label> 
-											<input type="text" name="exportdata.applicableto" id="exportdata.applicableto"
-												class="form-control" ng-model="exportdata.applicableto"
-												placeholder="Applicable For" required list="exportapplicablelist">
-												<datalist id="exportapplicablelist">
-														<option>Class</option>
-														<option>Section</option>
-														<option>Student</option>
-														<option>Employee</option>
-														<option>Subject</option>
-														<option>All</option>
-													</datalist>
 										</div>
+										<div class="col-md-6">
 										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="exportdata.applicableid">Unique Id</label> 
-											<input type="text" name="exportdata.applicableid" id="exportdata.applicableid"
-												class="form-control" ng-model="exportdata.applicableid"
-												placeholder="Unique Id" required>
-										</div>
-										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="exportdata.exportfor">Export For</label> 
+										<label  class="control-label" for="exportdata.exportfor">Report Name</label> 
 											<input type="text" name="exportdata.exportfor" id="exportdata.exportfor"
 												class="form-control" ng-model="exportdata.exportfor"
-												placeholder="Export For" required>
+												placeholder="Report Name" required>
 										</div>
+										</div>
+										<div class="col-md-8">
 										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="exportdata.applicableto">Report For</label> 
+											<input type="text" name="exportdata.datefor" id="exportdata.datefor"
+												class="form-control" ng-model="exportdata.datefor"
+												placeholder="Report For" required list="reportdatelist">
+												<datalist id="reportdatelist">
+														<option>Last 1 Week</option>
+														<option>Last 2 Week</option>
+														<option>Last 1 Month</option>
+														<option>Last 2 Month</option>
+														<option>Last 3 Month</option>
+														<option>Last 6 Month</option>
+													</datalist>
+									</div>
+									<label  class="control-label pull-right">( OR )</label> 
+									</div>
+								
+									<div class="col-md-6">
+											<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="exportdata.reporttype">From Date</label> 
+										<input type="Date" class="form-control" id="exportdata.fromdate" ng-model="exportdata.fromdate"
+										       placeholder="From Date" name="exportdata.fromdate"> 
+										</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="exportdata.reporttype">To Date</label> 
+										<input type="Date" class="form-control" id="exportdata.todate" ng-model="exportdata.todate"
+										       placeholder="From Date" name="exportdata.todate"> 
+										</div>
+									</div>	
+									<div class="col-md-8">
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="exportdata.applicableto">Applicable To</label> 
+										<label><input type="radio" name="exportdata.applicabletoclass"  ng-model="exportdata.applicableto" value="Class" ng-required="true"/> Class </label>
+										<label><input type="radio" name="exportdata.applicabletostudent"  ng-model="exportdata.applicableto" value="Student" ng-required="true"/> Student </label>
+										<label><input type="radio" name="exportdata.applicabletoall"  ng-model="exportdata.applicableto" value="All" ng-required="true"/> All </label>
+										</div>
+								   </div>
+										
+										
+										<div class="form-group"  ng-show="isReportExportApplicable('Class')">
+										<div class="col-md-5">
+										<label  class="control-label" for="exportdata.applicableid">Class Name</label> 
+											<input type="text" name="exportdata.classid" id="exportdata.classid"
+												class="form-control" ng-model="exportdata.classid"
+												placeholder="Class Name" required list="classlist">
+													<datalist id="classlist">
+														<option>Class I</option>
+														<option>Class II</option>
+														<option>Class III</option>
+														<option>All</option>
+													</datalist>
+										</div>	
+										<div class="col-md-6">
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="exportdata.applicableclasssection">Section Name</label> 
+											<input type="text" name="exportdata.applicableclasssection" id="exportdata.applicableclasssection"
+												class="form-control" ng-model="exportdata.applicableclasssection"
+												placeholder="Applicable For" required list="sectionlist">
+												<datalist id="sectionlist">
+														<option>Section A</option>
+														<option>Section B</option>
+														<option>All</option>
+													</datalist>
+									       </div>
+										</div>
+										</div>
+										<div class="form-group" show-errors='{showSuccess: true}' ng-show="isReportExportApplicable('Student')">
+										<div class="col-md-7">
+										<label  class="control-label" for="exportdata.applicableid">Card Id/Mobile Number</label> 
+											<input type="text" name="exportdata.applicableid" id="exportdata.applicableid"
+												class="form-control" ng-model="exportdata.applicableid"
+												placeholder="Card Id / Mobile Number" required>
+										</div>
+										</div>
+									
+										<div class="form-group" show-errors='{showSuccess: true}'>
+											<div class="col-md-6">
 										<label  class="control-label" for="exportdata.exporttype">Export Type</label> 
 											<input type="text" name="exportdata.exporttype" id="exportdata.exporttype"
 												class="form-control" ng-model="exportdata.exporttype"
@@ -1822,10 +1882,10 @@
 												<datalist id="reportapplicablelist">
 														<option>CSV</option>
 														<option>XLS</option>
-														<option>GRAPH</option>
-														<option>PDF</option>
 													</datalist>
 										</div>
+										</div>
+										
 						</div>
 						</form>
 				</div>
@@ -1838,7 +1898,7 @@
 			</div>
 			</div>
 			
-		</div><!---End of Modal Subject Add Details-->
+		</div><!---End of Modal Export details-->
 			
 		
 	</div>
