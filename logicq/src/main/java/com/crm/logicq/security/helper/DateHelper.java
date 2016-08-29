@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.hsqldb.lib.StringUtil;
 import org.joda.time.DateTime;
@@ -12,7 +13,7 @@ import org.joda.time.DateTime;
 public class DateHelper {
 	
 	private static  DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-	
+	private static  SimpleDateFormat sdfwithhourandmin = new SimpleDateFormat("HHmm");
 	public static String convertDatetoString(Date inputdate){
 		return dateFormat.format(inputdate);
 	}
@@ -105,4 +106,14 @@ public class DateHelper {
 		
 		return simpledate;
 	}	
+	
+	public static TimeZone getDefaultTimeZone(){
+		return  TimeZone.getTimeZone("Asia/Kolkata");
+	}
+
+	public static SimpleDateFormat getTimeFormatWithDefaultTimeZone() {
+		sdfwithhourandmin.setTimeZone(getDefaultTimeZone());
+		return sdfwithhourandmin;
+	}
+	
 }

@@ -8,9 +8,9 @@
    angular.module('crmlogicq', ['ui.bootstrap','zingchart-angularjs','ui.router','multipleSelect','checklist-model','ngStorage'
   ]).constant('AppConstants', {
 	  'hostName':'http://127.0.0.1:', 
-	  //'hostName':'http://45.113.136.152:',
+	 //'hostName':'http://45.113.136.152:',
 	  'hostPort': '8090' ,
-	  //'hostPort': '8059' ,
+	 // 'hostPort': '8059' ,
 	   'applicationName' : '/crmlogicq' ,
 	   'get' : 'GET' ,  
 	   'post' : 'POST' , 
@@ -56,6 +56,10 @@
 	   'getNotificationDetailsForEntityURL':'/api/admin/notification/getNotificationDetailsForEntity',
 	   
 	   'getDownloadAttendaceReportURL':'/api/admin/report/downloadAttendanceReport',
+	   
+	   'saveSubjectDetailsURL':'/api/admin/classessetup/saveSubject',
+	   'deleteExistingSubjectURL':'/api/admin/classessetup/deleteSubject',
+	   'getAllSubjectDetailsURL':'/api/admin/classessetup/getSubjectList',
 	   
 	   
 

@@ -29,6 +29,6 @@ public interface IClassesSetupService {
 
 	public void saveClassesSubjectDetails(ClassSubjectSetup classssubject) throws Exception;
 
-	public void deleteClassesSubjectDetails(ClassSetup classsetupdetails) throws Exception;
+	public void deleteClassesSubjectDetails(ClassSubjectSetup classsetupdetails) throws Exception;
 
 }

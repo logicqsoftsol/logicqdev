@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.crm.logicq.common.AbstractDAO;
 import com.crm.logicq.dao.subject.ISubjectDAO;
 import com.crm.logicq.model.classsetup.Subject;
+import com.crm.logicq.model.event.EventDetails;
 import com.crm.logicq.vo.classessetup.ClassSetupCriteria;
 
 @Repository
@@ -14,8 +15,12 @@ public class SubjectDAO  extends AbstractDAO<Subject> implements ISubjectDAO{
 
 	@Override
 	public List<Subject> getSubjectDetails(ClassSetupCriteria subjectcriteria) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder  selectquery= new StringBuilder(" from Subject");
+		if (1 == subjectcriteria.getPagenumber()) {
+			Long recordcount=getRecordCount(Subject.class);
+			subjectcriteria.setTotalrecordcount(recordcount.intValue());
+		}
+		return executeQueryWithPagination(selectquery.toString(), subjectcriteria.getPagenumber(), subjectcriteria.getPagesize());
 	}
 
 	@Override
