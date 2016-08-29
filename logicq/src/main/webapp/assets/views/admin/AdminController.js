@@ -942,15 +942,7 @@
 										  $scope.subject={};
 										  $scope.subject.currentPage='';
 										  
-										  $scope.subjectlist=[
-										                      {id: 1,  name : "History"},
-										                      {id: 2,  name : "Math"},
-										                      {id: 3,  name : "Oriya"},
-										                      {id: 4,  name : "English"},
-										                      {id: 5,  name : "Hindi"},
-										                      {id: 5,  name : "Science"},
-										                      {id: 5,  name : "Drawing"}
-										                    ];
+										  $scope.subjectlist=[];
 								
 											 $scope.getSubjectListAccordingToPage=function(page){
 												 $scope.notisendsetup.currentPage=page;

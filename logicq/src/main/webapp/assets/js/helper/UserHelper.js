@@ -252,11 +252,12 @@
 				},	
 					
 
+				
 				setRowForSubjectSetup: function ($scope,data) {
 					$scope.subject.subjectid=data.subjectid;
 					$scope.subject.name=data.name;
-					$scope.subject.sname=data.sname;
-					$scope.subject.applicableas=data.applicableas;
+					$scope.subject.sname=data.shortname;
+					$scope.subject.applicableas=data.type;
 				},
 				
 				setSubjectDetails: function ($scope) {
@@ -264,7 +265,7 @@
 							subjectid:$scope.subject.subjectid,
 							name:$scope.subject.name,
 							shortname:$scope.subject.sname,
-							type:$scope.$scope.subject.applicableas,
+							type:$scope.subject.applicableas,
 					};
 					},
 					

@@ -5,13 +5,13 @@
 
 		return {
 
-			saveSubjectDetails:function ($scope){
+			saveSubjectDetails:function (request){
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveSubjectDetailsURL;
-				return  $http.post(url,request)
+				return  $http.post(url,request.subject)
 			},
 			deleteExistingSubject: function (request) {
 				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteExistingSubjectURL;
-				return  $http.post(url,request)
+				return  $http.post(url,request.subject)
 
 			}, 
 		getAllSubjectDetails: function ($scope) {
