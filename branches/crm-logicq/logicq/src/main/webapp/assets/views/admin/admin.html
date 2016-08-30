@@ -40,7 +40,7 @@
 				</a>
 					<ul class="treeview-menu">
 					<li ng-class="{active:display == 6}"><a href=""
-							id="dashborad" ng-click="display = 6;displayDashBoard();getAllCalendarDetailsForDashBoard()" ng-init="displayDashBoard();getAllCalendarDetails()"><i class="fa fa-dashboard"></i>Your Dashboard</a></li>
+							id="dashborad" ng-click="display = 6;displayDashBoard();getAllCalendarDetailsForDashBoard()" ng-init="displayDashBoard();getAllCalendarDetailsForDashBoard()"><i class="fa fa-dashboard"></i>Your Dashboard</a></li>
 						<li ng-class="{active:display == 7}"><a href=""
 							id="classessetup" ng-click="display = 7"><i class="fa fa-sitemap"></i>Setup Classes</a>
 						</li>
@@ -280,8 +280,8 @@
 					<ul class="pull-right">
 						<button id="setupnewclass" data-toggle="modal" 
 									data-target="#classsubjectdetailsmodal" 
-									class="btn btn-default fa fa-plus-circle" ng-click="addclassetupgSetup()">Classes Setup</button>
-						<button id="classsetupsearch" data-toggle="modal" data-target="#classsubjectdetailsmodal" ng-click="searchNotificationSendingSetup()"
+									class="btn btn-default fa fa-plus-circle" ng-click="setupClassSubject()">Classes Setup</button>
+						<button id="classsetupsearch" data-toggle="modal" data-target="#classsubjectdetailsmodal" ng-click="searchClassSubject()"
 									class="btn btn-default fa fa-search">Search</button>
                          </ul>			
 							<table class="table table-bordered table-fixed table-hover">
@@ -292,14 +292,14 @@
 								<th>OPTIONAL SUBJECT</t>
 								<th>APPLICABLE YEAR</t>
 							</tr>
-							<tr ng-repeat="classssub in classsubdetails">
+							<tr ng-repeat="classssub in classsubjectlist">
 								<td>{{classssub.classname}}</td>
 								<td>{{classssub.sectionname}}</td>
 								<td>{{classssub.compulsorysubject}}</td>
 								<td>{{classssub.optionalsubject}}</td>
 								<td>{{classssub.applicableyear}}</td>
-								<td><a id="classetupupdate" data-toggle="modal" data-target="#classsubjectdetailsmodal" ng-click="updateClassesSubjectSetup(classssub)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
-								<td><a id="deletenotitempsetup" data-toggle="modal" data-target="#classsubjectdetailsmodal"  ng-click="deleteClassSubjectSetup(classssub)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+								<td><a id="classetupupdate" data-toggle="modal" data-target="#classsubjectdetailsmodal" ng-click="editClassSubjectSetup(classssub)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+								<td><a id="deletenotitempsetup" data-toggle="modal" data-target="#classsubjectdetailsmodal"  ng-click="pouplateClassSubjectForDelete(classssub)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 							</tr>
 						</table>
 					</div>
@@ -1708,7 +1708,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">{{classoperation}} Class Setup Details</h4>	
+										<h4 class="modal-title">{{classessubjectoperation}} Class Subject Setup Details</h4>	
 						</div>
 						<div class="modal-body">
 						 <form id="classsubjectform"  novalidate>
@@ -1726,12 +1726,12 @@
 												placeholder="Class Section Name" required>
 										</div>
 										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="classsubject.compulsorysubject">Compulsory Subject</label> 
-										
+										<label  class="control-label" for="classsubject.compulsorysubject">Selected Compulsory Subject : {{selectedcompsub}}</label> 
+										<multiselect class="input-xlarge" multiple="true"  ng-model="selectedcompsubject" options="compsubject.name for compsubject in compsubjectlist"  change="selected()" ></multiselect>
 										</div>
 									<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="classsubject.optsubjectlist">Optional Subject</label> 
-										
+										<label  class="control-label" for="classsubject.optsubjectlist">Selected Optional Subject : {{selectedoptsub}}</label> 
+										<multiselect class="input-xlarge" multiple="true"  ng-model="selectedoptionalsubject" options="optsubject.name for optsubject in optionalsubjectlist"  change="selected()" ></multiselect>
 										</div>
 									<div class="form-group" show-errors='{showSuccess: true}'>
 										<label  class="control-label" for="classsubject.applicableyear">Applicable Year</label> 
@@ -1893,6 +1893,17 @@
 							<button type="submit" id="usersearch" class="btn btn-default" ng-click="downloadAttendaceReport()"
 								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
 							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+			</div>
+			</div>
+			
+		</div><!---End of Modal Export details-->
+			
+		
+	</div>
+
+</div>					<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
 						</div>
 			</div>

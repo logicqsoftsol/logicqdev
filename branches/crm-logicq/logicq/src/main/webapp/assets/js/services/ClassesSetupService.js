@@ -22,6 +22,14 @@
 				data : ''
 			})
 		},
+		getAllSubjectList: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllSubjectListURL,
+				dataType :'json',
+				data : ''
+			})
+		},
 	
 		
 		}
