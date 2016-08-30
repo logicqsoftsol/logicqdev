@@ -1,5 +1,6 @@
 package com.crm.logicq.controller.admin.classessetup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ import com.crm.logicq.vo.classessetup.SubjectVO;
 @RequestMapping("/api/admin/classessetup")
 public class ClassesSetupController {
 
+	private static final String SUBJECTOPTIONAL = "OPTIONAL";
+	private static final String SUBJECTCOMPULSORY = "COMPULSORY";
 	@Autowired
 	IClassesSetupService classessetupservices;
 /**
@@ -88,7 +91,7 @@ public class ClassesSetupController {
  * @return
  */
 	@RequestMapping(value = "/getSubjectList/{pagesize}/{pageno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SubjectVO> getNotificationTemplates(@PathVariable int pagesize,@PathVariable int pageno) {
+	public ResponseEntity<SubjectVO> getSubjectList(@PathVariable int pagesize,@PathVariable int pageno) {
 		SubjectVO subjectvo=new SubjectVO();
 		try {
 			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
@@ -103,6 +106,41 @@ public class ClassesSetupController {
 		
 		return new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.OK);
 	}
+	
+	
+	/**
+	 * 
+	 * @param pagesize
+	 * @param pageno
+	 * @return
+	 */
+		@RequestMapping(value = "/getAllSubjectList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<SubjectVO> getAllSubjectList() {
+		SubjectVO subjectvo = new SubjectVO();
+		try {
+			List<Subject> complsorysubjectlist = new ArrayList<Subject>();
+			List<Subject> optionalsubjectlist = new ArrayList<Subject>();
+			List<Subject> subjectlist = classessetupservices.getAllSubjectDetails();
+			for (Subject subject : subjectlist) {
+				if (SUBJECTCOMPULSORY.equals(subject.getType())) {
+					complsorysubjectlist.add(subject);
+				} else if (SUBJECTOPTIONAL.equals(subject.getType())) {
+					optionalsubjectlist.add(subject);
+				} else {
+					complsorysubjectlist.add(subject);
+					optionalsubjectlist.add(subject);
+				}
+			}
+			subjectvo.setComplsorysubjectlist(complsorysubjectlist);
+			subjectvo.setOptionalsubjectlist(optionalsubjectlist);
+		} catch (Exception e) {
+			return new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<SubjectVO>(subjectvo, HttpStatus.OK);
+		}
+	
+	
 /**
  * 
  * @param classsetup

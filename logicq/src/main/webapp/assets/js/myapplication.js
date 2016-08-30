@@ -5,7 +5,7 @@
 (function () {
     'use strict';
     
-   angular.module('crmlogicq', ['ui.bootstrap','zingchart-angularjs','ui.router','multipleSelect','checklist-model','ngStorage'
+   angular.module('crmlogicq', ['ui.bootstrap','zingchart-angularjs','ui.router','ui.multiselect','checklist-model','ngStorage'
   ]).constant('AppConstants', {
 	  'hostName':'http://127.0.0.1:', 
 	 //'hostName':'http://45.113.136.152:',
@@ -60,6 +60,8 @@
 	   'saveSubjectDetailsURL':'/api/admin/classessetup/saveSubject',
 	   'deleteExistingSubjectURL':'/api/admin/classessetup/deleteSubject',
 	   'getAllSubjectDetailsURL':'/api/admin/classessetup/getSubjectList',
+	   'getAllSubjectListURL':'/api/admin/classessetup/getAllSubjectList',
+	   
 	   
 	   
 

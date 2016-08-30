@@ -51,6 +51,15 @@ public class ClassesSetupServiceImpl implements IClassesSetupService{
 		subjectdao.deleteSubject(subjectdetails);
 	}
 
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
+	public List<Subject> getAllSubjectDetails() throws Exception {
+		return subjectdao.getAllSubjectDetails();
+	}
+
+	
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
@@ -96,4 +105,5 @@ public class ClassesSetupServiceImpl implements IClassesSetupService{
 		classsubjectdao.deleteClassesSubjectDetails(classsetupdetails);
 	}
 
+	
 }

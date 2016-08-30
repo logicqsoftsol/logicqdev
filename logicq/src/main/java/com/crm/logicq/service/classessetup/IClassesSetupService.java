@@ -17,6 +17,8 @@ public interface IClassesSetupService {
 
 	public void deleteSubject(Subject subjectdetails) throws Exception;
 	
+	public List<Subject> getAllSubjectDetails() throws Exception;
+	
 	
 	public List<ClassSetup> getClassesDetails(ClassSetupCriteria classcriteria) throws Exception;
 

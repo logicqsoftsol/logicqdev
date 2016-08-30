@@ -34,4 +34,9 @@ public class SubjectDAO  extends AbstractDAO<Subject> implements ISubjectDAO{
 		delete(subjectdetails);
 	}
 
+	@Override
+	public List<Subject> getAllSubjectDetails() throws Exception {
+		return (List<Subject>) loadClass(Subject.class);
+	}
+
 }

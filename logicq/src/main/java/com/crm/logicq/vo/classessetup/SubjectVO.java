@@ -14,6 +14,9 @@ public class SubjectVO implements Serializable{
 	
 	private List<Subject> subjectlist;
 	private ClassSetupCriteria subjectcriteria;
+	private List<Subject> complsorysubjectlist;
+	private List<Subject> optionalsubjectlist;
+	
 	public List<Subject> getSubjectlist() {
 		return subjectlist;
 	}
@@ -26,9 +29,23 @@ public class SubjectVO implements Serializable{
 	public void setSubjectcriteria(ClassSetupCriteria subjectcriteria) {
 		this.subjectcriteria = subjectcriteria;
 	}
+	public List<Subject> getComplsorysubjectlist() {
+		return complsorysubjectlist;
+	}
+	public void setComplsorysubjectlist(List<Subject> complsorysubjectlist) {
+		this.complsorysubjectlist = complsorysubjectlist;
+	}
+	public List<Subject> getOptionalsubjectlist() {
+		return optionalsubjectlist;
+	}
+	public void setOptionalsubjectlist(List<Subject> optionalsubjectlist) {
+		this.optionalsubjectlist = optionalsubjectlist;
+	}
 	@Override
 	public String toString() {
-		return "SubjectVO [subjectlist=" + subjectlist + ", subjectcriteria=" + subjectcriteria + "]";
+		return "SubjectVO [subjectlist=" + subjectlist + ", subjectcriteria=" + subjectcriteria
+				+ ", complsorysubjectlist=" + complsorysubjectlist + ", optionalsubjectlist=" + optionalsubjectlist
+				+ "]";
 	}
 
 

@@ -13,5 +13,7 @@ public interface ISubjectDAO {
 
 	public void deleteSubject(Subject subjectdetails) throws Exception;
 	
+	public List<Subject> getAllSubjectDetails() throws Exception;
+	
 
 }
