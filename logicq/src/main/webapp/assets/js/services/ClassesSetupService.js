@@ -31,6 +31,25 @@
 			})
 		},
 	
+	
+	
+			saveClassSetupDetails:function (request){
+				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveClassSetupDetailsURL;
+				return  $http.post(url,request.classsetup)
+			},
+			deleteClassSetupDetails: function (request) {
+				var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.deleteClassSetupDetailsURL;
+				return  $http.post(url,request.classsetup)
+
+			}, 
+		getClassesSetupDetails: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getClassesSetupDetailsURL,
+				dataType :'json',
+				data : ''
+			})
+		},
 		
 		}
 }]);

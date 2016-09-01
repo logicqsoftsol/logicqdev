@@ -62,6 +62,10 @@
 	   'getAllSubjectDetailsURL':'/api/admin/classessetup/getSubjectList',
 	   'getAllSubjectListURL':'/api/admin/classessetup/getAllSubjectList',
 	   
+	    'saveClassSetupDetailsURL':'/api/admin/classessetup/saveClassSetup',
+	   'deleteClassSetupDetailsURL':'/api/admin/classessetup/deleteClassesSetup',
+	   'getClassesSetupDetailsURL':'/api/admin/classessetup/getClassesSetup',
+	   
 	   
 	   
 

@@ -146,7 +146,7 @@ public class ClassesSetupController {
  * @param classsetup
  * @return
  */
-	@RequestMapping(value = "/saveClass", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/saveClassSetup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ClassSetupVO> saveNotificationTemplateSetup(
 			@RequestBody ClassSetup classsetup) {
 		ClassSetupVO classsetupvo=new ClassSetupVO();
@@ -161,7 +161,7 @@ public class ClassesSetupController {
 			classsetupcriteria.setPagesize(15);
 			List<ClassSetup> classlist=classessetupservices.getClassesDetails(classsetupcriteria);
 			classsetupvo.setClasssetupcriteria(classsetupcriteria);
-			classsetupvo.setClasssetup(classlist);
+			classsetupvo.setClassessetup(classlist);
 		} catch (Exception e) {
 			return	new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -188,7 +188,7 @@ public class ClassesSetupController {
 			classsetupcriteria.setPagesize(15);
 			List<ClassSetup> classlist=classessetupservices.getClassesDetails(classsetupcriteria);
 			classsetupvo.setClasssetupcriteria(classsetupcriteria);
-			classsetupvo.setClasssetup(classlist);
+			classsetupvo.setClassessetup(classlist);
 		} catch (Exception e) {
 			return	new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -201,7 +201,7 @@ public class ClassesSetupController {
  * @param pageno
  * @return
  */
-	@RequestMapping(value = "/getClasseslist/{pagesize}/{pageno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/getClassesSetup/{pagesize}/{pageno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ClassSetupVO> getClassesSetupDetails(@PathVariable int pagesize,@PathVariable int pageno) {
 		ClassSetupVO classsetupvo=new ClassSetupVO();
 		try {
@@ -209,7 +209,7 @@ public class ClassesSetupController {
 			classsetupcriteria.setPagenumber(pageno);
 			classsetupcriteria.setPagesize(pagesize);
 			List<ClassSetup> classsetuplist = classessetupservices.getClassesDetails(classsetupcriteria);
-			classsetupvo.setClasssetup(classsetuplist);
+			classsetupvo.setClassessetup(classsetuplist);
 			classsetupvo.setClasssetupcriteria(classsetupcriteria);
 		} catch (Exception e) {
 			return	new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);

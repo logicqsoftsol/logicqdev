@@ -52,29 +52,35 @@
 		  {id:7, name:'EMPLOYEE(permanent)'},
 		  {id:8, name:'EMPLOYEE(contract)'},
 		  {id:9, name:'GUARDIAN'}];
-		$scope.classlist=[
-		         		  {id:1, name:'STD 1'},
-		         		  {id:2, name:'STD 2'},
-		                   {id:3, name:'STD 3'},
-		         		  {id:4, name:'STD 4'},
-		                   {id:5, name:'STD 5'},
-		                   {id:6, name:'STD 6'},
-		         		  {id:7, name:'STD 7'},
-		         		  {id:8, name:'STD 8'},
-		         		  {id:9, name:'STD 9'},
-		         		 {id:9, name:'STD 10'},
-		         		 { id:9, name:'STD 11'},
-		         		 { id:9, name:'STD 12'}];
-		$scope.sectionlist=[
-		         		  {id:1, value:'A'},
-		         		  {id:2, value:'B'},
-		                   {id:3, value:'C'},
-		         		  {id:4, value:'D'}];
+		$scope.classtypelist=[
+		         		  {id:1, name:'STANDARD ONE(1)'},
+		         		  {id:2, name:'STANDARD TWO(2)'},
+		                   {id:3, name:'STANDARD THREE(3)'},
+		         		  {id:4, name:'STANDARD FOUR(4)'},
+		                   {id:5, name:'STANDARD FIVE(5)'},
+		                   {id:6, name:'STANDARD SIX(6)'},
+		         		  {id:7, name:'STANDARD SEVEN(7)'},
+		         		  {id:8, name:'STANDARD EIGHT(8)'},
+		         		  {id:9, name:'STANDARD NINE(9)'},
+		         		 {id:9, name:'STANDARD TEN(10)'},
+		         		 { id:9, name:'STANDARD ELEVEN(11)'},
+		         		 { id:9, name:'STANDARD TWELVE(12)'}];
+		$scope.sectiontypelist=[
+		         		  {id:1, name:'A'},
+		         		  {id:2, name:'B'},
+		                   {id:3, name:'C'},
+		         		  {id:4, name:'D'}];
 		
 		$scope.subjecttypelist=[
 		         		  {id:1, name:'ALL'},
 		         		  {id:2, name:'COMPULSORY'},
 		                   {id:3, name:'OPTIONAL'}];
+      $scope.classshiftlist=[
+		         		  {id:1, name:'Morning(7.00 AM-12.00 AM)'},
+		         		  {id:2, name:'Regular(10.00 AM-4.00 PM)'},
+		                   {id:3, name:'After-Noon(11.30 AM-5.30 PM)'},
+						   {id:4, name:'Evening(3.00 PM-7.00 PM )'},
+						   {id:5, name:'Night(6.00 PM-9.00 PM)'}];
 
 		$scope.attendancecriteria={};
 		$scope.studentattendace={};
@@ -943,7 +949,7 @@
 										  $scope.subject.currentPage='';
 										  
 										  $scope.subjectlist=[];
-								
+								          $scope.subject.numPages='';
 											 $scope.getSubjectListAccordingToPage=function(page){
 												 $scope.notisendsetup.currentPage=page;
 											    
@@ -1036,20 +1042,112 @@
 											  
 											
 											 /*Classes  Details **/		
-											$scope.classes={};
-											$scope.classes.currentPage='';
-											$scope.classeslist={};
+											$scope.classsetup={};
+											$scope.classsetup.currentPage='';
+											$scope.classtuplist={};
+											$scope.classopertaion='';
+											$scope.classsetup.classid='';
+											$scope.classsetup.totalrecordcount='';
+											$scope.classsetup.numPages='';
 											 $scope.getClassesDetailsAccordingToPage=function(page){
 												 $scope.notisendsetup.currentPage=page;
 											    
 											};	
+
+											
+										    $scope.searchClasses =function(){
+												  $scope.classopertaion='Looking for Existing';
+												  $scope.operationtype='';
+											  };
+											  
+											$scope.addNewClass=function(){
+													$scope.classopertaion='Add new ';
+	                                                $scope.operationtype='+';
+													$scope.classsetup={};
+													$scope.classsetup.classid='';
+											  };
+											  
+											  $scope.editExistingClass =function(classrow){
+												  $scope.classopertaion='Modify Existing';
+												    $scope.operationtype='*';
+													UserHelper.setRowForClassSetup($scope,classrow);
+											  };
+											 
+											  $scope.pouplateExistingClassForDelete =function(classrow){
+												  $scope.classopertaion='Are you sure want to delete this ';
+												  $scope.operationtype='-';
+												  UserHelper.setRowForClassSetup($scope,classrow);
+											  };
+											  
+											    /*Set Classes Setup  details operation**/
+											  $scope.operationClassSetupDetail=function(){
+												 
+														var operation=$scope.operationtype;
+															if ('+'==operation) {
+																  UserHelper.setClassDetails($scope);
+																ClassesSetupService.saveClassSetupDetails($scope.request)
+																.success(function(data, status) {
+																	$scope.classtuplist=data.classessetup;
+																	if(null==$scope.classsetup.totalrecordcount){
+																		 $scope.classsetup.totalrecordcount=data.classsetupcriteria.totalrecordcount;
+																		 }
+																	 $scope.classsetup.numPages= Math.ceil($scope.classsetup.totalrecordcount/$scope.subject.pageSize);
+																	 $scope.numPages=$scope.classsetup.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'Class Setup Added Sucessfully '+$scope.createmsg});
+																}).error(function(data, status) {
+																	var errormsg='Unable to Save Class Setup Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	   $exceptionHandler(errormsg);
+																});
+																
+															}
+															else if('*'===operation){
+																UserHelper.setClassDetails($scope);
+																ClassesSetupService.saveClassSetupDetails($scope.request)
+																.success(function(data, status) {
+																	$scope.classtuplist=data.classessetup;
+																	if(null==$scope.classsetup.totalrecordcount){
+																		 $scope.classsetup.totalrecordcount=data.classsetupcriteria.totalrecordcount;
+																		 }
+																	 $scope.classsetup.numPages= Math.ceil($scope.classsetup.totalrecordcount/$scope.subject.pageSize);
+																	 $scope.numPages=$scope.classsetup.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'Class Setup Modified Sucessfully '+$scope.createmsg});
+																}).error(function(data, status) {
+																	var errormsg='Unable to Modify Class Setup Details  Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	   $exceptionHandler(errormsg);
+																});
+															}
+															else if('-'==operation){
+																UserHelper.setClassDetails($scope);
+																ClassesSetupService.deleteClassSetupDetails($scope.request)
+																.success(function(data, status) {
+																	$scope.classtuplist=data.classessetup;
+																	if(null==$scope.classsetup.totalrecordcount){
+																		 $scope.classsetup.totalrecordcount=data.classsetupcriteria.totalrecordcount;
+																		 }
+																	 $scope.classsetup.numPages= Math.ceil($scope.classsetup.totalrecordcount/$scope.subject.pageSize);
+																	 $scope.numPages=$scope.classsetup.numPages;
+																	 $rootScope.$emit("callAddAlert", {type:'success',msg:'Class Setup Deleted Sucessfully '+$scope.createmsg});
+																}).error(function(data, status) {
+																	var errormsg='Unable to Delete Class Setup Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	   $exceptionHandler(errormsg);
+																});
+															}
+												  
+											  };
+											  
+											  
+											
+											  
 											
 											 /*Classes-Subject Details **/		
 											  $scope.applicableyearlist=[
 													                      {id: 1,  year : "Current"},
-													                      {id: 2,  name : "All"},
-													                      {id: 3,  name : "Next 2 years"},
-													                      {id: 4,  name : "Next 5 years"}
+													                      {id: 2,  year : "All"},
+													                      {id: 3,  year : "Next 2 years"},
+													                      {id: 4,  year : "Next 5 years"}
 													                    ];
 											$scope.classessubject={};
 											$scope.classessubject.currentPage='';

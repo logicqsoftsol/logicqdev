@@ -260,12 +260,35 @@
 					$scope.subject.applicableas=data.type;
 				},
 				
+				
 				setSubjectDetails: function ($scope) {
 					return $scope.request.subject={
 							subjectid:$scope.subject.subjectid,
 							name:$scope.subject.name,
 							shortname:$scope.subject.sname,
 							type:$scope.subject.applicableas,
+					};
+					},
+					
+					
+				setRowForClassSetup: function ($scope,data) {
+					$scope.classsetup.classid=data.classid;
+					$scope.classsetup.classname=data.classname;
+					$scope.classsetup.classtype=data.classtype;
+					$scope.classsetup.sectionname=data.sectionname;
+					$scope.classsetup.sectiontype=data.sectiontype;
+					$scope.classsetup.classshift=data.classshift;
+					$scope.classsetup.totalstrength=data.totalstrength;
+				},	
+				setClassDetails: function ($scope) {
+					return $scope.request.classsetup={
+							classid:$scope.classsetup.classid,
+							classname:$scope.classsetup.classname,
+							classtype:$scope.classsetup.classtype,
+							sectionname:$scope.classsetup.sectionname,
+							sectiontype:$scope.classsetup.sectiontype,
+							classshift:$scope.classsetup.classshift,
+							totalstrength:$scope.classsetup.totalstrength,
 					};
 					},
 					

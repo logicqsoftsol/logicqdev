@@ -12,15 +12,16 @@ public class ClassSetupVO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -3666414918080005483L;
-	private List<ClassSetup> classsetup;
+	private List<ClassSetup> classessetup;
 	private ClassSetupCriteria classsetupcriteria;
 	
 	
-	public List<ClassSetup> getClasssetup() {
-		return classsetup;
+	
+	public List<ClassSetup> getClassessetup() {
+		return classessetup;
 	}
-	public void setClasssetup(List<ClassSetup> classsetup) {
-		this.classsetup = classsetup;
+	public void setClassessetup(List<ClassSetup> classessetup) {
+		this.classessetup = classessetup;
 	}
 	public ClassSetupCriteria getClasssetupcriteria() {
 		return classsetupcriteria;
