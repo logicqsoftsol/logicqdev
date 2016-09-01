@@ -101,9 +101,11 @@ public class CalendarController {
 		CalendarCriteria calendarcriteria=new CalendarCriteria();
 		calendarcriteria.setPagesize(1);
 		calendarcriteria.setPagenumber(8);
+		calendarcriteria.setLimitValue(5);
 		try {
 			Date converttodate = DateHelper.convertDateAccordingToString(criteriadate);
-			calendarcriteria.setFromdate(new Date());
+			Date date = DateHelper.convertTodayDatetoStringWituoutTime();
+			calendarcriteria.setFromdate(date);
 			calendarcriteria.setTodate(converttodate);
 			List<CalendarDetails>	calendardetailslist = calendarService.getAllEventCalendarDetails(calendarcriteria);
 			//calendardetailslist.forEach((calnder)->{
