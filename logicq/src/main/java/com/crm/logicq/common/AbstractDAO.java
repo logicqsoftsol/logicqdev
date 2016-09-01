@@ -172,6 +172,12 @@ public class AbstractDAO<T> {
 		return query.list();
 	}
 	
+	public List<T> executeQueryWithPaginationAndLimitation(String queryString,int pagenumber,int pagesize, int limitValue) {
+		Query query = getCurrentSession().createQuery(queryString);
+		query.setMaxResults(limitValue);
+		return query.list();
+	}
+	
 	public List<T> executeQuery(String query, Map<String, Object> paramMap) {
 		Query qry = getCurrentSession().createQuery(query);
 		bindParameters(qry, paramMap);
