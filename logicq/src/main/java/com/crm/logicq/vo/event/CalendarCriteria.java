@@ -14,7 +14,16 @@ public class CalendarCriteria extends CommonProperty implements Serializable {
 	
 	private Date todate;
 	private Date fromdate;
+	private int limitValue;
 	
+	
+	
+	public int getLimitValue() {
+		return limitValue;
+	}
+	public void setLimitValue(int limitValue) {
+		this.limitValue = limitValue;
+	}
 	public Date getTodate() {
 		return todate;
 	}
