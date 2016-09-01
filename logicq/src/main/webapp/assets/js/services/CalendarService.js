@@ -40,7 +40,7 @@
 			  getAllCalendarListForDashBoard: function ($scope) {
 					return  $http({
 						method: 'GET',
-						url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllCalendarDetailsURL+"/"+$scope.calendardashboard.criteriadate,
+						url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getDashBoardCalendarURL+"/"+$scope.calendardashboard.criteriadate,
 						dataType :'json',
 						data : ''
 					})
