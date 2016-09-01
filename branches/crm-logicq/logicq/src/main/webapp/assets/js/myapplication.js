@@ -28,7 +28,7 @@
 	   'saveEventDetailsURL':'/api/admin/calendar/event/saveEventDetails',
 	   'deleteEventDetailsURL':'/api/admin/calendar/event/deleteEventDetails',
 	   'getAllEventDetailsURL':'/api/admin/calendar/event/getAllEventDetails',
-	   
+	   'getDashBoardCalendarURL':'/api/admin/calendar/getAllCalendarListForDashBoard',
 	   
 	   'getAllCalendarDetailsURL':'/api/admin/calendar/getAllCalendarDetails',
 	   'getCalendarDetailsforCriteriaURL':'/api/admin/calendar/getCalendarDetailsforCriteria',
