@@ -31,73 +31,105 @@ public class ClassSetup implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long classid;
 
-    @Column(name = "NAME")
-    @NotNull
+    @Column(name = "CLASS_NAME")
     private String classname;
     
-    @Column(name = "SECTION")
-    private String section;
+    @Column(name = "CLASS_TYPE")
+    private String classtype;
+    
+    @Column(name = "SECTION_NAME")
+    private String sectionname;
+    
+    @Column(name = "SECTION_TYPE")
+    private String sectiontype;
+    
+    
+    @Column(name = "TOTAL_STRENGTH")
+    private String totalstrength;
+    
+    @Column(name = "CLASS_SHIFT")
+    private String classshift;
+    
     
     @ManyToMany(cascade = {CascadeType.ALL},fetch=FetchType.EAGER)
 	@JoinTable(name="CLASS_SUBJECT", 
 				joinColumns={@JoinColumn(name="CLASS_ID")}, 
 				inverseJoinColumns={@JoinColumn(name="SUB_ID")})
      private List<Subject> subjectlist;
-    
-    
-    @Column(name = "YEAR")
-    private Integer applicableyear;
-
 
 	public Long getClassid() {
 		return classid;
 	}
 
-
 	public void setClassid(Long classid) {
 		this.classid = classid;
 	}
-
 
 	public String getClassname() {
 		return classname;
 	}
 
-
 	public void setClassname(String classname) {
 		this.classname = classname;
 	}
 
+	public String getClasstype() {
+		return classtype;
+	}
 
-	public String getSection() {
-		return section;
+	public void setClasstype(String classtype) {
+		this.classtype = classtype;
 	}
 
 
-	public void setSection(String section) {
-		this.section = section;
+	public String getSectionname() {
+		return sectionname;
 	}
 
+	public void setSectionname(String sectionname) {
+		this.sectionname = sectionname;
+	}
+
+	public String getSectiontype() {
+		return sectiontype;
+	}
+
+	public void setSectiontype(String sectiontype) {
+		this.sectiontype = sectiontype;
+	}
 
 	public List<Subject> getSubjectlist() {
 		return subjectlist;
 	}
 
-
 	public void setSubjectlist(List<Subject> subjectlist) {
 		this.subjectlist = subjectlist;
 	}
 
+	public String getTotalstrength() {
+		return totalstrength;
+	}
 
-	public Integer getApplicableyear() {
-		return applicableyear;
+	public void setTotalstrength(String totalstrength) {
+		this.totalstrength = totalstrength;
+	}
+
+	public String getClassshift() {
+		return classshift;
+	}
+
+	public void setClassshift(String classshift) {
+		this.classshift = classshift;
+	}
+
+	
+	@Override
+	public String toString() {
+		return "ClassSetup [classid=" + classid + ", classname=" + classname + ", classtype=" + classtype
+				+ ", sectionname=" + sectionname + ", sectiontype=" + sectiontype + ", totalstrength=" + totalstrength
+				+ ", classshift=" + classshift + ", subjectlist=" + subjectlist + "]";
 	}
 
 
-	public void setApplicableyear(Integer applicableyear) {
-		this.applicableyear = applicableyear;
-	}
-    
-    
 
 }

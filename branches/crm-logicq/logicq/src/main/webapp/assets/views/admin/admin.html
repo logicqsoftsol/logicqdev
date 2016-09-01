@@ -239,21 +239,19 @@
 								<button id="classsetup" data-toggle="modal" data-toggle="modal"
 									data-target="#classsetupmodal"  ng-click="addNewClass()" 
 									class="btn btn-default"><i class="fa fa-book" aria-hidden="true"></i>Add New Class</button>
-								<button id="classsearch" data-toggle="modal" data-target="#classsetupmodal"
+								<button id="classsearch" data-toggle="modal" data-target="#classsetupmodal"  ng-click="searchClasses()"
 									class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
 							</ul>
 							<table class="table table-bordered table-fixed table-hover">
 							<tr class ="success">
-								<th class="pull-center">NAME</th>
-								<th class="pull-center">CUSTOM NAME</th>
-								<th class="pull-center">SECTIONS</th>
+								<th class="pull-center">CLASS NAME</th>
+								<th class="pull-center">SECTIONS NAME</th>
 								<th class="pull-center">TOTAL STRENGTH</th>
 								<th class="pull-center">CLASS SHIFT</th>
 							</tr>
-							<tr ng-repeat="classrow in classeslist">
-								<td>{{classrow.name}}</td>
-								<td>{{classrow.customname}}</td>
-								<td>{{classrow.sections}}</td>
+							<tr ng-repeat="classrow in classtuplist">
+								<td>{{classrow.classname}}</td>
+								<td>{{classrow.sectionname}}</td>
 								<td>{{classrow.totalstrength}}</td>
 								<td>{{classrow.classshift}}</td>
 								<td><a id="updatenewclass"  data-toggle="modal"  data-target="#classsetupmodal"   ng-click="editExistingClass(classrow)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
@@ -1664,36 +1662,71 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">{{subjectoperation}} Class Details</h4>	
+										<h4 class="modal-title">{{classopertaion}} Class Details</h4>	
 						</div>
 						<div class="modal-body">
 						 <form id="classdetailsform"  novalidate>
 								<div class="col-md-6">
 										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="classsetup.name">Class Name</label> 
-											<input type="text" name="classsetup.name" id="classsetup.name"
-												class="form-control" ng-model="classsetup.name"
+										<label  class="control-label" for="classsetup.classname">Class Name</label> 
+											<input type="text" name="classsetup.classname" id="classsetup.classname"
+												class="form-control" ng-model="classsetup.classname"
 												placeholder="Class Name" required>
 										</div>
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="classsetup.classtype">Class Type</label> 
+											<input type="text" name="classsetup.classtype" id="classsetup.classtype"
+												class="form-control" ng-model="classsetup.classtype"
+												placeholder="Class Type" class="input-search" list="classtypelist" required>
+												<datalist id="classtypelist">
+												<option ng-repeat="classtype in classtypelist"   value="{{classtype.name}}">
+												</option>
+												</datalist> 
+										</div>
+										</div>
+										<div class="col-md-6">
 										<div class="form-group" show-errors='{showSuccess: true}'>
 										<label  class="control-label" for="classsetup.sectionname">Section Name</label> 
 											<input type="text" name="classsetup.sectionname" id="classsetup.sectionname"
 												class="form-control" ng-model="classsetup.sectionname"
-												placeholder="Subject Short Name" required>
+												placeholder="Section Name" required>
 										</div>
-										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="subject.subjecttype">Applicable As</label> 
-										<input type="text" class="form-control" name="subject.subjecttype" id="subject.subjecttype"  ng-model="subject.subjecttype" class="input-search" list="subjecttypelist" required>
-												<datalist id="subjecttypelist">
-												<option ng-repeat="subjecttype in subjecttypelist"   value="{{subjecttype.name}}">
+											<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="classsetup.sectiontype">Section Type</label> 
+											<input type="text" name="classsetup.sectiontype" id="classsetup.sectiontype"
+												class="form-control" ng-model="classsetup.sectiontype"
+												placeholder="Section Name" list="sectiontypelist" required>
+												<datalist id="sectiontypelist">
+												<option ng-repeat="sectiontype in sectiontypelist"   value="{{sectiontype.name}}">
 												</option>
 												</datalist> 
 										</div>
-						</div>
+						            </div>
+										<div class="col-md-6">
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="classsetup.classshift">Class Shift</label> 
+											<input type="text" name="classsetup.classshift" id="classsetup.classshift"
+												class="form-control" ng-model="classsetup.classshift"
+												placeholder="Class Shift" list="classshiftlist" required>
+												<datalist id="classshiftlist">
+												<option ng-repeat="shift in classshiftlist"   value="{{shift.name}}">
+												</option>
+												</datalist> 
+										</div>
+										
+										</div>
+										<div class="col-md-6">
+											<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="classsetup.totalstrength">Class Total Strength</label> 
+											<input type="text" name="classsetup.totalstrength" id="classsetup.totalstrength"
+												class="form-control" ng-model="classsetup.totalstrength"
+												placeholder="Class Strength">
+										</div>
+						            </div>
 						</form>
 				</div>
 					<div class="modal-footer">
-							<button type="submit" id="usersearch" class="btn btn-default" ng-click="operationSubjectDetail()"
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="operationClassSetupDetail()"
 								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
@@ -1726,11 +1759,11 @@
 												placeholder="Class Section Name" required>
 										</div>
 										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="classsubject.compulsorysubject">Selected Compulsory Subject : {{selectedcompsub}}</label> 
+										<label  class="control-label" for="classsubject.compulsorysubject">Compulsory Subject : {{selectedcompsub}}</label> 
 										<multiselect class="input-xlarge" multiple="true"  ng-model="selectedcompsubject" options="compsubject.name for compsubject in compsubjectlist"  change="selected()" ></multiselect>
 										</div>
 									<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="classsubject.optsubjectlist">Selected Optional Subject : {{selectedoptsub}}</label> 
+										<label  class="control-label" for="classsubject.optsubjectlist">Optional Subject : {{selectedoptsub}}</label> 
 										<multiselect class="input-xlarge" multiple="true"  ng-model="selectedoptionalsubject" options="optsubject.name for optsubject in optionalsubjectlist"  change="selected()" ></multiselect>
 										</div>
 									<div class="form-group" show-errors='{showSuccess: true}'>
