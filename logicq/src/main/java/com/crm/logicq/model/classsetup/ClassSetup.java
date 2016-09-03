@@ -2,19 +2,18 @@ package com.crm.logicq.model.classsetup;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -26,11 +25,10 @@ public class ClassSetup implements Serializable{
 	 */
 	private static final long serialVersionUID = 3686727161871647739L;
 	
-	@Id
-    @Column(name = "CLASS_ID",unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long classid;
-
+	@EmbeddedId
+     private ClassSectionKey key;
+	 
+	 
     @Column(name = "CLASS_NAME")
     private String classname;
     
@@ -51,19 +49,34 @@ public class ClassSetup implements Serializable{
     private String classshift;
     
     
-    @ManyToMany(cascade = {CascadeType.ALL},fetch=FetchType.EAGER)
+   	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name="CLASS_SUBJECT", 
-				joinColumns={@JoinColumn(name="CLASS_ID")}, 
+				joinColumns={@JoinColumn(name="CLASS_ID"),@JoinColumn(name="SECTION_ID")}, 
 				inverseJoinColumns={@JoinColumn(name="SUB_ID")})
-     private List<Subject> subjectlist;
+     private Set<Subject> subjectlist;
+    
+   	
+    private String compsubjectlist;
+    
+    private String optionalsubjectlist;
 
-	public Long getClassid() {
-		return classid;
+	public Set<Subject> getSubjectlist() {
+		return subjectlist;
 	}
 
-	public void setClassid(Long classid) {
-		this.classid = classid;
+	public void setSubjectlist(Set<Subject> subjectlist) {
+		this.subjectlist = subjectlist;
 	}
+
+
+   	public ClassSectionKey getKey() {
+   		return key;
+   	}
+
+   	public void setKey(ClassSectionKey key) {
+   		this.key = key;
+   	}
+
 
 	public String getClassname() {
 		return classname;
@@ -98,14 +111,7 @@ public class ClassSetup implements Serializable{
 		this.sectiontype = sectiontype;
 	}
 
-	public List<Subject> getSubjectlist() {
-		return subjectlist;
-	}
-
-	public void setSubjectlist(List<Subject> subjectlist) {
-		this.subjectlist = subjectlist;
-	}
-
+	
 	public String getTotalstrength() {
 		return totalstrength;
 	}
@@ -121,15 +127,31 @@ public class ClassSetup implements Serializable{
 	public void setClassshift(String classshift) {
 		this.classshift = classshift;
 	}
-
 	
-	@Override
-	public String toString() {
-		return "ClassSetup [classid=" + classid + ", classname=" + classname + ", classtype=" + classtype
-				+ ", sectionname=" + sectionname + ", sectiontype=" + sectiontype + ", totalstrength=" + totalstrength
-				+ ", classshift=" + classshift + ", subjectlist=" + subjectlist + "]";
+	
+
+	public String getCompsubjectlist() {
+		return compsubjectlist;
 	}
 
+	public void setCompsubjectlist(String compsubjectlist) {
+		this.compsubjectlist = compsubjectlist;
+	}
 
+	public String getOptionalsubjectlist() {
+		return optionalsubjectlist;
+	}
 
+	public void setOptionalsubjectlist(String optionalsubjectlist) {
+		this.optionalsubjectlist = optionalsubjectlist;
+	}
+
+	@Override
+	public String toString() {
+		return "ClassSetup [key=" + key + ", classname=" + classname + ", classtype=" + classtype + ", sectionname="
+				+ sectionname + ", sectiontype=" + sectiontype + ", totalstrength=" + totalstrength + ", classshift="
+				+ classshift + ", subjectlist=" + subjectlist + "]";
+	}
+
+	
 }

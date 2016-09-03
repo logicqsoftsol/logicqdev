@@ -68,8 +68,9 @@
 		$scope.sectiontypelist=[
 		         		  {id:1, name:'A'},
 		         		  {id:2, name:'B'},
-		                   {id:3, name:'C'},
-		         		  {id:4, name:'D'}];
+		                  {id:3, name:'C'},
+		         		  {id:4, name:'D'},
+		         		  {id:5, name:'ALL'}];
 		
 		$scope.subjecttypelist=[
 		         		  {id:1, name:'ALL'},
@@ -1043,17 +1044,65 @@
 											
 											 /*Classes  Details **/		
 											$scope.classsetup={};
+											$scope.classsetup.classid='';
+											$scope.classsetup.sectiontid='';
 											$scope.classsetup.currentPage='';
 											$scope.classtuplist={};
 											$scope.classopertaion='';
-											$scope.classsetup.classid='';
 											$scope.classsetup.totalrecordcount='';
 											$scope.classsetup.numPages='';
-											 $scope.getClassesDetailsAccordingToPage=function(page){
+											$scope.selectedcompsub='';
+											$scope.selectedcompsub='';
+											$scope.compsubjectlist=[];
+											$scope.optionalsubjectlist=[];
+											$scope.subjectlist=[];
+											$scope.getClassesDetailsAccordingToPage=function(page){
 												 $scope.notisendsetup.currentPage=page;
 											    
 											};	
-
+											
+								      $scope.$watch('classsetup.sectiontype', function(newVal, oldVal){
+												angular.forEach($scope.sectiontypelist, function(value, key) {
+													if(value.name==newVal){
+														$scope.classsetup.sectiontid=value.id;
+													}	
+													});
+												});
+											
+											  $scope.$watch('classsetup.classtype', function(newVal, oldVal){
+												angular.forEach($scope.classtypelist, function(value, key) {
+													if(value.name==newVal){
+														$scope.classsetup.classid=value.id;
+													}	
+													});
+												});
+											
+											$scope.getAllSubjectDetails=function(){
+												 ClassesSetupService.getAllSubjectList($scope).success(function(data, status) {	
+															$scope.compsubjectlist=data.complsorysubjectlist;
+															$scope.optionalsubjectlist=data.optionalsubjectlist;													
+																 }).error(function(data, status) {
+																		var errormsg='Unable to Search Subject Details Status Code : '+status;
+																		 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																		 $exceptionHandler(errormsg);
+																	});
+													    
+													};		
+										
+										
+											 $scope.$watch('selectedcompsubject',function(){
+												 $scope.selectedcompsub='';
+												 angular.forEach($scope.selectedcompsubject, function(value, key) {
+												   $scope.selectedcompsub=$scope.selectedcompsub+"|"+value.name;
+												 });
+											});
+											 $scope.$watch('selectedoptionalsubject',function(){
+												 $scope.selectedoptsub='';
+												 angular.forEach($scope.selectedoptionalsubject, function(value, key) {
+												  $scope.selectedoptsub=$scope.selectedoptsub+"|"+value.name;
+												});
+											});
+											
 											
 										    $scope.searchClasses =function(){
 												  $scope.classopertaion='Looking for Existing';
@@ -1065,11 +1114,18 @@
 	                                                $scope.operationtype='+';
 													$scope.classsetup={};
 													$scope.classsetup.classid='';
+													$scope.classsetup.sectiontid='';
+													$scope.selectedcompsub='';
+											        $scope.selectedcompsub='';
+													$scope.getAllSubjectDetails();
+													
 											  };
 											  
 											  $scope.editExistingClass =function(classrow){
 												  $scope.classopertaion='Modify Existing';
 												    $scope.operationtype='*';
+												    $scope.compsubjectlist=classrow.complsorysubjectlist;
+													$scope.optionalsubjectlist=classrow.optionalsubjectlist;	
 													UserHelper.setRowForClassSetup($scope,classrow);
 											  };
 											 
@@ -1084,6 +1140,7 @@
 												 
 														var operation=$scope.operationtype;
 															if ('+'==operation) {
+																 $scope.subjectlist=$scope.selectedcompsubject.concat($scope.selectedoptionalsubject);//angular.extend({},$scope.selectedcompsubject, $scope.selectedoptionalsubject);
 																  UserHelper.setClassDetails($scope);
 																ClassesSetupService.saveClassSetupDetails($scope.request)
 																.success(function(data, status) {
@@ -1102,6 +1159,7 @@
 																
 															}
 															else if('*'===operation){
+																$scope.subjectlist=angular.extend({},$scope.selectedcompsubject, $scope.selectedoptionalsubject);
 																UserHelper.setClassDetails($scope);
 																ClassesSetupService.saveClassSetupDetails($scope.request)
 																.success(function(data, status) {
@@ -1141,81 +1199,6 @@
 											  
 											
 											  
-											
-											 /*Classes-Subject Details **/		
-											  $scope.applicableyearlist=[
-													                      {id: 1,  year : "Current"},
-													                      {id: 2,  year : "All"},
-													                      {id: 3,  year : "Next 2 years"},
-													                      {id: 4,  year : "Next 5 years"}
-													                    ];
-											$scope.classessubject={};
-											$scope.classessubject.currentPage='';
-											$scope.classsubdetails={};
-										    $scope.compsubjectlist = [];
-										    $scope.optionalsubjectlist = [];
-										    $scope.classessubjectoperation='';
-										    $scope.classessubject.selectedcompsubject = [];
-										    $scope.classessubject.selectedoptionalsubject = [];
-										    $scope.selectedoptionalsubject='';
-											$scope.selectedcompsubject=null;
-											$scope.selectedcompsub='';
-											$scope.selectedoptsub='';
-											 $scope.getClassesDetailsAccordingToPage=function(page){
-												 $scope.classessubject.currentPage=page;
-											    
-											};	
-											
-											 $scope.getAllSubjectList=function($scope){
-												 ClassesSetupService.getAllSubjectList($scope).success(function(data, status) {	
-													$scope.compsubjectlist=data.complsorysubjectlist;
-													$scope.optionalsubjectlist=data.optionalsubjectlist;													
-														 }).error(function(data, status) {
-																var errormsg='Unable to Search Subject Details Status Code : '+status;
-																 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
-																 $exceptionHandler(errormsg);
-															});
-											    
-											};	
-											 $scope.$watch('selectedcompsubject',function(){
-												 $scope.selectedcompsub='';
-												 angular.forEach($scope.selectedcompsubject, function(value, key) {
-												   $scope.selectedcompsub=$scope.selectedcompsub+"|"+value.name;
-												 });
-											});
-											 $scope.$watch('selectedoptionalsubject',function(){
-												 $scope.selectedoptsub='';
-												 angular.forEach($scope.selectedoptionalsubject, function(value, key) {
-												  $scope.selectedoptsub=$scope.selectedoptsub+"|"+value.name;
-												});
-											});
-											
-											$scope.searchClassSubject =function(){
-												  $scope.classessubjectoperation='Looking for Existing';
-												  $scope.operationtype='';
-											  };
-											  
-											$scope.setupClassSubject=function(){
-													$scope.classessubjectoperation='Setup new ';
-	                                                $scope.operationtype='+';
-													$scope.classessubject={};
-													$scope.getAllSubjectList($scope);
-													//$scope.subject.subjectid='';
-											  };
-											  
-											  $scope.editClassSubjectSetup =function(classssub){
-												  $scope.classessubjectoperation='Modify Existing';
-												    $scope.operationtype='*';
-													$scope.getAllSubjectList($scope);
-												//	UserHelper.setRowForSubjectSetup($scope,classssub);
-											  };
-											 
-											  $scope.pouplateClassSubjectForDelete =function(classssub){
-												  $scope.classessubjectoperation='Are you sure want to delete this ';
-												  $scope.operationtype='-';
-												 
-												 // UserHelper.setRowForSubjectSetup($scope,classssub);
-											  };
 											
 											/* export report details---*/
 											$scope.exportdata={};

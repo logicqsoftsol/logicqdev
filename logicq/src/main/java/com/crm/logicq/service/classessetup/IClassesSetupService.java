@@ -3,7 +3,6 @@ package com.crm.logicq.service.classessetup;
 import java.util.List;
 
 import com.crm.logicq.model.classsetup.ClassSetup;
-import com.crm.logicq.model.classsetup.ClassSubjectSetup;
 import com.crm.logicq.model.classsetup.Subject;
 import com.crm.logicq.vo.classessetup.ClassSetupCriteria;
 
@@ -26,11 +25,5 @@ public interface IClassesSetupService {
 
 	public void deleteClass(ClassSetup classsetupdetails) throws Exception;
 
-	
-	public List<ClassSubjectSetup> getClassesSubjectDetails(ClassSetupCriteria classcriteria) throws Exception;
-
-	public void saveClassesSubjectDetails(ClassSubjectSetup classssubject) throws Exception;
-
-	public void deleteClassesSubjectDetails(ClassSubjectSetup classsetupdetails) throws Exception;
 
 }

@@ -1,7 +1,9 @@
 package com.crm.logicq.controller.admin.classessetup;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,12 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crm.logicq.model.classsetup.ClassSetup;
-import com.crm.logicq.model.classsetup.ClassSubjectSetup;
 import com.crm.logicq.model.classsetup.Subject;
 import com.crm.logicq.service.classessetup.IClassesSetupService;
 import com.crm.logicq.vo.classessetup.ClassSetupCriteria;
 import com.crm.logicq.vo.classessetup.ClassSetupVO;
-import com.crm.logicq.vo.classessetup.ClassSubjectSetupVO;
 import com.crm.logicq.vo.classessetup.SubjectVO;
 
 @RestController
@@ -156,10 +156,25 @@ public class ClassesSetupController {
 			}else{
 				return	new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
+			ClassSetupCriteria classsetupcriteria = new ClassSetupCriteria();
 			classsetupcriteria.setPagenumber(1);
 			classsetupcriteria.setPagesize(15);
-			List<ClassSetup> classlist=classessetupservices.getClassesDetails(classsetupcriteria);
+			List<ClassSetup> classlist = classessetupservices.getClassesDetails(classsetupcriteria);
+			for (ClassSetup classdetails : classlist) {
+				Set<Subject> subjects = classdetails.getSubjectlist();
+			   StringBuilder compsubjectlist=new StringBuilder();
+			   StringBuilder optionalsubject=new StringBuilder();
+				for (Subject subj : subjects) {
+					if ("COMPULSORY".equals(subj.getType()) || "ALL".equals(subj.getType())) {
+						compsubjectlist.append(subj.getName());
+					} else {
+						optionalsubject.append(subj.getName());
+					}
+				}
+				classdetails.setOptionalsubjectlist(optionalsubject.toString());
+				classdetails.setCompsubjectlist(compsubjectlist.toString());
+			}
+
 			classsetupvo.setClasssetupcriteria(classsetupcriteria);
 			classsetupvo.setClassessetup(classlist);
 		} catch (Exception e) {
@@ -216,83 +231,5 @@ public class ClassesSetupController {
 		}
 		return new ResponseEntity<ClassSetupVO>(classsetupvo, HttpStatus.OK);
 	}
-/**
- * 
- * @param classsubject
- * @return
- */
-	@RequestMapping(value = "/saveClassSubjectSetup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ClassSubjectSetupVO> saveNotificationTemplateSetup(
-			@RequestBody ClassSubjectSetup classsubject) {
-		ClassSubjectSetupVO classsubjectsetupvo=new ClassSubjectSetupVO();
-		try {
-			if(null!=classsubject){
-			classessetupservices.saveClassesSubjectDetails(classsubject);
-			}else{
-				return	new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
-			classsetupcriteria.setPagenumber(1);
-			classsetupcriteria.setPagesize(15);
-			List<ClassSubjectSetup> classsubjectlist=classessetupservices.getClassesSubjectDetails(classsetupcriteria);
-			classsubjectsetupvo.setClasssubjectcriteria(classsetupcriteria);
-			classsubjectsetupvo.setClasssubjectlist(classsubjectlist);
-		} catch (Exception e) {
-			return	new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	
-	
-		return new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.OK);
-	}
-	
-	/**
-	 * 
-	 * @param classsubjectsetup
-	 * @return
-	 */
-	@RequestMapping(value = "/deleteClassSubjectSetup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ClassSubjectSetupVO> deleteNotificationTemplate(
-			@RequestBody ClassSubjectSetup classsubjectsetup) {
-		ClassSubjectSetupVO classsubjectsetupvo=new ClassSubjectSetupVO();
-		try {
-			if(null!=classsubjectsetup){
-			classessetupservices.deleteClassesSubjectDetails(classsubjectsetup);
-			}else{
-				return	new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
-			classsetupcriteria.setPagenumber(1);
-			classsetupcriteria.setPagesize(15);
-			List<ClassSubjectSetup> classsubjectlist=classessetupservices.getClassesSubjectDetails(classsetupcriteria);
-			classsubjectsetupvo.setClasssubjectcriteria(classsetupcriteria);
-			classsubjectsetupvo.setClasssubjectlist(classsubjectlist);
-		} catch (Exception e) {
-			return	new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.OK);
-	}
-	
-	/**
-	 * 
-	 * @param pagesize
-	 * @param pageno
-	 * @return
-	 */
-	@RequestMapping(value = "/getClassSubjectlist/{pagesize}/{pageno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ClassSubjectSetupVO> getNotificationSetupDetails(@PathVariable int pagesize,@PathVariable int pageno) {
-		ClassSubjectSetupVO classsubjectsetupvo=new ClassSubjectSetupVO();
-		try {
-			ClassSetupCriteria classsetupcriteria=new ClassSetupCriteria();
-			classsetupcriteria.setPagenumber(1);
-			classsetupcriteria.setPagesize(15);
-			List<ClassSubjectSetup> classsubjectlist=classessetupservices.getClassesSubjectDetails(classsetupcriteria);
-			classsubjectsetupvo.setClasssubjectcriteria(classsetupcriteria);
-			classsubjectsetupvo.setClasssubjectlist(classsubjectlist);
-		} catch (Exception e) {
-			return	new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<ClassSubjectSetupVO>(classsubjectsetupvo, HttpStatus.OK);
-	}
-
 
 }
