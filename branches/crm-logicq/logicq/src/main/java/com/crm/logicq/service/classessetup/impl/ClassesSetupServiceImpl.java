@@ -9,10 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.crm.logicq.dao.classessetup.IClassesSetupDAO;
-import com.crm.logicq.dao.classsubject.impl.IClassesSubjectDAO;
 import com.crm.logicq.dao.subject.ISubjectDAO;
 import com.crm.logicq.model.classsetup.ClassSetup;
-import com.crm.logicq.model.classsetup.ClassSubjectSetup;
 import com.crm.logicq.model.classsetup.Subject;
 import com.crm.logicq.service.classessetup.IClassesSetupService;
 import com.crm.logicq.vo.classessetup.ClassSetupCriteria;
@@ -27,8 +25,7 @@ public class ClassesSetupServiceImpl implements IClassesSetupService{
 	@Autowired
 	IClassesSetupDAO classsetupdao;
 	
-	@Autowired
-	IClassesSubjectDAO classsubjectdao;
+
 	
 	@Override
 	@ExceptionHandler(Exception.class)
@@ -83,27 +80,7 @@ public class ClassesSetupServiceImpl implements IClassesSetupService{
 		
 	}
 
-	@Override
-	@ExceptionHandler(Exception.class)
-	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
-	public List<ClassSubjectSetup> getClassesSubjectDetails(ClassSetupCriteria classcriteria) throws Exception {
-		// TODO Auto-generated method stub
-		return classsubjectdao.getClassesSubjectDetails(classcriteria);
-	}
-
-	@Override
-	@ExceptionHandler(Exception.class)
-	@Transactional(propagation=Propagation.REQUIRED,readOnly=false)
-	public void saveClassesSubjectDetails(ClassSubjectSetup classssubject) throws Exception {
-		classsubjectdao.saveClassesSubjectDetails(classssubject);
-	}
-
-	@Override
-	@ExceptionHandler(Exception.class)
-	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
-	public void deleteClassesSubjectDetails(ClassSubjectSetup classsetupdetails) throws Exception {
-		classsubjectdao.deleteClassesSubjectDetails(classsetupdetails);
-	}
+	
 
 	
 }

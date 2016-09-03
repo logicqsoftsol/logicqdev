@@ -272,23 +272,30 @@
 					
 					
 				setRowForClassSetup: function ($scope,data) {
-					$scope.classsetup.classid=data.classid;
+					$scope.classsetup.classid=data.key.classid;
+					$scope.classsetup.sectionid=data.key.sectiontid;
 					$scope.classsetup.classname=data.classname;
 					$scope.classsetup.classtype=data.classtype;
 					$scope.classsetup.sectionname=data.sectionname;
 					$scope.classsetup.sectiontype=data.sectiontype;
 					$scope.classsetup.classshift=data.classshift;
 					$scope.classsetup.totalstrength=data.totalstrength;
+					$scope.selectedcompsubject=data.compsubjectlist;
+					$scope.selectedoptionalsubject=data.optionalsubjectlist;
 				},	
 				setClassDetails: function ($scope) {
 					return $scope.request.classsetup={
-							classid:$scope.classsetup.classid,
 							classname:$scope.classsetup.classname,
 							classtype:$scope.classsetup.classtype,
 							sectionname:$scope.classsetup.sectionname,
 							sectiontype:$scope.classsetup.sectiontype,
 							classshift:$scope.classsetup.classshift,
 							totalstrength:$scope.classsetup.totalstrength,
+							subjectlist:$scope.subjectlist,
+							key:{
+								classid:$scope.classsetup.classid,
+							    sectionid:$scope.classsetup.sectiontid,
+						   }
 					};
 					},
 					
