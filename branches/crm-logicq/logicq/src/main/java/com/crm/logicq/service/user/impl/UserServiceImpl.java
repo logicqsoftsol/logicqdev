@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.crm.logicq.common.ICommonConstant;
 import com.crm.logicq.common.LogicqContextProvider;
 import com.crm.logicq.constant.EntityType;
 import com.crm.logicq.dao.employee.IEmployeeDAO;
@@ -28,7 +29,7 @@ import com.crm.logicq.vo.user.UserVO;
 
 @Service
 @Transactional
-public class UserServiceImpl implements IUserService{
+public class UserServiceImpl implements IUserService,ICommonConstant{
 
 	@Autowired
 	IUserDAO userdao;
@@ -133,14 +134,15 @@ public class UserServiceImpl implements IUserService{
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
 	public void loadEmployees() throws Exception{
 		List<Employee> employeeDetails= employeedao.loadEmployees();
-		Map<String,UserVO> allusermapdetails = (Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
+		Map<String,UserVO> allusermapdetails = (Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap(CACHEDUSER);
 		if(null==allusermapdetails || allusermapdetails.isEmpty()){
 			allusermapdetails=new HashMap<String, UserVO>();
-			LogicqContextProvider.addElementToApplicationMap("CACHEDUSER", allusermapdetails);
+			LogicqContextProvider.addElementToApplicationMap(CACHEDUSER, allusermapdetails);
 		}
+		Map<String,UserVO> allusermap=(Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap(CACHEDUSER);
 		for(Employee employee:employeeDetails){
 	//	employeeDetails.forEach((employee)->{
-			Map<String,UserVO> allusermap=(Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
+			
 			UserVO uservo=new UserVO();
 			if (null != employee.getContactdetails()
 					&& null != employee.getContactdetails().getCommunicationdetails()) {
@@ -167,14 +169,14 @@ public class UserServiceImpl implements IUserService{
 	@Transactional(propagation=Propagation.REQUIRED,readOnly=true)
 	public void loadStudents() throws Exception{
 		List<Student> students= studentdao.loadStudents();
-		Map<String,UserVO> allusermapdetails = (Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
-		Map<String,EducationVO>  studenteducationdetails = (Map<String, EducationVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDSTUDENTEDU");
+		Map<String,UserVO> allusermapdetails = (Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap(CACHEDUSER);
+		Map<String,EducationVO>  studenteducationdetails = (Map<String, EducationVO>) LogicqContextProvider.getElementFromApplicationMap(STUDENT_EDU_CACHED);
 		if(null==allusermapdetails || allusermapdetails.isEmpty()){
 			allusermapdetails=new HashMap<String, UserVO>();
-			LogicqContextProvider.addElementToApplicationMap("CACHEDUSER", allusermapdetails);
+			LogicqContextProvider.addElementToApplicationMap(CACHEDUSER, allusermapdetails);
 		if(null==studenteducationdetails || studenteducationdetails.isEmpty()){
 				studenteducationdetails=new HashMap<String, EducationVO>();
-				LogicqContextProvider.addElementToApplicationMap("CACHEDSTUDENTEDU", studenteducationdetails);
+				LogicqContextProvider.addElementToApplicationMap(STUDENT_EDU_CACHED, studenteducationdetails);
 		}
 			
 			for(Student student:students){
