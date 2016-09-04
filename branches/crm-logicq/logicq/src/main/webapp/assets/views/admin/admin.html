@@ -659,12 +659,16 @@
 										placeholder="Card Number" name="attendancecriteria.cardno"> 
 								</div>
 								</div>
-								  <div class="form-group">
+								 <div class="form-group">
 								       <label  class="control-label" for="attendancecriteria.criteriadate">Looking Attendance For</label> 
 									   <input type="text" class="form-control" id="attendancecriteria.criteriadate" ng-model="attendancecriteria.criteriadate"
 										placeholder="Looking Attendance for" name="attendancecriteria.criteriadate" list="criteriadatelist"> 
-										<datalist id="criteriadatelist" ></datalist>
+										<datalist id="criteriadatelist">
+												<option ng-repeat="datecriteria in criteriadatelist"   value="{{datecriteria.name}}">
+												</option>
+												</datalist>
 								   </div>
+								 
 								<div class="col-md-6">
 								<div class="form-group">
 								<label  class="control-label" for="attendancecriteria.fromdate">From Date</label> 
@@ -1758,32 +1762,28 @@
 										</div>
 										<div class="col-md-8">
 										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="exportdata.applicableto">Report For</label> 
-											<input type="text" name="exportdata.datefor" id="exportdata.datefor"
-												class="form-control" ng-model="exportdata.datefor"
-												placeholder="Report For" required list="reportdatelist">
-												<datalist id="reportdatelist">
-														<option>Last 1 Week</option>
-														<option>Last 2 Week</option>
-														<option>Last 1 Month</option>
-														<option>Last 2 Month</option>
-														<option>Last 3 Month</option>
-														<option>Last 6 Month</option>
-													</datalist>
+										<label  class="control-label" for="exportdata.reportfor">Report For</label> 
+											<input type="text" name="exportdata.reportfor" id="exportdata.reportfor"
+												class="form-control" ng-model="exportdata.reportfor"
+												placeholder="Report For"  list="criteriadatelist" required>
+												<datalist id="criteriadatelist">
+												<option ng-repeat="datecriteria in criteriadatelist"   value="{{datecriteria.name}}">
+												</option>
+												</datalist>
 									</div>
 									<label  class="control-label pull-right">( OR )</label> 
 									</div>
 								
 									<div class="col-md-6">
 											<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="exportdata.reporttype">From Date</label> 
+										<label  class="control-label" for="exportdata.fromdate">From Date</label> 
 										<input type="Date" class="form-control" id="exportdata.fromdate" ng-model="exportdata.fromdate"
 										       placeholder="From Date" name="exportdata.fromdate"> 
 										</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="exportdata.reporttype">To Date</label> 
+										<label  class="control-label" for="exportdata.todate">To Date</label> 
 										<input type="Date" class="form-control" id="exportdata.todate" ng-model="exportdata.todate"
 										       placeholder="From Date" name="exportdata.todate"> 
 										</div>
@@ -1800,27 +1800,24 @@
 										
 										<div class="form-group"  ng-show="isReportExportApplicable('Class')">
 										<div class="col-md-5">
-										<label  class="control-label" for="exportdata.applicableid">Class Name</label> 
-											<input type="text" name="exportdata.classid" id="exportdata.classid"
-												class="form-control" ng-model="exportdata.classid"
-												placeholder="Class Name" required list="classlist">
+										<label  class="control-label" for="exportdata.classname">Class Name</label> 
+											<input type="text" name="exportdata.classname" id="exportdata.classname"
+												class="form-control" ng-model="exportdata.classname"
+												placeholder="Class Name"  list="classtypelist" required>
 													<datalist id="classlist">
-														<option>Class I</option>
-														<option>Class II</option>
-														<option>Class III</option>
-														<option>All</option>
+													<option ng-repeat="classname in classtypelist"   value="{{classname.name}}">
+												</option>	 
 													</datalist>
 										</div>	
 										<div class="col-md-6">
 										<div class="form-group" show-errors='{showSuccess: true}'>
 										<label  class="control-label" for="exportdata.applicableclasssection">Section Name</label> 
-											<input type="text" name="exportdata.applicableclasssection" id="exportdata.applicableclasssection"
-												class="form-control" ng-model="exportdata.applicableclasssection"
-												placeholder="Applicable For" required list="sectionlist">
+											<input type="text" name="exportdata.applicableclasssection" id="exportdata.sectionname"
+												class="form-control" ng-model="exportdata.sectionname"
+												placeholder="Section Name" list="sectiontypelist"  required>
 												<datalist id="sectionlist">
-														<option>Section A</option>
-														<option>Section B</option>
-														<option>All</option>
+														<option ng-repeat="sectionname in sectiontypelist"   value="{{sectionname.name}}">
+												</option>	
 													</datalist>
 									       </div>
 										</div>

@@ -7,6 +7,13 @@ public class AttendanceVO {
 	private String intime;
 	private String outtime;
 	private String date;
+	private String attendance;
+	
+	private static int presentcount;
+	private static int absentcount;
+	
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -44,10 +51,48 @@ public class AttendanceVO {
 		this.date = date;
 	}
 	
+	
+	
+    public String getAttendance() {
+    
+    	return attendance;
+    }
+	
+    public void setAttendance(String attendance) {
+
+		if (attendance.equals("A")) {
+			absentcount++;
+		}
+		if (attendance.equals("P")) {
+			presentcount++;
+		}
+    	this.attendance = attendance;
+    }
+
+    public static int getPresentcount() {
+    
+    	return presentcount;
+    }
+	
+    public void setPresentcount(int presentcount) {
+    
+    	this.presentcount = presentcount;
+    }
+	
+    public static int getAbsentcount() {
+    
+    	return absentcount;
+    }
+	
+    public void setAbsentcount(int absentcount) {
+    
+    	this.absentcount = absentcount;
+    }
+	
 	@Override
 	public String toString() {
 		return "AttendanceVO [id=" + id + ", name=" + name + ", mobileno=" + mobileno + ", intime=" + intime
-				+ ", outtime=" + outtime + ", date=" + date + "]";
+				+ ", outtime=" + outtime + ", date=" + date + ",attendance="+attendance + "]";
 	}
 
 }

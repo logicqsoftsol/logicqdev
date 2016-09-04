@@ -2,6 +2,7 @@ package com.crm.logicq.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.supercsv.cellprocessor.ift.CellProcessor;
 import org.supercsv.io.ICsvBeanWriter;
 
+import com.crm.logicq.model.attendance.AttendanceCriteria;
 import com.crm.logicq.model.attendance.AttendanceDetails;
 import com.crm.logicq.service.user.impl.AttendanceConversion;
 import com.crm.logicq.vo.attendance.AttendanceVO;
@@ -25,15 +27,23 @@ public class ReportHelper {
 	 * @param reportdatalist
 	 * @throws Exception
 	 */
-	public static void createCSV(ICsvBeanWriter csvbeanwriter, List<AttendanceDetails> attendancelist) throws Exception {
-
+	public static void createCSV(ICsvBeanWriter csvbeanwriter, List<AttendanceDetails> attendancelist,AttendanceCriteria atttaendancecriteria) throws Exception {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 		if (!attendancelist.isEmpty()) {
 			String[] csvHeader = FileHelper.getHeaderList(AttendanceVO.class);
 			String[] fieldlist = FileHelper.getFieldList(AttendanceVO.class);
 			final CellProcessor[] processors = FileHelper.getProcessors(fieldlist,AttendanceVO.class);
-			csvbeanwriter.writeHeader(csvHeader);
 			List<AttendanceVO> attendacevolist=AttendanceConversion.convertEntityToVO(attendancelist);
+			 csvbeanwriter.writeHeader("","","Attendance Report");
+			 csvbeanwriter.writeHeader("School Name","Saraswati Shishu Mandir","","Total Present",""+AttendanceVO.getPresentcount());
+			 csvbeanwriter.writeHeader("Email","xyz@gmail.com","","Total Absent",""+AttendanceVO.getAbsentcount());
+			 csvbeanwriter.writeHeader("Report For",atttaendancecriteria.getReportFor(),"","From Date",format.format(atttaendancecriteria.getFromdate()));
+			 csvbeanwriter.writeHeader("Report Name","attendance_report.csv","","To Date",format.format(atttaendancecriteria.getTodate())); 
+			 csvbeanwriter.writeHeader("");
+			 csvbeanwriter.writeHeader(csvHeader);
+			
 			for (AttendanceVO attendance : attendacevolist) {
+				
 				csvbeanwriter.write(attendance, csvHeader, processors);
 			}
 		}

@@ -1,6 +1,8 @@
 package com.crm.logicq.controller.download;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,23 +38,40 @@ public class FileDownloadController {
 	@Autowired
 	IAttendanceService attendanceservice;
 	
-	@RequestMapping(value = "/downloadAttendanceReport/{reporttype}/{applicableto}/{uniqueid}/{exportfor}/{exporttype}")
-	public void getAllReports(@PathVariable String reporttype, @PathVariable String applicableto,
-			@PathVariable String uniqueid,@PathVariable String exportfor,@PathVariable String exporttype, HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/downloadAttendanceReport/{reporttype}/{reportfor}/{fromdate}/{todate}/{applicableto}/{uniqueid}/{classname}/{section}/{exportfor}/{exporttype}")
+	public void getAllReports(
+	        @PathVariable String reporttype, @PathVariable String reportfor,@PathVariable Date fromdate,@PathVariable Date todate,
+	        @PathVariable String applicableto,@PathVariable String uniqueid,
+	        @PathVariable String classname,@PathVariable String section,
+	        @PathVariable String exportfor,@PathVariable String exporttype, HttpServletRequest request, HttpServletResponse response
+			) {
 		DownloadCriteria reportdownloadcriteria = new DownloadCriteria();
-		reportdownloadcriteria.setReporttype(reporttype);
+
+		
+		/*reportdownloadcriteria.setReporttype(reporttype);
 		reportdownloadcriteria.setApplicableto(applicableto);
 		reportdownloadcriteria.setUniqueid(uniqueid);
 		reportdownloadcriteria.setExportfor(exportfor);
-		reportdownloadcriteria.setExporttype(exporttype);
+		reportdownloadcriteria.setExporttype(exporttype);*/
+		
 		AttendanceCriteria atttaendancecriteria=new AttendanceCriteria();
 		atttaendancecriteria.setApplicablefor(applicableto.toUpperCase());
+		
+		atttaendancecriteria.setReporttype(reporttype);
+		atttaendancecriteria.setReportFor(reportfor);
+		atttaendancecriteria.setFromdate(fromdate);
+		atttaendancecriteria.setTodate(todate);
+		
+		//atttaendancecriteria.setApplicableto(applicableto);
+		atttaendancecriteria.setClassName(classname);
+		atttaendancecriteria.setSectionName(section);
 		atttaendancecriteria.setCardno(uniqueid);
+		
 		
 			try {
 				List<AttendanceDetails> attendancedetails=attendanceservice.getAttendanceAsTabular(atttaendancecriteria);
 				if (CSV.equalsIgnoreCase(exporttype)) {
-					createCSVFile(response, attendancedetails);
+					createCSVFile(response, attendancedetails,atttaendancecriteria);
 				}
 				if (PDF.equalsIgnoreCase(exporttype)) {
 					createPDFFile(response, attendancedetails);
@@ -74,7 +93,7 @@ public class FileDownloadController {
 	 * @param response
 	 * @throws Exception
 	 */
-	private void createCSVFile(HttpServletResponse response, List<AttendanceDetails> attendancedetails) throws Exception {
+	private void createCSVFile(HttpServletResponse response, List<AttendanceDetails> attendancedetails,AttendanceCriteria atttaendancecriteria) throws Exception {
 		ICsvBeanWriter csvWriter = null;
 		try {
 			String csvFileName = "report_data.csv";
@@ -83,7 +102,7 @@ public class FileDownloadController {
 			String headerValue = String.format("attachment; filename=\"%s\"", csvFileName);
 			response.setHeader(headerKey, headerValue);
 			csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
-			ReportHelper.createCSV(csvWriter, attendancedetails);
+			ReportHelper.createCSV(csvWriter, attendancedetails,atttaendancecriteria);
 		} finally {
 			if (null != csvWriter) {
 				csvWriter.flush();
