@@ -33,6 +33,10 @@ public class StudentDAO extends AbstractDAO<Student> implements IStudentDAO{
 		if (null != contactdetails.getCommunicationdetails()) {
 			contactdetails.getCommunicationdetails().setContactdetails(contactdetails);
 		}
+		if (null != student.getEducationdetails()) {
+			student.setEducationdetails(student.getEducationdetails());
+			student.getEducationdetails().setStudent(student);
+		}
 		saveOrUpdate(student);
 	}
 

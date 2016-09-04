@@ -98,6 +98,11 @@
 									emergencycontactnumber : $scope.student.emergencycontactnumber,
 									communicationtype : $scope.student.communicationtype
 								}
+							},
+							educationdetails:{
+								id:$scope.student.educationid,
+								classname:$scope.student.classname,
+								sectionname:$scope.student.sectionname,
 							}
 
 						};
@@ -126,7 +131,10 @@
 					$scope.student.emailid=data.contactdetails.communicationdetails.emailid;
 					$scope.student.emergencycontactnumber=data.contactdetails.communicationdetails.emergencycontactnumber;
 					$scope.student.communicationtype=data.contactdetails.communicationdetails.communicationtype;
-					},
+					$scope.student.educationid=data.educationdetails.id;
+					$scope.student.classname=data.educationdetails.classname;
+					$scope.student.sectionname=data.educationdetails.sectionname;
+				},
 					
 					
 					pouplateStudentForDelete: function ($scope,data) {

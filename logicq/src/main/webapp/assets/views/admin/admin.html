@@ -107,8 +107,8 @@
 				</div>
 				<div class="panel-body">
 					<div class="col-md-8">
-					<h4>Business Report</h4>
-					  <div zingchart id="businesslinechart" zc-json="businessdata" zc-width="100%" zc-height="300px"></div>
+					  <h4> Student Attendance Reports</h4>
+							<div zingchart id="studentattendance" zc-json="studentattendace" zc-width="80%"></div>
 					</div>
 					
 				<div class="col-md-4">
@@ -148,15 +148,11 @@
                    
 				      </div>
 					     <div class="col-md-12">
-						  <div class="col-md-6">
-                             <h4> Student Attendance Reports</h4>
-                               <canvas id="polar-area" class="chart chart-polar-area"
-  chart-data="data" chart-labels="labels" chart-options="options">
-</canvas> 
-                             
-							<div zingchart id="studentattendance" zc-json="studentattendace" zc-width="80%"></div>  
+						  <div class="col-md-8">
+                             <h4>Business Report</h4>
+					          <div zingchart id="businesslinechart" zc-json="businessdata" zc-width="100%" zc-height="300px"></div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
                                <h4> Employee Attendance Reports</h4>
                             <div zingchart id="professorattendance" zc-json="employeattendace" zc-width="80%"></div> 
 							</div>
@@ -172,16 +168,13 @@
 						<h3>Setup Classes</h3>
 					</div>
 				<div class="panel-body">
-					
-					
 						<ul class="nav nav-tabs">
 							<li><a data-toggle="tab" id="subjectsetup" class="pull-center"  ng-click="getSubjectListAccordingToPage(1)"
 							href="/admin#subjectsetupdetails">Subject Setup</a></li>
 							<li class="active"><a data-toggle="tab" id="classsetup" class="pull-center"  ng-click="getClassesDetailsAccordingToPage(1)"
 								href="/admin#classes-setupdetails">Classes Setup</a></li>
 						</ul>
-					
-				 
+
 					<div class="tab-content">
 					<div id="subjectsetupdetails" class="tab-pane fade">
 					<br></br>
@@ -1091,7 +1084,7 @@
 									                   <input type="text" class="form-control" id="student.city" ng-model="student.city"
 										                        placeholder="Enter Your City" name="city" ng-minlength="3"ng-maxlength="15" ng-required="true"> 
 																 <span style="color:red"ng-show="studentcontactform.city.$error.minlength && studentcontactform.city.$dirty">City should have minimum 3char</span>
-		                                <span style="color:red"ng-show="studentcontactform.city.$error.maxlength && studentcontactform.city.$dirty">City should have maximum 15char</span>
+		                                <span style="color:red" ng-show="studentcontactform.city.$error.maxlength && studentcontactform.city.$dirty">City should have maximum 15char</span>
 								                     </div>
 												       <div class="form-group" show-errors='{showSuccess: true}'>
 								                             <label  class="control-label" for="student.pincode">Pincode</label> 
@@ -1160,11 +1153,39 @@
 								</div>
 
 								<div id="educationdetails" class="tab-pane fade">
-
-									<h4>Education Qualification Details</h4>
-									<div class=""></div>
+								<div class="tab-content col-md-10">
+								 <form id="educationdetailform" name="educationdetailform" novalidate>
+									 <div class="col-md-7">
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="student.classname">Belongs To Class </label> 
+											<input type="text" name="student.classname" id="student.classname"
+												class="form-control" ng-model="student.classname"
+												placeholder="Belongs To Class" class="input-search" list="classtypelist" required>
+												<datalist id="classtypelist">
+												<option ng-repeat="classtype in classtypelist"   value="{{classtype.name}}">
+												</option>
+												</datalist> 
+										</div>
+										 
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="student.sectionname">Belongs To Section</label> 
+								        <input type="text" name="student.sectionname" id="student.sectionname"
+												class="form-control" ng-model="student.sectionname"
+												placeholder="Belongs To Section" list="sectiontypelist" required>
+											<datalist id="sectiontypelist">
+												<option ng-repeat="sectiontype in sectiontypelist"   value="{{sectiontype.name}}">
+												</option>
+												</datalist> 
+						            </div>
 								</div>
-
+										 </form>
+							 <div class="modal-footer">
+						 <button type="submit" ng-disabled="educationdetailform.$invalid"class="btn btn-default fa fa-floppy-o" data-dismiss="modal" ng-click="saveStudentDetails()" >Save</button>
+		                 <button type="button" class="btn btn-default fa fa-times-circle"class="close"data-dismiss="modal">Close</button>
+						</div>
+								</div>
+								
+							</div>
 								<div id="examdetails" class="tab-pane fade">
 
 									<h4>Exam Details</h4>

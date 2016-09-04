@@ -269,6 +269,7 @@
 								   $scope.student.basicdetailid='';
 								   $scope.student.contactdetailid='';
 								   $scope.student.addressdetailid='';
+								   $scope.student.educationid='';
 								   $scope.student.communicationdetailid='';
 								   $scope.student.totalrecordcount=null;
 								   $scope.student.numPages=$scope.numPages;
@@ -316,6 +317,10 @@
 												
 												/*New Student**/
 												 $scope.newStudent =  function() {
+													 	   $scope.student.basicdetailid='';
+															$scope.student.contactdetailid='';
+															$scope.student.addressdetailid='';
+															$scope.student.educationid='';
 													 $scope.student={};
 													 $scope.selectedstudent=null;
 												 };	
@@ -634,32 +639,35 @@
 										
 											/*Set Template Configuration operation**/
 											$scope.eventfortemplatelist=null;
-											$scope.notificationtemplate={};
-											$scope.notificationtemplate.eventid='';
+											
 											$scope.notitemplatetypelist=[{id:1, value:'SMS'},
 																		{id:2, value:'E-MAIL'},
 																		{id:3, value:'NOTIFICATION'},
 																		{id:4, value:'ALL'}];
 											$scope.notificationtemplatelist={};
 											$scope.IsNotiTempVisible=true;
+											$scope.notificationtemplate={};
+											$scope.notitemp={};
+											$scope.notificationtemplate.eventid='';
 											$scope.notificationtemplate.totalrecordcount=null;
-											$scope.notificationtemplate.numPages='1';
-											$scope.notificationtemplate.pagesize='15';
-											$scope.notificationtemplate.currentPage=$scope.currentPage;
+											$scope.notitemp.numPages=1;
+											$scope.notitemp.pageSize=15;
+											$scope.notitemp.totalrecordcount='';
+											$scope.notitemp.currentPage='';
 											
 											
 											  /* Get All Notification**/
 											$scope.getNotificationTemplateListAccordingToPage=function(page){
-												$scope.notificationtemplate.currentPage=page;
+												$scope.notitemp.currentPage=page;
 												NotificationService.getAllNotificationTemplateList($scope)
 												.success(function(data, status) {
 													$scope.notificationtemplatelist=data.notificationtemplatelist;
-													 if(null==$scope.notificationtemplate.totalrecordcount){
-														 $scope.notificationtemplate.totalrecordcount=data.notificationtemplatecriteria.totalrecordcount;
+													 if(null==$scope.notitemp.totalrecordcount){
+														 $scope.notitemp.totalrecordcount=data.notitemp.totalrecordcount;
 														 
 													 }
-													 $scope.notificationtemplate.numPages= Math.ceil($scope.notificationtemplate.totalrecordcount/$scope.notificationtemplate.pageSize);
-													 $scope.numPages=$scope.notificationtemplate.numPages;
+													 $scope.notitemp.numPages= Math.ceil($scope.notitemp.totalrecordcount/$scope.notitemp.pageSize);
+													 $scope.numPages=$scope.notitemp.numPages;
 								                	}).error(function(data, status) {
 								                		var errormsg='Unable to Search Notification Template List  Status Code : '+status;
 														 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});

@@ -29,7 +29,7 @@ public class AttendanceReportDAO  extends AbstractDAO<AttendanceAggregationResul
 		attendaceselectquery.append("select ").append(" #GROUPBYFUNCTION ,")
 				.append(" count(case when is_present ='A'  then 1 end) as absentcount ,");
 		attendaceselectquery.append(" count(case when is_present ='P' then 1 end) AS presentcount ");
-		attendaceselectquery.append(" from attendance_report where attd_date between ");
+		attendaceselectquery.append(" from ATTENDANCE_REPORT where attd_date between ");
 		if (null != attedancecriteria.getFromdate()) {
 		String fromdate=DateHelper.convertDatetoStringWituoutTime(attedancecriteria.getFromdate());
 			attendacewherequery.append("'"+fromdate+"'");
