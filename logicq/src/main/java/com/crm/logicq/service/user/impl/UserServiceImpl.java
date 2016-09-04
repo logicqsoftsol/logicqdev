@@ -15,11 +15,13 @@ import com.crm.logicq.constant.EntityType;
 import com.crm.logicq.dao.employee.IEmployeeDAO;
 import com.crm.logicq.dao.student.IStudentDAO;
 import com.crm.logicq.dao.user.IUserDAO;
+import com.crm.logicq.model.education.EducationDetails;
 import com.crm.logicq.model.user.Employee;
 import com.crm.logicq.model.user.Student;
 import com.crm.logicq.model.user.User;
 import com.crm.logicq.service.alert.IAlertService;
 import com.crm.logicq.service.user.IUserService;
+import com.crm.logicq.vo.attendance.EducationVO;
 import com.crm.logicq.vo.user.EmployeeCriteria;
 import com.crm.logicq.vo.user.StudentCriteria;
 import com.crm.logicq.vo.user.UserVO;
@@ -166,30 +168,51 @@ public class UserServiceImpl implements IUserService{
 	public void loadStudents() throws Exception{
 		List<Student> students= studentdao.loadStudents();
 		Map<String,UserVO> allusermapdetails = (Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
+		Map<String,EducationVO>  studenteducationdetails = (Map<String, EducationVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDSTUDENTEDU");
 		if(null==allusermapdetails || allusermapdetails.isEmpty()){
 			allusermapdetails=new HashMap<String, UserVO>();
 			LogicqContextProvider.addElementToApplicationMap("CACHEDUSER", allusermapdetails);
+		if(null==studenteducationdetails || studenteducationdetails.isEmpty()){
+				studenteducationdetails=new HashMap<String, EducationVO>();
+				LogicqContextProvider.addElementToApplicationMap("CACHEDSTUDENTEDU", studenteducationdetails);
 		}
-		
-		//students.forEach((student)->{
-		for(Student student:students){
-			Map<String,UserVO> allusermap=(Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
-			UserVO uservo=new UserVO();
-			if (null != student.getContactdetails()
-					&& null != student.getContactdetails().getCommunicationdetails()) {
-				uservo.setEmail(student.getContactdetails().getCommunicationdetails().getEmailid());
-				uservo.setMobilenumber(student.getContactdetails().getCommunicationdetails().getMobilenumber());
-			}
-			if(null!=student.getBasicdetails()){
-				uservo.setName(student.getBasicdetails().getFirstname()+" "+student.getBasicdetails().getLastname());
-				uservo.setFirstName(student.getBasicdetails().getFirstname());
-				uservo.setLastName(student.getBasicdetails().getLastname());
+			
+			for(Student student:students){
+				
+				//set education details for student only and it will cache student education details
+				EducationDetails educationdetails = student.getEducationdetails();
+				if (null != educationdetails) {
+					EducationVO edu = new EducationVO();
+					edu.setClassname(educationdetails.getClassname());
+					edu.setSectionname(educationdetails.getSectionname());
+					studenteducationdetails.put(student.getIdetificationid(), edu);
 				}
-			uservo.setEntityType(EntityType.STUDENT);
-			uservo.setIdetificationid(student.getIdetificationid());
-			uservo.setUserid(student.getUserid());
-			allusermap.put(student.getIdetificationid(), uservo);
+				
+				
+				//set student as use details
+				UserVO uservo=new UserVO();
+				if (null != student.getContactdetails()
+						&& null != student.getContactdetails().getCommunicationdetails()) {
+					uservo.setEmail(student.getContactdetails().getCommunicationdetails().getEmailid());
+					uservo.setMobilenumber(student.getContactdetails().getCommunicationdetails().getMobilenumber());
+				}
+				if(null!=student.getBasicdetails()){
+					uservo.setName(student.getBasicdetails().getFirstname()+" "+student.getBasicdetails().getLastname());
+					uservo.setFirstName(student.getBasicdetails().getFirstname());
+					uservo.setLastName(student.getBasicdetails().getLastname());
+					}
+				uservo.setEntityType(EntityType.STUDENT);
+				uservo.setIdetificationid(student.getIdetificationid());
+				uservo.setUserid(student.getUserid());
+				allusermapdetails.put(student.getIdetificationid(), uservo);
+			}
+			
 		}
+	
+		//students.forEach((student)->{
+		//Map<String,UserVO> allusermap=(Map<String, UserVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDUSER");
+		//Map<String,EducationVO>  studenteducationdetails = (Map<String, EducationVO>) LogicqContextProvider.getElementFromApplicationMap("CACHEDSTUDENTEDU");
+		
 		//});
 	}
 

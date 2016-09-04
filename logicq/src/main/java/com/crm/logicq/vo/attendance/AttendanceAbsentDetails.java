@@ -7,6 +7,8 @@ public class AttendanceAbsentDetails {
 	private UserVO userdetails;
 	
 	private CardDetailsVO cardetails;
+	
+	private EducationVO educationVO;
 
 	public UserVO getUserdetails() {
 		return userdetails;
@@ -24,11 +26,20 @@ public class AttendanceAbsentDetails {
 		this.cardetails = cardetails;
 	}
 
-	@Override
-	public String toString() {
-		return "AttendanceAbsentDetails [userdetails=" + userdetails + ", cardetails=" + cardetails + "]";
+	public EducationVO getEducationVO() {
+		return educationVO;
+	}
+
+	public void setEducationVO(EducationVO educationVO) {
+		this.educationVO = educationVO;
 	}
 	
-	
+
+	@Override
+	public String toString() {
+		return "AttendanceAbsentDetails [userdetails=" + userdetails + ", cardetails=" + cardetails + ", educationVO="
+				+ educationVO + "]";
+	}
+
 
 }

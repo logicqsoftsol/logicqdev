@@ -50,6 +50,12 @@ public class AttendanceDetails implements Serializable {
 	private String fullName;
 	
 	
+	@Column(name = "CLASS_NAME", nullable = true)
+	private String classname;
+	
+	@Column(name = "SECTION_NAME", nullable = true)
+	private String sectionname;
+	
 	@Column(name = "ATTENDANCE_FOR", nullable = false)
 	private String attendancefor;
 	
@@ -111,13 +117,30 @@ public class AttendanceDetails implements Serializable {
 		this.key = key;
 	}
 
+	public String getClassname() {
+		return classname;
+	}
+
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
+
+	public String getSectionname() {
+		return sectionname;
+	}
+
+	public void setSectionname(String sectionname) {
+		this.sectionname = sectionname;
+	}
+
 	@Override
 	public String toString() {
 		return "AttendanceDetails [key=" + key + ", intime=" + intime + ", outtime=" + outtime + ", isPresent="
-				+ isPresent + ", mobile=" + mobile + ", fullName=" + fullName + ", attendancefor=" + attendancefor
-				+ "]";
+				+ isPresent + ", mobile=" + mobile + ", fullName=" + fullName + ", classname=" + classname
+				+ ", sectionname=" + sectionname + ", attendancefor=" + attendancefor + "]";
 	}
 
+	
 	
 	
 }
