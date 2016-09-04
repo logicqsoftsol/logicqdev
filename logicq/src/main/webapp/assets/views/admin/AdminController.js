@@ -29,19 +29,19 @@
 		  {id:11, name:'OTHER'}
         ];
 		 
-		 $scope.criteriadatelist=[ {id:1, value:'Last 1days'},
-		                           {id:1, value:'Last 2days'},
-		                           {id:1, value:'Last 3days'},
-		                           {id:1, value:'Last 4days'},
-		                 		  {id:2, name:'Last 1weeks'},
-		                          {id:3, name:'Last 2weeks'},
-		                          {id:3, name:'Last 3weeks'},
-		                		  {id:4, name:'Last 1months'},
-		                          {id:5, name:'Last 2months'},
-		                          {id:6, name:'Last 4months'},
-		                		  {id:7, name:'Last 6months'},
-		                		  {id:8, name:'Last 1years'},
-		                		  {id:9, name:'Last 2years'}];
+		 $scope.criteriadatelist=[ {id:1, name:'Last 1days'},
+		                           {id:2, name:'Last 2days'},
+		                           {id:3, name:'Last 3days'},
+		                           {id:4, name:'Last 4days'},
+		                 		  {id:5, name:'Last 1weeks'},
+		                          {id:6, name:'Last 2weeks'},
+		                          {id:7, name:'Last 3weeks'},
+		                		  {id:8, name:'Last 1months'},
+		                          {id:9, name:'Last 2months'},
+		                          {id:10, name:'Last 4months'},
+		                		  {id:11, name:'Last 6months'},
+		                		  {id:12, name:'Last 1years'},
+		                		  {id:13, name:'Last 2years'}];
 		$scope.entitylist=[
 		  {id:1, name:'ALL'},
 		  {id:2, name:'STUDENT'},

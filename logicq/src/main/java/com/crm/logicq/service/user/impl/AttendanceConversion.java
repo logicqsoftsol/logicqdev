@@ -19,6 +19,7 @@ public class AttendanceConversion {
 			attednace.setOuttime(attendanceentity.getOuttime());
 			attednace.setMobileno(attendanceentity.getMobile());
 			attednace.setName(attendanceentity.getFullName());
+			attednace.setAttendance(attendanceentity.getIsPresent());
 			if(null!=attendanceentity.getKey()){
 			attednace.setId(attendanceentity.getKey().getIdetificationid());
 			}

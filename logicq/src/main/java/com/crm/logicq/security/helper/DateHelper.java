@@ -13,9 +13,10 @@ import org.joda.time.DateTime;
 public class DateHelper {
 	
 	private static  DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+	static SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 	private static  SimpleDateFormat sdfwithhourandmin = new SimpleDateFormat("HHmm");
 	public static String convertDatetoString(Date inputdate){
-		return dateFormat.format(inputdate);
+		return format.format(inputdate);
 	}
 
 	public static String convertDatetoStringWituoutTime(Date inputdate){

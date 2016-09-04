@@ -69,8 +69,8 @@
         downloadReport :function ($scope){
         	return $http({
                 method: 'GET',
-                url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getDownloadAttendaceReportURL+'/'+$scope.exportdata.reporttype+'/'+$scope.exportdata.applicableto+'/'+$scope.exportdata.applicableid+'/'+$scope.exportdata.exportfor+'/'+$scope.exportdata.exporttype,
-          })
+                url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getDownloadAttendaceReportURL+'/'+$scope.exportdata.reporttype+'/'+$scope.exportdata.reportfor+'/'+$scope.exportdata.fromdate+'/'+$scope.exportdata.todate+'/'+$scope.exportdata.applicableto+'/'+$scope.exportdata.applicableid+'/'+$scope.exportdata.classname+'/'+$scope.exportdata.sectionname+'/'+$scope.exportdata.exportfor+'/'+$scope.exportdata.exporttype,
+         })
         },
 		}
 }]);
