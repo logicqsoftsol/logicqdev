@@ -18,6 +18,7 @@ import javax.persistence.TemporalType;
 
 
 import com.crm.logicq.model.common.BaseEntity;
+import com.crm.logicq.model.education.EducationDetails;
 
 @Entity
 @Table(name = "STUDENT")
@@ -48,6 +49,11 @@ public class Student extends BaseEntity implements Serializable{
 	
 	@OneToOne(mappedBy="student",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private ContactDetails contactdetails;
+	
+	
+	@OneToOne(mappedBy="student",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	private EducationDetails educationdetails;
+
 
 	
 	
@@ -99,12 +105,23 @@ public class Student extends BaseEntity implements Serializable{
 		this.contactdetails = contactdetails;
 	}
 
+	public EducationDetails getEducationdetails() {
+		return educationdetails;
+	}
+
+	public void setEducationdetails(EducationDetails educationdetails) {
+		this.educationdetails = educationdetails;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", idetificationid=" + idetificationid + ", userid=" + userid + ", regdate="
-				+ regdate + ", basicdetails=" + basicdetails + ", contactdetails=" + contactdetails + "]";
+				+ regdate + ", basicdetails=" + basicdetails + ", contactdetails=" + contactdetails
+				+ ", educationdetails=" + educationdetails + "]";
 	}
 
+	
 	
 
 

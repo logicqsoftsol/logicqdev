@@ -7,10 +7,10 @@
     
    angular.module('crmlogicq', ['ui.bootstrap','zingchart-angularjs','ui.router','ui.multiselect','checklist-model','ngStorage'
   ]).constant('AppConstants', {
-	  'hostName':'http://127.0.0.1:', 
+	 'hostName':'http://127.0.0.1:', 
 	 //'hostName':'http://45.113.136.152:',
-	  'hostPort': '8090' ,
-	 // 'hostPort': '8059' ,
+	   'hostPort': '8090' ,
+	  //'hostPort': '8059' ,
 	   'applicationName' : '/crmlogicq' ,
 	   'get' : 'GET' ,  
 	   'post' : 'POST' , 
