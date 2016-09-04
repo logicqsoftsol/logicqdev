@@ -38,11 +38,11 @@
 								        series: [{
 								            text: "Present",
 								            values:[data.presentcount],
-								            backgroundColor: "#FA6E6E #FA9494",
+								            backgroundColor: "#076696",
 								        }, {
 								            text: "Absent",
 								            values:[data.absentcount],
-								            backgroundColor: "#F1C795 #feebd2"
+								            backgroundColor: "#B8240D"
 								        }]
 								    };
 								    

@@ -31,6 +31,7 @@ import com.crm.logicq.service.event.IEventService;
 import com.crm.logicq.service.user.IUserService;
 import com.crm.logicq.vo.attendance.AttendanceAbsentDetails;
 import com.crm.logicq.vo.attendance.CardDetailsVO;
+import com.crm.logicq.vo.attendance.EducationVO;
 import com.crm.logicq.vo.event.EventDetailsVO;
 import com.crm.logicq.vo.user.UserVO;
 
@@ -138,6 +139,7 @@ public class EventService implements IEventService , ICommonConstant {
 		@SuppressWarnings("unchecked")
 		Map<String, UserVO> allusermapdetails = (Map<String, UserVO>) LogicqContextProvider
 				.getElementFromApplicationMap(CACHEDUSER);
+		Map<String,EducationVO>  studentedudetails = (Map<String, EducationVO>) LogicqContextProvider.getElementFromApplicationMap(STUDENT_EDU_CACHED);
 		List<SMSDetails> smspresentlist = new ArrayList<SMSDetails>();
 		List<String> templatekeys = StringFormatHelper.getSMSTemplateKey(eventDetailsVO.getTemplatetext());
 		List<AttendanceDetails> attendancedetails = new ArrayList<AttendanceDetails>();
@@ -154,11 +156,17 @@ public class EventService implements IEventService , ICommonConstant {
 		for (Map.Entry<String, UserVO> usermap : allusermapdetails.entrySet()) {
 			UserVO user = usermap.getValue();
 			CardDetailsVO cardvo = null;
+			EducationVO eduvo=null;
 			AttendanceDetails attendance = new AttendanceDetails();
 			Attendancekey key=new Attendancekey();
 			attendance.setKey(key);
-			
 			AttendanceAbsentDetails absentdetails=new AttendanceAbsentDetails();
+			if("STUDENT".equals(eventDetailsVO.getApplicablefor())){
+				if(studentedudetails.isEmpty()){
+					eduvo=studentedudetails.get(usermap.getKey());
+				}
+			}
+			
 			if ((user.getEntityType().getValue().equals(eventDetailsVO.getApplicablefor()))
 					|| ("ALL".equals(eventDetailsVO.getApplicablefor()))) {
 				try {
@@ -169,6 +177,7 @@ public class EventService implements IEventService , ICommonConstant {
 						attendance.setIsPresent(ISABSENT_VALUE);
 						absentdetails.setCardetails(cardvo);
 						absentdetails.setUserdetails(user);
+						absentdetails.setEducationVO(eduvo);
 						absetdetails.add(absentdetails);
 
 					} else {
@@ -201,6 +210,10 @@ public class EventService implements IEventService , ICommonConstant {
 					attendance.setOuttime(null);
 				}
 				attendance.setMobile(user.getMobilenumber());
+				if(null!=eduvo){
+				attendance.setSectionname(eduvo.getSectionname());
+				attendance.setClassname(eduvo.getClassname());
+				}
 				attendancedetails.add(attendance);
 			}
 		}

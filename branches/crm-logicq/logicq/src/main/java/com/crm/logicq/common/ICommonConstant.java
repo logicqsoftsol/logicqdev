@@ -6,5 +6,6 @@ public interface ICommonConstant {
 	String ISPRESENT_VALUE = "P";
 	String ISABSENT_VALUE = "A";
 	String ABSETUSER = "ABSETUSER";
+	String STUDENT_EDU_CACHED = "CACHEDSTUDENTEDU";
 
 }
