@@ -55,6 +55,13 @@
                     
                 }),
                 $stateProvider
+                .state('emgm', {
+                    url: "/emgm",
+                    templateUrl:"assets/views/electionmgm/emgm.html",
+                    controller:'EmgmController'
+                    
+                }),
+                $stateProvider
                 .state('authusers', {
                     url: "/",
                     controller:'AuthController'
