@@ -19,11 +19,17 @@
 				} else
 			if($scope.username=='inventory'){
 				$location.path('/inventory');
-			}else{
+			}
+		
+			if($scope.username=='emgm'){
+				$location.path('/emgm');
+			}
+			else{
 				var errormsg='Unable to Login Check setting or Loging Details ';
 				 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 				 $exceptionHandler(errormsg);
 			}
+			
 			
 	/*		$scope.error =false;
 			AuthenticationService.Login($scope).success(function(response, status, headers, config){
