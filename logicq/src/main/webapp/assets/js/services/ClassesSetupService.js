@@ -17,7 +17,7 @@
 		getAllSubjectDetails: function ($scope) {
 			return  $http({
 				method: 'GET',
-				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllSubjectDetailsURL,
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getAllSubjectDetailsURL+'/'+$scope.subject.pageSize+'/'+$scope.subject.currentPage,
 				dataType :'json',
 				data : ''
 			})
@@ -45,7 +45,7 @@
 		getClassesSetupDetails: function ($scope) {
 			return  $http({
 				method: 'GET',
-				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getClassesSetupDetailsURL,
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getClassesSetupDetailsURL+'/'+$scope.classsetup.pageSize+'/'+$scope.classsetup.currentPage,
 				dataType :'json',
 				data : ''
 			})

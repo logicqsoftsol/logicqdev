@@ -957,10 +957,22 @@
 										  $scope.subject={};
 										  $scope.subject.currentPage='';
 										  
-										  $scope.subjectlist=[];
-								          $scope.subject.numPages='';
+										  $scope.subjectlist={};
+								          $scope.notisendsetup.totalrecordcount=null;
+										  $scope.subject.numPages=null;
+										  $scope.subject.pageSize=$scope.pageSize;
+										  $scope.subject.currentPage=$scope.currentPage;
+											
+										  /*get Subject Details**/
 											 $scope.getSubjectListAccordingToPage=function(page){
-												 $scope.notisendsetup.currentPage=page;
+												 $scope.subject.currentPage=page;
+												 ClassesSetupService.getAllSubjectDetails($scope).success(function(data, status) {	
+														$scope.subjectlist=data.subjectlist;												
+															 }).error(function(data, status) {
+																	var errormsg='Unable to Search Subject Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	 $exceptionHandler(errormsg);
+																});
 											    
 											};
 											
@@ -1054,18 +1066,28 @@
 											$scope.classsetup={};
 											$scope.classsetup.classid='';
 											$scope.classsetup.sectiontid='';
-											$scope.classsetup.currentPage='';
 											$scope.classtuplist={};
 											$scope.classopertaion='';
-											$scope.classsetup.totalrecordcount='';
-											$scope.classsetup.numPages='';
 											$scope.selectedcompsub='';
 											$scope.selectedcompsub='';
 											$scope.compsubjectlist=[];
 											$scope.optionalsubjectlist=[];
 											$scope.subjectlist=[];
+											$scope.classsetup.numPages=null;
+											$scope.classsetup.pageSize=$scope.pageSize;
+											$scope.classsetup.currentPage=$scope.currentPage;
+											
+											/*Search class Details*/
 											$scope.getClassesDetailsAccordingToPage=function(page){
 												 $scope.notisendsetup.currentPage=page;
+												 ClassesSetupService.getClassesSetupDetails($scope).success(function(data, status) {	
+														$scope.classtuplist=data.classessetup;										
+															 }).error(function(data, status) {
+																	var errormsg='Unable to Search Classes Details Status Code : '+status;
+																	 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+																	 $exceptionHandler(errormsg);
+																});
+												    
 											    
 											};	
 											
@@ -1085,6 +1107,7 @@
 													});
 												});
 											
+											  /*Get All Suubject Details*/
 											$scope.getAllSubjectDetails=function(){
 												 ClassesSetupService.getAllSubjectList($scope).success(function(data, status) {	
 															$scope.compsubjectlist=data.complsorysubjectlist;
