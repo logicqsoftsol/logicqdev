@@ -2,7 +2,6 @@ package com.crm.logicq.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -10,13 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.springframework.util.StringUtils;
 import org.supercsv.cellprocessor.ift.CellProcessor;
 import org.supercsv.io.ICsvBeanWriter;
 
-import com.crm.logicq.model.attendance.AttendanceCriteria;
+import com.crm.logicq.model.attendance.AttendanceAggregationResult;
 import com.crm.logicq.model.attendance.AttendanceDetails;
 import com.crm.logicq.service.user.impl.AttendanceConversion;
 import com.crm.logicq.vo.attendance.AttendanceVO;
+import com.crm.logicq.vo.download.AttendanceReportCriteria;
+import com.crm.logicq.vo.template.OfficeSetupTemplateVO;
 
 public class ReportHelper {
 	
@@ -27,26 +29,59 @@ public class ReportHelper {
 	 * @param reportdatalist
 	 * @throws Exception
 	 */
-	public static void createCSV(ICsvBeanWriter csvbeanwriter, List<AttendanceDetails> attendancelist,AttendanceCriteria atttaendancecriteria) throws Exception {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+	public static void createCSV(ICsvBeanWriter csvbeanwriter, List<AttendanceDetails> attendancelist,AttendanceReportCriteria atttaendancecriteria) throws Exception {
 		if (!attendancelist.isEmpty()) {
 			String[] csvHeader = FileHelper.getHeaderList(AttendanceVO.class);
 			String[] fieldlist = FileHelper.getFieldList(AttendanceVO.class);
 			final CellProcessor[] processors = FileHelper.getProcessors(fieldlist,AttendanceVO.class);
-			List<AttendanceVO> attendacevolist=AttendanceConversion.convertEntityToVO(attendancelist);
-			 csvbeanwriter.writeHeader("","","Attendance Report");
-			 csvbeanwriter.writeHeader("School Name","Saraswati Shishu Mandir","","Total Present",""+AttendanceVO.getPresentcount());
-			 csvbeanwriter.writeHeader("Email","xyz@gmail.com","","Total Absent",""+AttendanceVO.getAbsentcount());
-			 csvbeanwriter.writeHeader("Report For",atttaendancecriteria.getReportFor(),"","From Date",format.format(atttaendancecriteria.getFromdate()));
-			 csvbeanwriter.writeHeader("Report Name","attendance_report.csv","","To Date",format.format(atttaendancecriteria.getTodate())); 
-			 csvbeanwriter.writeHeader("");
-			 csvbeanwriter.writeHeader(csvHeader);
+			AttendanceAggregationResult aggregation =new AttendanceAggregationResult();
+			List<AttendanceVO> attendacevolist=AttendanceConversion.convertEntityToVOWithAttendanceAggregation(attendancelist,aggregation);
+			 formCSVHeader(csvbeanwriter, atttaendancecriteria, csvHeader,aggregation);
 			
 			for (AttendanceVO attendance : attendacevolist) {
-				
 				csvbeanwriter.write(attendance, csvHeader, processors);
 			}
 		}
+	}
+
+	private static void formCSVHeader(ICsvBeanWriter csvbeanwriter, AttendanceReportCriteria atttaendancecriteria, String[] csvHeader,AttendanceAggregationResult aggregation) throws Exception {
+		OfficeSetupTemplateVO officesetup = new OfficeSetupTemplateVO();
+		// Map<String, String>
+		// officesetupmap=FileHelper.convertPojoToMap(officesetup);
+		// Map<String, String>
+		// attendancemap=FileHelper.convertPojoToMap(atttaendancecriteria);
+		csvbeanwriter.writeHeader("", "####", "Attendance Report","####");
+		//
+		// for (Map.Entry<String, String> office : officesetupmap.entrySet()) {
+		// csvbeanwriter.writeHeader(office.getKey(),office.getValue());
+		// }
+		csvbeanwriter.writeHeader(" School Name ", officesetup.getEntityname().toUpperCase());
+		
+		csvbeanwriter.writeHeader("School Addresses ", officesetup.getEntityaddresses(), ""," Contact Details ",officesetup.getContactdetails() );
+		csvbeanwriter.writeHeader(" Website ", officesetup.getWebaddress().toUpperCase(),""," Email ", officesetup.getEntityemail());
+		csvbeanwriter.writeHeader("");
+		csvbeanwriter.writeHeader("","","", " Total Present ",String.valueOf(aggregation.getPresentcount()));
+		csvbeanwriter.writeHeader( "","",""," Total Absent ",String.valueOf(aggregation.getAbsentcount()));
+		csvbeanwriter.writeHeader("");
+		csvbeanwriter.writeHeader("","####","Attendance Search Criteria","####");
+		csvbeanwriter.writeHeader("Report For ", atttaendancecriteria.getApplicableto(), "", "From Date",
+				DateUtils.convertDateToString(atttaendancecriteria.getFromdate()));
+		csvbeanwriter.writeHeader("Report Name", atttaendancecriteria.getReportname(), "", "To Date",
+				DateUtils.convertDateToString(atttaendancecriteria.getTodate()));
+		if (!StringUtils.isEmpty(atttaendancecriteria.getClassname())) {
+			csvbeanwriter.writeHeader("Class Name ", atttaendancecriteria.getClassname());
+		}
+		if (!StringUtils.isEmpty(atttaendancecriteria.getSectionname())) {
+			csvbeanwriter.writeHeader("Section Name ", atttaendancecriteria.getSectionname());
+		}
+		if (!StringUtils.isEmpty(atttaendancecriteria.getCardnumber())) {
+			csvbeanwriter.writeHeader("Card Number ", atttaendancecriteria.getCardnumber());
+		}
+		if (!StringUtils.isEmpty(atttaendancecriteria.getMobilenumber())) {
+			csvbeanwriter.writeHeader("Mobile Number ", atttaendancecriteria.getMobilenumber());
+		}
+		csvbeanwriter.writeHeader("");
+		csvbeanwriter.writeHeader(csvHeader);
 	}
 
 	/**

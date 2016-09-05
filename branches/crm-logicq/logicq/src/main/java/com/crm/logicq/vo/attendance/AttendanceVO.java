@@ -9,9 +9,6 @@ public class AttendanceVO {
 	private String date;
 	private String attendance;
 	
-	private static int presentcount;
-	private static int absentcount;
-	
 	
 	
 	public String getId() {
@@ -58,36 +55,8 @@ public class AttendanceVO {
     	return attendance;
     }
 	
-    public void setAttendance(String attendance) {
+  
 
-		if (attendance.equals("A")) {
-			absentcount++;
-		}
-		if (attendance.equals("P")) {
-			presentcount++;
-		}
-    	this.attendance = attendance;
-    }
-
-    public static int getPresentcount() {
-    
-    	return presentcount;
-    }
-	
-    public void setPresentcount(int presentcount) {
-    
-    	this.presentcount = presentcount;
-    }
-	
-    public static int getAbsentcount() {
-    
-    	return absentcount;
-    }
-	
-    public void setAbsentcount(int absentcount) {
-    
-    	this.absentcount = absentcount;
-    }
 	
 	@Override
 	public String toString() {

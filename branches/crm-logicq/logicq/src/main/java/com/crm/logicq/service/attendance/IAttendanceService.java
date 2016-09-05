@@ -6,6 +6,7 @@ import com.crm.logicq.model.attendance.AttendanceAggregationResult;
 import com.crm.logicq.model.attendance.AttendanceCriteria;
 import com.crm.logicq.model.attendance.AttendanceDetails;
 import com.crm.logicq.model.common.CommonProperty;
+import com.crm.logicq.vo.download.AttendanceReportCriteria;
 
 public interface IAttendanceService {
 
@@ -16,5 +17,6 @@ public interface IAttendanceService {
 
 	public void saveAttendance(List<AttendanceDetails> attendancedetails) throws Exception;
 	public List<AttendanceDetails> getAttendanceAsTabular(AttendanceCriteria attedancecriteria) throws Exception;
+	public List<AttendanceDetails> getAttendanceForReport(AttendanceReportCriteria attedancecriteria) throws Exception;
 
 }

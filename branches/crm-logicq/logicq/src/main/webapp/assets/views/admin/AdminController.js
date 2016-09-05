@@ -1211,11 +1211,32 @@
 											/* export report details---*/
 											$scope.exportdata={};
 											$scope.exportdata.applicableto='';
-											 $scope.isReportExportApplicable = function(reportapplicableto) {
+											$scope.exportdata.cardnumber='';
+											$scope.exportdata.mobilenumber='';
+											$scope.request.reportcriteria='';
+											$scope.isReportExportApplicable = function(reportapplicableto) {
 											 return reportapplicableto === $scope.exportdata.applicableto;
 											    };
 											
-											$scope.downloadAttendaceReport=function(){			
+											    $scope.exportReportClick=function(){
+											    	$scope.exportdata={};
+													$scope.exportdata.applicableto='';
+													$scope.exportdata.cardnumber='';
+													$scope.exportdata.mobilenumber='';
+													$scope.request.reportcriteria='';
+											    };
+											    
+											$scope.downloadAttendaceReport=function(){	
+												$scope.exportdata.applicableto='STUDENT';
+												if(null!=$scope.exportdata.applicableid){
+													if($scope.exportdata.applicableid.length===10){
+														$scope.exportdata.mobilenumber=$scope.exportdata.applicableid;
+													}else{
+														$scope.exportdata.cardnumber=$scope.exportdata.applicableid;
+													}
+												}
+												UserHelper.setDownloadReportCriteria($scope);
+												
 												switch($scope.exportdata.exporttype){
 												case 'XLS':
 												{
