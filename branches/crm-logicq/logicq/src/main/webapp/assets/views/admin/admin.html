@@ -42,7 +42,7 @@
 					<li ng-class="{active:display == 6}"><a href=""
 							id="dashborad" ng-click="display = 6;displayDashBoard();getAllCalendarDetailsForDashBoard()" ng-init="displayDashBoard();getAllCalendarDetailsForDashBoard()"><i class="fa fa-dashboard"></i>Your Dashboard</a></li>
 						<li ng-class="{active:display == 7}"><a href=""
-							id="classessetup" ng-click="display = 7"><i class="fa fa-sitemap"></i>Setup Classes</a>
+							id="classessetup" ng-click="display = 7;getClassesDetailsAccordingToPage(1)"><i class="fa fa-sitemap"></i>Setup Classes</a>
 						</li>
 						<li ng-class="{active:display == 1}"><a href=""
 							id="empregclick" ng-click="display = 1;searchAllEmployeeListAccordingToPage(1)"><i class="fa fa-user"></i>Employee
@@ -237,16 +237,16 @@
 							<tr class ="success">
 								<th class="pull-center">CLASS NAME</th>
 								<th class="pull-center">SECTIONS NAME</th>
-								<th class="pull-center">COMPULSORY SUBJECT</th>
-								<th class="pull-center">OPTIONAL SUBJECT</th>
+								<!--th class="pull-center">COMPULSORY SUBJECT</th>
+								<th class="pull-center">OPTIONAL SUBJECT</th-->
 								<th class="pull-center">TOTAL STRENGTH</th>
 								<th class="pull-center">CLASS SHIFT</th>
 							</tr>
 							<tr ng-repeat="classrow in classtuplist">
 								<td>{{classrow.classname}}</td>
 								<td>{{classrow.sectionname}}</td>
-								<td>{{classrow.compsubject}}</td>
-								<td>{{classrow.optsubject}}</td>
+								<!--td>{{classrow.compsubject}}</td>
+								<td>{{classrow.optsubject}}</td-->
 								<td>{{classrow.totalstrength}}</td>
 								<td>{{classrow.classshift}}</td>
 								<td><a id="updatenewclass"  data-toggle="modal"  data-target="#classsetupmodal"   ng-click="editExistingClass(classrow)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
