@@ -307,6 +307,25 @@
 					};
 					},
 					
+
+					
+					setDownloadReportCriteria: function ($scope) {
+						return $scope.request.reportcriteria={
+								reporttype:$scope.exportdata.reporttype,
+								reportname:$scope.exportdata.reportname,
+								reportof:$scope.exportdata.reportof,
+								fromdate:$scope.exportdata.fromdate,
+								todate:$scope.exportdata.todate,
+								applicableto:$scope.exportdata.applicableto,
+								exporttype:$scope.exportdata.exporttype,
+								classname:$scope.exportdata.classname,
+								sectionname:$scope.exportdata.sectionname,
+							    cardnumber:$scope.exportdata.cardnumber,
+							    mobilenumber:$scope.exportdata.mobilenumber,
+							
+						};
+						},		
+					
 			
 		}
 		

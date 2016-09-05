@@ -97,7 +97,7 @@
 				<li class="active">Dashboard</li>
 			</ol>
 
-			<a data-toggle="modal" type="button" class="btn btn-default pull-right"  data-target="#exportdatamodal"  id="exportdata"><i class="fa fa-file-text" aria-hidden="true"></i>Export Report</a>
+			<a data-toggle="modal" type="button" class="btn btn-default pull-right"  data-target="#exportdatamodal"   ng-click="exportReportClick()" id="exportdata"><i class="fa fa-file-text" aria-hidden="true"></i>Export Report</a>
 		</section>
 		<section class="content">
 		
@@ -1754,18 +1754,18 @@
 										</div>
 										<div class="col-md-6">
 										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="exportdata.exportfor">Report Name</label> 
-											<input type="text" name="exportdata.exportfor" id="exportdata.exportfor"
-												class="form-control" ng-model="exportdata.exportfor"
+										<label  class="control-label" for="exportdata.reportname">Report Name</label> 
+											<input type="text" name="exportdata.reportname" id="exportdata.reportname"
+												class="form-control" ng-model="exportdata.reportname"
 												placeholder="Report Name" required>
 										</div>
 										</div>
 										<div class="col-md-8">
 										<div class="form-group" show-errors='{showSuccess: true}'>
-										<label  class="control-label" for="exportdata.reportfor">Report For</label> 
-											<input type="text" name="exportdata.reportfor" id="exportdata.reportfor"
-												class="form-control" ng-model="exportdata.reportfor"
-												placeholder="Report For"  list="criteriadatelist" required>
+										<label  class="control-label" for="exportdata.reportof">Report of</label> 
+											<input type="text" name="exportdata.reportof" id="exportdata.reportof"
+												class="form-control" ng-model="exportdata.reportof"
+												placeholder="Report For"  list="criteriadatelist">
 												<datalist id="criteriadatelist">
 												<option ng-repeat="datecriteria in criteriadatelist"   value="{{datecriteria.name}}">
 												</option>

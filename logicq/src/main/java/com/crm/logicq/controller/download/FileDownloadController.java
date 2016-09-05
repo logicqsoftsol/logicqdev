@@ -13,16 +13,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
+import com.crm.logicq.helper.ClassHelper;
 import com.crm.logicq.model.attendance.AttendanceCriteria;
 import com.crm.logicq.model.attendance.AttendanceDetails;
+import com.crm.logicq.model.event.EventDetails;
 import com.crm.logicq.service.attendance.IAttendanceService;
 import com.crm.logicq.utils.ReportHelper;
+import com.crm.logicq.vo.download.AttendanceReportCriteria;
 import com.crm.logicq.vo.download.DownloadCriteria;
 
 @RestController
@@ -38,54 +42,24 @@ public class FileDownloadController {
 	@Autowired
 	IAttendanceService attendanceservice;
 	
-	@RequestMapping(value = "/downloadAttendanceReport/{reporttype}/{reportfor}/{fromdate}/{todate}/{applicableto}/{uniqueid}/{classname}/{section}/{exportfor}/{exporttype}")
-	public void getAllReports(
-	        @PathVariable String reporttype, @PathVariable String reportfor,@PathVariable Date fromdate,@PathVariable Date todate,
-	        @PathVariable String applicableto,@PathVariable String uniqueid,
-	        @PathVariable String classname,@PathVariable String section,
-	        @PathVariable String exportfor,@PathVariable String exporttype, HttpServletRequest request, HttpServletResponse response
-			) {
-		DownloadCriteria reportdownloadcriteria = new DownloadCriteria();
-
-		
-		/*reportdownloadcriteria.setReporttype(reporttype);
-		reportdownloadcriteria.setApplicableto(applicableto);
-		reportdownloadcriteria.setUniqueid(uniqueid);
-		reportdownloadcriteria.setExportfor(exportfor);
-		reportdownloadcriteria.setExporttype(exporttype);*/
-		
-		AttendanceCriteria atttaendancecriteria=new AttendanceCriteria();
-		atttaendancecriteria.setApplicablefor(applicableto.toUpperCase());
-		
-		atttaendancecriteria.setReporttype(reporttype);
-		atttaendancecriteria.setReportFor(reportfor);
-		atttaendancecriteria.setFromdate(fromdate);
-		atttaendancecriteria.setTodate(todate);
-		
-		//atttaendancecriteria.setApplicableto(applicableto);
-		atttaendancecriteria.setClassName(classname);
-		atttaendancecriteria.setSectionName(section);
-		atttaendancecriteria.setCardno(uniqueid);
-		
-		
-			try {
-				List<AttendanceDetails> attendancedetails=attendanceservice.getAttendanceAsTabular(atttaendancecriteria);
-				if (CSV.equalsIgnoreCase(exporttype)) {
-					createCSVFile(response, attendancedetails,atttaendancecriteria);
+	@RequestMapping(value = "/downloadAttendanceReport")
+	public void getAttendanceReports(@RequestBody AttendanceReportCriteria reportcriteria, HttpServletRequest request, HttpServletResponse response) {
+		try {
+		       //ClassHelper.undefinedCheck(reportcriteria);
+				List<AttendanceDetails> attendancedetails=attendanceservice.getAttendanceForReport(reportcriteria);
+				if (CSV.equalsIgnoreCase(reportcriteria.getExporttype())) {
+					createCSVFile(response, attendancedetails,reportcriteria);
 				}
-				if (PDF.equalsIgnoreCase(exporttype)) {
+				if (PDF.equalsIgnoreCase(reportcriteria.getExporttype())) {
 					createPDFFile(response, attendancedetails);
 				}
 			
-				if (XLS.equalsIgnoreCase(reporttype)) {
+				if (XLS.equalsIgnoreCase(reportcriteria.getExporttype())) {
 					createXLSFile(response, attendancedetails);
 				}
 			} catch (Exception exp) {
 				logger.error(" Unable perform operation : " + exp.getMessage(), exp);
 			}
-
-	
-
 	}
 	/**
 	 * This method will create csv file
@@ -93,7 +67,7 @@ public class FileDownloadController {
 	 * @param response
 	 * @throws Exception
 	 */
-	private void createCSVFile(HttpServletResponse response, List<AttendanceDetails> attendancedetails,AttendanceCriteria atttaendancecriteria) throws Exception {
+	private void createCSVFile(HttpServletResponse response, List<AttendanceDetails> attendancedetails,AttendanceReportCriteria atttaendancecriteria) throws Exception {
 		ICsvBeanWriter csvWriter = null;
 		try {
 			String csvFileName = "report_data.csv";
