@@ -1,0 +1,628 @@
+<div class="wrapper" id="admin">
+	<header class="main-header">
+		<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<span class="logo-mini">ElectionManagement</span> <!-- logo for regular state and mobile devices -->
+			<span class="logo-lg fa fa-university">Election Management</span>
+		</a>
+		<!-- Header Navbar: style can be found in header.less -->
+		<nav class="navbar navbar-static-top">
+			<!-- Sidebar toggle button-->
+			<a href="#" role="button" class="sidebar-toggle"
+				data-toggle="offcanvas"></a>
+			<div class="top-nav notification-row">
+                    <!-- task notificatoin end -->
+				<ul class="nav pull-right top-menu">
+					     <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt="" src="img/avatar1_small.jpg">
+                            </span>
+                            <span class="username">Admin Sangram</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li>
+                                <a href="#"><i class="icon_chat_alt"></i> Chats</a>
+                            </li>
+                            <li>
+                                <a href="/login.html"><i class="icon_key_alt"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+					</ul>
+				
+       <!-- task notificatoin start -->				
+				<ul class="nav pull-right top-menu">
+				           <li id="task_notificatoin_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="fa fa-bell-o"></i>
+                            <span class="badge label-danger">10</span>
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="panel-heading">
+                            <li >
+                                <p class="label-danger">You have 10 pending Issue</p>
+                            </li>
+							</div>
+							 <div class="panel-body">
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Issue Id :45454</div>
+										<span> Client id : XXY , Location : Remuna</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">Issue Id :33565</div>
+										<span> Client id : ASDpq , Location : Baripada</span>
+                                    </div>
+                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                   <div class="task-info">
+                                        <div class="desc">Issue Id :33589 </div>
+										<span>  Client id : llasd , Location : Haripur</span>
+                                    </div>
+                                  
+                                </a>
+                            </li>
+							</div>
+							
+                            <li class="external">
+                                <a href="#">See All Tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+					</ul>
+				
+			</div>
+		</nav>
+	</header>
+	<aside class="main-sidebar">
+		<section class="sidebar">
+			<ul class="sidebar-menu">
+				<li class="header">MAIN NAVIGATION</li>
+				<li class="active treeview"><a href=""><i class="fa fa-home" aria-hidden="true"></i>  
+				   <span>Admin Details</span> <i
+						class="fa fa-angle-left pull-right"></i>
+				</a>
+					<ul class="treeview-menu">
+					<li ng-class="{active:display == 1}"><a href=""
+							id="admindashborad" ng-click="display = 1;populateTaskDetailsForGraph();populateComplainDetailsForGraph();populateBusinessPerformanceForGraph();populateDeptPerformanceForGraph();loadHotZoneMap()" ng-init="populateTaskDetailsForGraph();populateComplainDetailsForGraph();populateBusinessPerformanceForGraph();populateDeptPerformanceForGraph();loadHotZoneMap"><i class="fa fa-dashboard"></i>Admin Dashboard</a></li>
+						<li ng-class="{active:display == 2}"><a href=""
+							id="registraion" ng-click="display = 2"><i class="fa fa-users"></i>Registration
+							<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+							<li ng-class="{active:display == 2.1}"><a href=""
+							id="issuedetails" ng-click="display = 2.1"><i class="fa fa-tachometer"></i>Register Dashboard</a></li>	
+							<li ng-class="{active:display == 2.2}"><a href=""
+							id="issuedetails" ng-click="display = 2.2"><i class="fa fa-user-plus"></i>RC Register</a></li>	
+							<li ng-class="{active:display == 2.3}"><a href=""
+							id="issuedetails" ng-click="display = 2.3"><i class="fa fa-user-plus"></i>SE Register</a></li>	
+							<li ng-class="{active:display == 2.4}"><a href=""
+							id="issuedetails" ng-click="display = 2.4"><i class="fa fa-user-plus"></i>Client Register</a></li>	
+							<li ng-class="{active:display == 2.5}"><a href=""
+							id="issuedetails" ng-click="display = 2.5"><i class="fa fa-user-plus"></i>Accountant Register</a></li>		
+							</ul>
+							</li>
+						<li ng-class="{active:display == 3}"><a href=""
+							id="taskdetails" ng-click="display = 3"><i class="fa fa-tasks"></i>Task Details
+							<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+							<li ng-class="{active:display == 3.1}"><a href=""
+							id="issuedetails" ng-click="display = 3.1;populateTaskDetailsForGraph()"><i class="fa fa-tachometer"></i>Task Dashboard</a></li>	
+							<li ng-class="{active:display == 3.2}"><a href=""
+							id="issuedetails" ng-click="display = 3.2"><i class="fa fa-plus-square"></i>Create Task</a></li>	
+							<li ng-class="{active:display == 3.3}"><a href=""
+							id="issuedetails" ng-click="display = 3.3"><i class="fa fa-pencil-square"></i>View Task</a></li>			
+							</ul>
+							</li>
+						<li ng-class="{active:display == 4}"><a href=""
+							id="issuedetails" ng-click="display = 4"><i class="fa fa-bug"></i>Complain Details
+							<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+							<li ng-class="{active:display == 4.1}"><a href=""
+							id="issuedetails" ng-click="display = 4.1"><i class="fa fa-tachometer"></i>Complain Dashboard</a></li>	
+							<li ng-class="{active:display == 4.2}"><a href=""
+							id="issuedetails" ng-click="display = 4.2"><i class="fa fa-plus-square"></i>Create Complain</a></li>	
+							<li ng-class="{active:display == 4.3}"><a href=""
+							id="issuedetails" ng-click="display = 4.3"><i class="fa fa-pencil-square"></i>View Complain</a></li>			
+							</ul>
+							</li>			
+						<li ng-class="{active:display == 5}"><a href=""
+							id="incomedetails" ng-click="display = 5"><i class="fa fa-money"></i>Create Deal</a></li>													
+						<li ng-class="{active:display == 6}"><a href=""
+							id="incomedetails" ng-click="display = 6"><i class="fa fa-money"></i>Income/Expense Details</a></li>
+					</ul></li>
+			</ul>
+		</section>
+		<!-- /.sidebar -->
+	</aside>
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				Dashboard <small>Control panel</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Dashboard</li>
+			</ol>
+		</section>
+		<section class="content">
+		<div class="panel" ng-show='display == 1'>
+			
+			     <div class="row">
+              <!-- chart morris start -->
+              <div class="col-lg-12">
+                  <section class="panel">
+                      <header class="panel-heading">
+                          <h3>Dash Board of Last 1 month</Char>
+                      </header>
+                      <div class="panel-body">
+                        <div class="tab-pane">
+						      <!-- Pie -->
+                          <div class="col-lg-9">
+                              <section class="panel">
+                                  <header class="panel-heading">
+                                      Hot Zone Clients
+                                  </header>
+                                <div id="panel">
+        <button id="drop" class="btn btn-danger" ng-click="addMarker()">Hot Zone Client</button>
+		<button id="dropwarn" class="btn btn-warning" ng-click="addMarker()">Warm Zone Client</button>
+       </div>
+      <ng-map center="52.520816, 13.410186" zoom="12">
+      </ng-map>
+	  </section>
+    </div>
+	
+	</div>
+	
+						
+                      <div class="row">
+                          <!-- Line -->
+                          <div class="col-lg-6">
+                              <section class="panel">
+                                  <header class="panel-heading">
+                                      Task Details
+                                  </header>
+                                  <div class="panel-body text-center">
+                                      <div zingchart id="taskgraph" zc-json="taskgraphdetails" zc-width="100%"></div>  
+                                  </div>
+                              </section>
+                          </div>                      
+                          <!-- Bar -->
+                          <div class="col-lg-6">
+                              <section class="panel">
+                                  <header class="panel-heading">
+                                      Complain Details
+                                  </header>
+                                  <div class="panel-body text-center">
+                                  <div zingchart id="complaingraph" zc-json="complaingraphdetails" zc-width="100%"></div>   
+                                  </div>
+                              </section>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <!-- Polar Area -->
+                          <div class="col-lg-6">
+                              <section class="panel">
+                                  <header class="panel-heading">
+                                      Business Details
+                                  </header>
+                                  <div class="panel-body text-center">
+                                     <div zingchart id="businesslinechart" zc-json="businessdata" zc-width="100%"></div>
+                                  </div>
+                              </section>
+                          </div>
+                          <div class="col-lg-6">
+                              <section class="panel">
+                                  <header class="panel-heading">
+                                     Expense & Collection Details
+                                  </header>
+                                  <div class="panel-body text-center">
+                                      <div zingchart id="expandcoll" zc-json="expcoldatagraph" zc-width="100%"></div>
+                                  </div>
+                              </section>
+                          </div>
+						   <!-- Radar -->
+                          <div class="col-lg-10">
+                              <section class="panel">
+                                  <header class="panel-heading">
+                                      Department Performance Details
+                                  </header>
+                                  <div class="panel-body text-center">
+                                      <div zingchart id="deptperformace" zc-json="deptperfgraphdata" zc-width="100%"></div>
+                                  </div>
+                              </section>
+                          </div>
+                      </div>
+                 
+                      </div>
+                  </div>
+				  </div>
+				  </div>
+                  
+                  
+                  				<!---Client  Registration-->
+						<div id="clientregistration" ng-show='display == 2.4'>
+						      <div class="modal-lg">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									 <h3 class="pull-center">Client Details</h3>
+								   </div>
+									
+						 <div class="modal-body">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" class="pull-center"
+								href="/admin#clientcontactdetails">Contact Details</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="/admin#clientorderdetails">Order Details</a></li>
+						</ul>
+
+						<div class="panel-body">
+							<div class="tab-content col-md-10">
+								<div id="clientcontactdetails" class="tab-pane fade in active">
+								<form id="clientcontactdetails"  novalidate>
+										<div class="col-xs-5 col-sm-5 col-md-5">
+										<div class="form-group" show-errors='{showSuccess: true}'>
+												 <label  class="control-label" for="client.clientid">Client Id</label> 
+													<input type="text" name="client.clientid" id="client.clientid"
+														class="form-control" ng-model="clientid.clientid" readonly>
+									     	</div>
+						                   
+												</div>
+		                                 		<div class="col-xs-5 col-sm-5 col-md-5">
+												
+												  <div class="form-group" show-errors='{showSuccess: true}'>
+												 <label  class="control-label" for="client.type">Client Type</label> 
+													<input type="text" name="client.type" id="client.type"
+														list="datalisttitle" class="form-control" ng-model="client.type"
+														placeholder="Type" required>
+													<datalist id="datalisttitle">
+														<option>Company</option>
+														<option>School</option>
+														<option>College</option>
+														<option>Shope</option>
+														<option>Mid-Enterprise</option>
+													</datalist>
+												</div>
+												 </div>
+												 		<div class="col-xs-9 col-sm-9 col-md-9">
+												  <div class="form-group" show-errors='{showSuccess: true}'>
+												<label  class="control-label" for="client.name">Name</label>
+													<input type="text" name="client.name" id="client.name"
+														class="form-control" ng-model="client.name" pattern="^[a-zA-Z]{1,}$"
+														placeholder="Name" required>
+												</div>
+												</div>
+												 
+												 <div class="col-xs-6 col-sm-6 col-md-6">
+												 <div class="form-group" show-errors='{showSuccess: true}'>
+										            <label  class="control-label" for="client.mobilenumber">Mobile No</label> 
+										                <input type="text" name="client.mobilenumber" id="client.mobilenumber"
+														class="form-control" ng-model="client.mobilenumber" required pattern="^[0-9]{1,}$" ng-minlength='10' ng-maxlength='10'
+														placeholder="Enter 10 digit mobile Number">
+										         </div>
+												 
+												  <div class="form-group" show-errors='{showSuccess: true}'>
+										               <label  class="control-label" for="client.landnumber">Land Number</label> 
+										                 <input type="text" name="client.landnumber" id="client.landnumber"
+														  class="form-control" ng-model="client.landnumber" 
+														  placeholder="Enter Land Number"  pattern="^[0-9]{1,}$" ng-minlength='6' ng-maxlength='10'>
+										           </div>
+												    <div class="form-group" show-errors='{showSuccess: true}'>
+										               <label  class="control-label" for="client.faxno">Fax Number</label> 
+										                 <input type="text" name="client.faxno" id="client.faxno"
+														  class="form-control" ng-model="client.faxno" 
+														  placeholder="Enter Fax Number"  pattern="^[0-9]{1,}$" ng-minlength='6' ng-maxlength='10'>
+										           </div>
+												   <div class="form-group" show-errors='{showSuccess: true}'>
+										               <label  class="control-label" for="client.emailid">Email Id</label> 
+										                 <input type="text" name="client.emailid" id="client.emailid"
+														  class="form-control" ng-model="client.emailid" 
+														  placeholder="your email details" required patteren="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$">
+										             </div>
+												</div>
+                                                  <div class="col-xs-6 col-sm-6 col-md-6">
+											<div class="form-group" show-errors='{showSuccess: true}'>
+										          <label  class="control-label" for="client.address">Address</label> 
+										            <textarea name="client.address" id="client.address"
+														class="form-control" ng-model="client.address"
+														 placeholder="Enter your address"></textarea>
+										     </div>
+											<div class="form-group" show-errors='{showSuccess: true}'>
+										           <label  class="control-label" for="client.landmark">Landmark</label> 
+										              <input type="text" name="client.landmark" id="client.landmark"
+														class="form-control" ng-model="client.landmark"
+														placeholder="Near by Land Mark">
+										       </div>
+											   </div>
+											   <div class="col-xs-6 col-sm-6 col-md-6">
+										       <div class="form-group" show-errors='{showSuccess: true}'>
+								                             <label  class="control-label" for="client.pincode">Pincode</label> 
+									                        <input type="text" class="form-control" id="client.pincode" ng-model="student.pincode"
+										                        placeholder="Enter Pincode" name="client.pincode" required pattern="^[0-9]{1,}$" ng-minlength='6' ng-maxlength='6'> 
+								                        </div>
+												    <div class="form-group" show-errors='{showSuccess: true}'>
+								                             <label  class="control-label" for="client.city">City</label> 
+									                        <input type="text" class="form-control" id="client.city" ng-model="student.pincode"
+										                        placeholder="Enter City" name="client.city" list="citylist" required> 
+																<datalist id="citylist" >
+																 <option>Balasore</option>
+														         <option>Bhubaneswar</option>
+																 <option>Cuttuck</option>
+																 </datalist>
+								                        </div>		
+														
+													</div>	
+													<div class="col-xs-6 col-sm-6 col-md-6">	
+														
+												          <div class="form-group" show-errors='{showSuccess: true}'>
+								                            <label  class="control-label" for="client.state">State</label> 
+									                          <input type="text" class="form-control" id="client.state" ng-model="student.state"
+										                        placeholder="Enter Your State" name="client.state" list="statelist" required> 
+																 <datalist id="statelist" >
+																 <option>Odisha</option>
+														         <option>Kolkata</option>
+																 </datalist>
+								                           </div>
+														   </div>
+								                            <div class="col-xs-6 col-sm-6 col-md-6">
+								                            <div class="form-group" show-errors='{showSuccess: true}'>
+								                              <label  class="control-label" for="student.country">Country</label> 
+									                            <input type="text" class="form-control" id="student.country" ng-model="student.country"
+										                        placeholder="Enter Your Country" name="student.country" list="coutrylist" required> 
+																 <datalist id="coutrylist" >
+																  <option>India</option>
+														         <option>UK</option>
+																 </datalist>
+								                            </div>  
+														</div>
+														</form>
+											</div>
+	                   <div id="clientorderdetails" class="tab-pane fade">
+									<h4>Order Details</h4>
+									<div class=""></div>
+								</div>
+					</div>			
+				</div>															
+			</div>				
+		</div>
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-default fa fa-floppy-o" data-dismiss="modal" ng-click="saveStudentDetails()" >Save</button>
+		    <button type="button" class="btn btn-default fa fa-times-circle"class="close"data-dismiss="modal">Close</button>
+		</div>
+	 </div>
+</div>
+
+   				<!---Client  Registration-->
+						<div id="placeoderforclient" ng-show='display == 5'>
+						  <div class="modal-lg">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									 <h3 class="pull-center">Create Details</h3>
+								   </div>
+									
+						 <div class="modal-body">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" class="pull-center"
+								href="/admin#placeorderforclient">Deal Details</a></li>
+						</ul>
+
+						<div class="panel-body">
+							<div class="tab-content col-md-12">
+								<div id="placeorderforclient" class="tab-pane fade in active">
+								<form id="placeorderforclient"  novalidate>
+										<div class="col-xs-3 col-sm-3 col-md-3">
+											<div class="form-group" show-errors='{showSuccess: true}'>
+												 <label  class="control-label" for="client.location">Client Id</label> 
+													<input type="text" name="client.location" id="client.location"
+														class="form-control" ng-model="clientid.location" list="clientdetaillocationlist">
+												<datalist id="clientdetaillocationlist">
+														<option>Balasore</option>
+														<option>Mumbai</option>
+														<option>Pune</option>
+												</datalist>
+									     	</div>
+										
+										<div class="form-group" show-errors='{showSuccess: true}'>
+												 <label  class="control-label" for="client.clientid">Client Id</label> 
+													<input type="text" name="client.clientid" id="client.clientid"
+														class="form-control" ng-model="clientid.clientid" list="clientdetaillist">
+												<datalist id="clientdetaillist">
+														<option>CLI-909090 ABCD School</option>
+														<option>CLI-909091 XYZ Shope</option>
+														<option>CLI-909092 LPQ College</option>
+														<option>CLI-909093 ABC Company</option>
+												</datalist>
+									     	</div>
+										   <div class="form-group" show-errors='{showSuccess: true}'>
+												 <label  class="control-label" for="client.name">Client Id</label> 
+													<input type="text" name="client.name" id="client.name"
+														class="form-control" ng-model="client.name" readonly>
+									     	</div>
+						                   
+										    <div class="form-group" show-errors='{showSuccess: true}'>
+										            <label  class="control-label" for="client.mobilenumber">Mobile No</label> 
+										                <input type="text" name="client.mobilenumber" id="client.mobilenumber"
+														class="form-control" ng-model="client.mobilenumber" required pattern="^[0-9]{1,}$" ng-minlength='10' ng-maxlength='10'
+														placeholder="Enter 10 digit mobile Number" readonly>
+										     </div>											 
+												</div>
+						                  <div class="col-xs-9 col-sm-9 col-md-9">
+										   <div class="col-xs-4 col-sm-4 col-md-4">
+												<div class="form-group" show-errors='{showSuccess: true}'>
+												 <label  class="control-label" for="inventory.category">Inventory Category</label> 
+													<input type="text" name="inventory.category" id="inventory.category"
+														class="form-control" ng-model="inventory.category" list="invencategorilist">
+												<datalist id="invencategorilist">
+														<option>SMART CLASS SOLUTION</option>
+														<option>SECURITY SOLUTION</option>
+														<option>COMPUTER SALES AND SERVICES</option>
+												</datalist>
+									     	</div>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												 <div class="form-group" show-errors='{showSuccess: true}'>
+												 <label  class="control-label" for="inventory.subcategory">Inventory Sub-Category</label> 
+													<input type="text" name="inventory.subcategory" id="inventory.subcategory"
+														class="form-control" ng-model="inventory.subcategory" list="invensubcategorilist">
+												<datalist id="invensubcategorilist">
+														<option>Project</option>
+														<option>Cpu</option>
+														<option>Smart Board</option>
+												</datalist>
+									     	</div>
+											</div>
+											<div class="col-xs-10 col-sm-10 col-md-10">	  
+								<paging>
+						<div class="table-responsive">
+							<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="">&raquo;</a></li>
+									</ul>
+						
+							<ul class="pull-right">
+								<button id="addproductforclient" data-toggle="modal" data-toggle="modal"
+									data-target="#addproductdetails"  ng-click="addtoClientCart()" 
+									class="btn btn-default"><i class="fa fa-plus-square" aria-hidden="true"></i>Add Product</button>
+							</ul>
+							<table class="table table-bordered table-fixed table-hover">
+							<tr class ="success">
+								<th class="pull-center">Product Name</th>
+								<th class="pull-center">Serial No</th>
+								<th class="pull-center">Quantity</th>
+								<th class="pull-center">Price</th>
+							</tr>
+							<tr ng-repeat="cart in cartlist">
+								<td>XYZ</td>
+								<td>asss121313</td>
+								<td>2</td>
+								<td>2*100</td>
+								<td><a id="updateclientcart"  data-toggle="modal"  data-target="#employeeregistration"   ng-click="pouplateClientCartForEdit(emp)"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+	                            <td><a id="deletefromcart"  data-toggle="modal"  data-target="#deleteemployee"   ng-click="pouplateClientCartForDelete(emp)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							</tr>
+						</table>
+						</div>
+						</paging>
+											</div>	  
+												</div>
+											</form>
+											</div>
+					</div>			
+				</div>															
+			</div>				
+		</div>
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-default fa fa-paper-plane" data-dismiss="modal" ng-click="saveStudentDetails()">Send For Approval</button>
+		    <button type="button" class="btn btn-default fa fa-times-circle"class="close"data-dismiss="modal">Close</button>
+		</div>
+	 </div>
+						
+						</div>
+						
+						
+						
+							<!---End for Modal Notifications Template sending setup-->
+		<div id="addproductdetails" class="modal fade" role="dialog">
+		<form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Select Product</h4>
+						</div>
+						<div class="modal-body">
+						<div class="col-md-8">
+						
+						         <div class="form-group">
+										<label  class="control-label" for="inventory.productname">Product Name</label>
+											<input type="text" name="inventory.productname" id="inventory.productname"
+												class="form-control" ng-model="inventory.productname"
+												placeholder="Product Name"  ng-disabled="inventory.productname">
+										</div>
+						
+									<div class="form-group">
+										<label  class="control-label" for="inventory.serialnumber">Serial No</label>
+											<textarea type="text" name="inventory.serialnumber" id="inventory.serialnumber"
+												class="form-control" ng-model="inventory.serialnumber"
+												placeholder="Serial No"></textarea>
+										</div>
+									<div class="form-group">
+										<label  class="control-label" for="inventory.barcode">Bar Code</label>
+											 <textarea type="text" name="inventory.barcode" id="inventory.barcode"
+												class="form-control" ng-model="inventory.barcode"
+												placeholder="Bar Code"></textarea>
+										</div>
+								
+								
+                               			
+										<div class="col-xs-8 col-sm-8 col-md-8">	
+										<div class="form-group">
+											<input type="text" name="inventory.quantity" id="inventory.quantity"
+												class="form-control" ng-model="inventory.quantity"
+												placeholder="Quantity">
+												
+										</div>
+										</div>
+										<div class="col-xs-4 col-sm-4 col-md-4">
+										<div class="form-group">
+										<input type="text" name="inventory.quantitytype" id="inventory.quantitytype"
+														class="form-control" ng-model="inventory.quantitytype" list="quantitytypelist">
+												<datalist id="quantitytypelist">
+														<option>Kg</option>
+														<option>Packets</option>
+														<option>Ltrs</option>
+														<option>Pices</option>
+												</datalist>
+												</div>
+												</div>
+										<div class="form-group">
+										<label  class="control-label" for="inventory.prdamount">Amount</label>
+											<input type="text" name="inventory.prdamount" id="inventory.prdamount"
+												class="form-control" ng-model="inventory.prdamount"
+												placeholder="Amount">
+										</div>
+										<div class="form-group">
+										<label  class="control-label" for="inventory.selldate">Date</label>
+											<input type="Date" name="inventory.selldate" id="inventory.selldate"
+												class="form-control" ng-model="inventory.selldate"
+												placeholder="Sell Date">
+										</div>
+										</div>
+										
+				</div>
+				<div class="modal-footer">
+							<button type="submit" id="addprodforclient" class="btn btn-default" ng-click=""
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+			</div>
+			</div>
+			</form>
+		</div><!---End for Modal Notifications Template sending setup-->				
+		
+                  
+                 
+              </div>
+
+		</div>					
