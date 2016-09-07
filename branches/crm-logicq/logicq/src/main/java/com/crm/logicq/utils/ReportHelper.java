@@ -64,10 +64,8 @@ public class ReportHelper {
 		csvbeanwriter.writeHeader( "","",""," Total Absent ",String.valueOf(aggregation.getAbsentcount()));
 		csvbeanwriter.writeHeader("");
 		csvbeanwriter.writeHeader("","####","Attendance Search Criteria","####");
-		csvbeanwriter.writeHeader("Report For ", atttaendancecriteria.getApplicableto(), "", "From Date",
-				DateUtils.convertDateToString(atttaendancecriteria.getFromdate()));
-		csvbeanwriter.writeHeader("Report Name", atttaendancecriteria.getReportname(), "", "To Date",
-				DateUtils.convertDateToString(atttaendancecriteria.getTodate()));
+		csvbeanwriter.writeHeader("Report For ", atttaendancecriteria.getApplicableto(), "", "From Date",atttaendancecriteria.getAttfromdate());
+		csvbeanwriter.writeHeader("Report Name", atttaendancecriteria.getReportname(), "", "To Date",atttaendancecriteria.getAtttodate());
 		if (!StringUtils.isEmpty(atttaendancecriteria.getClassname())) {
 			csvbeanwriter.writeHeader("Class Name ", atttaendancecriteria.getClassname());
 		}

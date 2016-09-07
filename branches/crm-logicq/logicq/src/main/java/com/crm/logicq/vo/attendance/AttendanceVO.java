@@ -8,8 +8,7 @@ public class AttendanceVO {
 	private String outtime;
 	private String date;
 	private String attendance;
-	
-	
+
 	
 	public String getId() {
 		return id;
@@ -54,9 +53,10 @@ public class AttendanceVO {
     
     	return attendance;
     }
-	
-  
 
+    public void setAttendance(String attendance) {
+		this.attendance = attendance;
+	}
 	
 	@Override
 	public String toString() {

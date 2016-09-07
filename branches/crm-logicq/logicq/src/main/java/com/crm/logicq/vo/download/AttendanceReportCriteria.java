@@ -6,7 +6,8 @@ public class AttendanceReportCriteria extends DownloadCriteria {
 	private String sectionname;
 	private String cardnumber;
 	private String mobilenumber;
-	
+	private String attfromdate;
+	private String atttodate;
 
 	public String getClassname() {
 		return classname;
@@ -38,6 +39,24 @@ public class AttendanceReportCriteria extends DownloadCriteria {
 
 	public void setMobilenumber(String mobilenumber) {
 		this.mobilenumber = mobilenumber;
+	}
+
+	
+	
+	public String getAttfromdate() {
+		return attfromdate;
+	}
+
+	public void setAttfromdate(String attfromdate) {
+		this.attfromdate = attfromdate;
+	}
+
+	public String getAtttodate() {
+		return atttodate;
+	}
+
+	public void setAtttodate(String atttodate) {
+		this.atttodate = atttodate;
 	}
 
 	@Override

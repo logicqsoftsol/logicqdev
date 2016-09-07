@@ -84,8 +84,10 @@ public class AttendanceDAO extends AbstractDAO<AttendanceDetails> implements IAt
 			Date fromDate = DateHelper.convertDateAccordingToString(attedancecriteria.getReportof());
 			fromDatestring = DateHelper.convertDatetoString(fromDate);
 			todatestring = DateHelper.convertDatetoString(todate);
-			attedancecriteria.setFromdate(fromDate);
-			attedancecriteria.setTodate(todate);
+			attedancecriteria.setAttfromdate(fromDatestring);
+			attedancecriteria.setAtttodate(todatestring);
+			//attedancecriteria.setFromdate(fromDate);
+			//attedancecriteria.setTodate(todate);
 		}else
 		if (attedancecriteria.getFromdate() != null && attedancecriteria.getTodate() != null) {
 			fromDatestring = DateHelper.convertDatetoString(attedancecriteria.getFromdate());

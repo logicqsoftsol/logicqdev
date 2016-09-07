@@ -87,7 +87,7 @@
 		$scope.studentattendace={};
 		$scope.employeattendace={};
 		$scope.attendancedetails={};
-		$scope.attendancecriteria.criteriadate ='Last1days';
+		$scope.attendancecriteria.criteriadate ='Last15days';
 		$scope.attendancecriteria.attedancefor ='EMPSTD';
 		$scope.attendancecriteria.mobileno='ISEMPTY';
 		$scope.attendancecriteria.cardno='ISEMPTY';
