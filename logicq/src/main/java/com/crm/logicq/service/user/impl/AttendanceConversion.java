@@ -44,7 +44,9 @@ public class AttendanceConversion {
 			attednace.setOuttime(attendanceentity.getOuttime());
 			attednace.setMobileno(attendanceentity.getMobile());
 			attednace.setName(attendanceentity.getFullName());
+			attednace.setAttendance(attendanceentity.getIsPresent());
 			if ("P".equals(attendanceentity.getIsPresent())) {
+				
 				int present = aggregation.getPresentcount() + 1;
 				aggregation.setPresentcount(present);
 			} else {
