@@ -236,6 +236,7 @@
 						msgsendfromdate:$scope.notisendsetup.msgsendfromdate,
 						msgsendtodate:$scope.notisendsetup.msgsendtodate,
 						msgsendingtime:$scope.notisendsetup.msgsendingtime,
+						daylist:$scope.displaydayslist,
 						notificationtemplate :{
 								templateid:$scope.notisendsetup.templateid
 						}
@@ -257,6 +258,7 @@
 					$scope.notisendsetup.templatename =data.notificationtemplate.templatename;
 					$scope.notisendsetup.templatetext =data.notificationtemplate.templatetext;
 					$scope.notisendsetup.templateid=data.notificationtemplate.templateid;
+					$scope.displaydayslist=data.notificationtemplate.daylist ;
 				},	
 					
 

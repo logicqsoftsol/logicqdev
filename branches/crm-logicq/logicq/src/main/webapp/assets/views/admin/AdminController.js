@@ -82,6 +82,18 @@
 		                   {id:3, name:'After-Noon(11.30 AM-5.30 PM)'},
 						   {id:4, name:'Evening(3.00 PM-7.00 PM )'},
 						   {id:5, name:'Night(6.00 PM-9.00 PM)'}];
+      
+      $scope.dayslist=[
+    		         		  {id:1, name:'Each Day'},
+    		         		  {id:2, name:'WeekDays Only'},
+    		                   {id:3, name:'Weekends Only'},
+    		                   {id:4, name:'Monday'},
+    		                   {id:5, name:'Tuesday'},
+    		                   {id:6, name:'Wednesday'},
+    		                   {id:7, name:'Thursday'},
+    		                   {id:8, name:'Friday'},
+    		                   {id:9, name:'Saturday'},
+    		                   {id:10, name:'Sunday'}];
 
 		$scope.attendancecriteria={};
 		$scope.studentattendace={};
@@ -809,6 +821,7 @@
 											$scope.notisendsetup.numPages=null;
 											$scope.notisendsetup.pageSize=$scope.pageSize;
 											$scope.notisendsetup.currentPage=$scope.currentPage;
+											$scope.displaydayslist='';
 											
 											
 											
@@ -859,8 +872,14 @@
 													});
 													
 													});
+													
 											
-									
+									 $scope.$watch('selecteddayslist',function(){
+												 $scope.displaydayslist='';
+												 angular.forEach($scope.selecteddayslist, function(value, key) {
+												  $scope.displaydayslist=$scope.displaydayslist+"|"+value.name;
+												});
+											});
 											
 										   $scope.addnotificationSendingSetup =function(){
 											  $scope.eventoperation='Looking for Existing';
@@ -1133,6 +1152,7 @@
 												  $scope.selectedoptsub=$scope.selectedoptsub+"|"+value.name;
 												});
 											});
+											
 											
 											
 										    $scope.searchClasses =function(){
