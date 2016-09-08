@@ -37,6 +37,9 @@ public class NotificationSetupDetails {
 	
 	@Column(name = "MSG_SENDING_TIME")
 	private int msgsendingtime;
+	
+	@Column (name = "DAY_LIST")
+	private String daylist;
 
 	public Long getSetupid() {
 		return setupid;
@@ -78,12 +81,37 @@ public class NotificationSetupDetails {
 		this.msgsendingtime = msgsendingtime;
 	}
 
+	
+    public String getDaylist() {
+    
+    	return daylist;
+    }
+
+	
+    public void setDaylist(String daylist) {
+    
+    	this.daylist = daylist;
+    }
+
 	@Override
-	public String toString() {
-		return "NotificationSetupDetails [setupid=" + setupid + ", notificationtemplate=" + notificationtemplate
-				+ ", msgsendfromdate=" + msgsendfromdate + ", msgsendtodate=" + msgsendtodate + ", msgsendingtime="
-				+ msgsendingtime + "]";
-	}
+    public String toString() {
+
+	    return "NotificationSetupDetails [setupid="
+	           + setupid
+	           + ", notificationtemplate="
+	           + notificationtemplate
+	           + ", msgsendfromdate="
+	           + msgsendfromdate
+	           + ", msgsendtodate="
+	           + msgsendtodate
+	           + ", msgsendingtime="
+	           + msgsendingtime
+	           + ", daylist="
+	           + daylist
+	           + "]";
+    }
+
+	 
 	
 	
 }
