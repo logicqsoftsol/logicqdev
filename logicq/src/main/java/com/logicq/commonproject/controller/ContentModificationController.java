@@ -1,13 +1,13 @@
 package com.logicq.commonproject.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,10 +51,16 @@ public class ContentModificationController {
 		return new ResponseEntity<HomeContent>(homecontent, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/getTest/{data}", method = RequestMethod.GET,consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> getTest(@PathVariable String data) throws Exception {
-		System.out.println(" Test "+ data);
-		return new ResponseEntity<String>(data, HttpStatus.OK);
+	@RequestMapping(value = "/getHomeContentDetails", method = RequestMethod.GET,consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<HomeContent>> getHomeContent() throws Exception {
+		List<HomeContent> homecontent=contentmodificationservice.getHomeContent();
+		return new ResponseEntity<List<HomeContent>>(homecontent, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getContentDetails", method = RequestMethod.GET,consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ContentDetails>> getContent() throws Exception {
+		List<ContentDetails> contentdetails=contentmodificationservice.getContentDetails();
+		return new ResponseEntity<List<ContentDetails>>(contentdetails, HttpStatus.OK);
 	}
 	
 }

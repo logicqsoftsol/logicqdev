@@ -1,11 +1,12 @@
 package com.logicq.commonproject.dao;
 
+import java.util.List;
+
 import com.logicq.commonproject.model.ContentDetails;
-import com.logicq.commonproject.model.HomeContent;
 
 public interface IContentModificationDAO {
 	
 	void saveWebContent(ContentDetails contentdetails);
-	void saveorUpdateHomeWebContent(HomeContent homecontent);
+	List<ContentDetails> getWebContent();
 
 }

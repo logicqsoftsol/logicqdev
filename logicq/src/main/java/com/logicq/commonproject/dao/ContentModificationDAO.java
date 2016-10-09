@@ -1,9 +1,10 @@
 package com.logicq.commonproject.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.logicq.commonproject.model.ContentDetails;
-import com.logicq.commonproject.model.HomeContent;
 
 @Repository
 public class ContentModificationDAO extends AbstractDAO<ContentDetails> implements IContentModificationDAO{
@@ -14,9 +15,10 @@ public class ContentModificationDAO extends AbstractDAO<ContentDetails> implemen
 	}
 
 	@Override
-	public void saveorUpdateHomeWebContent(HomeContent homecontent) {
-		// TODO Auto-generated method stub
-		
+	public List<ContentDetails> getWebContent() {
+		return (List<ContentDetails>) loadClass(ContentDetails.class);
 	}
+
+	
 
 }
