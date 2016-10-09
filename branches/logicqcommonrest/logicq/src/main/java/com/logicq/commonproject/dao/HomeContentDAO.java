@@ -6,17 +6,16 @@ import com.logicq.commonproject.model.ContentDetails;
 import com.logicq.commonproject.model.HomeContent;
 
 @Repository
-public class ContentModificationDAO extends AbstractDAO<ContentDetails> implements IContentModificationDAO{
+public class HomeContentDAO extends AbstractDAO<HomeContent> implements IContentModificationDAO{
 
 	@Override
 	public void saveWebContent(ContentDetails contentdetails) {
-	  saveOrUpdate(contentdetails);
+
 	}
 
 	@Override
 	public void saveorUpdateHomeWebContent(HomeContent homecontent) {
-		// TODO Auto-generated method stub
-		
+		 saveOrUpdate(homecontent);
 	}
 
 }

@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.logicq.commonproject.dao.IContentModificationDAO;
 import com.logicq.commonproject.model.ContentDetails;
+import com.logicq.commonproject.model.HomeContent;
 
 @Service
 @Transactional
@@ -18,6 +19,12 @@ public class ContentModificationService implements IContentModificationService {
 	@Override
 	public void saveorUpdateWebContent(ContentDetails contentdetails) {
 		contentmodification.saveWebContent(contentdetails);	
+	}
+
+
+	@Override
+	public void saveorUpdateHomeWebContent(HomeContent homecontent) {
+		contentmodification.saveorUpdateHomeWebContent(homecontent);
 	}
 
 }
