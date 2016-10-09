@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.logicq.commonproject.model.ContentDetails;
+import com.logicq.commonproject.model.HomeContent;
 import com.logicq.commonproject.service.IContentModificationService;
 
 @RestController
@@ -38,6 +39,17 @@ public class ContentModificationController {
 		return new ResponseEntity<ContentDetails>(contentDetails, HttpStatus.OK);
 	}
 	
+	
+	@RequestMapping(value = "/saveOrUpdateHomeContent", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<HomeContent> userRegister(@RequestBody HomeContent homecontent) throws Exception {
+		if(null==contentmodificationservice){
+		return 	new ResponseEntity<HomeContent>(homecontent, HttpStatus.BAD_REQUEST);
+		}
+		if(null!=homecontent){
+			contentmodificationservice.saveorUpdateHomeWebContent(homecontent);
+		}
+		return new ResponseEntity<HomeContent>(homecontent, HttpStatus.OK);
+	}
 	
 	@RequestMapping(value = "/getTest/{data}", method = RequestMethod.GET,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> getTest(@PathVariable String data) throws Exception {
