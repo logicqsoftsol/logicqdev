@@ -26,6 +26,9 @@ public class HomeContent implements Serializable{
 	@Column(name = "CONTENT_FOR", nullable = true)
 	private String name;
 
+	@Column(name = "IMAGE_PATH", nullable = true)
+	private String imagepath;
+	
 	@Column(name = "TEXT_ONE", nullable = true)
 	private String text1;
 	
@@ -86,14 +89,19 @@ public class HomeContent implements Serializable{
 		this.textextra = textextra;
 	}
 
-	@Override
-	public String toString() {
-		return "HomeContent [id=" + id + ", name=" + name + ", text1=" + text1 + ", text2=" + text2 + ", text3=" + text3
-				+ ", textextra=" + textextra + "]";
+	public String getImagepath() {
+		return imagepath;
 	}
 
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "HomeContent [id=" + id + ", name=" + name + ", imagepath=" + imagepath + ", text1=" + text1 + ", text2="
+				+ text2 + ", text3=" + text3 + ", textextra=" + textextra + "]";
+	}
+
 	
 }
