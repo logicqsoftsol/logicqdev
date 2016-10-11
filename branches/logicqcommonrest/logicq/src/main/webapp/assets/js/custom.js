@@ -188,7 +188,9 @@
             success: function (data) {
 				var abtuscontent="";
 			 for (i=0;i < data.length; i++) { 
-                abtuscontent= data[i].value;
+			 if(data[i].name =="AboutUs" && data[i].type=="HOME"){
+				 abtuscontent= data[i].value;
+			 }
                }
                $('#abtus').text(abtuscontent);
             },
