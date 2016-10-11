@@ -176,7 +176,7 @@
     jQuery(document).ready(function() {
       jQuery(".fancybox").fancybox();
     $.each([1,2,3,4,5,6], function( index, value ) {
-	  $("#slidimage"+value).attr('src', "assets/img/"+value+".jpg");
+	  $("#slidimage"+value).attr('src', "assets/img/slider/"+value+".jpg");
 	  $("#slidh4"+value).text("Text Dynamic h4 "+value);
 	  $("#slidh2"+value).text("Text Dynamic h2 "+value);
 	  $("#slidh3"+value).text("Text Dynamic h3 "+value);
