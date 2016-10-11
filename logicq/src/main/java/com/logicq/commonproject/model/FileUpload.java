@@ -23,7 +23,7 @@ public class FileUpload implements Serializable{
 	@Id
 	@Column(name = "FILE_ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private Long id;
 	
 	@Column(name = "FILE_NAME", nullable = true)
 	private String name;
@@ -53,11 +53,11 @@ public class FileUpload implements Serializable{
 	@Column(name = "FILE_SIZE", nullable = true)
 	private String filesize;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

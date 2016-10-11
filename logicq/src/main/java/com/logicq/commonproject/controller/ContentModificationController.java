@@ -51,13 +51,13 @@ public class ContentModificationController {
 		return new ResponseEntity<HomeContent>(homecontent, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/getHomeContentDetails", method = RequestMethod.GET,consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/getHomeContentDetails", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<HomeContent>> getHomeContent() throws Exception {
 		List<HomeContent> homecontent=contentmodificationservice.getHomeContent();
 		return new ResponseEntity<List<HomeContent>>(homecontent, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/getContentDetails", method = RequestMethod.GET,consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/getContentDetails", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ContentDetails>> getContent() throws Exception {
 		List<ContentDetails> contentdetails=contentmodificationservice.getContentDetails();
 		return new ResponseEntity<List<ContentDetails>>(contentdetails, HttpStatus.OK);

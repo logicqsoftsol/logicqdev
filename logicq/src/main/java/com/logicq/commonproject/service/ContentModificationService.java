@@ -37,7 +37,7 @@ public class ContentModificationService implements IContentModificationService {
 	@Override
 	public List<ContentDetails> getContentDetails() {
 		// TODO Auto-generated method stub
-		return null;
+		return contentmodification.getWebContent();
 	}
 
 
