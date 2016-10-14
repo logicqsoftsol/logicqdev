@@ -45,5 +45,9 @@ public class ContentModificationService implements IContentModificationService {
 	public List<HomeContent> getHomeContent() {
 		return homecontentmodification.getHomeWebContent();
 	}
+	@Override
+	public List<HomeContent> getHomeContent(String imageType) {
+		return homecontentmodification.getHomeWebContent(imageType);
+	}
 
 }

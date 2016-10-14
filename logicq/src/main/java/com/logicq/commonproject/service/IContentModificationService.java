@@ -11,5 +11,6 @@ public interface IContentModificationService {
 	List<ContentDetails> getContentDetails();
 	void saveorUpdateHomeWebContent(HomeContent homecontent);
 	List<HomeContent> getHomeContent();
+	public List<HomeContent> getHomeContent(String imageType);
 
 }

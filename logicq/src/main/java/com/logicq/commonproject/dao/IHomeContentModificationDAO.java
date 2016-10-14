@@ -8,5 +8,6 @@ public interface IHomeContentModificationDAO {
 	
 	void saveorUpdateHomeWebContent(HomeContent homecontent);
 	List<HomeContent> getHomeWebContent();
+	List<HomeContent> getHomeWebContent(String imageType);
 
 }
