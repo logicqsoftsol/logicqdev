@@ -1,7 +1,9 @@
 jQuery(function($) {
 	/* ----------------------------------------------------------- */
-	/*  1. SEARCH FORM
-	/* ----------------------------------------------------------- */
+	/*
+	 * 1. SEARCH FORM /*
+	 * -----------------------------------------------------------
+	 */
 	jQuery('#mu-search-icon').on('click', function(event) {
 		event.preventDefault();
 		$('#mu-search').addClass('mu-search-open');
@@ -11,9 +13,11 @@ jQuery(function($) {
 		$("#mu-search").removeClass('mu-search-open');
 	});
 	/* ----------------------------------------------------------- */
-	/*  2. ABOUT US VIDEO
-	 /* ----------------------------------------------------------- */
-	// WHEN CLICK PLAY BUTTON 
+	/*
+	 * 2. ABOUT US VIDEO /*
+	 * -----------------------------------------------------------
+	 */
+	// WHEN CLICK PLAY BUTTON
 	jQuery('#mu-abtus-video')
 			.on(
 					'click',
@@ -33,8 +37,10 @@ jQuery(function($) {
 		$(this).remove();
 	});
 	/* ----------------------------------------------------------- */
-	/*  3. TOP SLIDER (SLICK SLIDER)
-	/* ----------------------------------------------------------- */
+	/*
+	 * 3. TOP SLIDER (SLICK SLIDER) /*
+	 * -----------------------------------------------------------
+	 */
 	jQuery('#mu-slider').slick({
 		dots : false,
 		infinite : true,
@@ -44,8 +50,10 @@ jQuery(function($) {
 		cssEase : 'linear'
 	});
 	/* ----------------------------------------------------------- */
-	/*  4. ABOUT US (SLICK SLIDER)
-	/* ----------------------------------------------------------- */
+	/*
+	 * 4. ABOUT US (SLICK SLIDER) /*
+	 * -----------------------------------------------------------
+	 */
 	jQuery('#mu-testimonial-slide').slick({
 		dots : true,
 		infinite : true,
@@ -56,8 +64,10 @@ jQuery(function($) {
 	});
 
 	/* ----------------------------------------------------------- */
-	/*  5. LATEST COURSE SLIDER (SLICK SLIDER)
-	/* ----------------------------------------------------------- */
+	/*
+	 * 5. LATEST COURSE SLIDER (SLICK SLIDER) /*
+	 * -----------------------------------------------------------
+	 */
 
 	jQuery('#mu-latest-course-slide').slick({
 		dots : true,
@@ -96,8 +106,10 @@ jQuery(function($) {
 	});
 
 	/* ----------------------------------------------------------- */
-	/*  6. TESTIMONIAL SLIDER (SLICK SLIDER)
-	/* ----------------------------------------------------------- */
+	/*
+	 * 6. TESTIMONIAL SLIDER (SLICK SLIDER) /*
+	 * -----------------------------------------------------------
+	 */
 
 	jQuery('.mu-testimonial-slider').slick({
 		dots : true,
@@ -109,8 +121,9 @@ jQuery(function($) {
 	});
 
 	/* ----------------------------------------------------------- */
-	/*  7. COUNTER
-	/* ----------------------------------------------------------- */
+	/*
+	 * 7. COUNTER /* -----------------------------------------------------------
+	 */
 
 	jQuery('.counter').counterUp({
 		delay : 10,
@@ -118,8 +131,10 @@ jQuery(function($) {
 	});
 
 	/* ----------------------------------------------------------- */
-	/*  8. RELATED ITEM SLIDER (SLICK SLIDER)
-	/* ----------------------------------------------------------- */
+	/*
+	 * 8. RELATED ITEM SLIDER (SLICK SLIDER) /*
+	 * -----------------------------------------------------------
+	 */
 
 	jQuery('#mu-related-item-slide').slick({
 		dots : false,
@@ -158,21 +173,26 @@ jQuery(function($) {
 	});
 
 	/* ----------------------------------------------------------- */
-	/*  9. MIXIT FILTER (FOR GALLERY) 
-	/* ----------------------------------------------------------- */
+	/*
+	 * 9. MIXIT FILTER (FOR GALLERY) /*
+	 * -----------------------------------------------------------
+	 */
 
 	jQuery(function() {
 		jQuery('#mixit-container').mixItUp();
 	});
 
 	/* ----------------------------------------------------------- */
-	/*  10. FANCYBOX (FOR PORTFOLIO POPUP VIEW) 
-	/* ----------------------------------------------------------- */
+	/*
+	 * 10. FANCYBOX (FOR PORTFOLIO POPUP VIEW) /*
+	 * -----------------------------------------------------------
+	 */
 
 	jQuery(document)
 			.ready(
 					function() {
 						jQuery(".fancybox").fancybox();
+						getImageType("ALL");
 						$.each([ 2, 3, 4, 5, 6 ], function(index, value) {
 							$("#slidimage" + value).attr('src',
 									"assets/img/slider/" + value + ".JPG");
@@ -190,25 +210,28 @@ jQuery(function($) {
 									dataType : 'json',
 									success : function(data) {
 										var abtuscontent = "";
-										for (i = 0; i < data.length; i++) {
+										for (var i = 0; i < data.length; i++) {
 											if (data[i].name == "AboutUs"
 													&& data[i].type == "HOME") {
 												abtuscontent = data[i].value;
 											}
 										}
 										$('#abtus').text(abtuscontent);
+
 									},
 									error : function(e) {
 										alert('Error: ' + e);
 									}
 
 								})
-								getImageType("ALL");
+
 					});
 
 	/* ----------------------------------------------------------- */
-	/*  11. HOVER DROPDOWN MENU
-	/* ----------------------------------------------------------- */
+	/*
+	 * 11. HOVER DROPDOWN MENU /*
+	 * -----------------------------------------------------------
+	 */
 
 	// for hover dropdown menu
 	jQuery('ul.nav li.dropdown').hover(
@@ -221,9 +244,11 @@ jQuery(function($) {
 						.fadeOut(200);
 			});
 	/* ----------------------------------------------------------- */
-	/*  12. SCROLL TOP BUTTON
-	/* ----------------------------------------------------------- */
-	//Check to see if the window is top if not then display button
+	/*
+	 * 12. SCROLL TOP BUTTON /*
+	 * -----------------------------------------------------------
+	 */
+	// Check to see if the window is top if not then display button
 	jQuery(window).scroll(function() {
 		if (jQuery(this).scrollTop() > 300) {
 			jQuery('.scrollToTop').fadeIn();
@@ -231,23 +256,41 @@ jQuery(function($) {
 			jQuery('.scrollToTop').fadeOut();
 		}
 	});
-	//Click event to scroll to top
+	// Click event to scroll to top
 	jQuery('.scrollToTop').click(function() {
 		jQuery('html, body').animate({
 			scrollTop : 0
 		}, 800);
 		return false;
 	});
-	jQuery('#login').on('click', function(event) {
-		event.preventDefault();
-		var username = $("#user").val();
-		var userpassword = $("#pass").val();
-		if (username == 'Admin' && userpassword == 'Password') {
-			window.location.href = "admin.html";
-		} else {
-			window.location.href = "index.html";
-		}
-	});
+	jQuery('#login')
+			.on(
+					'click',
+					function(event) {
+						event.preventDefault();
+						var username = $("#username").val();
+						var password = $("#password").val();
+						$
+								.ajax({
+									type : 'get',
+									url : 'http://localhost:8090/commonproject/login/loginuser/'
+											+ username + "/" + password,
+									dataType : 'json',
+									success : function(data) {
+										if (data == true) {
+											window.location.href = "admin.html";
+										} else if (data == false) {
+											window.location.href = "index.html";
+										}
+									},
+									error : function(e) {
+										alert('Error: ' + e);
+										window.location.href = "index.html";
+									}
+
+								});
+
+					});
 });
 
 function submitForm() {
@@ -272,11 +315,11 @@ function saveForm() {
 	var data = {
 
 		"name" : $("#sliderSelect").val(),
-		"imagepath" : $("#imageSelect").val(),
-		"text1" : $("#text1").val(),
-		"text2" : $("#text2").val(),
-		"text3" : $("#text3").val(),
-		"textextra" : $("#text4").val()
+		"imagepath" : "assets/img/gallery/small/" + $("#imageSelect").val(),
+		"text1" : $("#fsc").val(),
+		"text2" : $("#ssc").val(),
+		"text3" : $("#tsc").val()
+
 	}
 
 	$('#target').html('sending..');
@@ -288,8 +331,11 @@ function saveForm() {
 				data : JSON.stringify(data),
 				dataType : 'json',
 				success : function(data) {
-					alert('success');
+					alert('successfully saved');
 				},
+				error : function(e) {
+					alert('Error:Not Saved' + e);
+				}
 
 			});
 
@@ -310,21 +356,38 @@ function saveAboutUs() {
 				data : JSON.stringify(data),
 				dataType : 'json',
 				success : function(data) {
-					alert('success');
+					alert('successfully saved');
 				},
+				error : function(e) {
+					alert('Error:Not Saved ' + e);
+				}
 
 			});
 }
 
 function getImageType(imageType) {
-	
-var type = 'ALL';
-if(imageType=='ALL'){type = 'ALL';}
-if(imageType.id=='class_room'){type = 'CLASSROOM';}
-if(imageType.id=='library'){type = 'LIBRARY';}
-if(imageType.id=='sports'){type = 'SPORTS';}
-if(imageType.id=='annual_function'){type = 'ANNUALFUNCTION';}
-	
+
+	var type = 'ALL';
+	if (imageType == 'ALL') {
+		type = 'ALL';
+	}
+	if (imageType.id == 'all') {
+
+		type = 'ALL';
+	}
+	if (imageType.id == 'class_room') {
+		type = 'CLASSROOM';
+	}
+	if (imageType.id == 'library') {
+		type = 'LIBRARY';
+	}
+	if (imageType.id == 'sports') {
+		type = 'SPORTS';
+	}
+	if (imageType.id == 'annual_function') {
+		type = 'ANNUALFUNCTION';
+	}
+
 	var imagepath = [];
 	$
 			.ajax({
@@ -347,7 +410,8 @@ if(imageType.id=='annual_function'){type = 'ANNUALFUNCTION';}
 
 }
 function displayImage(imagepath) {
-	var container = document.getElementById("container");
+	document.getElementById("imagecontainer").innerHTML = "";
+	var container = document.getElementById("imagecontainer");
 
 	for (var i = 0; i < imagepath.length; i++) {
 
