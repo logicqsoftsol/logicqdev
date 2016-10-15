@@ -450,36 +450,36 @@ img {
 /*==================
  ABOUT SECTION
 ====================*/
-.mu-about-us {
+#mu-about-us {
   display: inline;
   float: left;
   width: 100%;
   padding: 100px 0;
 }
-.mu-about-us .mu-about-us-area {
+#mu-about-us .mu-about-us-area {
   display: inline;
   float: left;
   width: 100%;
 }
-.mu-about-us .mu-about-us-area .mu-about-us-left {
+#mu-about-us .mu-about-us-area .mu-about-us-left {
   display: inline;
   float: left;
   width: 100%;
 }
-.mu-about-us .mu-about-us-area .mu-about-us-left h2 {
+#mu-about-us .mu-about-us-area .mu-about-us-left h2 {
   font-size: 40px;
   margin-bottom: 20px;
   text-align: left;
 }
-.mu-about-us .mu-about-us-area .mu-about-us-left ul {
+#mu-about-us .mu-about-us-area .mu-about-us-left ul {
   margin-left: 25px;
   margin-bottom: 15px;
 }
-.mu-about-us .mu-about-us-area .mu-about-us-left ul li {
+#mu-about-us .mu-about-us-area .mu-about-us-left ul li {
   line-height: 30px;
   list-style: circle;
 }
-.mu-about-us .mu-about-us-area .mu-about-us-right {
+#mu-about-us .mu-about-us-area .mu-about-us-right {
   display: inline;
   float: left;
   width: 100%;
@@ -487,15 +487,15 @@ img {
   width: 100%;
   background-color: #ccc;
 }
-.mu-about-us .mu-about-us-area .mu-about-us-right a {
+#mu-about-us .mu-about-us-area .mu-about-us-right a {
   display: block;
   width: 100%;
   position: relative;
 }
-.mu-about-us .mu-about-us-area .mu-about-us-right a img {
+#mu-about-us .mu-about-us-area .mu-about-us-right a img {
   width: 100%;
 }
-.mu-about-us .mu-about-us-area .mu-about-us-right a:after {
+#mu-about-us .mu-about-us-area .mu-about-us-right a:after {
   background-color: rgba(0, 0, 0, 0.8);
   bottom: 0;
   color: #ddd;
@@ -2073,7 +2073,7 @@ img {
     padding: 60px 0;
  }
 
-.mu-about-us .mu-about-us-area .mu-about-us-right {
+#mu-about-us .mu-about-us-area .mu-about-us-right {
     margin-top: 30px;
 }
 
@@ -2447,7 +2447,7 @@ img {
   }
 }
 @media (max-width: 360px) {
- .mu-about-us .mu-about-us-area .mu-about-us-left h2 {
+ #mu-about-us .mu-about-us-area .mu-about-us-left h2 {
     font-size: 30px;
     margin-bottom: 10px;
   }
