@@ -2069,7 +2069,7 @@ img {
     font-size: 20px;
   }
 
-.mu-about-us {
+#mu-about-us {
     padding: 60px 0;
  }
 
@@ -2447,7 +2447,7 @@ img {
   }
 }
 @media (max-width: 360px) {
-  .mu-about-us .mu-about-us-area .mu-about-us-left h2 {
+ .mu-about-us .mu-about-us-area .mu-about-us-left h2 {
     font-size: 30px;
     margin-bottom: 10px;
   }
