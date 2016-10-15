@@ -21,7 +21,7 @@
     <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">  
 
     <!-- Main style sheet -->
-    <link href="assets/css/style.css" rel="stylesheet">    
+    <link href="assets/css/gallery.css" rel="stylesheet">    
 
    
     <!-- Google Fonts -->
@@ -102,35 +102,46 @@
           <!-- <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="logo"></a> -->
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+        <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
             <li class="active"><a href="index.html">Home</a></li>            
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Course <span class="fa fa-angle-down"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="course-detail.html">Course Detail</a></li>                
-              </ul>
-            </li>           
+            <li><a href="course-detail.html" >Course Details</a></li>           
             <li><a href="gallery.html">Gallery</a></li>           
             <li><a href="contact.html">Contact</a></li>             
-            <li><a href="#" id="mu-search-icon"><i class="fa fa-search"></i></a></li>
-          </ul>                     
+            <li><a href="#" id="mu-search-icon"><i class="fa fa-sign-in"></i></a></li>
+          </ul>                          
         </div><!--/.nav-collapse -->        
       </div>     
     </nav>
   </section>
   <!-- End menu -->
-  <!-- Start search box -->
+ <!-- Start search box -->
   <div id="mu-search">
-    <div class="mu-search-area">      
+   
+    <div class="mu-search-area">  
+     
       <button class="mu-search-close"><span class="fa fa-close"></span></button>
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">            
+        
+                     
             <form class="mu-search-form">
-              <input type="search" placeholder="Type Your Keyword(s) & Hit Enter">
+			<div class="col-md-5">
+			<div class="form-group">
+				<input type="text" id="user" name="user" class="form-control" placeholder="Username">
+			</div>
+			</div>	
+				<div class="col-md-5">
+				<div class="form-group">
+				<input type="password" id="pass" name="pass" class="form-control"  placeholder="Password">
+				</div>
+				</div>
+				<div class="col-md-2">
+				<div class="form-group">
+				<button type="submit" id="login" name="login" class="btn btn-primary">Login</button>  
+				</div>	
+				</div>					
             </form>
-          </div>
-        </div>
+         
+        
       </div>
     </div>
   </div>
@@ -152,7 +163,7 @@
    </div>
  </section>
  <!-- End breadcrumb -->
- <!-- Start gallery  -->
+<!-- Start gallery  -->
  <section id="mu-gallery">
    <div class="container">
      <div class="row">
@@ -170,180 +181,19 @@
             <div class="mu-gallery-top">              
               <ul>
                 <li class="filter active" data-filter="all">All</li>
-                <li class="filter" data-filter=".classroom">Class Room</li>
-                <li class="filter" data-filter=".library">Library</li>
-                <li class="filter" data-filter=".cafe">Sports</li>
-                <li class="filter" data-filter=".others">Annual Function</li>
+                <li class="filter" id="class_room" data-filter=".classroom" onclick="getImageType(this)">Class Room</li>
+                <li class="filter" id="library"  data-filter=".library" onclick="getImageType(this)" >Library</li>
+                <li class="filter" id="sports" data-filter=".cafe" onclick="getImageType(this)" >Sports</li>
+                <li class="filter" id="annual_function" data-filter=".others" onclick="getImageType(this)" >Annual Function</li>
               </ul>
             </div>
             <!-- End gallery menu -->
-            <div class="mu-gallery-body">
+			<div class="mu-gallery-body">
               <ul id="mixit-container" class="row">
-                <!-- start single gallery image -->
-                <li class="col-md-4 col-sm-6 col-xs-12 mix lab">
-                  <div class="mu-single-gallery">                  
-                    <div class="mu-single-gallery-item">
-                      <div class="mu-single-gallery-img">
-                        <a href="#"><img alt="img" src="assets/img/gallery/small/1.jpg"></a>
-                      </div>
-                      <div class="mu-single-gallery-info">
-                        <div class="mu-single-gallery-info-inner">
-                          <h4>Image Title</h4>
-                          <p>Web Design</p>
-                          <a href="assets/img/gallery/big/1.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                          <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
-                        </div>
-                      </div>                  
-                    </div>
-                  </div>
-                </li>
-                <!-- start single gallery image -->
-               <li class="col-md-4 col-sm-6 col-xs-12 mix library">
-                  <div class="mu-single-gallery">                  
-                    <div class="mu-single-gallery-item">
-                      <div class="mu-single-gallery-img">
-                        <a href="#"><img alt="img" src="assets/img/gallery/small/2.jpg"></a>
-                      </div>
-                       <div class="mu-single-gallery-info">
-                        <div class="mu-single-gallery-info-inner">
-                          <h4>Image Title</h4>
-                          <p>Animation</p>
-                          <a href="assets/img/gallery/big/2.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                          <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
-                        </div>
-                      </div> 
-                    </div>
-                  </div>
-               </li>
-                <!-- start single gallery image -->
-                <li class="col-md-4 col-sm-6 col-xs-12 mix lab">
-                  <div class="mu-single-gallery">                  
-                    <div class="mu-single-gallery-item">
-                      <div class="mu-single-gallery-img">
-                        <a href="#"><img alt="img" src="assets/img/gallery/small/3.jpg"></a>
-                      </div>
-                      <div class="mu-single-gallery-info">
-                        <div class="mu-single-gallery-info-inner">
-                          <h4>Image Title</h4>
-                          <p>Math</p>
-                          <a href="assets/img/gallery/big/3.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                          <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <!-- start single gallery image -->
-                <li class="col-md-4 col-sm-6 col-xs-12 mix classroom">
-                  <div class="mu-single-gallery">                  
-                    <div class="mu-single-gallery-item">
-                      <div class="mu-single-gallery-img">
-                        <a href="#"><img alt="img" src="assets/img/gallery/small/4.jpg"></a>
-                      </div>
-                       <div class="mu-single-gallery-info">
-                        <div class="mu-single-gallery-info-inner">
-                          <h4>Image Title</h4>
-                          <p>English</p>
-                          <a href="assets/img/gallery/big/4.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                          <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <!-- start single gallery image -->
-                <li class="col-md-4 col-sm-6 col-xs-12 mix others">
-                  <div class="mu-single-gallery">                  
-                    <div class="mu-single-gallery-item">
-                      <div class="mu-single-gallery-img">
-                        <a href="#"><img alt="img" src="assets/img/gallery/small/5.jpg"></a>
-                      </div>
-                      <div class="mu-single-gallery-info">
-                        <div class="mu-single-gallery-info-inner">
-                          <h4>Image Title</h4>
-                          <p>Graphics</p>
-                          <a href="assets/img/gallery/big/5.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                          <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <!-- start single gallery image -->
-                <li class="col-md-4 col-sm-6 col-xs-12 mix cafe">
-                  <div class="mu-single-gallery">                  
-                    <div class="mu-single-gallery-item">
-                      <div class="mu-single-gallery-img">
-                        <a href="#"><img alt="img" src="assets/img/gallery/small/6.jpg"></a>
-                      </div>
-                       <div class="mu-single-gallery-info">
-                        <div class="mu-single-gallery-info-inner">
-                          <h4>Image Title</h4>
-                          <p>Health</p>
-                          <a href="assets/img/gallery/big/6.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                          <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <!-- start single gallery image -->
-                <li class="col-md-4 col-sm-6 col-xs-12 mix others">
-                  <div class="mu-single-gallery">                  
-                    <div class="mu-single-gallery-item">
-                      <div class="mu-single-gallery-img">
-                        <a href="#"><img alt="img" src="assets/img/gallery/small/7.jpg"></a>
-                      </div>
-                      <div class="mu-single-gallery-info">
-                        <div class="mu-single-gallery-info-inner">
-                          <h4>Image Title</h4>
-                          <p>Sports</p>
-                          <a href="assets/img/gallery/big/7.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                          <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
-                        </div>
-                      </div>             
-                    </div>
-                  </div> 
-                </li>
-                 <!-- start single gallery image -->
-                <li class="col-md-4 col-sm-6 col-xs-12 mix library">
-                  <div class="mu-single-gallery">                  
-                    <div class="mu-single-gallery-item">
-                      <div class="mu-single-gallery-img">
-                        <a href="#"><img alt="img" src="assets/img/gallery/small/8.jpg"></a>
-                      </div>
-                       <div class="mu-single-gallery-info">
-                        <div class="mu-single-gallery-info-inner">
-                          <h4>Image Title</h4>
-                          <p>Health</p>
-                          <a href="assets/img/gallery/big/8.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                          <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <!-- start single gallery image -->
-                <li class="col-md-4 col-sm-6 col-xs-12 mix lab">
-                  <div class="mu-single-gallery">                  
-                    <div class="mu-single-gallery-item">
-                      <div class="mu-single-gallery-img">
-                        <a href="#"><img alt="img" src="assets/img/gallery/small/9.jpg"></a>
-                      </div>
-                      <div class="mu-single-gallery-info">
-                        <div class="mu-single-gallery-info-inner">
-                          <h4>Image Title</h4>
-                          <p>Sports</p>
-                          <a href="assets/img/gallery/big/9.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                          <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
-                        </div>
-                      </div>             
-                    </div>
-                  </div> 
-                </li>
-              </ul>            
-            </div>
+                  <div id="container"></div>
+		     </ul>
           </div>
+		  </div>
           <!-- end gallery content -->
          </div>
        </div>

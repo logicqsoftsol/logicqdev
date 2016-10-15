@@ -173,9 +173,9 @@ jQuery(function($) {
 			.ready(
 					function() {
 						jQuery(".fancybox").fancybox();
-						$.each([ 1, 2, 3, 4, 5, 6 ], function(index, value) {
+						$.each([ 2, 3, 4, 5, 6 ], function(index, value) {
 							$("#slidimage" + value).attr('src',
-									"assets/img/slider/" + value + ".jpg");
+									"assets/img/slider/" + value + ".JPG");
 							$("#slidh4" + value).text(
 									"Text Dynamic h4 " + value);
 							$("#slidh2" + value).text(
@@ -333,8 +333,6 @@ if(imageType.id=='annual_function'){type = 'ANNUALFUNCTION';}
 						+ type,
 				dataType : 'json',
 				success : function(data) {
-					console.log(data);
-
 					for (i = 0; i < data.length; i++) {
 						imagepath[i] = data[i].imagepath;
 					}
