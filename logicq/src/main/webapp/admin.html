@@ -133,9 +133,7 @@
 						<textarea rows="4" cols="50" type="text" class="form-control" id="fsc" placeholder="Enter First Slider Content"></textarea>
 					</div>
 					</div>
-					<div class="col-md-5">	
-						<input type="button" class="btn btn-info" value="Save First Silder Change" onclick="saveForm()">		 
-			      </div>
+					 
 					</div>	
 			<div class="col-md-12">					
 				<div class="col-md-9">
@@ -144,9 +142,7 @@
 						<textarea rows="4" cols="50" type="text" class="form-control" id="ssc" placeholder="Enter Second Slider Content"></textarea>
 					</div>
 				 </div>	
-				 	<div class="col-md-5">	
-						<input type="button" class="btn btn-info" value="Save Second Slider Change" onclick="saveForm()">		 
-			      </div>
+				 	 
 		         </div>	 
 				 <div class="col-md-12">	
 					<div class="col-md-9">	
@@ -156,13 +152,41 @@
 					  </div>
 					</div>
 					<div class="col-md-5">	
-						<input type="button" class="btn btn-info" value="Save Third Slider Change" onclick="saveForm()">		 
+						<input type="button" class="btn btn-info" value="Save Changes" onclick="saveForm()">		 
 			      </div>
 					</div>
-				 		
+				 		<div class="col-md-12">
+						<h2>Upload Image</h2>
+						 <form id="myForm" , method="post" enctype="multipart/form-data">
+						 <div class="col-md-5">
+						 <div class="form-group">
+						 <input type="file" size="60" name="uploadedFile" class="form-control" ><br>
+						  <label for="imageSelect">Choose Image Type:</label> 
+						  <select id="pathSelect"  class="form-control">
+							<option value="AnnualFunction">ANNUALFUNCTION</option>
+							<option value="Classroom">CLASSROOM</option>
+							<option value="Library">LIBRARY</option>
+							<option value="Sports">SPORTS</option>
+						</select> <br>
+						<input type="button" class="btn btn-info" value="Upload"
+							onclick="submitForm()">
+							
+							</div>
+							</div>
+					</form>
+					</div>
+					<div class="col-md-12">
+						<h2>Edit About US</h2>
+					<div class="form-group">
+						<label for="text">About US:(Home)</label>	
+						<input type="text" class="form-control" id="aboutus" placeholder="Enter Content For About US"><br>
+						<input type="button" class="btn btn-info" value="Save" onclick="saveAboutUs()">	
+				   </div>
+				   </div>
 				</div> 
 			
-					
+				</div>
+</div>				
 		
 			</div>
 
