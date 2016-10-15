@@ -56,28 +56,34 @@
 							class="fa fa-home fa-1x"></i>Home</a>
 						<ul>
 							<a href="#section-edithome" id="edithome"><i
-								class="fa fa-pencil-square"></i>Edit Home</a>
+								class="fa fa-pencil-square"></i>Edit Slider Content</a>
 						</ul>
-						<ul>
-							<a href="#section-uploadimage" id="uploadimage"><i
-								class="fa fa-cloud-upload"></i>Upload Images</a>
-						</ul></li>
+						<ul>						
+							<a href="#section-edithome" id="edithome"><i
+								class="fa fa-pencil-square"></i>Edit About Us</a>
+							</ul>
+						<ul>	
+							<a href="#section-edithome" id="edithome"><i
+								class="fa fa-pencil-square"></i>Edit Our Features</a>	
+						</ul>
+					</li>
 					<li><a href="admin.html"><i class="fa fa-book fa-1x"></i>Course
 							Details</a>
 						<ul>
-							<a href="#"><i class="fa fa-pencil-square"></i>Edit Courses</a>
+							<a href="#"><i class="fa fa-pencil-square"></i>Edit Courses Details</a>
 						</ul>
-						<ul>
-							<a href="#"><i class="fa fa-cloud-upload"></i>Upload Images</a>
-						</ul></li>
+					</li>
 					<li><a href="admin.html"><i class="fa fa-qrcode fa-1x"></i>Gallery</a>
 						<ul>
-							<a href="#"><i class="fa fa-pencil-square"></i>Edit Image
+							<a href="#"><i class="fa fa-pencil-square"></i>Edit Gallery
 								Details</a>
 						</ul>
-						<ul>
-							<a href="#"><i class="fa fa-cloud-upload"></i>Upload Images</a>
-						</ul></li>
+						</li>
+						<li>
+					     
+							<a href="admin.html"><i class="fa fa-cloud-upload fa-1x"></i>Upload Images</a>
+						
+					</li>						
 				</ul>
 
 			</div>
@@ -92,25 +98,26 @@
 						<h5>Welcome St. Mary's School Admin.</h5>
 					</div>
 				</div>
-				<!-- /. ROW  -->
-				<div class="gtco-section" id="section-home">
-
-					<h2>Home Section</h2>
-
-				</div>
+	      
 				<div class="gtco-section" id="section-edithome">
 
-					<h2>Header Content modification</h2>
+					<h2>Edit Home Page Content</h2>
+					<div class="col-md-5">
 					<div class="form-group">
-						<label for="text">Choose Slider:</label> <select id="sliderSelect">
+						<label for="sliderSelect">Choose Slider:</label> 
+						<select id="sliderSelect" class="form-control">
 							<option value="Slider1">Slider1</option>
 							<option value="Slider2">Slider2</option>
 							<option value="Slider3">Slider3</option>
 							<option value="Slider4">Slider4</option>
 							<option value="Slider5">Slider5</option>
 							<option value="Slider6">Slider6</option>
-						</select> <br> <label for="text">Choose Slider:</label> <select
-							id="imageSelect">
+						</select>
+					</div>		
+					</div>						
+					<div class="col-md-5">						
+						<label for="imageSelect">Choose Image For Slider:</label> 
+						<select id="imageSelect" class="form-control">
 							<option value="1.jpg">1.jpg</option>
 							<option value="2.jpg">2.jpg</option>
 							<option value="3.jpg">3.jpg</option>
@@ -119,42 +126,44 @@
 							<option value="6.jpg">6.jpg</option>
 						</select>
 					</div>
+					<div class="col-md-12">
+					<div class="col-md-9">
 					<div class="form-group">
-
-						<label for="text">Content1:</label> <input type="text"
-							class="form-control" id="text1" placeholder="Enter Content">
-						<label for="text">Content2</label> <input type="text"
-							class="form-control" id="text2" placeholder="Enter Content">
-						<label for="text">Content3</label> <input type="text"
-							class="form-control" id="text3" placeholder="Enter Content">
-						<label for="text">Content4</label> <input type="text"
-							class="form-control" id="text4" placeholder="Enter Content">
+						<label for="fsc">First Slider Content</label> 
+						<textarea rows="4" cols="50" type="text" class="form-control" id="fsc" placeholder="Enter First Slider Content"></textarea>
 					</div>
-
-					<input type="button" class="btn btn-info" value="Save" onclick="saveForm()">				
-					</div> <br>
-
-				<div class="form-group">
-						<label for="text">About US:(Home)</label>	
-						<input type="text" class="form-control" id="aboutus" placeholder="Enter Content For About US"><br>
-						<input type="button" class="btn btn-info" value="Save" onclick="saveAboutUs()">	
-				</div>	
+					</div>
+					<div class="col-md-5">	
+						<input type="button" class="btn btn-info" value="Save First Silder Change" onclick="saveForm()">		 
+			      </div>
+					</div>	
+			<div class="col-md-12">					
+				<div class="col-md-9">
+					<div class="form-group">
+						<label for="ssc">Second Slider Content</label> 
+						<textarea rows="4" cols="50" type="text" class="form-control" id="ssc" placeholder="Enter Second Slider Content"></textarea>
+					</div>
+				 </div>	
+				 	<div class="col-md-5">	
+						<input type="button" class="btn btn-info" value="Save Second Slider Change" onclick="saveForm()">		 
+			      </div>
+		         </div>	 
+				 <div class="col-md-12">	
+					<div class="col-md-9">	
+						<div class="form-group">					
+						<label for="tsc">Third Slider Content</label> 
+						<textarea type="text" rows="4" cols="50" class="form-control" id="tsc" placeholder="Enter Content Third Slider Content"></textarea>
+					  </div>
+					</div>
+					<div class="col-md-5">	
+						<input type="button" class="btn btn-info" value="Save Third Slider Change" onclick="saveForm()">		 
+			      </div>
+					</div>
+				 		
+				</div> 
+			
 					
-				<div class="gtco-section" id="section-uploadimage">
-
-					<h2>Header Upload image</h2>
-					<form id="myForm" , method="post" enctype="multipart/form-data">
-						<input type="file" size="60" name="uploadedFile"><br>
-						<select id="pathSelect">
-							<option value="AnnualFunction">ANNUALFUNCTION</option>
-							<option value="Classroom">CLASSROOM</option>
-							<option value="Library">LIBRARY</option>
-							<option value="Sports">SPORTS</option>
-						</select> <input type="button" class="btn btn-info" value="Upload"
-							onclick="submitForm()">
-					</form>
-
-				</div>
+		
 			</div>
 
 
