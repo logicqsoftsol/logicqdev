@@ -180,7 +180,7 @@
             <!-- Start gallery menu -->
             <div class="mu-gallery-top">              
               <ul>
-                <li class="filter active" data-filter="all">All</li>
+                <li class="filter active" id="all" data-filter="all" onclick="getImageType(this)">All</li>
                 <li class="filter" id="class_room" data-filter=".classroom" onclick="getImageType(this)">Class Room</li>
                 <li class="filter" id="library"  data-filter=".library" onclick="getImageType(this)" >Library</li>
                 <li class="filter" id="sports" data-filter=".cafe" onclick="getImageType(this)" >Sports</li>
@@ -189,8 +189,8 @@
             </div>
             <!-- End gallery menu -->
 			<div class="mu-gallery-body">
-              <ul id="mixit-container" class="row">
-                  <div id="container"></div>
+              <ul class="mixit-container" class="row">
+                  <div id="imagecontainer"></div>
 		     </ul>
           </div>
 		  </div>
