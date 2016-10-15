@@ -25,9 +25,9 @@
 	<bean id="ds"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/sakila" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="url" value="jdbc:mysql://45.113.136.152:3306/docathouse_stmarry" />
+		<property name="username" value="stmarry" />
+		<property name="password" value="stmarry123" />
 	</bean>
 
 
