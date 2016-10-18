@@ -23,11 +23,13 @@ public class HomeContentDAO extends AbstractDAO<HomeContent> implements IHomeCon
 	}
 	public List<HomeContent> getHomeWebContent(String imageType) {
 		StringBuilder  selectquery=new StringBuilder(" from HomeContent home where ");
-		if(!imageType.equals("ALL")){
+		if(!imageType.equals("ALL") && !(imageType.equals("HOMESLIDER"))){
 		  //selectquery= new StringBuilder(" from HomeContent home where home.name ="+"'"+imageType+"'");
 			selectquery.append("home.name ="+"'"+imageType+"'");
 		}
-		
+		else if (imageType.equals("HOMESLIDER")) {
+			selectquery.append("home.name like ('%Slider%')");
+		}
 		else {
 			selectquery.append("home.name IN ('CLASSROOM','LIBRARY','SPORTS','ANNUALFUNCTION')");
 		}

@@ -39,12 +39,13 @@ public class FileUploadController {
 		String fileName = uploadedFileRef.getOriginalFilename();
 		// Path where the uploaded file will be stored.
 		String path = "D://datlib/" + findFolder + "/" + fileName;
+		//String path = "assets/img/gallery/small/" + findFolder + "/" + fileName;//will be used in production
 		// This buffer will store the data read from 'uploadedFileRef'
 		try {
 			FileCopyUtils.copy(uploadedFileRef.getBytes(), new FileOutputStream(path + uploadedFileRef.getOriginalFilename()));
 			HomeContent homeContent =new HomeContent();
 			homeContent.setName(findFolder); ;
-			homeContent.setImagepath("assets/img/gallery/small/"+fileName);
+			homeContent.setImagepath("assets/img/gallery/small/"+ findFolder + "/"+fileName);
 			contentmodificationservice.saveorUpdateHomeWebContent(homeContent);
 			
 		} catch (FileNotFoundException e1) {
