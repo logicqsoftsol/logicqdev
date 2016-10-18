@@ -1,3 +1,4 @@
+var imagepath1 = [];
 jQuery(function($) {
 	/* ----------------------------------------------------------- */
 	/*
@@ -192,8 +193,40 @@ jQuery(function($) {
 			.ready(
 					function() {
 						jQuery(".fancybox").fancybox();
-						getImageType("ALL");
-});
+						getImageType("HOMESLIDER");
+						$.each([ 2, 3, 4, 5, 6 ], function(index, value) {
+							$("#slidimage" + value).attr('src',
+									"assets/img/slider/" + value + ".JPG");
+							$("#slidh4" + value).text(
+									"Text Dynamic h4 " + value);
+							$("#slidh2" + value).text(
+									"Text Dynamic h2 " + value);
+							$("#slidh3" + value).text(
+									"Text Dynamic h3 " + value);
+						});
+						$
+								.ajax({
+									type : 'get',
+									url : 'http://localhost:8090/commonproject/admin/content/getContentDetails',
+									dataType : 'json',
+									success : function(data) {
+										var abtuscontent = "";
+										for (var i = 0; i < data.length; i++) {
+											if (data[i].name == "AboutUs"
+													&& data[i].type == "HOME") {
+												abtuscontent = data[i].value;
+											}
+										}
+										$('#abtus').text(abtuscontent);
+
+									},
+									error : function(e) {
+										alert('Error: ' + e);
+									}
+
+								})
+
+					});
 
 	/* ----------------------------------------------------------- */
 	/*
@@ -252,6 +285,7 @@ jQuery(function($) {
 										}
 									},
 									error : function(e) {
+										alert('Error: ' + e);
 										window.location.href = "index.html";
 									}
 
@@ -260,101 +294,11 @@ jQuery(function($) {
 					});
 });
 
-function submitForm() {
-
-	var uploadFoler = $("#pathSelect option:selected").text();
-
-	document.getElementById("myForm").action = "http://localhost:8090/commonproject/admin/file/uploadfiles/"
-			+ uploadFoler;
-	document.getElementById("myForm").submit();
-	var data = {
-
-		"name" : $("#sliderSelect").val(),
-		"imagepath" : $("#imageSelect").val(),
-		"text1" : "",
-		"text2" : "",
-		"text3" : "",
-		"textextra" : ""
-	}
-}
-function saveForm() {
-
-	var data = {
-
-		"name" : $("#sliderSelect").val(),
-		"imagepath" : "assets/img/gallery/small/" + $("#imageSelect").val(),
-		"text1" : $("#fsc").val(),
-		"text2" : $("#ssc").val(),
-		"text3" : $("#tsc").val()
-
-	}
-
-	$('#target').html('sending..');
-	$
-			.ajax({
-				type : 'post',
-				url : 'http://localhost:8090/commonproject/admin/content/saveOrUpdateHomeContent',
-				contentType : "application/json; charset=utf-8",
-				data : JSON.stringify(data),
-				dataType : 'json',
-				success : function(data) {
-					alert('successfully saved');
-				},
-				error : function(e) {
-					alert('Error:Not Saved' + e);
-				}
-
-			});
-
-}
-
-function saveAboutUs() {
-	var data = {
-
-		"name" : "AboutUs",
-		"type" : "HOME",
-		"value" : $("#aboutus").val()
-	}
-	$
-			.ajax({
-				type : 'post',
-				url : 'http://localhost:8090/commonproject/admin/content/saveOrUpdateContent',
-				contentType : "application/json; charset=utf-8",
-				data : JSON.stringify(data),
-				dataType : 'json',
-				success : function(data) {
-					alert('successfully saved');
-				},
-				error : function(e) {
-					alert('Error:Not Saved ' + e);
-				}
-
-			});
-}
-
 function getImageType(imageType) {
 
-	var type = 'ALL';
-	if (imageType == 'ALL') {
-		type = 'ALL';
+	if (imageType == 'HOMESLIDER') {
+		type = 'HOMESLIDER';
 	}
-	if (imageType.id == 'all') {
-
-		type = 'ALL';
-	}
-	if (imageType.id == 'class_room') {
-		type = 'CLASSROOM';
-	}
-	if (imageType.id == 'library') {
-		type = 'LIBRARY';
-	}
-	if (imageType.id == 'sports') {
-		type = 'SPORTS';
-	}
-	if (imageType.id == 'annual_function') {
-		type = 'ANNUALFUNCTION';
-	}
-
 	var imagepath = [];
 	$
 			.ajax({
@@ -367,26 +311,16 @@ function getImageType(imageType) {
 						imagepath[i] = data[i].imagepath;
 
 					}
-					displayImage(imagepath);
+					displayGalleryImage(imagepath);
 
 				},
 				error : function(e) {
-
+					alert('Error: ' + e);
 				}
 
 			});
 
 }
-function displayImage(imagepath) {
-	document.getElementById("imagecontainer").innerHTML = "";
-	var container = document.getElementById("imagecontainer");
+function displayGalleryImage(imagepath) {
 
-	for (var i = 0; i < imagepath.length; i++) {
-
-		var txt1 = '<li class="col-md-4 col-sm-6 col-xs-12 mix lab"><div class="mu-single-gallery"><div class="mu-single-gallery-item"><div class="mu-single-gallery-img"><a href="#">';
-		var txt2 = "'<img alt='img' src=" + imagepath[i] + ">'";
-		var txt3 = '</a> <div class="mu-single-gallery-info"> <div class="mu-single-gallery-info-inner"><h4>Image Title</h4><p>Web Design</p>  <a href="assets/img/gallery/big/10.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a><a href="#" class="aa-link"><span class="fa fa-link"></span></a></div></div> </div></div> </div></li>';
-
-		container.innerHTML += (txt1 + txt2 + txt3);
-	}
 }
