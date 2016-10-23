@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.logicq.commonproject.dao.IContentModificationDAO;
+import com.logicq.commonproject.dao.IEventDetailsDAO;
 import com.logicq.commonproject.dao.IHomeContentModificationDAO;
 import com.logicq.commonproject.model.ContentDetails;
+import com.logicq.commonproject.model.EventDetails;
 import com.logicq.commonproject.model.HomeContent;
 
 @Service
@@ -20,6 +22,9 @@ public class ContentModificationService implements IContentModificationService {
 	
 	@Autowired
 	IHomeContentModificationDAO homecontentmodification;
+	
+	@Autowired
+	IEventDetailsDAO eventdao;
 	
 	
 	@Override
@@ -48,6 +53,30 @@ public class ContentModificationService implements IContentModificationService {
 	@Override
 	public List<HomeContent> getHomeContent(String imageType) {
 		return homecontentmodification.getHomeWebContent(imageType);
+	}
+
+
+	@Override
+	public List<EventDetails> getEventDetails() {
+		return eventdao.getEventDetails();
+	}
+
+
+	@Override
+	public void saveEvent(EventDetails eventdetails) {
+		eventdao.saveEvent(eventdetails);
+	}
+
+
+	@Override
+	public void updateEvent(EventDetails eventdetails) {
+		eventdao.saveEvent(eventdetails);
+	}
+
+
+	@Override
+	public void deleteEvent(EventDetails eventdetails) {
+		eventdao.deleteEvent(eventdetails);
 	}
 
 }

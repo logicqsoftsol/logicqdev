@@ -24,6 +24,7 @@
 	$(document)
 			.ready(
 					function() {
+						jQuery.support.cors = true;
 						mainApp.main_fun();
 
 						$
@@ -45,7 +46,8 @@
 
 									},
 									error : function(e) {
-										alert('Error: ' + e);
+										$("#p").text('Unable to perform operations');
+										$("#statusmessage").modal('show');
 									}
 
 								});
@@ -92,7 +94,8 @@ function loadSliderContent(slider) {
 
 				},
 				error : function(e) {
-					alert('Error: ' + e);
+							document.getElementById("#messageheader").innerHTML = "Unable to perform operations";
+							$("#statusmessage").modal('show');
 				}
 
 			});

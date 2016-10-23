@@ -35,25 +35,26 @@ public class FileUploadController {
 	@RequestMapping(value = "/uploadfiles/{findFolder}", method = { RequestMethod.POST, RequestMethod.GET })
 	public String uploadFile(@RequestParam("uploadedFile") MultipartFile uploadedFileRef, @PathVariable("findFolder") String findFolder) {
 
+		logger.debug(" uploadFile() ");
 		// Get name of uploaded file.		
 		String fileName = uploadedFileRef.getOriginalFilename();
 		// Path where the uploaded file will be stored.
-		String path = "D://datlib/" + findFolder + "/" + fileName;
+		String path = "/home/docathouse/webapps/commonproject/assets/img/" + findFolder + "/" + fileName;
+		
 		//String path = "assets/img/gallery/small/" + findFolder + "/" + fileName;//will be used in production
 		// This buffer will store the data read from 'uploadedFileRef'
 		try {
 			FileCopyUtils.copy(uploadedFileRef.getBytes(), new FileOutputStream(path + uploadedFileRef.getOriginalFilename()));
 			HomeContent homeContent =new HomeContent();
 			homeContent.setName(findFolder); ;
-			homeContent.setImagepath("assets/img/gallery/small/"+ findFolder + "/"+fileName);
+			homeContent.setImagepath("assets/img/"+ findFolder + "/"+fileName);
 			contentmodificationservice.saveorUpdateHomeWebContent(homeContent);
 			
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(" uploadFile() "+e1.getMessage(),e1);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(" uploadFile() "+e1.getMessage(),e1);
+			//e1.printStackTrace();
 		}
 		return "File uploaded successfully! ";
 	}

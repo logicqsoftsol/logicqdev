@@ -3,6 +3,7 @@ package com.logicq.commonproject.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+
 import com.logicq.commonproject.model.Login;
 
 /**
