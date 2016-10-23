@@ -191,8 +191,88 @@ jQuery(function($) {
 	jQuery(document)
 			.ready(
 					function() {
+						jQuery.support.cors = true;
 						jQuery(".fancybox").fancybox();
 						getImageType("ALL");
+						
+						$.ajax(
+							    {
+							        type: "GET",
+							        url : 'http://localhost:8090/commonproject/admin/getrecentevents/',
+							        data: "{}",
+							        contentType: "application/json; charset=utf-8",
+							        dataType: "json",
+							        cache: false,
+							        success: function (data) {
+							            
+							        var trHTML = '';
+							                
+							        $.each(data, function (i, item) {
+							            
+							            trHTML += '<tr><td>' + data.eventname[i] + '</td><td>' + data.eventstartdate[i] + '</td><td>' + data.eventenddate[i] + '</td><td>' + data.eventmessage[i] + '</td></tr>';
+							        });
+							        
+							        $('#eventtable').append(trHTML);
+							        
+							        },
+							        
+							        error: function (msg) {
+							            
+							            alert(msg.responseText);
+							        }
+							    });
+						$.ajax(
+							    {
+							        type: "GET",
+							        url : 'http://localhost:8090/commonproject/admin/getnoticeboarddetails/',
+							        data: "{}",
+							        contentType: "application/json; charset=utf-8",
+							        dataType: "json",
+							        cache: false,
+							        success: function (data) {
+							            
+							        var trHTML = '';
+							                
+							        $.each(data, function (i, item) {
+							            
+							            trHTML += '<tr><td>' + data.description[i] + '</td></tr>';
+							        });
+							        
+							        $('#noticeboardtable').append(trHTML);
+							        
+							        },
+							        
+							        error: function (msg) {
+							            
+							            alert(msg.responseText);
+							        }
+							    });
+						$.ajax(
+							    {
+							        type: "GET",
+							        url : 'http://localhost:8090/commonproject/admin/getstorydetails/',
+							        data: "{}",
+							        contentType: "application/json; charset=utf-8",
+							        dataType: "json",
+							        cache: false,
+							        success: function (data) {
+							            
+							        var trHTML = '';
+							                
+							        $.each(data, function (i, item) {
+							            
+							        	trHTML += '<tr><td>' + data.description[i] + '</td></tr>';
+							        });
+							        
+							        $('#storydetails').append(trHTML);
+							        
+							        },
+							        
+							        error: function (msg) {
+							            
+							            alert(msg.responseText);
+							        }
+							    });
 });
 
 	/* ----------------------------------------------------------- */

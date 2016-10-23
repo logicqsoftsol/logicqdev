@@ -330,24 +330,24 @@ img {
 /*==================
  SLIDER SECTION
 ====================*/
-.mu-slider {
+#mu-slider {
   display: inline;
   float: left;
   width: 100%;
 }
-.mu-slider .mu-slider-single {
+#mu-slider .mu-slider-single {
   display: inline;
   float: left;
   width: 100%;
   position: relative;
 }
-.mu-slider .mu-slider-single .mu-slider-img {
+#mu-slider .mu-slider-single .mu-slider-img {
   display: inline;
   float: left;
   width: 100%;
   height: 500px;
 }
-.mu-slider .mu-slider-single .mu-slider-img:after {
+#mu-slider .mu-slider-single .mu-slider-img:after {
   background-color: rgba(0, 0, 0, 0.5);
   content: '';
   position: absolute;
@@ -356,15 +356,15 @@ img {
   top: 0;
   bottom: 0;
 }
-.mu-slider .mu-slider-single .mu-slider-img figure {
+#mu-slider .mu-slider-single .mu-slider-img figure {
   height: 100%;
   width: 100%;
 }
-.mu-slider .mu-slider-single .mu-slider-img figure img {
+#mu-slider .mu-slider-single .mu-slider-img figure img {
   width: 100%;
   height: 100%;
 }
-.mu-slider .mu-slider-single .mu-slider-content {
+#mu-slider .mu-slider-single .mu-slider-content {
   color: #fff;
   position: absolute;
   left: 0;
@@ -375,35 +375,35 @@ img {
   text-align: center;
   height: 100%;
 }
-.mu-slider .mu-slider-single .mu-slider-content h4 {
+#mu-slider .mu-slider-single .mu-slider-content h4 {
   letter-spacing: 1px;
   margin-bottom: 0;
 }
-.mu-slider .mu-slider-single .mu-slider-content span {
+#mu-slider .mu-slider-single .mu-slider-content span {
   display: inline-block;
   height: 1px;
   width: 100px;
 }
-.mu-slider .mu-slider-single .mu-slider-content h2 {
+#mu-slider .mu-slider-single .mu-slider-content h2 {
   font-size: 50px;
   line-height: 80px;
   margin-bottom: 10px;
 }
-.mu-slider .mu-slider-single .mu-slider-content p {
+#mu-slider .mu-slider-single .mu-slider-content p {
   font-size: 18px;
   letter-spacing: 0.5px;
   line-height: 28px;
 }
-.mu-slider .mu-slider-single .mu-slider-content a {
+#mu-slider .mu-slider-single .mu-slider-content a {
   margin-top: 25px;
 }
-.mu-slider .slick-prev,
-.mu-slider .slick-next {
+#mu-slider .slick-prev,
+#mu-slider .slick-next {
   height: 60px;
   width: 60px;
 }
-.mu-slider .slick-prev:before,
-.mu-slider .slick-next:before {
+#mu-slider .slick-prev:before,
+#mu-slider .slick-next:before {
   color: #fff;
   font-size: 25px;
 }

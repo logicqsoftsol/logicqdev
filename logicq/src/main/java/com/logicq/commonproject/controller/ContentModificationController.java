@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.logicq.commonproject.model.ContentDetails;
+import com.logicq.commonproject.model.EventDetails;
 import com.logicq.commonproject.model.HomeContent;
 import com.logicq.commonproject.service.IContentModificationService;
 
@@ -67,6 +68,33 @@ public class ContentModificationController {
 	public ResponseEntity<List<HomeContent>> getHomeContentImage(@PathVariable("imageType") String imageType) throws Exception {
 		List<HomeContent> homecontent=contentmodificationservice.getHomeContent(imageType);
 		return new ResponseEntity<List<HomeContent>>(homecontent, HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value = "/getEventDetails", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<EventDetails>> getEventDetails() throws Exception {
+		List<EventDetails> eventdetails=contentmodificationservice.getEventDetails();
+		return new ResponseEntity<List<EventDetails>>(eventdetails, HttpStatus.OK);
+	}
+	
+	
+
+	@RequestMapping(value = "/saveOrUpdateEventDetails", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<EventDetails> saveorupdateEventDetails(@RequestBody EventDetails eventdetails) throws Exception {
+		if(null!=eventdetails){
+			contentmodificationservice.saveEvent(eventdetails);
+		}
+		return new ResponseEntity<EventDetails>(eventdetails, HttpStatus.OK);
+	}
+	
+	
+
+	@RequestMapping(value = "/deleteEventDetails", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<EventDetails> deleteEventDetails(@RequestBody EventDetails eventdetails) throws Exception {
+		if(null!=eventdetails){
+			contentmodificationservice.deleteEvent(eventdetails);
+		}
+		return new ResponseEntity<EventDetails>(eventdetails, HttpStatus.OK);
 	}
 	
 }

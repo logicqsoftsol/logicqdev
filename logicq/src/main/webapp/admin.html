@@ -36,48 +36,32 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">St-Mary Admin</a>
+				<a class="navbar-brand" href="admin.html">St-Mary Admin</a>
 			</div>
 			<div
 				style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
-				Last access : 30 May 2014 &nbsp; <a href="#"
+				Last access : 30 May 2014 &nbsp; <a href="index.html"
 					class="btn btn-danger square-btn-adjust">Logout</a>
 			</div>
 		</nav>
 		<!-- /. NAV TOP  -->
-		<nav class="navbar-default navbar-side" role="navigation">
+				<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
 					<li class="text-center"><img src="assets/img/find_user.png"
 						class="user-image img-responsive" /></li>
 
 
-					<li><a href="#section-home" id="home"><i
-							class="fa fa-home fa-1x"></i>Home</a>
-						<ul>
-							<a href="#section-edithome" id="edithome"><i
-								class="fa fa-pencil-square"></i>Edit Slider Content</a>
-						</ul>
-						<ul>
-							<a href="#section-edithome" id="edithome"><i
-								class="fa fa-pencil-square"></i>Edit About Us</a>
-						</ul>
-						<ul>
-							<a href="#section-edithome" id="edithome"><i
-								class="fa fa-pencil-square"></i>Edit Our Features</a>
-						</ul></li>
-					<li><a href="admin.html"><i class="fa fa-book fa-1x"></i>Course
-							Details</a>
-						<ul>
-							<a href="#"><i class="fa fa-pencil-square"></i>Edit Courses
-								Details</a>
-						</ul></li>
-					<li><a href="admin.html"><i class="fa fa-qrcode fa-1x"></i>Gallery</a>
-						<ul>
-							<a href="#"><i class="fa fa-pencil-square"></i>Edit Gallery
-								Details</a>
-						</ul></li>
-					<li><a href="admin.html"><i
+					<li><a href="admin.html" id="home"><i
+							class="fa fa-home fa-1x"></i>Home</a></li>
+			    <li><a href="events.html" id="home"><i
+							class="fa fa-calendar fa-1x"></i>Events</a></li>
+				<li><a href="events.html" id="home"><i
+							class="fa fa-bell-o fa-1x"></i>Notice Board</a></li>
+				<li><a href="events.html" id="home"><i
+							class="fa fa-trophy fa-1x"></i>Achievements</a></li>
+				
+					<li><a href="uploadimage.html"><i
 							class="fa fa-cloud-upload fa-1x"></i>Upload Images</a></li>
 				</ul>
 
@@ -93,10 +77,10 @@
 						<h5>Welcome St. Mary's School Admin.</h5>
 					</div>
 				</div>
-
 				<div class="gtco-section" id="section-edithome">
 
-					<h2>Edit Home Page Content</h2>
+					<h2>Edit Slider Content</h2>
+					<div class="col-md-10">
 					<div class="col-md-5">
 						<div class="form-group">
 							<label for="sliderSelect">Choose Slider:</label> <select
@@ -122,76 +106,123 @@
 							<option value="6.jpg">6.jpg</option>
 						</select>
 					</div>
-					<div class="col-md-12">
-						<div class="col-md-9">
-							<div class="form-group">
-								<label for="fsc">First Slider Content</label>
-								<textarea rows="4" cols="50" type="text" class="form-control"
-									id="fsc" placeholder="Enter First Slider Content"></textarea>
-							</div>
-						</div>
-
 					</div>
 					<div class="col-md-12">
-						<div class="col-md-9">
+						<div class="col-md-4">
 							<div class="form-group">
-								<label for="ssc">Second Slider Content</label>
+								<label for="fsc">Slider First Content</label>
 								<textarea rows="4" cols="50" type="text" class="form-control"
-									id="ssc" placeholder="Enter Second Slider Content"></textarea>
+									id="fsc" placeholder="Enter Slider First Content"></textarea>
 							</div>
 						</div>
-
-					</div>
-					<div class="col-md-12">
-						<div class="col-md-9">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="ssc"> Slider Second Content</label>
+								<textarea rows="4" cols="50" type="text" class="form-control"
+									id="ssc" placeholder="Enter Slider Second Content"></textarea>
+							</div>
+						</div>
+						<div class="col-md-4">
 							<div class="form-group">
 								<label for="tsc">Third Slider Content</label>
 								<textarea type="text" rows="4" cols="50" class="form-control"
-									id="tsc" placeholder="Enter Content Third Slider Content"></textarea>
+									id="tsc" placeholder="Enter Slider Third Content"></textarea>
+							</div>
+						</div>
+						</div>
+						<div class="col-md-11">
+							<input type="button" class="btn btn-info" value="Save Changes"
+								onclick="saveForm()">
+						</div>
+					
+				
+					<div class="col-md-12">
+						<h2>Edit About US Content</h2>
+						
+						<div class="col-md-6">
+							<div class="form-group">
+								
+								<textarea type="text" rows="7" cols="60" class="form-control"
+									id="aboutus" placeholder="Enter Content For About Us"></textarea>
 							</div>
 						</div>
 						<div class="col-md-5">
 							<input type="button" class="btn btn-info" value="Save Changes"
-								onclick="saveForm()">
-						</div>
-					</div>
-					<div class="col-md-12">
-						<h2>Upload Image</h2>
-						<form id="myForm" , method="post" enctype="multipart/form-data">
-							<div class="col-md-5">
-								<div class="form-group">
-									<input type="file" size="60" name="uploadedFile"
-										class="form-control"><br> <label
-										for="imageSelect">Choose Image Type:</label> <select
-										id="pathSelect" class="form-control">
-										<option value="AnnualFunction">ANNUALFUNCTION</option>
-										<option value="Classroom">CLASSROOM</option>
-										<option value="Library">LIBRARY</option>
-										<option value="Sports">SPORTS</option>
-									</select> <br> <input type="button" class="btn btn-info"
-										value="Upload" onclick="submitForm()">
-
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="col-md-12">
-						<h2>Edit About US</h2>
-						<div class="form-group">
-							<label for="text">About US:(Home)</label> <input type="text"
-								class="form-control" id="aboutus"
-								placeholder="Enter Content For About US"><br> <input
-								type="button" class="btn btn-info" value="Save"
 								onclick="saveAboutUs()">
 						</div>
+					
 					</div>
+					
+					<div class="col-md-12">
+						<h2>Edit Our Features Content</h2>
+						
+						<div class="col-md-6">
+							<div class="form-group">
+								
+								<textarea type="text" rows="7" cols="60" class="form-control"
+									id="ourfeatureconetent" placeholder="Enter Content For Our Features Details"></textarea>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<input type="button" class="btn btn-info" value="Save Changes"
+								onclick="saveOurFeatures()">
+						</div>
+					
+					</div>
+					
+						<div class="col-md-12">
+						<h2>Edit Course Details Content</h2>
+						
+						<div class="col-md-6">
+							<div class="form-group">
+								
+								<textarea type="text" rows="7" cols="60" class="form-control"
+									id="coursedetails" placeholder="Enter Content For Course Details Content"></textarea>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<input type="button" class="btn btn-info" value="Save Changes"
+								onclick="saveCourseDetails()">
+						</div>
+					
+					</div>
+					
 				</div>
 
 			</div>
 		</div>
 
 	</div>
-
+  	<div class="modal" id="statusmessage" tabindex="-1">
+	  <div class="modal-dialog">
+	
+		<div class="modal-content">
+		  <form id="otprequestform" method="post"  class="form-horizontal">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title" id="messageheader">Status Message</h4>
+		  </div>
+		  
+		  <div class="modal-body">
+			<div class="col-md-8" >
+					<div class="form-group">
+						<h2 id="message"></h2>
+						
+					</div>			
+				</div>
+			</div>
+					<div class="modal-footer">
+							<div class="col-md-12">
+							  
+							</div>
+					</div>
+					</form>
+		  </div>
+		  
+		</div>
+	</div>
 
 	<!-- /. PAGE INNER  -->
 	</div>

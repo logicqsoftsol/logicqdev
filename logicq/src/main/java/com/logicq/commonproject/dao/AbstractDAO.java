@@ -157,6 +157,13 @@ public class AbstractDAO<T> {
 		return query.list();
 	}
 	
+	public List<?> execcuteQueryWithLimitRecord(String queryString,int recordlimit) {
+		Query query = getCurrentSession().createQuery(queryString);
+		query.setFirstResult(0);
+		query.setMaxResults(recordlimit);
+		return query.list();
+	}
+	
 	public List<?> execcuteSQLQuery(String queryString) {
 		Query query = getCurrentSession().createSQLQuery(queryString);
 		return query.list();
