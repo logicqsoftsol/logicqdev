@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Login : Admin</title>
+
+<script src="assets/js/jquery-1.10.2.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.metisMenu.js"></script>
+
+<link href="assets/css/bootstrap.css" rel="stylesheet" />
+
+<link href="assets/css/font-awesome.css" rel="stylesheet" />
+
+<link href="assets/css/custom.css" rel="stylesheet" />
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css' />
+
+<script src="assets/js/admin.js"></script>
+<script src="assets/js/custom.js"></script>
+
+
+
+
+</head>
+<body>
+	<div id="wrapper">
+		<nav class="navbar navbar-default navbar-cls-top " role="navigation"
+			style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="admin.html">St-Mary Admin</a>
+			</div>
+			<div
+				style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
+				Last access : 30 May 2014 &nbsp; <a href="index.html"
+					class="btn btn-danger square-btn-adjust">Logout</a>
+			</div>
+		</nav>
+		<!-- /. NAV TOP  -->
+				<nav class="navbar-default navbar-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+					<li class="text-center"><img src="assets/img/find_user.png"
+						class="user-image img-responsive" /></li>
+
+
+					<li><a href="admin.html" id="home"><i
+							class="fa fa-home fa-1x"></i>Home</a></li>
+			    <li><a href="events.html" id="home"><i
+							class="fa fa-calendar fa-1x"></i>Events</a></li>
+		
+				
+					<li><a href="uploadimage.html"><i
+							class="fa fa-cloud-upload fa-1x"></i>Upload Images</a></li>
+				</ul>
+
+			</div>
+
+		</nav>
+		<!-- /. NAV SIDE  -->
+		<div id="page-wrapper">
+			<div id="page-inner">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Admin Dashboard</h2>
+						<h5>Welcome St. Mary's School Admin.</h5>
+					</div>
+				</div>
+				<div class="gtco-section" id="section-edithome">
+
+						<div id="setupclass" ng-show='display == 7'>
+				<div class="panel with-nav-tabs panel-success">
+					<div class="panel-heading">
+						<h3>Setup Event Details</h3>
+					</div>
+				<div class="panel-body">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" id="setupeventdetails" class="fa fa-calendar pull-center"  onclick="getEventDetails()"
+							href="/admin#setupevents">Setup Events</a></li>
+							<li ><a data-toggle="tab" id="noticsetup" class="fa fa-bell-o pull-center"  onclick="getNoticBoardDetails()"
+								href="/admin#noticsetupdetails">Setup Notice Board</a></li>
+							<li ><a data-toggle="tab" id="achivementsdetails" class="fa fa-trophy pull-center"  onclick="getAchievementsDetails()"
+								href="/admin#achievementssetupdetails">Setup Achievements</a></li>
+						</ul>
+
+					<div class="tab-content">
+					<div id="setupevents" class="tab-pane fade">
+					<br></br>
+						<div class="table-responsive">
+			
+							<ul class="pull-right">
+								<button id="addeventdetails" data-toggle="modal" data-toggle="modal"
+									data-target="#eventdetailmodal"
+									class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i>Add Events</button>
+							</ul>
+						<table class="table table-bordered table-fixed table-hover">
+                   <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Event Start Date</th>
+                        <th>Event End Date</th>
+                        <th>Message</th>
+                    </tr> 
+                  </thead>
+				    <tbody id="eventtable">
+                   
+                    </tbody>
+              		  </table>
+					</div>
+					</div>
+					
+					<div id="noticsetupdetails" class="tab-pane fade in active">
+					<br></br>
+						<div class="table-responsive">
+		
+							<ul class="pull-right">
+								<button id="noticboardsetup" data-toggle="modal" data-toggle="modal"
+									data-target="#noticesetupmodal" 
+									class="btn btn-default"><i class="fa fa-bell-o" aria-hidden="true"></i>Add Notices</button>
+								
+							</ul>
+								<table class="table table-bordered table-fixed table-hover">
+                   <thead>
+                    <tr>
+                        <th>Notice Name</th>
+                        <th>Notice Message</th>
+                    </tr> 
+                  </thead>
+				    <tbody id="noticedetails">
+                   
+                    </tbody>
+              		  </table>
+					</div>
+					</div>
+					<div id="achievementssetupdetails" class="tab-pane fade">
+					<br></br>
+						<div class="table-responsive">
+
+							<ul class="pull-right">
+								<button id="addachivement" data-toggle="modal" data-toggle="modal"
+									data-target="#achivementmodal"  
+									class="btn btn-default"><i class="fa fa-trophy" aria-hidden="true"></i>Add Achievements</button>
+						</ul>
+				<table class="table table-bordered table-fixed table-hover">
+                   <thead>
+                    <tr>
+                        <th>Achievement Name</th>
+                        <th>Achievement Message</th>
+                    </tr> 
+                  </thead>
+				    <tbody id="achievementdetails">
+                   
+                    </tbody>
+              		  </table>
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
+			</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+     <!---Modal Event Details-->
+		<div id="eventdetailmodal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+		<form id="eventdetailsform" name="eventdetailsform"  novalidate>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Add Event Details</h4>	
+						</div>
+						<div class="modal-body">
+						 
+								<div class="col-md-6">
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="eventname">Event Name</label> 
+											<input type="text" name="eventname" id="eventname"
+												class="form-control"
+												placeholder="Event Name" ng-required="true">
+										</div>
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="eventstartdate">Start Date</label> 
+											<input type="date" name="eventstartdate" id="eventstartdate"
+												class="form-control"
+												placeholder="Event Start Date" ng-required="true">
+										</div>
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="eventenddate">End Date</label> 
+											<input type="date" name="eventenddate" id="eventenddate"
+												class="form-control"
+												placeholder="Event End Date" ng-required="true">
+										</div>
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="eventmessage">Message</label> 
+											<textarea  name="eventmessage" id="eventmessage"
+												class="form-control"
+												placeholder="Event Message " ng-required="true"></textarea>
+										</div>
+						</div>
+						
+				</div>
+				<div class="modal-footer">
+							<button type="submit"  id="eventsave" class="btn btn-default" onclick="saveEventDetail()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+			</div>
+			</div>
+			</form>
+		</div><!---End for  Modal Event Details-->	
+		
+		
+		   <!---Modal Event Details-->
+		<div id="noticesetupmodal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+		<form id="noticeform" name="noticeform"  novalidate>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Notice Setup Details</h4>	
+						</div>
+						<div class="modal-body">
+						 
+								<div class="col-md-6">
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="noticename">Notic Name</label> 
+											<input type="text" name="noticename" id="noticename"
+												class="form-control"
+												placeholder="Notice Name" ng-required="true">
+										</div>
+								
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="noticemessage">Notice Message</label> 
+											<textarea  name="noticemessage" id="noticemessage"
+												class="form-control"
+												placeholder="Notice Message " ng-required="true"></textarea>
+										</div>
+						</div>
+						
+				</div>
+				<div class="modal-footer">
+							<button type="submit"  id="eventsave" class="btn btn-default" onclick="saveNoticeDetail()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+			</div>
+			</div>
+			</form>
+		</div><!---End for  Modal Event Details-->	
+		
+		
+				   <!---Modal Event Details-->
+		<div id="achivementmodal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+		<form id="noticeform" name="noticeform"  novalidate>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Achivements Setup Details</h4>	
+						</div>
+						<div class="modal-body">
+						 
+								<div class="col-md-6">
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="noticename">Achivement Name</label> 
+											<input type="text" name="noticename" id="noticename"
+												class="form-control"
+												placeholder="Achivement Name" ng-required="true">
+										</div>
+								
+										<div class="form-group" show-errors='{showSuccess: true}'>
+										<label  class="control-label" for="noticemessage">Achivement Message</label> 
+											<textarea  name="noticemessage" id="noticemessage"
+												class="form-control"
+												placeholder="Achivement Message " ng-required="true"></textarea>
+										</div>
+						</div>
+						
+				</div>
+				<div class="modal-footer">
+							<button type="submit"  id="eventsave" class="btn btn-default" onclick="saveAchivementDetail()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						</div>
+			</div>
+			</div>
+			</form>
+		</div><!---End for  Modal Event Details-->	
+		
+		
+		
+	</div>
+</body>
+</html>
