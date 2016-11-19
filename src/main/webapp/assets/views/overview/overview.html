@@ -1,0 +1,609 @@
+<div> <snap-drawer>
+ <div class=snap-menu> <div class="sidebar-header text-center"> 
+  <h4>Admin</h4>
+ <img src="assets/images/flat-avatar.png" class="sidebar-img img-circle"> 
+
+ </div> 
+ <ul class=snap-ul>  
+ <li ng-class="{active: $state.includes('overview')}"><a ui-sref=overview>Home</a></li> 
+ <li ng-class="{active: $state.includes('reports')}" > <a ui-sref=reports>Reports </a></li> 
+ <li ng-class="{active: $state.includes('logout')}" > <a ui-sref=reports>Logout </a></li> 
+ </ul> 
+ </div> 
+ </snap-drawer> 
+ <snap-dragger>
+ </snap-dragger> 
+	 <snap-content snap-opt-tap-to-close=false class=bg-dark>
+ <a snap-toggle=left ng-click="menuOpen = !menuOpen"> 
+ <span class=menutoggle> 
+ <i ng-hide=menuOpen class="fa fa-bars fa-2x"></i> <i ng-show=menuOpen class="fa fa-times fa-2x"></i> 
+ </span> 
+ </a> 
+ <div class=fr>
+ <h2>Organization Details <small> Easy Way to Know Your Support Hands</small></h2> 
+ </div>
+ <div class=jumbotron> 
+   <a href="" data-target="#profiledetails" data-toggle="modal" class="btn btn-sucess pull-right">
+    <i class="fa fa-users" aria-hidden="true"></i>
+	<span>Setup Network</span>
+</a>
+<a href="" data-target="#setupmeeting" data-toggle="modal" class="btn btn-sucess pull-right">
+    <i class="fa fa-calendar" aria-hidden="true"></i>
+	<span>Schedule Meeting</span>
+</a>
+ <a href="" data-target="#setuptask" data-toggle="modal" class="btn btn-sucess pull-right">
+    <i class="fa fa-tasks" aria-hidden="true"></i>
+	<span>Schedule Task</span>
+</a>
+</div>
+ <div class=jumbotron> 
+ <div class=container>
+  <div class="col-md-5 span6">   
+
+  <div class="col-md-12">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{userprofile.firstname}} {{userprofile.lastname}}</h3>
+			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3 col-lg-3" align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+                
+                <div class="col-md-9 col-lg-9 table-responsive"> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Member Type</td>
+                        <td>{{userprofile.networkinfo.memberlevel}}</td>
+                      </tr>
+                      <tr>
+                        <td>Date of Birth</td>
+                        <td>{{userprofile.dateofbirth}}</td>
+                      </tr>
+                      <tr>
+                        <td>Gender</td>
+                        <td>{{userprofile.gender}}</td>
+                      </tr>
+                        <tr>
+                        <td>Home Address</td>
+                        <td>{{userprofile.conatctDetails.addressText}} {{userprofile.conatctDetails.district}}</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td>{{userprofile.conatctDetails.email}}</td>
+                      </tr>
+                        <td>Mobile Number</td>
+                        <td>{{userprofile.conatctDetails.mobilenumber}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+			      <a><i class="fa fa-facebook-square" aria-hidden="true" href={{userprofile.socialdetails.fblink}}></i></a>
+                  <!--a href="#" class="btn btn-info fa fa-facebook-square"></a-->
+				  <a><i class="fa fa-google" aria-hidden="true" href={{userprofile.socialdetails.fblink}}></i></a>
+                  <!--a href="#" class="btn btn-info fa fa-google"></a-->
+				   <a><i class="fa fa-youtube" aria-hidden="true" href={{userprofile.socialdetails.youtubelink}}></i></a>
+				  <!--a href="#"class="btn btn-info fa fa-youtube" ></a-->
+				 <a><i class="fa fa-twitter-square" aria-hidden="true" href={{userprofile.socialdetails.twiter}}></i></a>
+                </div>
+            </div>
+          </div>
+		  
+		         <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Wallet Details</h3>
+			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3 col-lg-3" align="center"> <i class="fa fa-money fa-2x" aria-hidden="true"></i></div>
+                
+                <div class="col-md-9 col-lg-9 table-responsive"> 
+                  <table class="table table-user-information">
+                    <tbody>
+					 <tr>
+                        <td>Wallet Number</td>
+                        <td>{{userprofile.walletdetails.walletnumber}}</td>
+                      </tr>
+                      <tr>
+                        <td>Pay Out</td>
+                        <td>{{userprofile.walletdetails.walletStatement.payout}}</td>
+                      </tr>
+                      <tr>
+                        <td>Max Encashable</td>
+                        <td><td>{{userprofile.walletdetails.walletStatement.maxencashable}}</td></td>
+                      </tr>
+                      <tr>
+                        <td>Current Balance</td>
+                        <td>{{userprofile.walletdetails.walletStatement.currentbalance}}</td>
+                      </tr>
+					   <tr>
+                        <td>Last Update</td>
+                        <td>{{userprofile.walletdetails.walletStatement.walletlastupdate}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+				 <button type="button"  class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Request Encash</button>
+            </div>
+          </div>
+		   <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Performance Details</h3>
+			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3 col-lg-3" align="center"><i class="fa fa-line-chart fa-2x" aria-hidden="true"></i></i>
+				 <input type="text" class="form-control" list="granularitylist">
+<datalist id="granularitylist">
+  <option value="Last 1 week">
+  <option value="Last 1 month">
+  <option value="Last 2 month">
+  <option value="Last 6 month">
+  <option value="Last 1 year">
+</datalist>
+				</div>
+               
+                <div class="col-md-9 col-lg-9 table-responsive"> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Total Network Grow</td>
+                        <td> 120</td>
+                      </tr>
+					  <tr>
+                        <td>Total Metting Attend</td>
+                        <td>17</td>
+                      </tr>
+					   <tr>
+                        <td>Total Task Complete</td>
+                        <td>20</td>
+                      </tr>
+                      <tr>
+                        <td>Total % income grow</td>
+                        <td>40</td>
+                      </tr>
+                      <tr>
+                        <td>Overall Performance</td>
+                        <td>Good</td>
+                      </tr>
+					   <tr>
+                        <td>Overall Rating</td>
+                        <td>****</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+</div>
+ </div>
+ <div class="col-md-7">
+ <div id="networkmember-chart"></div>
+ </div> 
+ </div>
+ </div>
+ 
+ </snap-content>
+<!-- Modal Profile Create -->
+ <div id="profiledetails"  name="profiledetails" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+ <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">New Member Details</h4>	
+						</div>
+	<div class="modal-body">
+        <div class="bhoechie-tab-container">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+              <div class="list-group">
+                <a href="#" class="list-group-item active text-center">
+                  <h4><i class="fa fa-user" aria-hidden="true"></i></h4><br/>Profile
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4><i class="fa fa-sitemap" aria-hidden="true"></i></h4><br/>Network
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4><i class="fa fa-google-wallet" aria-hidden="true"></i></h4><br/>Wallet
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4><i class="fa fa-phone" aria-hidden="true"></i></h4><br/>Contact
+                </a>
+				<a href="#" class="list-group-item text-center">
+                  <h4><i class="fa fa-share-square-o" aria-hidden="true"></i></h4><br/>Social
+                </a>
+              </div>
+            </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                <!-- flight section -->
+                <div class="bhoechie-tab-content active">
+                    <center>
+                      <div class="row">
+
+    <!-- edit form column -->
+    <div class="col-md-12 personal-info">
+      <h3>Personal info</h3>
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-lg-3 control-label">First name </label>
+          <div class="col-lg-8">
+            <input class="form-control"  placeholder="First name" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name </label>
+          <div class="col-lg-8">
+            <input class="form-control" placeholder="Last name" type="text">
+          </div>
+        </div>
+       <div class="form-group">
+          <label class="col-lg-3 control-label">DOB</label>
+          <div class="col-lg-8">
+            <input class="form-control" placeholder="Date of Birth" type="date">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">Username </label>
+          <div class="col-md-8">
+            <input class="form-control" placeholder="Username" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Password </label>
+          <div class="col-md-8">
+            <input class="form-control" placeholder="Password" type="password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Confirm password</label>
+          <div class="col-md-8">
+            <input class="form-control" placeholder="Confirm password" type="password">
+          </div>
+        </div>
+	<div class="col-md-6">
+	 <label class="control-label">profile Image</label>
+      <div class="text-center">
+        <input type="file" class="text-center center-block well well-sm avatar img-circle img-thumbnail" alt="avatar">
+      </div>
+    </div>
+	<div class="col-md-6">
+	 <label class="control-label">Identity Proof</label>
+      <div class="text-center">
+        <input type="file" class="text-center center-block well well-sm avatar img-circle img-thumbnail" alt="avatar">
+      </div>
+    </div>
+      </form>
+    </div>
+  </div>
+                    </center>
+                </div>
+                <!-- train section -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                                         <div class="row">
+
+    <!-- edit form column -->
+    <div class="col-md-12 personal-info">
+      <h3>Network info</h3>
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Refrence ID</label>
+          <div class="col-lg-8">
+            <input class="form-control"  placeholder="Refrence ID" type="text">
+          </div>
+        </div>
+		    <div class="form-group">
+          <label class="col-lg-3 control-label">Parent Profile ID</label>
+          <div class="col-lg-8">
+            <input class="form-control"  placeholder="Refrence ID" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Member Type </label>
+          <div class="col-lg-8">
+            <input class="form-control" placeholder="Member Type" type="text" value="Yellow Member">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+                    </center>
+                </div>
+    
+                <!-- hotel search -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                         <div class="row">
+
+    <!-- edit form column -->
+    <div class="col-md-12 personal-info">
+     	<div id="walletsetup">
+				<div class="panel with-nav-tabs panel">
+					<div class="panel-heading">
+						<h3>Wallet Info</h3>
+					</div>
+				<div class="panel-body">
+				 <div class="form-group">
+          <label class="col-lg-3 control-label">Wallet Number</label>
+          <div class="col-lg-8">
+            <input class="form-control"  placeholder="Wallet Number" type="text" readonly>
+          </div>
+	         </div>
+			  <div class="form-group">
+          <label class="col-lg-3 control-label">Current Balance</label>
+          <div class="col-lg-8">
+            <input class="form-control"  placeholder="Current Balance" type="text" readonly>
+			<i class="fa fa-inr" aria-hidden="true"></i>0.0</input>
+          </div>
+	         </div>
+	   
+      </div>
+
+        </div>
+       </div>
+	</div>
+	</div>
+         </center>
+				</div>
+                <div class="bhoechie-tab-content">
+                    <center>
+                   <div class="panel with-nav-tabs panel">
+					<div class="panel-heading">
+						<h3>Contact Info</h3>
+					</div>
+				<div class="panel-body">
+					<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" id="addressdetails" class="pull-center"  href="/dashboard/overview#physicaladdress"><i class="fa fa-lock"></i>Physical Conatct</a></li>
+							<li><a data-toggle="tab" id="contactdetails" class="pull-center"  href="/dashboard/overview#phonedetails"><i class="fa fa-money"></i>Digital Contact</a></li>
+						</ul>
+				<div class="tab-content">
+					<div id="physicaladdress" class="tab-pane fade">
+					<br></br>
+					<div class="form-group">
+          <label class="col-lg-3 control-label">Address Details</label>
+          <div class="col-lg-8">
+            <textarea class="form-control"  placeholder="Address Details"></textarea>
+          </div>
+	         </div>
+			 			<div class="form-group">
+          <label class="col-lg-3 control-label">Near By Landmark</label>
+          <div class="col-lg-8">
+            <textarea class="form-control"  placeholder="Your Near By Landmark"></textarea>
+          </div>
+	         </div>
+			  <div class="form-group">
+          <label class="col-lg-3 control-label">Pincode</label>
+          <div class="col-lg-8">
+            <input class="form-control"  placeholder="Your pincode" type="text">
+          </div>
+	         </div>
+			 	 <div class="form-group">
+          <label class="col-lg-3 control-label">District</label>
+          <div class="col-lg-8">
+            <input class="form-control"  placeholder="Your District" type="text" list="ditrictlist">
+			<datalist id="ditrictlist">
+			<option value="Balasore">
+         </datalist>
+          </div>
+	         </div>
+		 <div class="form-group">
+          <label class="col-lg-3 control-label">State</label>
+          <div class="col-lg-8">
+            <input class="form-control"  placeholder="Your Statae" type="text" list="statelist">
+			<datalist id="statelist">
+			<option value="Odisha">
+         </datalist>
+          </div>
+	      </div>
+					</div>
+					<div id="phonedetails" class="tab-pane fade">
+					<br></br>
+					<div class="col-md-11">
+				<div class="form-group">
+					<label class="col-lg-4 control-label">Mobile Number</label>
+				<div class="col-lg-7">
+					 <input class="form-control"  placeholder="Your Mobile Number" type="text">
+				 </div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-4 control-label">Alternet Mobile Number</label>
+				<div class="col-lg-7">
+					 <input class="form-control"  placeholder="Your Alternet Mobile Number" type="text">
+				 </div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-4 control-label">Your Email</label>
+				<div class="col-lg-7">
+					 <input class="form-control"  placeholder="Your Email Id" type="text">
+				 </div>
+				</div>
+				</div>
+					</div>
+                   </div>
+	   
+      </div>
+  </div>
+                    </center>
+                </div>
+                <div class="bhoechie-tab-content">
+                    <center>
+                    
+                 
+                    </center>
+                </div>
+            </div>
+        </div>	
+		</div>	
+	
+				<div class="modal-footer">
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="downloadAttendaceReport()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+			   </div>
+			</div>
+		</div>
+	</div>
+			
+ 
+ 
+<!-- Encashed Modal -->		
+<div  id="enashedmodal" name="enashedmodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+	  <div class="modal-dialog">
+	
+		<div class="modal-content">
+		  <form id="otprequestform" method="post"  class="form-horizontal">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title" id="myModalLabel">Encash Your Money</h4>
+		  </div>
+		  
+		  <div class="modal-body">
+			<div class="col-md-6" >
+					<div class="form-group">
+						<label for="mobilenumber">Wallet Number</label>
+						<input type="text" id="otpmobilenumber" name="mobilenumber" class="form-control" readonly>
+					</div>
+					<div class="form-group">
+						<label for="otpnumber">Encash Amount</label>
+						<input id="encashed" name="encashed" class="form-control" type="text" value="0.0" readonly></td>
+					</div>
+										
+				</div>
+			</div>
+					<div class="modal-footer">
+						<div class="col-md-4">
+							   <input  type="button"  name="enachedmoney" value="Encashed" class="btn btn-primary btn-block" />
+						</div>
+					</div>
+					</form>
+		  </div>
+		  
+		</div>
+	</div>
+	
+	
+	<!-- meeting modal-->
+	<div id="setupmeeting"  name="setupmeeting" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+ <div class="modal-dialog">
+	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Setup Mettings</h4>	
+						</div>
+	<div class="modal-body">
+	<div class="col-md-6">
+        <div class="form-group">
+				 <input type="text" class="form-control" placeholder="Meeting  For" list="grouplist">
+<datalist id="grouplist">
+  <option value="Level-1">
+  <option value="Level-2">
+  <option value="Level-3">
+  <option value="Level-4">
+  <option value="Level-5">
+  <option value="Level-6">
+  <option value="Level-7">
+  <option value="Level-8">
+  <option value="Level-9">
+  <option value="Level-10">
+  <option value="All">
+</datalist>
+				</div>
+				<div class="form-group">
+				 <input type="datetime-local" class="form-control" placeholder="Meeting  Start Date">
+				</div>
+				<div class="form-group">
+				 <input type="datetime-local" class="form-control" placeholder="Meeting  End Date">
+				</div>
+				<div class="form-group">
+				 <textarea  class="form-control" placeholder="Meeting  Agenda"></textarea>
+				</div>
+				</div>
+		</div>
+				<div class="modal-footer">
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="downloadAttendaceReport()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+			   </div>
+			</div>
+		</div>
+	</div>
+	
+	
+		<!-- Task Details modal-->
+	<div id="setuptask"  name="setuptask" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+ <div class="modal-dialog">
+	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Task Setup </h4>	
+						</div>
+	<div class="modal-body">
+	<div class="col-md-6">
+        <div class="form-group">
+				 <input type="text" class="form-control" placeholder="Task  For" list="grouplist">
+<datalist id="grouplist">
+  <option value="Level-1">
+  <option value="Level-2">
+  <option value="Level-3">
+  <option value="Level-4">
+  <option value="Level-5">
+  <option value="Level-6">
+  <option value="Level-7">
+  <option value="Level-8">
+  <option value="Level-9">
+  <option value="Level-10">
+  <option value="All">
+</datalist>
+				</div>
+				<div class="form-group">
+				 <input type="datetime-local" class="form-control" placeholder="Task  Start Date">
+				</div>
+				<div class="form-group">
+				 <input type="datetime-local" class="form-control" placeholder="Task  End Date">
+				</div>
+				<div class="form-group">
+				 <textarea  class="form-control" placeholder="Task Desription"></textarea>
+				</div>
+				</div>
+		</div>
+				<div class="modal-footer">
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="downloadAttendaceReport()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+			   </div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+$(document).ready(function() {
+    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+    });
+});
+
+$(document).on('click', '.panel-heading span.clickable', function(e){
+    var $this = $(this);
+	if(!$this.hasClass('panel-collapsed')) {
+		$this.parents('.panel').find('.panel-body').slideUp();
+		$this.addClass('panel-collapsed');
+		$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+	} else {
+		$this.parents('.panel').find('.panel-body').slideDown();
+		$this.removeClass('panel-collapsed');
+		$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+	}
+})
+</script>
+		</div><!---End of Modal Export details--> 
+ 
+ </div>
