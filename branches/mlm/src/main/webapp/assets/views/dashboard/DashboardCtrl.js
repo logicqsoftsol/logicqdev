@@ -8,7 +8,7 @@
  * Controller of mlmlogicq
  */
 angular.module('mlmlogicq')
-  .controller('DashboardCtrl', function($scope,$rootScope,$state) {
+  .controller('DashboardCtrl', function($scope,$rootScope,$localStorage,$state) {
     $scope.$state = $state;
 
     $scope.menuItems = [];
@@ -51,52 +51,40 @@ angular.module('mlmlogicq')
       'exportFilename': 'MyOrgChart'
     });
 	
-	
-	$scope.userdetails=$rootScope.data;
-	//User profile Details 
+		//User profile Details 
+	$scope.userdetails={};
 	$scope.userprofile={};
-	
-	
-	$scope.userprofile.firstname='';
-	$scope.userprofile.lastname='';
-	$scope.userprofile.dateofbirth='';
-	$scope.userprofile.gender='';
-	
-	
-	$scope.userprofile.conatctDetails={};
-	$scope.userprofile.conatctDetails.addressText='';
-	$scope.userprofile.conatctDetails.district='';
-	$scope.userprofile.conatctDetails.email='';
-	$scope.userprofile.conatctDetails.mobilenumber='';
-	
-	
+    $scope.userprofile.conatctDetails={};
 	$scope.userprofile.networkinfo={};
-	$scope.userprofile.networkinfo.memberlevel='';
-	
 	$scope.userprofile.walletdetails={};
-	$scope.userprofile.walletdetails.walletnumber='';
-	
 	$scope.userprofile.walletdetails.walletStatement={};
-	$scope.userprofile.walletdetails.walletStatement.payout='';
-	$scope.userprofile.walletdetails.walletStatement.maxencashable='';
-	$scope.userprofile.walletdetails.walletStatement.currentbalance='';
-	$scope.userprofile.walletdetails.walletStatement.walletlastupdate='';
+	$scope.userprofile.userperformance={};
 	
-	$scope.displayProfile = function ($scope,data) {
-		$scope.userprofile.firstname=data.userprofile.firstname;
-		$scope.userprofile.lastname=data.userprofile.lastname;
-		$scope.userprofile.dateofbirth='';
-	    $scope.userprofile.gender='';
-	    $scope.userprofile.conatctDetails.addressText='';
-		$scope.userprofile.conatctDetails.district='';
-		$scope.userprofile.conatctDetails.email='';
-		$scope.userprofile.conatctDetails.mobilenumber='';
-		$scope.userprofile.networkinfo.memberlevel='';
-		$scope.userprofile.walletdetails.walletnumber='';
-		$scope.userprofile.walletdetails.walletStatement.payout='';
-		$scope.userprofile.walletdetails.walletStatement.maxencashable='';
-		$scope.userprofile.walletdetails.walletStatement.currentbalance='';
-		$scope.userprofile.walletdetails.walletStatement.walletlastupdate='';
+	
+	
+	
+	$scope.displayProfile = function () {
+	 $scope.userdetails=$localStorage.profile;
+     $scope.userprofile.firstname=$scope.userdetails.userprofile.firstname;
+	 $scope.userprofile.lastname=$scope.userdetails.userprofile.lastname;
+	 $scope.userprofile.dateofbirth=new Date($scope.userdetails.userprofile.dateofbirth);
+	 $scope.userprofile.gender=$scope.userdetails.userprofile.gender;
+	$scope.userprofile.conatctDetails.addressText=$scope.userdetails.userprofile.conatctDetails.addressText;
+	$scope.userprofile.conatctDetails.district=$scope.userdetails.userprofile.conatctDetails.district;
+	$scope.userprofile.conatctDetails.email=$scope.userdetails.userprofile.conatctDetails.email;
+	$scope.userprofile.conatctDetails.mobilenumber=$scope.userdetails.userprofile.conatctDetails.mobilenumber;
+	$scope.userprofile.networkinfo.memberlevel=$scope.userdetails.userprofile.networkinfo.memberlevel;
+	$scope.userprofile.walletdetails.walletnumber=$scope.userdetails.userprofile.walletdetails.walletnumber;
+	$scope.userprofile.walletdetails.walletStatement.payout=$scope.userdetails.walletStatement.payout;
+	$scope.userprofile.walletdetails.walletStatement.maxencashable=$scope.userdetails.walletStatement.maxencashable;
+	$scope.userprofile.walletdetails.walletStatement.currentbalance=$scope.userdetails.walletStatement.currentbalance;
+	$scope.userprofile.walletdetails.walletStatement.walletlastupdate=new Date($scope.userdetails.walletStatement.walletlastupdate);
+	$scope.userprofile.userperformance.totalnetwork=$scope.userdetails.userperformance.network;
+	$scope.userprofile.userperformance.totalmetting=$scope.userdetails.userperformance.metting;
+	$scope.userprofile.userperformance.totaltask=$scope.userdetails.userperformance.task;
+	$scope.userprofile.userperformance.totalincome=$scope.userdetails.userperformance.income;
+	$scope.userprofile.userperformance.totalperformance=$scope.userdetails.userperformance.performancetype;
+	$scope.userprofile.userperformance.totalrating=$scope.userdetails.userperformance.ratting;
 	};
 	
   });

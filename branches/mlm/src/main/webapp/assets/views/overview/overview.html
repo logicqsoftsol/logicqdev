@@ -1,4 +1,6 @@
-<div> <snap-drawer>
+<div> 
+<article id="defaultload" ng-init="displayProfile()">
+<snap-drawer>
  <div class=snap-menu> <div class="sidebar-header text-center"> 
   <h4>Admin</h4>
  <img src="assets/images/flat-avatar.png" class="sidebar-img img-circle"> 
@@ -108,7 +110,7 @@
                         <td>{{userprofile.walletdetails.walletStatement.payout}}</td>
                       </tr>
                       <tr>
-                        <td>Max Encashable</td>
+                        <td>Encashable</td>
                         <td><td>{{userprofile.walletdetails.walletStatement.maxencashable}}</td></td>
                       </tr>
                       <tr>
@@ -147,27 +149,27 @@
                     <tbody>
                       <tr>
                         <td>Total Network Grow</td>
-                        <td> 120</td>
+                        <td>{{userprofile.userperformance.totalnetwork}}</td>
                       </tr>
 					  <tr>
                         <td>Total Metting Attend</td>
-                        <td>17</td>
+                        <td>{{userprofile.userperformance.totalmetting}}</td>
                       </tr>
 					   <tr>
                         <td>Total Task Complete</td>
-                        <td>20</td>
+                        <td>{{userprofile.userperformance.totaltask}}</td>
                       </tr>
                       <tr>
                         <td>Total % income grow</td>
-                        <td>40</td>
+                        <td>{{userprofile.userperformance.totalincome}}</td>
                       </tr>
                       <tr>
                         <td>Overall Performance</td>
-                        <td>Good</td>
+                        <td>{{userprofile.userperformance.totalperformance}}</td>
                       </tr>
 					   <tr>
                         <td>Overall Rating</td>
-                        <td>****</td>
+                        <td>{{userprofile.userperformance.totalrating}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -605,5 +607,5 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
 })
 </script>
 		</div><!---End of Modal Export details--> 
- 
+ </article>
  </div>

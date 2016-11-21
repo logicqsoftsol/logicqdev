@@ -7,8 +7,9 @@
 			 '$rootScope',
 			 '$http',
 			 '$location',
+			 '$localStorage',
 			 'AuthenticationService',
-			 function($scope,$rootScope,$http,$location,AuthenticationService) {
+			 function($scope,$rootScope,$http,$location,$localStorage,AuthenticationService) {
 		
 		$scope.login = function () {
 			AuthenticationService.Login($scope).success(function(response, status, headers, config){
@@ -16,8 +17,7 @@
 				{
                 // $scope.logedinusername=response.username;
 				 //AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'),$scope.logedinusername);
-			   // DashboardCtrl.displayProfile($scope,response);
-			   $rootScope.data=response;
+			    $localStorage.profile=response;
 				$location.path('/dashboard/overview');
 				}
 			}).error(function(response, status) {
