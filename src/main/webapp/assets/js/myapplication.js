@@ -5,7 +5,7 @@
 (function () {
     'use strict';
     
-   angular.module('mlmlogicq', ['ui.router','snap']).constant('AppConstants', {
+   angular.module('mlmlogicq', ['ui.router','snap','ngStorage']).constant('AppConstants', {
     'hostName':'http://127.0.0.1:', 
 	// 'hostName':'http://45.113.136.152:',
 	  'hostPort': '8090' ,
