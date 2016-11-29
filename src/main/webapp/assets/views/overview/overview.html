@@ -2,9 +2,8 @@
 <article id="defaultload" ng-init="displayProfile()">
 <snap-drawer>
  <div class=snap-menu> <div class="sidebar-header text-center"> 
-  <h4>Admin</h4>
+  <h4>{{userprofile.firstname}} {{userprofile.lastname}}</h4>
  <img src="assets/images/flat-avatar.png" class="sidebar-img img-circle"> 
-
  </div> 
  <ul class=snap-ul>  
  <li ng-class="{active: $state.includes('overview')}"><a ui-sref=overview>Home</a></li> 
@@ -179,7 +178,9 @@
 </div>
  </div>
  <div class="col-md-7">
- <div id="networkmember-chart"></div>
+ <div id="networkmember-chart">
+ <input type="text" id="networkmembernodeid"  ng-hide="true">
+ </div>
  </div> 
  </div>
  </div>
@@ -204,9 +205,6 @@
                   <h4><i class="fa fa-sitemap" aria-hidden="true"></i></h4><br/>Network
                 </a>
                 <a href="#" class="list-group-item text-center">
-                  <h4><i class="fa fa-google-wallet" aria-hidden="true"></i></h4><br/>Wallet
-                </a>
-                <a href="#" class="list-group-item text-center">
                   <h4><i class="fa fa-phone" aria-hidden="true"></i></h4><br/>Contact
                 </a>
 				<a href="#" class="list-group-item text-center">
@@ -227,38 +225,38 @@
         <div class="form-group">
           <label class="col-lg-3 control-label">First name </label>
           <div class="col-lg-8">
-            <input class="form-control"  placeholder="First name" type="text">
+            <input class="form-control" ng-model="userprofile.firstname" placeholder="First name" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Last name </label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="Last name" type="text">
+            <input class="form-control" ng-model="userprofile.lastname" placeholder="Last name" type="text">
           </div>
         </div>
        <div class="form-group">
           <label class="col-lg-3 control-label">DOB</label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="Date of Birth" type="date">
+            <input class="form-control" ng-model="userprofile.dateofbirth" placeholder="Date of Birth" type="date">
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-3 control-label">Username </label>
           <div class="col-md-8">
-            <input class="form-control" placeholder="Username" type="text">
+            <input class="form-control" ng-model="userprofile.logindetails.username" placeholder="Username" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Password </label>
           <div class="col-md-8">
-            <input class="form-control" placeholder="Password" type="password">
+            <input class="form-control"  ng-model="userprofile.logindetails.prepassword" placeholder="Password" type="password">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Confirm password</label>
           <div class="col-md-8">
-            <input class="form-control" placeholder="Confirm password" type="password">
+            <input class="form-control" ng-model="userprofile.logindetails.password"  placeholder="Confirm password" type="password">
           </div>
         </div>
 	<div class="col-md-6">
@@ -287,22 +285,16 @@
     <div class="col-md-12 personal-info">
       <h3>Network info</h3>
       <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Refrence ID</label>
-          <div class="col-lg-8">
-            <input class="form-control"  placeholder="Refrence ID" type="text">
-          </div>
-        </div>
-		    <div class="form-group">
+		<div class="form-group">
           <label class="col-lg-3 control-label">Parent Profile ID</label>
           <div class="col-lg-8">
-            <input class="form-control"  placeholder="Refrence ID" type="text">
+            <input class="form-control"  ng-model="userprofile.networkinfo.parentmemberid" placeholder="Refrence ID" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Member Type </label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="Member Type" type="text" value="Yellow Member">
+            <input class="form-control" ng-model="userprofile.networkinfo.memberlevel" placeholder="Member Type" type="text" value="Yellow Member">
           </div>
         </div>
       </form>
@@ -310,42 +302,7 @@
   </div>
                     </center>
                 </div>
-    
-                <!-- hotel search -->
-                <div class="bhoechie-tab-content">
-                    <center>
-                         <div class="row">
-
-    <!-- edit form column -->
-    <div class="col-md-12 personal-info">
-     	<div id="walletsetup">
-				<div class="panel with-nav-tabs panel">
-					<div class="panel-heading">
-						<h3>Wallet Info</h3>
-					</div>
-				<div class="panel-body">
-				 <div class="form-group">
-          <label class="col-lg-3 control-label">Wallet Number</label>
-          <div class="col-lg-8">
-            <input class="form-control"  placeholder="Wallet Number" type="text" readonly>
-          </div>
-	         </div>
-			  <div class="form-group">
-          <label class="col-lg-3 control-label">Current Balance</label>
-          <div class="col-lg-8">
-            <input class="form-control"  placeholder="Current Balance" type="text" readonly>
-			<i class="fa fa-inr" aria-hidden="true"></i>0.0</input>
-          </div>
-	         </div>
-	   
-      </div>
-
-        </div>
-       </div>
-	</div>
-	</div>
-         </center>
-				</div>
+  
                 <div class="bhoechie-tab-content">
                     <center>
                    <div class="panel with-nav-tabs panel">
@@ -363,25 +320,25 @@
 					<div class="form-group">
           <label class="col-lg-3 control-label">Address Details</label>
           <div class="col-lg-8">
-            <textarea class="form-control"  placeholder="Address Details"></textarea>
+            <textarea class="form-control"  ng-model="userprofile.conatctDetails.addressText" placeholder="Address Details"></textarea>
           </div>
 	         </div>
 			 			<div class="form-group">
           <label class="col-lg-3 control-label">Near By Landmark</label>
           <div class="col-lg-8">
-            <textarea class="form-control"  placeholder="Your Near By Landmark"></textarea>
+            <textarea class="form-control" ng-model="userprofile.conatctDetails.landMark"  placeholder="Your Near By Landmark"></textarea>
           </div>
 	         </div>
 			  <div class="form-group">
           <label class="col-lg-3 control-label">Pincode</label>
           <div class="col-lg-8">
-            <input class="form-control"  placeholder="Your pincode" type="text">
+            <input class="form-control" ng-model="userprofile.conatctDetails.pincode" placeholder="Your pincode" type="text">
           </div>
 	         </div>
 			 	 <div class="form-group">
           <label class="col-lg-3 control-label">District</label>
           <div class="col-lg-8">
-            <input class="form-control"  placeholder="Your District" type="text" list="ditrictlist">
+            <input class="form-control"  ng-model="userprofile.conatctDetails.district" placeholder="Your District" type="text" list="ditrictlist">
 			<datalist id="ditrictlist">
 			<option value="Balasore">
          </datalist>
@@ -390,7 +347,7 @@
 		 <div class="form-group">
           <label class="col-lg-3 control-label">State</label>
           <div class="col-lg-8">
-            <input class="form-control"  placeholder="Your Statae" type="text" list="statelist">
+            <input class="form-control"  ng-model="userprofile.conatctDetails.state" placeholder="Your Statae" type="text" list="statelist">
 			<datalist id="statelist">
 			<option value="Odisha">
          </datalist>
@@ -403,19 +360,19 @@
 				<div class="form-group">
 					<label class="col-lg-4 control-label">Mobile Number</label>
 				<div class="col-lg-7">
-					 <input class="form-control"  placeholder="Your Mobile Number" type="text">
+					 <input class="form-control" ng-model="userprofile.conatctDetails.mobilenumber" placeholder="Your Mobile Number" type="text">
 				 </div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-4 control-label">Alternet Mobile Number</label>
 				<div class="col-lg-7">
-					 <input class="form-control"  placeholder="Your Alternet Mobile Number" type="text">
+					 <input class="form-control" ng-model="userprofile.conatctDetails.alternetmobilenumber" placeholder="Your Alternet Mobile Number" type="text">
 				 </div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-4 control-label">Your Email</label>
 				<div class="col-lg-7">
-					 <input class="form-control"  placeholder="Your Email Id" type="text">
+					 <input class="form-control" ng-model="userprofile.conatctDetails.email" placeholder="Your Email Id" type="text">
 				 </div>
 				</div>
 				</div>
@@ -578,6 +535,46 @@
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
 			   </div>
 			</div>
+		</div>
+	</div>
+	
+	
+	
+<!-- OTP Popup Modal -->		
+<div  id="otpvalidation" name="otpvalidation" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+	 	  <div class="modal-dialog">
+	
+		<div class="modal-content">
+		  <form id="otprequestform" method="post"  class="form-horizontal">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title" id="otpmodal">OTP Validation</h4>
+		  </div>
+		  
+		  <div class="modal-body">
+			<div class="col-md-8" >
+					<div class="form-group">
+						<label for="mobilenumber">Mobile Number</label>
+						<input type="text" id="otpmobilenumber" ng-model="otp.mobilenumber" name="mobilenumber" class="form-control" readonly>
+					</div>
+					<div class="form-group">
+						<label for="otpnumber">OTP Code</label>
+						<input type="password" id="otpnumber" ng-model="otp.otpnumber" name="otpnumber" class="form-control" placeholder="your OTP" required="required">
+					</div>
+										
+				</div>
+			</div>
+					<div class="modal-footer">
+							<div class="col-md-12">
+							   <input  type="button" id="otpvalidation" name="otpvalidation" value="Validate" class="btn btn-primary btn-block" />
+							   <input  type="button" id="otpresend" name="otpresend" value="Re-Send" class="btn btn-primary btn-block" />
+							</div>
+					</div>
+					</form>
+		  </div>
+		  
 		</div>
 	</div>
 	

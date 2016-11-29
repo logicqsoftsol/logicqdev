@@ -14,7 +14,10 @@
 	   'get' : 'GET' ,  
 	   'post' : 'POST' , 
 	   'loginURL' : '/api/login',
-
+	   'getUserProfileURL' : '/api/user/fetchUserProfileDetails',
+	   'sendOTPURL' : '/admin/service/otpSend',
+	   'validateOTPForMobileURL' : '/admin/service/otpValidateForMobileNumber',
+	   'validateOTPForEmailURL' : '/admin/service/otpValidateForEmail',
 
 	}).directive('ngConfirmClick', [
 	                                   function(){

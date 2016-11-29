@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.logicq.mlm.common.helper.sms.OTPGenerationHelper;
 import com.logicq.mlm.common.helper.sms.SMSHelper;
-import com.logicq.mlm.common.helper.sms.SMSMessageHelper;
+import com.logicq.mlm.common.helper.sms.MessageHelper;
 import com.logicq.mlm.dao.otp.IOTPDao;
 import com.logicq.mlm.model.sms.OTPDetails;
 import com.logicq.mlm.model.sms.SMSDetails;
@@ -33,7 +33,7 @@ public class OTPService implements IOTPService{
 		otpdao.saveOrUpdateOTPDetails(otpdetails);
 		
 		SMSDetails smsdetails=new SMSDetails();
-		smsdetails.setMessage(SMSMessageHelper.generateOTPMessage(otp));
+		smsdetails.setMessage(MessageHelper.generateOTPMessage(otp));
 		smsdetails.setMobilenumber(mobilenumber);
 		return SMSHelper.sendSMS(smsdetails);
 
@@ -42,8 +42,16 @@ public class OTPService implements IOTPService{
 	@Override
 	@ExceptionHandler(Exception.class)
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public boolean validateOTP(int otp, String mobilenumber) {
-		return otpdao.validateOTP(otp, mobilenumber);
+	public boolean validateOTPForMobile(int otp, String mobilenumber) {
+		return otpdao.validateOTPForMobileNumber(otp, mobilenumber);
+	}
+	
+	
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public boolean validateOTPForEMail(int otp, String email) {
+		return otpdao.validateOTPForEmail(otp, email);
 	}
 
 	@Override
@@ -51,15 +59,20 @@ public class OTPService implements IOTPService{
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public void sendServiceConfirmation(String mobilenumber, String reasone) {
 		SMSDetails smsdetailscust=new SMSDetails();
-		smsdetailscust.setMessage(SMSMessageHelper.generateMessageForServiceConfirmation(reasone));
+		smsdetailscust.setMessage(MessageHelper.generateMessageForServiceConfirmation(reasone));
 		smsdetailscust.setMobilenumber(mobilenumber);
 		
 		SMSDetails smsdetailsadmin=new SMSDetails();
-		smsdetailsadmin.setMessage(SMSMessageHelper.generateMessageForAdmin(mobilenumber, reasone));
-		smsdetailsadmin.setMobilenumber(SMSMessageHelper.getAdminMobileNumber());
+		smsdetailsadmin.setMessage(MessageHelper.generateMessageForAdmin(mobilenumber, reasone));
+		smsdetailsadmin.setMobilenumber(MessageHelper.getAdminMobileNumber());
 		
 		SMSHelper.sendSMS(smsdetailscust);
 		SMSHelper.sendSMS(smsdetailsadmin);
+	}
+
+	@Override
+	public void saveOTPDetails(OTPDetails otpdetails) {
+		otpdao.saveOrUpdateOTPDetails(otpdetails);
 	}
 
 }
