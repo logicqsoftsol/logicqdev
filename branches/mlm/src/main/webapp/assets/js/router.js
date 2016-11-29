@@ -37,6 +37,24 @@
                     controller:'DashboardCtrl'
                     
                 })
+                ,
+				 $stateProvider
+                .state('approvalpending', {
+					parent: 'dashboard',
+                    url: "/approvalpending",
+                    templateUrl:"assets/views/overview/approval.html",
+                    controller:'DashboardCtrl'
+                    
+                })
+				 ,
+				 $stateProvider
+                .state('reports', {
+					parent: 'dashboard',
+                    url: "/reports",
+                    templateUrl:"assets/views/reports/reports.html",
+                    controller:'ReportCtrl'
+                    
+                })
              $stateProvider
                 .state('authusers', {
                     url: "/",

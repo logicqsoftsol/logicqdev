@@ -1,6 +1,6 @@
 (function () {
 	'use strict';
-	angular.module('mlmlogicq').factory('AuthenticationService', ['$http','AppConstants',function ($http,AppConstants ){
+	angular.module('mlmlogicq').factory('AuthenticationService', ['$http','AppConstants','$sessionStorage',function ($http,AppConstants,$sessionStorage ){
 
 		return {
 
@@ -16,8 +16,8 @@
 			},
 			   
 			setAuthenticationToken: function (token,username) {
-				//$sessionStorage.authToken = token;
-                //$sessionStorage.username=username;
+				$sessionStorage.authToken = token;
+                $sessionStorage.username=username;
 			    },
 
 

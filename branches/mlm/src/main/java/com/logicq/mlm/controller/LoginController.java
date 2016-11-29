@@ -1,5 +1,7 @@
 package com.logicq.mlm.controller;
 
+import java.io.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.factory.LoginFactory;
 import com.logicq.mlm.model.performance.UserPerformance;
+import com.logicq.mlm.model.profile.NetWorkDetails;
 import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.wallet.WalletStatement;
 import com.logicq.mlm.service.performance.IUserPerformanceService;
@@ -39,6 +43,7 @@ public class LoginController {
 	  
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserDetailsVO> login() {
+		ObjectMapper mapper = new ObjectMapper();
 		UserDetailsVO userdetailsvo=new UserDetailsVO();
 		UserProfile userprofile = new UserProfile();
 		WalletStatement walletStatement=new WalletStatement();
@@ -50,6 +55,13 @@ public class LoginController {
 					userprofile.setLogindetails(LoginFactory.createLoginDetails(login));
 					userprofile=userservice.fetchUser(userprofile);
 					userdetailsvo.setUserprofile(userprofile);
+					//need to check from data base from workflow table is approved or not for userid
+					userdetailsvo.setMobilenoVerified(true);
+					userdetailsvo.setEmailVerified(false);
+					userdetailsvo.setAdminVerified(true);
+				
+					NetWorkDetails networkdetails =mapper.readValue(new File("C:\\Users\\SudhanshuLenka\\Desktop\\network.json"), NetWorkDetails.class);
+					userdetailsvo.setNetworkjson(networkdetails);
 					walletStatementservice.fetchWalletStmntAccordingToAggregartion(walletStatement);
 					userdetailsvo.setWalletStatement(walletStatement);
 					userperformanceservice.fetchUserPerformanceAccordingToAggregation(userperformance);

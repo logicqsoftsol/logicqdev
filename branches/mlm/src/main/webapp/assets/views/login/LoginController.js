@@ -8,23 +8,29 @@
 			 '$http',
 			 '$location',
 			 '$localStorage',
+			 '$exceptionHandler',
 			 'AuthenticationService',
-			 function($scope,$rootScope,$http,$location,$localStorage,AuthenticationService) {
-		
+			 function($scope,$rootScope,$http,$location,$localStorage,$exceptionHandler,AuthenticationService) {
+		$scope.approval={};
 		$scope.login = function () {
 			AuthenticationService.Login($scope).success(function(response, status, headers, config){
 				if(headers('AUTH-TOKEN') != '' && response.authorities != '' )
 				{
-                // $scope.logedinusername=response.username;
-				 //AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'),$scope.logedinusername);
+                 $scope.logedinusername=response.userprofile.logindetails.username;
+				AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'),$scope.logedinusername);
 			    $localStorage.profile=response;
-				$location.path('/dashboard/overview');
+				
+			    if(!response.adminVerified || !response.emailVerified || !response.mobilenoVerified){
+					$location.path('/dashboard/approvalpending');
+				}else{
+					$location.path('/dashboard/overview');
+				}
 				}
 			}).error(function(response, status) {
-				$location.path('/login');
 				var errormsg='Unable to Login Check setting or Loging Details '+' Status Code : '+status;
-				// $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
-				 //$exceptionHandler(errormsg);
+				 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+				$exceptionHandler(errormsg);
+				$location.path('/login');
 			});
 
     };

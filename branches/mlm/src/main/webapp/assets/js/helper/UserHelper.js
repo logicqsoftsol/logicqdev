@@ -20,9 +20,20 @@
 					$scope.userprofile.walletdetails.walletStatement.maxencashable='';
 					$scope.userprofile.walletdetails.walletStatement.currentbalance='';
 					$scope.userprofile.walletdetails.walletStatement.walletlastupdate='';
-				}			
+				},
+       populateOTPDetailsForEmail: function ($scope) {
+		return $scope.request.otpdetails={
+			reciveremailid:$scope.approval.verificationvalue,
+			otpnumber:$scope.approval.otpcode,
+		};				
+		},
+		  populateOTPDetailsForMobile: function ($scope) {
+		return $scope.request.otpdetails={
+			mobilenumber:$scope.approval.verificationvalue,
+			otpnumber:$scope.approval.otpcode,
+		};				
+		},
 		}
-		
 }]);
 
 }());

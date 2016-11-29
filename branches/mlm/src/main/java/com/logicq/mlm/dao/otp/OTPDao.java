@@ -16,8 +16,15 @@ public class OTPDao extends AbstractDAO<OTPDetails> implements IOTPDao  {
 	}
 
 	@Override
-	public boolean validateOTP(int opt, String mobilenumber) {
+	public boolean validateOTPForMobileNumber(int opt, String mobilenumber) {
 		String sql = " from OTPDetails where mobilenumber= '" + mobilenumber + "'" + " and otpnumber=" + opt;
+		List<OTPDetails> otpdetails = (List<OTPDetails>) execcuteQuery(sql);
+		return otpdetails.size() == 1;
+	}
+	
+	@Override
+	public boolean validateOTPForEmail(int opt, String email) {
+		String sql = " from OTPDetails where reciveremailid= '" + email + "'" + " and otpnumber=" + opt;
 		List<OTPDetails> otpdetails = (List<OTPDetails>) execcuteQuery(sql);
 		return otpdetails.size() == 1;
 	}

@@ -22,7 +22,7 @@ public class UserProfileDAO extends AbstractDAO<UserProfile> implements IUserDAO
 		user.setConatctDetails(new ContactDetails());
 		user.getConatctDetails().setAddressText("ABC XYZ");
 		user.getConatctDetails().setDistrict("Balasore");
-		user.getConatctDetails().setEmail("asd@gmail.com");
+		user.getConatctDetails().setEmail("ssllenka@gmail.com");
 		user.getConatctDetails().setMobilenumber("91-7057014118");
 		user.getConatctDetails().setPincode("44575");
 		user.setLogindetails(user.getLogindetails());

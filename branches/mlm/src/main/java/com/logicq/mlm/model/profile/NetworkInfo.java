@@ -1,12 +1,14 @@
 package com.logicq.mlm.model.profile;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -41,6 +43,12 @@ public class NetworkInfo implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "PROFILE_ID")
 	private UserProfile userprofile;
+	
+	@Lob
+	@Column(name = "NETWORK_JSON", nullable = false)
+	private byte[] networkjson;
+	
+	
 
 	public String getMemberid() {
 		return memberid;
@@ -81,13 +89,23 @@ public class NetworkInfo implements Serializable {
 	public void setUserprofile(UserProfile userprofile) {
 		this.userprofile = userprofile;
 	}
+	
+	
 
+	public byte[] getNetworkjson() {
+		return networkjson;
+	}
+
+	public void setNetworkjson(byte[] networkjson) {
+		this.networkjson = networkjson;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "NetworkInfo [memberid=" + memberid + ", parentmemberid=" + parentmemberid + ", memberlevel="
-				+ memberlevel + ", dateofjoin=" + dateofjoin + ", userprofile=" + userprofile + "]";
+				+ memberlevel + ", dateofjoin=" + dateofjoin + ", userprofile=" + userprofile + ", networkjson="
+				+ Arrays.toString(networkjson) + "]";
 	}
-	
-	
 
 }

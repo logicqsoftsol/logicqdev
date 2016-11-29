@@ -29,6 +29,7 @@
     var defaultOptions = {
       'nodeTitle': 'name',
       'nodeId': 'id',
+	  'parentNodeId':'parentid',
 	  'nodeCategory': 'category',
       'toggleSiblingsResp': false,
       'depth': 999,
@@ -495,7 +496,7 @@
   function createNode(nodeData, level, opts) {
     var dtd = $.Deferred();
     // construct the content of node
-    var $nodeDiv = $('<div' + (opts.draggable ? ' draggable="true"' : '') + (nodeData[opts.nodeId] ? ' id="' + nodeData[opts.nodeId] + '"' : '') + '>')
+    var $nodeDiv = $('<div' + (opts.draggable ? ' draggable="true"' : '') + (nodeData[opts.nodeId] ? ' id="' + nodeData[opts.nodeId] + '"' : '')+(nodeData[opts.parentNodeId] ? ' parentid="' + nodeData[opts.parentNodeId] + '"' : '') + '>')
       .addClass('node ' + (nodeData.className || '') +  (level >= opts.depth ? ' slide-up' : ''))
       .append('<div class="title">' + nodeData[opts.nodeTitle] +'<i class="fa fa-user-circle" aria-hidden="true"></i>'+'</div>')
       .append(typeof opts.nodeContent !== 'undefined' ? '<div class="content">' + (nodeData[opts.nodeContent] || '') + '</div>' : '');
@@ -533,9 +534,9 @@
     $nodeDiv.on('click', function(event) {
       $(this).closest('.orgchart').find('.focused').removeClass('focused');
       $(this).addClass('focused');
-	  $("#payout").val(Math.floor((Math.random() * 100000) + 1));
-	  $("#encashed").val(Math.floor((Math.random() * 100000) + 1));
-	  $("#currentbalance").val(Math.floor((Math.random() * 100000) + 1));
+	   var $that = $(this);
+	   var nodeId = $that[0].id;
+	   $("#networkmembernodeid").val(nodeId);  
     });
 
     // define click event handler for the top edge
@@ -670,7 +671,7 @@
         }
       }
 	
-    });*/
+    });
     if (opts.draggable) {
       $nodeDiv.on('dragstart', function(event) {
         event.originalEvent.dataTransfer.setData('text/html', 'hack for firefox');
@@ -749,7 +750,9 @@
         }
         $orgchart.triggerHandler({ 'type': 'nodedropped.orgchart', 'draggedNode': $dragged, 'dragZone': $dragZone.children(), 'dropZone': $dropZone });
       });
-    }
+    }*/
+	
+	
     // allow user to append dom modification after finishing node create of orgchart 
     if (opts.createNode) {
       opts.createNode($nodeDiv, nodeData);

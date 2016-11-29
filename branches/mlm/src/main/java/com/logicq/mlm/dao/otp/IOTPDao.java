@@ -6,6 +6,7 @@ public interface IOTPDao {
 	
 	void saveOrUpdateOTPDetails(OTPDetails otpdetails);
 	
-	boolean validateOTP(int otp,String mobilenumber);
+	boolean validateOTPForMobileNumber(int otp,String mobilenumber);
+	 boolean validateOTPForEmail(int opt, String email) ;
 
 }
