@@ -85,6 +85,12 @@ public class WalletDetails implements Serializable {
 		this.userprofile = userprofile;
 	}
 
+	@Override
+	public String toString() {
+		return "WalletDetails [walletid=" + walletid + ", walletnumber=" + walletnumber + ", isactive=" + isactive
+				+ ", walletactivedate=" + walletactivedate + "]";
+	}
+
 	
 //	public WalletStatement getWalletStatement() {
 //		return walletStatement;
@@ -94,10 +100,5 @@ public class WalletDetails implements Serializable {
 //		this.walletStatement = walletStatement;
 //	}
 
-	@Override
-	public String toString() {
-		return "WalletDetails [walletid=" + walletid + ", walletnumber=" + walletnumber + ", isactive=" + isactive
-				+ ", walletactivedate=" + walletactivedate + ", userprofile=" + userprofile + "]";
-	}
 
 }

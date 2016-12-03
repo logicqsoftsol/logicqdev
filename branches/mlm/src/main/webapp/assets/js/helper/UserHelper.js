@@ -4,22 +4,48 @@
 
 		return {
 
-				populateUserProfile: function ($scope,data) {
-					
-					$scope.userprofile.firstname=data;
-					$scope.userprofile.lastname=data;
-					$scope.userprofile.dateofbirth='';
-				    $scope.userprofile.gender='';
-				    $scope.userprofile.conatctDetails.addressText='';
-					$scope.userprofile.conatctDetails.district='';
-					$scope.userprofile.conatctDetails.email='';
-					$scope.userprofile.conatctDetails.mobilenumber='';
-					$scope.userprofile.networkinfo.memberlevel='';
-					$scope.userprofile.walletdetails.walletnumber='';
-					$scope.userprofile.walletdetails.walletStatement.payout='';
-					$scope.userprofile.walletdetails.walletStatement.maxencashable='';
-					$scope.userprofile.walletdetails.walletStatement.currentbalance='';
-					$scope.userprofile.walletdetails.walletStatement.walletlastupdate='';
+				prepareUserProfileRequest: function ($scope) {
+					return $scope.request.user={
+					  userprofile:{
+							firstname:$scope.userprofile.firstname,
+							lastname:$scope.userprofile.lastname,
+							gender:$scope.userprofile.gender,
+							dateofbirth:$scope.userprofile.dateofbirth,
+							logindetails:{
+								username:$scope.userprofile.logindetails.username,
+								password:$scope.userprofile.logindetails.password,
+								mobilenumber:$scope.userprofile.conatctDetails.mobilenumber,
+								email:$scope.userprofile.conatctDetails.email,
+								enabled:'false',
+							},
+							networkinfo:{
+								memberid:$scope.userprofile.logindetails.username,
+								parentmemberid:$scope.userprofile.networkinfo.parentmemberid,
+								memberlevel:$scope.userprofile.networkinfo.memberlevel,
+								dateofjoin:new Date()
+							},
+							conatctDetails:{
+								addressText:$scope.userprofile.conatctDetails.addressText,
+								landMark:$scope.userprofile.conatctDetails.landMark,
+								pincode:$scope.userprofile.conatctDetails.pincode,
+								district:$scope.userprofile.conatctDetails.district,
+								state:$scope.userprofile.conatctDetails.state,
+								country:'INDIA',
+								mobilenumber:$scope.userprofile.conatctDetails.mobilenumber,
+								email:$scope.userprofile.conatctDetails.email,
+								alternetmobilenumber:$scope.userprofile.conatctDetails.mobilenumber,
+								isaddressvalid:'false'
+							}
+					  },
+					  networkjson:{
+						  name:$scope.userprofile.firstname,
+						  title:$scope.userprofile.networkinfo.memberlevel,
+						  category:$scope.userprofile.networkinfo.memberlevel,
+						  parentid:$scope.userprofile.networkinfo.parentmemberid,
+						  id:$scope.userprofile.logindetails.username,
+						  children:[{}]
+					  }
+					};
 				},
        populateOTPDetailsForEmail: function ($scope) {
 		return $scope.request.otpdetails={

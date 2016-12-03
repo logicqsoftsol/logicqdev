@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.logicq.mlm.model.profile.UserProfile;
 
 
 public class LoginVO implements UserDetails {
@@ -22,6 +23,7 @@ public class LoginVO implements UserDetails {
     private final String mobilenumber;
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean enabled;
+    private final UserProfile userprofile;
 
 
     public LoginVO(
@@ -29,7 +31,8 @@ public class LoginVO implements UserDetails {
           String email,
           String mobilenumber,
           String password, Collection<? extends GrantedAuthority> authorities,
-          boolean enabled
+          boolean enabled,
+          UserProfile userprofile
     ) {
         this.username = username;
         this.email = email;
@@ -37,8 +40,14 @@ public class LoginVO implements UserDetails {
         this.password = password;
         this.authorities = authorities;
         this.enabled = enabled;
+        this.userprofile=userprofile;
    
     }
+
+
+	public UserProfile getUserprofile() {
+		return userprofile;
+	}
 
 
 	public String getLastname() {

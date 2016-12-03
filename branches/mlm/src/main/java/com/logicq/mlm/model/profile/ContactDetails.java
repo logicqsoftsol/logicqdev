@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -22,8 +24,9 @@ public class ContactDetails implements Serializable{
 	private static final long serialVersionUID = 8173471188983797946L;
 	
 	@Id
-	@Column(name = "CONTACT_ID")
-	private String contactid;
+	@Column(name = "CONTACT_ID", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long contactid;
 
 	@Column(name = "ADDRESS_TEXT")
 	private String addressText;
@@ -60,13 +63,7 @@ public class ContactDetails implements Serializable{
 	@JoinColumn(name = "PROFILE_ID")
 	private UserProfile userprofile;
 
-	public String getContactid() {
-		return contactid;
-	}
 
-	public void setContactid(String contactid) {
-		this.contactid = contactid;
-	}
 
 	public String getAddressText() {
 		return addressText;
@@ -156,14 +153,19 @@ public class ContactDetails implements Serializable{
 		this.userprofile = userprofile;
 	}
 
+	public Long getContactid() {
+		return contactid;
+	}
+
+	public void setContactid(Long contactid) {
+		this.contactid = contactid;
+	}
+
 	@Override
 	public String toString() {
 		return "ContactDetails [contactid=" + contactid + ", addressText=" + addressText + ", landMark=" + landMark
 				+ ", pincode=" + pincode + ", district=" + district + ", state=" + state + ", country=" + country
 				+ ", mobilenumber=" + mobilenumber + ", email=" + email + ", alternetmobilenumber="
-				+ alternetmobilenumber + ", isaddressvalid=" + isaddressvalid + ", userprofile=" + userprofile + "]";
+				+ alternetmobilenumber + ", isaddressvalid=" + isaddressvalid + "]";
 	}
-
-
-
 }

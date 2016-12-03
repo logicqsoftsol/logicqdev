@@ -15,7 +15,7 @@ import com.logicq.mlm.model.sms.ServiceDetails;
 import com.logicq.mlm.service.otp.IServiceRequestService;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("api/admin")
 public class AdminController {
 	
 

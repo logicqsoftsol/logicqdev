@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,9 +20,11 @@ public class WorkFlow  extends BaseEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 2824402301798535966L;
 
+	
 	@Id
-	@Column(name = "WORK_ID")
-	private String workid;
+	@Column(name = "WORK_ID", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long workid;
 
 	@Column(name = "WORK_TYPE")
 	private String worktype;
@@ -37,13 +41,7 @@ public class WorkFlow  extends BaseEntity implements Serializable {
 	@Column(name = "ASSIGNED_TO")
 	private String assignedto;
 
-	public String getWorkid() {
-		return workid;
-	}
-
-	public void setWorkid(String workid) {
-		this.workid = workid;
-	}
+	
 
 	public String getWorktype() {
 		return worktype;
@@ -85,11 +83,20 @@ public class WorkFlow  extends BaseEntity implements Serializable {
 		this.assignedto = assignedto;
 	}
 
+	public Long getWorkid() {
+		return workid;
+	}
+
+	public void setWorkid(Long workid) {
+		this.workid = workid;
+	}
+
 	@Override
 	public String toString() {
 		return "WorkFlow [workid=" + workid + ", worktype=" + worktype + ", status=" + status + ", message=" + message
 				+ ", profileid=" + profileid + ", assignedto=" + assignedto + "]";
 	}
+
 	
 
 

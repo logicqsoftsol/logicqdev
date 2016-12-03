@@ -22,7 +22,8 @@ public final class LoginFactory {
                 user.getMobilenumber(),
                 user.getPassword(),
                 mapToGrantedAuthorities(user.getAuthorities()),
-                user.getEnabled()
+                user.getEnabled(),
+                user.getUserprofile()
         );
     }
 
@@ -32,10 +33,22 @@ public final class LoginFactory {
     	logindetails.setEmail(user.getEmail());
     	logindetails.setMobilenumber(user.getMobilenumber());
     	logindetails.setUsername(user.getUsername());
+    	logindetails.setPassword(user.getPassword());
+    	logindetails.setEnabled(user.isEnabled());
+    	logindetails.setUserprofile(user.getUserprofile());
+    	logindetails.setAuthorities(mapToAuthorities());
     	return logindetails;
     }
 
 
+    private static List<Authority> mapToAuthorities() {
+    	List<Authority> authorities=new ArrayList<>();
+    	Authority auth=new Authority();
+    	auth.setName("USER");
+    	authorities.add(auth);
+    	return authorities;
+    }
+    
     
     
 	private static List<GrantedAuthority> mapToGrantedAuthorities(List<Authority> authorities) {

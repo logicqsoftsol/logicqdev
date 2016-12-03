@@ -64,7 +64,7 @@ public class UserService implements UserDetailsService {
 		return logindetails;
 	}
 
-    public void addUser(LoginVO user) {
+    public static void addUser(LoginVO user) {
         userMap.put(user.getUsername(), user);
     }
     

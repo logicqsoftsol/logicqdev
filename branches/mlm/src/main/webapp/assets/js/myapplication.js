@@ -13,11 +13,12 @@
 	   'applicationName' : '/mlmlogicq' ,
 	   'get' : 'GET' ,  
 	   'post' : 'POST' , 
+	   'loadDefaultUserURL':'/load/users',
 	   'loginURL' : '/api/login',
 	   'getUserProfileURL' : '/api/user/fetchUserProfileDetails',
-	   'sendOTPURL' : '/admin/service/otpSend',
-	   'validateOTPForMobileURL' : '/admin/service/otpValidateForMobileNumber',
-	   'validateOTPForEmailURL' : '/admin/service/otpValidateForEmail',
+	   'sendOTPURL' : '/api/service/otpSend',
+	   'validateOTPURL' : '/api/service/otpValidate',
+	   'saveUserProfileDetailsURL' :'/api/user/saveUser'
 
 	}).directive('ngConfirmClick', [
 	                                   function(){

@@ -88,30 +88,21 @@
 												angular.forEach($scope.approvalpendinglist, function(value, key) {
 													if(value.name==newVal){
 														 $scope.approval.verificationtypelabel=value.name;
-                                                        $scope.request.otpdetails={};                                                         
-														 if(value.name=='Email'){
-															  $scope.approval.verificationvalue=$localStorage.profile.userprofile.conatctDetails.email;
-															   UserHelper.populateOTPDetailsForEmail($scope);
+                                                        $scope.request.otpdetails={};  
+                                                        if(value.name=='Email'){
+                                                        	  $scope.approval.verificationvalue=$localStorage.profile.userprofile.conatctDetails.email;
+                                                        }
+                                                        if(value.name=='Mobile Number'){
+                                                        	$scope.approval.verificationvalue=$localStorage.profile.userprofile.conatctDetails.mobilenumber;
+                                                        }
+														 if(value.name=='Email'||value.name=='Mobile Number'){
 															   UserDetailsService.sendOTP($scope).success(function(data, status) {
-								
-								             	}).error(function(data, status) {
-									   var errormsg='Unable to Send OTP  '+status;
-										$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
-										$exceptionHandler(errormsg);
-									});
+															   	}).error(function(data, status) {
+															   			var errormsg='Unable to Send OTP  '+status;
+															   			$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+															   			$exceptionHandler(errormsg);
+															   	});
 														  }	
-                                                          if(value.name=='Mobile Number'){
-															 $scope.approval.verificationvalue=$localStorage.profile.userprofile.conatctDetails.mobilenumber;
-            												   UserHelper.populateOTPDetailsForMobile($scope);		   
-															   UserDetailsService.sendOTP($scope).success(function(data, status) {
-							
-									}).error(function(data, status) {
-									  var errormsg='Unable to Send OTP  '+status;
-										$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
-										$exceptionHandler(errormsg);
-									});
-
-														}	
                                                           if(value.name=='Admin'){
 															   $scope.approval.otpfor='ADMIN';
 															    $scope.approval.otpsendto=$scope.approval.verificationvalue;
@@ -123,9 +114,7 @@
 												});
 												
 				$scope.validateOTP=	function (){
-					if($scope.approval.verificationtypelabel=='Email'){
-						 UserHelper.populateOTPDetailsForEmail($scope);
-						 UserDetailsService.validateOTPForEmail($scope).success(function(data, status) {
+						 UserDetailsService.validateOTP($scope).success(function(data, status) {
 							angular.element('#approvalmodal').modal('hide');
 							$scope.approval.mobilenoVerified='Approved';
 									}).error(function(data, status) {
@@ -133,18 +122,6 @@
 										$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 										$exceptionHandler(errormsg);
 									});
-					}
-					if($scope.approval.verificationtypelabel=='Mobile Number'){
-						UserHelper.populateOTPDetailsForMobile($scope);
-						UserDetailsService.validateOTPForMobile($scope).success(function(data, status) {
-							          angular.element('#approvalmodal').modal('hide');
-									$scope.approval.emailVerified='Approved';
-									}).error(function(data, status) {
-									  var errormsg='Unable to validate OTP  '+status;
-										$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
-										$exceptionHandler(errormsg);
-									});
-					}
 					
 				}							
 				
@@ -177,11 +154,20 @@
 					}
 					};
 					
-					$scope.saveUser=function(){
-						UserDetailsService.saveUserProfileDetails( $scope).success(function(data, status) {
-							if(!data.isOTPVerfied){
+					$scope.setupNetwork=function(){
+						$scope.userprofile={};
+					}
+					
+					$scope.addUserDetails=function(){
+						UserHelper.prepareUserProfileRequest($scope);
+						UserDetailsService.saveUserProfileDetails( $scope.request).success(function(data, status) {
+							if(!data.mobilenoVerified){
 								$scope.otp.mobilenumber=data.userprofile.conatctDetails.mobilenumber;
-								$('#otppopup').modal('show');
+								angular.element('#otppopup').modal('show');
+						     	}
+							if(!data.emailVerified){
+								$scope.otp.email=data.userprofile.conatctDetails.email;
+								angular.element('#otppopup').modal('show');
 						     	}
 								}).error(function(data, status) {
 								   var errormsg='Unable to Populate for Calnder event details : '+status;

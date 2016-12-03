@@ -13,6 +13,7 @@
 			 function($scope,$rootScope,$http,$location,$localStorage,$exceptionHandler,AuthenticationService) {
 		$scope.approval={};
 		$scope.login = function () {
+			AuthenticationService.LoadUser($scope).success(function(response, status, headers, config){
 			AuthenticationService.Login($scope).success(function(response, status, headers, config){
 				if(headers('AUTH-TOKEN') != '' && response.authorities != '' )
 				{
@@ -32,7 +33,7 @@
 				$exceptionHandler(errormsg);
 				$location.path('/login');
 			});
-
+          });
     };
 			 } ]);
 }());

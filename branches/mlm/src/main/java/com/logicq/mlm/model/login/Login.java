@@ -128,9 +128,9 @@ public class Login implements Serializable {
 	@Override
 	public String toString() {
 		return "Login [username=" + username + ", password=" + password + ", mobilenumber=" + mobilenumber + ", email="
-				+ email + ", enabled=" + enabled + ", userprofile=" + userprofile + ", authorities=" + authorities
-				+ "]";
+				+ email + ", enabled=" + enabled + ", authorities=" + authorities + "]";
 	}
+
 
 
        

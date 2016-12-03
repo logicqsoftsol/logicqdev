@@ -1,6 +1,7 @@
 package com.logicq.mlm.controller;
 
 import java.io.File;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +19,12 @@ import com.logicq.mlm.model.performance.UserPerformance;
 import com.logicq.mlm.model.profile.NetWorkDetails;
 import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.wallet.WalletStatement;
+import com.logicq.mlm.model.workflow.WorkFlow;
 import com.logicq.mlm.service.performance.IUserPerformanceService;
-import com.logicq.mlm.service.performance.UserPerformanceService;
 import com.logicq.mlm.service.security.UserService;
 import com.logicq.mlm.service.user.IUserService;
 import com.logicq.mlm.service.wallet.IWalletStmntService;
-import com.logicq.mlm.service.wallet.WalletStmntService;
+import com.logicq.mlm.service.workflow.IWorkFlowService;
 import com.logicq.mlm.vo.LoginVO;
 import com.logicq.mlm.vo.UserDetailsVO;
 
@@ -39,6 +40,8 @@ public class LoginController {
 	
 	@Autowired
     IUserPerformanceService userperformanceservice;
+	@Autowired
+	IWorkFlowService workflowservice;
 	
 	  
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -50,17 +53,26 @@ public class LoginController {
 		UserPerformance userperformance=new UserPerformance();
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
-				LoginVO login=(LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				try {
 					userprofile.setLogindetails(LoginFactory.createLoginDetails(login));
-					userprofile=userservice.fetchUser(userprofile);
+					userprofile = userservice.fetchUser(userprofile);
 					userdetailsvo.setUserprofile(userprofile);
-					//need to check from data base from workflow table is approved or not for userid
-					userdetailsvo.setMobilenoVerified(true);
-					userdetailsvo.setEmailVerified(false);
-					userdetailsvo.setAdminVerified(true);
-				
-					NetWorkDetails networkdetails =mapper.readValue(new File("C:\\Users\\SudhanshuLenka\\Desktop\\network.json"), NetWorkDetails.class);
+					List<WorkFlow> workflowlist = workflowservice.getPendingWorkFlowForUser(login.getUsername(),
+							String.valueOf(userprofile.getId()));
+					for (WorkFlow work : workflowlist) {
+						if (work.getWorktype().equalsIgnoreCase("MOBILE_VERIFICATION")) {
+							userdetailsvo.setMobilenoVerified(work.getStatus());
+						} 
+						if (work.getWorktype().equalsIgnoreCase("EMAIL_VERIFICATION")) {
+							userdetailsvo.setEmailVerified(work.getStatus());
+						}
+						if (work.getWorktype().equalsIgnoreCase("ADMIN_VERIFICATION")) {
+							userdetailsvo.setAdminVerified(work.getStatus());
+						} 
+					}
+					NetWorkDetails networkdetails = mapper.readValue(
+							new File("C:\\Users\\SudhanshuLenka\\Desktop\\network.json"), NetWorkDetails.class);
 					userdetailsvo.setNetworkjson(networkdetails);
 					walletStatementservice.fetchWalletStmntAccordingToAggregartion(walletStatement);
 					userdetailsvo.setWalletStatement(walletStatement);
