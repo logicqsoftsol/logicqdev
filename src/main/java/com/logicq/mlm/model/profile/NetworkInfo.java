@@ -45,7 +45,7 @@ public class NetworkInfo implements Serializable {
 	private UserProfile userprofile;
 	
 	@Lob
-	@Column(name = "NETWORK_JSON", nullable = false)
+	@Column(name = "NETWORK_JSON")
 	private byte[] networkjson;
 	
 	
@@ -100,12 +100,10 @@ public class NetworkInfo implements Serializable {
 		this.networkjson = networkjson;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "NetworkInfo [memberid=" + memberid + ", parentmemberid=" + parentmemberid + ", memberlevel="
-				+ memberlevel + ", dateofjoin=" + dateofjoin + ", userprofile=" + userprofile + ", networkjson="
-				+ Arrays.toString(networkjson) + "]";
+				+ memberlevel + ", dateofjoin=" + dateofjoin + ", networkjson=" + Arrays.toString(networkjson) + "]";
 	}
 
 }

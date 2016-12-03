@@ -43,9 +43,6 @@ public class UserService implements IUserService{
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void saveUser(UserProfile user) {
 		userdao.saveUser(user);
-		if (null != user.getConatctDetails() && !StringUtils.isEmpty(user.getConatctDetails().getMobilenumber())) {
-			otpservice.sendOTP(user.getConatctDetails().getMobilenumber());
-		}
 	}
 
 	@Override

@@ -27,11 +27,11 @@ public class EmailService implements IEmailService{
 	IOTPService otpservice;
 	
 	@Override
-	public boolean sendEmail(EmailDetails emaildetails) throws Exception {
+	public boolean sendEmailWithOTP(EmailDetails emaildetails) throws Exception {
 		OTPDetails otpdetail=new OTPDetails();
 		SimpleMailMessage emailMsg = new SimpleMailMessage();
 		int otp = OTPGenerationHelper.generateOTP();
-		emaildetails.setSubject("OTP For Email Validation");
+		//emaildetails.setSubject("OTP For Email Validation");
 		emaildetails.setText(MessageHelper.generateOTPMessage(otp));
 		emaildetails.setSendfrom("sudhanshu.lenka2008@gmail.com");
 		emailMsg.setFrom(emaildetails.getSendfrom());
@@ -49,6 +49,17 @@ public class EmailService implements IEmailService{
 		
 		emailsender.send(emailMsg);
 		return true;
+	}
+
+	@Override
+	public boolean sendEmail(EmailDetails emaildetails) throws Exception {
+		SimpleMailMessage emailMsg = new SimpleMailMessage();
+		emailMsg.setFrom(emaildetails.getSendfrom());
+		emailMsg.setTo(emaildetails.getSendto());
+		emailMsg.setSubject(emaildetails.getSubject());
+		emailMsg.setText(emaildetails.getText());
+		emailsender.send(emailMsg);
+		return false;
 	}
 
 }

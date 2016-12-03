@@ -24,7 +24,7 @@
  <h2>Organization Details <small> Easy Way to Know Your Support Hands</small></h2> 
  </div>
  <div class=jumbotron> 
-   <a href="" data-target="#profiledetails" data-toggle="modal" class="btn btn-sucess pull-right">
+   <a href="" data-target="#profiledetails" data-toggle="modal" class="btn btn-sucess pull-right" ng-click="setupNetwork()">
     <i class="fa fa-users" aria-hidden="true"></i>
 	<span>Setup Network</span>
 </a>
@@ -59,7 +59,7 @@
                       </tr>
                       <tr>
                         <td>Date of Birth</td>
-                        <td>{{userprofile.dateofbirth}}</td>
+                        <td>{{userprofile.dateofbirth | date:'yyyy-MM-dd'}}</td>
                       </tr>
                       <tr>
                         <td>Gender</td>
@@ -89,7 +89,7 @@
             </div>
           </div>
 		  
-		         <div class="panel panel-info">
+		   <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">Wallet Details</h3>
 			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
@@ -106,19 +106,19 @@
                       </tr>
                       <tr>
                         <td>Pay Out</td>
-                        <td>{{userprofile.walletdetails.walletStatement.payout}}</td>
+                        <td>INR {{userprofile.walletdetails.walletStatement.payout}}</td>
                       </tr>
                       <tr>
                         <td>Encashable</td>
-                        <td><td>{{userprofile.walletdetails.walletStatement.maxencashable}}</td></td>
+                        <td>INR {{userprofile.walletdetails.walletStatement.maxencashable}}</td>
                       </tr>
                       <tr>
                         <td>Current Balance</td>
-                        <td>{{userprofile.walletdetails.walletStatement.currentbalance}}</td>
+                        <td>INR {{userprofile.walletdetails.walletStatement.currentbalance}}</td>
                       </tr>
 					   <tr>
                         <td>Last Update</td>
-                        <td>{{userprofile.walletdetails.walletStatement.walletlastupdate}}</td>
+                        <td>{{userprofile.walletdetails.walletStatement.walletlastupdate | date:'yyyy-MM-dd'}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -134,13 +134,13 @@
             <div class="panel-body">
                 <div class="col-md-3 col-lg-3" align="center"><i class="fa fa-line-chart fa-2x" aria-hidden="true"></i></i>
 				 <input type="text" class="form-control" list="granularitylist">
-<datalist id="granularitylist">
-  <option value="Last 1 week">
-  <option value="Last 1 month">
-  <option value="Last 2 month">
-  <option value="Last 6 month">
-  <option value="Last 1 year">
-</datalist>
+								<datalist id="granularitylist">
+                                    <option value="Last 1 week">
+									<option value="Last 1 month">
+									<option value="Last 2 month">
+									<option value="Last 6 month">
+									<option value="Last 1 year">
+								</datalist>
 				</div>
                
                 <div class="col-md-9 col-lg-9 table-responsive"> 
@@ -240,23 +240,31 @@
             <input class="form-control" ng-model="userprofile.dateofbirth" placeholder="Date of Birth" type="date">
           </div>
         </div>
+        
+          <div class="form-group">
+          <label class="col-lg-3 control-label">Gender</label>
+          <div class="col-lg-8">
+           <label><input type="radio" id="male" name="male" ng-model="userprofile.gender" value="Male" ng-required="true"/> Male </label>	
+		   <label><input type="radio" id="female" name="female"  ng-model="userprofile.gender" value="Female" ng-required="true"/> Female </label>
+          </div>
+        </div>
 
         <div class="form-group">
           <label class="col-md-3 control-label">Username </label>
           <div class="col-md-8">
-            <input class="form-control" ng-model="userprofile.logindetails.username" placeholder="Username" type="text">
+            <input class="form-control" ng-model="userprofile.logindetails.username" placeholder="Username" type="text" requird>
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Password </label>
           <div class="col-md-8">
-            <input class="form-control"  ng-model="userprofile.logindetails.prepassword" placeholder="Password" type="password">
+            <input class="form-control"  ng-model="userprofile.logindetails.prepassword" placeholder="Password" type="password" requird>
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Confirm password</label>
           <div class="col-md-8">
-            <input class="form-control" ng-model="userprofile.logindetails.password"  placeholder="Confirm password" type="password">
+            <input class="form-control" ng-model="userprofile.logindetails.password"  placeholder="Confirm password" type="password" requird>
           </div>
         </div>
 	<div class="col-md-6">
@@ -294,7 +302,7 @@
         <div class="form-group">
           <label class="col-lg-3 control-label">Member Type </label>
           <div class="col-lg-8">
-            <input class="form-control" ng-model="userprofile.networkinfo.memberlevel" placeholder="Member Type" type="text" value="Yellow Member">
+            <input class="form-control" ng-model="userprofile.networkinfo.memberlevel" placeholder="Member Type" type="text">
           </div>
         </div>
       </form>
@@ -360,19 +368,13 @@
 				<div class="form-group">
 					<label class="col-lg-4 control-label">Mobile Number</label>
 				<div class="col-lg-7">
-					 <input class="form-control" ng-model="userprofile.conatctDetails.mobilenumber" placeholder="Your Mobile Number" type="text">
-				 </div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-4 control-label">Alternet Mobile Number</label>
-				<div class="col-lg-7">
-					 <input class="form-control" ng-model="userprofile.conatctDetails.alternetmobilenumber" placeholder="Your Alternet Mobile Number" type="text">
+					 <input class="form-control" ng-model="userprofile.conatctDetails.mobilenumber" placeholder="Your Mobile Number" type="text" requird>
 				 </div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-4 control-label">Your Email</label>
 				<div class="col-lg-7">
-					 <input class="form-control" ng-model="userprofile.conatctDetails.email" placeholder="Your Email Id" type="text">
+					 <input class="form-control" ng-model="userprofile.conatctDetails.email" placeholder="Your Email Id" type="text" requird>
 				 </div>
 				</div>
 				</div>
@@ -383,18 +385,13 @@
   </div>
                     </center>
                 </div>
-                <div class="bhoechie-tab-content">
-                    <center>
-                    
-                 
-                    </center>
-                </div>
+        
             </div>
         </div>	
 		</div>	
 	
 				<div class="modal-footer">
-							<button type="submit" id="usersearch" class="btn btn-default" ng-click="downloadAttendaceReport()"
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="addUserDetails()"
 								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>

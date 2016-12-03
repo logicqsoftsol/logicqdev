@@ -14,19 +14,15 @@
 		},
 		saveUserProfileDetails: function (request) {
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveUserProfileDetailsURL;
-			return  $http.post(url,request)
+			return  $http.post(url,request.user)
 		},
 		sendOTP: function ($scope) {
-			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.sendOTPURL;
-			return  $http.post(url,$scope.request.otpdetails)
+			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.sendOTPURL+"/"+$scope.approval.verificationtypelabel;
+			return  $http.post(url," ")
 		},
-		validateOTPForEmail: function ($scope) {
-			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.validateOTPForEmailURL;
-			return  $http.post(url,$scope.request.otpdetails)
-		},
-		validateOTPForMobile: function ($scope) {
-			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.validateOTPForMobileURL;
-			return  $http.post(url,$scope.request.otpdetails)
+		validateOTP: function ($scope) {
+			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.validateOTPURL+"/"+$scope.approval.verificationtypelabel+"/"+$scope.approval.otpcode;
+			return  $http.post(url," ")
 		},
 		}
 }]);

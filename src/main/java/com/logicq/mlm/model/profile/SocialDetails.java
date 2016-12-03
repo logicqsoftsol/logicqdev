@@ -92,8 +92,9 @@ public class SocialDetails implements Serializable {
 	@Override
 	public String toString() {
 		return "SocialDetails [contactid=" + contactid + ", fblink=" + fblink + ", youtubelink=" + youtubelink
-				+ ", twiter=" + twiter + ", linkedinlink=" + linkedinlink + ", userprofile=" + userprofile + "]";
+				+ ", twiter=" + twiter + ", linkedinlink=" + linkedinlink + "]";
 	}
+
 	
 	
 }
