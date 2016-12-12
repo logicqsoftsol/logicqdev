@@ -13,9 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.logicq.mlm.common.helper.PropertyHelper;
 import com.logicq.mlm.model.admin.TaskDetails;
+import com.logicq.mlm.model.profile.NetWorkDetails;
+import com.logicq.mlm.model.profile.NetworkInfo;
+import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.profile.WalletDetails;
 import com.logicq.mlm.model.workflow.WorkFlow;
+import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
+import com.logicq.mlm.service.user.IUserService;
 import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
 import com.logicq.mlm.vo.LoginVO;
@@ -31,6 +37,12 @@ public class AdminController {
 	@Autowired
 	IWalletStmntService walletservice;
 	
+	@Autowired
+	INetworkDetailsService netWorkDetailsService;
+	
+	@Autowired
+	IUserService userservice;
+	
 
 	
 
@@ -42,12 +54,18 @@ public class AdminController {
 				WorkFlow workflow=workflowservice.getWorkFlowAccordingToWorkId(taskdetails.getTaskid());
 				workflow.setStatus(Boolean.TRUE);
 				workflowservice.updateWorkFlow(workflow);
-				if("ADMIN_VERIFICATION".equals(workflow.getWorktype())&& workflow.getStatus()){
-				//fetch wallet details for specific profile id
-					WalletDetails walletdetails=new WalletDetails();
-					walletdetails.setIsactive(Boolean.TRUE);
-					walletdetails.setWalletactivedate(new Date());
-				 
+				if("ADMIN_VERIFICATION".equals(workflow.getWorktype())&& !workflow.getStatus()){
+					UserProfile userprofile=userservice.fetchUserAccordingToProfileId(Long.valueOf(workflow.getProfileid()));
+					userprofile.getWalletdetails().setIsactive(Boolean.TRUE);
+					userprofile.getWalletdetails().setWalletactivedate(new Date());
+					//Update Parent JSON
+					NetworkInfo parentnetworkinfo=netWorkDetailsService.getNetworkDetails(userprofile.getNetworkinfo().getParentmemberid());
+					NetWorkDetails parentnetworkdetails=PropertyHelper.convertJsonToNetworkInfo(parentnetworkinfo);
+					NetWorkDetails currentnetworkdetails=PropertyHelper.convertJsonToNetworkInfo(userprofile.getNetworkinfo());
+					parentnetworkdetails.getChildren().add(currentnetworkdetails);
+					String modifiedjson=PropertyHelper.convertNetworkInfoToJson(parentnetworkdetails);
+					parentnetworkinfo.setNetworkjson(modifiedjson.getBytes());
+					netWorkDetailsService.updateNetworkDetails(parentnetworkinfo);
 				}
 			}
 		}
