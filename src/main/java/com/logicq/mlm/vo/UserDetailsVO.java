@@ -1,5 +1,9 @@
+
 package com.logicq.mlm.vo;
 
+import java.util.List;
+
+import com.logicq.mlm.model.admin.TaskDetails;
 import com.logicq.mlm.model.performance.UserPerformance;
 import com.logicq.mlm.model.profile.NetWorkDetails;
 import com.logicq.mlm.model.profile.UserProfile;
@@ -7,6 +11,11 @@ import com.logicq.mlm.model.wallet.WalletStatement;
 
 public class UserDetailsVO extends StatusVO {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 369460436082862799L;
+
 	private UserProfile userprofile;
 	
 	private WalletStatement walletStatement;
@@ -14,6 +23,8 @@ public class UserDetailsVO extends StatusVO {
 	private UserPerformance userperformance;
 	
 	private NetWorkDetails networkjson;
+	
+	private List<TaskDetails> tasklist;
 
 	public UserProfile getUserprofile() {
 		return userprofile;
@@ -47,12 +58,19 @@ public class UserDetailsVO extends StatusVO {
 		this.networkjson = networkjson;
 	}
 
+	public List<TaskDetails> getTasklist() {
+		return tasklist;
+	}
+
+	public void setTasklist(List<TaskDetails> tasklist) {
+		this.tasklist = tasklist;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDetailsVO [userprofile=" + userprofile + ", walletStatement=" + walletStatement
-				+ ", userperformance=" + userperformance + ", networkjson=" + networkjson + "]";
+				+ ", userperformance=" + userperformance + ", networkjson=" + networkjson + ", tasklist=" + tasklist
+				+ "]";
 	}
 
-	
-	
 }

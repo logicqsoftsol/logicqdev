@@ -24,6 +24,8 @@
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.validateOTPURL+"/"+$scope.approval.verificationtypelabel+"/"+$scope.approval.otpcode;
 			return  $http.post(url," ")
 		},
+		
+		
 		}
 }]);
 

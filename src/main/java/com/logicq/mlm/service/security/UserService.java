@@ -64,12 +64,17 @@ public class UserService implements UserDetailsService {
 		return logindetails;
 	}
 
-    public static void addUser(LoginVO user) {
-        userMap.put(user.getUsername(), user);
+    public static void addUser(Login user) {
+     LoginVO loginvo=LoginFactory.create(user);
+        userMap.put(user.getUsername(), loginvo);
     }
     
-    public static void removeUser(LoginVO user) {
+    public static void removeUser(Login user) {
         userMap.remove(user.getUsername());
+    }
+    
+    public static void removeUser(String username) {
+        userMap.remove(username);
     }
     
   

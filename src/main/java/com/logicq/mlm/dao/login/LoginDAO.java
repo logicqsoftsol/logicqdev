@@ -16,7 +16,7 @@ public class LoginDAO extends AbstractDAO<Login> implements ILoginDAO {
 	public void loadUsers() {
 		List<Login> userdetails = (List<Login>) loadClass(Login.class);
 		for (Login user : userdetails) {
-			UserService.addUser(LoginFactory.create(user));
+			UserService.addUser(user);
 		}
 	}
 

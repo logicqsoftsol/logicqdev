@@ -54,6 +54,14 @@
                     templateUrl:"assets/views/reports/reports.html",
                     controller:'ReportCtrl'
                     
+                }),
+				 $stateProvider
+                .state('adminoverview', {
+					parent: 'dashboard',
+                    url: "/adminoverview",
+                    templateUrl:"assets/views/admin/adminoverview.html",
+                    controller:'AdminCtrl'
+                    
                 })
              $stateProvider
                 .state('authusers', {

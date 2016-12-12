@@ -41,7 +41,7 @@ public final class LoginFactory {
     }
 
 
-    private static List<Authority> mapToAuthorities() {
+    public static List<Authority> mapToAuthorities() {
     	List<Authority> authorities=new ArrayList<>();
     	Authority auth=new Authority();
     	auth.setName("USER");

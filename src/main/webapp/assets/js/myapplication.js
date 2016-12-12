@@ -18,7 +18,8 @@
 	   'getUserProfileURL' : '/api/user/fetchUserProfileDetails',
 	   'sendOTPURL' : '/api/service/otpSend',
 	   'validateOTPURL' : '/api/service/otpValidate',
-	   'saveUserProfileDetailsURL' :'/api/user/saveUser'
+	   'saveUserProfileDetailsURL' :'/api/user/saveUser',
+	   'updateAdminTaskURL':'/api/admin/updateAdminTask'
 
 	}).directive('ngConfirmClick', [
 	                                   function(){

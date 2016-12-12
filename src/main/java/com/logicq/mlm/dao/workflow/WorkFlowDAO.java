@@ -28,8 +28,32 @@ public class WorkFlowDAO extends AbstractDAO<WorkFlow> implements IWorkFlowDAO {
 	@Override
 	public List<WorkFlow> getPendingWorkFlowForUser(String assignedto, String profileid) throws Exception {
 		 StringBuilder query=new StringBuilder();
-		 query.append(" from WorkFlow wf where wf.assignedto='"+assignedto+"'"+" and wf.profileid ='"+profileid+"'"+" and status=0");
+		 query.append(" from WorkFlow wf where  wf.profileid ='"+profileid+"'");
 		return  (List<WorkFlow>) execcuteQuery(query.toString());
+	}
+
+	
+	@Override
+	public List<WorkFlow> getPendingWorkFlowAccordingToProfile(String profileid) {
+		 StringBuilder query=new StringBuilder();
+		 query.append(" from WorkFlow wf where  wf.profileid ='"+profileid+"'"+" and wf.status ='"+false+"'");
+		return  (List<WorkFlow>) execcuteQuery(query.toString());
+	}
+
+	
+	
+	@Override
+	public List<WorkFlow> getPendingWorkFlowForAdmin(String assignedto) throws Exception {
+		StringBuilder query=new StringBuilder();
+		 query.append(" from WorkFlow wf where wf.assignedto='"+assignedto+"'"+" and wf.status ='"+false+"'");
+		return (List<WorkFlow>) execcuteQuery(query.toString());
+	}
+
+	@Override
+	public WorkFlow getWorkFlowAccordingToWorkId(Long workid) throws Exception {
+		StringBuilder query=new StringBuilder();
+		 query.append(" from WorkFlow wf where wf.workid='"+workid+"'");
+		return (WorkFlow) execcuteQuery(query.toString()).get(0);
 	}
 
 }

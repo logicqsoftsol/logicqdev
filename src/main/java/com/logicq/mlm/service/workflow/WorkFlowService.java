@@ -35,8 +35,23 @@ public class WorkFlowService  implements IWorkFlowService{
 
 	@Override
 	public List<WorkFlow> getPendingWorkFlowForUser(String assignedto, String profileid) throws Exception {
-		// TODO Auto-generated method stub
 		return workflowdao.getPendingWorkFlowForUser(assignedto, profileid);
+	}
+
+	@Override
+	public List<WorkFlow> getPendingWorkFlowForAdmin(String assignedto) throws Exception {
+		
+		return workflowdao.getPendingWorkFlowForAdmin(assignedto);
+	}
+
+	@Override
+	public WorkFlow getWorkFlowAccordingToWorkId(Long workid) throws Exception {
+		return workflowdao.getWorkFlowAccordingToWorkId(workid);
+	}
+
+	@Override
+	public List<WorkFlow> getPendingWorkFlowAccordingToProfile(String profileid) {
+		return workflowdao.getPendingWorkFlowAccordingToProfile(profileid);
 	}
 
 }

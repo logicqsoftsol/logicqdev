@@ -36,6 +36,11 @@
     <i class="fa fa-tasks" aria-hidden="true"></i>
 	<span>Schedule Task</span>
 </a>
+<a href="" data-target="#notificationdetails" data-toggle="modal" class="btn btn-sucess pull-right">
+    <i class="fa fa-bell-o" aria-hidden="true"></i>
+	<span>{{tasklist.count}}</span>
+</a>
+
 </div>
  <div class=jumbotron> 
  <div class=container>
@@ -44,7 +49,7 @@
   <div class="col-md-12">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">{{userprofile.firstname}} {{userprofile.lastname}}</h3>
+              <h3 class="panel-title">{{user.firstname}} {{user.lastname}}</h3>
 			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
             </div>
             <div class="panel-body">
@@ -55,36 +60,36 @@
                     <tbody>
                       <tr>
                         <td>Member Type</td>
-                        <td>{{userprofile.networkinfo.memberlevel}}</td>
+                        <td>{{user.networkinfo.memberlevel}}</td>
                       </tr>
                       <tr>
                         <td>Date of Birth</td>
-                        <td>{{userprofile.dateofbirth | date:'yyyy-MM-dd'}}</td>
+                        <td>{{user.dateofbirth | date:'yyyy-MM-dd'}}</td>
                       </tr>
                       <tr>
                         <td>Gender</td>
-                        <td>{{userprofile.gender}}</td>
+                        <td>{{user.gender}}</td>
                       </tr>
                         <tr>
                         <td>Home Address</td>
-                        <td>{{userprofile.conatctDetails.addressText}} {{userprofile.conatctDetails.district}}</td>
+                        <td>{{user.conatctDetails.addressText}} {{user.conatctDetails.district}}</td>
                       </tr>
                       <tr>
                         <td>Email</td>
-                        <td>{{userprofile.conatctDetails.email}}</td>
+                        <td>{{user.conatctDetails.email}}</td>
                       </tr>
                         <td>Mobile Number</td>
-                        <td>{{userprofile.conatctDetails.mobilenumber}}</td>
+                        <td>{{user.conatctDetails.mobilenumber}}</td>
                       </tr>
                     </tbody>
                   </table>
-			      <a><i class="fa fa-facebook-square" aria-hidden="true" href={{userprofile.socialdetails.fblink}}></i></a>
+			      <a><i class="fa fa-facebook-square" aria-hidden="true" href={{user.socialdetails.fblink}}></i></a>
                   <!--a href="#" class="btn btn-info fa fa-facebook-square"></a-->
-				  <a><i class="fa fa-google" aria-hidden="true" href={{userprofile.socialdetails.fblink}}></i></a>
+				  <a><i class="fa fa-google" aria-hidden="true" href={{user.socialdetails.fblink}}></i></a>
                   <!--a href="#" class="btn btn-info fa fa-google"></a-->
-				   <a><i class="fa fa-youtube" aria-hidden="true" href={{userprofile.socialdetails.youtubelink}}></i></a>
+				   <a><i class="fa fa-youtube" aria-hidden="true" href={{user.socialdetails.youtubelink}}></i></a>
 				  <!--a href="#"class="btn btn-info fa fa-youtube" ></a-->
-				 <a><i class="fa fa-twitter-square" aria-hidden="true" href={{userprofile.socialdetails.twiter}}></i></a>
+				 <a><i class="fa fa-twitter-square" aria-hidden="true" href={{user.socialdetails.twiter}}></i></a>
                 </div>
             </div>
           </div>
@@ -102,23 +107,23 @@
                     <tbody>
 					 <tr>
                         <td>Wallet Number</td>
-                        <td>{{userprofile.walletdetails.walletnumber}}</td>
+                        <td>{{user.walletdetails.walletnumber}}</td>
                       </tr>
                       <tr>
                         <td>Pay Out</td>
-                        <td>INR {{userprofile.walletdetails.walletStatement.payout}}</td>
+                        <td>INR {{user.walletdetails.walletStatement.payout}}</td>
                       </tr>
                       <tr>
                         <td>Encashable</td>
-                        <td>INR {{userprofile.walletdetails.walletStatement.maxencashable}}</td>
+                        <td>INR {{user.walletdetails.walletStatement.maxencashable}}</td>
                       </tr>
                       <tr>
                         <td>Current Balance</td>
-                        <td>INR {{userprofile.walletdetails.walletStatement.currentbalance}}</td>
+                        <td>INR {{user.walletdetails.walletStatement.currentbalance}}</td>
                       </tr>
 					   <tr>
                         <td>Last Update</td>
-                        <td>{{userprofile.walletdetails.walletStatement.walletlastupdate | date:'yyyy-MM-dd'}}</td>
+                        <td>{{user.walletdetails.walletStatement.walletlastupdate | date:'yyyy-MM-dd'}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -148,27 +153,27 @@
                     <tbody>
                       <tr>
                         <td>Total Network Grow</td>
-                        <td>{{userprofile.userperformance.totalnetwork}}</td>
+                        <td>{{user.userperformance.totalnetwork}}</td>
                       </tr>
 					  <tr>
                         <td>Total Metting Attend</td>
-                        <td>{{userprofile.userperformance.totalmetting}}</td>
+                        <td>{{user.userperformance.totalmetting}}</td>
                       </tr>
 					   <tr>
                         <td>Total Task Complete</td>
-                        <td>{{userprofile.userperformance.totaltask}}</td>
+                        <td>{{user.userperformance.totaltask}}</td>
                       </tr>
                       <tr>
                         <td>Total % income grow</td>
-                        <td>{{userprofile.userperformance.totalincome}}</td>
+                        <td>{{user.userperformance.totalincome}}</td>
                       </tr>
                       <tr>
                         <td>Overall Performance</td>
-                        <td>{{userprofile.userperformance.totalperformance}}</td>
+                        <td>{{user.userperformance.totalperformance}}</td>
                       </tr>
 					   <tr>
                         <td>Overall Rating</td>
-                        <td>{{userprofile.userperformance.totalrating}}</td>
+                        <td>{{user.userperformance.totalrating}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -221,23 +226,33 @@
     <!-- edit form column -->
     <div class="col-md-12 personal-info">
       <h3>Personal info</h3>
-      <form class="form-horizontal" role="form">
+      <form name="personal"class="form-horizontal" role="form">
         <div class="form-group">
           <label class="col-lg-3 control-label">First name </label>
           <div class="col-lg-8">
-            <input class="form-control" ng-model="userprofile.firstname" placeholder="First name" type="text">
+            <input class="form-control" ng-model="userprofile.firstname" placeholder="First Name" ng-pattern="/^(\D)+$/" type="text" name="fname" ng-required="true"/>
+			<!-- <div ng-show="personal.fname.$invalid"> 
+				<div style="color:brown" ng-message="required">This field is required</div>
+			</div> -->
+			 <span style="color:red" ng-show="personal.fname.$error.required && personal.fname.$dirty">First Name is required.</span> 
+			 <span style="color:red" ng-show="personal.fname.$error.pattern && personal.fname.$dirty">First Name cannot digit</span> 
+	
+			
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Last name </label>
           <div class="col-lg-8">
-            <input class="form-control" ng-model="userprofile.lastname" placeholder="Last name" type="text">
+            <input class="form-control" ng-model="userprofile.lastname" placeholder="Last name"ng-pattern="/^(\D)+$/" type="text" name="lname" required/>
+			<span style="color:red" ng-show="personal.lname.$error.required && personal.lname.$dirty">Last Name is required.</span> 
+			 <span style="color:red" ng-show="personal.lname.$error.pattern">Last Name cannot digit</span> 
           </div>
         </div>
-       <div class="form-group">
+       <div class="form-group" ng-class="{error: personal.dob.$invalid}">
           <label class="col-lg-3 control-label">DOB</label>
           <div class="col-lg-8">
-            <input class="form-control" ng-model="userprofile.dateofbirth" placeholder="Date of Birth" type="date">
+            <input class="form-control" ng-model="userprofile.dateofbirth" placeholder="Date of Birth" type="date" name="dob" required/>
+			<span style="color:red" ng-show="personal.dob.$touched && personal.dob.$error.required">Please enter dob</span> 
           </div>
         </div>
         
@@ -246,37 +261,44 @@
           <div class="col-lg-8">
            <label><input type="radio" id="male" name="male" ng-model="userprofile.gender" value="Male" ng-required="true"/> Male </label>	
 		   <label><input type="radio" id="female" name="female"  ng-model="userprofile.gender" value="Female" ng-required="true"/> Female </label>
+		   <span style="color:red" ng-show="personal.male.$touched && personal.male.$error.required">Please Select Gender (Male or Female)</span> 
+		   
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-3 control-label">Username </label>
           <div class="col-md-8">
-            <input class="form-control" ng-model="userprofile.logindetails.username" placeholder="Username" type="text" requird>
+            <input class="form-control" name="uname" ng-model="userprofile.logindetails.username" placeholder="Username" type="text" required>
+			<span style="color:red" ng-show="personal.uname.$error.required && personal.uname.$dirty">Username required.</span> 
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Password </label>
           <div class="col-md-8">
-            <input class="form-control"  ng-model="userprofile.logindetails.prepassword" placeholder="Password" type="password" requird>
+            <input class="form-control" name="pass" ng-model="userprofile.logindetails.prepassword" placeholder="Password" type="password" required>
+			<span style="color:red" ng-show="personal.pass.$error.required && personal.pass.$dirty">Password required.</span> 
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Confirm password</label>
           <div class="col-md-8">
-            <input class="form-control" ng-model="userprofile.logindetails.password"  placeholder="Confirm password" type="password" requird>
+            <input class="form-control" name="cpass" ng-model="userprofile.logindetails.password"  placeholder="Confirm password" type="password" required>
+			<span style="color:red" ng-show="personal.cpass.$error.required && personal.cpass.$dirty">Confirm Password required.</span> 
           </div>
         </div>
 	<div class="col-md-6">
 	 <label class="control-label">profile Image</label>
       <div class="text-center">
-        <input type="file" class="text-center center-block well well-sm avatar img-circle img-thumbnail" alt="avatar">
+        <input type="file" name="pimage"class="text-center center-block well well-sm avatar img-circle img-thumbnail" alt="avatar" required>
+		<span style="color:red" ng-show="personal.pimage.$touched && personal.pimage.$error.required">Profile Image required.</span> 
       </div>
     </div>
 	<div class="col-md-6">
 	 <label class="control-label">Identity Proof</label>
       <div class="text-center">
-        <input type="file" class="text-center center-block well well-sm avatar img-circle img-thumbnail" alt="avatar">
+        <input type="file" name="iproof"class="text-center center-block well well-sm avatar img-circle img-thumbnail" alt="avatar"required>
+		<span style="color:red" ng-show="personal.iproof.$touched && personal.iproof.$error.required">Identity Proof required.</span> 
       </div>
     </div>
       </form>
@@ -292,17 +314,19 @@
     <!-- edit form column -->
     <div class="col-md-12 personal-info">
       <h3>Network info</h3>
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form" name="nwtk_info">
 		<div class="form-group">
           <label class="col-lg-3 control-label">Parent Profile ID</label>
           <div class="col-lg-8">
-            <input class="form-control"  ng-model="userprofile.networkinfo.parentmemberid" placeholder="Refrence ID" type="text">
+            <input class="form-control" name="ppro_id" ng-model="userprofile.networkinfo.parentmemberid" placeholder="Refrence ID" type="text" required/>
+			<span style="color:red" ng-show="nwtk_info.ppro_id.$error.required && nwtk_info.ppro_id.$dirty">Please enter profile_ID of your parent member.</span> 
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Member Type </label>
           <div class="col-lg-8">
-            <input class="form-control" ng-model="userprofile.networkinfo.memberlevel" placeholder="Member Type" type="text">
+            <input class="form-control" ng-model="userprofile.networkinfo.memberlevel" placeholder="Member Type" type="text" name="mtype" required/>
+			<span style="color:red" ng-show="nwtk_info.mtype.$error.required && nwtk_info.mtype.$dirty">Enter you Member Type like LEVEL1, LEVEL2 ... </span> 
           </div>
         </div>
       </form>
@@ -323,24 +347,35 @@
 							<li><a data-toggle="tab" id="contactdetails" class="pull-center"  href="/dashboard/overview#phonedetails"><i class="fa fa-money"></i>Digital Contact</a></li>
 						</ul>
 				<div class="tab-content">
+				
 					<div id="physicaladdress" class="tab-pane fade">
 					<br></br>
-					<div class="form-group">
+					<ng-form name="phycnt">
+					<div class="form-group" >
+					
           <label class="col-lg-3 control-label">Address Details</label>
           <div class="col-lg-8">
-            <textarea class="form-control"  ng-model="userprofile.conatctDetails.addressText" placeholder="Address Details"></textarea>
+            <textarea name="address" class="form-control"  ng-model="userprofile.conatctDetails.addressText" placeholder="Address Details" required></textarea>
+			<!-- <div style="color:red;" ng-show="phycnt.addrsdt.$invalid"> -->
+				<!-- <span ng-show="phycnt.addrsdt.$error.required">Address is required.</span> -->
+			<!-- </div> -->
+				<span style="color:red" ng-show="phycnt.address.$error.required && phycnt.address.$dirty">Please enter address.</span> 
           </div>
 	         </div>
+			 
 			 			<div class="form-group">
           <label class="col-lg-3 control-label">Near By Landmark</label>
           <div class="col-lg-8">
-            <textarea class="form-control" ng-model="userprofile.conatctDetails.landMark"  placeholder="Your Near By Landmark"></textarea>
+            <textarea name="landmark" class="form-control" ng-model="userprofile.conatctDetails.landMark"  placeholder="Your Near By Landmark" required></textarea>
+				<span style="color:red" ng-show="phycnt.landmark.$error.required">Please enter Landmark Place near by.</span> 
           </div>
 	         </div>
-			  <div class="form-group">
+			  <div class="form-group" ng-form name="phycnt">
           <label class="col-lg-3 control-label">Pincode</label>
           <div class="col-lg-8">
-            <input class="form-control" ng-model="userprofile.conatctDetails.pincode" placeholder="Your pincode" type="text">
+            <input class="form-control" name="pincode" ng-model="userprofile.conatctDetails.pincode" ng-pattern="/^\d{6}$/" placeholder="Your pincode" type="text" required>
+			<span style="color:red" ng-show="phycnt.pincode.$error.required && phycnt.pincode.$dirty">Please enter your area pincode</span> 
+			<span style="color:red" ng-show="phycnt.pincode.$error.pattern">Pincode must be 6 digit only.</span> 
           </div>
 	         </div>
 			 	 <div class="form-group">
@@ -361,24 +396,33 @@
          </datalist>
           </div>
 	      </div>
+					</ng-form>
 					</div>
 					<div id="phonedetails" class="tab-pane fade">
+					<ng-form name="dgcnt">
 					<br></br>
-					<div class="col-md-11">
+					<div class="col-md-11" >
 				<div class="form-group">
-					<label class="col-lg-4 control-label">Mobile Number</label>
+					<label class="col-lg-5 control-label" >Mobile Number(+91)</label>
 				<div class="col-lg-7">
-					 <input class="form-control" ng-model="userprofile.conatctDetails.mobilenumber" placeholder="Your Mobile Number" type="text" requird>
+					 <input name="mobile" class="form-control" ng-model="userprofile.conatctDetails.mobilenumber" ng-pattern="/^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/" placeholder="Your Mobile Number" type="text" required>
+					 <span style="color:red" ng-show="dgcnt.mobile.$error.required && dgcnt.mobile.$dirty">Enter your mobile number</span> 
+					 <span style="color:red" ng-show="dgcnt.mobile.$error.pattern">Mobile number must be 10 digit </span> 
+					 
 				 </div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-4 control-label">Your Email</label>
+					<label class="col-lg-5 control-label">Your Email</label>
 				<div class="col-lg-7">
-					 <input class="form-control" ng-model="userprofile.conatctDetails.email" placeholder="Your Email Id" type="text" requird>
+					 <input name="email" class="form-control" ng-model="userprofile.conatctDetails.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" placeholder="Your Email Id" type="text" required>
+					 <span style="color:red" ng-show="dgcnt.email.$error.required && dgcnt.email.$dirty">Enter your E-mail_ID</span> 
+					 <span style="color:red" ng-show="dgcnt.email.$error.pattern">Please enter valid e-mail(xxxx@xxx.cc) </span> 
 				 </div>
 				</div>
 				</div>
+				</ng-form>
 					</div>
+					
                    </div>
 	   
       </div>
@@ -575,6 +619,108 @@
 		</div>
 	</div>
 	
+	
+	
+		<!-- Task Details modal-->
+	<div id="notificationdetails"  name="notificationdetails" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+ <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Notification List </h4>	
+						</div>
+	<div class="modal-body">
+	
+    <div class="table-responsive">
+						  <table class="table table-bordered table-fixed table-hover">
+							<tr class ="success">
+								<th class="pull-center">Task Name</th>
+								<th class="pull-center">Task For</th>
+								<th class="pull-center">Task Assigned Date</th>
+								<th class="pull-center">Task Type</th>
+								<th class="pull-center">Task Current Status</th>
+								<th class="pull-center">Task Priority</th>
+							</tr>
+							<tr ng-repeat="task in tasklist">
+								<td>{{task.taskname}}</td>
+								<td>{{task.taskfor}}</td>
+								<td>{{task.taskassigneddate | date:'yyyy-MM-dd'}}</td>
+								<td>{{task.tasktype}}</td>
+								<td><input type="text" id="taskstatus" ng-model="task.taskstatus" name="taskstatus" class="form-control" list="taskstatuslist">
+								<datalist id="taskstatuslist">
+									<option value="Pending">
+									<option value="Approved">
+									<option value="KYC Verification Pending">
+									<option value="Waiting">
+								</datalist>
+								</td>
+								<td>{{task.priority}}</td>
+								
+								<td><a id="updattask"    ng-click="updateAdminTask(task)"><i class="fa fa-floppy-o" aria-hidden="true"></i></a></td>
+								<td><a id="deletetask"     ng-click="deleteAdminTask(task)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+							  
+							</tr>
+							
+						</table>
+						</div>
+				
+		</div>
+			
+			</div>
+		</div>
+	</div>
+	
+	
+	
+		<!-- Task Details modal-->
+	<div id="updateTaskmodal"  name="updateTaskmodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+ <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Notification Details </h4>	
+						</div>
+	<div class="modal-body">
+	<div class="col-md-12">
+  <div class="col-md-4" >
+					<div class="form-group">
+						<label for="taskname">Task Name</label>
+						<input type="text" id="taskname" ng-model="task.taskname" name="taskname" class="form-control" readonly>
+					</div>
+					<div class="form-group">
+						<label for="taskfor">Task For</label>
+						<input type="text" id="taskfor" ng-model="task.taskfor" name="taskfor" class="form-control" readonly>
+					</div>
+										
+				</div>
+				 <div class="col-md-4">
+				 <div class="form-group">
+						<label for="tasktype">Task Type</label>
+						<input type="text" id="tasktype" ng-model="task.tasktype" name="tasktype" class="form-control" readonly>
+					</div>
+					<div class="form-group">
+						<label for="taskstatus">Task Status</label>
+						<input type="text" id="taskstatus" ng-model="task.taskstatus" name="taskstatus" class="form-control" list="taskstatuslist">
+					<datalist id="taskstatuslist">
+  <option value="Pending">
+  <option value="Approved">
+  <option value="KYC Verification Pending">
+  <option value="Waiting">
+ </datalist>
+					</div>
+								
+				 </div>
+				</div>
+		</div>
+				<div class="modal-footer">
+							<div class="col-md-3">
+							   <input  type="button" id="confirm" name="confirm" value="Update" class="btn btn-primary btn-block" />
+							   <input  type="button" id="reset" name="reset" value="close" class="btn btn-primary btn-block" />
+							</div>
+			   </div>
+			</div>
+		</div>
+	</div>
 	<script>
 $(document).ready(function() {
     $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
