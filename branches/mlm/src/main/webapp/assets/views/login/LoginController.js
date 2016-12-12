@@ -20,8 +20,11 @@
                  $scope.logedinusername=response.userprofile.logindetails.username;
 				AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'),$scope.logedinusername);
 			    $localStorage.profile=response;
-				
-			    if(!response.adminVerified || !response.emailVerified || !response.mobilenoVerified){
+				$scope.usertype=response.userprofile.logindetails.authorities[0].name;
+			    if($scope.usertype=='ADMIN'){
+					$location.path('/dashboard/overview');
+				}
+				else if(!response.adminVerified || !response.emailVerified || !response.mobilenoVerified){
 					$location.path('/dashboard/approvalpending');
 				}else{
 					$location.path('/dashboard/overview');

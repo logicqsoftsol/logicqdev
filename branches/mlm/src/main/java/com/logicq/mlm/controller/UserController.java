@@ -99,8 +99,6 @@ public class UserController {
 		     prepapreSMSDetailsAndSendSMS(userdetailvo);
 		
 			//update parent JSON
-		     
-		   UserService.addUser(LoginFactory.create(userdetailvo.getUserprofile().getLogindetails()));
 		}
 		return new ResponseEntity<UserDetailsVO>(userdetailvo, HttpStatus.OK);
 	}
@@ -140,6 +138,7 @@ public class UserController {
 			workflowmobile.setCreatetime(new Date());
 			workflowmobile.setWorktype("MOBILE_VERIFICATION");
 			workflowmobile.setStatus(false);
+			workflowmobile.setProfileid(String.valueOf(userdetailvo.getUserprofile().getId()));
 			workflowdetails.add(workflowmobile);
 		}
 		if(!userdetailvo.isEmailVerified()){
@@ -150,6 +149,7 @@ public class UserController {
 			workflowemail.setCreatetime(new Date());
 			workflowemail.setWorktype("EMAIL_VERIFICATION");
 			workflowemail.setStatus(false);
+			workflowemail.setProfileid(String.valueOf(userdetailvo.getUserprofile().getId()));
 			workflowdetails.add(workflowemail);
 		}	
 		if(!userdetailvo.isAdminVerified()){
@@ -160,6 +160,7 @@ public class UserController {
 			workflowadmin.setCreatetime(new Date());
 			workflowadmin.setWorktype("ADMIN_VERIFICATION");
 			workflowadmin.setStatus(false);
+			workflowadmin.setProfileid(String.valueOf(userdetailvo.getUserprofile().getId()));
 			workflowdetails.add(workflowadmin);
 		}	
 		return workflowdetails;

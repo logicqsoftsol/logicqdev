@@ -49,7 +49,8 @@ public class RestAuthenticationFilter extends GenericFilterBean {
 		try {
 
 			final String token = httpRequest.getHeader(TokenAuthenticationConstant.AUTH_HEADER_NAME);
-			if (!StringUtils.isEmpty(token)) {
+			if (!StringUtils.isEmpty(token) && !httpRequest.getRequestURI().endsWith("login")) {
+		
 				Authentication authentication = tokenAuthenticationService
 						.getAuthentication((HttpServletRequest) request);
 				SecurityContextHolder.getContext().setAuthentication(authentication);

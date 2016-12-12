@@ -13,5 +13,8 @@ public interface IWorkFlowService {
 	public void updateWorkFlow(WorkFlow workflow)throws Exception;
 	
 	public List<WorkFlow> getPendingWorkFlowForUser(String assignedto,String profileid)throws Exception;
-
+	public List<WorkFlow> getPendingWorkFlowForAdmin(String assignedto)throws Exception;
+	
+	public WorkFlow getWorkFlowAccordingToWorkId(Long workid)throws Exception;
+	public List<WorkFlow> getPendingWorkFlowAccordingToProfile(String profileid);
 }

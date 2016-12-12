@@ -13,19 +13,21 @@
 			 '$state',
 			 'UserDetailsService',
 			 'UserHelper',
-			 function($scope,$rootScope,$http,$location,$localStorage,$sessionStorage,$exceptionHandler,$state,UserDetailsService,UserHelper) {
+			 'AdminService',
+			 function($scope,$rootScope,$http,$location,$localStorage,$sessionStorage,$exceptionHandler,$state,UserDetailsService,UserHelper,AdminService) {
 				   //Variable declare
 				    $scope.$state = $state;
 				    $scope.menuItems = [];
 					//User profile Details 
 					$scope.userdetails={};
 					$scope.userprofile={};
-					$scope.userprofile.logindetails={};
-				    $scope.userprofile.conatctDetails={};
-					$scope.userprofile.networkinfo={};
-					$scope.userprofile.walletdetails={};
-					$scope.userprofile.walletdetails.walletStatement={};
-					$scope.userprofile.userperformance={};
+					$scope.user={};
+					$scope.user.logindetails={};
+				    $scope.user.conatctDetails={};
+					$scope.user.networkinfo={};
+					$scope.user.walletdetails={};
+					$scope.user.walletdetails.walletStatement={};
+					$scope.user.userperformance={};
 				    $scope.networkjson={};
 					$scope.networkid='';
 					$scope.networkcreated='false';	
@@ -33,6 +35,9 @@
 				    $scope.otp={};
 					$scope.approvalpendinglist=[];
 					$scope.request={};
+					$scope.tasklist={};
+					$scope.tasklist.count={};
+					$scope.request.task={};
 				    angular.forEach($state.get(), function (item) {
 				        if (item.data && item.data.visible) {
 				            $scope.menuItems.push({name: item.name, text: item.data.text});
@@ -64,9 +69,10 @@
 				    });
 					
 				};
+				
 				if(!$localStorage.profile.mobilenoVerified){
 			    $scope.approval.mobilenoVerified='Pending';	
-				$scope.approvalpendinglist.push({id:1, name:'Mobile Number'});
+				$scope.approvalpendinglist.push({id:1, name:'MobileNumber'});
 				}else{
 					$scope.approval.mobilenoVerified='Approved';
 				}
@@ -92,10 +98,10 @@
                                                         if(value.name=='Email'){
                                                         	  $scope.approval.verificationvalue=$localStorage.profile.userprofile.conatctDetails.email;
                                                         }
-                                                        if(value.name=='Mobile Number'){
+                                                        if(value.name=='MobileNumber'){
                                                         	$scope.approval.verificationvalue=$localStorage.profile.userprofile.conatctDetails.mobilenumber;
                                                         }
-														 if(value.name=='Email'||value.name=='Mobile Number'){
+														 if(value.name=='Email'||value.name=='MobileNumber'){
 															   UserDetailsService.sendOTP($scope).success(function(data, status) {
 															   	}).error(function(data, status) {
 															   			var errormsg='Unable to Send OTP  '+status;
@@ -106,7 +112,7 @@
                                                           if(value.name=='Admin'){
 															   $scope.approval.otpfor='ADMIN';
 															    $scope.approval.otpsendto=$scope.approval.verificationvalue;
-															 $scope.approval.verificationvalue='Admin Notify';
+															  $scope.approval.verificationvalue='Admin Notify';
 														  }															  
 														 
 													}	
@@ -115,8 +121,29 @@
 												
 				$scope.validateOTP=	function (){
 						 UserDetailsService.validateOTP($scope).success(function(data, status) {
+							 $localStorage.profile.mobilenoVerified=data.mobilenoVerified;
+							 $localStorage.profile.emailVerified=data.emailVerified;
+							 $localStorage.profile.adminVerified=data.adminVerified;
 							angular.element('#approvalmodal').modal('hide');
-							$scope.approval.mobilenoVerified='Approved';
+							if(!$localStorage.profile.mobilenoVerified){
+			    $scope.approval.mobilenoVerified='Pending';	
+				$scope.approvalpendinglist.push({id:1, name:'MobileNumber'});
+				}else{
+					$scope.approval.mobilenoVerified='Approved';
+				}
+				if(!$localStorage.profile.emailVerified){
+			    $scope.approval.emailVerified='Pending';
+                $scope.approvalpendinglist.push({id:2, name:'Email'});				
+				}else{
+					$scope.approval.emailVerified='Approved';
+				}
+					
+					if(!$localStorage.profile.adminVerified){
+			       $scope.approval.adminVerified='Pending';
+				   $scope.approvalpendinglist.push({id:3, name:'Admin'});	
+				}else{
+					$scope.approval.adminVerified='Approved';
+				}
 									}).error(function(data, status) {
 									  var errormsg='Unable to validate OTP  '+status;
 										$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -127,28 +154,36 @@
 				
 		     $scope.displayProfile = function () {
 					 $scope.userdetails=$localStorage.profile;
-				     $scope.userprofile.firstname=$scope.userdetails.userprofile.firstname;
-					 $scope.userprofile.lastname=$scope.userdetails.userprofile.lastname;
-					 $scope.userprofile.dateofbirth=new Date($scope.userdetails.userprofile.dateofbirth);
-					 $scope.userprofile.gender=$scope.userdetails.userprofile.gender;
-					$scope.userprofile.conatctDetails.addressText=$scope.userdetails.userprofile.conatctDetails.addressText;
-					$scope.userprofile.conatctDetails.district=$scope.userdetails.userprofile.conatctDetails.district;
-					$scope.userprofile.conatctDetails.email=$scope.userdetails.userprofile.conatctDetails.email;
-					$scope.userprofile.conatctDetails.mobilenumber=$scope.userdetails.userprofile.conatctDetails.mobilenumber;
-					$scope.userprofile.networkinfo.memberlevel=$scope.userdetails.userprofile.networkinfo.memberlevel;
-					$scope.userprofile.walletdetails.walletnumber=$scope.userdetails.userprofile.walletdetails.walletnumber;
-					$scope.userprofile.walletdetails.walletStatement.payout=$scope.userdetails.walletStatement.payout;
-					$scope.userprofile.walletdetails.walletStatement.maxencashable=$scope.userdetails.walletStatement.maxencashable;
-					$scope.userprofile.walletdetails.walletStatement.currentbalance=$scope.userdetails.walletStatement.currentbalance;
-					$scope.userprofile.walletdetails.walletStatement.walletlastupdate=new Date($scope.userdetails.walletStatement.walletlastupdate);
-					$scope.userprofile.userperformance.totalnetwork=$scope.userdetails.userperformance.network;
-					$scope.userprofile.userperformance.totalmetting=$scope.userdetails.userperformance.metting;
-					$scope.userprofile.userperformance.totaltask=$scope.userdetails.userperformance.task;
-					$scope.userprofile.userperformance.totalincome=$scope.userdetails.userperformance.income;
-					$scope.userprofile.userperformance.totalperformance=$scope.userdetails.userperformance.performancetype;
-					$scope.userprofile.userperformance.totalrating=$scope.userdetails.userperformance.ratting;
-					$scope.networkjson=$scope.userdetails.networkjson;
-					if($scope.networkcreated=='false'){
+					 $scope.usertype=$scope.userdetails.userprofile.logindetails.authorities[0].name;
+			    if($scope.usertype=='ADMIN'){
+					 $scope.tasklist=$scope.userdetails.tasklist;
+					 $scope.tasklist.count=$scope.tasklist.length;
+				}else{
+					 $scope.tasklist={};
+					 $scope.tasklist.count=0;
+				     $scope.user.firstname=$scope.userdetails.userprofile.firstname;
+					 $scope.user.lastname=$scope.userdetails.userprofile.lastname;
+					 $scope.user.dateofbirth=new Date($scope.userdetails.userprofile.dateofbirth);
+					 $scope.user.gender=$scope.userdetails.userprofile.gender;
+					$scope.user.conatctDetails.addressText=$scope.userdetails.userprofile.conatctDetails.addressText;
+					$scope.user.conatctDetails.district=$scope.userdetails.userprofile.conatctDetails.district;
+					$scope.user.conatctDetails.email=$scope.userdetails.userprofile.conatctDetails.email;
+					$scope.user.conatctDetails.mobilenumber=$scope.userdetails.userprofile.conatctDetails.mobilenumber;
+					$scope.user.networkinfo.memberlevel=$scope.userdetails.userprofile.networkinfo.memberlevel;
+					$scope.user.walletdetails.walletnumber=$scope.userdetails.userprofile.walletdetails.walletnumber;
+					$scope.user.walletdetails.walletStatement.payout=$scope.userdetails.walletStatement.payout;
+					$scope.user.walletdetails.walletStatement.maxencashable=$scope.userdetails.walletStatement.maxencashable;
+					$scope.user.walletdetails.walletStatement.currentbalance=$scope.userdetails.walletStatement.currentbalance;
+					$scope.user.walletdetails.walletStatement.walletlastupdate=new Date($scope.userdetails.walletStatement.walletlastupdate);
+					$scope.user.userperformance.totalnetwork=$scope.userdetails.userperformance.network;
+					$scope.user.userperformance.totalmetting=$scope.userdetails.userperformance.metting;
+					$scope.user.userperformance.totaltask=$scope.userdetails.userperformance.task;
+					$scope.user.userperformance.totalincome=$scope.userdetails.userperformance.income;
+					$scope.user.userperformance.totalperformance=$scope.userdetails.userperformance.performancetype;
+					$scope.user.userperformance.totalrating=$scope.userdetails.userperformance.ratting;
+				   }
+				   $scope.networkjson=$scope.userdetails.networkjson;
+                  if($scope.networkcreated=='false'){
 						$scope.displayNetworkProfie($scope.networkjson);
 						$scope.networkcreated='true';
 					}
@@ -174,6 +209,13 @@
 									$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 									$exceptionHandler(errormsg);
 								});
+					}
+					
+					$scope.updateAdminTask=function(task){
+				     $scope.request.task=task;
+				     AdminService.updateAdminTask($scope.request);
+					 $scope.tasklist.count=$scope.tasklist.count-1;
+					 angular.element('#notificationdetails').modal('hide');
 					}
 					
 			 } ]);

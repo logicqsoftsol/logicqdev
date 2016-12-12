@@ -51,7 +51,7 @@ public class ServiceRequestController {
 
 	
 	
-	@RequestMapping(value = "/otpSend/{type}", method = RequestMethod.GET)
+	@RequestMapping(value = "/otpSend/{type}", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE,consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> sendOTP(@PathVariable String type) throws Exception {
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
@@ -64,7 +64,7 @@ public class ServiceRequestController {
 						emaildetail.setSubject("OTP For Email Validation");
 						emailservice.sendEmailWithOTP(emaildetail);
 					}
-					if (type.equalsIgnoreCase("mobile")) {
+					if (type.equalsIgnoreCase("MobileNumber")) {
 						otpservice.sendOTP(login.getMobilenumber());
 					}
 				}
@@ -98,7 +98,7 @@ public class ServiceRequestController {
 	}
 
 	@RequestMapping(value = "/otpValidate/{type}/{otpnumber}", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UserDetailsVO> validateOTPForMobilenumber(@PathVariable String type,@PathVariable Integer otpnumber)
+	public ResponseEntity<UserDetailsVO> validateOTP(@PathVariable String type,@PathVariable Integer otpnumber)
 			throws Exception {
 		UserDetailsVO userdetails = new UserDetailsVO();
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
@@ -107,7 +107,7 @@ public class ServiceRequestController {
 				UserProfile userprofile = new UserProfile();
 				boolean otpverified=false;
 				if (!StringUtils.isEmpty(type)) {
-					if (type.equalsIgnoreCase("mobile")) {
+					if (type.equalsIgnoreCase("MobileNumber")) {
 						otpverified=otpservice.validateOTPForMobile(otpnumber, login.getMobilenumber());
 					}
 					if(type.equalsIgnoreCase("email")){
@@ -115,16 +115,22 @@ public class ServiceRequestController {
 					}
 					if(otpverified){
 					userprofile.setLogindetails(LoginFactory.createLoginDetails(login));
-					userservice.fetchUser(userprofile);
+					userprofile=userservice.fetchUser(userprofile);
 					List<WorkFlow> workflowlist = workflowservice.getPendingWorkFlowForUser(login.getUsername(),
 							String.valueOf(userprofile.getId()));
 					for (WorkFlow work : workflowlist) {
-						if (work.getWorktype().equalsIgnoreCase("MOBILE_VERIFICATION")) {
+						if (type.equalsIgnoreCase("MobileNumber") && (work.getWorktype().equalsIgnoreCase("MOBILE_VERIFICATION"))) {
 							userdetails.setMobilenoVerified(true);
 							work.setStatus(true);
 							workflowservice.updateWorkFlow(work);
 						}
+						if (type.equalsIgnoreCase("email") && (work.getWorktype().equalsIgnoreCase("EMAIL_VERIFICATION"))) {							userdetails.setMobilenoVerified(true);
+						    userdetails.setEmailVerified(true);	
+					    	work.setStatus(true);
+					    	workflowservice.updateWorkFlow(work);
+						}
 					}
+					
 				}
 					}
 			}
