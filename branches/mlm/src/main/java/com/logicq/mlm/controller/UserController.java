@@ -23,11 +23,13 @@ import com.logicq.mlm.common.helper.sms.SMSHelper;
 import com.logicq.mlm.model.message.EmailDetails;
 import com.logicq.mlm.model.performance.UserPerformance;
 import com.logicq.mlm.model.profile.NetWorkDetails;
+import com.logicq.mlm.model.profile.NetworkInfo;
 import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.sms.SMSDetails;
 import com.logicq.mlm.model.wallet.WalletStatement;
 import com.logicq.mlm.model.workflow.WorkFlow;
 import com.logicq.mlm.service.messaging.IEmailService;
+import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
 import com.logicq.mlm.service.otp.IOTPService;
 import com.logicq.mlm.service.otp.OTPService;
 import com.logicq.mlm.service.performance.IUserPerformanceService;
@@ -56,6 +58,9 @@ public class UserController {
 	
 	@Autowired
 	IEmailService emailservice;
+	
+	@Autowired
+	INetworkDetailsService networkservice;
 
 	
 	
@@ -197,14 +202,16 @@ public class UserController {
 				userprofile.setLogindetails(LoginFactory.createLoginDetails(login));
 				userprofile = userservice.fetchUser(userprofile);
 				userdetailsvo.setUserprofile(userprofile);
-				NetWorkDetails networkdetails = mapper
-						.readValue(new File("C:\\Users\\SudhanshuLenka\\Desktop\\network.json"), NetWorkDetails.class);
+				NetworkInfo networkinfo=networkservice.getNetworkDetails(login.getUsername());
+				NetWorkDetails networkdetails = mapper.readValue(new String(networkinfo.getNetworkjson()), NetWorkDetails.class);
 				userdetailsvo.setNetworkjson(networkdetails);
+				userdetailsvo.setUserperformance(userperformance);
 				if (login.getUsername().equals(networkid)) {
+					walletStatement.setWallet(userprofile.getWalletdetails());
+					walletStatement.setWalletid(userprofile.getWalletdetails().getWalletid());
 					walletStatementservice.fetchWalletStmntAccordingToAggregartion(walletStatement);
 					userdetailsvo.setWalletStatement(walletStatement);
 					userperformanceservice.fetchUserPerformanceAccordingToAggregation(userperformance);
-					userdetailsvo.setUserperformance(userperformance);
 				} else {
 					userdetailsvo.setWalletStatement(walletStatement);
 					userdetailsvo.setUserperformance(userperformance);

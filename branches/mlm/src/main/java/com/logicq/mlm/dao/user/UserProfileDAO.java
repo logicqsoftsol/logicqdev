@@ -18,6 +18,16 @@ public class UserProfileDAO extends AbstractDAO<UserProfile> implements IUserDAO
 		return   userprofiles.get(0);
 		
 	}
+	
+	@Override
+	public UserProfile fetchUserAccordingToProfileId(Long profileid) {
+		StringBuilder query=new StringBuilder();
+		query.append(" from UserProfile up where up.id = "+profileid);
+		List<UserProfile> userprofiles= (List<UserProfile>) execcuteQuery(query.toString());
+		return   userprofiles.get(0);
+		
+	}
+	
 
 	@Override
 	public void deleteUser(UserProfile user) {

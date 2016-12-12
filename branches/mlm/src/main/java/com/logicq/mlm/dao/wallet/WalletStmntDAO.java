@@ -1,5 +1,8 @@
 package com.logicq.mlm.dao.wallet;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.logicq.mlm.dao.AbstractDAO;
@@ -10,9 +13,18 @@ public class WalletStmntDAO extends AbstractDAO<WalletStatement> implements IWal
 
 	@Override
 	public WalletStatement fetchWalletStmntAccordingToAggregartion(WalletStatement walletStatement) throws Exception {
-		StringBuilder query=new StringBuilder();
-		query.append(" from WalletStatement ws where ws.walletid='"+walletStatement.getWalletid()+"'");
-		return (WalletStatement) execcuteQuery(query.toString());
+		StringBuilder query = new StringBuilder();
+		query.append(" from WalletStatement ws where ws.walletid='" + walletStatement.getWalletid() + "'");
+		List<WalletStatement> walletstmntlist = (List<WalletStatement>) execcuteQuery(query.toString());
+		if (null != walletstmntlist && !walletstmntlist.isEmpty()) {
+			return walletstmntlist.get(0);
+		}else{
+			walletStatement.setCurrentbalance(new BigDecimal(0.0));
+			walletStatement.setMaxencashable(new BigDecimal(0.0));
+			walletStatement.setPayout(new BigDecimal(0.0));
+		}
+		return walletStatement;
+
 	}
 
 	@Override

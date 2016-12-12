@@ -21,4 +21,8 @@ public class PropertyHelper {
 	 return  mapper.readValue(new String( parentnetworkinfo.getNetworkjson()),NetWorkDetails.class );
   }
 
+  public static String convertNetworkInfoToJson(NetWorkDetails parentnetworkinfo) throws Exception{
+		 return  mapper.writeValueAsString(parentnetworkinfo);
+	  }
+  
 }

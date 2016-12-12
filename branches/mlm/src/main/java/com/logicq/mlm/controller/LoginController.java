@@ -21,9 +21,11 @@ import com.logicq.mlm.model.admin.TaskDetails;
 import com.logicq.mlm.model.login.Authority;
 import com.logicq.mlm.model.performance.UserPerformance;
 import com.logicq.mlm.model.profile.NetWorkDetails;
+import com.logicq.mlm.model.profile.NetworkInfo;
 import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.wallet.WalletStatement;
 import com.logicq.mlm.model.workflow.WorkFlow;
+import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
 import com.logicq.mlm.service.performance.IUserPerformanceService;
 import com.logicq.mlm.service.security.UserService;
 import com.logicq.mlm.service.user.IUserService;
@@ -46,6 +48,8 @@ public class LoginController {
     IUserPerformanceService userperformanceservice;
 	@Autowired
 	IWorkFlowService workflowservice;
+	@Autowired
+	INetworkDetailsService networkservice;
 	
 	  
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -100,10 +104,12 @@ public class LoginController {
 						} 
 					}
 					}
-					NetWorkDetails networkdetails = mapper.readValue(
-							new File("C:\\Users\\SudhanshuLenka\\Desktop\\network.json"), NetWorkDetails.class);
+					NetworkInfo networkinfo=networkservice.getNetworkDetails(login.getUsername());
+					NetWorkDetails networkdetails = mapper.readValue(new String(networkinfo.getNetworkjson()), NetWorkDetails.class);
 					userdetailsvo.setNetworkjson(networkdetails);
-					walletStatementservice.fetchWalletStmntAccordingToAggregartion(walletStatement);
+					walletStatement.setWallet(userprofile.getWalletdetails());
+					walletStatement.setWalletid(userprofile.getWalletdetails().getWalletid());
+					walletStatement=walletStatementservice.fetchWalletStmntAccordingToAggregartion(walletStatement);
 					userdetailsvo.setWalletStatement(walletStatement);
 					userperformanceservice.fetchUserPerformanceAccordingToAggregation(userperformance);
 					userdetailsvo.setUserperformance(userperformance);
