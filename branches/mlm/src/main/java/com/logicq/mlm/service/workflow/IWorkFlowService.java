@@ -2,11 +2,15 @@ package com.logicq.mlm.service.workflow;
 
 import java.util.List;
 
+import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.workflow.WorkFlow;
+import com.logicq.mlm.vo.EncashVO;
 
 public interface IWorkFlowService {
 	
 	public void createWorkFlowForValidation(WorkFlow workflow)throws Exception;
+	
+	public void createWorkFlowForEncashRequest(EncashVO encashvo,UserProfile userprofile)throws Exception;
 	
 	public void createWorkFlowForListValidation(List<WorkFlow> workflow)throws Exception;
 	

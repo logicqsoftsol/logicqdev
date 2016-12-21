@@ -1,12 +1,14 @@
 package com.logicq.mlm.model.workflow;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import com.logicq.mlm.common.BaseEntity;
@@ -40,6 +42,10 @@ public class WorkFlow  extends BaseEntity implements Serializable {
 	
 	@Column(name = "ASSIGNED_TO")
 	private String assignedto;
+	
+	@Lob
+	@Column(name = "WORK_PARAMETER")
+	private byte[] workparameter;
 
 	
 
@@ -91,11 +97,23 @@ public class WorkFlow  extends BaseEntity implements Serializable {
 		this.workid = workid;
 	}
 
+	public byte[] getWorkparameter() {
+		return workparameter;
+	}
+
+	public void setWorkparameter(byte[] workparameter) {
+		this.workparameter = workparameter;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "WorkFlow [workid=" + workid + ", worktype=" + worktype + ", status=" + status + ", message=" + message
-				+ ", profileid=" + profileid + ", assignedto=" + assignedto + "]";
+				+ ", profileid=" + profileid + ", assignedto=" + assignedto + ", workparameter="
+				+ Arrays.toString(workparameter) + "]";
 	}
+
+	
 
 	
 

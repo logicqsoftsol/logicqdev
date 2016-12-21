@@ -20,6 +20,15 @@ public class UserProfileDAO extends AbstractDAO<UserProfile> implements IUserDAO
 	}
 	
 	@Override
+	public UserProfile fetchUserAccordingToUserName(String username) {
+		StringBuilder query=new StringBuilder();
+		query.append(" from UserProfile up where up.logindetails.username ='"+username+"'");
+		List<UserProfile> userprofiles= (List<UserProfile>) execcuteQuery(query.toString());
+		return   userprofiles.get(0);
+		
+	}
+	
+	@Override
 	public UserProfile fetchUserAccordingToProfileId(Long profileid) {
 		StringBuilder query=new StringBuilder();
 		query.append(" from UserProfile up where up.id = "+profileid);

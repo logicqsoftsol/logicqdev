@@ -24,7 +24,10 @@
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.validateOTPURL+"/"+$scope.approval.verificationtypelabel+"/"+$scope.approval.otpcode;
 			return  $http.post(url," ")
 		},
-		
+		createEncashRequest:function (request) {
+			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.createEncashRequestURL;
+			return  $http.post(url,request.encashdetails)
+		},
 		
 		}
 }]);

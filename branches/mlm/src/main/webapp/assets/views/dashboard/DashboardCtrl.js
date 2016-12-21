@@ -50,7 +50,6 @@
 							$scope.networkid=networkid;
 							UserDetailsService.getUserProfileForNetwork( $scope).success(function(data, status) {
 								$localStorage.profile=data;
-								$scope.networkcreated='true';
 								$scope.displayProfile();
 									}).error(function(data, status) {
 									   var errormsg='Unable to Populate for Calnder event details : '+status;
@@ -61,7 +60,7 @@
 					 
 				$scope.displayNetworkProfie= function(networkjson){
 					$('#networkmember-chart').orgchart({
-				      'data' : $scope.networkjson,
+				      'data' : networkjson,
 				      'depth': 2,
 				      'nodeContent': 'title',
 				      'exportButton': false,
@@ -161,6 +160,7 @@
 				}else{
 					 $scope.tasklist={};
 					 $scope.tasklist.count=0;
+				}
 				     $scope.user.firstname=$scope.userdetails.userprofile.firstname;
 					 $scope.user.lastname=$scope.userdetails.userprofile.lastname;
 					 $scope.user.dateofbirth=new Date($scope.userdetails.userprofile.dateofbirth);
@@ -181,16 +181,39 @@
 					$scope.user.userperformance.totalincome=$scope.userdetails.userperformance.income;
 					$scope.user.userperformance.totalperformance=$scope.userdetails.userperformance.performancetype;
 					$scope.user.userperformance.totalrating=$scope.userdetails.userperformance.ratting;
-				   }
-				   $scope.networkjson=$scope.userdetails.networkjson;
-                  if($scope.networkcreated=='false'){
-						$scope.displayNetworkProfie($scope.networkjson);
-						$scope.networkcreated='true';
-					}
+					$scope.networkjson= $scope.networkjson.concat($scope.userdetails.networkjson);
+					$scope.displayNetworkProfie($scope.networkjson);
 					};
 					
 					$scope.setupNetwork=function(){
 						$scope.userprofile={};
+						$scope.userprofile.networkinfo={};
+						$scope.userprofile.networkinfo.parentmemberid=$scope.userdetails.userprofile.logindetails.username;
+						$scope.userprofile.networkinfo.memberlevel='LEVEL1';
+					}
+					$scope.poulateEncashDetails=function(){
+						$scope.encashdetails={};
+						$scope.encashdetails.walletnumber=$scope.userdetails.userprofile.walletdetails.walletnumber;
+						$scope.encashdetails.encashamount=$scope.userdetails.walletStatement.maxencashable;
+					}
+					$scope.createEncashRequest=function(){
+						UserDetailsService.createEncashRequest($scope.request).sucess(function(data, status) {
+					}).error(function(data, status) {
+						   var errormsg='Unable to Populate for Calnder event details : '+status;
+							$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+							$exceptionHandler(errormsg);
+						});
+					
+					$scope.populateEncashDetailsForApprover=function(){
+						UserHelper.populateEncashRequestDetails($scope);
+						 UserDetailsService.validateOTP($scope).success(function(data, status) {
+							 
+							 
+						 }).error(function(data, status) {
+							   var errormsg='Unable to Populate for Calnder event details : '+status;
+								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+								$exceptionHandler(errormsg);
+							});
 					}
 					
 					$scope.addUserDetails=function(){
@@ -213,9 +236,17 @@
 					
 					$scope.updateAdminTask=function(task){
 				     $scope.request.task=task;
-				     AdminService.updateAdminTask($scope.request);
+				     AdminService.updateAdminTask($scope.request).success(function(data, status) {
 					 $scope.tasklist.count=$scope.tasklist.count-1;
 					 angular.element('#notificationdetails').modal('hide');
+					 if(task.tasktype=='ENCASH_REQUEST'){
+						  angular.element('#encashdetailmodal').modal('show');
+					 }
+					 }).error(function(data, status) {
+								   var errormsg='Unable to Update Task Details: '+status;
+									$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+									$exceptionHandler(errormsg);
+								});
 					}
 					
 			 } ]);

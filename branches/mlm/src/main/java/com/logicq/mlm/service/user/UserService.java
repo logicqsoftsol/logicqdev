@@ -107,11 +107,24 @@ public class UserService implements IUserService{
 		com.logicq.mlm.service.security.UserService.addUser(user.getLogindetails());
 	}
 
+
 	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public UserProfile fetchUserAccordingToProfileId(Long profileid) {
 		return userdao.fetchUserAccordingToProfileId(profileid);
 	}
    
+
+	@Override
+	@ExceptionHandler(Exception.class)
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public UserProfile fetchUserAccordingToUserName(String username) {
+		return userdao.fetchUserAccordingToUserName(username);
+	}
+
+	
+	
 	
 
 }

@@ -1,6 +1,5 @@
 package com.logicq.mlm.controller;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.factory.LoginFactory;
 import com.logicq.mlm.model.admin.TaskDetails;
-import com.logicq.mlm.model.login.Authority;
 import com.logicq.mlm.model.performance.UserPerformance;
 import com.logicq.mlm.model.profile.NetWorkDetails;
 import com.logicq.mlm.model.profile.NetworkInfo;
@@ -113,8 +111,6 @@ public class LoginController {
 					userdetailsvo.setWalletStatement(walletStatement);
 					userperformanceservice.fetchUserPerformanceAccordingToAggregation(userperformance);
 					userdetailsvo.setUserperformance(userperformance);
-					
-					
 				} catch (Exception e) {
 					return new ResponseEntity<UserDetailsVO>(userdetailsvo, HttpStatus.INTERNAL_SERVER_ERROR);
 				}

@@ -26,13 +26,13 @@ public class NetworkInfo implements Serializable {
 	private static final long serialVersionUID = -6382790028584606455L;
 
 	@Id
-	@Column(name = "MEMBER_ID")
+	@Column(name = "MEMBER_ID" ,nullable = false)
 	private String memberid;
 
-	@Column(name = "PARENT_ID")
+	@Column(name = "PARENT_ID",nullable = false)
 	private String parentmemberid;
 
-	@Column(name = "MEMEBR_LEVEL")
+	@Column(name = "MEMEBR_LEVEL",nullable = false)
 	private String memberlevel;
 
 	@Temporal(TemporalType.DATE)
@@ -41,7 +41,7 @@ public class NetworkInfo implements Serializable {
 
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name = "PROFILE_ID")
+	@JoinColumn(name = "PROFILE_ID",nullable = false)
 	private UserProfile userprofile;
 	
 	@Lob

@@ -59,6 +59,15 @@
 			otpnumber:$scope.approval.otpcode,
 		};				
 		},
+		 populateEncashRequestDetails: function ($scope) {
+				return $scope.request.encashdetails={
+						encashamount:$scope.encashdetails.encashamount,
+					wallentnumber:$scope.encashdetails.walletnumber,
+					username:$scope.encashdetails.username,
+					encashtype:$scope.encashdetails.encashmethod,
+					refrencenumber:$scope.encashdetails.refrence
+				};				
+				},
 		}
 }]);
 
