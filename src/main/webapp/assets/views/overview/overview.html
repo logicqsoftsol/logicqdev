@@ -128,7 +128,7 @@
                     </tbody>
                   </table>
                 </div>
-				 <button type="button"  class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Request Encash</button>
+				 <button type="button" ng-click="poulateEncashDetails()" class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Request Encash</button>
             </div>
           </div>
 		   <div class="panel panel-info">
@@ -318,14 +318,14 @@
 		<div class="form-group">
           <label class="col-lg-3 control-label">Parent Profile ID</label>
           <div class="col-lg-8">
-            <input class="form-control" name="ppro_id" ng-model="userprofile.networkinfo.parentmemberid" placeholder="Refrence ID" type="text" required/>
+            <input class="form-control" name="ppro_id" ng-model="userprofile.networkinfo.parentmemberid" placeholder="Refrence ID" type="text" required readonly/>
 			<span style="color:red" ng-show="nwtk_info.ppro_id.$error.required && nwtk_info.ppro_id.$dirty">Please enter profile_ID of your parent member.</span> 
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Member Type </label>
           <div class="col-lg-8">
-            <input class="form-control" ng-model="userprofile.networkinfo.memberlevel" placeholder="Member Type" type="text" name="mtype" required/>
+            <input class="form-control" ng-model="userprofile.networkinfo.memberlevel" placeholder="Member Type" type="text" name="mtype" required readonly/>
 			<span style="color:red" ng-show="nwtk_info.mtype.$error.required && nwtk_info.mtype.$dirty">Enter you Member Type like LEVEL1, LEVEL2 ... </span> 
           </div>
         </div>
@@ -462,20 +462,22 @@
 		  <div class="modal-body">
 			<div class="col-md-6" >
 					<div class="form-group">
-						<label for="mobilenumber">Wallet Number</label>
-						<input type="text" id="otpmobilenumber" name="mobilenumber" class="form-control" readonly>
+						<label for="encashdetails.walletnumber">Wallet Number</label>
+						<input type="text" id="encashdetails.walletnumber" name="encashdetails.walletnumber" ng-model="encashdetails.walletnumber" class="form-control" readonly>
 					</div>
 					<div class="form-group">
-						<label for="otpnumber">Encash Amount</label>
-						<input id="encashed" name="encashed" class="form-control" type="text" value="0.0" readonly></td>
-					</div>
-										
+						<label for="encashdetails.encashamount">Encash Amount</label>
+						<input id="encashdetails.encashamount" name="encashdetails.encashamount" ng-model="encashdetails.encashamount" class="form-control" type="text"  readonly>
+					</div>				
 				</div>
 			</div>
 					<div class="modal-footer">
-						<div class="col-md-4">
-							   <input  type="button"  name="enachedmoney" value="Encashed" class="btn btn-primary btn-block" />
-						</div>
+						
+							   <button type="submit" id="encashrequest" class="btn btn-default" ng-click="createEncashRequest()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+								<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						
 					</div>
 					</form>
 		  </div>
@@ -483,6 +485,68 @@
 		</div>
 	</div>
 	
+	
+<!-- Encashed Modal -->		
+<div  id="encashdetailmodal" name="encashdetailmodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+	  <div class="modal-dialog">
+	
+		<div class="modal-content">
+		  <form id="otprequestform" method="post"  class="form-horizontal">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title" id="myModalLabel">Encash Service Details</h4>
+		  </div>
+		  
+		  <div class="modal-body">
+			<div class="col-md-7" >
+			        <div class="form-group">
+						<label for="encashdetails.encashamount">Encash Amount</label>
+						<input id="encashdetails.encashamount" name="encashdetails.encashamount" ng-model="encashdetails.encashamount" class="form-control" type="text"  readonly>
+					</div>	
+					<div class="form-group">
+						<label for="encashdetails.walletnumber">Encash For Wallet</label>
+						<input type="text" id="encashdetails.walletnumber" name="encashdetails.walletnumber" ng-model="encashdetails.walletnumber" class="form-control" readonly>
+					</div>
+					<div class="form-group">
+						<label for="encashdetails.username">Encash For UserName</label>
+						<input type="text" id="encashdetails.username" name="encashdetails.username" ng-model="encashdetails.username" class="form-control" readonly>
+					</div>
+					<div class="form-group">
+						<label for="encashdetails.approver">Encash  Approver</label>
+						<input type="text" id="encashdetails.approver" name="encashdetails.approver" ng-model="encashdetails.approver" class="form-control" readonly>
+					</div>
+					<div class="form-group">
+						<label for="encashdetails.encashmethod">Encash  By</label>
+						<input type="text" id="encashdetails.encashmethod" name="encashdetails.encashmethod" ng-model="encashdetails.encashmethod" class="form-control" list="encashmethodlist">
+					   <datalist id="encashmethodlist">
+					   <option> Cheque</option>
+					   <option> Cash</option>
+					   <option> Online-NEFT</option>
+					   <option> Online-RTGS</option>
+					   <option> Online-IMPS</option>
+					   </datalist>
+					</div>
+					<div class="form-group">
+					<label for="encashdetails.refrence">Encash By Refrence</label>
+						<textarea name="message" class="form-control" ng-model="encashdetails.refrence"  placeholder="Encash By Refrence" required></textarea>	
+				    </div>
+				</div>
+			</div>
+					<div class="modal-footer">
+						
+							   <button type="submit" id="encashrequest" class="btn btn-default" ng-click="saveEncashDetails()"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+								<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+						
+					</div>
+					</form>
+		  </div>
+		  
+		</div>
+	</div>	
 	
 	<!-- meeting modal-->
 	<div id="setupmeeting"  name="setupmeeting" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">

@@ -58,6 +58,12 @@ public class ContactDetails implements Serializable{
 	@Column(name = "IS_VALID_ADDRESS")
 	private Boolean isaddressvalid;
 	
+	@Column(name = "IS_VALID_EMAIL")
+	private Boolean isvalidemail;
+	
+	@Column(name = "IS_VALID_MOB_NUMBER")
+	private Boolean isvalidmobilenumber;
+	
 	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "PROFILE_ID")
@@ -161,11 +167,30 @@ public class ContactDetails implements Serializable{
 		this.contactid = contactid;
 	}
 
+	public Boolean getIsvalidemail() {
+		return isvalidemail;
+	}
+
+	public void setIsvalidemail(Boolean isvalidemail) {
+		this.isvalidemail = isvalidemail;
+	}
+
+	public Boolean getIsvalidmobilenumber() {
+		return isvalidmobilenumber;
+	}
+
+	public void setIsvalidmobilenumber(Boolean isvalidmobilenumber) {
+		this.isvalidmobilenumber = isvalidmobilenumber;
+	}
+
 	@Override
 	public String toString() {
 		return "ContactDetails [contactid=" + contactid + ", addressText=" + addressText + ", landMark=" + landMark
 				+ ", pincode=" + pincode + ", district=" + district + ", state=" + state + ", country=" + country
 				+ ", mobilenumber=" + mobilenumber + ", email=" + email + ", alternetmobilenumber="
-				+ alternetmobilenumber + ", isaddressvalid=" + isaddressvalid + "]";
+				+ alternetmobilenumber + ", isaddressvalid=" + isaddressvalid + ", isvalidemail=" + isvalidemail
+				+ ", isvalidmobilenumber=" + isvalidmobilenumber +"]";
 	}
+
+	
 }
