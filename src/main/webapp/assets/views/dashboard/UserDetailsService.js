@@ -28,7 +28,14 @@
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.createEncashRequestURL;
 			return  $http.post(url,request.encashdetails)
 		},
-		
+		pollTaskDetails: function () {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.pollTaskListURL,
+				dataType :'json',
+				data : ''
+			})
+	},
 		}
 }]);
 

@@ -68,6 +68,18 @@
 					refrencenumber:$scope.encashdetails.refrence
 				};				
 				},
+				 populateTaskWithEncashRequestDetails: function ($scope) {
+				return $scope.request.task={
+					encashvo:{
+						encashamount:$scope.encashdetails.encashamount,
+					walletnumber:$scope.encashdetails.walletnumber,
+					username:$scope.encashdetails.username,
+					encashtype:$scope.encashdetails.encashmethod,
+					refrencenumber:$scope.encashdetails.refrence
+					}
+						
+				};				
+				},
 		}
 }]);
 

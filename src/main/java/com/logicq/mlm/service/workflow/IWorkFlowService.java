@@ -21,4 +21,6 @@ public interface IWorkFlowService {
 	
 	public WorkFlow getWorkFlowAccordingToWorkId(Long workid)throws Exception;
 	public List<WorkFlow> getPendingWorkFlowAccordingToProfile(String profileid);
+	
+	public List<WorkFlow> getWorkFlowForUserAccordingToWorkType(String worktype,String username);
 }

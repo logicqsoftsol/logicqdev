@@ -20,7 +20,8 @@
 	   'validateOTPURL' : '/api/service/otpValidate',
 	   'saveUserProfileDetailsURL' :'/api/user/saveUser',
 	   'updateAdminTaskURL':'/api/admin/updateAdminTask',
-	   'createEncashRequestURL':'/api/user/createEncashRequest'
+	   'createEncashRequestURL':'/api/user/createEncashRequest',
+	    'pollTaskListURL':'/api/admin/getTaskListDetails'
 	}).directive('ngConfirmClick', [
 	                                   function(){
 	                                       return {
