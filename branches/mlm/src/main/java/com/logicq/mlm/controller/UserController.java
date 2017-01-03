@@ -243,6 +243,8 @@ public class UserController {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
 				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				UserProfile userprofile = userservice.fetchUserAccordingToUserName(login.getUsername());
+				encashvo.setUsername(login.getUsername());
+				encashvo.setRequestdate(new Date());
 				workflowservice.createWorkFlowForEncashRequest(encashvo,userprofile);
 			}
 		}

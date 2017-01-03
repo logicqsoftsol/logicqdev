@@ -40,6 +40,13 @@ public class WorkFlowDAO extends AbstractDAO<WorkFlow> implements IWorkFlowDAO {
 		return  (List<WorkFlow>) execcuteQuery(query.toString());
 	}
 
+	@Override
+	public List<WorkFlow> getWorkFlowForUserAccordingToWorkType(String worktype,String username) {
+		 StringBuilder query=new StringBuilder();
+		 query.append(" from WorkFlow wf where  wf.assignedto ='"+username+"'"+" and wf.status ='"+false+"'"+" and wf.worktype='"+worktype+"'");
+		return  (List<WorkFlow>) execcuteQuery(query.toString());
+	}
+
 	
 	
 	@Override

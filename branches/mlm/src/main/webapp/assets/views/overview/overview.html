@@ -467,7 +467,7 @@
 					</div>
 					<div class="form-group">
 						<label for="encashdetails.encashamount">Encash Amount</label>
-						<input id="encashdetails.encashamount" name="encashdetails.encashamount" ng-model="encashdetails.encashamount" class="form-control" type="text"  readonly>
+						<input id="encashdetails.encashamount" name="encashdetails.encashamount" ng-model="encashdetails.encashamount" class="form-control" type="text">
 					</div>				
 				</div>
 			</div>
@@ -710,7 +710,7 @@
 								<td>{{task.taskfor}}</td>
 								<td>{{task.taskassigneddate | date:'yyyy-MM-dd'}}</td>
 								<td>{{task.tasktype}}</td>
-								<td><input type="text" id="taskstatus" ng-model="task.taskstatus" name="taskstatus" class="form-control" list="taskstatuslist">
+								<td><input type="text" id="taskstatus" ng-model="task.taskstatus" name="taskstatus" class="form-control" list="taskstatuslist" ng-readonly="taskreadonly">
 								<datalist id="taskstatuslist">
 									<option value="Pending">
 									<option value="Approved">

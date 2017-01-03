@@ -29,6 +29,7 @@ import com.logicq.mlm.service.security.UserService;
 import com.logicq.mlm.service.user.IUserService;
 import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
+import com.logicq.mlm.vo.EncashVO;
 import com.logicq.mlm.vo.LoginVO;
 import com.logicq.mlm.vo.UserDetailsVO;
 
@@ -69,12 +70,16 @@ public class LoginController {
 					userprofile.setLogindetails(LoginFactory.createLoginDetails(login));
 					userprofile = userservice.fetchUser(userprofile);
 					userdetailsvo.setUserprofile(userprofile);
+					List<TaskDetails> tasklist=new ArrayList<TaskDetails>();
 					if(authorityname.equals("ADMIN")){
 						List<WorkFlow> workflowlist = workflowservice.getPendingWorkFlowForAdmin(authorityname);
-						List<TaskDetails> tasklist=new ArrayList<TaskDetails>();
-		
+					
 						for(WorkFlow workflow:workflowlist){
 							TaskDetails task=new TaskDetails();
+							if(workflow.getWorktype().equals("ENCASH_REQUEST")){
+								EncashVO encashvo=mapper.readValue(new String(workflow.getWorkparameter()), EncashVO.class);
+								task.setEncashvo(encashvo);
+							}
 							task.setPriority("HIGH");
 							task.setTaskassigneddate(workflow.getCreatetime());
 							task.setTaskfor(workflow.getCreatedby());
@@ -100,7 +105,23 @@ public class LoginController {
 						if (work.getWorktype().equalsIgnoreCase("ADMIN_VERIFICATION")) {
 							userdetailsvo.setAdminVerified(work.getStatus());
 						} 
+						if(work.getWorktype().equals("ENCASH_REQUEST") && !work.getStatus()){
+							TaskDetails task=new TaskDetails();
+							EncashVO encashvo=mapper.readValue(new String(work.getWorkparameter()), EncashVO.class);
+							task.setEncashvo(encashvo);
+							task.setPriority("HIGH");
+							task.setTaskassigneddate(work.getCreatetime());
+							task.setTaskfor(work.getCreatedby());
+							task.setTaskname(work.getWorktype());
+							if(!work.getStatus()){
+								task.setTaskstatus("Pending");	
+							}							
+							task.setTasktype(work.getWorktype());
+							task.setTaskid(work.getWorkid());
+							tasklist.add(task);
+						}
 					}
+					userdetailsvo.setTasklist(tasklist);
 					}
 					NetworkInfo networkinfo=networkservice.getNetworkDetails(login.getUsername());
 					NetWorkDetails networkdetails = mapper.readValue(new String(networkinfo.getNetworkjson()), NetWorkDetails.class);

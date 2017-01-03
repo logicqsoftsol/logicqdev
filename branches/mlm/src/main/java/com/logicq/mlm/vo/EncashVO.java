@@ -9,7 +9,7 @@ public class EncashVO extends StatusVO{
 	 * 
 	 */
 	private static final long serialVersionUID = 2275774364728648409L;
-	private String wallentnumber;
+	private String walletnumber;
 	private BigDecimal encashamount;
 	private String walletid;
 	private Date requestdate;
@@ -17,12 +17,7 @@ public class EncashVO extends StatusVO{
 	private String encashtype;
 	private String refrencenumber;
 
-	public String getWallentnumber() {
-		return wallentnumber;
-	}
-	public void setWallentnumber(String wallentnumber) {
-		this.wallentnumber = wallentnumber;
-	}
+	
 	public BigDecimal getEncashamount() {
 		return encashamount;
 	}
@@ -59,13 +54,20 @@ public class EncashVO extends StatusVO{
 	public void setRefrencenumber(String refrencenumber) {
 		this.refrencenumber = refrencenumber;
 	}
-	
+	public String getWalletnumber() {
+		return walletnumber;
+	}
+	public void setWalletnumber(String walletnumber) {
+		this.walletnumber = walletnumber;
+	}
 	@Override
 	public String toString() {
-		return "EncashVO [wallentnumber=" + wallentnumber + ", encashamount=" + encashamount + ", walletid=" + walletid
+		return "EncashVO [walletnumber=" + walletnumber + ", encashamount=" + encashamount + ", walletid=" + walletid
 				+ ", requestdate=" + requestdate + ", username=" + username + ", encashtype=" + encashtype
 				+ ", refrencenumber=" + refrencenumber + "]";
 	}
+	
+
 	
 	
 

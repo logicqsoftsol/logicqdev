@@ -1,5 +1,6 @@
 package com.logicq.mlm.common.helper.sms;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class MessageHelper {
@@ -36,5 +37,13 @@ public class MessageHelper {
 	public static String validationPendingMessageForAdmin(String username, String emailid, String mobilenumber) {
 		return "The User with USERNAME :" + username + " , " + " EMAIL :" + emailid + " , " + " Mobile Number :"
 				+ mobilenumber + " has pending for approval";
+	}
+	
+	public static String generateAmountEncashMessageForAdmin(String username, String mobilenumber, BigDecimal encashamount) {
+		return "The User with USERNAME :" + username + " and" + " Mobile Number :" + mobilenumber + " has been request for Encashing Amount INR "+encashamount+"on Date "+new Date();
+	}
+	
+	public static String generateAmountEncashMessageForUser(String username, String mobilenumber, BigDecimal encashamount) {
+		return "Your have sucessfully request for encashing  INR "+encashamount+" on Date "+new Date();
 	}
 }

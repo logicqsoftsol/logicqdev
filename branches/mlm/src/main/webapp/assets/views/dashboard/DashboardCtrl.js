@@ -38,6 +38,8 @@
 					$scope.tasklist={};
 					$scope.tasklist.count={};
 					$scope.request.task={};
+					$scope.encashdetails={};
+				
 				    angular.forEach($state.get(), function (item) {
 				        if (item.data && item.data.visible) {
 				            $scope.menuItems.push({name: item.name, text: item.data.text});
@@ -82,7 +84,7 @@
 					$scope.approval.emailVerified='Approved';
 				}
 					
-					if(!$localStorage.profile.adminVerified){
+			     if(!$localStorage.profile.adminVerified){
 			       $scope.approval.adminVerified='Pending';
 				   $scope.approvalpendinglist.push({id:3, name:'Admin'});	
 				}else{
@@ -124,9 +126,10 @@
 							 $localStorage.profile.emailVerified=data.emailVerified;
 							 $localStorage.profile.adminVerified=data.adminVerified;
 							angular.element('#approvalmodal').modal('hide');
+							$scope.approvalpendinglist=[];
 							if(!$localStorage.profile.mobilenoVerified){
 			    $scope.approval.mobilenoVerified='Pending';	
-				$scope.approvalpendinglist.push({id:1, name:'MobileNumber'});
+			    $scope.approvalpendinglist.push({id:1, name:'MobileNumber'});
 				}else{
 					$scope.approval.mobilenoVerified='Approved';
 				}
@@ -135,31 +138,34 @@
                 $scope.approvalpendinglist.push({id:2, name:'Email'});				
 				}else{
 					$scope.approval.emailVerified='Approved';
+				
 				}
-					
-					if(!$localStorage.profile.adminVerified){
-			       $scope.approval.adminVerified='Pending';
-				   $scope.approvalpendinglist.push({id:3, name:'Admin'});	
-				}else{
-					$scope.approval.adminVerified='Approved';
-				}
-									}).error(function(data, status) {
+				}).error(function(data, status) {
 									  var errormsg='Unable to validate OTP  '+status;
 										$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 										$exceptionHandler(errormsg);
 									});
 					
-				}							
+				}	
 				
+				$scope.poller = function() {
+					UserDetailsService.pollTaskDetails().then(function(r) {
+				    	$scope.tasklist=$scope.userdetails.tasklist;
+						$scope.tasklist.count=$scope.tasklist.length;
+				      $timeout($scope.poller, 4000);
+				    });      
+				  };
+				 $scope.poller();
+				  
 		     $scope.displayProfile = function () {
 					 $scope.userdetails=$localStorage.profile;
 					 $scope.usertype=$scope.userdetails.userprofile.logindetails.authorities[0].name;
-			    if($scope.usertype=='ADMIN'){
 					 $scope.tasklist=$scope.userdetails.tasklist;
 					 $scope.tasklist.count=$scope.tasklist.length;
+					 if($scope.usertype=='ADMIN'){
+			    	$scope.taskreadonly='false';
 				}else{
-					 $scope.tasklist={};
-					 $scope.tasklist.count=0;
+					$scope.taskreadonly='true';
 				}
 				     $scope.user.firstname=$scope.userdetails.userprofile.firstname;
 					 $scope.user.lastname=$scope.userdetails.userprofile.lastname;
@@ -181,8 +187,7 @@
 					$scope.user.userperformance.totalincome=$scope.userdetails.userperformance.income;
 					$scope.user.userperformance.totalperformance=$scope.userdetails.userperformance.performancetype;
 					$scope.user.userperformance.totalrating=$scope.userdetails.userperformance.ratting;
-					$scope.networkjson= $scope.networkjson.concat($scope.userdetails.networkjson);
-					$scope.displayNetworkProfie($scope.networkjson);
+					$scope.displayNetworkProfie($scope.userdetails.networkjson);
 					};
 					
 					$scope.setupNetwork=function(){
@@ -197,23 +202,19 @@
 						$scope.encashdetails.encashamount=$scope.userdetails.walletStatement.maxencashable;
 					}
 					$scope.createEncashRequest=function(){
-						UserDetailsService.createEncashRequest($scope.request).sucess(function(data, status) {
+						$scope.request.encashdetails={};
+						$scope.request.encashdetails.walletnumber=$scope.encashdetails.walletnumber;
+						$scope.request.encashdetails.encashamount=$scope.encashdetails.encashamount;
+						UserDetailsService.createEncashRequest($scope.request).success(function(data, status) {
 					}).error(function(data, status) {
 						   var errormsg='Unable to Populate for Calnder event details : '+status;
 							$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 							$exceptionHandler(errormsg);
 						});
+					}
 					
 					$scope.populateEncashDetailsForApprover=function(){
 						UserHelper.populateEncashRequestDetails($scope);
-						 UserDetailsService.validateOTP($scope).success(function(data, status) {
-							 
-							 
-						 }).error(function(data, status) {
-							   var errormsg='Unable to Populate for Calnder event details : '+status;
-								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
-								$exceptionHandler(errormsg);
-							});
 					}
 					
 					$scope.addUserDetails=function(){
@@ -236,12 +237,32 @@
 					
 					$scope.updateAdminTask=function(task){
 				     $scope.request.task=task;
-				     AdminService.updateAdminTask($scope.request).success(function(data, status) {
+					  if(task.tasktype=='ENCASH_REQUEST' && task.taskstatus=='Approved'){
+						  angular.element('#notificationdetails').modal('hide');
+						  angular.element('#encashdetailmodal').modal('show');
+						  $scope.encashdetails.encashamount=task.encashvo.encashamount;
+						  $scope.encashdetails.walletnumber=task.encashvo.walletnumber;
+						  $scope.encashdetails.username=task.encashvo.username;
+						  $scope.encashdetails.approver=$localStorage.profile.userprofile.logindetails.username;
+					 }else{
+				       angular.element('#encashdetailmodal').modal('hide');
+				      AdminService.updateAdminTask($scope.request).success(function(data, status) {
 					 $scope.tasklist.count=$scope.tasklist.count-1;
 					 angular.element('#notificationdetails').modal('hide');
-					 if(task.tasktype=='ENCASH_REQUEST'){
-						  angular.element('#encashdetailmodal').modal('show');
+					 }).error(function(data, status) {
+								   var errormsg='Unable to Update Task Details: '+status;
+									$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+									$exceptionHandler(errormsg);
+								});
+					}
 					 }
+				    $scope.saveEncashDetails=function(){
+					//UserHelper.populateTaskWithEncashRequestDetails($scope.request.task);
+					$scope.request.task.encashvo.encashtype=$scope.encashdetails.encashmethod;
+                    $scope.request.task.encashvo.refrencenumber=$scope.encashdetails.refrence;					
+					AdminService.updateAdminTask($scope.request).success(function(data, status) {
+					 $scope.tasklist.count=$scope.tasklist.count-1;
+					 angular.element('#encashdetailmodal').modal('hide');
 					 }).error(function(data, status) {
 								   var errormsg='Unable to Update Task Details: '+status;
 									$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});

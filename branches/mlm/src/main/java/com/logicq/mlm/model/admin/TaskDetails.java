@@ -2,6 +2,8 @@ package com.logicq.mlm.model.admin;
 
 import java.util.Date;
 
+import com.logicq.mlm.vo.EncashVO;
+
 public class TaskDetails {
 	
 	private String taskname;
@@ -11,6 +13,9 @@ public class TaskDetails {
 	private String taskstatus;
 	private String priority;
 	private Long taskid;
+	
+	private EncashVO encashvo;
+	
 	public String getTaskname() {
 		return taskname;
 	}
@@ -53,11 +58,17 @@ public class TaskDetails {
 	public void setTaskid(Long taskid) {
 		this.taskid = taskid;
 	}
+	public EncashVO getEncashvo() {
+		return encashvo;
+	}
+	public void setEncashvo(EncashVO encashvo) {
+		this.encashvo = encashvo;
+	}
 	@Override
 	public String toString() {
 		return "TaskDetails [taskname=" + taskname + ", taskfor=" + taskfor + ", taskassigneddate=" + taskassigneddate
 				+ ", tasktype=" + tasktype + ", taskstatus=" + taskstatus + ", priority=" + priority + ", taskid="
-				+ taskid + "]";
+				+ taskid + ", encashvo=" + encashvo + "]";
 	}
-
+	
 }
