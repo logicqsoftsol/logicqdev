@@ -37,6 +37,10 @@ public class WalletStatement implements Serializable {
 
 	@Column(name = "MAX_ENCASHABLE")
 	private BigDecimal maxencashable;
+	
+	@Column(name = "ENCASHED_AMOUNT")
+	private BigDecimal encashedAmount;
+	
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "LAST_UPDATE")
@@ -95,11 +99,19 @@ public class WalletStatement implements Serializable {
 		this.wallet = wallet;
 	}
 
+	public BigDecimal getEncashedAmount() {
+		return encashedAmount;
+	}
+
+	public void setEncashedAmount(BigDecimal encashedAmount) {
+		this.encashedAmount = encashedAmount;
+	}
+
 	@Override
 	public String toString() {
 		return "WalletStatement [walletid=" + walletid + ", payout=" + payout + ", currentbalance=" + currentbalance
-				+ ", maxencashable=" + maxencashable + ", walletlastupdate=" + walletlastupdate + ", wallet=" + wallet
-				+ "]";
+				+ ", maxencashable=" + maxencashable + ", encashedAmount=" + encashedAmount + ", walletlastupdate="
+				+ walletlastupdate + ", wallet=" + wallet + "]";
 	}
 
 

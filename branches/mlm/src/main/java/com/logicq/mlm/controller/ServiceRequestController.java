@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.logicq.mlm.common.factory.LoginFactory;
 import com.logicq.mlm.common.helper.sms.MessageHelper;
+import com.logicq.mlm.common.vendor.sms.SMSVendor;
 import com.logicq.mlm.model.message.EmailDetails;
 import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.sms.OTPDetails;
@@ -34,6 +35,7 @@ import com.logicq.mlm.vo.UserDetailsVO;
 @RequestMapping("/api/service")
 public class ServiceRequestController {
 	
+
 	private static final Logger logger = LoggerFactory
 			.getLogger(ServiceRequestController.class);
 	
@@ -49,7 +51,7 @@ public class ServiceRequestController {
 	@Autowired
 	IUserService userservice;
 
-	
+	private final static  SMSVendor smsvendor=SMSVendor.getInstance();
 	
 	@RequestMapping(value = "/otpSend/{type}", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE,consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> sendOTP(@PathVariable String type) throws Exception {
@@ -84,7 +86,7 @@ public class ServiceRequestController {
 				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			EmailDetails emaildetail=new EmailDetails();
 			emaildetail.setSenddate(new Date());
-			emaildetail.setSendto("info@logicqsoftsol.com");
+			emaildetail.setSendto(smsvendor.getAdminEmail());
 			emaildetail.setSubject("Validation Pending For UserName : "+login.getUsername());
 			emaildetail.setText(MessageHelper.validationPendingMessageForAdmin(login.getUsername(), login.getEmail(), login.getMobilenumber()));
 			emailservice.sendEmail(emaildetail);

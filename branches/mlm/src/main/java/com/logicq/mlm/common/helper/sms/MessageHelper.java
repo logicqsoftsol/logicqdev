@@ -7,7 +7,7 @@ public class MessageHelper {
 
 	public static String generateOTPMessage(int otp) {
 
-		return " Your OTP is " + otp + "\n" + "\n" + " From GETPAY.COM " + "\n" + "";
+		return " Your OTP is " + otp + "\n" + "\n" + " From GETPAY.CO.IN " + "\n" + "";
 	}
 
 	public static String generateMessageForServiceConfirmation(String servicename) {
