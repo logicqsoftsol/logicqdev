@@ -32,6 +32,12 @@ public class SMSVendor {
 	@Value("smsvendor.gwid")
 	public  String gwid;
 	
+	@Value("email.admin")
+	public String adminEmail;
+	
+	@Value("sms.mobilenumber")
+	public String mobilenumber;
+	
 	public String getUrl() {
 		return url;
 	}
@@ -71,8 +77,23 @@ public class SMSVendor {
 	public void setGwid(String gwid) {
 		this.gwid = gwid;
 	}
+	public String getAdminEmail() {
+		return adminEmail;
+	}
 
+	public void setAdminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
+	}
 
+	
+	
+	public String getMobilenumber() {
+		return mobilenumber;
+	}
+
+	public void setMobilenumber(String mobilenumber) {
+		this.mobilenumber = mobilenumber;
+	}
 
 	private SMSVendor(){}
 	

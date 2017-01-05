@@ -27,6 +27,7 @@ public class WalletAmountCalculator {
 	  BigDecimal payoutbalance= walletstmnt.getPayout().subtract(enasedamount);
 	  walletstmnt.setCurrentbalance(currentbalance);
 	  walletstmnt.setMaxencashable(maxencashbalance);	
+	  walletstmnt.setEncashedAmount(walletstmnt.getEncashedAmount().add(enasedamount));
 	  walletstmnt.setPayout(payoutbalance);
 	  walletstmnt.setWalletlastupdate(new Date());
 	  return walletstmnt;

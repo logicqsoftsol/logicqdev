@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.logicq.mlm.common.helper.sms.MessageHelper;
 import com.logicq.mlm.common.helper.sms.OTPGenerationHelper;
+import com.logicq.mlm.common.vendor.sms.SMSVendor;
 import com.logicq.mlm.model.message.EmailDetails;
 import com.logicq.mlm.model.sms.OTPDetails;
 import com.logicq.mlm.service.otp.IOTPService;
@@ -26,6 +27,8 @@ public class EmailService implements IEmailService{
 	@Autowired
 	IOTPService otpservice;
 	
+	private final static  SMSVendor smsvendor=SMSVendor.getInstance();
+	
 	@Override
 	public boolean sendEmailWithOTP(EmailDetails emaildetails) throws Exception {
 		OTPDetails otpdetail=new OTPDetails();
@@ -33,7 +36,7 @@ public class EmailService implements IEmailService{
 		int otp = OTPGenerationHelper.generateOTP();
 		//emaildetails.setSubject("OTP For Email Validation");
 		emaildetails.setText(MessageHelper.generateOTPMessage(otp));
-		emaildetails.setSendfrom("sudhanshu.lenka2008@gmail.com");
+		emaildetails.setSendfrom(smsvendor.getAdminEmail());
 		emailMsg.setFrom(emaildetails.getSendfrom());
 		emailMsg.setTo(emaildetails.getSendto());
 		emailMsg.setSubject(emaildetails.getSubject());

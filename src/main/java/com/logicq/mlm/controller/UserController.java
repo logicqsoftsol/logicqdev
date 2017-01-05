@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.factory.LoginFactory;
 import com.logicq.mlm.common.helper.sms.MessageHelper;
 import com.logicq.mlm.common.helper.sms.SMSHelper;
+import com.logicq.mlm.common.vendor.sms.SMSVendor;
 import com.logicq.mlm.model.message.EmailDetails;
 import com.logicq.mlm.model.performance.UserPerformance;
 import com.logicq.mlm.model.profile.NetWorkDetails;
@@ -59,7 +60,8 @@ public class UserController {
 
 	@Autowired
 	INetworkDetailsService networkservice;
-
+	
+	private final static  SMSVendor smsvendor=SMSVendor.getInstance();
 	ObjectMapper objectmapper = new ObjectMapper();
 
 	@RequestMapping(value = "/fetchUser", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -117,14 +119,14 @@ public class UserController {
 		adminsmsdetails.setMessage(MessageHelper.generateUserRegistartionMessageForAdmin(
 				userdetailvo.getUserprofile().getLogindetails().getMobilenumber(),
 				userdetailvo.getUserprofile().getLogindetails().getEmail()));
-		adminsmsdetails.setMobilenumber("7057014118");
+		adminsmsdetails.setMobilenumber(smsvendor.getMobilenumber());
 		adminsmsdetails.setMsgreasone("Notify Admin FOr new user Added");
 		SMSHelper.sendSMS(adminsmsdetails);
 	}
 
 	private EmailDetails prepareEmail(WorkFlow workflow, UserDetailsVO userdetailvo) {
 		EmailDetails emailMsg = new EmailDetails();
-		emailMsg.setSendfrom("sudhanshu.lenka2008@gmail.com");
+		emailMsg.setSendfrom(smsvendor.getAdminEmail());
 		emailMsg.setSendto(userdetailvo.getUserprofile().getLogindetails().getEmail());
 		emailMsg.setSubject(workflow.getWorktype());
 		emailMsg.setText(workflow.getMessage());

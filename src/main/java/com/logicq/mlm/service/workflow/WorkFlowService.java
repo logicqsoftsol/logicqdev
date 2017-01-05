@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.helper.sms.MessageHelper;
+import com.logicq.mlm.common.vendor.sms.SMSVendor;
 import com.logicq.mlm.dao.workflow.IWorkFlowDAO;
 import com.logicq.mlm.model.message.EmailDetails;
 import com.logicq.mlm.model.profile.UserProfile;
@@ -27,6 +28,8 @@ public class WorkFlowService  implements IWorkFlowService{
 	
 	@Autowired
 	IEmailService emailservice;
+	
+	private final static  SMSVendor smsvendor=SMSVendor.getInstance();
 	
 	@Override
 	public void createWorkFlowForValidation(WorkFlow workflow) throws Exception {
@@ -96,7 +99,7 @@ public class WorkFlowService  implements IWorkFlowService{
 		String usermessage=MessageHelper.generateAmountEncashMessageForUser(userprofile.getLogindetails().getUsername(), userprofile.getLogindetails().getMobilenumber(), encashvo.getEncashamount());
 		EmailDetails adminemail=new EmailDetails();
 		adminemail.setSenddate(new Date());
-		adminemail.setSendto("info@logicqsoftsol.com");
+		adminemail.setSendto(smsvendor.getAdminEmail());
 		adminemail.setSubject("Encashing Request For UserName : "+userprofile.getLogindetails().getUsername());
 		adminemail.setText(adminmessage);
 		
