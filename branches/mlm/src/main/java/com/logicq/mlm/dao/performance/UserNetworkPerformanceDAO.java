@@ -23,7 +23,7 @@ public class UserNetworkPerformanceDAO extends AbstractDAO<UserNetworkCount> imp
 	@Override
 	public List<UserNetworkCount> getNetworkPerformance(UserNetworkCount usernetowrk) {
 		StringBuilder query=new StringBuilder();
-		query.append(" from UserNetworkCount un where un.profileid='"+usernetowrk.getProfileid()+"' and un.memberid='"+usernetowrk.getMemberid()+"'");
+		query.append(" from UserNetworkCount un where un.profileid='"+usernetowrk.getMemberid()+"' and un.memberid='"+usernetowrk.getMemberid()+"'");
 		return (List<UserNetworkCount>) execcuteQuery(query.toString());
 	}
 

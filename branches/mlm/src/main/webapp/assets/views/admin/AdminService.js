@@ -6,6 +6,7 @@
 		return {
 			
 		updateAdminTask: function (request) {
+			//var url = AppConstants.hostName+AppConstants.updateAdminTaskURL;
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.updateAdminTaskURL;
 			return  $http.post(url,request.task)
 		}

@@ -7,6 +7,7 @@
     
    angular.module('mlmlogicq', ['ui.router','snap','ngStorage']).constant('AppConstants', {
      'hostName':'http://127.0.0.1:', 
+     //'hostName':'http://getpay.co.in',
 	 //'hostName':'http://45.113.136.130:',
 	  'hostPort': '8090' ,
 	 //  'hostPort': '8167' ,

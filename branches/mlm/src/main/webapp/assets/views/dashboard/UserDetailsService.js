@@ -7,30 +7,36 @@
 			getUserProfileForNetwork: function ($scope) {
 				return  $http({
 					method: 'GET',
+					//url: AppConstants.hostName+AppConstants.getUserProfileURL+"/"+$scope.networkid,
 					url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getUserProfileURL+"/"+$scope.networkid,
 					dataType :'json',
 					data : ''
 				})
 		},
 		saveUserProfileDetails: function (request) {
+			//var url = AppConstants.hostName+AppConstants.saveUserProfileDetailsURL;
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveUserProfileDetailsURL;
 			return  $http.post(url,request.user)
 		},
 		sendOTP: function ($scope) {
+			//var url = AppConstants.hostName+AppConstants.sendOTPURL+"/"+$scope.approval.verificationtypelabel;
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.sendOTPURL+"/"+$scope.approval.verificationtypelabel;
 			return  $http.post(url," ")
 		},
 		validateOTP: function ($scope) {
+			//var url = AppConstants.hostName+AppConstants.validateOTPURL+"/"+$scope.approval.verificationtypelabel+"/"+$scope.approval.otpcode;
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.validateOTPURL+"/"+$scope.approval.verificationtypelabel+"/"+$scope.approval.otpcode;
 			return  $http.post(url," ")
 		},
 		createEncashRequest:function (request) {
+			//var url = AppConstants.hostName+AppConstants.createEncashRequestURL;
 			var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.createEncashRequestURL;
 			return  $http.post(url,request.encashdetails)
 		},
 		pollTaskDetails: function () {
 			return  $http({
 				method: 'GET',
+				//url: AppConstants.hostName+AppConstants.pollTaskListURL,
 				url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.pollTaskListURL,
 				dataType :'json',
 				data : ''
