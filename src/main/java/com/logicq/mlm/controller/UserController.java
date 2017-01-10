@@ -82,6 +82,7 @@ public class UserController {
 	public ResponseEntity<UserDetailsVO> saveUserDetails(@RequestBody UserDetailsVO userdetailvo) throws Exception {
 		if (null != userdetailvo.getUserprofile()) {
 			// update newtork json
+			userdetailvo.getUserprofile().getNetworkinfo().setIsUpdate(Boolean.FALSE);
 			String networkJson = objectmapper.writeValueAsString(userdetailvo.getNetworkjson());
 			userdetailvo.getUserprofile().getNetworkinfo().setNetworkjson(networkJson.getBytes());
 
@@ -97,6 +98,7 @@ public class UserController {
 					emailservice.sendEmail(emailmessage);
 				}
 			}
+			
 			// send SMS to user and admin
 			prepapreSMSDetailsAndSendSMS(userdetailvo);
 

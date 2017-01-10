@@ -62,5 +62,12 @@ public class WorkFlowDAO extends AbstractDAO<WorkFlow> implements IWorkFlowDAO {
 		 query.append(" from WorkFlow wf where wf.workid='"+workid+"'");
 		return (WorkFlow) execcuteQuery(query.toString()).get(0);
 	}
+	
+	@Override
+	public List<WorkFlow> getWorkFlowStatusForLogin() throws Exception {
+		StringBuilder query=new StringBuilder();
+		query.append(" from WorkFlow wf where wf.worktype ='ADMIN_VERIFICATION' and wf.status=true");
+		return (List<WorkFlow>) execcuteQuery(query.toString());
+	}
 
 }

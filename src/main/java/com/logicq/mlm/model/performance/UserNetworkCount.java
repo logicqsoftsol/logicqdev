@@ -17,8 +17,6 @@ public class UserNetworkCount {
 	private Long id;
 	
 	
-	@Column(name = "PROFILE_ID", unique = true, nullable = false)
-	private Long profileid;
 	
 	@Column(name = "MEMBER_ID", unique = true, nullable = false)
 	private String memberid;
@@ -38,14 +36,7 @@ public class UserNetworkCount {
 		this.id = id;
 	}
 
-	public Long getProfileid() {
-		return profileid;
-	}
-
-	public void setProfileid(Long profileid) {
-		this.profileid = profileid;
-	}
-
+	
 	public String getMemberid() {
 		return memberid;
 	}
@@ -72,7 +63,7 @@ public class UserNetworkCount {
 
 	@Override
 	public String toString() {
-		return "UserNetworkCount [id=" + id + ", profileid=" + profileid + ", memberid=" + memberid + ", networklevel="
+		return "UserNetworkCount [id=" + id + ", memberid=" + memberid + ", networklevel="
 				+ networklevel + ", membercount=" + membercount + "]";
 	}
 	

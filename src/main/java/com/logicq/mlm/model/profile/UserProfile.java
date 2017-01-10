@@ -147,9 +147,8 @@ public class UserProfile implements Serializable {
 	@Override
 	public String toString() {
 		return "UserProfile [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", gender=" + gender
-				+ ", dateofbirth=" + dateofbirth + ", logindetails=" + logindetails + ", networkinfo=" + networkinfo
-				+ ", conatctDetails=" + conatctDetails + ", walletdetails=" + walletdetails + ", socialdetails="
-				+ socialdetails + "]";
+				+ ", dateofbirth=" + dateofbirth + "]";
 	}
+
 	
 }

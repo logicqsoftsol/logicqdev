@@ -17,12 +17,12 @@ public class PropertyHelper {
 	
  
   
-  public static NetWorkDetails convertJsonToNetworkInfo(NetworkInfo parentnetworkinfo) throws Exception{
-	 return  mapper.readValue(new String( parentnetworkinfo.getNetworkjson()),NetWorkDetails.class );
+  public static NetWorkDetails convertJsonToNetworkInfo(NetworkInfo networkinfo) throws Exception{
+	 return  mapper.readValue(new String( networkinfo.getNetworkjson()),NetWorkDetails.class );
   }
 
-  public static String convertNetworkInfoToJson(NetWorkDetails parentnetworkinfo) throws Exception{
-		 return  mapper.writeValueAsString(parentnetworkinfo);
+  public static String convertNetworkInfoToJson(NetWorkDetails networkDetails) throws Exception{
+		 return  mapper.writeValueAsString(networkDetails);
 	  }
   
 }
