@@ -1,11 +1,11 @@
 <div> 
 <article id="defaultload" ng-init="displayProfile()">
 <snap-drawer>
- <div class=snap-menu> <div class="sidebar-header text-center"> 
+ <div class="snap-menu"> <div class="sidebar-header text-center"> 
   <h4>{{userprofile.firstname}} {{userprofile.lastname}}</h4>
- <img src="assets/images/flat-avatar.png" class="sidebar-img img-circle"> 
+ <img src="assets/images/dummyuser.jpg" class="sidebar-img img-circle"> 
  </div> 
- <ul class=snap-ul>  
+ <ul class="snap-ul">  
  <li ng-class="{active: $state.includes('overview')}"><a ui-sref=overview>Home</a></li> 
  <li ng-class="{active: $state.includes('reports')}" > <a ui-sref=reports>Reports </a></li> 
  <li ng-class="{active: $state.includes('logout')}" > <a ui-sref=reports>Logout </a></li> 
@@ -14,10 +14,10 @@
  </snap-drawer> 
  <snap-dragger>
  </snap-dragger> 
-	 <snap-content snap-opt-tap-to-close=false class=bg-dark>
+	 <snap-content snap-opt-tap-to-close="false" class=bg-dark>
  <a snap-toggle=left ng-click="menuOpen = !menuOpen"> 
- <span class=menutoggle> 
- <i ng-hide=menuOpen class="fa fa-bars fa-2x"></i> <i ng-show=menuOpen class="fa fa-times fa-2x"></i> 
+ <span class="menutoggle"> 
+ <i ng-hide="menuOpen" class="fa fa-bars fa-2x"></i> <i ng-show="menuOpen" class="fa fa-times fa-2x"></i> 
  </span> 
  </a> 
  <div class=fr>
@@ -32,12 +32,8 @@
     <i class="fa fa-calendar" aria-hidden="true"></i>
 	<span>Schedule Meeting</span>
 </a>
- <a href="" data-target="#setuptask" data-toggle="modal" class="btn btn-sucess pull-right">
-    <i class="fa fa-tasks" aria-hidden="true"></i>
-	<span>Schedule Task</span>
-</a>
 <a href="" data-target="#displayFeeChart" data-toggle="modal" class="btn btn-sucess pull-right">
-    <i class="fa fa-tasks" aria-hidden="true"></i>
+    <i class="fa fa-money" aria-hidden="true"></i>
 	<span>Rewards Chart</span>
 </a>
 
@@ -58,7 +54,7 @@
 			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
             </div>
             <div class="panel-body">
-                <div class="col-md-3 col-lg-3" align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+                <div class="col-md-3 col-lg-3" align="center"> <img alt="user Pic" src="assets/images/dummyuser.jpg" class="img-circle img-responsive"></div>
                 
                 <div class="col-md-9 col-lg-9 table-responsive"> 
                   <table class="table table-user-information">

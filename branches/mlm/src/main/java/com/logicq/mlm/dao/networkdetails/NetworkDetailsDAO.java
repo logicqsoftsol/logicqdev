@@ -1,5 +1,7 @@
 package com.logicq.mlm.dao.networkdetails;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.logicq.mlm.dao.AbstractDAO;
@@ -13,8 +15,21 @@ public class NetworkDetailsDAO  extends AbstractDAO<NetworkInfo> implements INet
 		StringBuilder query=new StringBuilder();
 		query.append(" from NetworkInfo ni where ni.memberid='"+memberid+"'");
 		// need to change query may break as null pointer
-		return (NetworkInfo) execcuteQuery(query.toString()).get(0);
+		List<NetworkInfo> networkinfolist=(List<NetworkInfo>) execcuteQuery(query.toString());
+		if(null!=networkinfolist && !networkinfolist.isEmpty()){
+			return networkinfolist.get(0);
+		}
+		return null;
 	}
+	
+	@Override
+	public List<NetworkInfo> getNetworkDetailsForParent(String parentid) {
+		StringBuilder query=new StringBuilder();
+		query.append(" from NetworkInfo ni where ni.parentmemberid='"+parentid+"'");
+		// need to change query may break as null pointer
+		return (List<NetworkInfo>) execcuteQuery(query.toString());
+	}
+	
 
 	@Override
 	public void saveNetworkDetails(NetworkInfo networkinfo) {
@@ -24,6 +39,18 @@ public class NetworkDetailsDAO  extends AbstractDAO<NetworkInfo> implements INet
 	@Override
 	public void updateNetworkDetails(NetworkInfo networkinfo) {
 		update(networkinfo);
+	}
+
+	@Override
+	public NetworkInfo getUpdatePedingNetworkDetails(String memberid) {
+		StringBuilder query=new StringBuilder();
+		query.append(" from NetworkInfo ni where isUpdate=false and ni.memberid='"+memberid+"'");
+		// need to change query may break as null pointer
+		List<NetworkInfo> networkinfolist=(List<NetworkInfo>) execcuteQuery(query.toString());
+		if(null!=networkinfolist && !networkinfolist.isEmpty()){
+			return (NetworkInfo) execcuteQuery(query.toString()).get(0);
+		}
+		return null;
 	}
 
 }

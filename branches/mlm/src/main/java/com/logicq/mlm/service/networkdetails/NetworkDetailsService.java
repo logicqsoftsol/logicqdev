@@ -1,5 +1,7 @@
 package com.logicq.mlm.service.networkdetails;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,16 @@ public class NetworkDetailsService implements INetworkDetailsService {
 	@Override
 	public void updateNetworkDetails(NetworkInfo networkinfo) {
 		networkdetailsdao.updateNetworkDetails(networkinfo);
+	}
+
+	@Override
+	public List<NetworkInfo> getNetworkDetailsForParent(String parentid) {
+		return networkdetailsdao.getNetworkDetailsForParent(parentid);
+	}
+
+	@Override
+	public NetworkInfo getUpdatePedingNetworkDetails(String memberid) {
+		return networkdetailsdao.getUpdatePedingNetworkDetails(memberid);
 	}
 
 }

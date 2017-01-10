@@ -44,6 +44,10 @@ public class NetworkInfo implements Serializable {
 	@JoinColumn(name = "PROFILE_ID",nullable = false)
 	private UserProfile userprofile;
 	
+	
+	@Column(name = "IS_UPDATE", nullable = false)
+	private Boolean isUpdate;
+	
 	@Lob
 	@Column(name = "NETWORK_JSON")
 	private byte[] networkjson;
@@ -89,9 +93,6 @@ public class NetworkInfo implements Serializable {
 	public void setUserprofile(UserProfile userprofile) {
 		this.userprofile = userprofile;
 	}
-	
-	
-
 	public byte[] getNetworkjson() {
 		return networkjson;
 	}
@@ -100,10 +101,18 @@ public class NetworkInfo implements Serializable {
 		this.networkjson = networkjson;
 	}
 
+	public Boolean getIsUpdate() {
+		return isUpdate;
+	}
+
+	public void setIsUpdate(Boolean isUpdate) {
+		this.isUpdate = isUpdate;
+	}
+
 	@Override
 	public String toString() {
 		return "NetworkInfo [memberid=" + memberid + ", parentmemberid=" + parentmemberid + ", memberlevel="
-				+ memberlevel + ", dateofjoin=" + dateofjoin + ", networkjson=" + Arrays.toString(networkjson) + "]";
+				+ memberlevel + ", dateofjoin=" + dateofjoin + ", isUpdate=" + isUpdate + ", networkjson="
+				+ Arrays.toString(networkjson) + "]";
 	}
-
 }

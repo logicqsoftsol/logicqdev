@@ -125,4 +125,9 @@ public class WorkFlowService  implements IWorkFlowService{
 		return workflowdao.getWorkFlowForUserAccordingToWorkType(worktype, username);
 	}
 
+	@Override
+	public List<WorkFlow> getWorkFlowStatusForLogin() throws Exception {
+		return workflowdao.getWorkFlowStatusForLogin();
+	}
+
 }

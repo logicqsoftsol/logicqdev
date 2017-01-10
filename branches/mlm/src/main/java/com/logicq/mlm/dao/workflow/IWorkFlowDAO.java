@@ -19,5 +19,6 @@ public interface IWorkFlowDAO {
 	
 	public List<WorkFlow> getPendingWorkFlowAccordingToProfile(String profileid);
 	public List<WorkFlow> getWorkFlowForUserAccordingToWorkType(String worktype,String username);
+	public List<WorkFlow> getWorkFlowStatusForLogin() throws Exception;
 
 }

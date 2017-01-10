@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.factory.LoginFactory;
 import com.logicq.mlm.common.helper.PropertyHelper;
 import com.logicq.mlm.common.helper.WalletAmountCalculator;
+import com.logicq.mlm.model.admin.NetWorkTask;
 import com.logicq.mlm.model.admin.TaskDetails;
 import com.logicq.mlm.model.login.Login;
 import com.logicq.mlm.model.profile.NetWorkDetails;
@@ -28,6 +29,7 @@ import com.logicq.mlm.model.profile.WalletDetails;
 import com.logicq.mlm.model.wallet.WalletStatement;
 import com.logicq.mlm.model.workflow.WorkFlow;
 import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
+import com.logicq.mlm.service.networkdetails.INetworkTaskService;
 import com.logicq.mlm.service.user.IUserService;
 import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
@@ -48,7 +50,10 @@ public class AdminController {
 
 	@Autowired
 	INetworkDetailsService netWorkDetailsService;
-
+	
+	@Autowired
+	INetworkTaskService networktaskservice;
+	
 	@Autowired
 	IUserService userservice;
 
@@ -59,9 +64,10 @@ public class AdminController {
 		StatusVO statusvo = new StatusVO();
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
-				LoginVO admindetails = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				WorkFlow workflow = workflowservice.getWorkFlowAccordingToWorkId(taskdetails.getTaskid());
 				workflow.setStatus(Boolean.TRUE);
+				workflow.setMessage(workflow.getWorktype()+" done sucessfully");
+				workflowservice.updateWorkFlow(workflow);				
 				if ("ENCASH_REQUEST".equals(workflow.getWorktype()) && workflow.getStatus()) {
 					EncashVO encashvo = taskdetails.getEncashvo();//objectmapper.convertValue(new String(workflow.getWorktype()), EncashVO.class);
 					encashvo.setRefrencenumber(taskdetails.getEncashvo().getRefrencenumber());
@@ -78,43 +84,31 @@ public class AdminController {
 						workflowservice.updateWorkFlow(userworkflow);
 						UserProfile userprofile = userservice
 								.fetchUserAccordingToProfileId(Long.valueOf(workflow.getProfileid()));
-						WalletStatement walletstmnt = new WalletStatement();
-						walletstmnt.setWalletid(userprofile.getWalletdetails().getWalletid());
-						walletstmnt = walletservice.fetchWalletStmntAccordingToAggregartion(walletstmnt);
-						walletstmnt = WalletAmountCalculator.calculateCurrentBalanceAfterEncashed(walletstmnt,
-								taskdetails.getEncashvo().getEncashamount());
-						walletservice.updateWalletStmnt(walletstmnt);
+						if (userprofile.getWalletdetails().isIsactive()) {
+							WalletStatement walletstmnt = new WalletStatement();
+							walletstmnt.setWalletid(userprofile.getWalletdetails().getWalletid());
+							walletstmnt = walletservice.fetchWalletStmntAccordingToAggregartion(walletstmnt);
+							walletstmnt = WalletAmountCalculator.calculateCurrentBalanceAfterEncashed(walletstmnt,
+									taskdetails.getEncashvo().getEncashamount());
+							walletservice.updateWalletStmnt(walletstmnt);
+						}
 					}
-
 				}
-				workflowservice.updateWorkFlow(workflow);
 				if ("ADMIN_VERIFICATION".equals(workflow.getWorktype()) && workflow.getStatus()) {
 					// need to add this logic for each parent id
 					UserProfile userprofile = userservice
 							.fetchUserAccordingToProfileId(Long.valueOf(workflow.getProfileid()));
 					userprofile.getWalletdetails().setIsactive(Boolean.TRUE);
 					userprofile.getWalletdetails().setWalletactivedate(new Date());
-					UserProfile adminprofile = new UserProfile();
-					adminprofile.setLogindetails(new Login());
-					adminprofile.getLogindetails().setUsername(userprofile.getNetworkinfo().getParentmemberid());
-					adminprofile = userservice.fetchUser(adminprofile);
-					// Update wallet for level 1
-					WalletStatement walletstmnt = new WalletStatement();
-					walletstmnt.setWalletid(adminprofile.getWalletdetails().getWalletid());
-					walletstmnt = walletservice.fetchWalletStmntAccordingToAggregartion(walletstmnt);
-					walletstmnt = WalletAmountCalculator.calculateCurrentBalance(walletstmnt);
-					walletservice.updateWalletStmnt(walletstmnt);
-
-					// Update Parent JSON
-					NetworkInfo parentnetworkinfo = netWorkDetailsService
-							.getNetworkDetails(userprofile.getNetworkinfo().getParentmemberid());
-					NetWorkDetails parentnetworkdetails = PropertyHelper.convertJsonToNetworkInfo(parentnetworkinfo);
-					NetWorkDetails currentnetworkdetails = PropertyHelper
-							.convertJsonToNetworkInfo(userprofile.getNetworkinfo());
-					parentnetworkdetails.getChildren().add(currentnetworkdetails);
-					String modifiedjson = PropertyHelper.convertNetworkInfoToJson(parentnetworkdetails);
-					parentnetworkinfo.setNetworkjson(modifiedjson.getBytes());
-					netWorkDetailsService.updateNetworkDetails(parentnetworkinfo);
+					userservice.updateUser(userprofile);
+					
+					//Create Network Task
+					NetWorkTask networktask=new NetWorkTask();
+					networktask.setMemberid(userprofile.getNetworkinfo().getMemberid());
+					networktask.setParentid(userprofile.getNetworkinfo().getParentmemberid());
+					networktask.setTaskcreationdate(new Date());
+					networktask.setTaskStatus(Boolean.FALSE);
+					networktaskservice.createNetworkTask(networktask);
 				}
 
 			}

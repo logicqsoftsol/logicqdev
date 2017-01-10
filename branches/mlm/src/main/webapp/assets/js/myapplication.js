@@ -6,10 +6,10 @@
     'use strict';
     
    angular.module('mlmlogicq', ['ui.router','snap','ngStorage']).constant('AppConstants', {
-    'hostName':'http://127.0.0.1:', 
-	// 'hostName':'http://45.113.136.152:',
+     'hostName':'http://127.0.0.1:', 
+	 //'hostName':'http://45.113.136.130:',
 	  'hostPort': '8090' ,
-	 // 'hostPort': '8059' ,
+	 //  'hostPort': '8167' ,
 	   'applicationName' : '/mlmlogicq' ,
 	   'get' : 'GET' ,  
 	   'post' : 'POST' , 
