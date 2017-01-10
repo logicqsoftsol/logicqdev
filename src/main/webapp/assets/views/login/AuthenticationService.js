@@ -8,6 +8,7 @@
 
 				return  $http({
 					method: 'POST',
+					//url:AppConstants.hostName+AppConstants.loginURL,
 					url:AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.loginURL,
 					headers: {'Content-Type': 'application/json','AUTH-TOKEN': '' ,'userName':$scope.username ,'password':$scope.password} ,
 					dataType :'json',
@@ -18,6 +19,7 @@
 			LoadUser:function ($scope) {
 				return  $http({
 					method: 'GET',
+					//url:AppConstants.hostName+AppConstants.loadDefaultUserURL,
 					url:AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.loadDefaultUserURL,
 					dataType :'json',
 					data : ''
