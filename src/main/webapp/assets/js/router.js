@@ -62,12 +62,28 @@
                     templateUrl:"assets/views/admin/adminoverview.html",
                     controller:'AdminCtrl'
                     
-                })
+                }),
              $stateProvider
                 .state('authusers', {
                     url: "/",
 					templateUrl:"assets/views/login/login.html",
                     controller:'LoginController'
+                    
+                }),
+				$stateProvider
+                .state('meeting_task', {
+					parent: 'dashboard',
+                    url: "/meeting_task",
+                    templateUrl:"assets/views/task/meetingtask.html",
+                    controller:'AdminCtrl'
+                    
+                })
+				$stateProvider
+                .state('rewards', {
+					parent: 'dashboard',
+                    url: "/rewards",
+                    templateUrl:"assets/views/reward/rewards.html",
+                    controller:'AdminCtrl'
                     
                 })
     });

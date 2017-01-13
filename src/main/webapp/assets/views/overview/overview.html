@@ -8,7 +8,9 @@
  <ul class="snap-ul">  
  <li ng-class="{active: $state.includes('overview')}"><a ui-sref=overview>Home</a></li> 
  <li ng-class="{active: $state.includes('reports')}" > <a ui-sref=reports>Reports </a></li> 
- <li ng-class="{active: $state.includes('logout')}" > <a ui-sref=reports>Logout </a></li> 
+ <li ng-class="{active: $state.includes('meeting_task')}" > <a ui-sref=meeting_task>Meeting & Task</a></li> 
+ <li ng-class="{active: $state.includes('rewards')}" > <a ui-sref=rewards>Rewards </a></li> 
+ <li ng-class="{active: $state.includes('logout')}" > <a ui-sref=logout>Logout </a></li>  
  </ul> 
  </div> 
  </snap-drawer> 
@@ -28,14 +30,7 @@
     <i class="fa fa-users" aria-hidden="true"></i>
 	<span>Setup Network</span>
 </a>
-<a href="" data-target="#setupmeeting" data-toggle="modal" class="btn btn-sucess pull-right">
-    <i class="fa fa-calendar" aria-hidden="true"></i>
-	<span>Schedule Meeting</span>
-</a>
-<a href="" data-target="#displayFeeChart" data-toggle="modal" class="btn btn-sucess pull-right">
-    <i class="fa fa-money" aria-hidden="true"></i>
-	<span>Rewards Chart</span>
-</a>
+
 
 <a href="" data-target="#notificationdetails" data-toggle="modal" class="btn btn-sucess pull-right">
     <i class="fa fa-bell-o" aria-hidden="true"></i>
@@ -711,7 +706,7 @@
 								<td>{{task.taskfor}}</td>
 								<td>{{task.taskassigneddate | date:'yyyy-MM-dd'}}</td>
 								<td>{{task.tasktype}}</td>
-								<td><input type="text" id="taskstatus" ng-model="task.taskstatus" name="taskstatus" class="form-control" list="taskstatuslist" ng-readonly="taskreadonly">
+								<td><input type="text" id="taskstatus" ng-model="task.taskstatus" name="taskstatus" class="form-control" list="taskstatuslist">
 								<datalist id="taskstatuslist">
 									<option value="Pending">
 									<option value="Approved">

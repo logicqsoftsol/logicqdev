@@ -1,25 +1,27 @@
 <div> 
-<snap-drawer> 
-<div class=snap-menu> 
-<div class="sidebar-header text-center"> 
-<img src="assets/images/flat-avatar.png" class="sidebar-img img-circle"> 
-</div> 
- <ul class=snap-ul> 
+<snap-drawer>
+ <div class="snap-menu"> <div class="sidebar-header text-center"> 
+  <h4>{{userprofile.firstname}} {{userprofile.lastname}}</h4>
+ <img src="assets/images/dummyuser.jpg" class="sidebar-img img-circle"> 
+ </div> 
+ <ul class="snap-ul">  
  <li ng-class="{active: $state.includes('overview')}"><a ui-sref=overview>Home</a></li> 
  <li ng-class="{active: $state.includes('reports')}" > <a ui-sref=reports>Reports </a></li> 
+ <li ng-class="{active: $state.includes('logout')}" > <a ui-sref=logout>Logout </a></li> 
  </ul> 
-</div> 
-</snap-drawer> 
+ </div> 
+ </snap-drawer> 
 <snap-dragger></snap-dragger> 
-<snap-content snap-opt-tap-to-close=false class=bg-dark> 
-<a snap-toggle=left ng-click="menuOpen = !menuOpen"> 
-<span class=menutoggle> 
-<i ng-hide=menuOpen class="fa fa-bars fa-2x"></i> 
-<i ng-show=menuOpen class="fa fa-times fa-2x"></i> 
-</span> </a> <div class=fr> 
-<h2>Reports <small>Work with Chart.js and D3</small></h2> 
+<snap-content snap-opt-tap-to-close="false" class=bg-dark> 
+ <a snap-toggle=left ng-click="menuOpen = !menuOpen"> 
+ <span class="menutoggle"> 
+ <i ng-hide="menuOpen" class="fa fa-bars fa-2x"></i> <i ng-show="menuOpen" class="fa fa-times fa-2x"></i> 
+ </span> 
+ </a> 
+<div class=fr> 
+<h2>Performance Report </h2> 
 </div> 
-<span class="glyphicon glyphicon-dashboard bg-fade"></span> 
+<!-- <span class="glyphicon glyphicon-dashboard bg-fade"></span> -->
 <div class=jumbotron> 
 <div class=container> 
 <h2>Reports Details</h2> 
