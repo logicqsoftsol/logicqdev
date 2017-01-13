@@ -21,7 +21,7 @@ public class MessageHelper {
 	}
 
 	public static String getAdminMobileNumber() {
-		return "07873735566";
+		return "08763621986";
 	}
 
 	public static String generateUserRegistartionMessage(String username, String password, String fname, String lname) {
