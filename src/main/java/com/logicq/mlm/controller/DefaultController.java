@@ -1,5 +1,7 @@
 package com.logicq.mlm.controller;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ public class DefaultController {
  @Autowired
  ILoginService loginservice;
 	
+    @PostConstruct
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public ResponseEntity<Boolean> loadUser() throws Exception {
 		        loginservice.loadusers();
