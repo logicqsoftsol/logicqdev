@@ -1,7 +1,10 @@
 package com.logicq.mlm.common.schedule;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +14,16 @@ import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.helper.PropertyHelper;
+import com.logicq.mlm.model.admin.FeeSetup;
 import com.logicq.mlm.model.admin.NetWorkTask;
+import com.logicq.mlm.model.performance.UserNetworkCount;
 import com.logicq.mlm.model.profile.NetWorkDetails;
 import com.logicq.mlm.model.profile.NetworkInfo;
 import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
 import com.logicq.mlm.service.networkdetails.INetworkTaskService;
+import com.logicq.mlm.service.performance.IUserNetworkPerformanceService;
 import com.logicq.mlm.service.user.IUserService;
+import com.logicq.mlm.service.wallet.IFeeSetupService;
 
 @Configuration
 @EnableScheduling
@@ -31,24 +38,95 @@ public class NetworkInfoTimerTask  {
 	@Autowired
 	INetworkTaskService networktaskservice;
 	
+	@Autowired
+	IFeeSetupService feeSetupService;
 	
+	@Autowired
+	IUserNetworkPerformanceService userNetworkPerformance;
 
 	
 	ObjectMapper mapper=new ObjectMapper();
 	
-	@Scheduled(fixedDelay=15000)
+	@Scheduled(fixedDelay = 15000)
 	public void updateNetworkinfo() throws Exception {
-		List<NetWorkTask> tasklist=networktaskservice.getNetworkTaskList();
-		for(NetWorkTask task:tasklist){
-			int levelCount=1;
-			updateNetworkDetails(task.getMemberid(),task.getParentid(), levelCount);
-			networktaskservice.deleteNetworkTask(task);
+		List<NetWorkTask> tasklist = networktaskservice.getNetworkTaskList();
+		if (!tasklist.isEmpty()) {
+			Map<String, UserNetworkCount> memberCount = new ConcurrentHashMap<>();
+			for (NetWorkTask task : tasklist) {
+				int levelCount = 1;
+				updateNetworkDetails(task.getMemberid(), task.getParentid(), levelCount);
+				networktaskservice.deleteNetworkTask(task);
+			}
+			calculateWalletBalance(memberCount);
+			if (!memberCount.isEmpty()) {
+				for (Map.Entry<String, UserNetworkCount> networkCOunt : memberCount.entrySet()) {
+					if (null != networkCOunt.getValue()) {
+						userNetworkPerformance.addUserNetworkPerformance(networkCOunt.getValue());
+					}
+				}
+			}
 		}
-		
-		
+
 	}
 	
 	
+
+	private void calculateWalletBalance(Map<String,UserNetworkCount> memberCount) throws Exception {
+	   
+		NetworkInfo memberNetworkInfo = networkDetailService.getNetworkDetails("ADMIN");
+		NetWorkDetails membernetworkdetails = PropertyHelper.convertJsonToNetworkInfo(memberNetworkInfo);
+		int leveCount=1;
+		if (null != membernetworkdetails) {
+			calculateChildAttribute(memberCount, membernetworkdetails, leveCount);
+		}
+	
+	}
+
+
+
+	private void calculateChildAttribute(Map<String, UserNetworkCount> memberCount, NetWorkDetails membernetworkdetails,
+			int leveCount) {
+		if (null != membernetworkdetails.getChildren() && !membernetworkdetails.getChildren().isEmpty()) {
+			List<NetWorkDetails> networkdetails = membernetworkdetails.getChildren();
+			UserNetworkCount networkCount = new UserNetworkCount();
+			networkCount.setMemberid(membernetworkdetails.getId());
+			networkCount.setNetworklevel(leveCount);
+			networkCount.setParentid(membernetworkdetails.getParentid());
+			if (null != networkdetails) {
+				networkCount.setMembercount(networkdetails.size());
+			} else {
+				networkCount.setMembercount(0);
+			}
+			memberCount.put(networkCount.getMemberid() + leveCount, networkCount);
+			if (!networkCount.getParentid().equals(networkCount.getMemberid())) {
+				updateRecrsiveParentNetwork(memberCount, networkCount.getParentid(), leveCount);
+			}
+			if (null != networkdetails && !networkdetails.isEmpty()) {
+				for (NetWorkDetails network : networkdetails) {
+					calculateChildAttribute(memberCount, network, leveCount);
+				}
+			}
+		}
+	}
+
+
+
+	private void updateRecrsiveParentNetwork(Map<String, UserNetworkCount> memberCountMap, String parentid,
+			int leveCount) {
+
+		UserNetworkCount usernetwork = memberCountMap.get(parentid + leveCount);
+		if (null != usernetwork) {
+			UserNetworkCount parentNetworkCount = new UserNetworkCount();
+			parentNetworkCount = usernetwork;
+			parentNetworkCount.setNetworklevel(leveCount + 1);
+			memberCountMap.put(parentNetworkCount.getMemberid()+parentNetworkCount.getNetworklevel(),parentNetworkCount);
+			if (StringUtils.isEmpty(parentNetworkCount.getParentid())) {
+				updateRecrsiveParentNetwork(memberCountMap, parentNetworkCount.getParentid(),
+						parentNetworkCount.getNetworklevel() + 1);
+			}
+		}
+	}
+
 
 	private void updateNetworkDetails(String memberid, String parentid,int levelCount) throws Exception {
 		NetworkInfo memberNetworkInfo = networkDetailService.getNetworkDetails(memberid);
@@ -113,6 +191,7 @@ public class NetworkInfoTimerTask  {
 			}
 		}
 	}
+	
 	
 	
 

@@ -15,18 +15,19 @@ public class UserNetworkCount {
 	@Column(name = "ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	
-	
-	@Column(name = "MEMBER_ID", unique = true, nullable = false)
+		
+	@Column(name = "MEMBER_ID", nullable = false)
 	private String memberid;
 	
-
-	@Column(name = "LEVEL", unique = true, nullable = false)
-	private String networklevel;
+	@Column(name = "PARENT_ID", nullable = false)
+	private String parentid;
 	
-	@Column(name = "TOTAL_MEMEBER_COUNT", unique = true, nullable = false)
-	private String membercount;
+
+	@Column(name = "LEVEL",  nullable = false)
+	private Integer networklevel;
+	
+	@Column(name = "TOTAL_MEMEBER_COUNT", nullable = false)
+	private Integer membercount;
 
 	public Long getId() {
 		return id;
@@ -36,7 +37,6 @@ public class UserNetworkCount {
 		this.id = id;
 	}
 
-	
 	public String getMemberid() {
 		return memberid;
 	}
@@ -45,28 +45,35 @@ public class UserNetworkCount {
 		this.memberid = memberid;
 	}
 
-	public String getNetworklevel() {
+	public String getParentid() {
+		return parentid;
+	}
+
+	public void setParentid(String parentid) {
+		this.parentid = parentid;
+	}
+
+	public Integer getNetworklevel() {
 		return networklevel;
 	}
 
-	public void setNetworklevel(String networklevel) {
+	public void setNetworklevel(Integer networklevel) {
 		this.networklevel = networklevel;
 	}
 
-	public String getMembercount() {
+	public Integer getMembercount() {
 		return membercount;
 	}
 
-	public void setMembercount(String membercount) {
+	public void setMembercount(Integer membercount) {
 		this.membercount = membercount;
 	}
 
 	@Override
 	public String toString() {
-		return "UserNetworkCount [id=" + id + ", memberid=" + memberid + ", networklevel="
+		return "UserNetworkCount [id=" + id + ", memberid=" + memberid + ", parentid=" + parentid + ", networklevel="
 				+ networklevel + ", membercount=" + membercount + "]";
 	}
-	
 	
 	
 }

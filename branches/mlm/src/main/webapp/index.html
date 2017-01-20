@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>MLM Management</title>
+<title>GetPay</title>
 <meta name="description"
 	content="logicq a Bootstrap-based, Responsive HTML5 Template">
 <meta name="author" content="Logicq softsol pvt. ltd.">
@@ -20,13 +20,16 @@
 <link href="assets/css/animations.css" rel="stylesheet">
 <link href="assets/css/graph/angular-chart.css" rel="stylesheet">
 <link href="assets/css/multiple-select.min.css" rel="stylesheet">
+<link  href="assets/css/jquery.orgchart.css" rel="stylesheet">
 <link href="assets/css/admin.min.css" rel="stylesheet">
 <link href="assets/css/all-skins.min.css" rel="stylesheet">
 <link href="assets/css/normalize.css" rel="stylesheet">
-<link  href="assets/css/jquery.orgchart.css" rel="stylesheet">
-<link href="assets/css/custom.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles/vendor.css"> 
+<link rel="stylesheet" type="text/css" href="assets/css/getpaystyle.css" />
+<link href="assets/css/custom.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles/main.css">
+		<!--CSS-->
+
 
 							<!-- Common Scripts -->
 <script type="text/javascript" src="assets/plugins/common/jquery-2.0.3.min.js"></script>
@@ -39,6 +42,7 @@
 <script type="text/javascript" src="assets/plugins/common/moment.min.js"></script>
   <script type="text/javascript" src="assets/plugins/common/html2canvas.min.js"></script>	
 <script type="text/javascript" src="assets/plugins/common/jquery.orgchart.js"></script>
+<!-- Scripts -->
 	
 			
 							<!--Angular JS Scripts  -->
@@ -55,6 +59,17 @@
 <script type="text/javascript" src="assets/plugins/logicq/template.js"></script>
 <script type="text/javascript" src="assets/plugins/logicq/app.min.js"></script>
 <script type="text/javascript" src="assets/plugins/logicq/custom.js"></script>
+<script type="text/javascript" src="assets/plugins/logicq/modernizr.custom.js"></script>
+<script type="text/javascript" src="assets/plugins/logicq/classie.js"></script>
+<script type="text/javascript" src="assets/plugins/logicq/jquery.countdown.js"></script>
+<script type="text/javascript" src="assets/plugins/logicq/typed.js"></script>
+<script type="text/javascript" src="assets/plugins/logicq/owl.carousel.js"></script>
+<script type="text/javascript" src="assets/plugins/logicq/input-text.js"></script>
+<script type="text/javascript"  src="assets/plugins/logicq/TweenLite.min.js"></script>
+<script type="text/javascript" src="assets/plugins/logicq/EasePack.min.js"></script>
+<script type="text/javascript" src="assets/plugins/logicq/rAF.js"></script>
+<script type="text/javascript" src="assets/plugins/logicq/demo-1.js"></script>
+<script type="text/javascript" src="assets/plugins/logicq/init.js"></script>	
  
 
 <script type="text/javascript" src="assets/plugins/common/angular-animate.js"></script>
@@ -83,8 +98,12 @@
 </head>
 
 <body class="no-trans" ng-app="mlmlogicq">
-	<div id="processing"></div>
-  <div ui-view></div> 
+	<div class="preloader-it">
+			<div class="la-anim-1"></div>
+     </div>
+
+      <div ui-view> </div> 
+    	
  </body>
 
 </html>

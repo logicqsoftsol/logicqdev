@@ -3,8 +3,8 @@
 	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:javaee="http://java.sun.com/xml/ns/javaee"
 	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
-	id="LogicQ" version="2.4">
-	<display-name>Logicq</display-name>
+	id="GetPay" version="2.4">
+	<display-name>getpay</display-name>
 <welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
