@@ -48,9 +48,9 @@
                 })
 				 ,
 				 $stateProvider
-                .state('reports', {
+                .state('perfreports', {
 					parent: 'dashboard',
-                    url: "/reports",
+                    url: "/perfreports",
                     templateUrl:"assets/views/reports/reports.html",
                     controller:'ReportCtrl'
                     
