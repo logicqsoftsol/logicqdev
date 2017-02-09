@@ -1,6 +1,5 @@
 package com.logicq.mlm.common.schedule;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +13,6 @@ import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.helper.PropertyHelper;
-import com.logicq.mlm.model.admin.FeeSetup;
 import com.logicq.mlm.model.admin.NetWorkTask;
 import com.logicq.mlm.model.performance.UserNetworkCount;
 import com.logicq.mlm.model.profile.NetWorkDetails;
@@ -85,7 +83,7 @@ public class NetworkInfoTimerTask  {
 
 
 	private void calculateChildAttribute(Map<String, UserNetworkCount> memberCount, NetWorkDetails membernetworkdetails,
-			int leveCount) {
+			int leveCount) throws Exception {
 		if (null != membernetworkdetails.getChildren() && !membernetworkdetails.getChildren().isEmpty()) {
 			List<NetWorkDetails> networkdetails = membernetworkdetails.getChildren();
 			UserNetworkCount networkCount = new UserNetworkCount();
@@ -98,34 +96,62 @@ public class NetworkInfoTimerTask  {
 				networkCount.setMembercount(0);
 			}
 			memberCount.put(networkCount.getMemberid() + leveCount, networkCount);
-			if (!networkCount.getParentid().equals(networkCount.getMemberid())) {
-				updateRecrsiveParentNetwork(memberCount, networkCount.getParentid(), leveCount);
+			if (!StringUtils.isEmpty(membernetworkdetails.getParentid())) {
+				calculateRecursiveParent(memberCount, membernetworkdetails, leveCount, networkdetails, networkCount);
 			}
-			if (null != networkdetails && !networkdetails.isEmpty()) {
-				for (NetWorkDetails network : networkdetails) {
-					calculateChildAttribute(memberCount, network, leveCount);
-				}
+			
+			if(null!=networkdetails && !networkdetails.isEmpty()){
+			    for(NetWorkDetails network:networkdetails){
+			    	int childlevelcount=1;
+			    	calculateChildAttribute(memberCount,network,childlevelcount);
+			    }
 			}
+		}
+	}
+
+
+
+	private void calculateRecursiveParent(Map<String, UserNetworkCount> memberCount,
+			NetWorkDetails membernetworkdetails, int leveCount, List<NetWorkDetails> networkdetails,
+			UserNetworkCount networkCount) throws Exception {
+		NetworkInfo parentNetworkInfo = networkDetailService.getNetworkDetails(networkCount.getParentid());
+		NetWorkDetails parentNetworkDetails = PropertyHelper.convertJsonToNetworkInfo(parentNetworkInfo);
+		int parentlevel = leveCount + 1;
+		UserNetworkCount parentNetworkCount = memberCount.get(membernetworkdetails.getParentid() + parentlevel);
+		if (null != parentNetworkCount) {
+			parentNetworkCount.setMembercount(networkdetails.size());
+		} else {
+			parentNetworkCount = new UserNetworkCount();
+			parentNetworkCount.setMemberid(networkCount.getParentid());
+			parentNetworkCount.setNetworklevel(networkdetails.size());
+			networkCount.setParentid(parentNetworkDetails.getParentid());
+		}
+		memberCount.put(networkCount.getParentid() + parentlevel, parentNetworkCount);
+		if (StringUtils.isEmpty(parentNetworkDetails.getParentid()) && null != parentNetworkDetails.getChildren()
+				&& !parentNetworkDetails.getChildren().isEmpty()) {
+			UserNetworkCount parentnetworkCount = new UserNetworkCount();
+			calculateRecursiveParent(memberCount, parentNetworkDetails, parentlevel, parentNetworkDetails.getChildren(),
+					parentnetworkCount);
 		}
 	}
 
 
 
-	private void updateRecrsiveParentNetwork(Map<String, UserNetworkCount> memberCountMap, String parentid,
-			int leveCount) {
-
-		UserNetworkCount usernetwork = memberCountMap.get(parentid + leveCount);
-		if (null != usernetwork) {
-			UserNetworkCount parentNetworkCount = new UserNetworkCount();
-			parentNetworkCount = usernetwork;
-			parentNetworkCount.setNetworklevel(leveCount + 1);
-			memberCountMap.put(parentNetworkCount.getMemberid()+parentNetworkCount.getNetworklevel(),parentNetworkCount);
-			if (StringUtils.isEmpty(parentNetworkCount.getParentid())) {
-				updateRecrsiveParentNetwork(memberCountMap, parentNetworkCount.getParentid(),
-						parentNetworkCount.getNetworklevel() + 1);
-			}
-		}
-	}
+//	private void updateRecrsiveParentNetwork(Map<String, UserNetworkCount> memberCountMap, String parentid,
+//			int leveCount) {
+//
+//		UserNetworkCount usernetwork = memberCountMap.get(parentid + leveCount);
+//		if (null != usernetwork) {
+//			UserNetworkCount parentNetworkCount = new UserNetworkCount();
+//			parentNetworkCount = usernetwork;
+//			parentNetworkCount.setNetworklevel(leveCount + 1);
+//			memberCountMap.put(parentNetworkCount.getMemberid()+parentNetworkCount.getNetworklevel(),parentNetworkCount);
+//			if (StringUtils.isEmpty(parentNetworkCount.getParentid())) {
+//				updateRecrsiveParentNetwork(memberCountMap, parentNetworkCount.getParentid(),
+//						parentNetworkCount.getNetworklevel() + 1);
+//			}
+//		}
+//	}
 
 
 	private void updateNetworkDetails(String memberid, String parentid,int levelCount) throws Exception {
@@ -135,8 +161,11 @@ public class NetworkInfoTimerTask  {
 		NetWorkDetails parentnetworkdetails = PropertyHelper.convertJsonToNetworkInfo(parentNetworkInfo);
 		List<NetWorkDetails> networkchildlist = parentnetworkdetails.getChildren();
 		findNetworkNode(membernetworkdetails, parentnetworkdetails, networkchildlist,levelCount);
+		parentnetworkdetails.setCategory("LEVEL0");
+		parentnetworkdetails.setTitle("LEVEL0");
 		String networkjson = PropertyHelper.convertNetworkInfoToJson(parentnetworkdetails);
 		parentNetworkInfo.setNetworkjson(networkjson.getBytes());
+		parentNetworkInfo.setMemberlevel("");
 		networkDetailService.updateNetworkDetails(parentNetworkInfo);
 		if(!StringUtils.isEmpty(parentNetworkInfo.getParentmemberid())){
 		levelCount=levelCount+1;
