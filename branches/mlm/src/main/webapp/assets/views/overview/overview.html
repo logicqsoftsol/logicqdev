@@ -30,7 +30,9 @@
     <i class="fa fa-users" aria-hidden="true"></i>
 	<span>Setup Network</span>
 </a>
-
+   <a href="" data-target="#networkmodal" data-toggle="modal" class="btn btn-sucess pull-right" ng-init="viewSupportHands()">
+    <i class="fa fa-sitemap" aria-hidden="true"></i>
+</a>
 
 <a href="" data-target="#notificationdetails" data-toggle="modal" class="btn btn-sucess pull-right">
     <i class="fa fa-bell-o" aria-hidden="true"></i>
@@ -40,9 +42,7 @@
 </div>
  <div class=jumbotron> 
  <div class=container>
-  <div class="col-md-5 span6">   
-
-  <div class="col-md-12">
+  <div class="col-md-7">   
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">{{user.firstname}} {{user.lastname}}</h3>
@@ -87,9 +87,58 @@
 				  <!--a href="#"class="btn btn-info fa fa-youtube" ></a-->
 				 <a><i class="fa fa-twitter-square" aria-hidden="true" href={{user.socialdetails.twiter}}></i></a>
                 </div>
+				<button type="button" class="btn btn-primary pull-right" data-target="#" data-toggle="modal">Edit</button>
             </div>
           </div>
-		  
+		</div>
+		  <div class="col-md-4">   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Recent Activites</h3>
+			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3 col-lg-3" align="center"><i class="fa fa-certificate fa-2x" aria-hidden="true"></i></div>
+                
+                <div class="col-md-9 col-lg-9 table-responsive"> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Add New Member</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>Request Encashed</td>
+                        <td>INR 0.00</td>
+                      </tr>
+                      <tr>
+                        <td>Verify Mobile Number</td>
+                        <td>true</td>
+                      </tr>
+                        <tr>
+                        <td>Verify Email Address</td>
+                        <td>true</td>
+                      </tr>
+                      <tr>
+                        <td>Verify Contact Address</td>
+                        <td>true</td>
+                      </tr>
+                        <td>Rewards Achived</td>
+                        <td>2</td>
+                      </tr>
+					    </tr>
+                        <td>Metting Attended</td>
+                        <td>0</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+		</div>
+		
+		
+		 <div class="col-md-5">  
 		   <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">Wallet Details</h3>
@@ -127,6 +176,8 @@
 				 <button type="button" ng-click="poulateEncashDetails()" class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Request Encash</button>
             </div>
           </div>
+		 </div> 
+		  <div class="col-md-6">
 		   <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">Performance Details</h3>
@@ -176,17 +227,39 @@
                 </div>
             </div>
           </div>
-</div>
+      </div>
  </div>
+
+ </div>
+ </div>
+ 
+ </snap-content>
+ 
+  
+<!-- Network Modal -->		
+<div  id="networkmodal" name="networkmodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+	  <div class="modal-dialog modal-lg">
+	
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  
+		  <div class="modal-body">
  <div class="col-md-7">
  <div id="networkmember-chart">
  <input type="text" id="networkmembernodeid"  ng-hide="true">
  </div>
  </div> 
- </div>
- </div>
+			</div>
+					
+		  </div>
+		  
+		</div>
+	</div>
  
- </snap-content>
 <!-- Modal Profile Create -->
  <div id="profiledetails"  name="profiledetails" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
  <div class="modal-dialog modal-lg">

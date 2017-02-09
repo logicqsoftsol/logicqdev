@@ -39,6 +39,7 @@
 					$scope.tasklist.count={};
 					$scope.request.task={};
 					$scope.encashdetails={};
+
 				
 				    angular.forEach($state.get(), function (item) {
 				        if (item.data && item.data.visible) {
@@ -70,6 +71,10 @@
 				    });
 					
 				};
+				
+					$scope.viewSupportHands=function(){
+						$scope.displayNetworkProfie($localStorage.profile.networkjson);
+					}
 				
 				if(!$localStorage.profile.mobilenoVerified){
 			    $scope.approval.mobilenoVerified='Pending';	
@@ -148,20 +153,23 @@
 					
 				}	
 				
-				$scope.poller = function() {
-					UserDetailsService.pollTaskDetails().then(function(r) {
-				    	$scope.tasklist=$scope.userdetails.tasklist;
-						$scope.tasklist.count=$scope.tasklist.length;
-				      $timeout($scope.poller, 4000);
-				    });      
-				  };
-				 $scope.poller();
+				//$scope.poller = function() {
+				//	UserDetailsService.pollTaskDetails().then(function(r) {
+				 //   	$scope.tasklist=$scope.userdetails.tasklist;
+				//		$scope.tasklist.count=$scope.tasklist.length;
+				 //     $timeout($scope.poller, 4000);
+				  //  });      
+				  //};
+				 //$scope.poller();
 				  
 		     $scope.displayProfile = function () {
 					 $scope.userdetails=$localStorage.profile;
 					 $scope.usertype=$scope.userdetails.userprofile.logindetails.authorities[0].name;
 					 $scope.tasklist=$scope.userdetails.tasklist;
-					 $scope.tasklist.count=$scope.tasklist.length;
+                    if(null!=$scope.tasklist){
+					$scope.tasklist.count=$scope.tasklist.length;	
+					}				
+					
 					 if($scope.usertype=='ADMIN'){
 			    	$scope.taskreadonly='false';
 				}else{
@@ -187,8 +195,9 @@
 					$scope.user.userperformance.totalincome=$scope.userdetails.userperformance.income;
 					$scope.user.userperformance.totalperformance=$scope.userdetails.userperformance.performancetype;
 					$scope.user.userperformance.totalrating=$scope.userdetails.userperformance.ratting;
-					$scope.displayNetworkProfie($scope.userdetails.networkjson);
 					};
+					
+				
 					
 					$scope.setupNetwork=function(){
 						$scope.userprofile={};
