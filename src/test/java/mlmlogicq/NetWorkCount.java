@@ -10,13 +10,16 @@ import com.logicq.mlm.model.profile.NetWorkDetails;
 public class NetWorkCount {
 	
 	public static void main(String[] args) throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-
-		NetWorkDetails networkdetails=mapper.readValue(new File("C://Users//SudhanshuLenka//Desktop//network.json"), NetWorkDetails.class);
-		Map<String,Integer> totallevel=new HashMap<String,Integer>();
-		int level=1;
-		fillAllChild(networkdetails, totallevel, level);
-		System.out.println(totallevel);
+//		ObjectMapper mapper = new ObjectMapper();
+//
+//		NetWorkDetails networkdetails=mapper.readValue(new File("C://Users//SudhanshuLenka//Desktop//network.json"), NetWorkDetails.class);
+//		Map<String,Integer> totallevel=new HashMap<String,Integer>();
+//		int level=1;
+//		fillAllChild(networkdetails, totallevel, level);
+//		System.out.println(totallevel);
+		
+		System.out.println(System.getProperty("user.dir"));
+		
 	}
 
 	private static void fillAllChild(NetWorkDetails networkdetails, Map<String, Integer> totallevel, int level) {

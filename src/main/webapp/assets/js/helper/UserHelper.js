@@ -3,9 +3,26 @@
 	angular.module('mlmlogicq').factory('UserHelper', ['$http' ,function ($http){
 
 		return {
+			prepareUserProfileForEdit:function ($scope){
+				$scope.userprofile.firstname=$scope.userdetails.userprofile.firstname;
+				$scope.userprofile.lastname=$scope.userdetails.userprofile.lastname;
+				$scope.userprofile.gender=$scope.userdetails.userprofile.gender;
+				$scope.userprofile.dateofbirth=new Date($scope.userdetails.userprofile.dateofbirth);
+				$scope.userprofile.conatctDetails.mobilenumber=$scope.userdetails.userprofile.conatctDetails.mobilenumber;
+				$scope.userprofile.conatctDetails.email=$scope.userdetails.userprofile.conatctDetails.email;
+				$scope.userprofile.networkinfo.memberlevel=$scope.userdetails.userprofile.networkinfo.memberlevel;
+				$scope.userprofile.conatctDetails.addressText=$scope.userdetails.userprofile.conatctDetails.addressText;
+				$scope.userprofile.conatctDetails.landMark=$scope.userdetails.userprofile.conatctDetails.landMark;
+				$scope.userprofile.conatctDetails.pincode=$scope.userdetails.userprofile.conatctDetails.pincode;
+				$scope.userprofile.conatctDetails.district=$scope.userdetails.userprofile.conatctDetails.district;
+				$scope.userprofile.conatctDetails.state=$scope.userdetails.userprofile.conatctDetails.state;
+			},
 
 				prepareUserProfileRequest: function ($scope) {
 					return $scope.request.user={
+							document:{
+								documentID:$scope.documentid
+							},
 					  userprofile:{
 							firstname:$scope.userprofile.firstname,
 							lastname:$scope.userprofile.lastname,

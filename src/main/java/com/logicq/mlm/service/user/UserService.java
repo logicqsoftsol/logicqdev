@@ -36,6 +36,9 @@ public class UserService implements IUserService{
 	
 	@Autowired
 	INetworkDetailsService netWorkDetailsService;
+	
+	@Autowired
+	IDocumentUploadService docuemntService;
 
 	@Override
 	@ExceptionHandler(Exception.class)
@@ -68,7 +71,8 @@ public class UserService implements IUserService{
 				user.getLogindetails().setAuthorities(new ArrayList<Authority>());
 				user.getLogindetails().getAuthorities().add(new Authority());
 			}
-			user.getLogindetails().getAuthorities().get(0).setId(new Long(1));
+			//This user hardcode to handle temporary solve problem
+			user.getLogindetails().getAuthorities().get(0).setId(new Long(2));
 			user.getLogindetails().getAuthorities().get(0).setName("USER");
 		}
 		if(null!=user.getNetworkinfo()){
@@ -87,9 +91,10 @@ public class UserService implements IUserService{
 		 user.getWalletdetails().setIsactive(Boolean.FALSE);
 		 user.getWalletdetails().setWalletid(StringFormatHelper.randomString().toUpperCase());
 		 user.getWalletdetails().setWalletnumber((user.getLogindetails().getUsername()+"-"+StringFormatHelper.randomNumber()).toUpperCase());
-		 walletstment.setCurrentbalance(new BigDecimal(0.00));
-		 walletstment.setMaxencashable(new BigDecimal(0.00));
-		 walletstment.setPayout(new BigDecimal(0.00));
+		 walletstment.setCurrentbalance(new BigDecimal(70.00));
+		 walletstment.setMaxencashable(new BigDecimal(70.00));
+		 walletstment.setPayout(new BigDecimal(70.00));
+		 walletstment.setEncashedAmount(new BigDecimal(0.00));
 		 walletstment.setWallet( user.getWalletdetails());
 		 walletstment.setWalletid(user.getWalletdetails().getWalletid());
 		 walletstment.setWalletlastupdate(null);

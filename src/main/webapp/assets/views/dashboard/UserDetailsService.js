@@ -33,6 +33,16 @@
 			//var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.createEncashRequestURL;
 			return  $http.post(url,request.encashdetails)
 		},
+		uploadImages: function (request) {
+			var url = AppConstants.hostName+AppConstants.uploadImageURL;
+			//var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveUserProfileDetailsURL;
+			return  $http.post(url,request.fd,{
+            headers: {
+              'Content-Type': undefined
+            },
+            transformRequest: angular.identity
+			})
+		},
 		pollTaskDetails: function () {
 			return  $http({
 				method: 'GET',

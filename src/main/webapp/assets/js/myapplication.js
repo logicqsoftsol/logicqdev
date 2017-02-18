@@ -22,7 +22,8 @@
 	   'saveUserProfileDetailsURL' :'/api/user/saveUser',
 	   'updateAdminTaskURL':'/api/admin/updateAdminTask',
 	   'createEncashRequestURL':'/api/user/createEncashRequest',
-	    'pollTaskListURL':'/api/admin/getTaskListDetails'
+	    'pollTaskListURL':'/api/admin/getTaskListDetails',
+		'uploadImageURL':'/api/user/upload'
 	}).directive('ngConfirmClick', [
 	                                   function(){
 	                                       return {

@@ -1,5 +1,7 @@
 package com.logicq.mlm.common.helper;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Properties;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,5 +26,19 @@ public class PropertyHelper {
   public static String convertNetworkInfoToJson(NetWorkDetails networkDetails) throws Exception{
 		 return  mapper.writeValueAsString(networkDetails);
 	  }
+  
+	 
+	public static Properties loadUploadProperty(){
+		Properties prop=new Properties();
+		prop.put("file.uploadsize", 1000000);
+		//prop.put("file.filepath", "/home/logicqso/webapps/mlmlogicq/WEB-INF/assets/images/uploadImage/");
+		prop.put("file.filepath", "assets/images/uploadImage/");
+		prop.put("fileDirectory", "F:/Project/server/apache-tomcat-7.0.67-windows-x64/apache-tomcat-7.0.67/webapps/mlmlogicq/");
+		//prop.put("url", "http://getpay.co.in/");
+		prop.put("url", "http://127.0.0.1:8090/mlmlogicq/");
+		return prop;
+	}
+	
+
   
 }

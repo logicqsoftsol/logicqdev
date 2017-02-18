@@ -3,13 +3,14 @@
 <snap-drawer>
  <div class="snap-menu"> <div class="sidebar-header text-center"> 
   <h4>{{userprofile.firstname}} {{userprofile.lastname}}</h4>
- <img src="assets/images/dummyuser.jpg" class="sidebar-img img-circle"> 
+ <img ng-src="{{user.image}}"  class="sidebar-img img-circle"> 
  </div> 
  <ul class="snap-ul">  
  <li ng-class="{active: $state.includes('overview')}"><a ui-sref=overview>Home</a></li> 
  <li ng-class="{active: $state.includes('perfreports')}" > <a ui-sref=perfreports>Reports </a></li> 
  <li ng-class="{active: $state.includes('meeting_task')}" > <a ui-sref=meeting_task>Meeting & Task</a></li> 
- <li ng-class="{active: $state.includes('rewards')}" > <a ui-sref=rewards>Rewards </a></li> 
+ <li ng-class="{active: $state.includes('rewards')}" > <a ui-sref=rewards>Rewards </a></li>
+  <li ng-class="{active: $state.includes('passwordreset')}" > <a ui-sref=passwordreset>Reset Password</a></li>
  <li ng-class="{active: $state.includes('logout')}" > <a ui-sref=logout>Logout </a></li>  
  </ul> 
  </div> 
@@ -49,7 +50,7 @@
 			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
             </div>
             <div class="panel-body">
-                <div class="col-md-3 col-lg-3" align="center"> <img alt="user Pic" src="assets/images/dummyuser.jpg" class="img-circle img-responsive"></div>
+                <div class="col-md-3 col-lg-3" align="center"> <img alt="user Pic"  ng-src="{{user.image}}"  class="img-circle img-responsive"></div>
                 
                 <div class="col-md-9 col-lg-9 table-responsive"> 
                   <table class="table table-user-information">
@@ -87,7 +88,7 @@
 				  <!--a href="#"class="btn btn-info fa fa-youtube" ></a-->
 				 <a><i class="fa fa-twitter-square" aria-hidden="true" href={{user.socialdetails.twiter}}></i></a>
                 </div>
-				<button type="button" class="btn btn-primary pull-right" data-target="#" data-toggle="modal">Edit</button>
+				<button type="button" class="btn btn-primary pull-right" data-target="#profiledetails" ng-click="setupNetworkForEdit()" data-toggle="modal">Edit</button>
             </div>
           </div>
 		</div>
@@ -104,12 +105,8 @@
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td>Add New Member</td>
-                        <td>0</td>
-                      </tr>
-                      <tr>
-                        <td>Request Encashed</td>
-                        <td>INR 0.00</td>
+                        <td>Your Growth</td>
+                        <td>60</td>
                       </tr>
                       <tr>
                         <td>Verify Mobile Number</td>
@@ -123,12 +120,13 @@
                         <td>Verify Contact Address</td>
                         <td>true</td>
                       </tr>
+					   <tr>
                         <td>Rewards Achived</td>
                         <td>2</td>
                       </tr>
-					    </tr>
-                        <td>Metting Attended</td>
-                        <td>0</td>
+					   <tr>
+                        <td>Up Coming Meetings</td>
+                        <td>13-02-2017</td>
                       </tr>
                     </tbody>
                   </table>
@@ -356,27 +354,20 @@
 			<span style="color:red" ng-show="personal.cpass.$error.required && personal.cpass.$dirty">Confirm Password required.</span> 
           </div>
         </div>
-	<div class="col-md-6">
-	 <label class="control-label">profile Image</label>
-      <div class="text-center">
-        <input type="file" name="pimage"class="text-center center-block well well-sm avatar img-circle img-thumbnail" alt="avatar" required>
+	<div class="form-group">
+	  <label class="col-md-3 control-label">Upload profile Image</label>
+       <div class="col-md-8">
+        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" required/>
 		<span style="color:red" ng-show="personal.pimage.$touched && personal.pimage.$error.required">Profile Image required.</span> 
       </div>
-    </div>
-	<div class="col-md-6">
-	 <label class="control-label">Identity Proof</label>
-      <div class="text-center">
-        <input type="file" name="iproof"class="text-center center-block well well-sm avatar img-circle img-thumbnail" alt="avatar"required>
-		<span style="color:red" ng-show="personal.iproof.$touched && personal.iproof.$error.required">Identity Proof required.</span> 
-      </div>
-    </div>
+  </div>
       </form>
     </div>
   </div>
                     </center>
                 </div>
                 <!-- train section -->
-                <div class="bhoechie-tab-content">
+                <div class="bhoechie-tab-content ">
                     <center>
                                          <div class="row">
 
@@ -406,23 +397,37 @@
   
                 <div class="bhoechie-tab-content">
                     <center>
-                   <div class="panel with-nav-tabs panel">
-					<div class="panel-heading">
+					<div class="row">
+                    <div class="col-md-12 personal-info">
 						<h3>Contact Info</h3>
-					</div>
-				<div class="panel-body">
-					<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" id="addressdetails" class="pull-center"  href="/dashboard/overview#physicaladdress"><i class="fa fa-lock"></i>Physical Conatct</a></li>
-							<li><a data-toggle="tab" id="contactdetails" class="pull-center"  href="/dashboard/overview#phonedetails"><i class="fa fa-money"></i>Digital Contact</a></li>
-						</ul>
-				<div class="tab-content">
-				
-					<div id="physicaladdress" class="tab-pane fade">
-					<br></br>
-					<ng-form name="phycnt">
-					<div class="form-group" >
+			<ng-form name="dgcnt">
+				 <div class="col-md-12">	
+				<div class="form-group">
+					<label class="col-lg-3 control-label" >Mobile Number *</label>
+				<div class="col-lg-8">
+					 <input name="mobile" class="form-control" ng-model="userprofile.conatctDetails.mobilenumber" ng-pattern="/^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/" placeholder="Your Mobile Number" type="text" required>
+					 <span style="color:red" ng-show="dgcnt.mobile.$error.required && dgcnt.mobile.$dirty">Enter your mobile number</span> 
+					 <span style="color:red" ng-show="dgcnt.mobile.$error.pattern">Mobile number must be 10 digit </span> 
+					 
+				 </div>
+				</div>
+				</div>
+				 <div class="col-md-12">
+				<div class="form-group">
+					<label class="col-lg-3 control-label">Your Email </label>
+				<div class="col-lg-8">
+					 <input name="email" class="form-control" ng-model="userprofile.conatctDetails.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" placeholder="Your Email Id" type="text">
+					 <span style="color:red" ng-show="dgcnt.email.$error.required && dgcnt.email.$dirty">Enter your Email</span> 
+					 <span style="color:red" ng-show="dgcnt.email.$error.pattern">Please enter valid e-mail(xxxx@xxx.cc) </span> 
+				 </div>
+				</div>
+				</div>
+				</ng-form>
 					
-          <label class="col-lg-3 control-label">Address Details</label>
+					<ng-form name="phycnt">
+					<div class="form-group">
+					
+          <label class="col-lg-3 control-label">Address Details *</label>
           <div class="col-lg-8">
             <textarea name="address" class="form-control"  ng-model="userprofile.conatctDetails.addressText" placeholder="Address Details" required></textarea>
 			<!-- <div style="color:red;" ng-show="phycnt.addrsdt.$invalid"> -->
@@ -433,14 +438,14 @@
 	         </div>
 			 
 			 			<div class="form-group">
-          <label class="col-lg-3 control-label">Near By Landmark</label>
+          <label class="col-lg-3 control-label">Near By Landmark *</label>
           <div class="col-lg-8">
             <textarea name="landmark" class="form-control" ng-model="userprofile.conatctDetails.landMark"  placeholder="Your Near By Landmark" required></textarea>
 				<span style="color:red" ng-show="phycnt.landmark.$error.required">Please enter Landmark Place near by.</span> 
           </div>
 	         </div>
-			  <div class="form-group" ng-form name="phycnt">
-          <label class="col-lg-3 control-label">Pincode</label>
+			  <div class="form-group">
+          <label class="col-lg-3 control-label">Pincode *</label>
           <div class="col-lg-8">
             <input class="form-control" name="pincode" ng-model="userprofile.conatctDetails.pincode" ng-pattern="/^\d{6}$/" placeholder="Your pincode" type="text" required>
 			<span style="color:red" ng-show="phycnt.pincode.$error.required && phycnt.pincode.$dirty">Please enter your area pincode</span> 
@@ -448,57 +453,37 @@
           </div>
 	         </div>
 			 	 <div class="form-group">
-          <label class="col-lg-3 control-label">District</label>
+          <label class="col-lg-3 control-label">Your City *</label>
           <div class="col-lg-8">
             <input class="form-control"  ng-model="userprofile.conatctDetails.district" placeholder="Your District" type="text" list="ditrictlist">
 			<datalist id="ditrictlist">
 			<option value="Balasore">
+			<option value="Pune">
+			<option value="Mumbai">
+			<option value="Baripada">
+			<option value="Bhadrak">
+			<option value="Cuttack">
+			<option value="Bhubaneswar">
          </datalist>
           </div>
 	         </div>
 		 <div class="form-group">
-          <label class="col-lg-3 control-label">State</label>
+          <label class="col-lg-3 control-label">State *</label>
           <div class="col-lg-8">
             <input class="form-control"  ng-model="userprofile.conatctDetails.state" placeholder="Your Statae" type="text" list="statelist">
 			<datalist id="statelist">
 			<option value="Odisha">
+			<option value="Maharashtra">
+			<option value="West Bengal">
+			<option value="Andhra Pradesh">
          </datalist>
           </div>
 	      </div>
-					</ng-form>
-					</div>
-					<div id="phonedetails" class="tab-pane fade">
-					<ng-form name="dgcnt">
-					<br></br>
-					<div class="col-md-11" >
-				<div class="form-group">
-					<label class="col-lg-5 control-label" >Mobile Number(+91)</label>
-				<div class="col-lg-7">
-					 <input name="mobile" class="form-control" ng-model="userprofile.conatctDetails.mobilenumber" ng-pattern="/^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/" placeholder="Your Mobile Number" type="text" required>
-					 <span style="color:red" ng-show="dgcnt.mobile.$error.required && dgcnt.mobile.$dirty">Enter your mobile number</span> 
-					 <span style="color:red" ng-show="dgcnt.mobile.$error.pattern">Mobile number must be 10 digit </span> 
-					 
-				 </div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-5 control-label">Your Email</label>
-				<div class="col-lg-7">
-					 <input name="email" class="form-control" ng-model="userprofile.conatctDetails.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" placeholder="Your Email Id" type="text" required>
-					 <span style="color:red" ng-show="dgcnt.email.$error.required && dgcnt.email.$dirty">Enter your E-mail_ID</span> 
-					 <span style="color:red" ng-show="dgcnt.email.$error.pattern">Please enter valid e-mail(xxxx@xxx.cc) </span> 
-				 </div>
-				</div>
-				</div>
-				</ng-form>
-					</div>
-					
-                   </div>
-	   
-      </div>
-  </div>
+	</ng-form>
+            </div>
+			 </div>
                     </center>
                 </div>
-        
             </div>
         </div>	
 		</div>	

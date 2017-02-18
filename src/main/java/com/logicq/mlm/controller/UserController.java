@@ -1,10 +1,20 @@
 package com.logicq.mlm.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +24,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.factory.LoginFactory;
+import com.logicq.mlm.common.helper.PropertyHelper;
 import com.logicq.mlm.common.helper.sms.MessageHelper;
 import com.logicq.mlm.common.helper.sms.SMSHelper;
 import com.logicq.mlm.common.vendor.sms.SMSVendor;
@@ -25,6 +38,7 @@ import com.logicq.mlm.model.message.EmailDetails;
 import com.logicq.mlm.model.performance.UserPerformance;
 import com.logicq.mlm.model.profile.NetWorkDetails;
 import com.logicq.mlm.model.profile.NetworkInfo;
+import com.logicq.mlm.model.profile.UserDocument;
 import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.sms.SMSDetails;
 import com.logicq.mlm.model.wallet.WalletStatement;
@@ -32,6 +46,7 @@ import com.logicq.mlm.model.workflow.WorkFlow;
 import com.logicq.mlm.service.messaging.IEmailService;
 import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
 import com.logicq.mlm.service.performance.IUserPerformanceService;
+import com.logicq.mlm.service.user.IDocumentUploadService;
 import com.logicq.mlm.service.user.IUserService;
 import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
@@ -61,6 +76,12 @@ public class UserController {
 	@Autowired
 	INetworkDetailsService networkservice;
 	
+	@Autowired
+	IDocumentUploadService documentUploadService;
+	
+	@Autowired
+    ServletContext context; 
+	
 	private final static  SMSVendor smsvendor=SMSVendor.getInstance();
 	ObjectMapper objectmapper = new ObjectMapper();
 
@@ -88,7 +109,20 @@ public class UserController {
 
 			// save user details
 			userservice.saveUser(userdetailvo.getUserprofile());
-
+			if(null!=userdetailvo.getDocument()){
+			documentUploadService.updateDocumentDetails(userdetailvo.getDocument().getDocumentID(), userdetailvo.getUserprofile());
+			}else{
+				UserDocument userDocument=new UserDocument();
+				userDocument.setMobileNumber(userdetailvo.getUserprofile().getLogindetails().getMobilenumber());	
+				userDocument.setUsername(userdetailvo.getUserprofile().getLogindetails().getUsername());
+				userDocument.setProfileID(userdetailvo.getUserprofile().getId());
+				userDocument.setServiceType("profile");
+				userDocument.setName("dummyuser.jpg");
+				userDocument.setUploadDate(new Date());
+		    	// hard code dummy user if not upload image
+				userDocument.setDocumentPath("http://127.0.0.1:8090/mlmlogicq/assets/images/uploadImage/ADMIN/dummyuser.jpg");
+				documentUploadService.saveDocumentDetails(userDocument);
+			}
 			// workflow details
 			List<WorkFlow> workflowlist = prepareWorkFlowDetails(userdetailvo);
 			workflowservice.createWorkFlowForListValidation(workflowlist);
@@ -98,10 +132,8 @@ public class UserController {
 					emailservice.sendEmail(emailmessage);
 				}
 			}
-			
 			// send SMS to user and admin
-			prepapreSMSDetailsAndSendSMS(userdetailvo);
-
+			//prepapreSMSDetailsAndSendSMS(userdetailvo);
 			// update parent JSON
 		}
 		return new ResponseEntity<UserDetailsVO>(userdetailvo, HttpStatus.OK);
@@ -254,6 +286,68 @@ public class UserController {
 		}
 		return new ResponseEntity<EncashVO>(encashvo, HttpStatus.OK);
 		
+	}
+	
+	
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public ResponseEntity<UserDocument> uploadDocuemnt(@RequestParam("file") MultipartFile file)
+			throws Exception {
+		UserDocument docuemntUpload=new UserDocument();
+		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if (!file.isEmpty()) {
+			try {
+		         byte[] bytes = file.getBytes();
+               String fileName=login.getUsername()+"_"+System.currentTimeMillis()+".png";
+               String url=context.getContextPath();
+               String filedirectory=PropertyHelper.loadUploadProperty().getProperty("fileDirectory");
+               // Creating the directory to store file
+				String rootPath = PropertyHelper.loadUploadProperty().getProperty("file.filepath");
+				File dir = new File(filedirectory+rootPath + File.separator + login.getUsername());
+				if (!dir.exists())
+					dir.mkdirs();
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath()
+						+ File.separator + fileName);
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+				String fileUrl=PropertyHelper.loadUploadProperty().getProperty("url")+rootPath+login.getUsername()+"/"+fileName;
+				docuemntUpload.setDocumentPath(fileUrl);
+				docuemntUpload.setMobileNumber(login.getMobilenumber());
+				docuemntUpload.setName(serverFile.getName());
+				docuemntUpload.setServiceType("Profile");
+				docuemntUpload.setUploadFor(login.getUsername());
+				docuemntUpload.setUploadDate(new Date());
+				documentUploadService.saveDocumentDetails(docuemntUpload);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
+		}
+			}
+		}
+		return new ResponseEntity<UserDocument>(docuemntUpload,HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value = "/getProfileImage", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
+	public ResponseEntity<byte[]> getProfileImage() throws Exception {
+		byte[] imageBytes=null;
+		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				UserDocument profileDoc=documentUploadService.getDocumentsAccordingToUserName(login.getUsername());
+				final HttpHeaders headers = new HttpHeaders();
+			    headers.setContentType(MediaType.IMAGE_PNG); 
+				InputStream in = context.getResourceAsStream(profileDoc.getDocumentPath());
+				imageBytes=IOUtils.toByteArray(in);
+			   return new ResponseEntity<byte[]>(imageBytes,headers, HttpStatus.OK);
+			}
+		}
+		return new ResponseEntity<byte[]>(imageBytes, HttpStatus.BAD_REQUEST);
 	}
 
 }

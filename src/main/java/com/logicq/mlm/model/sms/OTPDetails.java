@@ -25,7 +25,7 @@ public class OTPDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "MOBILE_NUMBER", nullable = false)
+	@Column(name = "MOBILE_NUMBER")
 	private String mobilenumber;
 	
 	@Column(name = "OTP_NUMBER", nullable = false)
