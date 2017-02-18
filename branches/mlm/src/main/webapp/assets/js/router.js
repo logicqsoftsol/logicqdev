@@ -86,5 +86,13 @@
                     controller:'AdminCtrl'
                     
                 })
+				$stateProvider
+                .state('passwordreset', {
+					parent: 'dashboard',
+                    url: "/passwordreset",
+                    templateUrl:"assets/views/admin/resetpassword.html",
+                    controller:'AdminCtrl'
+                    
+                })
     });
 })();

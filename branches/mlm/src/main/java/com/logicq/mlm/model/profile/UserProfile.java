@@ -64,6 +64,7 @@ public class UserProfile implements Serializable {
 	@OneToOne(mappedBy="userprofile",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private SocialDetails socialdetails;
 
+
 	public Long getId() {
 		return id;
 	}

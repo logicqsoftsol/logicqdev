@@ -20,12 +20,14 @@ import com.logicq.mlm.model.admin.TaskDetails;
 import com.logicq.mlm.model.performance.UserPerformance;
 import com.logicq.mlm.model.profile.NetWorkDetails;
 import com.logicq.mlm.model.profile.NetworkInfo;
+import com.logicq.mlm.model.profile.UserDocument;
 import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.wallet.WalletStatement;
 import com.logicq.mlm.model.workflow.WorkFlow;
 import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
 import com.logicq.mlm.service.performance.IUserPerformanceService;
 import com.logicq.mlm.service.security.UserService;
+import com.logicq.mlm.service.user.IDocumentUploadService;
 import com.logicq.mlm.service.user.IUserService;
 import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
@@ -49,6 +51,8 @@ public class LoginController {
 	IWorkFlowService workflowservice;
 	@Autowired
 	INetworkDetailsService networkservice;
+	@Autowired
+	IDocumentUploadService documentUploadService;
 	
 	  
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -131,6 +135,8 @@ public class LoginController {
 					walletStatement=walletStatementservice.fetchWalletStmntAccordingToAggregartion(walletStatement);
 					userdetailsvo.setWalletStatement(walletStatement);
 					userperformanceservice.fetchUserPerformanceAccordingToAggregation(userperformance);
+					UserDocument userdoc=documentUploadService.getDocumentsAccordingToUserName(login.getUsername());
+					userdetailsvo.setDocument(userdoc);
 					userdetailsvo.setUserperformance(userperformance);
 				} catch (Exception e) {
 					return new ResponseEntity<UserDetailsVO>(userdetailsvo, HttpStatus.INTERNAL_SERVER_ERROR);

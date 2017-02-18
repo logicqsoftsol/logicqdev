@@ -39,7 +39,8 @@
 					$scope.tasklist.count={};
 					$scope.request.task={};
 					$scope.encashdetails={};
-
+					$scope.documentid={};
+					$scope.user.image="assets/images/dummyuser.jpg";
 				
 				    angular.forEach($state.get(), function (item) {
 				        if (item.data && item.data.visible) {
@@ -74,6 +75,11 @@
 				
 					$scope.viewSupportHands=function(){
 						$scope.displayNetworkProfie($localStorage.profile.networkjson);
+					}
+					if($localStorage.profile.document.documentPath!=null){
+						$scope.user.image=$localStorage.profile.document.documentPath;
+						$scope.userprofile.firstname=$localStorage.profile.userprofile.firstname;
+						$scope.userprofile.lastname=$localStorage.profile.userprofile.lastname
 					}
 				
 				if(!$localStorage.profile.mobilenoVerified){
@@ -162,6 +168,11 @@
 				  //};
 				 //$scope.poller();
 				  
+				  $scope.clearRequestForm= function(){
+					  $scope.approval.verificationvalue='';
+					  $scope.approval.otpcode='';
+				  }
+				  
 		     $scope.displayProfile = function () {
 					 $scope.userdetails=$localStorage.profile;
 					 $scope.usertype=$scope.userdetails.userprofile.logindetails.authorities[0].name;
@@ -175,6 +186,7 @@
 				}else{
 					$scope.taskreadonly='true';
 				}
+					 $scope.user.image=$scope.userdetails.document.documentPath;
 				     $scope.user.firstname=$scope.userdetails.userprofile.firstname;
 					 $scope.user.lastname=$scope.userdetails.userprofile.lastname;
 					 $scope.user.dateofbirth=new Date($scope.userdetails.userprofile.dateofbirth);
@@ -205,6 +217,13 @@
 						$scope.userprofile.networkinfo.parentmemberid=$scope.userdetails.userprofile.logindetails.username;
 						$scope.userprofile.networkinfo.memberlevel='LEVEL1';
 					}
+					
+					$scope.setupNetworkForEdit=function(){
+						$scope.userprofile.conatctDetails={};
+						$scope.userprofile.networkinfo={};
+						UserHelper.prepareUserProfileForEdit($scope);
+					}
+					
 					$scope.poulateEncashDetails=function(){
 						$scope.encashdetails={};
 						$scope.encashdetails.walletnumber=$scope.userdetails.userprofile.walletdetails.walletnumber;
@@ -278,6 +297,20 @@
 									$exceptionHandler(errormsg);
 								});
 					}
+					
+			$scope.uploadFile = function(files) {
+               $scope.request.fd = new FormData();
+              //Take the first selected file
+              $scope.request.fd.append("file", files[0]);
+			  UserDetailsService.uploadImages($scope.request).success(function(data, status) {
+				  $scope.documentid=data.documentID;
+			  }).error(function(data, status) {
+								   var errormsg='Unable to upload Image';
+									$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+									$exceptionHandler(errormsg);
+								});
+					}
+	
 					
 			 } ]);
 }());

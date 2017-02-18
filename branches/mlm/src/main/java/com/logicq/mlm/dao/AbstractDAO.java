@@ -161,6 +161,12 @@ public class AbstractDAO<T> {
 		return query.list();
 	}
 	
+	public T execcuteQueryForUnique(String queryString) {
+		Query query = getCurrentSession().createQuery(queryString);
+		return (T) query.uniqueResult();
+	}
+	
+	
 	public List<?> execcuteSQLQuery(String queryString) {
 		Query query = getCurrentSession().createSQLQuery(queryString);
 		return query.list();
