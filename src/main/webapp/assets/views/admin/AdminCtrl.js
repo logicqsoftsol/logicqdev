@@ -21,13 +21,20 @@
 					$scope.networkid='';
 					$scope.networkcreated='false';	
 					$scope.request={};
+					$scope.password={};
+					$scope.userprofile={};
 				    angular.forEach($state.get(), function (item) {
 				        if (item.data && item.data.visible) {
 				            $scope.menuItems.push({name: item.name, text: item.data.text});
 				        }
 						
 				    });
-					
+				    if(null!=$localStorage.profile && null!=$localStorage.profile.userprofile){
+						 $scope.userprofile.firstname=$localStorage.profile.userprofile.firstname;
+						 $scope.userprofile.lastname=$localStorage.profile.userprofile.lastname;
+				    	 $scope.userprofile.username=$localStorage.profile.userprofile.logindetails.username;
+						 $scope.userprofile.mobilenumber=$localStorage.profile.userprofile.conatctDetails.mobilenumber;
+				    }
 					$('#networkmember-chart').on('click', function(event) {
 							var networkid = $('#networkmembernodeid').val();
 							$scope.networkid=networkid;
@@ -52,6 +59,22 @@
 				    });
 					
 				};
+				$scope.requestPasswordChange=function(){
+					$scope.request.passwordRequest={
+							oldpassword:$scope.password.currentPassword,
+							newPassword:$scope.password.newPassword,
+							confirmPasword:$scope.password.confirmPassword,
+							date:new Date()
+					},
+					UserDetailsService.resetPassword($scope.request).success(function(data, status){
+							   var errormsg='Password change Sucess fully : '+status;
+								$rootScope.$emit("callAddAlert", {type:'sucess',msg:errormsg});
+							}).error(function(data, status) {
+							   var errormsg='Unable to Populate for Calnder event details : '+status;
+								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+								$exceptionHandler(errormsg);
+							});
+					}
 				
 					
 			 } ]);

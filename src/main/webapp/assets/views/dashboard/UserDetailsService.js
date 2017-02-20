@@ -33,6 +33,11 @@
 			//var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.createEncashRequestURL;
 			return  $http.post(url,request.encashdetails)
 		},
+		resetPassword:function (request) {
+			var url = AppConstants.hostName+AppConstants.resetPasswordURL;
+			//var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.createEncashRequestURL;
+			return  $http.post(url,request.passwordRequest)
+		},
 		uploadImages: function (request) {
 			var url = AppConstants.hostName+AppConstants.uploadImageURL;
 			//var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveUserProfileDetailsURL;

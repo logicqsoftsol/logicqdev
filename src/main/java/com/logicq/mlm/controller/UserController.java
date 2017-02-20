@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +51,7 @@ import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
 import com.logicq.mlm.vo.EncashVO;
 import com.logicq.mlm.vo.LoginVO;
+import com.logicq.mlm.vo.PasswordVO;
 import com.logicq.mlm.vo.UserDetailsVO;
 
 @RestController
@@ -120,7 +120,8 @@ public class UserController {
 				userDocument.setName("dummyuser.jpg");
 				userDocument.setUploadDate(new Date());
 		    	// hard code dummy user if not upload image
-				userDocument.setDocumentPath("http://127.0.0.1:8090/mlmlogicq/assets/images/uploadImage/ADMIN/dummyuser.jpg");
+				//userDocument.setDocumentPath("http://127.0.0.1:8090/mlmlogicq/assets/images/uploadImage/ADMIN/dummyuser.jpg");
+				userDocument.setDocumentPath("http://http://getpay.co.in/assets/images/dummyuser.jpg");
 				documentUploadService.saveDocumentDetails(userDocument);
 			}
 			// workflow details
@@ -348,6 +349,27 @@ public class UserController {
 			}
 		}
 		return new ResponseEntity<byte[]>(imageBytes, HttpStatus.BAD_REQUEST);
+	}
+	
+	
+	@RequestMapping(value = "/updatepassword", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity updatePassword(@RequestBody PasswordVO passwordVO) throws Exception {
+		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				if (login.getPassword().equals(passwordVO.getOldpassword())) {
+					UserProfile userprofile = userservice.fetchUserAccordingToUserName(login.getUsername());
+					if (passwordVO.getNewPassword().equals(passwordVO.getConfirmPasword())) {
+						userprofile.getLogindetails().setPassword(passwordVO.getConfirmPasword());
+					} else {
+						return new ResponseEntity<>("Unable to Update password mismatch", HttpStatus.BAD_REQUEST);
+					}
+					userservice.updateUser(userprofile);
+				}
+				return new ResponseEntity<>("Update SucessFully", HttpStatus.OK);
+			}
+		}
+		return new ResponseEntity<>("Unable to Update", HttpStatus.BAD_REQUEST);
 	}
 
 }
