@@ -10,7 +10,6 @@
     $provide.decorator("$exceptionHandler", function ($delegate, $injector) {
         return function (exception, cause) {
 			   var rootScope = $injector.get("$rootScope");
-			  $('#preloader-it').hide();
 		      $('#displaydata').show();             
 		      $delegate(exception, cause);
 			//Not requird as added error message
@@ -27,13 +26,13 @@
     	  if ($sessionStorage.authToken) {
               config.headers['AUTH-TOKEN'] = $sessionStorage.authToken;
           }
-         $('#preloader-it').show();
+         $('#preloader').show();
 		  $('#displaydata').hide();
          return config;
       },
 
       'response': function(response) {
-         $('#preloader-it').hide();
+         $('#preloader').hide();
 		  $('#displaydata').show();
          return response;
       }
