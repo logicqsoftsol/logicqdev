@@ -41,7 +41,6 @@
 					$scope.encashdetails={};
 					$scope.documentid={};
 					$scope.user.image="assets/images/dummyuser.jpg";
-				
 				    angular.forEach($state.get(), function (item) {
 				        if (item.data && item.data.visible) {
 				            $scope.menuItems.push({name: item.name, text: item.data.text});
@@ -235,7 +234,7 @@
 						$scope.request.encashdetails.encashamount=$scope.encashdetails.encashamount;
 						UserDetailsService.createEncashRequest($scope.request).success(function(data, status) {
 					}).error(function(data, status) {
-						   var errormsg='Unable to Populate for Calnder event details : '+status;
+						   var errormsg='Unable to Create Encash Request : '+status;
 							$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 							$exceptionHandler(errormsg);
 						});
@@ -257,7 +256,7 @@
 								angular.element('#otppopup').modal('show');
 						     	}
 								}).error(function(data, status) {
-								   var errormsg='Unable to Populate for Calnder event details : '+status;
+								   var errormsg='Unable to save User Profile  details : '+status;
 									$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 									$exceptionHandler(errormsg);
 								});
