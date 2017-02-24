@@ -25,4 +25,9 @@ public class WalletDetailsDAO extends AbstractDAO<WalletDetails>  implements IWa
 		return (WalletDetails) execcuteQuery(query.toString()).get(0);
 	}
 
+	@Override
+	public void updateWalletDetails(WalletDetails walletdetails) {
+		update(walletdetails);
+	}
+
 }

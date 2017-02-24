@@ -1,11 +1,12 @@
 package com.logicq.mlm.service.wallet;
 
+import com.logicq.mlm.model.admin.FeeSetup;
 import com.logicq.mlm.model.profile.WalletDetails;
 import com.logicq.mlm.model.wallet.WalletStatement;
 
 public interface IWalletStmntService {
 
-	WalletStatement fetchWalletStmntAccordingToAggregartion(WalletStatement walletStatement) throws Exception;
+	WalletStatement fetchWalletStmnt(WalletStatement walletStatement) throws Exception;
 	
 	void addWalletStmnt(WalletStatement walletStatement);
 	
@@ -14,5 +15,7 @@ public interface IWalletStmntService {
      void createWallet(WalletDetails walletdetails);
 	
 	 WalletDetails fetchWalletDetails(WalletDetails walletdetails);
+	 void updateWalletStatementAccordingToFee(FeeSetup fee,WalletStatement walletStatement);
+	   
 	
 }

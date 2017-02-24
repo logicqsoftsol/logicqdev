@@ -23,6 +23,10 @@ public class MessageHelper {
 	public static String getAdminMobileNumber() {
 		return "08763621986";
 	}
+	
+	public static String getAdminEmail() {
+		return "getpayindia@gmail.com";
+	}
 
 	public static String generateUserRegistartionMessage(String username, String password, String fname, String lname) {
 		return " Welcome to MLM Mr." + fname + " " + lname + " Your login details USERNAME #" + username + " PASSWORD #"

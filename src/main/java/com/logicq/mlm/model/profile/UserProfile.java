@@ -20,50 +20,44 @@ import com.logicq.mlm.model.login.Login;
 @Entity
 @Table(name = "USER_PROFILE")
 public class UserProfile implements Serializable {
-	
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6997948080797818976L;
-	
-	
+
 	@Id
 	@Column(name = "PROFILE_ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstname;
-	
-	
+
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastname;
-	
+
 	@Column(name = "GENDER", nullable = true)
 	private String gender;
 
-	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "BIRTH_DATE", nullable = true)
 	private Date dateofbirth;
-	
-	@OneToOne(mappedBy="userprofile",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private Login logindetails;
-	
-	@OneToOne(mappedBy="userprofile",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private NetworkInfo networkinfo;
-	
-	
-	@OneToOne(mappedBy="userprofile",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private ContactDetails conatctDetails;
-	
-	@OneToOne(mappedBy="userprofile",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private WalletDetails walletdetails;
-	
-	@OneToOne(mappedBy="userprofile",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private SocialDetails socialdetails;
 
+	@OneToOne(mappedBy = "userprofile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Login logindetails;
+
+	@OneToOne(mappedBy = "userprofile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private NetworkInfo networkinfo;
+
+	@OneToOne(mappedBy = "userprofile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private ContactDetails conatctDetails;
+
+	@OneToOne(mappedBy = "userprofile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private WalletDetails walletdetails;
+
+	@OneToOne(mappedBy = "userprofile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private SocialDetails socialdetails;
 
 	public Long getId() {
 		return id;
@@ -151,5 +145,4 @@ public class UserProfile implements Serializable {
 				+ ", dateofbirth=" + dateofbirth + "]";
 	}
 
-	
 }

@@ -45,7 +45,7 @@ public class NetworkInfoTimerTask  {
 	
 	ObjectMapper mapper=new ObjectMapper();
 	
-	@Scheduled(fixedDelay = 15000)
+	@Scheduled(fixedDelay = 3000000)
 	public void updateNetworkinfo() throws Exception {
 		List<NetWorkTask> tasklist = networktaskservice.getNetworkTaskList();
 		if (!tasklist.isEmpty()) {

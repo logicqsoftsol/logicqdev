@@ -67,8 +67,7 @@
 							date:new Date()
 					},
 					UserDetailsService.resetPassword($scope.request).success(function(data, status){
-							   var errormsg='Password change Sucess fully : '+status;
-								$rootScope.$emit("callAddAlert", {type:'sucess',msg:errormsg});
+					     	$location.path('/login');
 							}).error(function(data, status) {
 							   var errormsg='Unable to Populate for Calnder event details : '+status;
 								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});

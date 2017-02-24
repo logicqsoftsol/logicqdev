@@ -28,46 +28,39 @@ public class Login implements Serializable {
 	 */
 	private static final long serialVersionUID = -1528639937000355912L;
 
-
 	@Id
-    @Column(name = "USERNAME", length = 200, unique = true)
-    @NotNull
-    @Size( max = 200)
-    private String username;
+	@Column(name = "USERNAME", length = 200, unique = true)
+	@NotNull
+	@Size(max = 200)
+	private String username;
 
-    @Column(name = "PASSWORD", length = 200)
-    @NotNull
-    @Size(min = 4, max = 200)
-    private String password;
+	@Column(name = "PASSWORD", length = 200)
+	@NotNull
+	@Size(min = 4, max = 200)
+	private String password;
 
-    @Column(name = "MOBILE_NUMBER", length = 11,unique=true)
-    @NotNull
-    @Size(min = 10)
-    private String mobilenumber;
-    
-    
-    @Column(name = "EMAIL",unique=true)
-    @NotNull
-    private String email;
+	@Column(name = "MOBILE_NUMBER", length = 11, unique = true)
+	@NotNull
+	@Size(min = 10)
+	private String mobilenumber;
 
-    @Column(name = "ENABLED")
-    @NotNull
-    private Boolean enabled;
+	@Column(name = "EMAIL")
+	// @NotNull
+	private String email;
 
+	@Column(name = "ENABLED")
+	@NotNull
+	private Boolean enabled;
 
-    @JsonIgnore
+	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name="PROFILE_ID")
+	@JoinColumn(name = "PROFILE_ID")
 	private UserProfile userprofile;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "USER_AUTHORITY",
-            joinColumns = {@JoinColumn(name = "USERNAME")},
-            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
-    private List<Authority> authorities;
-
-	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "USER_AUTHORITY", joinColumns = { @JoinColumn(name = "USERNAME") }, inverseJoinColumns = {
+			@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID") })
+	private List<Authority> authorities;
 
 	public String getUsername() {
 		return username;
@@ -131,7 +124,4 @@ public class Login implements Serializable {
 				+ email + ", enabled=" + enabled + ", authorities=" + authorities + "]";
 	}
 
-
-
-       
 }

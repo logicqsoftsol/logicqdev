@@ -12,7 +12,7 @@ import com.logicq.mlm.model.wallet.WalletStatement;
 public class WalletStmntDAO extends AbstractDAO<WalletStatement> implements IWalletStmntDAO {
 
 	@Override
-	public WalletStatement fetchWalletStmntAccordingToAggregartion(WalletStatement walletStatement) throws Exception {
+	public WalletStatement fetchWalletStmnt(WalletStatement walletStatement) throws Exception {
 		StringBuilder query = new StringBuilder();
 		query.append(" from WalletStatement ws where ws.walletid='" + walletStatement.getWalletid() + "'");
 		List<WalletStatement> walletstmntlist = (List<WalletStatement>) execcuteQuery(query.toString());

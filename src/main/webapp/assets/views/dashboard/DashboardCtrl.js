@@ -6,6 +6,7 @@
 			 '$scope',
 			 '$rootScope',
 			 '$http',
+			 '$timeout',
 			 '$location',
 			 '$localStorage',
 			 '$sessionStorage',
@@ -14,7 +15,7 @@
 			 'UserDetailsService',
 			 'UserHelper',
 			 'AdminService',
-			 function($scope,$rootScope,$http,$location,$localStorage,$sessionStorage,$exceptionHandler,$state,UserDetailsService,UserHelper,AdminService) {
+			 function($scope,$rootScope,$http,$timeout,$location,$localStorage,$sessionStorage,$exceptionHandler,$state,UserDetailsService,UserHelper,AdminService) {
 				   //Variable declare
 				    $scope.$state = $state;
 				    $scope.menuItems = [];
@@ -41,6 +42,7 @@
 					$scope.encashdetails={};
 					$scope.documentid={};
 					$scope.user.image="assets/images/dummyuser.jpg";
+					$scope.taskPoller=[];
 				    angular.forEach($state.get(), function (item) {
 				        if (item.data && item.data.visible) {
 				            $scope.menuItems.push({name: item.name, text: item.data.text});
@@ -158,14 +160,17 @@
 					
 				}	
 				
-				//$scope.poller = function() {
-				//	UserDetailsService.pollTaskDetails().then(function(r) {
-				 //   	$scope.tasklist=$scope.userdetails.tasklist;
-				//		$scope.tasklist.count=$scope.tasklist.length;
-				 //     $timeout($scope.poller, 4000);
-				  //  });      
-				  //};
-				 //$scope.poller();
+				$scope.poller = function() {
+				if($scope.taskPoller.length>0){
+					UserDetailsService.pollTaskDetails().success(function(data, status) {
+				   	$scope.tasklist=data.tasklist;
+					$scope.tasklist.count=data.tasklist.length;
+				    $scope.taskPoller=[];
+				  });     
+				}
+				$timeout($scope.poller, 4000); 
+				};
+				$scope.poller();
 				  
 				  $scope.clearRequestForm= function(){
 					  $scope.approval.verificationvalue='';
@@ -233,6 +238,7 @@
 						$scope.request.encashdetails.walletnumber=$scope.encashdetails.walletnumber;
 						$scope.request.encashdetails.encashamount=$scope.encashdetails.encashamount;
 						UserDetailsService.createEncashRequest($scope.request).success(function(data, status) {
+                      $scope.taskPoller.push("createEncashRequest");
 					}).error(function(data, status) {
 						   var errormsg='Unable to Create Encash Request : '+status;
 							$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -247,6 +253,7 @@
 					$scope.addUserDetails=function(){
 						UserHelper.prepareUserProfileRequest($scope);
 						UserDetailsService.saveUserProfileDetails( $scope.request).success(function(data, status) {
+                       $scope.taskPoller.push("userSave");
 							if(!data.mobilenoVerified){
 								$scope.otp.mobilenumber=data.userprofile.conatctDetails.mobilenumber;
 								angular.element('#otppopup').modal('show');
@@ -264,6 +271,7 @@
 					
 					$scope.updateAdminTask=function(task){
 				     $scope.request.task=task;
+                     $scope.taskPoller.push("updateAdminTask");
 					  if(task.tasktype=='ENCASH_REQUEST' && task.taskstatus=='Approved'){
 						  angular.element('#notificationdetails').modal('hide');
 						  angular.element('#encashdetailmodal').modal('show');
@@ -274,7 +282,6 @@
 					 }else{
 				       angular.element('#encashdetailmodal').modal('hide');
 				      AdminService.updateAdminTask($scope.request).success(function(data, status) {
-					 $scope.tasklist.count=$scope.tasklist.count-1;
 					 angular.element('#notificationdetails').modal('hide');
 					 }).error(function(data, status) {
 								   var errormsg='Unable to Update Task Details: '+status;
@@ -288,7 +295,7 @@
 					$scope.request.task.encashvo.encashtype=$scope.encashdetails.encashmethod;
                     $scope.request.task.encashvo.refrencenumber=$scope.encashdetails.refrence;					
 					AdminService.updateAdminTask($scope.request).success(function(data, status) {
-					 $scope.tasklist.count=$scope.tasklist.count-1;
+					 $scope.taskPoller.push("saveEncashDetails");
 					 angular.element('#encashdetailmodal').modal('hide');
 					 }).error(function(data, status) {
 								   var errormsg='Unable to Update Task Details: '+status;

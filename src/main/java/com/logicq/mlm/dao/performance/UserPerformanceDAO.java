@@ -13,13 +13,13 @@ public class UserPerformanceDAO extends AbstractDAO<UserPerformance> implements 
 	@Override
 	public UserPerformance fetchUserPerformanceAccordingToAggregation(UserPerformance userperformance) {
 		userperformance.setAggregationType("Last 1 Week");
-		userperformance.setMetting(10);
-		userperformance.setNetwork(10);
-		userperformance.setRatting(4);
-		userperformance.setTask(15);
-		userperformance.setPerformancetype("GOOD");
-		userperformance.setIncome(new BigDecimal(1000.00));
-		return null;
+		userperformance.setMetting(0);
+		userperformance.setNetwork(0);
+		userperformance.setRatting(0);
+		userperformance.setTask(0);
+		userperformance.setPerformancetype("Not Yet");
+		userperformance.setIncome(new BigDecimal(00.00));
+		return userperformance;
 	}
 
 	

@@ -23,8 +23,9 @@
 			    if($scope.usertype=='ADMIN'){
 					$location.path('/dashboard/overview');
 				}
-				else if(!response.adminVerified || !response.emailVerified || !response.mobilenoVerified){
-					$location.path('/dashboard/approvalpending');
+				//else if(!response.adminVerified || !response.emailVerified || !response.mobilenoVerified){
+			    else if(!response.adminVerified ){	
+			    $location.path('/dashboard/approvalpending');
 				}else{
 					$location.path('/dashboard/overview');
 				}
