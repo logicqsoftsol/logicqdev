@@ -117,7 +117,7 @@ function pogody(){
 	});
 	/*Typed js*/
 	$("#typed").typed({
-		strings: [" Back Soon", " Stay Tuned", " Almost There"],
+		strings: [" Welcome To GetPay", " Grow Your Business With US", " Plus Your Support Hands ,Plus Your Income"," A Lazy way to earn money "],
 		typeSpeed: 100,
 		backDelay: 900,
 		loop: true,
@@ -128,7 +128,7 @@ function pogody(){
 	});
 	/*Typed js for title tag*/
 	$("#title").typed({
-		strings: ["GetPay...", "Welcome..", "Service..!"],
+		strings: ["Welcome To GetPay", " A Lazy way to earn money ", " Digital System With digital Payment"],
 		typeSpeed: 300,
 		backDelay: 900,
 		loop: true,

@@ -21,7 +21,7 @@ public class StringFormatHelper {
 
 	
 	public static String randomString() {
-	    char[] result = new char[6];
+	    char[] result = new char[8];
 	    for (int i = 0; i < result.length; i++) {
 	        // picks a random index out of character set > random character
 	        int randomCharIndex = random.nextInt(characterSet.length);
@@ -34,4 +34,7 @@ public class StringFormatHelper {
 	    return String.valueOf(rannumber.nextInt(6));
 	}
 	
+	public static String sevenDigitRandomNumber() {
+	    return String.valueOf( rannumber.nextInt(90000000) + 10000000);
+	}
 }

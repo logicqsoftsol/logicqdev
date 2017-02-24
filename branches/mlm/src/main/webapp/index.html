@@ -52,6 +52,9 @@
 <script type="text/javascript"  src="assets/plugins/lib/angular.min.js"></script>
 <script type="text/javascript"  src="assets/plugins/lib/angular-ui-router.min.js"></script>
 <script type="text/javascript"  src="assets/plugins/lib/ngStorage.js"></script>
+<script type="text/javascript" src="assets/plugins/common/angular-animate.js"></script>
+<script type="text/javascript" src="assets/plugins/common/angular-sanitize.js"></script>
+<script type="text/javascript" src="assets/plugins/common/ui-bootstrap-tpls-2.5.0.js"></script>
 <script type="text/javascript"  src="assets/scripts/vendor.js"></script>
 								<!--External Plugins/JS  -->
 
@@ -74,9 +77,7 @@
 <script type="text/javascript" src="assets/plugins/logicq/init.js"></script>	
  
 
-<script type="text/javascript" src="assets/plugins/common/angular-animate.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
-<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+
 
 							<!-- Angular JS Controllers/Services -->
  
@@ -102,12 +103,12 @@
 </head>
 
 <body class="no-trans" ng-app="mlmlogicq">
- <div id="preloader" ><div></div></div>
   <div ng-controller="AlertController">
 <script type="text/ng-template" id="alert.html">
     <div ng-transclude></div>
   </script>
   </div>
+ <div id="preloader" ><div></div></div>
    <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
       <div ui-view> </div> 
     	

@@ -1,5 +1,7 @@
 package com.logicq.mlm.service.wallet;
 
+import java.util.Date;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.logicq.mlm.dao.wallet.IWalletDetailsDAO;
 import com.logicq.mlm.dao.wallet.IWalletStmntDAO;
-import com.logicq.mlm.dao.wallet.WalletStmntDAO;
+import com.logicq.mlm.model.admin.FeeSetup;
 import com.logicq.mlm.model.profile.WalletDetails;
 import com.logicq.mlm.model.wallet.WalletStatement;
 
@@ -23,10 +25,8 @@ public class WalletStmntService  implements IWalletStmntService{
 	
 	
 	@Override
-	public WalletStatement fetchWalletStmntAccordingToAggregartion(WalletStatement walletStatement) throws Exception {
-		
-		
-		return walletStmntDAO.fetchWalletStmntAccordingToAggregartion(walletStatement);
+	public WalletStatement fetchWalletStmnt(WalletStatement walletStatement) throws Exception {
+		return walletStmntDAO.fetchWalletStmnt(walletStatement);
 	}
 
 
@@ -51,6 +51,17 @@ public class WalletStmntService  implements IWalletStmntService{
 	@Override
 	public void updateWalletStmnt(WalletStatement walletStatement) throws Exception {
 		walletStmntDAO.updateWalletStmnt(walletStatement);
+	}
+
+
+	@Override
+	public void updateWalletStatementAccordingToFee(FeeSetup fee, WalletStatement walletStatement) {
+		walletStatement.getCurrentbalance().add(fee.getAmount());
+		walletStatement.getMaxencashable().add(fee.getAmount());
+		walletStatement.getPayout().add(fee.getAmount());
+		walletStatement.setWalletlastupdate(new Date());
+		walletStmntDAO.updateWalletStmnt(walletStatement);
+		
 	}
 
 }

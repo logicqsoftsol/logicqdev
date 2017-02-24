@@ -19,6 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,7 @@ import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.sms.SMSDetails;
 import com.logicq.mlm.model.wallet.WalletStatement;
 import com.logicq.mlm.model.workflow.WorkFlow;
+import com.logicq.mlm.service.login.ILoginService;
 import com.logicq.mlm.service.messaging.IEmailService;
 import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
 import com.logicq.mlm.service.performance.IUserPerformanceService;
@@ -52,6 +54,7 @@ import com.logicq.mlm.service.workflow.IWorkFlowService;
 import com.logicq.mlm.vo.EncashVO;
 import com.logicq.mlm.vo.LoginVO;
 import com.logicq.mlm.vo.PasswordVO;
+import com.logicq.mlm.vo.StatusVO;
 import com.logicq.mlm.vo.UserDetailsVO;
 
 @RestController
@@ -75,14 +78,17 @@ public class UserController {
 
 	@Autowired
 	INetworkDetailsService networkservice;
-	
+
 	@Autowired
 	IDocumentUploadService documentUploadService;
-	
+
 	@Autowired
-    ServletContext context; 
-	
-	private final static  SMSVendor smsvendor=SMSVendor.getInstance();
+	ILoginService loginService;
+
+	@Autowired
+	ServletContext context;
+
+	private final static SMSVendor smsvendor = SMSVendor.getInstance();
 	ObjectMapper objectmapper = new ObjectMapper();
 
 	@RequestMapping(value = "/fetchUser", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -100,28 +106,30 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UserDetailsVO> saveUserDetails(@RequestBody UserDetailsVO userdetailvo) throws Exception {
+	public ResponseEntity<StatusVO> saveUserDetails(@RequestBody UserDetailsVO userdetailvo) throws Exception {
+		StatusVO statusVO = new StatusVO();
 		if (null != userdetailvo.getUserprofile()) {
 			// update newtork json
 			userdetailvo.getUserprofile().getNetworkinfo().setIsUpdate(Boolean.FALSE);
 			String networkJson = objectmapper.writeValueAsString(userdetailvo.getNetworkjson());
 			userdetailvo.getUserprofile().getNetworkinfo().setNetworkjson(networkJson.getBytes());
-
 			// save user details
 			userservice.saveUser(userdetailvo.getUserprofile());
-			if(null!=userdetailvo.getDocument()){
-			documentUploadService.updateDocumentDetails(userdetailvo.getDocument().getDocumentID(), userdetailvo.getUserprofile());
-			}else{
-				UserDocument userDocument=new UserDocument();
-				userDocument.setMobileNumber(userdetailvo.getUserprofile().getLogindetails().getMobilenumber());	
+			if (null != userdetailvo.getDocument()) {
+				documentUploadService.updateDocumentDetails(userdetailvo.getDocument().getDocumentID(),
+						userdetailvo.getUserprofile());
+			} else {
+				UserDocument userDocument = new UserDocument();
+				userDocument.setMobileNumber(userdetailvo.getUserprofile().getLogindetails().getMobilenumber());
 				userDocument.setUsername(userdetailvo.getUserprofile().getLogindetails().getUsername());
 				userDocument.setProfileID(userdetailvo.getUserprofile().getId());
 				userDocument.setServiceType("profile");
 				userDocument.setName("dummyuser.jpg");
 				userDocument.setUploadDate(new Date());
-		    	// hard code dummy user if not upload image
-				//userDocument.setDocumentPath("http://127.0.0.1:8090/mlmlogicq/assets/images/uploadImage/ADMIN/dummyuser.jpg");
-				userDocument.setDocumentPath("http://http://getpay.co.in/assets/images/dummyuser.jpg");
+				// hard code dummy user if not upload image
+				userDocument.setDocumentPath(
+						"http://127.0.0.1:8090/mlmlogicq/assets/images/uploadImage/ADMIN/dummyuser.jpg");
+				// userDocument.setDocumentPath("http://http://getpay.co.in/assets/images/dummyuser.jpg");
 				documentUploadService.saveDocumentDetails(userDocument);
 			}
 			// workflow details
@@ -129,15 +137,17 @@ public class UserController {
 			workflowservice.createWorkFlowForListValidation(workflowlist);
 			if (!workflowlist.isEmpty()) {
 				for (WorkFlow workflow : workflowlist) {
-					EmailDetails emailmessage = prepareEmail(workflow, userdetailvo);
-					emailservice.sendEmail(emailmessage);
+					if (!StringUtils.isEmpty(userdetailvo.getUserprofile().getLogindetails().getEmail())) {
+						EmailDetails emailmessage = prepareEmail(workflow, userdetailvo);
+						emailservice.sendEmail(emailmessage);
+					}
 				}
 			}
 			// send SMS to user and admin
-			//prepapreSMSDetailsAndSendSMS(userdetailvo);
+			// prepapreSMSDetailsAndSendSMS(userdetailvo);
 			// update parent JSON
 		}
-		return new ResponseEntity<UserDetailsVO>(userdetailvo, HttpStatus.OK);
+		return new ResponseEntity<StatusVO>(userdetailvo, HttpStatus.OK);
 	}
 
 	private void prepapreSMSDetailsAndSendSMS(UserDetailsVO userdetailvo) {
@@ -173,22 +183,22 @@ public class UserController {
 		if (!userdetailvo.isMobilenoVerified()) {
 			WorkFlow workflowmobile = new WorkFlow();
 			workflowmobile.setAssignedto(userdetailvo.getUserprofile().getLogindetails().getUsername());
-			workflowmobile.setMessage("Mobile Verification Pending");
+			workflowmobile.setMessage("Mobile Verification Sucess");
 			workflowmobile.setCreatedby(userdetailvo.getUserprofile().getLogindetails().getUsername());
 			workflowmobile.setCreatetime(new Date());
 			workflowmobile.setWorktype("MOBILE_VERIFICATION");
-			workflowmobile.setStatus(false);
+			workflowmobile.setStatus(true);
 			workflowmobile.setProfileid(String.valueOf(userdetailvo.getUserprofile().getId()));
 			workflowdetails.add(workflowmobile);
 		}
 		if (!userdetailvo.isEmailVerified()) {
 			WorkFlow workflowemail = new WorkFlow();
 			workflowemail.setAssignedto(userdetailvo.getUserprofile().getLogindetails().getUsername());
-			workflowemail.setMessage("EMail Verification Pending");
+			workflowemail.setMessage("EMail Verification Sucess");
 			workflowemail.setCreatedby(userdetailvo.getUserprofile().getLogindetails().getUsername());
 			workflowemail.setCreatetime(new Date());
 			workflowemail.setWorktype("EMAIL_VERIFICATION");
-			workflowemail.setStatus(false);
+			workflowemail.setStatus(true);
 			workflowemail.setProfileid(String.valueOf(userdetailvo.getUserprofile().getId()));
 			workflowdetails.add(workflowemail);
 		}
@@ -239,15 +249,15 @@ public class UserController {
 						NetWorkDetails.class);
 				userdetailsvo.setNetworkjson(networkdetails);
 				userdetailsvo.setUserperformance(userperformance);
-				String authorityname=null;
-				List<GrantedAuthority> authorities= (List<GrantedAuthority>) login.getAuthorities();
-				if(null!=authorities && !authorities.isEmpty()){
-					authorityname=authorities.get(0).getAuthority();
+				String authorityname = null;
+				List<GrantedAuthority> authorities = (List<GrantedAuthority>) login.getAuthorities();
+				if (null != authorities && !authorities.isEmpty()) {
+					authorityname = authorities.get(0).getAuthority();
 				}
 				if (login.getUsername().equals(networkid) || authorityname.equals("ADMIN")) {
 					walletStatement.setWallet(userprofile.getWalletdetails());
 					walletStatement.setWalletid(userprofile.getWalletdetails().getWalletid());
-					walletStatement = walletStatementservice.fetchWalletStmntAccordingToAggregartion(walletStatement);
+					walletStatement = walletStatementservice.fetchWalletStmnt(walletStatement);
 					userdetailsvo.setWalletStatement(walletStatement);
 					userperformanceservice.fetchUserPerformanceAccordingToAggregation(userperformance);
 				} else {
@@ -267,14 +277,14 @@ public class UserController {
 					if (work.getWorktype().equalsIgnoreCase("ADMIN_VERIFICATION")) {
 						userdetailsvo.setAdminVerified(work.getStatus());
 					}
-				
+
 				}
 			}
 		}
 		return new ResponseEntity<UserDetailsVO>(userdetailsvo, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "/createEncashRequest", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes=MediaType.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(value = "/createEncashRequest", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<EncashVO> createEncashRequest(@RequestBody EncashVO encashvo) throws Exception {
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
@@ -282,78 +292,74 @@ public class UserController {
 				UserProfile userprofile = userservice.fetchUserAccordingToUserName(login.getUsername());
 				encashvo.setUsername(login.getUsername());
 				encashvo.setRequestdate(new Date());
-				workflowservice.createWorkFlowForEncashRequest(encashvo,userprofile);
+				workflowservice.createWorkFlowForEncashRequest(encashvo, userprofile);
 			}
 		}
 		return new ResponseEntity<EncashVO>(encashvo, HttpStatus.OK);
-		
+
 	}
-	
-	
+
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public ResponseEntity<UserDocument> uploadDocuemnt(@RequestParam("file") MultipartFile file)
-			throws Exception {
-		UserDocument docuemntUpload=new UserDocument();
+	public ResponseEntity<UserDocument> uploadDocuemnt(@RequestParam("file") MultipartFile file) throws Exception {
+		UserDocument docuemntUpload = new UserDocument();
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
 				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		if (!file.isEmpty()) {
-			try {
-		         byte[] bytes = file.getBytes();
-               String fileName=login.getUsername()+"_"+System.currentTimeMillis()+".png";
-               String url=context.getContextPath();
-               String filedirectory=PropertyHelper.loadUploadProperty().getProperty("fileDirectory");
-               // Creating the directory to store file
-				String rootPath = PropertyHelper.loadUploadProperty().getProperty("file.filepath");
-				File dir = new File(filedirectory+rootPath + File.separator + login.getUsername());
-				if (!dir.exists())
-					dir.mkdirs();
-				// Create the file on server
-				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + fileName);
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(serverFile));
-				stream.write(bytes);
-				stream.close();
-				String fileUrl=PropertyHelper.loadUploadProperty().getProperty("url")+rootPath+login.getUsername()+"/"+fileName;
-				docuemntUpload.setDocumentPath(fileUrl);
-				docuemntUpload.setMobileNumber(login.getMobilenumber());
-				docuemntUpload.setName(serverFile.getName());
-				docuemntUpload.setServiceType("Profile");
-				docuemntUpload.setUploadFor(login.getUsername());
-				docuemntUpload.setUploadDate(new Date());
-				documentUploadService.saveDocumentDetails(docuemntUpload);
-			} catch (IOException e) {
-				e.printStackTrace();
-			} 
-		}
+
+				if (!file.isEmpty()) {
+					try {
+						byte[] bytes = file.getBytes();
+						String fileName = login.getUsername() + "_" + System.currentTimeMillis() + ".png";
+						String url = context.getContextPath();
+						String filedirectory = PropertyHelper.loadUploadProperty().getProperty("fileDirectory");
+						// Creating the directory to store file
+						String rootPath = PropertyHelper.loadUploadProperty().getProperty("file.filepath");
+						File dir = new File(filedirectory + rootPath + File.separator + login.getUsername());
+						if (!dir.exists())
+							dir.mkdirs();
+						// Create the file on server
+						File serverFile = new File(dir.getAbsolutePath() + File.separator + fileName);
+						BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+						stream.write(bytes);
+						stream.close();
+						String fileUrl = PropertyHelper.loadUploadProperty().getProperty("url") + rootPath
+								+ login.getUsername() + "/" + fileName;
+						docuemntUpload.setDocumentPath(fileUrl);
+						docuemntUpload.setMobileNumber(login.getMobilenumber());
+						docuemntUpload.setName(serverFile.getName());
+						docuemntUpload.setServiceType("Profile");
+						docuemntUpload.setUploadFor(login.getUsername());
+						docuemntUpload.setUploadDate(new Date());
+						documentUploadService.saveDocumentDetails(docuemntUpload);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		}
-		return new ResponseEntity<UserDocument>(docuemntUpload,HttpStatus.OK);
+		return new ResponseEntity<UserDocument>(docuemntUpload, HttpStatus.OK);
 	}
-	
-	
+
 	@RequestMapping(value = "/getProfileImage", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
 	public ResponseEntity<byte[]> getProfileImage() throws Exception {
-		byte[] imageBytes=null;
+		byte[] imageBytes = null;
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
 				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-				UserDocument profileDoc=documentUploadService.getDocumentsAccordingToUserName(login.getUsername());
+				UserDocument profileDoc = documentUploadService.getDocumentsAccordingToUserName(login.getUsername());
 				final HttpHeaders headers = new HttpHeaders();
-			    headers.setContentType(MediaType.IMAGE_PNG); 
+				headers.setContentType(MediaType.IMAGE_PNG);
 				InputStream in = context.getResourceAsStream(profileDoc.getDocumentPath());
-				imageBytes=IOUtils.toByteArray(in);
-			   return new ResponseEntity<byte[]>(imageBytes,headers, HttpStatus.OK);
+				imageBytes = IOUtils.toByteArray(in);
+				return new ResponseEntity<byte[]>(imageBytes, headers, HttpStatus.OK);
 			}
 		}
 		return new ResponseEntity<byte[]>(imageBytes, HttpStatus.BAD_REQUEST);
 	}
-	
-	
+
 	@RequestMapping(value = "/updatepassword", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity updatePassword(@RequestBody PasswordVO passwordVO) throws Exception {
+	public ResponseEntity<UserDetailsVO> updatePassword(@RequestBody PasswordVO passwordVO) throws Exception {
+		UserDetailsVO userDetails = null;
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
 				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -362,14 +368,15 @@ public class UserController {
 					if (passwordVO.getNewPassword().equals(passwordVO.getConfirmPasword())) {
 						userprofile.getLogindetails().setPassword(passwordVO.getConfirmPasword());
 					} else {
-						return new ResponseEntity<>("Unable to Update password mismatch", HttpStatus.BAD_REQUEST);
+						return new ResponseEntity<UserDetailsVO>(userDetails, HttpStatus.BAD_REQUEST);
 					}
-					userservice.updateUser(userprofile);
+					loginService.updateLogingDetails(userprofile.getLogindetails());
+					com.logicq.mlm.service.security.UserService.addUser(userprofile.getLogindetails());
+					return new ResponseEntity<UserDetailsVO>(userDetails, HttpStatus.OK);
 				}
-				return new ResponseEntity<>("Update SucessFully", HttpStatus.OK);
 			}
 		}
-		return new ResponseEntity<>("Unable to Update", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<UserDetailsVO>(userDetails, HttpStatus.UNAUTHORIZED);
 	}
 
 }

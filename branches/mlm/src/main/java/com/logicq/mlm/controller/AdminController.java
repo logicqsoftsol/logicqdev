@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.factory.LoginFactory;
 import com.logicq.mlm.common.helper.PropertyHelper;
 import com.logicq.mlm.common.helper.WalletAmountCalculator;
+import com.logicq.mlm.model.admin.FeeSetup;
 import com.logicq.mlm.model.admin.NetWorkTask;
 import com.logicq.mlm.model.admin.TaskDetails;
 import com.logicq.mlm.model.login.Login;
@@ -31,6 +32,8 @@ import com.logicq.mlm.model.workflow.WorkFlow;
 import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
 import com.logicq.mlm.service.networkdetails.INetworkTaskService;
 import com.logicq.mlm.service.user.IUserService;
+import com.logicq.mlm.service.wallet.IFeeSetupService;
+import com.logicq.mlm.service.wallet.IWalletDetailsService;
 import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
 import com.logicq.mlm.vo.EncashVO;
@@ -56,6 +59,12 @@ public class AdminController {
 	
 	@Autowired
 	IUserService userservice;
+	
+	@Autowired
+	IWalletDetailsService walletDetailsService;
+	
+	@Autowired
+	IFeeSetupService feeSetupService;
 
 	ObjectMapper objectmapper = new ObjectMapper();
 
@@ -87,7 +96,7 @@ public class AdminController {
 						if (userprofile.getWalletdetails().isIsactive()) {
 							WalletStatement walletstmnt = new WalletStatement();
 							walletstmnt.setWalletid(userprofile.getWalletdetails().getWalletid());
-							walletstmnt = walletservice.fetchWalletStmntAccordingToAggregartion(walletstmnt);
+							walletstmnt = walletservice.fetchWalletStmnt(walletstmnt);
 							walletstmnt = WalletAmountCalculator.calculateCurrentBalanceAfterEncashed(walletstmnt,
 									taskdetails.getEncashvo().getEncashamount());
 							walletservice.updateWalletStmnt(walletstmnt);
@@ -100,8 +109,39 @@ public class AdminController {
 							.fetchUserAccordingToProfileId(Long.valueOf(workflow.getProfileid()));
 					userprofile.getWalletdetails().setIsactive(Boolean.TRUE);
 					userprofile.getWalletdetails().setWalletactivedate(new Date());
-					userservice.updateUser(userprofile);
+					walletDetailsService.updateWalletDetails(userprofile.getWalletdetails());
 					
+					NetWorkDetails networkinfo = objectmapper
+							.convertValue(userprofile.getNetworkinfo().getNetworkjson(), NetWorkDetails.class);
+					NetworkInfo parentNetworkInfo = netWorkDetailsService
+							.getNetworkDetails(userprofile.getNetworkinfo().getParentmemberid());
+					
+					NetWorkDetails parentNetworkdetails = PropertyHelper.convertJsonToNetworkInfo(parentNetworkInfo);
+					
+					if (null != parentNetworkdetails && null != parentNetworkdetails.getChildren()) {
+						parentNetworkdetails.getChildren().add(networkinfo);
+					}else{
+						parentNetworkdetails.setChildren(new ArrayList<NetWorkDetails>());
+						parentNetworkdetails.getChildren().add(networkinfo);
+					}
+					
+					parentNetworkInfo.setNetworkjson(PropertyHelper.convertNetworkInfoToJson(parentNetworkdetails).getBytes());
+					netWorkDetailsService.updateNetworkDetails(parentNetworkInfo);
+		
+					//Fee update
+					UserProfile parentuserprofile = userservice.fetchUserAccordingToUserName(userprofile.getNetworkinfo().getParentmemberid());
+					List<FeeSetup> feeDetails=feeSetupService.getFeeDetails();
+					WalletStatement walletStatement=new WalletStatement();
+					walletStatement.setWallet(parentuserprofile.getWalletdetails());
+					walletStatement.setWalletid(parentuserprofile.getWalletdetails().getWalletid());
+					walletStatement=walletservice.fetchWalletStmnt(walletStatement);
+					for (FeeSetup fee : feeDetails) {
+						if (fee.getApplyTo().equals("LEVEL1")) {
+							walletservice.updateWalletStatementAccordingToFee(fee, walletStatement);
+							break;
+						}
+					}
+
 					//Create Network Task
 					NetWorkTask networktask=new NetWorkTask();
 					networktask.setMemberid(userprofile.getNetworkinfo().getMemberid());

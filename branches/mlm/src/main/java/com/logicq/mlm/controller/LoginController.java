@@ -132,7 +132,7 @@ public class LoginController {
 					userdetailsvo.setNetworkjson(networkdetails);
 					walletStatement.setWallet(userprofile.getWalletdetails());
 					walletStatement.setWalletid(userprofile.getWalletdetails().getWalletid());
-					walletStatement=walletStatementservice.fetchWalletStmntAccordingToAggregartion(walletStatement);
+					walletStatement=walletStatementservice.fetchWalletStmnt(walletStatement);
 					userdetailsvo.setWalletStatement(walletStatement);
 					userperformanceservice.fetchUserPerformanceAccordingToAggregation(userperformance);
 					UserDocument userdoc=documentUploadService.getDocumentsAccordingToUserName(login.getUsername());

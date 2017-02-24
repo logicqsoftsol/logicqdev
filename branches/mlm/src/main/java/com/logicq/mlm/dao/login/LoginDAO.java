@@ -20,4 +20,10 @@ public class LoginDAO extends AbstractDAO<Login> implements ILoginDAO {
 		}
 	}
 
+	@Override
+	public void updateLogingDetails(Login login) {
+		update(login);
+		
+	}
+
 }
