@@ -45,7 +45,6 @@ public class Login implements Serializable {
 	private String mobilenumber;
 
 	@Column(name = "EMAIL")
-	// @NotNull
 	private String email;
 
 	@Column(name = "ENABLED")

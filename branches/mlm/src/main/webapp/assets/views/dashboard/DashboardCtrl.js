@@ -79,8 +79,6 @@
 					}
 					if($localStorage.profile.document.documentPath!=null){
 						$scope.user.image=$localStorage.profile.document.documentPath;
-						$scope.userprofile.firstname=$localStorage.profile.userprofile.firstname;
-						$scope.userprofile.lastname=$localStorage.profile.userprofile.lastname
 					}
 				
 				if(!$localStorage.profile.mobilenoVerified){
@@ -165,8 +163,16 @@
 					UserDetailsService.pollTaskDetails().success(function(data, status) {
 				   	$scope.tasklist=data.tasklist;
 					$scope.tasklist.count=data.tasklist.length;
-				    $scope.taskPoller=[];
-				  });     
+					if(data.tasklist.length==0){
+						$scope.taskPoller=[];
+					}else{
+						$scope.taskPoller=data.tasklist;
+					}
+				  }).error(function(data, status) {
+					  var errormsg='Unable to Update Your Task  '+status;
+						$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+						$exceptionHandler(errormsg);
+					});     
 				}
 				$timeout($scope.poller, 4000); 
 				};

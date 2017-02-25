@@ -267,8 +267,8 @@
 										<h4 class="modal-title">New Member Details</h4>	
 						</div>
 	<div class="modal-body">
-        <div class="bhoechie-tab-container">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+        <div class="tab-container">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
               <div class="list-group">
                 <a href="#" class="list-group-item active text-center">
                   <h4><i class="fa fa-user" aria-hidden="true"></i></h4><br/>Profile
@@ -277,55 +277,48 @@
                   <h4><i class="fa fa-sitemap" aria-hidden="true"></i></h4><br/>Network
                 </a>
                 <a href="#" class="list-group-item text-center">
-                  <h4><i class="fa fa-phone" aria-hidden="true"></i></h4><br/>Contact
+                  <h4><i class="fa fa-phone" aria-hidden="true"></i></h4><br/>Contact Details
                 </a>
 				<a href="#" class="list-group-item text-center">
-                  <h4><i class="fa fa-share-square-o" aria-hidden="true"></i></h4><br/>Social
+                  <h4><i class="fa fa-university" aria-hidden="true"></i></h4><br/>Bank Details
                 </a>
               </div>
             </div>
+			<ng-form name="personal" class="form-horizontal" role="form">
       <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
-                <!-- flight section -->
+              
+			  <!-- flight section -->
                 <div class="bhoechie-tab-content active">
-                    <center>
-                      <div class="row">
-
+				 
     <!-- edit form column -->
-    <div class="col-md-12 personal-info">
-      <h3>Personal info</h3>
-      <form name="personal"class="form-horizontal" role="form">
+    <div class="col-md-12">
         <div class="form-group">
-          <label class="col-lg-3 control-label">First name </label>
-          <div class="col-lg-8">
+          <label class="col-md-3 control-label">First name *</label>
+          <div class="col-md-8">
             <input class="form-control" ng-model="userprofile.firstname" placeholder="First Name" ng-pattern="/^(\D)+$/" type="text" name="fname" ng-required="true"/>
-			<!-- <div ng-show="personal.fname.$invalid"> 
-				<div style="color:brown" ng-message="required">This field is required</div>
-			</div> -->
 			 <span style="color:red" ng-show="personal.fname.$error.required && personal.fname.$dirty">First Name is required.</span> 
 			 <span style="color:red" ng-show="personal.fname.$error.pattern && personal.fname.$dirty">First Name cannot digit</span> 
-	
-			
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Last name </label>
-          <div class="col-lg-8">
+          <label class="col-md-3 control-label">Last name *</label>
+          <div class="col-md-8">
             <input class="form-control" ng-model="userprofile.lastname" placeholder="Last name"ng-pattern="/^(\D)+$/" type="text" name="lname" required/>
 			<span style="color:red" ng-show="personal.lname.$error.required && personal.lname.$dirty">Last Name is required.</span> 
 			 <span style="color:red" ng-show="personal.lname.$error.pattern">Last Name cannot digit</span> 
           </div>
         </div>
        <div class="form-group" ng-class="{error: personal.dob.$invalid}">
-          <label class="col-lg-3 control-label">DOB</label>
-          <div class="col-lg-8">
+          <label class="col-md-3 control-label">DOB *</label>
+          <div class="col-md-8">
             <input class="form-control" ng-model="userprofile.dateofbirth" placeholder="Date of Birth" type="date" name="dob" required/>
 			<span style="color:red" ng-show="personal.dob.$touched && personal.dob.$error.required">Please enter dob</span> 
           </div>
         </div>
         
           <div class="form-group">
-          <label class="col-lg-3 control-label">Gender</label>
-          <div class="col-lg-8">
+          <label class="col-md-3 control-label">Gender *</label>
+          <div class="col-md-8">
            <label><input type="radio" id="male" name="male" ng-model="userprofile.gender" value="Male" ng-required="true"/> Male </label>	
 		   <label><input type="radio" id="female" name="female"  ng-model="userprofile.gender" value="Female" ng-required="true"/> Female </label>
 		   <span style="color:red" ng-show="personal.male.$touched && personal.male.$error.required">Please Select Gender (Male or Female)</span> 
@@ -334,127 +327,109 @@
         </div>
 
         <div class="form-group">
-          <label class="col-md-3 control-label">Username </label>
+          <label class="col-md-3 control-label">Username *</label>
           <div class="col-md-8">
             <input class="form-control" name="uname" ng-model="userprofile.logindetails.username" placeholder="Username" type="text" required>
 			<span style="color:red" ng-show="personal.uname.$error.required && personal.uname.$dirty">Username required.</span> 
           </div>
         </div>
         <div class="form-group">
-          <label class="col-md-3 control-label">Password </label>
+          <label class="col-md-3 control-label">Password *</label>
           <div class="col-md-8">
-            <input class="form-control" name="pass" ng-model="userprofile.logindetails.prepassword" placeholder="Password" type="password" required>
+            <input class="form-control" name="pass" ng-model="userprofile.logindetails.prepassword" placeholder="Password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" type="password" required>
 			<span style="color:red" ng-show="personal.pass.$error.required && personal.pass.$dirty">Password required.</span> 
+			 <span style="color:red" ng-show="personal.pass.$error.pattern">Password must be 8 character</span>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-md-3 control-label">Confirm password</label>
+          <label class="col-md-3 control-label">Confirm password *</label>
           <div class="col-md-8">
-            <input class="form-control" name="cpass" ng-model="userprofile.logindetails.password"  placeholder="Confirm password" type="password" required>
+            <input class="form-control" name="cpass" ng-model="userprofile.logindetails.password"  placeholder="Confirm password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" type="password" required>
 			<span style="color:red" ng-show="personal.cpass.$error.required && personal.cpass.$dirty">Confirm Password required.</span> 
           </div>
         </div>
 	<div class="form-group">
-	  <label class="col-md-3 control-label">Upload profile Image</label>
+	  <label class="col-md-3 control-label">Upload profile Image *</label>
        <div class="col-md-8">
         <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" required/>
 		<span style="color:red" ng-show="personal.pimage.$touched && personal.pimage.$error.required">Profile Image required.</span> 
       </div>
   </div>
-      </form>
-    </div>
+  </div>  
+  
   </div>
-                    </center>
-                </div>
                 <!-- train section -->
                 <div class="bhoechie-tab-content ">
-                    <center>
-                                         <div class="row">
-
-    <!-- edit form column -->
-    <div class="col-md-12 personal-info">
-      <h3>Network info</h3>
-      <form class="form-horizontal" role="form" name="nwtk_info">
 		<div class="form-group">
-          <label class="col-lg-3 control-label">Parent Profile ID</label>
-          <div class="col-lg-8">
+          <label class="col-md-4 control-label">Parent Profile ID</label>
+          <div class="col-md-8">
             <input class="form-control" name="ppro_id" ng-model="userprofile.networkinfo.parentmemberid" placeholder="Refrence ID" type="text" required readonly/>
-			<span style="color:red" ng-show="nwtk_info.ppro_id.$error.required && nwtk_info.ppro_id.$dirty">Please enter profile_ID of your parent member.</span> 
+			<span style="color:red" ng-show="personal.ppro_id.$error.required && personal.ppro_id.$dirty">Please enter profile_ID of your parent member.</span> 
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Member Type </label>
-          <div class="col-lg-8">
+          <label class="col-md-4 control-label">Member Type </label>
+          <div class="col-md-8">
             <input class="form-control" ng-model="userprofile.networkinfo.memberlevel" placeholder="Member Type" type="text" name="mtype" required readonly/>
-			<span style="color:red" ng-show="nwtk_info.mtype.$error.required && nwtk_info.mtype.$dirty">Enter you Member Type like LEVEL1, LEVEL2 ... </span> 
+			<span style="color:red" ng-show="personal.mtype.$error.required && personal.mtype.$dirty">Enter you Member Type like LEVEL1, LEVEL2 ... </span> 
           </div>
         </div>
-      </form>
+		
     </div>
-  </div>
-                    </center>
-                </div>
   
                 <div class="bhoechie-tab-content">
-                    <center>
-					<div class="row">
-                    <div class="col-md-12 personal-info">
-						<h3>Contact Info</h3>
-			<ng-form name="dgcnt">
-				 <div class="col-md-12">	
+                    <div class="col-md-12">
+				 
 				<div class="form-group">
-					<label class="col-lg-3 control-label" >Mobile Number *</label>
-				<div class="col-lg-8">
+					<label class="col-md-4 control-label" >Mobile Number *</label>
+				<div class="col-md-8">
 					 <input name="mobile" class="form-control" ng-model="userprofile.conatctDetails.mobilenumber" ng-pattern="/^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/" placeholder="Your Mobile Number" type="text" required>
-					 <span style="color:red" ng-show="dgcnt.mobile.$error.required && dgcnt.mobile.$dirty">Enter your mobile number</span> 
-					 <span style="color:red" ng-show="dgcnt.mobile.$error.pattern">Mobile number must be 10 digit </span> 
+					 <span style="color:red" ng-show="personal.mobile.$error.required && personal.mobile.$dirty">Enter your mobile number</span> 
+					 <span style="color:red" ng-show="personal.mobile.$error.pattern">Mobile number must be 10 digit </span> 
 					 
 				 </div>
 				</div>
-				</div>
-				 <div class="col-md-12">
+				
 				<div class="form-group">
-					<label class="col-lg-3 control-label">Your Email </label>
-				<div class="col-lg-8">
+					<label class="col-md-4 control-label">Your Email </label>
+				<div class="col-md-8">
 					 <input name="email" class="form-control" ng-model="userprofile.conatctDetails.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" placeholder="Your Email Id" type="text">
-					 <span style="color:red" ng-show="dgcnt.email.$error.required && dgcnt.email.$dirty">Enter your Email</span> 
-					 <span style="color:red" ng-show="dgcnt.email.$error.pattern">Please enter valid e-mail(xxxx@xxx.cc) </span> 
+					 <span style="color:red" ng-show="personal.email.$error.required && personal.email.$dirty">Enter your Email</span> 
+					 <span style="color:red" ng-show="personal.email.$error.pattern">Please enter valid e-mail(xxxx@xxx.cc) </span> 
 				 </div>
 				</div>
-				</div>
-				</ng-form>
+				
 					
-					<ng-form name="phycnt">
 					<div class="form-group">
 					
-          <label class="col-lg-3 control-label">Address Details *</label>
-          <div class="col-lg-8">
+          <label class="col-md-4 control-label">Address Details *</label>
+          <div class="col-md-8">
             <textarea name="address" class="form-control"  ng-model="userprofile.conatctDetails.addressText" placeholder="Address Details" required></textarea>
 			<!-- <div style="color:red;" ng-show="phycnt.addrsdt.$invalid"> -->
 				<!-- <span ng-show="phycnt.addrsdt.$error.required">Address is required.</span> -->
 			<!-- </div> -->
-				<span style="color:red" ng-show="phycnt.address.$error.required && phycnt.address.$dirty">Please enter address.</span> 
+				<span style="color:red" ng-show="personal.address.$error.required && phycnt.address.$dirty">Please enter address.</span> 
           </div>
 	         </div>
 			 
 			 			<div class="form-group">
-          <label class="col-lg-3 control-label">Near By Landmark *</label>
-          <div class="col-lg-8">
+          <label class="col-md-4 control-label">Near By Landmark *</label>
+          <div class="col-md-8">
             <textarea name="landmark" class="form-control" ng-model="userprofile.conatctDetails.landMark"  placeholder="Your Near By Landmark" required></textarea>
-				<span style="color:red" ng-show="phycnt.landmark.$error.required">Please enter Landmark Place near by.</span> 
+				<span style="color:red" ng-show="personal.landmark.$error.required">Please enter Landmark Place near by.</span> 
           </div>
 	         </div>
 			  <div class="form-group">
-          <label class="col-lg-3 control-label">Pincode *</label>
-          <div class="col-lg-8">
+          <label class="col-md-4 control-label">Pincode *</label>
+          <div class="col-md-8">
             <input class="form-control" name="pincode" ng-model="userprofile.conatctDetails.pincode" ng-pattern="/^\d{6}$/" placeholder="Your pincode" type="text" required>
-			<span style="color:red" ng-show="phycnt.pincode.$error.required && phycnt.pincode.$dirty">Please enter your area pincode</span> 
-			<span style="color:red" ng-show="phycnt.pincode.$error.pattern">Pincode must be 6 digit only.</span> 
+			<span style="color:red" ng-show="personal.pincode.$error.required && phycnt.pincode.$dirty">Please enter your area pincode</span> 
+			<span style="color:red" ng-show="personal.pincode.$error.pattern">Pincode must be 6 digit only.</span> 
           </div>
 	         </div>
 			 	 <div class="form-group">
-          <label class="col-lg-3 control-label">Your City *</label>
-          <div class="col-lg-8">
+          <label class="col-md-4 control-label">Your City *</label>
+          <div class="col-md-8">
             <input class="form-control"  ng-model="userprofile.conatctDetails.district" placeholder="Your District" type="text" list="ditrictlist">
 			<datalist id="ditrictlist">
 			<option value="Balasore">
@@ -468,8 +443,8 @@
           </div>
 	         </div>
 		 <div class="form-group">
-          <label class="col-lg-3 control-label">State *</label>
-          <div class="col-lg-8">
+          <label class="col-md-4 control-label">State *</label>
+          <div class="col-md-8">
             <input class="form-control"  ng-model="userprofile.conatctDetails.state" placeholder="Your Statae" type="text" list="statelist">
 			<datalist id="statelist">
 			<option value="Odisha">
@@ -479,17 +454,16 @@
          </datalist>
           </div>
 	      </div>
-	</ng-form>
             </div>
-			 </div>
-                    </center>
                 </div>
+				
             </div>
+			 </ng-form>
         </div>	
 		</div>	
 	
 				<div class="modal-footer">
-							<button type="submit" id="usersearch" class="btn btn-default" ng-click="addUserDetails()"
+							<button type="submit" id="usersearch" class="btn btn-default" ng-click="addUserDetails()" ng-disabled="personal.$invalid"
 								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>

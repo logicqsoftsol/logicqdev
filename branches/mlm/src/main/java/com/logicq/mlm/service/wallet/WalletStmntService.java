@@ -56,12 +56,11 @@ public class WalletStmntService  implements IWalletStmntService{
 
 	@Override
 	public void updateWalletStatementAccordingToFee(FeeSetup fee, WalletStatement walletStatement) {
-		walletStatement.getCurrentbalance().add(fee.getAmount());
-		walletStatement.getMaxencashable().add(fee.getAmount());
-		walletStatement.getPayout().add(fee.getAmount());
+		walletStatement.setCurrentbalance(walletStatement.getCurrentbalance().add(fee.getAmount()));
+		walletStatement.setMaxencashable(walletStatement.getMaxencashable().add(fee.getAmount()));
+		walletStatement.setPayout(walletStatement.getPayout().add(fee.getAmount()));
 		walletStatement.setWalletlastupdate(new Date());
 		walletStmntDAO.updateWalletStmnt(walletStatement);
-		
 	}
 
 }

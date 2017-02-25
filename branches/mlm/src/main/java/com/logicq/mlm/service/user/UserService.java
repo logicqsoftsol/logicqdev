@@ -1,4 +1,3 @@
-
 package com.logicq.mlm.service.user;
 
 import java.math.BigDecimal;
@@ -66,6 +65,7 @@ public class UserService implements IUserService {
 		if (null != user.getConatctDetails()) {
 			user.getConatctDetails().setUserprofile(user);
 		}
+
 		if (null != user.getLogindetails()) {
 			user.getLogindetails().setEnabled(Boolean.TRUE);
 			user.getLogindetails().setUserprofile(user);
@@ -76,11 +76,13 @@ public class UserService implements IUserService {
 				user.getLogindetails().setAuthorities(new ArrayList<Authority>());
 				user.getLogindetails().getAuthorities().add(new Authority());
 			}
+
 			// This user hardcode to handle temporary solve problem
 			user.getLogindetails().getAuthorities().get(0).setId(new Long(2));
 			user.getLogindetails().getAuthorities().get(0).setName("USER");
 		}
 		if (null != user.getNetworkinfo()) {
+			user.getNetworkinfo().setMemberlevel("LEVEL0");
 			user.getNetworkinfo().setUserprofile(user);
 			user.getNetworkinfo().setDateofjoin(new Date());
 		}
@@ -106,7 +108,7 @@ public class UserService implements IUserService {
 		}
 		userdao.saveUser(user);
 		walletStatementservice.addWalletStmnt(walletstment);
-		
+
 		com.logicq.mlm.service.security.UserService.addUser(user.getLogindetails());
 	}
 

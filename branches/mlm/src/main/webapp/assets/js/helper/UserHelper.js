@@ -38,7 +38,7 @@
 							networkinfo:{
 								memberid:$scope.userprofile.logindetails.username,
 								parentmemberid:$scope.userprofile.networkinfo.parentmemberid,
-								memberlevel:$scope.userprofile.networkinfo.memberlevel,
+								memberlevel:'LEVEL0',
 								dateofjoin:new Date()
 							},
 							conatctDetails:{
