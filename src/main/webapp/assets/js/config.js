@@ -11,8 +11,8 @@
         return function (exception, cause) {
 			   var rootScope = $injector.get("$rootScope");
 			   $('#preloader').hide();
-		      $('#displaydata').show();             
-		      $delegate(exception, cause);
+		       $('#displaydata').show();             
+		       $delegate(exception, cause);
 			//Not requird as added error message
 		     //  alert(cause+'\n'+exception);
         };
@@ -21,13 +21,17 @@
         }]);
 	
  
-  angular.module('mlmlogicq').service('APIInterceptor', ['$sessionStorage', function ($sessionStorage) {
+  angular.module('mlmlogicq').service('APIInterceptor', ['$sessionStorage','AppConstants', function ($sessionStorage,AppConstants) {
 	return {
      'request': function(config) {
     	  if ($sessionStorage.authToken) {
               config.headers['AUTH-TOKEN'] = $sessionStorage.authToken;
           }
-         $('#preloader').show();
+    	  var hideUrl = AppConstants.pollTaskListURL;
+    	  var hide = (config.url.indexOf(hideUrl));
+    	  if(hide == -1){
+    		  $('#preloader').show();
+    	  }
 		  $('#displaydata').hide();
          return config;
       },

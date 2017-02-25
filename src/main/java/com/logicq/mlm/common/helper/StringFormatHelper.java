@@ -4,6 +4,8 @@ import java.security.SecureRandom;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+import org.springframework.util.StringUtils;
+
 public class StringFormatHelper {
 
 	private static final String SMS_MESSAGE_FORMAT_FOR_VENDOR = "%20";
@@ -36,5 +38,17 @@ public class StringFormatHelper {
 	
 	public static String sevenDigitRandomNumber() {
 	    return String.valueOf( rannumber.nextInt(90000000) + 10000000);
+	}
+	
+	public static Integer getLevelAsInteger(String level) {
+		if (!StringUtils.isEmpty(level)) {
+			String levelint = level.replace("LEVEL", "").trim();
+			return Integer.valueOf(levelint);
+		}
+		return null;
+	}
+	
+	public static String getLevelAsString(Integer level) {
+		return "LEVEL"+level;
 	}
 }

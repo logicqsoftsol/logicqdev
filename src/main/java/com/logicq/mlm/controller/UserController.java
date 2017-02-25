@@ -111,6 +111,10 @@ public class UserController {
 		if (null != userdetailvo.getUserprofile()) {
 			// update newtork json
 			userdetailvo.getUserprofile().getNetworkinfo().setIsUpdate(Boolean.FALSE);
+			//This is hard code as user add under his level
+			userdetailvo.getNetworkjson().setTitle("LEVEL0");
+			userdetailvo.getNetworkjson().setCategory("LEVEL0");
+			userdetailvo.getNetworkjson().setChildren(null);
 			String networkJson = objectmapper.writeValueAsString(userdetailvo.getNetworkjson());
 			userdetailvo.getUserprofile().getNetworkinfo().setNetworkjson(networkJson.getBytes());
 			// save user details
@@ -139,7 +143,7 @@ public class UserController {
 				for (WorkFlow workflow : workflowlist) {
 					if (!StringUtils.isEmpty(userdetailvo.getUserprofile().getLogindetails().getEmail())) {
 						EmailDetails emailmessage = prepareEmail(workflow, userdetailvo);
-						emailservice.sendEmail(emailmessage);
+						//emailservice.sendEmail(emailmessage);
 					}
 				}
 			}

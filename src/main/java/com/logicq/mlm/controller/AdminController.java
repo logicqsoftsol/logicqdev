@@ -112,12 +112,13 @@ public class AdminController {
 					walletDetailsService.updateWalletDetails(userprofile.getWalletdetails());
 					
 					NetWorkDetails networkinfo = objectmapper
-							.convertValue(userprofile.getNetworkinfo().getNetworkjson(), NetWorkDetails.class);
+							.readValue(userprofile.getNetworkinfo().getNetworkjson(), NetWorkDetails.class);
 					NetworkInfo parentNetworkInfo = netWorkDetailsService
 							.getNetworkDetails(userprofile.getNetworkinfo().getParentmemberid());
 					
 					NetWorkDetails parentNetworkdetails = PropertyHelper.convertJsonToNetworkInfo(parentNetworkInfo);
-					
+					networkinfo.setCategory("LEVEL1");
+					networkinfo.setTitle("LEVEL1");
 					if (null != parentNetworkdetails && null != parentNetworkdetails.getChildren()) {
 						parentNetworkdetails.getChildren().add(networkinfo);
 					}else{
