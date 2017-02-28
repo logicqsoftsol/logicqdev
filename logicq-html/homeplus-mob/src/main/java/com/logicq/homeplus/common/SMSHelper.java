@@ -29,8 +29,6 @@ public class SMSHelper {
 			
 			URL url = new URL(smsurldetails.toString());
 			httpconnection = (HttpURLConnection) url.openConnection();
-			httpconnection.setRequestMethod("GET");
-			httpconnection.setRequestProperty("Accept", "application/json");
 			return smsLogStatus(httpconnection);
 		}catch(Exception ex){
 			logger.error("From  SMS URL Details "+ex.getMessage(),ex);
@@ -53,13 +51,12 @@ public class SMSHelper {
 	private static StringBuilder formSMSURL(SMSDetails smsdetails) throws Exception{
 		StringBuilder urlString =new StringBuilder();
 		urlString.append(smsvendor.getUrl());
-		urlString.append("user="+smsvendor.getUserid()+"&");
-		urlString.append("password="+smsvendor.getPassword()+"&");
-		urlString.append("msisdn="+smsdetails.getMobilenumber()+"&");
-		urlString.append("sid="+smsvendor.getSid()+"&");
-		urlString.append("msg="+StringFormatHelper.formatStringForSMS(smsdetails.getMessage())+"&");
-		urlString.append("fl="+smsvendor.getFlag()+"&");
-		urlString.append("gwid="+smsvendor.getGwid());
+		urlString.append("username="+smsvendor.getUserid()+"&");
+		urlString.append("message="+StringFormatHelper.formatStringForSMS(smsdetails.getMessage())+"&");
+		urlString.append("sendername="+smsvendor.getSid()+"&");
+		urlString.append("smstype="+smsvendor.getSmstype()+"&");
+		urlString.append("numbers="+smsdetails.getMobilenumber()+"&");
+		urlString.append("apikey="+smsvendor.getApikey());
 		return urlString;
 	}
 	
@@ -79,8 +76,4 @@ public class SMSHelper {
 		return true;
 	}
 	
-	
-	public static String getAdminNumber(){
-		return smsvendor.getAdminmob();
-	}
 }

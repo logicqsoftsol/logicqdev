@@ -26,14 +26,21 @@ public class SMSVendor {
 	@Value("smsvendor.sid")
 	public  String sid;
 	
-	@Value("smsvendor.flag")
-	public  String flag;
+
+	@Value("smsvendor.smstype")
+	public  String smstype;
 	
-	@Value("smsvendor.gwid")
-	public  String gwid;
+
+	@Value("smsvendor.apikey")
+	public  String apikey;
 	
-	@Value("admin.smsnumber")
-	public  String adminmob;
+
+	
+	@Value("email.admin")
+	public String adminEmail;
+	
+	@Value("sms.mobilenumber")
+	public String mobilenumber;
 	
 	public String getUrl() {
 		return url;
@@ -62,25 +69,37 @@ public class SMSVendor {
 	public void setSid(String sid) {
 		this.sid = sid;
 	}
-	public String getFlag() {
-		return flag;
-	}
-	public void setFlag(String flag) {
-		this.flag = flag;
-	}
-	public String getGwid() {
-		return gwid;
-	}
-	public void setGwid(String gwid) {
-		this.gwid = gwid;
+
+	public String getSmstype() {
+		return smstype;
 	}
 
-	public String getAdminmob() {
-		return adminmob;
+	public void setSmstype(String smstype) {
+		this.smstype = smstype;
 	}
 
-	public void setAdminmob(String adminmob) {
-		this.adminmob = adminmob;
+	public String getApikey() {
+		return apikey;
+	}
+
+	public void setApikey(String apikey) {
+		this.apikey = apikey;
+	}
+
+	public String getAdminEmail() {
+		return adminEmail;
+	}
+
+	public void setAdminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
+	}
+
+	public String getMobilenumber() {
+		return mobilenumber;
+	}
+
+	public void setMobilenumber(String mobilenumber) {
+		this.mobilenumber = mobilenumber;
 	}
 
 	private SMSVendor(){}
@@ -116,12 +135,13 @@ public class SMSVendor {
 
 	}
 
-	
 	@Override
 	public String toString() {
-		return "SMSVendor [url=" + url + ", userid=" + userid + ", password=" + password + ", sid=" + sid + ", flag="
-				+ flag + ", gwid=" + gwid + ", adminmob=" + adminmob + "]";
+		return "SMSVendor [url=" + url + ", userid=" + userid + ", password=" + password + ", sid=" + sid + ", smstyp="
+				+ smstype + ", apikey=" + apikey + ", adminEmail=" + adminEmail + ", mobilenumber=" + mobilenumber + "]";
 	}
+
+
 
 	
 
