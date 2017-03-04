@@ -4,69 +4,45 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class SmsTest {
+	final static String URL_HOST="http://sms.hspsms.com";
 	
-	public static void main(String[] args) {
-		sendSMS();
-	}
-	
-	public static boolean sendSMS(){
 
-		HttpURLConnection httpconnection=null;
-		try{
-			StringBuilder smsurldetails=formSMSURL();
-			
-			URL url = new URL(smsurldetails.toString());
-			httpconnection = (HttpURLConnection) url.openConnection();
-			httpconnection.setRequestMethod("GET");
-			httpconnection.setRequestProperty("Accept", "application/json");
-			return smsLogStatus(httpconnection);
-		}catch(Exception ex){
-			ex.printStackTrace();
-			
-		}
-		finally{
-			if(null!=httpconnection){
-			httpconnection.disconnect();
-			}
-		}
+
 	
-		return false;
-	}
-/**
- * 
- * @param smsdetails
- * @return
- * @throws Exception
- */
-	private static StringBuilder formSMSURL() throws Exception{
-		StringBuilder urlString =new StringBuilder();
-		urlString.append("http://sudhanshulenka.com/vendorsms/pushsms.aspx?");
-		urlString.append("user="+"logicqsoftsol"+"&");
-		urlString.append("password="+"babu@0701402098"+"&");
-		urlString.append("msisdn="+"7057014118"+"&");
-		urlString.append("sid="+"HOMPLS"+"&");
-		urlString.append("msg="+"Demo"+"&");
-		urlString.append("fl="+"0"+"&");
-		urlString.append("gwid="+2);
-		System.out.println(urlString.toString());
-		return urlString;
-	}
-	
-	/**
-	 * 
-	 * @param conn
-	 * @throws Exception
-	 */
-	public static boolean smsLogStatus(HttpURLConnection conn) throws Exception {
-		if (conn.getResponseCode() != 200) {
-			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-			String output;
-			while ((output = br.readLine()) != null) {
-				return false;
-			}
-		}
-		return true;
-	}
+	  public static String SMSSender(String user,String apikey,String sender,String service,String mobile,String message)
+	    {
+	        String strTemp = "";
+	        try {
+	            // Construct The Post Data
+	            String data = "/sendSMS?username="+user;
+	            data += "&" + "apikey="+apikey;
+	            data += "&" + "smstype="+service;
+	            data += "&" + "sendername="+sender;
+	            data += "&" + "numbers="+mobile;
+	            data += "&" + "message=" + URLEncoder.encode(message, "UTF-8");
+	                        URL url = new URL(URL_HOST+data);
+	                        BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+
+	                          String line;
+	                           while ((line = br.readLine()) != null) {
+
+	                strTemp += line;
+	            }
+
+	                } catch (Exception ex) {
+	                        ex.printStackTrace();
+	                }
+
+
+	        return  strTemp;
+	    }
+	  
+	  public static void main(String[] args) {
+
+	        String response = SMSSender("logicq softsol", "ce1ab1a0-0093-4063-8033-58c1f44b0cc2", "HOMPLS", "TRANS", "917057014118", "this issample message");
+	        System.out.println(response);
+	    }
 }
