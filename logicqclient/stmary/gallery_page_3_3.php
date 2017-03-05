@@ -11,6 +11,7 @@ session_destroy();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ST.MARY's CONVENT SCHOOL</title>
+	<link rel="shortcut icon" href="img/site-logo.ico">
     
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
@@ -134,7 +135,7 @@ session_destroy();
                 	
                     <div class="col-padded"><!-- inner custom column -->
                         
-                        <h1 class="page-title">Buntington School students buzz <span class="label label-info">8 photos</span></h1>
+                        <h1 class="page-title">ST Mary's School students buzz <span class="label label-info">8 photos</span></h1>
                         
                         <div class="news-body">
                             
@@ -142,7 +143,7 @@ session_destroy();
                             
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                 	<figure class="gallery-photo-thumb">
-                                    	<a href="img/news-1.jpg" title="Image 1" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/news-1.jpg" alt="Image 1" /></a>
+                                    	<a href="img/slide-1.jpg" title="Image 1" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-1.jpg" alt="Image 1" /></a>
                                     </figure>
                                     <div class="gallery-photo-description">
                                     	Lorem ipsum dolor sit amet
@@ -151,7 +152,7 @@ session_destroy();
                                 
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                 	<figure class="gallery-photo-thumb">
-                                    	<a href="img/news-2.jpg" title="Image 2" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/news-2.jpg" alt="Image 2" /></a>
+                                    	<a href="img/slide-2.jpg" title="Image 2" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-2.jpg" alt="Image 2" /></a>
                                    	</figure>
                                     <div class="gallery-photo-description">
                                     	Nunc aliquam erat id nulla ultrices varius
@@ -160,7 +161,7 @@ session_destroy();
                                 
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                 	<figure class="gallery-photo-thumb">
-                                    	<a href="img/news-3.jpg" title="Image 3" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/news-3.jpg" alt="Image 3" /></a>
+                                    	<a href="img/slide-3.jpg" title="Image 3" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-3.jpg" alt="Image 3" /></a>
                                     </figure>
                                     <div class="gallery-photo-description">
                                     	Duis vehicula nec eros vel vehicula
@@ -169,7 +170,7 @@ session_destroy();
                                 
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                 	<figure class="gallery-photo-thumb">
-                                    	<a href="img/news-4.jpg" title="Image 4" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/news-4.jpg" alt="Image 4" /></a>
+                                    	<a href="img/slide-4.jpg" title="Image 4" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-4.jpg" alt="Image 4" /></a>
                                     </figure>
                                     <div class="gallery-photo-description">
                                     	Suspendisse sagittis
@@ -178,7 +179,7 @@ session_destroy();
                                 
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                 	<figure class="gallery-photo-thumb">
-                                    	<a href="img/news-6.jpg" title="Image 5" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/news-6.jpg" alt="Image 5" /></a>
+                                    	<a href="img/slide-6.jpg" title="Image 5" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-6.jpg" alt="Image 5" /></a>
                                     </figure>
                                     <div class="gallery-photo-description">
                                     	Orci quis venenatis sodales, eros est ultrices quam
@@ -187,7 +188,7 @@ session_destroy();
                                 
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                 	<figure class="gallery-photo-thumb">
-                                    	<a href="img/news-5.jpg" title="Image 6" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/news-5.jpg" alt="Image 6" /></a>
+                                    	<a href="img/slide-5.jpg" title="Image 6" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-5.jpg" alt="Image 6" /></a>
                                     </figure>
                                     <div class="gallery-photo-description">
                                     	Sit amet ultrices diam velit vel leo
@@ -196,7 +197,7 @@ session_destroy();
                                 
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                 	<figure class="gallery-photo-thumb">
-                                    	<a href="img/news-7.jpg" title="Image 7" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/news-7.jpg" alt="Image 7" /></a>
+                                    	<a href="img/slide-7.jpg" title="Image 7" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-7.jpg" alt="Image 7" /></a>
                                     </figure>
                                     <div class="gallery-photo-description">
                                     	Phasellus congue ornare odio rhoncus varius
@@ -205,7 +206,7 @@ session_destroy();
                                 
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                 	<figure class="gallery-photo-thumb">
-                                    	<a href="img/news-8.jpg" title="Image 8" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/news-8.jpg" alt="Image 8" /></a>
+                                    	<a href="img/slide-8.jpg" title="Image 8" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-8.jpg" alt="Image 8" /></a>
                                     </figure>
                                     <div class="gallery-photo-description">
                                     	Cras luctus laoreet leo quis porttitor
@@ -242,12 +243,25 @@ session_destroy();
                     
                                 <h1 class="title-widget">Useful links</h1>
                                 
-                                <ul>
-                                	<li><a href="#" title="menu item">Placement Exam Schedule</a></li>
-                                    <li><a href="#" title="menu item">Superintendent's Hearing Audio</a></li>
-                                    <li><a href="#" title="menu item">Budget Central</a></li>
-                                    <li><a href="#" title="menu item">Job Opportunities - Application</a></li>
-                                    <li><a href="#" title="menu item">College Acceptances as of May 12</a></li>
+                               <ul>
+                                	
+										<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM announcements";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$ann_title = $db_field['title'];
+											$ann_details = $db_field['details'];
+											$ann_fileurl = $db_field['fileurl'];
+											$ann_id = $db_field['id'];
+											print("<li>»");
+											print("<a href=$ann_fileurl>$ann_title</a>");
+											print("</li>");
+										}
+										mysql_close($db_handle);
+										?>
+                                    
                                 </ul>
                     
 							</li>
@@ -266,21 +280,22 @@ session_destroy();
                         
                         	<li class="widget-container widget_recent_news"><!-- widgets list -->
                     
-                                <h1 class="title-widget">School Contact</h1>
+                                <h1 class="title-widget">Contact</h1>
                                 
                                 <div itemscope itemtype="http://data-vocabulary.org/Organization"> 
                                 
-                                	<h2 class="title-median m-contact-subject" itemprop="name">Buntington Public Schools</h2>
+                                	<h2 class="title-median m-contact-subject" itemprop="name">ST Mary's Convent School</h2>
+									
                                 
                                 	<div class="m-contact-address" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-                                		<span class="m-contact-street" itemprop="street-address">19 Tower Avenue, Buntington Station</span>
-                                		<span class="m-contact-city-region"><span class="m-contact-city" itemprop="locality">New York</span>, <span class="m-contact-region" itemprop="region">NY</span></span>
-                                		<span class="m-contact-zip-country"><span class="m-contact-zip" itemprop="postal-code">11506</span> <span class="m-contact-country" itemprop="country-name">USA</span></span>
+                                		<span class="m-contact-street" itemprop="street-address">Laxmiposi Road, Baripada Municipal Market</span>
+                                		<span class="m-contact-city-region"><span class="m-contact-city" itemprop="locality">Baripada</span>, <span class="m-contact-region" itemprop="region">ODISHA</span></span>
+                                		<span class="m-contact-zip-country"><span class="m-contact-zip" itemprop="postal-code">757001</span> <span class="m-contact-country" itemprop="country-name">INDIA</span></span>
                                 	</div>
                                      
                                 	<div class="m-contact-tel-fax">
-                                    	<span class="m-contact-tel">Tel: <span itemprop="tel">631-551-3678</span></span>
-                                    	<span class="m-contact-fax">Fax: <span itemprop="fax">631-551-3688</span></span>
+                                    	<span class="m-contact-tel">Tel: <span itemprop="tel">+(91)-6792-255290</span></span>
+                                    	<span class="m-contact-fax">Fax: <span itemprop="fax">+(91)-6792-255290</span></span>
                                     </div>
                                     
                                 </div>
@@ -289,9 +304,9 @@ session_destroy();
                                 
                                 	<ul class="list-unstyled list-inline">
                                     
-                                    	<li><a href="#" title="Contact us"><i class="fa fa-envelope"></i></a></li>
-                                        <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                    	<li><a href="mailto:info@stmaryrnpur.org" title="Contact us"><i class="fa fa-envelope"></i></a></li>
+                                        
+                                        <li><a href="https://www.facebook.com/pages/S-T-Mary-convent-School-Raghunath-Pur-Baripada/480859435290908" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                     
                                     </ul>
                                 
@@ -313,18 +328,15 @@ session_destroy();
                         
                         	<li class="widget-container widget_sofa_flickr"><!-- widgets list -->
                     
-                                <h1 class="title-widget">Flickr Stream</h1>
+                                <h1 class="title-widget">Send SMS</h1>
                                 
-                                <ul class="k-flickr-photos list-unstyled">
-                                	<li><a href="#" title="Flickr photo"><img src="img/flickr-1.jpg" alt="Photo 1" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-2.jpg" alt="Photo 2" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-3.jpg" alt="Photo 3" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-4.jpg" alt="Photo 4" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-5.jpg" alt="Photo 5" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-6.jpg" alt="Photo 6" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-7.jpg" alt="Photo 7" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-8.jpg" alt="Photo 8" /></a></li>
-                                </ul>
+								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
+                                    <div class="input-group">
+                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
+                                    </div>
+                                    <span class="help-block">Click Here to Send SMS</span>
+                                </form>
+                                
                     
 							</li>
                             
@@ -349,7 +361,7 @@ session_destroy();
             	<div class="col-lg-12">
                 
                 	<p class="copy-text text-inverse">
-                    &copy; 2015 Buntington Public Schools. All rights reserved.
+                    &copy; 2017 St Mary's Convent Schools. All rights reserved. | Designed By LogicQ SoftSol Pvt. Ltd.
                     </p>
                 
                 </div>

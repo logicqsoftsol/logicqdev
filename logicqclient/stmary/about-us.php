@@ -10,6 +10,7 @@ session_destroy();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ST.MARY's CONVENT SCHOOL</title>
+	<link rel="shortcut icon" href="img/site-logo.ico">
     
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
@@ -135,47 +136,36 @@ session_destroy();
                     
                     	<div class="row gutter"><!-- row -->
                         
-                        	<div class="col-lg-12 col-md-12">
-                    
-                                <figure class="news-featured-image">	
-                                    <img src="img/news-1.jpg" alt="Featured image 1" class="img-responsive" />
-                                </figure>
-                                
-                                <h1 class="page-title">About ST Mary's Convent School</h1>
-                                
-                                <div class="news-body">
-                                
-                                    <p class="call-out">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium vulputate scelerisque. Nulla in suscipit risus. Nullam pulvinar augue in risus luctus, sed dapibus ipsum mattis.
-                                    </p>
-                                
-                                    <p>
-                                    Duis ornare magna sit amet dui eleifend imperdiet. Aliquam at porta elit. Proin lorem lacus, tempus id diam sit amet, porttitor tempor lectus. Praesent id felis sagittis, suscipit ligula sed, condimentum nisi. In non commodo risus. Praesent fringilla ligula in orci consectetur pulvinar. Nunc facilisis metus pellentesque, vestibulum libero eget, varius elit. Aliquam sed gravida dui, a imperdiet eros. Cras dignissim libero id feugiat pharetra. Nullam ut bibendum est, sed tincidunt massa. 
-                                    </p>
-                                    
-                                </div>
-                            
-                            </div>
+                        	<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM about_us";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$about_title = $db_field['title'];
+											$about_para1 = $db_field['para1'];
+											$about_para2 = $db_field['para2'];
+											$about_para3 = $db_field['para3'];
+											$about_imgurl = $db_field['imageurl'];
+											$ann_id = $db_field['id'];
+											print("<div class='col-lg-12 col-md-12'>");
+											print("<figure class="news-featured-image">");
+											print(" <a href='#'><img src='$imgurl' class='img-responsive' alt='Thumbnail' /></a>");
+											print(" </figure>");
+											print("<h1 class='page-title'><a href='#'>$title</a></h1>");
+											print("<div class='news-body'>")
+											print("<p> $about_para1</p>");
+											print("<p> $about_para2</p>");
+											print("<p> $about_para3</p>");
+											print("</div>");
+											print("</div>");
+										}
+										mysql_close($db_handle);
+										?>
                         
                         </div><!-- row end -->
                         
-                        <div class="row gutter k-equal-height"><!-- row -->
-                        
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <h6>First Column</h6>
-                                <p>
-                                Curabitur fringilla, massa sit amet ultricies iaculis, nisi lorem faucibus justo, eu interdum odio nunc eu lorem. Aliquam auctor id augue posuere. Duis ornare magna sit amet dui eleifend imperdiet. Aliquam at porta elit. Proin lorem lacus, tempus id diam sit amet, porttitor tempor lectus.
-                                </p>
-                            </div>
-                            
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <h6>Second Column</h6>
-                                <p>
-                                Maecenas mollis nisl ut diam condimentum, eu sagittis ante elementum. Nam tempus euismod elit, eu venenatis dolor cursus sed. Praesent id felis sagittis, suscipit ligula sed, condimentum nisi. In non commodo risus. Praesent fringilla ligula in orci consectetur pulvinar.
-                                </p>
-                            </div>
-                        
-                        </div><!-- row end -->           
+                                  
                     
                     </div><!-- inner custom column end -->
                     
@@ -189,14 +179,27 @@ session_destroy();
                         
                         	<li class="widget-container widget_nav_menu"><!-- widget -->
                     
-                                <h1 class="title-widget">Select</h1>
+                                <h1 class="title-widget">Useful Links</h1>
                                 
                                 <ul>
-                                	<li><a href="#" title="menu item">News Archive</a></li>
-                                    <li><a href="#" title="menu item">Tradition of School Events</a></li>
-                                    <li><a href="#" title="menu item">Report Asocial Behaviour</a></li>
-                                    <li><a href="#" title="menu item">Trends and Tips</a></li>
-                                    <li><a href="#" title="menu item">Events Poll</a></li>
+                                	
+										<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM announcements";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$ann_title = $db_field['title'];
+											$ann_details = $db_field['details'];
+											$ann_fileurl = $db_field['fileurl'];
+											$ann_id = $db_field['id'];
+											print("<li>»");
+											print("<a href=$ann_fileurl>$ann_title</a>");
+											print("</li>");
+										}
+										mysql_close($db_handle);
+										?>
+                                    
                                 </ul>
                     
 							</li>
@@ -207,75 +210,41 @@ session_destroy();
                                 
                                 <ul class="list-unstyled">
                                 
-									<li class="recent-news-wrap news-no-summary">
-                                        
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="Megan Boyle flourishes..."><img src="img/recent-news-thumb-1.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <div class="recent-news-meta">
-                                                    <div class="recent-news-date">Jun 12, 2014</div>
-                                                </div>
-                                                <h1 class="title-median"><a href="#" title="Megan Boyle flourishes...">Megan Boyle flourishes at Boston University</a></h1>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
-                                    
-									<li class="recent-news-wrap news-no-summary">
+									<?php
+include 'sql.php';
 
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="Buntington Alum..."><img src="img/recent-news-thumb-2.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 2" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <div class="recent-news-meta">
-                                                    <div class="recent-news-date">Jun 10, 2014</div>
-                                                </div>
-                                                <h1 class="title-median"><a href="#" title="Buntington Alum...">Buntington Alum Marc Bloom Pens New Book</a></h1>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
-                                    
-									<li class="recent-news-wrap news-no-summary">
-
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="Cody Rotschild Enjoys..."><img src="img/recent-news-thumb-3.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 3" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <div class="recent-news-meta">
-                                                    <div class="recent-news-date">Jun 05, 2014</div>
-                                                </div>
-                                                <h1 class="title-median"><a href="#" title="Cody Rotschild Enjoys...">Cody Rotschild Enjoys Life in Montreal</a></h1>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
+$SQL ="SELECT * FROM news";;
+$result = mysql_query($SQL);
+while ($db_field = mysql_fetch_assoc($result)) {
+	$title = $db_field['title'];
+	$newsdate = $db_field['news_date'];
+	$details = $db_field['details'];
+	$imageurl = $db_field['imageurl'];
+	$id = $db_field['id'];
+	print("<li class='recent-news-wrap news-no-summary'>");
+	print("<div class='recent-news-content clearfix'>");
+	print(" <figure class='recent-news-thumb'>");
+	print(" <a href='#'><img src='$imageurl' class='attachment-thumbnail wp-post-image' alt='Thumbnail' /></a>");
+	print(" </figure>");
+	print("<div class='recent-news-text'>");
+	print("<div class='recent-news-meta'>");
+	print("<div class='recent-news-date'>$newsdate</div>");
+	print("</div>");
+	print(" <div class='news-summary'>");
+	print("<h1 class='title-median'>$title</h1>");
+	print("</div>");
+	print("</div>");
+	print("</li>");
+	
+}
+mysql_close($db_handle);
+?>
                                 
                                 </ul>
                                 
                             </li><!-- widgets list end -->
                             
-                            <li class="widget-container widget_sofa_twitter"><!-- widget -->
                             
-                            	<ul class="k-twitter-twitts list-unstyled">
-                                
-                                    <li class="twitter-twitt">
-                                    	<p>
-                                        <a href="https://twitter.com/DanielleFilson">@MattDeamon</a> Why it always has to be so complicated? Try to get it via this link <a href="http://usap.co/potter">mama.co/hpot</a> Good luck mate!
-                                        </p>
-                                    </li>
-                                
-                                </ul>
-                                
-                                <div class="k-twitter-twitts-footer">
-                                	<a href="#" class="k-twitter-twitts-follow" title="Follow!"><i class="fa fa-twitter"></i>&nbsp; Follow us!</a>
-                                </div>
-                            
-                            </li><!-- widget end -->
                             
                         </ul><!-- widgets end -->
                     
@@ -306,11 +275,25 @@ session_destroy();
                                 <h1 class="title-widget">Useful links</h1>
                                 
                                 <ul>
-                                	<li><a href="#" title="menu item">Annual Exam Schedule</a></li>
-                                    <li><a href="#" title="menu item">Next Year Time Table</a></li>
+                                	
+										<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM announcements";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$ann_title = $db_field['title'];
+											$ann_details = $db_field['details'];
+											$ann_fileurl = $db_field['fileurl'];
+											$ann_id = $db_field['id'];
+											print("<li>»");
+											print("<a href=$ann_fileurl>$ann_title</a>");
+											print("</li>");
+										}
+										mysql_close($db_handle);
+										?>
                                     
-                                </ul>
-                    
+                                </ul>	
 							</li>
                             
                         </ul>
@@ -373,22 +356,19 @@ session_destroy();
                     
                         <ul class="list-unstyled clear-margins"><!-- widgets -->
                         
-                        	<!-- <li class="widget-container widget_sofa_flickr"><!-- widgets list -->
+                        	<li class="widget-container widget_sofa_flickr"><!-- widgets list -->
                     
-                                <!-- <h1 class="title-widget">Flickr Stream</h1>
+                                <h1 class="title-widget">Send SMS</h1>
                                 
-                                <ul class="k-flickr-photos list-unstyled">
-                                	<li><a href="#" title="Flickr photo"><img src="img/flickr-1.jpg" alt="Photo 1" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-2.jpg" alt="Photo 2" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-3.jpg" alt="Photo 3" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-4.jpg" alt="Photo 4" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-5.jpg" alt="Photo 5" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-6.jpg" alt="Photo 6" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-7.jpg" alt="Photo 7" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-8.jpg" alt="Photo 8" /></a></li>
-                                </ul>
+								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
+                                    <div class="input-group">
+                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
+                                    </div>
+                                    <span class="help-block">Click Here to Send SMS</span>
+                                </form>
+                                
                     
-							</li> -->
+							</li>
                             
                         </ul> 
                         
@@ -411,7 +391,7 @@ session_destroy();
             	<div class="col-lg-12">
                 
                 	<p class="copy-text text-inverse">
-                    &copy; 2017 ST Mary's Convent School. All rights reserved.
+                    &copy; 2017 St Mary's Convent Schools. All rights reserved. | Designed By LogicQ SoftSol Pvt. Ltd.
                     </p>
                 
                 </div>
