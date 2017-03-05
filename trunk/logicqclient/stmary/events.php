@@ -10,6 +10,7 @@ session_destroy();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ST.MARY's CONVENT SCHOOL</title>
+	<link rel="shortcut icon" href="img/site-logo.ico">
     
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
@@ -147,34 +148,26 @@ session_destroy();
                         
                         	<div class="col-lg-12 col-md-12">
                             
-                            	<div class="up-event-wrapper"><!-- event summary -->
-                                
-                                    <h1 class="title-median"><a href="#" title="Annual Function">Annual Function</a></h1>
-                                        
-                                        <div class="up-event-meta clearfix">
-                                            <div class="up-event-date">Apr 25, 2017</div><div class="up-event-time">10:00 - 04:00</div>
-                                        </div>
-                                        
-                                        <p>
-                                        Annual Function with Sports Activity... <a href="#" class="moretag" title="read more">MORE</a> 
-                                        </p>
-                                
-                                </div><!-- event summary end -->
-                                
-                            	<div class="up-event-wrapper"><!-- event summary -->
-                                
-                                                                            <h1 class="title-median"><a href="#" title="Summer Vacation">Summer Vacation</a></h1>
-                                        
-                                        <div class="up-event-meta clearfix">
-                                            <div class="up-event-date">May 01, 2017 to Jun 03, 2017</div><div class="up-event-time"></div>
-                                        </div>
-                                        
-                                        <p>
-                                        Summer Vacation... <a href="#" class="moretag" title="read more">MORE</a> 
-                                        </p>
-                                
-                                </div><!-- event summary end -->
-                                
+                            										<?php
+include 'sql.php';
+
+$SQL ="SELECT * FROM events";;
+$result = mysql_query($SQL);
+while ($db_field = mysql_fetch_assoc($result)) {
+	$eventname = $db_field['eventname'];
+	$eventdate = $db_field['event_date'];
+	$description = $db_field['description'];
+	$eventid = $db_field['id'];
+	print("<div class='up-event-wrapper'>");
+	print("<h1 class='title-median'><a href='#'>$eventname</a></h1>");
+	print("<div class='up-event-meta clearfix'>");
+	print("<div class='up-event-date'>$eventdate</div>");
+	print("</div>");
+	print("<p> $description</p>");
+	print("</div>");
+}
+mysql_close($db_handle);
+?>
                             	
                             
                             </div>
@@ -214,11 +207,24 @@ session_destroy();
                                 <h1 class="title-widget">Useful links</h1>
                                 
                                 <ul>
-                                	<li><a href="#" title="menu item">News Archive</a></li>
-                                    <li><a href="#" title="menu item">Tradition of School Events</a></li>
-                                    <li><a href="#" title="menu item">Report Asocial Behaviour</a></li>
-                                    <li><a href="#" title="menu item">Trends and Tips</a></li>
-                                    <li><a href="#" title="menu item">Events Poll</a></li>
+                                	
+										<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM announcements";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$ann_title = $db_field['title'];
+											$ann_details = $db_field['details'];
+											$ann_fileurl = $db_field['fileurl'];
+											$ann_id = $db_field['id'];
+											print("<li>»");
+											print("<a href=$ann_fileurl>$ann_title</a>");
+											print("</li>");
+										}
+										mysql_close($db_handle);
+										?>
+                                    
                                 </ul>
                     
 							</li>
@@ -229,123 +235,39 @@ session_destroy();
                                 
                                 <div class="row gutter k-equal-height"><!-- row -->
                         
-                            <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
-                            
-                                <figure class="news-featured-image">	
-                                    <img src="img/news-1.jpg" alt="Featured image 1" class="img-responsive" />
-                                </figure>
-                                
-                                <div class="page-title-meta">
-                                    <h1 class="page-title"><a href="#" title="Cody Rotschild enjoys...">First News</a></h1>
-                                    <div class="news-meta">
-                                        <span class="news-meta-date">Jun 12, 2016</span>
-                                        <span class="news-meta-category"><a href="news.php" title="News">News</a></span>
-                                        <span class="news-meta-comments"><a href="#" title="3 comments">3 comments</a></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="news-summary">
-                                    <p>
-                                    First News Content... <a href="" title="Read more" class="moretag">More</a>
-                                    </p>
-                                </div>
-                            
-                            </div><!-- news mini-wrap end -->
-                            
-                            <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
-                            
-                                <figure class="news-featured-image">
-                                	<img src="img/news-2.jpg" alt="Featured image 2" class="img-responsive" />
-                                </figure>
-                                
-                                <div class="page-title-meta">
-                                    <h1 class="page-title"><a href="#" title="Megan Boyle flourishes...">Second News</a></h1>
-                                    <div class="news-meta">
-                                        <span class="news-meta-date">Jun 10, 2016</span>
-                                        <span class="news-meta-category"><a href="news.php" title="News">News</a></span>
-                                        <span class="news-meta-comments"><a href="#" title="12 comments">12 comments</a></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="news-summary">
-                                    <p>
-                                    Second News Content... <a href="" title="Read more" class="moretag">More</a>
-                                    </p>
-                                </div>
-                            
-                            </div><!-- news mini-wrap end -->
-                            
-							 <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
-                            
-                                <figure class="news-featured-image">
-                                	<img src="img/news-2.jpg" alt="Featured image 2" class="img-responsive" />
-                                </figure>
-                                
-                                <div class="page-title-meta">
-                                    <h1 class="page-title"><a href="#" title="Megan Boyle flourishes...">Third News</a></h1>
-                                    <div class="news-meta">
-                                        <span class="news-meta-date">Jun 10, 2016</span>
-                                        <span class="news-meta-category"><a href="news.php" title="News">News</a></span>
-                                        <span class="news-meta-comments"><a href="#" title="12 comments">12 comments</a></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="news-summary">
-                                    <p>
-                                    Third News Content... <a href="" title="Read more" class="moretag">More</a>
-                                    </p>
-                                </div>
-                            
-                            </div><!-- news mini-wrap end -->
-							
-							 <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
-                            
-                                <figure class="news-featured-image">
-                                	<img src="img/news-2.jpg" alt="Featured image 2" class="img-responsive" />
-                                </figure>
-                                
-                                <div class="page-title-meta">
-                                    <h1 class="page-title"><a href="#" title="Megan Boyle flourishes...">Forth News</a></h1>
-                                    <div class="news-meta">
-                                        <span class="news-meta-date">Jun 10, 2016</span>
-                                        <span class="news-meta-category"><a href="news.php" title="News">News</a></span>
-                                        <span class="news-meta-comments"><a href="#" title="12 comments">12 comments</a></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="news-summary">
-                                    <p>
-                                    Forth News Content... <a href="" title="Read more" class="moretag">More</a>
-                                    </p>
-                                </div>
-                            
-                            </div><!-- news mini-wrap end -->
-							
-							 <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
-                            
-                                <figure class="news-featured-image">
-                                	<img src="img/news-2.jpg" alt="Featured image 2" class="img-responsive" />
-                                </figure>
-                                
-                                <div class="page-title-meta">
-                                    <h1 class="page-title"><a href="#" title="Megan Boyle flourishes...">Fifth News</a></h1>
-                                    <div class="news-meta">
-                                        <span class="news-meta-date">Jun 10, 2016</span>
-                                        <span class="news-meta-category"><a href="news.php" title="News">News</a></span>
-                                        <span class="news-meta-comments"><a href="#" title="12 comments">12 comments</a></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="news-summary">
-                                    <p>
-                                    Fifth News Content... <a href="" title="Read more" class="moretag">More</a>
-                                    </p>
-                                </div>
-                            
-                            </div><!-- news mini-wrap end -->
+										<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM news";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$title = $db_field['title'];
+											$newsdate = $db_field['news_date'];
+											$details = $db_field['details'];
+											$imageurl = $db_field['imageurl'];
+											$id = $db_field['id'];
+											print("<div class='news-mini-wrap col-lg-6 col-md-6'>");
+											print(" <figure class='news-featured-image'>");
+											print(" <a href='#'><img src='$imageurl' class='img-responsive' alt='Thumbnail' /></a>");
+											print(" </figure>");
+											print("<div class='page-title-meta'>");
+											print("<h1 class='page-title'><a href='#'>$title</a></h1>");
+											print("<div class='news-meta'>");
+											print("<div class='news-meta-date'>$newsdate</div>");
+											print("</div>");
+											print("</div>");
+											print(" <div class='news-summary'>");
+											print("<p>$details</p>");
+											print("</div>");
+											print("</div>");
+											
+											
+										}
+										mysql_close($db_handle);
+										?>
 							
                         
-                        </div><!-- row end -->
+								</div><!-- row end -->
 								
 								
                             </li><!-- widgets list end -->
@@ -405,9 +327,24 @@ session_destroy();
                     
                                 <h1 class="title-widget">Useful links</h1>
                                 
-                                <ul>
-                                	<li><a href="#" title="menu item">Annual Exam Schedule</a></li>
-                                    <li><a href="#" title="menu item">Next Year Time Table</a></li>
+                               <ul>
+                                	
+										<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM announcements";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$ann_title = $db_field['title'];
+											$ann_details = $db_field['details'];
+											$ann_fileurl = $db_field['fileurl'];
+											$ann_id = $db_field['id'];
+											print("<li>»");
+											print("<a href=$ann_fileurl>$ann_title</a>");
+											print("</li>");
+										}
+										mysql_close($db_handle);
+										?>
                                     
                                 </ul>
                     
@@ -473,22 +410,19 @@ session_destroy();
                     
                         <ul class="list-unstyled clear-margins"><!-- widgets -->
                         
-                        	<!-- <li class="widget-container widget_sofa_flickr"><!-- widgets list -->
+                        	<li class="widget-container widget_sofa_flickr"><!-- widgets list -->
                     
-                                <!-- <h1 class="title-widget">Flickr Stream</h1>
+                                <h1 class="title-widget">Send SMS</h1>
                                 
-                                <ul class="k-flickr-photos list-unstyled">
-                                	<li><a href="#" title="Flickr photo"><img src="img/flickr-1.jpg" alt="Photo 1" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-2.jpg" alt="Photo 2" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-3.jpg" alt="Photo 3" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-4.jpg" alt="Photo 4" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-5.jpg" alt="Photo 5" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-6.jpg" alt="Photo 6" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-7.jpg" alt="Photo 7" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-8.jpg" alt="Photo 8" /></a></li>
-                                </ul>
+								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
+                                    <div class="input-group">
+                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
+                                    </div>
+                                    <span class="help-block">Click Here to Send SMS</span>
+                                </form>
+                                
                     
-							</li> -->
+							</li>
                             
                         </ul> 
                         
@@ -511,7 +445,7 @@ session_destroy();
             	<div class="col-lg-12">
                 
                 	<p class="copy-text text-inverse">
-                    &copy; 2017 ST Mary's Convent School. All rights reserved.
+                    &copy; 2017 St Mary's Convent Schools. All rights reserved. | Designed By LogicQ SoftSol Pvt. Ltd.
                     </p>
                 
                 </div>

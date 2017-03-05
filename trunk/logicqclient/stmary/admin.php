@@ -8,11 +8,12 @@ if (!$_SESSION['logon']){
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+    <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BUNTINGTON Public Schools</title>
+    <title>ST.MARY's CONVENT SCHOOL</title>
+	<link rel="shortcut icon" href="img/site-logo.ico">
     
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
@@ -38,8 +39,9 @@ if (!$_SESSION['logon']){
             <nav class="k-functional-navig"><!-- functional navig -->
         
                 <ul class="list-inline pull-right">
-                    <li><a href="index.php">Logout</a></li>
+                    <li><a href="index.php">LOGOUT</a></li>
                     <li><a href="#">Calendar</a></li>
+             
                 </ul>
         
             </nav><!-- functional navig end -->
@@ -49,7 +51,7 @@ if (!$_SESSION['logon']){
         		<div id="k-site-logo" class="pull-left"><!-- site logo -->
                 
                     <h1 class="k-logo">
-                        <a href="index.html" title="Home Page">
+                        <a href="index.php" title="Home Page">
                             <img src="img/site-logo.png" alt="Site Logo" class="img-responsive" />
                         </a>
                     </h1>
@@ -62,21 +64,44 @@ if (!$_SESSION['logon']){
         
                     <ul id="drop-down-left" class="k-dropdown-menu">
                         <li>
-                            <a href="news.html" title="Our School News">News</a>
+                            <a href="news.php" title="Our School News">News</a>
                         </li>
                         <li>
-                            <a href="events.html" title="Upcoming Events">Events</a>
+                            <a href="events.php" title="Upcoming Events">Events</a>
                         </li>
                         <li>
-                            <a href="courses.html" title="Available Courses">Courses</a>
+                            <a href="#" class="Pages Collection" title="Moments of Life">Gallery</a>
+                            <ul class="sub-menu">
+                                
+                               <li><a href="#">Summer Holiday Trip</a></li>
+                                <li><a href="#">Winter Holiday Trip</a></li>
+                               
+                                <li>
+                                    <a href="#">Annual Function</a>	
+                                    <ul class="sub-menu">
+                                        <li><a href="gallery.php">2014-15</a></li>
+                                        <li>
+                                            <a href="gallery_page_3_3.php">2015-16</a>
+                                         
+                                        </li>
+                                        <li><a href="#">2016-17</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </li>
-          
-                        <li>
-                            <a href="about-us.html" title="How things work">About Us</a>
-                    
+						<li>
+                            <a href="#" title="Available Course">Course</a>
                         </li>
                         <li>
-                            <a href="contact-us.html" title="School Contacts">Contact Us</a>
+                            <a href="about-us.php" title="See More about our school">About Us</a>
+                            <ul class="sub-menu">
+                                <li><a href="#">Our Vision</a></li>
+                                <li><a href="#">Achievements</a></li>
+                           
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="contact-us.php" title="School Contacts">Contact Us</a>
                         </li>
                     </ul>
         
@@ -93,11 +118,13 @@ if (!$_SESSION['logon']){
     	<div class="container"><!-- container -->
         
         	<div class="row"><!-- row -->
+            
+                         
             	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
                 
                 	<ol class="breadcrumb">
-                    	<li><a href="#">Home</a></li>
-                        <li class="active">Page Example</li>
+                    	<li><a href="index.php">Home</a></li>
+                        <li class="active">ADMIN</li>
                     </ol>
                     
                 </div><!-- breadcrumbs end -->
@@ -320,7 +347,7 @@ mysql_close($db_handle);
             	<div class="col-lg-12">
                 
                 	<p class="copy-text text-inverse">
-                    &copy; 2015 Buntington Public Schools. All rights reserved.
+                    &copy; 2017 St Mary's Convent Schools. All rights reserved. | Designed By LogicQ SoftSol Pvt. Ltd.
                     </p>
                 
                 </div>

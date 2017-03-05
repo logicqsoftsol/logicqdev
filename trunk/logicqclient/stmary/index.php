@@ -10,7 +10,9 @@ session_destroy();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ST.MARY's CONVENT SCHOOL</title>
-    
+    <link rel="shortcut icon" href="img/site-logo.ico">
+	
+	
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
@@ -304,7 +306,7 @@ while ($db_field = mysql_fetch_assoc($result)) {
 	print("<li class='up-event-wrap'>");
 	print("<h1 class='title-median'><a href='#'>$eventname</a></h1>");
 	print("<div class='up-event-meta clearfix'>");
-	print("<div class='up-event-date'></div>$eventdate");
+	print("<div class='up-event-date'>$eventdate</div>");
 	print("</div>");
 	print("<p> $description</p>");
 	print("</li>");
@@ -481,10 +483,27 @@ mysql_close($db_handle);
                                 <h1 class="title-widget">Useful links</h1>
                                 
                                 <ul>
-                                	<li><a href="#" title="menu item">Annual Exam Schedule</a></li>
-                                    <li><a href="#" title="menu item">Next Year Time Table</a></li>
+                                	
+										<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM announcements";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$ann_title = $db_field['title'];
+											$ann_details = $db_field['details'];
+											$ann_fileurl = $db_field['fileurl'];
+											$ann_id = $db_field['id'];
+											print("<li>»");
+											print("<a href=$ann_fileurl>$ann_title</a>");
+											print("</li>");
+										}
+										mysql_close($db_handle);
+										?>
                                     
                                 </ul>
+								
+
                     
 							</li>
                             
@@ -548,7 +567,19 @@ mysql_close($db_handle);
                     
                         <ul class="list-unstyled clear-margins"><!-- widgets -->
                         
-                        	
+                        	<li class="widget-container widget_sofa_flickr"><!-- widgets list -->
+                    
+                                <h1 class="title-widget">Send SMS</h1>
+                                
+								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
+                                    <div class="input-group">
+                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
+                                    </div>
+                                    <span class="help-block">Click Here to Send SMS</span>
+                                </form>
+                                
+                    
+							</li>
                             
                         </ul> 
                         
@@ -571,7 +602,7 @@ mysql_close($db_handle);
             	<div class="col-lg-12">
                 
                 	<p class="copy-text text-inverse">
-                    &copy; 2017 ST Mary's Convent School. All rights reserved.
+                    &copy; 2017 St Mary's Convent Schools. All rights reserved. | Designed By LogicQ SoftSol Pvt. Ltd.
                     </p>
                 
                 </div>

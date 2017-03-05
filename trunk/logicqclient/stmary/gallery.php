@@ -10,6 +10,7 @@ session_destroy();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ST.MARY's CONVENT SCHOOL</title>
+	<link rel="shortcut icon" href="img/site-logo.ico">
     
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
@@ -159,7 +160,7 @@ session_destroy();
                             		</div>
                                     
                                     <div class="gallery-meta">
-                                    	<h1 class="gallery-title"><a href="#" title="Gallery 01">Buntington School students buzz</a></h1>
+                                    	<h1 class="gallery-title"><a href="#" title="Gallery 01">ST Mary's School students buzz</a></h1>
                                         <p class="gallery-description">
                                     	What do the do, where do they go when off the lectures...
                                     	</p>
@@ -190,7 +191,7 @@ session_destroy();
                             	<div class="gallery-wrapper"><!-- gallery single wrap -->
                             	
                             		<figure class="gallery-last-photo clearfix">
-                            			<a href="#" title="Gallery 03"><img src="img/news-2.jpg" alt="Leading photo" /></a>
+                            			<a href="#" title="Gallery 03"><img src="img/slide-2.jpg" alt="Leading photo" /></a>
                             		</figure>
                             		
                             		<div class="gallery-info">
@@ -210,7 +211,7 @@ session_destroy();
                             	<div class="gallery-wrapper"><!-- gallery single wrap -->
                             	
                             		<figure class="gallery-last-photo clearfix">
-                            			<a href="#" title="Gallery 04"><img src="img/news-3.jpg" alt="Leading photo" /></a>
+                            			<a href="#" title="Gallery 04"><img src="img/slide-5.jpg" alt="Leading photo" /></a>
                             		</figure>
                             		
                             		<div class="gallery-info">
@@ -230,7 +231,7 @@ session_destroy();
                             	<div class="gallery-wrapper"><!-- gallery single wrap -->
                             	
                             		<figure class="gallery-last-photo clearfix">
-                            			<a href="#" title="Gallery 05"><img src="img/news-1.jpg" alt="Leading photo" /></a>
+                            			<a href="#" title="Gallery 05"><img src="img/slide-8.jpg" alt="Leading photo" /></a>
                             		</figure>
                             		
                             		<div class="gallery-info">
@@ -283,12 +284,25 @@ session_destroy();
                     
                                 <h1 class="title-widget">Useful links</h1>
                                 
-                                <ul>
-                                	<li><a href="#" title="menu item">News Archive</a></li>
-                                    <li><a href="#" title="menu item">Tradition of School Events</a></li>
-                                    <li><a href="#" title="menu item">Report Asocial Behaviour</a></li>
-                                    <li><a href="#" title="menu item">Trends and Tips</a></li>
-                                    <li><a href="#" title="menu item">Events Poll</a></li>
+                               <ul>
+                                	
+										<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM announcements";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$ann_title = $db_field['title'];
+											$ann_details = $db_field['details'];
+											$ann_fileurl = $db_field['fileurl'];
+											$ann_id = $db_field['id'];
+											print("<li>»");
+											print("<a href=$ann_fileurl>$ann_title</a>");
+											print("</li>");
+										}
+										mysql_close($db_handle);
+										?>
+                                    
                                 </ul>
                     
 							</li>
@@ -299,53 +313,35 @@ session_destroy();
                                 
                                 <ul class="list-unstyled">
                                 
-									<li class="recent-news-wrap news-no-summary">
-                                        
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="Megan Boyle flourishes..."><img src="img/recent-news-thumb-1.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <div class="recent-news-meta">
-                                                    <div class="recent-news-date">Jun 12, 2014</div>
-                                                </div>
-                                                <h1 class="title-median"><a href="#" title="Megan Boyle flourishes...">Megan Boyle flourishes at Boston University</a></h1>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
-                                    
-									<li class="recent-news-wrap news-no-summary">
+														<?php
+include 'sql.php';
 
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="Buntington Alum..."><img src="img/recent-news-thumb-2.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 2" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <div class="recent-news-meta">
-                                                    <div class="recent-news-date">Jun 10, 2014</div>
-                                                </div>
-                                                <h1 class="title-median"><a href="#" title="Buntington Alum...">Buntington Alum Marc Bloom Pens New Book</a></h1>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
-                                    
-									<li class="recent-news-wrap news-no-summary">
-
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="Cody Rotschild Enjoys..."><img src="img/recent-news-thumb-3.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 3" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <div class="recent-news-meta">
-                                                    <div class="recent-news-date">Jun 05, 2014</div>
-                                                </div>
-                                                <h1 class="title-median"><a href="#" title="Cody Rotschild Enjoys...">Cody Rotschild Enjoys Life in Montreal</a></h1>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
+$SQL ="SELECT * FROM news";;
+$result = mysql_query($SQL);
+while ($db_field = mysql_fetch_assoc($result)) {
+	$title = $db_field['title'];
+	$newsdate = $db_field['news_date'];
+	$details = $db_field['details'];
+	$imageurl = $db_field['imageurl'];
+	$id = $db_field['id'];
+	print("<li class='recent-news-wrap news-no-summary'>");
+	print("<div class='recent-news-content clearfix'>");
+	print(" <figure class='recent-news-thumb'>");
+	print(" <a href='#'><img src='$imageurl' class='attachment-thumbnail wp-post-image' alt='Thumbnail' /></a>");
+	print(" </figure>");
+	print("<div class='recent-news-text'>");
+	print("<div class='recent-news-meta'>");
+	print("<div class='recent-news-date'>$newsdate</div>");
+	print("</div>");
+	print(" <div class='news-summary'>");
+	print("<h1 class='title-median'>$title</h1>");
+	print("</div>");
+	print("</div>");
+	print("</li>");
+	
+}
+mysql_close($db_handle);
+?>
                                 
                                 </ul>
                                 
@@ -407,11 +403,24 @@ session_destroy();
                                 <h1 class="title-widget">Useful links</h1>
                                 
                                 <ul>
-                                	<li><a href="#" title="menu item">Placement Exam Schedule</a></li>
-                                    <li><a href="#" title="menu item">Superintendent's Hearing Audio</a></li>
-                                    <li><a href="#" title="menu item">Budget Central</a></li>
-                                    <li><a href="#" title="menu item">Job Opportunities - Application</a></li>
-                                    <li><a href="#" title="menu item">College Acceptances as of May 12</a></li>
+                                	
+										<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM announcements";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$ann_title = $db_field['title'];
+											$ann_details = $db_field['details'];
+											$ann_fileurl = $db_field['fileurl'];
+											$ann_id = $db_field['id'];
+											print("<li>»");
+											print("<a href=$ann_fileurl>$ann_title</a>");
+											print("</li>");
+										}
+										mysql_close($db_handle);
+										?>
+                                    
                                 </ul>
                     
 							</li>
@@ -477,18 +486,15 @@ session_destroy();
                         
                         	<li class="widget-container widget_sofa_flickr"><!-- widgets list -->
                     
-                                <h1 class="title-widget">Flickr Stream</h1>
+                                <h1 class="title-widget">Send SMS</h1>
                                 
-                                <ul class="k-flickr-photos list-unstyled">
-                                	<li><a href="#" title="Flickr photo"><img src="img/flickr-1.jpg" alt="Photo 1" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-2.jpg" alt="Photo 2" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-3.jpg" alt="Photo 3" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-4.jpg" alt="Photo 4" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-5.jpg" alt="Photo 5" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-6.jpg" alt="Photo 6" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-7.jpg" alt="Photo 7" /></a></li>
-                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-8.jpg" alt="Photo 8" /></a></li>
-                                </ul>
+								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
+                                    <div class="input-group">
+                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
+                                    </div>
+                                    <span class="help-block">Click Here to Send SMS</span>
+                                </form>
+                                
                     
 							</li>
                             
@@ -513,7 +519,7 @@ session_destroy();
             	<div class="col-lg-12">
                 
                 	<p class="copy-text text-inverse">
-                    &copy; 2015 Buntington Public Schools. All rights reserved.
+                    &copy; 2017 St Mary's Convent Schools. All rights reserved. | Designed By LogicQ SoftSol Pvt. Ltd.
                     </p>
                 
                 </div>
