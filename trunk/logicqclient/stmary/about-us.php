@@ -147,13 +147,12 @@ session_destroy();
 											$about_para2 = $db_field['para2'];
 											$about_para3 = $db_field['para3'];
 											$about_imgurl = $db_field['imageurl'];
-											$ann_id = $db_field['id'];
 											print("<div class='col-lg-12 col-md-12'>");
 											print("<figure class='news-featured-image'>");
 											print(" <a href='#'><img src='$imgurl' class='img-responsive' alt='Thumbnail' /></a>");
 											print(" </figure>");
 											print("<h1 class='page-title'><a href='#'>$title</a></h1>");
-											print("<div class='news-body'>")
+											print("<div class='news-body'>");
 											print("<p> $about_para1</p>");
 											print("<p> $about_para2</p>");
 											print("<p> $about_para3</p>");
@@ -193,9 +192,9 @@ session_destroy();
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<li>»");
+											print("<p>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</li>");
+											print("</p>");
 										}
 										mysql_close($db_handle);
 										?>
@@ -286,9 +285,9 @@ mysql_close($db_handle);
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<li>»");
+											print("<p>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</li>");
+											print("</p>");
 										}
 										mysql_close($db_handle);
 										?>
@@ -360,14 +359,9 @@ mysql_close($db_handle);
                     
                                 <h1 class="title-widget">Send SMS</h1>
                                 
-								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
-                                    <div class="input-group">
-                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
-                                    </div>
-                                    <span class="help-block">Click Here to Send SMS</span>
-                                </form>
-                                
-                    
+								<button type="submit" class="btn btn-default"><a href="http://sms.sudhanshulenka.com/" title="Send SMS">SEND SMS</button></span>
+                                <span class="help-block">Click Here to Send SMS</span>
+                                            
 							</li>
                             
                         </ul> 

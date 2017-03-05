@@ -296,9 +296,9 @@ session_destroy();
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<li>»");
+											print("<p>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</li>");
+											print("</p>");
 										}
 										mysql_close($db_handle);
 										?>
@@ -402,7 +402,7 @@ mysql_close($db_handle);
                     
                                 <h1 class="title-widget">Useful links</h1>
                                 
-                                <ul>
+                                 <ul>
                                 	
 										<?php
 										include 'sql.php';
@@ -414,9 +414,9 @@ mysql_close($db_handle);
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<li>»");
+											print("<p>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</li>");
+											print("</p>");
 										}
 										mysql_close($db_handle);
 										?>
@@ -488,13 +488,9 @@ mysql_close($db_handle);
                     
                                 <h1 class="title-widget">Send SMS</h1>
                                 
-								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
-                                    <div class="input-group">
-                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
-                                    </div>
-                                    <span class="help-block">Click Here to Send SMS</span>
-                                </form>
-                                
+								<button type="submit" class="btn btn-default"><a href="http://sms.sudhanshulenka.com/" title="Send SMS">SEND SMS</button></span>
+                                <span class="help-block">Click Here to Send SMS</span>
+
                     
 							</li>
                             
