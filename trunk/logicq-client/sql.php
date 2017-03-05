@@ -9,10 +9,10 @@ $db_handle = mysql_connect($server, $user_name, $password);
 $db_found = mysql_select_db($database, $db_handle);
 */
 
-$user_name = "stmaryrnpur";
-$password = "uredymegu";
+$user_name = "logicqso";
+$password = "qazQAz234#$%";
 $database = "logicqso_stmaryrnpur";
-$server = "45.113.136.130:3306";
+$server = "43.242.215.118:3306";
 $db_handle = mysql_connect($server, $user_name, $password);
 $db_found = mysql_select_db($database, $db_handle);
 
