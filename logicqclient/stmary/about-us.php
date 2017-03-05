@@ -149,7 +149,7 @@ session_destroy();
 											$about_imgurl = $db_field['imageurl'];
 											$ann_id = $db_field['id'];
 											print("<div class='col-lg-12 col-md-12'>");
-											print("<figure class="news-featured-image">");
+											print("<figure class='news-featured-image'>");
 											print(" <a href='#'><img src='$imgurl' class='img-responsive' alt='Thumbnail' /></a>");
 											print(" </figure>");
 											print("<h1 class='page-title'><a href='#'>$title</a></h1>");
