@@ -129,19 +129,6 @@ public class AdminController {
 					parentNetworkInfo.setNetworkjson(PropertyHelper.convertNetworkInfoToJson(parentNetworkdetails).getBytes());
 					netWorkDetailsService.updateNetworkDetails(parentNetworkInfo);
 		
-					//Fee update
-					UserProfile parentuserprofile = userservice.fetchUserAccordingToUserName(userprofile.getNetworkinfo().getParentmemberid());
-					List<FeeSetup> feeDetails=feeSetupService.getFeeDetails();
-					WalletStatement walletStatement=new WalletStatement();
-					walletStatement.setWallet(parentuserprofile.getWalletdetails());
-					walletStatement.setWalletid(parentuserprofile.getWalletdetails().getWalletid());
-					walletStatement=walletservice.fetchWalletStmnt(walletStatement);
-					for (FeeSetup fee : feeDetails) {
-						if (fee.getApplyTo().equals("LEVEL1")) {
-							walletservice.updateWalletStatementAccordingToFee(fee, walletStatement);
-							break;
-						}
-					}
 
 					//Create Network Task
 					NetWorkTask networktask=new NetWorkTask();

@@ -11,6 +11,7 @@ import com.logicq.mlm.common.helper.StringFormatHelper;
 import com.logicq.mlm.common.vendor.sms.SMSVendor;
 import com.logicq.mlm.model.sms.SMSDetails;
 
+
 public class SMSHelper {
 	private final static Logger logger = Logger.getLogger(SMSHelper.class);
 	private final static  SMSVendor smsvendor=SMSVendor.getInstance();
@@ -29,8 +30,6 @@ public class SMSHelper {
 			
 			URL url = new URL(smsurldetails.toString());
 			httpconnection = (HttpURLConnection) url.openConnection();
-			httpconnection.setRequestMethod("GET");
-			httpconnection.setRequestProperty("Accept", "application/json");
 			return smsLogStatus(httpconnection);
 		}catch(Exception ex){
 			logger.error("From  SMS URL Details "+ex.getMessage(),ex);
@@ -53,13 +52,12 @@ public class SMSHelper {
 	private static StringBuilder formSMSURL(SMSDetails smsdetails) throws Exception{
 		StringBuilder urlString =new StringBuilder();
 		urlString.append(smsvendor.getUrl());
-		urlString.append("user="+smsvendor.getUserid()+"&");
-		urlString.append("password="+smsvendor.getPassword()+"&");
-		urlString.append("msisdn="+smsdetails.getMobilenumber()+"&");
-		urlString.append("sid="+smsvendor.getSid()+"&");
-		urlString.append("msg="+StringFormatHelper.formatStringForSMS(smsdetails.getMessage())+"&");
-		urlString.append("fl="+smsvendor.getFlag()+"&");
-		urlString.append("gwid="+smsvendor.getGwid());
+		urlString.append("username="+smsvendor.getUserid()+"&");
+		urlString.append("message="+StringFormatHelper.formatStringForSMS(smsdetails.getMessage())+"&");
+		urlString.append("sendername="+smsvendor.getSid()+"&");
+		urlString.append("smstype="+smsvendor.getSmstype()+"&");
+		urlString.append("numbers="+smsdetails.getMobilenumber()+"&");
+		urlString.append("apikey="+smsvendor.getApikey());
 		return urlString;
 	}
 	
@@ -73,9 +71,10 @@ public class SMSHelper {
 			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 			String output;
 			while ((output = br.readLine()) != null) {
-				return true;
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
+	
 }

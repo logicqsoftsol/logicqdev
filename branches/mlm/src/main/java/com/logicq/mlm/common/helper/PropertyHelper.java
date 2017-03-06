@@ -29,7 +29,6 @@ public class PropertyHelper {
 	public static Properties loadUploadProperty(){
 		Properties prop=new Properties();
 		prop.put("file.uploadsize", 1000000);
-		//prop.put("file.filepath", "/home/logicqso/webapps/mlmlogicq/WEB-INF/assets/images/uploadImage/");
 		prop.put("file.filepath", "assets/images/uploadImage/");
 		//prop.put("fileDirectory", "F:/Project/server/apache-tomcat-7.0.67-windows-x64/apache-tomcat-7.0.67/webapps/mlmlogicq/");
 		//prop.put("url", "http://127.0.0.1:8090/mlmlogicq/");

@@ -2,7 +2,7 @@
 <article id="defaultload" ng-init="displayProfile()">
 <snap-drawer>
  <div class="snap-menu"> <div class="sidebar-header text-center"> 
-  <h4>{{userprofile.firstname}} {{userprofile.lastname}}</h4>
+  <h4>{{profileDisplayName.firstname}} {{profileDisplayName.lastname}}</h4>
  <img ng-src="{{user.image}}"  class="sidebar-img img-circle"> 
  </div> 
  <ul class="snap-ul">  
@@ -31,11 +31,11 @@
     <i class="fa fa-users" aria-hidden="true"></i>
 	<span>Setup Network</span>
 </a>
-   <a href="" data-target="#networkmodal" data-toggle="modal" class="btn btn-sucess pull-right" ng-init="viewSupportHands()">
+   <a href="" data-target="#networkmodal" data-toggle="modal" class="btn btn-sucess pull-right" ng-click="onClickViewSupportHands()">
     <i class="fa fa-sitemap" aria-hidden="true"></i>
 </a>
 
-<a href="" data-target="#notificationdetails" data-toggle="modal" class="btn btn-sucess pull-right">
+<a href="" data-target="#notificationdetails" data-toggle="modal" class="btn btn-sucess pull-right" ng-click="getNotificationDetails()">
     <i class="fa fa-bell-o" aria-hidden="true"></i>
 	<span>{{tasklist.count}}</span>
 </a>
@@ -351,7 +351,8 @@
 	<div class="form-group">
 	  <label class="col-md-3 control-label">Upload profile Image *</label>
        <div class="col-md-8">
-        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" required/>
+       <p> Please upload upto max size 2 MB</p>
+        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"  data-max-size="5048" required/>
 		<span style="color:red" ng-show="personal.pimage.$touched && personal.pimage.$error.required">Profile Image required.</span> 
       </div>
   </div>

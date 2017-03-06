@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.servlet.ServletContext;
 
@@ -88,6 +90,7 @@ public class UserController {
 	@Autowired
 	ServletContext context;
 
+
 	private final static SMSVendor smsvendor = SMSVendor.getInstance();
 	ObjectMapper objectmapper = new ObjectMapper();
 
@@ -142,14 +145,21 @@ public class UserController {
 			if (!workflowlist.isEmpty()) {
 				for (WorkFlow workflow : workflowlist) {
 					if (!StringUtils.isEmpty(userdetailvo.getUserprofile().getLogindetails().getEmail())) {
-						EmailDetails emailmessage = prepareEmail(workflow, userdetailvo);
+					//	EmailDetails emailmessage = prepareEmail(workflow, userdetailvo);
 						//emailservice.sendEmail(emailmessage);
 					}
 				}
 			}
-			// send SMS to user and admin
-			// prepapreSMSDetailsAndSendSMS(userdetailvo);
-			// update parent JSON
+			final UserDetailsVO userdet=userdetailvo; 
+			ExecutorService executorService = Executors.newFixedThreadPool(1);
+			executorService.execute(new Runnable() {
+			    public void run() {
+					// send SMS to user and admin
+					 prepapreSMSDetailsAndSendSMS(userdet);
+					// update parent JSON
+			    }
+			});
+			executorService.shutdown();
 		}
 		return new ResponseEntity<StatusVO>(userdetailvo, HttpStatus.OK);
 	}
@@ -169,7 +179,7 @@ public class UserController {
 				userdetailvo.getUserprofile().getLogindetails().getMobilenumber(),
 				userdetailvo.getUserprofile().getLogindetails().getEmail()));
 		adminsmsdetails.setMobilenumber(smsvendor.getMobilenumber());
-		adminsmsdetails.setMsgreasone("Notify Admin FOr new user Added");
+		adminsmsdetails.setMsgreasone("Notify Admin For new user Added");
 		SMSHelper.sendSMS(adminsmsdetails);
 	}
 
@@ -191,7 +201,7 @@ public class UserController {
 			workflowmobile.setCreatedby(userdetailvo.getUserprofile().getLogindetails().getUsername());
 			workflowmobile.setCreatetime(new Date());
 			workflowmobile.setWorktype("MOBILE_VERIFICATION");
-			workflowmobile.setStatus(true);
+			workflowmobile.setStatus(false);
 			workflowmobile.setProfileid(String.valueOf(userdetailvo.getUserprofile().getId()));
 			workflowdetails.add(workflowmobile);
 		}
@@ -383,4 +393,18 @@ public class UserController {
 		return new ResponseEntity<UserDetailsVO>(userDetails, HttpStatus.UNAUTHORIZED);
 	}
 
+	@RequestMapping(value = "/fetchUserNetworkDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<NetWorkDetails> fetchUserNetworkDetails() throws Exception {
+		NetWorkDetails networkDetails = null;
+		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				NetworkInfo networkinfo=networkservice.getNetworkDetails(login.getUsername());
+				 networkDetails = PropertyHelper.convertJsonToNetworkInfo(networkinfo);
+			}
+		}
+		return new ResponseEntity<NetWorkDetails>(networkDetails, HttpStatus.OK);
+	}
+
+	
 }

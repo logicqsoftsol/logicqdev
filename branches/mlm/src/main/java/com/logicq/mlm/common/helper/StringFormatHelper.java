@@ -16,7 +16,7 @@ public class StringFormatHelper {
 		StringBuilder smsMsgString = new StringBuilder();
 		StringTokenizer tokens = new StringTokenizer(message);
 		while (tokens.hasMoreTokens()) {
-			smsMsgString.append(tokens.nextToken() + SMS_MESSAGE_FORMAT_FOR_VENDOR);
+			smsMsgString.append(tokens.nextToken().trim() + SMS_MESSAGE_FORMAT_FOR_VENDOR);
 		}
 		return smsMsgString.toString();
 	}
