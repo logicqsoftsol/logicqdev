@@ -34,4 +34,15 @@ public class UserNetworkPerformanceService  implements IUserNetworkPerformanceSe
 		return networkperfdao.getNetworkPerformance(usernetowrk);
 	}
 
+	@Override
+	public void addUserNetworkPerformanceList(List<UserNetworkCount> usernetowrkList) {
+		networkperfdao.addUserNetworkPerformanceList(usernetowrkList);
+		
+	}
+
+	@Override
+	public UserNetworkCount getNetworkPerformanceForMemeberandLevel(UserNetworkCount usernetowrk) {
+		return networkperfdao.getNetworkPerformanceForMemeberandLevel(usernetowrk);
+	}
+
 }

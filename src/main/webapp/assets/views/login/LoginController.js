@@ -12,6 +12,7 @@
 			 'AuthenticationService',
 			 function($scope,$rootScope,$http,$location,$localStorage,$exceptionHandler,AuthenticationService) {
 		$scope.approval={};
+		$scope.profileDisplayName={};
 		$scope.login = function () {
 			AuthenticationService.Login($scope).success(function(response, status, headers, config){
 				if(headers('AUTH-TOKEN') != '' && response.authorities != '' )
@@ -20,11 +21,13 @@
 				AuthenticationService.setAuthenticationToken(headers('AUTH-TOKEN'),$scope.logedinusername);
 			    $localStorage.profile=response;
 				$scope.usertype=response.userprofile.logindetails.authorities[0].name;
+				$scope.profileDisplayName.firstname=response.userprofile.firstname;
+				$scope.profileDisplayName.lastname=response.userprofile.lastname;
 			    if($scope.usertype=='ADMIN'){
 					$location.path('/dashboard/overview');
 				}
 				//else if(!response.adminVerified || !response.emailVerified || !response.mobilenoVerified){
-			    else if(!response.adminVerified ){	
+			    else if(!response.adminVerified || !response.mobilenoVerified){	
 			    $location.path('/dashboard/approvalpending');
 				}else{
 					$location.path('/dashboard/overview');

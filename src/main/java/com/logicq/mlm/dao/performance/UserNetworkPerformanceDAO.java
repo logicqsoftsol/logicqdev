@@ -19,6 +19,12 @@ public class UserNetworkPerformanceDAO extends AbstractDAO<UserNetworkCount> imp
 	public void addUserNetworkPerformance(UserNetworkCount usernetowrk) {
 		save(usernetowrk);
 	}
+	
+	@Override
+	public void addUserNetworkPerformanceList(List<UserNetworkCount> usernetowrkList) {
+		saveList(usernetowrkList);
+	}
+
 
 	@Override
 	public List<UserNetworkCount> getNetworkPerformance(UserNetworkCount usernetowrk) {
@@ -27,7 +33,14 @@ public class UserNetworkPerformanceDAO extends AbstractDAO<UserNetworkCount> imp
 		return (List<UserNetworkCount>) execcuteQuery(query.toString());
 	}
 
+	@Override
+	public UserNetworkCount getNetworkPerformanceForMemeberandLevel(UserNetworkCount usernetowrk) {
+		StringBuilder query=new StringBuilder();
+		query.append(" from UserNetworkCount un where un.memberid='"+usernetowrk.getMemberid()+"' and un.networklevel='"+usernetowrk.getNetworklevel()+"'");
+		return  execcuteQueryForUnique(query.toString());
+	}
 
+	
 
 
 

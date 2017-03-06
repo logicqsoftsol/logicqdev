@@ -43,6 +43,8 @@
 					$scope.documentid={};
 					$scope.user.image="assets/images/dummyuser.jpg";
 					$scope.taskPoller=[];
+					$scope.profileDisplayName={};
+					$scope.maxFileUploadSize=3000000;
 				    angular.forEach($state.get(), function (item) {
 				        if (item.data && item.data.visible) {
 				            $scope.menuItems.push({name: item.name, text: item.data.text});
@@ -74,9 +76,18 @@
 					
 				};
 				
-					$scope.viewSupportHands=function(){
-						$scope.displayNetworkProfie($localStorage.profile.networkjson);
-					}
+				
+				$scope.onClickViewSupportHands=function(){
+					document.getElementById('networkmember-chart').innerHTML=null;
+					UserDetailsService.getUserNetwork( $scope).success(function(data, status) {
+						$scope.displayNetworkProfie(data);
+							}).error(function(data, status) {
+							   var errormsg='Unable to display network: '+status;
+								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+								$exceptionHandler(errormsg);
+							});
+				}
+				
 					if($localStorage.profile.document.documentPath!=null){
 						$scope.user.image=$localStorage.profile.document.documentPath;
 					}
@@ -87,16 +98,16 @@
 				}else{
 					$scope.approval.mobilenoVerified='Approved';
 				}
-				if(!$localStorage.profile.emailVerified){
+				/*if(!$localStorage.profile.emailVerified){
 			    $scope.approval.emailVerified='Pending';
                 $scope.approvalpendinglist.push({id:2, name:'Email'});				
 				}else{
 					$scope.approval.emailVerified='Approved';
-				}
+				}*/
 					
 			     if(!$localStorage.profile.adminVerified){
 			       $scope.approval.adminVerified='Pending';
-				   $scope.approvalpendinglist.push({id:3, name:'Admin'});	
+				   $scope.approvalpendinglist.push({id:2, name:'Admin'});	
 				}else{
 					$scope.approval.adminVerified='Approved';
 				}
@@ -106,13 +117,13 @@
 													if(value.name==newVal){
 														 $scope.approval.verificationtypelabel=value.name;
                                                         $scope.request.otpdetails={};  
-                                                        if(value.name=='Email'){
+                                                      /*  if(value.name=='Email'){
                                                         	  $scope.approval.verificationvalue=$localStorage.profile.userprofile.conatctDetails.email;
-                                                        }
+                                                        }*/
                                                         if(value.name=='MobileNumber'){
                                                         	$scope.approval.verificationvalue=$localStorage.profile.userprofile.conatctDetails.mobilenumber;
                                                         }
-														 if(value.name=='Email'||value.name=='MobileNumber'){
+														 if(value.name=='MobileNumber'){
 															   UserDetailsService.sendOTP($scope).success(function(data, status) {
 															   	}).error(function(data, status) {
 															   			var errormsg='Unable to Send OTP  '+status;
@@ -143,13 +154,13 @@
 				}else{
 					$scope.approval.mobilenoVerified='Approved';
 				}
-				if(!$localStorage.profile.emailVerified){
+				/*if(!$localStorage.profile.emailVerified){
 			    $scope.approval.emailVerified='Pending';
                 $scope.approvalpendinglist.push({id:2, name:'Email'});				
 				}else{
 					$scope.approval.emailVerified='Approved';
 				
-				}
+				}*/
 				}).error(function(data, status) {
 									  var errormsg='Unable to validate OTP  '+status;
 										$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
@@ -158,21 +169,22 @@
 					
 				}	
 				
+				$scope.getNotificationDetails= function(){
+					UserDetailsService.pollTaskDetails().success(function(data, status) {
+					   	$scope.tasklist=data.tasklist;
+						$scope.tasklist.count=data.tasklist.length;
+						$scope.taskPoller=data.tasklist;
+					  }).error(function(data, status) {
+						  var errormsg='Unable to Update Your Task  '+status;
+							$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+							$exceptionHandler(errormsg);
+						});     
+				}
+				
 				$scope.poller = function() {
 				if($scope.taskPoller.length>0){
-					UserDetailsService.pollTaskDetails().success(function(data, status) {
-				   	$scope.tasklist=data.tasklist;
-					$scope.tasklist.count=data.tasklist.length;
-					if(data.tasklist.length==0){
-						$scope.taskPoller=[];
-					}else{
-						$scope.taskPoller=data.tasklist;
-					}
-				  }).error(function(data, status) {
-					  var errormsg='Unable to Update Your Task  '+status;
-						$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
-						$exceptionHandler(errormsg);
-					});     
+					$scope.tasklist.count=$scope.taskPoller.length;
+					$scope.taskPoller=[];
 				}
 				$timeout($scope.poller, 4000); 
 				};
@@ -182,6 +194,12 @@
 					  $scope.approval.verificationvalue='';
 					  $scope.approval.otpcode='';
 				  }
+				  
+				  if(null!=$localStorage.profile.userprofile){
+					  $scope.profileDisplayName.firstname=$localStorage.profile.userprofile.firstname;
+					  $scope.profileDisplayName.lastname=$localStorage.profile.userprofile.lastname;
+				  }
+				
 				  
 		     $scope.displayProfile = function () {
 					 $scope.userdetails=$localStorage.profile;
@@ -196,6 +214,8 @@
 				}else{
 					$scope.taskreadonly='true';
 				}
+					$scope.profileDisplayName.firstname=$scope.userdetails.userprofile.firstname;
+					$scope.profileDisplayName.lastname=$scope.userdetails.userprofile.lastname;
 					 $scope.user.image=$scope.userdetails.document.documentPath;
 				     $scope.user.firstname=$scope.userdetails.userprofile.firstname;
 					 $scope.user.lastname=$scope.userdetails.userprofile.lastname;
@@ -312,6 +332,11 @@
 					
 			$scope.uploadFile = function(files) {
                $scope.request.fd = new FormData();
+               var fileSize = files[0].size;
+               if(fileSize>$scope.maxFileUploadSize){
+                   alert('file size is more than  2 MB');
+                   return false;
+               }
               //Take the first selected file
               $scope.request.fd.append("file", files[0]);
 			  UserDetailsService.uploadImages($scope.request).success(function(data, status) {

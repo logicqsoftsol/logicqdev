@@ -13,6 +13,16 @@
 					data : ''
 				})
 		},
+		
+		getUserNetwork: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.fetchUserNetworkDetailsURL,
+				//url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getUserProfileURL+"/"+$scope.networkid,
+				dataType :'json',
+				data : ''
+			})
+	},
 		saveUserProfileDetails: function (request) {
 			var url = AppConstants.hostName+AppConstants.saveUserProfileDetailsURL;
 			//var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.saveUserProfileDetailsURL;

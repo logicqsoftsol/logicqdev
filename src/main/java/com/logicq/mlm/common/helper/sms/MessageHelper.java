@@ -29,12 +29,12 @@ public class MessageHelper {
 	}
 
 	public static String generateUserRegistartionMessage(String username, String password, String fname, String lname) {
-		return " Welcome to MLM Mr." + fname + " " + lname + " Your login details USERNAME #" + username + " PASSWORD #"
+		return " Welcome to GetPay Mr " + fname + " Your login details USERNAME " + username + " PASSWORD "
 				+ password;
 	}
 
 	public static String generateUserRegistartionMessageForAdmin(String username, String emailid) {
-		return "The User with USERNAME :" + username + " and" + " EMAIL :" + emailid + " has been registated at "
+		return "The User with USERNAME :" + username + " has been registated at "
 				+ new Date();
 	}
 
