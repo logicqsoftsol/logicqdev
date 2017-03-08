@@ -6,6 +6,7 @@ import java.util.List;
 import com.logicq.mlm.model.admin.TaskDetails;
 import com.logicq.mlm.model.performance.UserPerformance;
 import com.logicq.mlm.model.profile.NetWorkDetails;
+import com.logicq.mlm.model.profile.NetworkInfo;
 import com.logicq.mlm.model.profile.UserDocument;
 import com.logicq.mlm.model.profile.UserProfile;
 import com.logicq.mlm.model.wallet.WalletStatement;
@@ -28,6 +29,8 @@ public class UserDetailsVO extends StatusVO {
 	private List<TaskDetails> tasklist;
 	
 	private UserDocument document;
+	
+	private List<NetworkInfo> networkinfolist;
 
 	public UserProfile getUserprofile() {
 		return userprofile;
@@ -77,11 +80,20 @@ public class UserDetailsVO extends StatusVO {
 		this.document = document;
 	}
 
+	public List<NetworkInfo> getNetworkinfolist() {
+		return networkinfolist;
+	}
+
+	public void setNetworkinfolist(List<NetworkInfo> networkinfolist) {
+		this.networkinfolist = networkinfolist;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "UserDetailsVO [userprofile=" + userprofile + ", walletStatement=" + walletStatement
 				+ ", userperformance=" + userperformance + ", networkjson=" + networkjson + ", tasklist=" + tasklist
-				+ ", document=" + document + "]";
+				+ ", document=" + document + ", networkinfolist=" + networkinfolist + "]";
 	}
 
 

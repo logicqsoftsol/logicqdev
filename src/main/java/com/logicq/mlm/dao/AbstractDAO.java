@@ -171,4 +171,26 @@ public class AbstractDAO<T> {
 		Query query = getCurrentSession().createSQLQuery(queryString);
 		return query.list();
 	}
+	
+	public List<T> executeQueryWithPagination(String queryString,int pagenumber,int pagesize) {
+		Query query = getCurrentSession().createQuery(queryString);
+		query.setFirstResult((pagenumber - 1) * pagesize);
+		query.setMaxResults(pagesize);
+		return query.list();
+	}
+	
+	public List<T> executeQueryWithPaginationAndLimitation(String queryString, int limitValue) {
+		Query query = getCurrentSession().createQuery(queryString);
+		query.setMaxResults(limitValue);
+		return query.list();
+	}
+	
+	
+	public List<T> loadClassWithPagination(Class claz,int pagenumber,int pagesize) {
+		Query query = getCurrentSession().createQuery("from " + claz.getName());
+		query.setFirstResult((pagenumber - 1) * pagesize);
+		query.setMaxResults(pagesize);
+		return query.list();
+	}
+	
 }

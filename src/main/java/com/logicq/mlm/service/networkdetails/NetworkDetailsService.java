@@ -42,4 +42,10 @@ public class NetworkDetailsService implements INetworkDetailsService {
 		return networkdetailsdao.getUpdatePedingNetworkDetails(memberid);
 	}
 
+	@Override
+	public List<NetworkInfo> getAllNetworkList(int pagesize, int pagenumber) {
+		// TODO Auto-generated method stub
+		return networkdetailsdao.getAllNetworkList(pagesize, pagenumber);
+	}
+
 }

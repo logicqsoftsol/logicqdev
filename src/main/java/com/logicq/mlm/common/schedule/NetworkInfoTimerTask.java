@@ -2,6 +2,7 @@ package com.logicq.mlm.common.schedule;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,22 +84,27 @@ public class NetworkInfoTimerTask {
 					if (fee.getApplyTo().equals(level)) {
 						walletstment = walletStmntService.fetchWalletStmnt(walletstment);
 						BigDecimal calculated = caculateAmountAccordingToFee(fee,
-								new BigDecimal(networkdetails.getChildren().size()));
+								new BigDecimal(1));
 						if (null != calculated) {
 								walletstment.setPayout(walletstment.getPayout().add(calculated));
 								walletstment.setMaxencashable(walletstment.getMaxencashable().add(calculated));
 								walletstment.setCurrentbalance(walletstment.getCurrentbalance().add(calculated));
-							
-						}
-						walletStmntService.updateWalletStmnt(walletstment);
-						break;
+								walletstment.setWalletlastupdate(new Date());
+								walletStmntService.updateWalletStmnt(walletstment);
+								break;
+						   }
+						
+						
 					}
 				}
 			}
-			if (null != networkdetails && !StringUtils.isEmpty(networkdetails.getParentid())) {
-				int intlevel=StringFormatHelper.getLevelAsInteger(level);
-				String stringlevel=StringFormatHelper.getLevelAsString(intlevel+1);
-				calculateWalletAmount(networkdetails.getParentid(),feeList,stringlevel);
+			if (null != networkdetails && !StringUtils.isEmpty(networkInfo.getParentmemberid())) {
+				int intlevel = StringFormatHelper.getLevelAsInteger(level);
+				int currentlevel = intlevel + 1;
+				if (currentlevel <= feeList.size()) {
+					String stringlevel = StringFormatHelper.getLevelAsString(currentlevel);
+					calculateWalletAmount(networkInfo.getParentmemberid(), feeList, stringlevel);
+				}
 			}
 		}
 	}

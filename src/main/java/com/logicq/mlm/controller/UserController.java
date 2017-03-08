@@ -36,6 +36,7 @@ import com.logicq.mlm.common.helper.PropertyHelper;
 import com.logicq.mlm.common.helper.sms.MessageHelper;
 import com.logicq.mlm.common.helper.sms.SMSHelper;
 import com.logicq.mlm.common.vendor.sms.SMSVendor;
+import com.logicq.mlm.model.login.Login;
 import com.logicq.mlm.model.message.EmailDetails;
 import com.logicq.mlm.model.performance.UserPerformance;
 import com.logicq.mlm.model.profile.NetWorkDetails;
@@ -94,18 +95,19 @@ public class UserController {
 	private final static SMSVendor smsvendor = SMSVendor.getInstance();
 	ObjectMapper objectmapper = new ObjectMapper();
 
-	@RequestMapping(value = "/fetchUser", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UserDetailsVO> fetchUserDetails() throws Exception {
-		UserDetailsVO userdetailsvo = new UserDetailsVO();
+	@RequestMapping(value = "/getUserBasicDetails/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserDetailsVO> fetchUserDetails(@PathVariable String username) throws Exception {
+		UserDetailsVO userdetails = new UserDetailsVO();
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
-			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
-				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-				UserProfile userdetails = new UserProfile();
-				userdetails.setLogindetails(LoginFactory.createLoginDetails(login));
-				userservice.fetchUser(userdetails);
-			}
+			UserProfile	userprofile = new UserProfile();
+			userprofile.setLogindetails(new Login());
+			userprofile.getLogindetails().setUsername(username);
+			userprofile = userservice.fetchUser(userprofile);
+			userdetails.setUserprofile(userprofile);
+			UserDocument userdoc=documentUploadService.getDocumentsAccordingToUserName(username);
+			userdetails.setDocument(userdoc);
 		}
-		return new ResponseEntity<UserDetailsVO>(userdetailsvo, HttpStatus.OK);
+		return new ResponseEntity<UserDetailsVO>(userdetails, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -273,7 +275,7 @@ public class UserController {
 					walletStatement.setWalletid(userprofile.getWalletdetails().getWalletid());
 					walletStatement = walletStatementservice.fetchWalletStmnt(walletStatement);
 					userdetailsvo.setWalletStatement(walletStatement);
-					userperformanceservice.fetchUserPerformanceAccordingToAggregation(userperformance);
+					//userperformanceservice.fetchUserPerformanceAccordingToAggregation(userperformance);
 				} else {
 
 					userdetailsvo.setWalletStatement(walletStatement);
@@ -394,16 +396,24 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/fetchUserNetworkDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<NetWorkDetails> fetchUserNetworkDetails() throws Exception {
+	public ResponseEntity<UserDetailsVO> fetchUserNetworkDetails() throws Exception {
 		NetWorkDetails networkDetails = null;
+		UserDetailsVO userdetailvo=new UserDetailsVO();
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
 				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				NetworkInfo networkinfo=networkservice.getNetworkDetails(login.getUsername());
 				 networkDetails = PropertyHelper.convertJsonToNetworkInfo(networkinfo);
+				 userdetailvo.setNetworkjson(networkDetails); 
+				 UserProfile userprofile = userservice.fetchUserAccordingToUserName(login.getUsername());
+				   WalletStatement walletStatement=new WalletStatement();
+				    walletStatement.setWallet(userprofile.getWalletdetails());
+					walletStatement.setWalletid(userprofile.getWalletdetails().getWalletid());
+					walletStatement = walletStatementservice.fetchWalletStmnt(walletStatement);
+					userdetailvo.setWalletStatement(walletStatement);
 			}
 		}
-		return new ResponseEntity<NetWorkDetails>(networkDetails, HttpStatus.OK);
+		return new ResponseEntity<UserDetailsVO>(userdetailvo, HttpStatus.OK);
 	}
 
 	

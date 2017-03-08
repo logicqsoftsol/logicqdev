@@ -45,12 +45,17 @@
 					$scope.taskPoller=[];
 					$scope.profileDisplayName={};
 					$scope.maxFileUploadSize=3000000;
-				    angular.forEach($state.get(), function (item) {
+					$scope.networkinfolist=[];
+					$scope.viewuserprofile={};
+					
+					
+					angular.forEach($state.get(), function (item) {
 				        if (item.data && item.data.visible) {
 				            $scope.menuItems.push({name: item.name, text: item.data.text});
 				        }
 						
 				    });
+				    
 					
 					$('#networkmember-chart').on('click', function(event) {
 							var networkid = $('#networkmembernodeid').val();
@@ -80,12 +85,17 @@
 				$scope.onClickViewSupportHands=function(){
 					document.getElementById('networkmember-chart').innerHTML=null;
 					UserDetailsService.getUserNetwork( $scope).success(function(data, status) {
-						$scope.displayNetworkProfie(data);
+						$scope.displayNetworkProfie(data.networkjson);
+					$scope.user.walletdetails.walletStatement.payout=data.walletStatement.payout;
+					$scope.user.walletdetails.walletStatement.maxencashable=data.walletStatement.maxencashable;
+					$scope.user.walletdetails.walletStatement.currentbalance=data.walletStatement.currentbalance;
+					$scope.user.walletdetails.walletStatement.walletlastupdate=new Date(data.walletStatement.walletlastupdate);
 							}).error(function(data, status) {
 							   var errormsg='Unable to display network: '+status;
 								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 								$exceptionHandler(errormsg);
 							});
+				
 				}
 				
 					if($localStorage.profile.document.documentPath!=null){
@@ -231,15 +241,39 @@
 					$scope.user.walletdetails.walletStatement.maxencashable=$scope.userdetails.walletStatement.maxencashable;
 					$scope.user.walletdetails.walletStatement.currentbalance=$scope.userdetails.walletStatement.currentbalance;
 					$scope.user.walletdetails.walletStatement.walletlastupdate=new Date($scope.userdetails.walletStatement.walletlastupdate);
-					$scope.user.userperformance.totalnetwork=$scope.userdetails.userperformance.network;
-					$scope.user.userperformance.totalmetting=$scope.userdetails.userperformance.metting;
-					$scope.user.userperformance.totaltask=$scope.userdetails.userperformance.task;
-					$scope.user.userperformance.totalincome=$scope.userdetails.userperformance.income;
-					$scope.user.userperformance.totalperformance=$scope.userdetails.userperformance.performancetype;
-					$scope.user.userperformance.totalrating=$scope.userdetails.userperformance.ratting;
-					};
-					
-				
+					//$scope.user.userperformance.totalnetwork=$scope.userdetails.userperformance.network;
+					//$scope.user.userperformance.totalmetting=$scope.userdetails.userperformance.metting;
+					//$scope.user.userperformance.totaltask=$scope.userdetails.userperformance.task;
+					//$scope.user.userperformance.totalincome=$scope.userdetails.userperformance.income;
+					//$scope.user.userperformance.totalperformance=$scope.userdetails.userperformance.performancetype;
+					//$scope.user.userperformance.totalrating=$scope.userdetails.userperformance.ratting;
+		     };
+					if(null!=$localStorage.profile.networkinfolist){
+						$scope.networkinfolist=$localStorage.profile.networkinfolist;
+					}
+						$scope.getProfileListAccordingToPage=function(page) {
+						
+						}
+								$scope.viewMemberProfileDetails = function(network) {
+									$scope.viewuser=network.memberid;
+									UserDetailsService.getUserProfileDetails($scope).success(function(data, status) {
+										$scope.viewuserprofile.firstname = data.userprofile.firstname;
+										$scope.viewuserprofile.lastname = data.userprofile.lastname;
+										$scope.viewuserprofile.memberlevel = data.userprofile.networkinfo.memberlevel;
+										$scope.viewuserprofile.dateofbirth = data.userprofile.dateofbirth;
+										$scope.viewuserprofile.gender = data.userprofile.gender;
+										$scope.viewuserprofile.addressText = data.userprofile.conatctDetails.addressText;
+										$scope.viewuserprofile.district = data.userprofile.conatctDetails.district;
+										$scope.viewuserprofile.email = data.userprofile.conatctDetails.email;
+										$scope.viewuserprofile.mobilenumber = data.userprofile.conatctDetails.mobilenumber;
+										$scope.viewuserprofile.image=data.document.documentPath;
+									  }).error(function(data, status) {
+										  var errormsg='Unable to specifc user profile '+status;
+											$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+											$exceptionHandler(errormsg);
+										});    
+									
+								}
 					
 					$scope.setupNetwork=function(){
 						$scope.userprofile={};
