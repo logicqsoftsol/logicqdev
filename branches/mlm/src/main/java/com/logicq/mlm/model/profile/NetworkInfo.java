@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -36,12 +37,12 @@ public class NetworkInfo implements Serializable {
 	private String memberlevel;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "BIRTH_DATE", nullable = true)
+	@Column(name = "JOIN_DATE", nullable = true)
 	private Date dateofjoin;
 
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name = "PROFILE_ID",nullable = false)
+	@JoinColumn(name = "PROFILE_ID")
 	private UserProfile userprofile;
 	
 	

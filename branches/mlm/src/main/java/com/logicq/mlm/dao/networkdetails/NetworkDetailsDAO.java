@@ -53,4 +53,10 @@ public class NetworkDetailsDAO  extends AbstractDAO<NetworkInfo> implements INet
 		return null;
 	}
 
+	@Override
+	public List<NetworkInfo> getAllNetworkList(int pagesize, int pagenumber) {
+		StringBuilder query=new StringBuilder();
+		return loadClassWithPagination(NetworkInfo.class,pagesize,pagenumber);
+	}
+
 }

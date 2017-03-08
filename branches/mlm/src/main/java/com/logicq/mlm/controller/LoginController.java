@@ -61,7 +61,7 @@ public class LoginController {
 		UserDetailsVO userdetailsvo=new UserDetailsVO();
 		UserProfile userprofile = new UserProfile();
 		WalletStatement walletStatement=new WalletStatement();
-		UserPerformance userperformance=new UserPerformance();
+		//UserPerformance userperformance=new UserPerformance();
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
 				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -96,6 +96,8 @@ public class LoginController {
 							tasklist.add(task);
 						}
 						userdetailsvo.setTasklist(tasklist);
+						List<NetworkInfo> networkinfolist=networkservice.getAllNetworkList(1, 20);
+						userdetailsvo.setNetworkinfolist(networkinfolist);
 					}else{
 					List<WorkFlow> workflowlist = workflowservice.getPendingWorkFlowForUser(login.getUsername(),
 							String.valueOf(userprofile.getId()));
@@ -103,9 +105,9 @@ public class LoginController {
 						if (work.getWorktype().equalsIgnoreCase("MOBILE_VERIFICATION")) {
 							userdetailsvo.setMobilenoVerified(work.getStatus());
 						} 
-						if (work.getWorktype().equalsIgnoreCase("EMAIL_VERIFICATION")) {
-							userdetailsvo.setEmailVerified(work.getStatus());
-						}
+//						if (work.getWorktype().equalsIgnoreCase("EMAIL_VERIFICATION")) {
+//							userdetailsvo.setEmailVerified(work.getStatus());
+//						}
 						if (work.getWorktype().equalsIgnoreCase("ADMIN_VERIFICATION")) {
 							userdetailsvo.setAdminVerified(work.getStatus());
 						} 
@@ -126,6 +128,8 @@ public class LoginController {
 						}
 					}
 					userdetailsvo.setTasklist(tasklist);
+					List<NetworkInfo> networkinfolist=networkservice.getNetworkDetailsForParent(login.getUsername());
+					userdetailsvo.setNetworkinfolist(networkinfolist);
 					}
 					NetworkInfo networkinfo=networkservice.getNetworkDetails(login.getUsername());
 					NetWorkDetails networkdetails = mapper.readValue(new String(networkinfo.getNetworkjson()), NetWorkDetails.class);
@@ -134,10 +138,8 @@ public class LoginController {
 					walletStatement.setWalletid(userprofile.getWalletdetails().getWalletid());
 					walletStatement=walletStatementservice.fetchWalletStmnt(walletStatement);
 					userdetailsvo.setWalletStatement(walletStatement);
-					userperformanceservice.fetchUserPerformanceAccordingToAggregation(userperformance);
 					UserDocument userdoc=documentUploadService.getDocumentsAccordingToUserName(login.getUsername());
 					userdetailsvo.setDocument(userdoc);
-					userdetailsvo.setUserperformance(userperformance);
 				} catch (Exception e) {
 					return new ResponseEntity<UserDetailsVO>(userdetailsvo, HttpStatus.INTERNAL_SERVER_ERROR);
 				}

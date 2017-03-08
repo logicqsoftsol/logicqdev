@@ -80,60 +80,19 @@
                       </tr>
                     </tbody>
                   </table>
-			      <a><i class="fa fa-facebook-square" aria-hidden="true" href={{user.socialdetails.fblink}}></i></a>
+			      <button><i class="fa fa-facebook-square" aria-hidden="true" href={{user.socialdetails.fblink}}></i></button>
                   <!--a href="#" class="btn btn-info fa fa-facebook-square"></a-->
-				  <a><i class="fa fa-google" aria-hidden="true" href={{user.socialdetails.fblink}}></i></a>
+				  <button><i class="fa fa-google" aria-hidden="true" href={{user.socialdetails.fblink}}></i></button>
                   <!--a href="#" class="btn btn-info fa fa-google"></a-->
-				   <a><i class="fa fa-youtube" aria-hidden="true" href={{user.socialdetails.youtubelink}}></i></a>
+				   <button><i class="fa fa-youtube" aria-hidden="true" href={{user.socialdetails.youtubelink}}></i></button>
 				  <!--a href="#"class="btn btn-info fa fa-youtube" ></a-->
-				 <a><i class="fa fa-twitter-square" aria-hidden="true" href={{user.socialdetails.twiter}}></i></a>
+				 <button><i class="fa fa-twitter-square" aria-hidden="true" href={{user.socialdetails.twiter}}></i></button>
                 </div>
 				<button type="button" class="btn btn-primary pull-right" data-target="#profiledetails" ng-click="setupNetworkForEdit()" data-toggle="modal">Edit</button>
             </div>
           </div>
 		</div>
-		  <div class="col-md-4">   
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title">Recent Activites</h3>
-			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
-            </div>
-            <div class="panel-body">
-                <div class="col-md-3 col-lg-3" align="center"><i class="fa fa-certificate fa-2x" aria-hidden="true"></i></div>
-                
-                <div class="col-md-9 col-lg-9 table-responsive"> 
-                  <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td>Your Growth</td>
-                        <td>0</td>
-                      </tr>
-                      <tr>
-                        <td>Verify Mobile Number</td>
-                        <td>true</td>
-                      </tr>
-                        <tr>
-                        <td>Verify Email Address</td>
-                        <td>true</td>
-                      </tr>
-                      <tr>
-                        <td>Verify Contact Address</td>
-                        <td>true</td>
-                      </tr>
-					   <tr>
-                        <td>Rewards Achived</td>
-                        <td>0</td>
-                      </tr>
-					   <tr>
-                        <td>Up Coming Meetings</td>
-                        <td>No Meetings</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-            </div>
-          </div>
-		</div>
+
 		
 		
 		 <div class="col-md-5">  
@@ -175,54 +134,37 @@
             </div>
           </div>
 		 </div> 
-		  <div class="col-md-6">
+		  <div class="col-md-11">
 		   <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">Performance Details</h3>
-			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+              <h3 class="panel-title">Your Network Member Details</h3>
             </div>
             <div class="panel-body">
-                <div class="col-md-3 col-lg-3" align="center"><i class="fa fa-line-chart fa-2x" aria-hidden="true"></i></i>
-				 <input type="text" class="form-control" list="granularitylist">
-								<datalist id="granularitylist">
-                                    <option value="Last 1 week">
-									<option value="Last 1 month">
-									<option value="Last 2 month">
-									<option value="Last 6 month">
-									<option value="Last 1 year">
-								</datalist>
-				</div>
-               
-                <div class="col-md-9 col-lg-9 table-responsive"> 
-                  <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td>Total Network Grow</td>
-                        <td>{{user.userperformance.totalnetwork}}</td>
-                      </tr>
-					  <tr>
-                        <td>Total Metting Attend</td>
-                        <td>{{user.userperformance.totalmetting}}</td>
-                      </tr>
-					   <tr>
-                        <td>Total Task Complete</td>
-                        <td>{{user.userperformance.totaltask}}</td>
-                      </tr>
-                      <tr>
-                        <td>Total % income grow</td>
-                        <td>{{user.userperformance.totalincome}}</td>
-                      </tr>
-                      <tr>
-                        <td>Overall Performance</td>
-                        <td>{{user.userperformance.totalperformance}}</td>
-                      </tr>
-					   <tr>
-                        <td>Overall Rating</td>
-                        <td>{{user.userperformance.totalrating}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+               <div class="table-responsive">
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="getProfileListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="getProfileListAccordingToPage(page)">{{page}}</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="getProfileListAccordingToPage()">&raquo;</a></li>
+									</ul>	
+							<table class="table table-bordered table-fixed">
+							<tr class ="success">
+								<th class="pull-center">MEMEBR NAME</th>
+								<th class="pull-center">JOINING DATE</th>
+								<th class="pull-center">MEMEBR REFER BY</th>
+							</tr>
+							<tr ng-repeat="network in networkinfolist">
+								<td>{{network.memberid}}</td>
+								<td>{{network.dateofjoin}}</td>
+								<td>{{network.parentmemberid}}</td>
+								<td><a id="viewprofile"  data-toggle="modal"  data-target="#viewprofilemodal"   ng-click="viewMemberProfileDetails(network)"><i class="fa fa-eye" aria-hidden="true"></i>View</a></td>
+							</tr>
+						</table>
+					</div>
             </div>
           </div>
       </div>
@@ -243,6 +185,7 @@
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			  <span aria-hidden="true">&times;</span>
 			</button>
+			<h4 class="modal-title">Your Network Details</h4>	
 		  </div>
 		  
 		  <div class="modal-body">
@@ -431,28 +374,26 @@
 			 	 <div class="form-group">
           <label class="col-md-4 control-label">Your City *</label>
           <div class="col-md-8">
-            <input class="form-control"  ng-model="userprofile.conatctDetails.district" placeholder="Your District" type="text" list="ditrictlist">
-			<datalist id="ditrictlist">
-			<option value="Balasore">
-			<option value="Pune">
-			<option value="Mumbai">
-			<option value="Baripada">
-			<option value="Bhadrak">
-			<option value="Cuttack">
-			<option value="Bhubaneswar">
-         </datalist>
+            <select  class="form-control"  ng-model="userprofile.conatctDetails.district">
+			<option value="Balasore" selected="selected">BALASORE</option>
+			<option value="Pune">PUNE</option>
+			<option value="Mumbai">MUMBAI</option>
+			<option value="Baripada">BARIPADA</option>
+			<option value="Bhadrak">BHADRAK</option>
+			<option value="Cuttack">CUTTACK</option>
+			<option value="Bhubaneswar">BHUBANESWAR</option>
+         </select>
           </div>
 	         </div>
 		 <div class="form-group">
           <label class="col-md-4 control-label">State *</label>
           <div class="col-md-8">
-            <input class="form-control"  ng-model="userprofile.conatctDetails.state" placeholder="Your Statae" type="text" list="statelist">
-			<datalist id="statelist">
-			<option value="Odisha">
-			<option value="Maharashtra">
-			<option value="West Bengal">
-			<option value="Andhra Pradesh">
-         </datalist>
+            <select class="form-control"  ng-model="userprofile.conatctDetails.state">
+			<option value="Odisha" selected="selected">ODISHA</option>
+			<option value="Maharashtra">MAHARASHTRA</option>
+			<option value="WestBengal">WEST BENGAL</option>
+			<option value="AndhraPradesh">ANDHRA PRADESH</option>
+         </select>
           </div>
 	      </div>
             </div>
@@ -810,6 +751,65 @@
 							   <input  type="button" id="confirm" name="confirm" value="Update" class="btn btn-primary btn-block" />
 							   <input  type="button" id="reset" name="reset" value="close" class="btn btn-primary btn-block" />
 							</div>
+			   </div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+			<!-- View Profile  modal-->
+	<div id="viewprofilemodal"  name="viewprofilemodal" class="modal fade"  role="dialog">
+ <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Profile Details </h4>	
+						</div>
+	<div class="modal-body">
+	<div class="col-md-12">  
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{viewuserprofile.firstname}} {{viewuserprofile.lastname}}</h3>
+			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3 col-lg-3" align="center"> <img alt="user Pic"  ng-src="{{viewuserprofile.image}}"  class="img-circle img-responsive"></div>
+                
+                <div class="col-md-9 col-lg-9 table-responsive"> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Member Type</td>
+                        <td>{{viewuserprofile.memberlevel}}</td>
+                      </tr>
+                      <tr>
+                        <td>Date of Birth</td>
+                        <td>{{viewuserprofile.dateofbirth | date:'yyyy-MM-dd'}}</td>
+                      </tr>
+                      <tr>
+                        <td>Gender</td>
+                        <td>{{viewuserprofile.gender}}</td>
+                      </tr>
+                        <tr>
+                        <td>Home Address</td>
+                        <td>{{viewuserprofile.addressText}} {{viewuserprofile.district}}</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td>{{viewuserprofile.email}}</td>
+                      </tr>
+                      <tr>
+                        <td>Mobile Number</td>
+                        <td>{{viewuserprofile.mobilenumber}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+		</div>
+				<div class="modal-footer">
 			   </div>
 			</div>
 		</div>

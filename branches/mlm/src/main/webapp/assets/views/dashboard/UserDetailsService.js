@@ -14,6 +14,16 @@
 				})
 		},
 		
+		getUserProfileDetails: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.getUserProfileDetailsURL+"/"+$scope.viewuser,
+				//url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getUserProfileURL+"/"+$scope.networkid,
+				dataType :'json',
+				data : ''
+			})
+	},
+		
 		getUserNetwork: function ($scope) {
 			return  $http({
 				method: 'GET',

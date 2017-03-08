@@ -6,7 +6,7 @@
     'use strict';
     
    angular.module('mlmlogicq', ['ui.router','snap','ngStorage']).constant('AppConstants', {
-      // 'hostName':'http://127.0.0.1:8090/mlmlogicq', 
+      //'hostName':'http://127.0.0.1:8090/mlmlogicq', 
        'hostName':'http://getpay.co.in',
 	 //'hostName':'http://45.113.136.130:8167',
 	//  'hostPort': '8090' ,
@@ -25,7 +25,8 @@
 	    'pollTaskListURL':'/api/admin/getTaskListDetails',
 		'uploadImageURL':'/api/user/upload',
 		'resetPasswordURL':'/api/user/updatepassword',
-		'fetchUserNetworkDetailsURL':'/api/user/fetchUserNetworkDetails'
+		'fetchUserNetworkDetailsURL':'/api/user/fetchUserNetworkDetails',
+	    'getUserProfileDetailsURL' : '/api/user/getUserBasicDetails'
 	}).directive('ngConfirmClick', [
 	                                   function(){
 	                                       return {

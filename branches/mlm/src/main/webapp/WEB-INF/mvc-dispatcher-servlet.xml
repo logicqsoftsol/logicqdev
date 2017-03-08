@@ -28,7 +28,7 @@
 		<property name="url" value="jdbc:mysql://45.113.136.130:3306/logicqso_mlm" />
 		<property name="username" value="getpay" />
 		<property name="password" value="uvusedu2e" /> 
-		<!--property name="url" value="jdbc:mysql://127.0.0.1:3306/getpay" />
+		<!-- property name="url" value="jdbc:mysql://127.0.0.1:3306/getpay" />
 		<property name="username" value="root" />
 		<property name="password" value="" /-->
 	</bean>
