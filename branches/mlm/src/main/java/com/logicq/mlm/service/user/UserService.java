@@ -86,6 +86,9 @@ public class UserService implements IUserService {
 			user.getNetworkinfo().setUserprofile(user);
 			user.getNetworkinfo().setDateofjoin(new Date());
 		}
+		if (null != user.getBankAccountDetails()) {
+			user.getBankAccountDetails().setUserprofile(user);
+		}
 		if (null != user.getSocialdetails()) {
 			user.getSocialdetails().setUserprofile(user);
 		}

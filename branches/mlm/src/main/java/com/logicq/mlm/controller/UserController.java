@@ -136,9 +136,9 @@ public class UserController {
 				userDocument.setName("dummyuser.jpg");
 				userDocument.setUploadDate(new Date());
 				// hard code dummy user if not upload image
-				userDocument.setDocumentPath(
-						"http://127.0.0.1:8090/mlmlogicq/assets/images/uploadImage/ADMIN/dummyuser.jpg");
-				// userDocument.setDocumentPath("http://http://getpay.co.in/assets/images/dummyuser.jpg");
+//				userDocument.setDocumentPath(
+//						"http://127.0.0.1:8090/mlmlogicq/assets/images/uploadImage/ADMIN/dummyuser.jpg");
+				 userDocument.setDocumentPath("http://http://getpay.co.in/assets/images/dummyuser.jpg");
 				documentUploadService.saveDocumentDetails(userDocument);
 			}
 			// workflow details

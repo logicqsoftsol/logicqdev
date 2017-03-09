@@ -29,6 +29,8 @@
 					$scope.user.walletdetails={};
 					$scope.user.walletdetails.walletStatement={};
 					$scope.user.userperformance={};
+					$scope.user.bankdetails={};
+					$scope.user.socialdetails={};
 				    $scope.networkjson={};
 					$scope.networkid='';
 					$scope.networkcreated='false';	
@@ -218,8 +220,7 @@
                     if(null!=$scope.tasklist){
 					$scope.tasklist.count=$scope.tasklist.length;	
 					}				
-					
-					 if($scope.usertype=='ADMIN'){
+				if($scope.usertype=='ADMIN'){
 			    	$scope.taskreadonly='false';
 				}else{
 					$scope.taskreadonly='true';
@@ -241,7 +242,33 @@
 					$scope.user.walletdetails.walletStatement.maxencashable=$scope.userdetails.walletStatement.maxencashable;
 					$scope.user.walletdetails.walletStatement.currentbalance=$scope.userdetails.walletStatement.currentbalance;
 					$scope.user.walletdetails.walletStatement.walletlastupdate=new Date($scope.userdetails.walletStatement.walletlastupdate);
-					//$scope.user.userperformance.totalnetwork=$scope.userdetails.userperformance.network;
+					if(null!=$scope.userdetails.userprofile.socialdetails){
+						$scope.user.socialdetails.fblink=$scope.userdetails.userprofile.socialdetails.fblink;
+						$scope.user.socialdetails.gogglepluslink=$scope.userdetails.userprofile.googlePlusLink;
+						$scope.user.socialdetails.youtubelink=$scope.userdetails.userprofile.youtubelink;
+						$scope.user.socialdetails.twiter=$scope.userdetails.userprofile.twiter;
+						$scope.user.socialdetails.linkedin=$scope.userdetails.userprofile.linkedinlink;
+					}else{
+						$scope.user.socialdetails.fblink="https://www.facebook.com/";
+						$scope.user.socialdetails.gogglepluslink="https://plus.google.com/";
+						$scope.user.socialdetails.youtubelink="https://www.youtube.com/";
+						$scope.user.socialdetails.twiter="https://twitter.com/";
+						$scope.user.socialdetails.linkedin="https://www.linkedin.com/";
+					}
+					if(null!=$scope.userdetails.userprofile.bankAccountDetails){
+					$scope.user.bankdetails.bankname=$scope.userdetails.userprofile.bankAccountDetails.bankName;
+					$scope.user.bankdetails.ifsccode=$scope.userprofile.bankAccountDetails.ifsccode;
+					$scope.user.bankdetails.accountNumber=$scope.userprofile.bankAccountDetails.accountNumber;
+					$scope.user.bankdetails.pancardno=$scope.userprofile.bankAccountDetails.pancardno;
+					$scope.user.bankdetails.accountHolderName=$scope.userprofile.bankAccountDetails.accountHolderName;
+		              }else{
+		            	  $scope.user.bankdetails.bankname="DUMMY BANK";
+		            	  $scope.user.bankdetails.ifsccode="DUMMY012";
+		            	  $scope.user.bankdetails.accountNumber="AC00125343";
+		            	  $scope.user.bankdetails.pancardno="DUMMYPAN";
+		            	  $scope.user.bankdetails.accountHolderName="GETPAY";
+		              }
+		        //$scope.user.userperformance.totalnetwork=$scope.userdetails.userperformance.network;
 					//$scope.user.userperformance.totalmetting=$scope.userdetails.userperformance.metting;
 					//$scope.user.userperformance.totaltask=$scope.userdetails.userperformance.task;
 					//$scope.user.userperformance.totalincome=$scope.userdetails.userperformance.income;

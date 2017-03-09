@@ -58,6 +58,9 @@ public class UserProfile implements Serializable {
 
 	@OneToOne(mappedBy = "userprofile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private SocialDetails socialdetails;
+	
+	@OneToOne(mappedBy = "userprofile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private BankAccountDetails bankAccountDetails;
 
 	public Long getId() {
 		return id;
@@ -139,10 +142,21 @@ public class UserProfile implements Serializable {
 		this.socialdetails = socialdetails;
 	}
 
+	public BankAccountDetails getBankAccountDetails() {
+		return bankAccountDetails;
+	}
+
+	public void setBankAccountDetails(BankAccountDetails bankAccountDetails) {
+		this.bankAccountDetails = bankAccountDetails;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "UserProfile [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", gender=" + gender
-				+ ", dateofbirth=" + dateofbirth + "]";
+				+ ", dateofbirth=" + dateofbirth + ", logindetails=" + logindetails + ", networkinfo=" + networkinfo
+				+ ", conatctDetails=" + conatctDetails + ", walletdetails=" + walletdetails + ", socialdetails="
+				+ socialdetails + ", bankAccountDetails=" + bankAccountDetails + "]";
 	}
 
 }

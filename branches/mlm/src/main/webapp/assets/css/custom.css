@@ -189,39 +189,16 @@ display:inline-block;
 	border-top: none;
 	background-color: #fafafa
 }
-.panel-heading a {
-	font-weight: 400;
-	padding: 12px 35px 12px 15px;
-	display: inline-block;
-	width: 100%;
-	background-color: #55acee;
-	color: #ffffff;
-	position: relative;
-	text-decoration: none;
-}
+
 .panel-heading a.collapsed {
 	color: #ffffff;
 	background-color: #333333;
 }
-.panel-heading a:after {
-	font-family: "FontAwesome";
-	content: "\f147";
-	position: absolute;
-	right: 15px;
-	font-size: 14px;
-	font-weight: 300;
-	top: 50%;
-	line-height: 1;
-	margin-top: -7px;
-}
+
 .panel-heading a.collapsed:after {
 	content: "\f196";
 }
-.panel-heading a:hover {
-	text-decoration: none;
-	background-color: #55acee;
-	color: #ffffff;
-}
+
 .panel-title a i {
 	padding-right: 10px;
 	font-size: 20px;
