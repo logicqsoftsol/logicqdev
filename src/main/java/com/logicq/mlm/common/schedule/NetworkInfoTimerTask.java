@@ -59,18 +59,35 @@ public class NetworkInfoTimerTask {
 		List<NetWorkTask> tasklist = networktaskservice.getNetworkTaskList();
 		if (!tasklist.isEmpty()) {
 			List<FeeSetup> feeList = feeSetupService.getFeeDetails();
+			Map<String,Integer> netWorkCountMap=new HashMap<>();
 			for (NetWorkTask task : tasklist) {
 				updateNetworkDetails(task.getMemberid(), task.getParentid());
 				networktaskservice.deleteNetworkTask(task);
-				//Map<String,Integer> netWorkCountMap=new HashMap<>();
 				//calculateNetworkCount(task.getMemberid(),netWorkCountMap,null);
 				calculateWalletAmount(task.getParentid(),feeList,"LEVEL1");
+				calculateNetworkCount(task.getParentid(),netWorkCountMap);
 			}
 		}
 	}
 
 	
 	
+	private void calculateNetworkCount(String memberid,Map<String,Integer> netWorkCountMap) throws Exception {
+//		NetworkInfo networkInfo = networkDetailService.getNetworkDetails(memberid);
+//		NetWorkDetails networkdetails = PropertyHelper.convertJsonToNetworkInfo(networkInfo);
+//		List<NetWorkDetails>  networkDetailList= networkdetails.getChildren();
+//		if (null != networkDetailList && !networkDetailList.isEmpty()) {
+//			Integer networkCount=netWorkCountMap.get(memberid + "_" + networkdetails.getCategory());
+//			networkCount = networkCount + networkDetailList.size();
+//			netWorkCountMap.put(memberid + "_" + networkdetails.getCategory(), networkCount);
+//		}
+//		if (null != networkdetails && !StringUtils.isEmpty(networkInfo.getParentmemberid())) {
+//			calculateNetworkCount(networkInfo.getParentmemberid(),netWorkCountMap);
+//		}
+	}
+
+
+
 	private void calculateWalletAmount(String memberid,List<FeeSetup> feeList,String level) throws Exception {
 		NetworkInfo networkInfo = networkDetailService.getNetworkDetails(memberid);
 		NetWorkDetails networkdetails = PropertyHelper.convertJsonToNetworkInfo(networkInfo);

@@ -48,6 +48,7 @@
             <div class="panel-heading">
               <h3 class="panel-title">{{user.firstname}} {{user.lastname}}</h3>
 			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+			 <a href="" data-target="#bankaccountemodal" data-toggle="modal" class="pull-right">Bank Account Details</a>
             </div>
             <div class="panel-body">
                 <div class="col-md-3 col-lg-3" align="center"> <img alt="user Pic"  ng-src="{{user.image}}"  class="img-circle img-responsive"></div>
@@ -80,15 +81,16 @@
                       </tr>
                     </tbody>
                   </table>
-			      <button><i class="fa fa-facebook-square" aria-hidden="true" href={{user.socialdetails.fblink}}></i></button>
+			      <a href={{user.socialdetails.fblink}}><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
                   <!--a href="#" class="btn btn-info fa fa-facebook-square"></a-->
-				  <button><i class="fa fa-google" aria-hidden="true" href={{user.socialdetails.fblink}}></i></button>
+				  <a href={{user.socialdetails.gogglepluslink}}><i class="fa fa-google" aria-hidden="true"></i></a>
                   <!--a href="#" class="btn btn-info fa fa-google"></a-->
-				   <button><i class="fa fa-youtube" aria-hidden="true" href={{user.socialdetails.youtubelink}}></i></button>
+				   <a href={{user.socialdetails.youtubelink}}><i class="fa fa-youtube" aria-hidden="true"></i></a>
 				  <!--a href="#"class="btn btn-info fa fa-youtube" ></a-->
-				 <button><i class="fa fa-twitter-square" aria-hidden="true" href={{user.socialdetails.twiter}}></i></button>
+				 <a href={{user.socialdetails.twiter}}><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+				  <a href={{user.socialdetails.linkedin}}><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
                 </div>
-				<button type="button" class="btn btn-primary pull-right" data-target="#profiledetails" ng-click="setupNetworkForEdit()" data-toggle="modal">Edit</button>
+				<button type="button" class="btn btn-primary pull-right" data-target="#editprofiledetails" ng-click="setupNetworkForEdit()" data-toggle="modal">Edit</button>
             </div>
           </div>
 		</div>
@@ -100,6 +102,7 @@
             <div class="panel-heading">
               <h3 class="panel-title">Wallet Details</h3>
 			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+				<a href="" data-target="#bankpassbookmodal" data-toggle="modal" class="pull-right">Passbook</a>
             </div>
             <div class="panel-body">
                 <div class="col-md-3 col-lg-3" align="center"> <i class="fa fa-money fa-2x" aria-hidden="true"></i></div>
@@ -130,7 +133,9 @@
                     </tbody>
                   </table>
                 </div>
-				 <button type="button" ng-click="poulateEncashDetails()" class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Request Encash</button>
+                <button type="button" ng-click="poulateEncashDetails()" class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Add Money</button>
+				<button type="button" ng-click="poulateEncashDetails()" class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Send Money</button>				
+				<button type="button" ng-click="poulateEncashDetails()" class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Encash</button>
             </div>
           </div>
 		 </div> 
@@ -224,6 +229,9 @@
                 </a>
 				<a href="#" class="list-group-item text-center">
                   <h4><i class="fa fa-university" aria-hidden="true"></i></h4><br/>Bank Details
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4><i class="fa fa-university" aria-hidden="true"></i></h4><br/>Social Network
                 </a>
               </div>
             </div>
@@ -398,6 +406,74 @@
 	      </div>
             </div>
                 </div>
+                
+                  <!-- bank  section -->
+                <div class="bhoechie-tab-content ">
+		<div class="form-group">
+          <label class="col-md-4 control-label">Bank Name</label>
+          <div class="col-md-8">
+            <input class="form-control" name="bankname" ng-model="userprofile.bankAccountDetails.bankName" placeholder="Bank Name" type="text"/> 
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">A/C No</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.bankAccountDetails.accountNumber" placeholder="Account Number" type="text" name="bankacno"/> 
+          </div>
+        </div>
+         <div class="form-group">
+          <label class="col-md-4 control-label">IFSC</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.bankAccountDetails.ifsccode" placeholder="IFSC CODE" type="text" name="bankifsc"/> 
+          </div>
+        </div>
+          <div class="form-group">
+          <label class="col-md-4 control-label">PAN NO</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.bankAccountDetails.pancardno" placeholder="PanCard No" type="text" name="bankpan"/>
+          </div>
+        </div>
+		   <div class="form-group">
+          <label class="col-md-4 control-label">Account Holder Name</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.bankAccountDetails.accountHolderName" placeholder="Account Holder Name" type="text" name="bankaccname"/>
+          </div>
+        </div>
+    </div>
+    
+                <!-- bank  section -->
+           <div class="bhoechie-tab-content ">
+		<div class="form-group">
+          <label class="col-md-4 control-label"><i class="fa fa-facebook-square" aria-hidden="true"></i>Facebook Link</label>
+          <div class="col-md-8">
+            <input class="form-control" name="fblink" ng-model="userprofile.socialdetails.fblink" placeholder="Your Facebook link" type="text"/> 
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label"><i class="fa fa-youtube" aria-hidden="true"></i>Yoututbe Link</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.socialdetails.youtubelink" placeholder="Youtube Link" type="text" name="youtubelink"/> 
+          </div>
+        </div>
+         <div class="form-group">
+          <label class="col-md-4 control-label"><i class="fa fa-twitter-square" aria-hidden="true"></i>Twiter Link</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.socialdetails.twiter" placeholder="Twiter Link" type="text" name="twiterlink"/> 
+          </div>
+        </div>
+          <div class="form-group">
+          <label class="col-md-4 control-label">LinkedIn Link</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.socialdetails.linkedinlink" placeholder="Linkedin link" type="text" name="linkedinlink"/>
+          </div>
+        </div>
+		   <div class="form-group">
+          <label class="col-md-4 control-label">GooglePlus Link</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.socialdetails.googlePlusLink" placeholder="GooglePlus Link" type="text" name="googlepluslink"/>
+          </div>
+        </div>
+    </div>
 				
             </div>
 			 </ng-form>
@@ -810,6 +886,419 @@
           </div>
 		</div>
 				<div class="modal-footer">
+			   </div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+
+			<!-- View Bank Account details  modal-->
+	<div id="bankaccountemodal"  name="bankaccountemodal" class="modal fade"  role="dialog">
+ <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Account Details </h4>	
+						</div>
+	<div class="modal-body">
+	<div class="col-md-12">  
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{profileDisplayName.firstname}} {{profileDisplayName.lastname}}</h3>
+			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3 col-lg-3" align="center"> <img alt="user Pic"  ng-src="{{viewuserprofile.image}}"  class="img-circle img-responsive"></div>
+                
+                <div class="col-md-9 col-lg-9 table-responsive"> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Bank Name</td>
+                        <td>{{user.bankdetails.bankname}}</td>
+                      </tr>
+                      <tr>
+                        <td>Account Number</td>
+                        <td>{{user.bankdetails.accountNumber}}</td>
+                      </tr>
+                      <tr>
+                        <td>IFSC Code</td>
+                        <td>{{user.bankdetails.ifsccode}}</td>
+                      </tr>
+                        <tr>
+                        <td>Account Holder's Name</td>
+                        <td>{{user.bankdetails.accountHolderName}}</td>
+                      </tr>
+                      <tr>
+                        <td>Pancard Number</td>
+                        <td>{{user.bankdetails.pancardno}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+		</div>
+				<div class="modal-footer">
+			   </div>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+			<!-- View Passbook details  modal-->
+	<div id="bankpassbookmodal"  name="bankpassbookmodal" class="modal fade"  role="dialog">
+ <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Passbook Details </h4>	
+						</div>
+	<div class="modal-body">
+	<div class="col-md-12">  
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{profileDisplayName.firstname}} {{profileDisplayName.lastname}}</h3>
+			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+     	<ul class="nav nav-tabs">
+							<li><a data-toggle="tab" id="alltransaction" class="pull-center"  ng-click=""
+							href="/admin#passbook_all">All</a></li>
+							<li class="active"><a data-toggle="tab" id="send" class="pull-center"  ng-click=""
+								href="/admin#passbook_send">Send</a></li>
+                           <li class="active"><a data-toggle="tab" id="add" class="pull-center"  ng-click=""
+								href="/admin#passbook_add">Add</a></li>
+						<li class="active"><a data-toggle="tab" id="encash" class="pull-center"  ng-click=""
+								href="/admin#passbook_encash">Encash</a></li>
+						</ul>
+
+					<div class="tab-content">
+					<div id="passbook_all" class="tab-pane fade in active">
+					<br></br>
+						<div class="table-responsive">
+							<table class="table table-bordered table-fixed table-hover">
+							<tr class ="success">
+								<th class="pull-center">Date</th>
+								<th class="pull-center">Amount</th>
+								<th class="pull-center">Type</th>	
+								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">Description</th>
+							</tr>
+							<tr ng-repeat="subrow in subjectlist">
+								<td>{{subrow.name}}</td>
+								<td>{{subrow.shortname}}</td>
+								<td>{{subrow.type}}</td>
+						</table>
+					</div>
+					</div>
+					
+					<div id="passbook_add" class="tab-pane fade">
+					<br></br>
+			     <div class="table-responsive">
+							<table class="table table-bordered">
+						<tr class ="success">
+								<th class="pull-center">Date</th>
+								<th class="pull-center">Amount</th>
+								<th class="pull-center">Type</th>
+								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">Description</th>
+							</tr>
+							<tr ng-repeat="subrow in subjectlist">
+								<td>{{subrow.name}}</td>
+								<td>{{subrow.shortname}}</td>
+								<td>{{subrow.type}}</td>
+						</table>
+					</div>
+					</div>
+			   <div id="passbook_send" class="tab-pane fade">
+					<br></br>
+			     <div class="table-responsive">
+							<table class="table table-bordered">
+							<tr class ="success">
+								<th class="pull-center">Date</th>
+								<th class="pull-center">Amount</th>
+								<th class="pull-center">Type</th>
+								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">Description</th>
+							</tr>
+							<tr ng-repeat="subrow in subjectlist">
+								<td>{{subrow.name}}</td>
+								<td>{{subrow.shortname}}</td>
+								<td>{{subrow.type}}</td>
+						</table>
+					</div>
+					</div>
+
+	   <div id="passbook_encash" class="tab-pane fade">
+					<br></br>
+			     <div class="table-responsive">
+							<table class="table table-bordered">
+							<tr class ="success">
+								<th class="pull-center">Date</th>
+								<th class="pull-center">Amount</th>
+								<th class="pull-center">Type</th>
+								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">Description</th>
+							</tr>
+							<tr ng-repeat="subrow in subjectlist">
+								<td>{{subrow.name}}</td>
+								<td>{{subrow.shortname}}</td>
+								<td>{{subrow.type}}</td>
+						</table>
+					</div>
+					</div>
+
+					</div>
+            </div>
+          </div>
+		</div>
+				<div class="modal-footer">
+			   </div>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	 
+<!-- Modal Profile Create -->
+ <div id="editprofiledetails"  name="editprofiledetails" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+ <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Edit Your Details</h4>	
+						</div>
+	<div class="modal-body">
+        <div class="tab-container">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+              <div class="list-group">
+                <a href="#" class="list-group-item active text-center">
+                  <h4><i class="fa fa-user" aria-hidden="true"></i></h4><br/>Profile
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4><i class="fa fa-phone" aria-hidden="true"></i></h4><br/>Contact Details
+                </a>
+				<a href="#" class="list-group-item text-center">
+                  <h4><i class="fa fa-university" aria-hidden="true"></i></h4><br/>Bank Details
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4><i class="fa fa-university" aria-hidden="true"></i></h4><br/>Social Network
+                </a>
+              </div>
+            </div>
+			<ng-form name="personal" class="form-horizontal" role="form">
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+              
+			  <!-- flight section -->
+                <div class="bhoechie-tab-content active">
+				 
+    <!-- edit form column -->
+    <div class="col-md-12">
+        <div class="form-group">
+          <label class="col-md-3 control-label">First name *</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.firstname" placeholder="First Name" ng-pattern="/^(\D)+$/" type="text" name="fname" ng-required="true"/>
+			 <span style="color:red" ng-show="personal.fname.$error.required && personal.fname.$dirty">First Name is required.</span> 
+			 <span style="color:red" ng-show="personal.fname.$error.pattern && personal.fname.$dirty">First Name cannot digit</span> 
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Last name *</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.lastname" placeholder="Last name"ng-pattern="/^(\D)+$/" type="text" name="lname" required/>
+			<span style="color:red" ng-show="personal.lname.$error.required && personal.lname.$dirty">Last Name is required.</span> 
+			 <span style="color:red" ng-show="personal.lname.$error.pattern">Last Name cannot digit</span> 
+          </div>
+        </div>
+       <div class="form-group" ng-class="{error: personal.dob.$invalid}">
+          <label class="col-md-3 control-label">DOB *</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.dateofbirth" placeholder="Date of Birth" type="date" name="dob" required/>
+			<span style="color:red" ng-show="personal.dob.$touched && personal.dob.$error.required">Please enter dob</span> 
+          </div>
+        </div>
+        
+          <div class="form-group">
+          <label class="col-md-3 control-label">Gender *</label>
+          <div class="col-md-8">
+           <label><input type="radio" id="male" name="male" ng-model="userprofile.gender" value="Male" ng-required="true"/> Male </label>	
+		   <label><input type="radio" id="female" name="female"  ng-model="userprofile.gender" value="Female" ng-required="true"/> Female </label>
+		   <span style="color:red" ng-show="personal.male.$touched && personal.male.$error.required">Please Select Gender (Male or Female)</span> 
+		   
+          </div>
+        </div>
+
+	<div class="form-group">
+	  <label class="col-md-3 control-label">Upload profile Image *</label>
+       <div class="col-md-8">
+       <p> Please upload upto max size 2 MB</p>
+        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"  data-max-size="5048" required/>
+		<span style="color:red" ng-show="personal.pimage.$touched && personal.pimage.$error.required">Profile Image required.</span> 
+      </div>
+  </div>
+  </div>  
+  
+  </div>
+           
+  
+                <div class="bhoechie-tab-content">
+                    <div class="col-md-12">
+				 
+				<div class="form-group">
+					<label class="col-md-4 control-label" >Mobile Number *</label>
+				<div class="col-md-8">
+					 <input name="mobile" class="form-control" ng-model="userprofile.conatctDetails.mobilenumber" ng-pattern="/^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/" placeholder="Your Mobile Number" type="text" required>
+					 <span style="color:red" ng-show="personal.mobile.$error.required && personal.mobile.$dirty">Enter your mobile number</span> 
+					 <span style="color:red" ng-show="personal.mobile.$error.pattern">Mobile number must be 10 digit </span> 
+				 </div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-4 control-label">Your Email </label>
+				<div class="col-md-8">
+					 <input name="email" class="form-control" ng-model="userprofile.conatctDetails.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" placeholder="Your Email Id" type="text">
+					 <span style="color:red" ng-show="personal.email.$error.required && personal.email.$dirty">Enter your Email</span> 
+					 <span style="color:red" ng-show="personal.email.$error.pattern">Please enter valid e-mail(xxxx@xxx.cc) </span> 
+				 </div>
+				</div>
+				
+					
+					<div class="form-group">
+					
+          <label class="col-md-4 control-label">Address Details *</label>
+          <div class="col-md-8">
+            <textarea name="address" class="form-control"  ng-model="userprofile.conatctDetails.addressText" placeholder="Address Details" required></textarea>
+			<!-- <div style="color:red;" ng-show="phycnt.addrsdt.$invalid"> -->
+				<!-- <span ng-show="phycnt.addrsdt.$error.required">Address is required.</span> -->
+			<!-- </div> -->
+				<span style="color:red" ng-show="personal.address.$error.required && phycnt.address.$dirty">Please enter address.</span> 
+          </div>
+	         </div>
+			 
+			 			<div class="form-group">
+          <label class="col-md-4 control-label">Near By Landmark *</label>
+          <div class="col-md-8">
+            <textarea name="landmark" class="form-control" ng-model="userprofile.conatctDetails.landMark"  placeholder="Your Near By Landmark" required></textarea>
+				<span style="color:red" ng-show="personal.landmark.$error.required">Please enter Landmark Place near by.</span> 
+          </div>
+	         </div>
+			  <div class="form-group">
+          <label class="col-md-4 control-label">Pincode *</label>
+          <div class="col-md-8">
+            <input class="form-control" name="pincode" ng-model="userprofile.conatctDetails.pincode" ng-pattern="/^\d{6}$/" placeholder="Your pincode" type="text" required>
+			<span style="color:red" ng-show="personal.pincode.$error.required && phycnt.pincode.$dirty">Please enter your area pincode</span> 
+			<span style="color:red" ng-show="personal.pincode.$error.pattern">Pincode must be 6 digit only.</span> 
+          </div>
+	         </div>
+			 	 <div class="form-group">
+          <label class="col-md-4 control-label">Your City *</label>
+          <div class="col-md-8">
+            <select  class="form-control"  ng-model="userprofile.conatctDetails.district">
+			<option value="Balasore" selected="selected">BALASORE</option>
+			<option value="Pune">PUNE</option>
+			<option value="Mumbai">MUMBAI</option>
+			<option value="Baripada">BARIPADA</option>
+			<option value="Bhadrak">BHADRAK</option>
+			<option value="Cuttack">CUTTACK</option>
+			<option value="Bhubaneswar">BHUBANESWAR</option>
+         </select>
+          </div>
+	         </div>
+		 <div class="form-group">
+          <label class="col-md-4 control-label">State *</label>
+          <div class="col-md-8">
+            <select class="form-control"  ng-model="userprofile.conatctDetails.state">
+			<option value="Odisha" selected="selected">ODISHA</option>
+			<option value="Maharashtra">MAHARASHTRA</option>
+			<option value="WestBengal">WEST BENGAL</option>
+			<option value="AndhraPradesh">ANDHRA PRADESH</option>
+         </select>
+          </div>
+	      </div>
+            </div>
+                </div>
+                
+                  <!-- bank  section -->
+                <div class="bhoechie-tab-content">
+		<div class="form-group">
+          <label class="col-md-4 control-label">Bank Name</label>
+          <div class="col-md-8">
+            <input class="form-control" name="bankname" ng-model="userprofile.bankAccountDetails.bankName" placeholder="Bank Name" type="text"/> 
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Account Number</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.bankAccountDetails.accountNumber" placeholder="Account Number" type="text" name="bankacno"/> 
+          </div>
+        </div>
+         <div class="form-group">
+          <label class="col-md-4 control-label">IFSC Code</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.bankAccountDetails.ifsccode" placeholder="IFSC CODE" type="text" name="bankifsc"/> 
+          </div>
+        </div>
+          <div class="form-group">
+          <label class="col-md-4 control-label">Pancard No</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.bankAccountDetails.pancardno" placeholder="PanCard No" type="text" name="bankpan"/>
+          </div>
+        </div>
+		   <div class="form-group">
+          <label class="col-md-4 control-label">Account Holder's Name</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.bankAccountDetails.accountHolderName" placeholder="Account Holder Name" type="text" name="bankaccname"/>
+          </div>
+        </div>
+    </div>
+    
+                <!-- bank  section -->
+           <div class="bhoechie-tab-content">
+		<div class="form-group">
+          <label class="col-md-4 control-label"><i class="fa fa-facebook-square" aria-hidden="true"></i>Facebook Link</label>
+          <div class="col-md-8">
+            <input class="form-control" name="fblink" ng-model="userprofile.socialdetails.fblink" placeholder="Your Facebook link" type="text"/> 
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label"><i class="fa fa-youtube" aria-hidden="true"></i>Yoututbe Link</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.socialdetails.youtubelink" placeholder="Youtube Link" type="text" name="youtubelink"/> 
+          </div>
+        </div>
+         <div class="form-group">
+          <label class="col-md-4 control-label"><i class="fa fa-twitter-square" aria-hidden="true"></i>Twiter Link</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.socialdetails.twiter" placeholder="Twiter Link" type="text" name="twiterlink"/> 
+          </div>
+        </div>
+          <div class="form-group">
+          <label class="col-md-4 control-label">LinkedIn Link</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.socialdetails.linkedinlink" placeholder="Linkedin link" type="text" name="linkedinlink"/>
+          </div>
+        </div>
+		   <div class="form-group">
+          <label class="col-md-4 control-label">GooglePlus Link</label>
+          <div class="col-md-8">
+            <input class="form-control" ng-model="userprofile.socialdetails.googlePlusLink" placeholder="GooglePlus Link" type="text" name="googlepluslink"/>
+          </div>
+        </div>
+    </div>
+				
+            </div>
+			 </ng-form>
+        </div>	
+		</div>	
+	
+				<div class="modal-footer">
+							<button type="submit" id="edituserdetails" class="btn btn-default" ng-click="editUserDetails()" ng-disabled="personal.$invalid"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
 			   </div>
 			</div>
 		</div>

@@ -52,6 +52,20 @@
 								email:$scope.userprofile.conatctDetails.email,
 								alternetmobilenumber:$scope.userprofile.conatctDetails.mobilenumber,
 								isaddressvalid:'false'
+							},
+							bankAccountDetails:{
+								bankName:$scope.userprofile.bankAccountDetails.bankName,
+									accountNumber:$scope.userprofile.bankAccountDetails.accountNumber,
+									ifsccode:$scope.userprofile.bankAccountDetails.ifsccode,
+									pancardno:$scope.userprofile.bankAccountDetails.pancardno,
+									accountHolderName:$scope.userprofile.bankAccountDetails.accountHolderName
+							},
+							socialdetails:{
+								fblink:$scope.userprofile.socialdetails.fblink,
+								youtubelink:$scope.userprofile.socialdetails.youtubelink,
+								twiter:$scope.userprofile.socialdetails.twiter,
+								linkedinlink:$scope.userprofile.socialdetails.linkedinlink,
+								googlePlusLink:$scope.userprofile.socialdetails.googlePlusLink
 							}
 					  },
 					  networkjson:{

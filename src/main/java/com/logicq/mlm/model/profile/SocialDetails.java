@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -21,8 +23,9 @@ public class SocialDetails implements Serializable {
 	private static final long serialVersionUID = 868552591757208866L;
 
 	@Id
-	@Column(name = "SOCIAL_ID")
-	private String contactid;
+	@Column(name = "SOCIAL_ID", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long socialid;
 
 	@Column(name = "FB_LINK")
 	private String fblink;
@@ -33,20 +36,23 @@ public class SocialDetails implements Serializable {
 	@Column(name = "TWITER_LINK")
 	private String twiter;
 
-	@Column(name = "LIN_LINK")
+	@Column(name = "LINKEDIN_LINK")
 	private String linkedinlink;
+	
+	@Column(name = "GOOGLE_PLUS_LINK")
+	private String googlePlusLink;
 
 	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "PROFILE_ID")
 	private UserProfile userprofile;
 
-	public String getContactid() {
-		return contactid;
+	public Long getSocialid() {
+		return socialid;
 	}
 
-	public void setContactid(String contactid) {
-		this.contactid = contactid;
+	public void setSocialid(Long socialid) {
+		this.socialid = socialid;
 	}
 
 	public String getFblink() {
@@ -81,6 +87,14 @@ public class SocialDetails implements Serializable {
 		this.linkedinlink = linkedinlink;
 	}
 
+	public String getGooglePlusLink() {
+		return googlePlusLink;
+	}
+
+	public void setGooglePlusLink(String googlePlusLink) {
+		this.googlePlusLink = googlePlusLink;
+	}
+
 	public UserProfile getUserprofile() {
 		return userprofile;
 	}
@@ -91,10 +105,9 @@ public class SocialDetails implements Serializable {
 
 	@Override
 	public String toString() {
-		return "SocialDetails [contactid=" + contactid + ", fblink=" + fblink + ", youtubelink=" + youtubelink
-				+ ", twiter=" + twiter + ", linkedinlink=" + linkedinlink + "]";
+		return "SocialDetails [socialid=" + socialid + ", fblink=" + fblink + ", youtubelink=" + youtubelink
+				+ ", twiter=" + twiter + ", linkedinlink=" + linkedinlink + ", googlePlusLink=" + googlePlusLink
+				+ ", userprofile=" + userprofile + "]";
 	}
 
-	
-	
 }

@@ -726,22 +726,6 @@ p.tagline, .address-detail a.tagline {
 
   .side-right #countdown span, .side-right #countdown li.seperator {
     line-height: 59px; }
-
-  .btn {
-    font-size: 12px;
-    height: 40px;
-    width: 143px; }
-    .btn .button-label {
-      padding: 5px 12px 5px 5px; }
-    .btn .arrow-wrap {
-      padding: 9px 6px 6px; }
-    .btn .arrow {
-      border-width: 5px 0 5px 10px;
-      margin-left: 8px; }
-      .btn .arrow:after {
-        height: 2px;
-        right: 7px; }
-
   .notify-wrap .btn, .page-right .btn {
     width: 43px; }
     .notify-wrap .btn .arrow-wrap, .page-right .btn .arrow-wrap {
