@@ -2,7 +2,7 @@ package com.logicq.mlm.vo;
 
 import java.io.Serializable;
 
-public class StatusVO implements Serializable{
+public class StatusVO extends WalletStmntVO implements Serializable{
 	
 	/**
 	 * 

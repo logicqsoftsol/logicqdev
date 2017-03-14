@@ -6,8 +6,8 @@
     'use strict';
     
    angular.module('mlmlogicq', ['ui.router','snap','ngStorage']).constant('AppConstants', {
-      'hostName':'http://127.0.0.1:8090/mlmlogicq', 
-      // 'hostName':'http://getpay.co.in',
+      //'hostName':'http://127.0.0.1:8090/mlmlogicq', 
+     'hostName':'http://getpay.co.in',
 	 //'hostName':'http://45.113.136.130:8167',
 	//  'hostPort': '8090' ,
 	 //  'hostPort': '8167' ,
@@ -26,7 +26,10 @@
 		'uploadImageURL':'/api/user/upload',
 		'resetPasswordURL':'/api/user/updatepassword',
 		'fetchUserNetworkDetailsURL':'/api/user/fetchUserNetworkDetails',
-	    'getUserProfileDetailsURL' : '/api/user/getUserBasicDetails'
+	    'getUserProfileDetailsURL' : '/api/user/getUserBasicDetails',
+	    'addMoneyToWalletURL' : '/api/admin/addMoneyToWallet',
+	    'senMoneyURL' : '/api/admin/sendMoney',
+	    'getTransactionDetailsURL' : '/api/admin/getTransactionDetails'
 	}).directive('ngConfirmClick', [
 	                                   function(){
 	                                       return {

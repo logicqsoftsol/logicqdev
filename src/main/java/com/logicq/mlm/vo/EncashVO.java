@@ -16,6 +16,8 @@ public class EncashVO extends StatusVO{
 	private String username;
 	private String encashtype;
 	private String refrencenumber;
+	private String description;
+	private String paymentmode;
 
 	
 	public BigDecimal getEncashamount() {
@@ -60,16 +62,23 @@ public class EncashVO extends StatusVO{
 	public void setWalletnumber(String walletnumber) {
 		this.walletnumber = walletnumber;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getPaymentmode() {
+		return paymentmode;
+	}
+	public void setPaymentmode(String paymentmode) {
+		this.paymentmode = paymentmode;
+	}
 	@Override
 	public String toString() {
 		return "EncashVO [walletnumber=" + walletnumber + ", encashamount=" + encashamount + ", walletid=" + walletid
 				+ ", requestdate=" + requestdate + ", username=" + username + ", encashtype=" + encashtype
-				+ ", refrencenumber=" + refrencenumber + "]";
+				+ ", refrencenumber=" + refrencenumber + ", description=" + description + ", paymentmode=" + paymentmode
+				+ "]";
 	}
-	
-
-	
-	
-
-
 }

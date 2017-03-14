@@ -86,6 +86,14 @@
                     controller:'AdminCtrl'
                     
                 })
+			$stateProvider
+                .state('payment', {
+					parent: 'dashboard',
+                    url: "/payment",
+                    templateUrl:"assets/views/admin/paymentdetails.html",
+                    controller:'AdminCtrl'
+                    
+                })
 				$stateProvider
                 .state('passwordreset', {
 					parent: 'dashboard',

@@ -59,6 +59,11 @@
 				    });
 					
 				};
+			$scope.cancalePayment=function(){
+                 $location.path('/dashboard/overview');
+				}
+			$scope.proceedPayment=function(){
+				}
 				$scope.requestPasswordChange=function(){
 					$scope.request.passwordRequest={
 							oldpassword:$scope.password.currentPassword,

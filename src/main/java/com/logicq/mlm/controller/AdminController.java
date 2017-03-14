@@ -1,5 +1,6 @@
 package com.logicq.mlm.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,7 @@ import com.logicq.mlm.common.helper.WalletAmountCalculator;
 import com.logicq.mlm.model.admin.FeeSetup;
 import com.logicq.mlm.model.admin.NetWorkTask;
 import com.logicq.mlm.model.admin.TaskDetails;
+import com.logicq.mlm.model.admin.TransactionDetails;
 import com.logicq.mlm.model.login.Login;
 import com.logicq.mlm.model.profile.NetWorkDetails;
 import com.logicq.mlm.model.profile.NetworkInfo;
@@ -33,13 +35,16 @@ import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
 import com.logicq.mlm.service.networkdetails.INetworkTaskService;
 import com.logicq.mlm.service.user.IUserService;
 import com.logicq.mlm.service.wallet.IFeeSetupService;
+import com.logicq.mlm.service.wallet.ITransactionDetailsService;
 import com.logicq.mlm.service.wallet.IWalletDetailsService;
 import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
 import com.logicq.mlm.vo.EncashVO;
 import com.logicq.mlm.vo.LoginVO;
+import com.logicq.mlm.vo.PaymentVO;
 import com.logicq.mlm.vo.StatusVO;
 import com.logicq.mlm.vo.UserDetailsVO;
+import com.logicq.mlm.vo.WalletStmntVO;
 
 @RestController
 @RequestMapping("api/admin")
@@ -66,11 +71,14 @@ public class AdminController {
 	@Autowired
 	IFeeSetupService feeSetupService;
 
+	@Autowired
+	ITransactionDetailsService transactionDetailsService;
+	
 	ObjectMapper objectmapper = new ObjectMapper();
 
 	@RequestMapping(value = "/updateAdminTask", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<StatusVO> updateAdminTaskDetails(@RequestBody TaskDetails taskdetails) throws Exception {
-		StatusVO statusvo = new StatusVO();
+	public ResponseEntity<WalletStmntVO> updateAdminTaskDetails(@RequestBody TaskDetails taskdetails) throws Exception {
+		WalletStmntVO walletStmntVO = null;
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
 				WorkFlow workflow = workflowservice.getWorkFlowAccordingToWorkId(taskdetails.getTaskid());
@@ -86,21 +94,26 @@ public class AdminController {
 					List<WorkFlow> workflowlist = workflowservice
 							.getWorkFlowForUserAccordingToWorkType("ENCASH_REQUEST", workflow.getAssignedto());
 					if (!workflowlist.isEmpty()) {
+						UserProfile userprofile = userservice
+								.fetchUserAccordingToProfileId(Long.valueOf(workflow.getProfileid()));
+						if (userprofile.getWalletdetails().isIsactive()) {
+							WalletStatement walletstmnt= walletservice.fetchWalletStmnt(userprofile.getWalletdetails().getWalletid());
+							walletstmnt = WalletAmountCalculator.calculateCurrentBalanceAfterEncashed(walletstmnt,
+									taskdetails.getEncashvo().getEncashamount());
+							walletservice.updateWalletStmnt(walletstmnt);
+							
+							TransactionDetails txnDetails = WalletAmountCalculator.populateTransactionDetails(
+									encashvo, userprofile.getWalletdetails().getWalletid(), userprofile.getFirstname(),
+									userprofile.getLastname());
+							txnDetails.setTxntype("ENCASH");
+							transactionDetailsService.save(txnDetails);
+							walletStmntVO=WalletAmountCalculator.populateWalletStmnt(walletstmnt);
+						}
 						WorkFlow userworkflow = workflowlist.get(0);
 						userworkflow.setStatus(Boolean.TRUE);
 						userworkflow.setMessage("Encash Done by " + taskdetails.getEncashvo().getEncashtype()
 								+ "with  ref no " + taskdetails.getEncashvo().getRefrencenumber());
 						workflowservice.updateWorkFlow(userworkflow);
-						UserProfile userprofile = userservice
-								.fetchUserAccordingToProfileId(Long.valueOf(workflow.getProfileid()));
-						if (userprofile.getWalletdetails().isIsactive()) {
-							WalletStatement walletstmnt = new WalletStatement();
-							walletstmnt.setWalletid(userprofile.getWalletdetails().getWalletid());
-							walletstmnt = walletservice.fetchWalletStmnt(walletstmnt);
-							walletstmnt = WalletAmountCalculator.calculateCurrentBalanceAfterEncashed(walletstmnt,
-									taskdetails.getEncashvo().getEncashamount());
-							walletservice.updateWalletStmnt(walletstmnt);
-						}
 					}
 				}
 				if ("ADMIN_VERIFICATION".equals(workflow.getWorktype()) && workflow.getStatus()) {
@@ -138,10 +151,49 @@ public class AdminController {
 					networktask.setTaskStatus(Boolean.FALSE);
 					networktaskservice.createNetworkTask(networktask);
 				}
+				if ("ADD_MONEY_TO_WALLET".equals(workflow.getWorktype()) && workflow.getStatus()) {
+					PaymentVO payemtdetails = objectmapper.readValue(workflow.getWorkparameter(), PaymentVO.class);
+					
+					UserProfile debituserprofile = userservice.fetchUserAccordingToUserName("ADMIN");
+					WalletDetails debitwalletDetails = debituserprofile.getWalletdetails();
+					WalletStatement debitwalletStatment = walletservice
+							.fetchWalletStmnt(debitwalletDetails.getWalletid());
+					debitwalletStatment.setCurrentbalance(debitwalletStatment.getCurrentbalance().subtract(payemtdetails.getAmount()));
+					debitwalletStatment.setMaxencashable(debitwalletStatment.getMaxencashable().subtract(payemtdetails.getAmount()));
+					debitwalletStatment.setPayout(debitwalletStatment.getPayout().subtract(payemtdetails.getAmount()));
+					debitwalletStatment.setWalletlastupdate(new Date());
+					walletservice.updateWalletStmnt(debitwalletStatment);
+					TransactionDetails debittxnDetails = WalletAmountCalculator.populateTransactionDetails(
+							payemtdetails, debitwalletDetails.getWalletid(), debituserprofile.getFirstname(),
+							debituserprofile.getLastname());
+					debittxnDetails.setTxntype("SEND");
+					transactionDetailsService.save(debittxnDetails);
+							
+					
+					UserProfile userprofile = userservice.fetchUserAccordingToUserName(payemtdetails.getUsername());
+					WalletDetails walletDetails = userprofile.getWalletdetails();
+					WalletStatement walletStatment = walletservice
+							.fetchWalletStmnt(walletDetails.getWalletid());
+					walletStatment.setCurrentbalance(
+							walletStatment.getCurrentbalance().add(payemtdetails.getAmount()));
+					walletStatment.setMaxencashable(
+							walletStatment.getMaxencashable().add(payemtdetails.getAmount()));
+					walletStatment.setPayout(walletStatment.getPayout().add(payemtdetails.getAmount()));
+					walletStatment.setWalletlastupdate(new Date());
+					walletservice.updateWalletStmnt(walletStatment);
+					TransactionDetails txnDetails = WalletAmountCalculator.populateTransactionDetails(
+							payemtdetails, walletDetails.getWalletid(), userprofile.getFirstname(),
+							userprofile.getLastname());
+					txnDetails.setTxntype("ADD");
+					transactionDetailsService.save(txnDetails);
+					
+					
+				}
+				
 
 			}
 		}
-		return new ResponseEntity<StatusVO>(statusvo, HttpStatus.OK);
+		return new ResponseEntity<WalletStmntVO>(walletStmntVO, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/getTaskListDetails", method = RequestMethod.GET)
@@ -179,5 +231,111 @@ public class AdminController {
 		}
 		return new ResponseEntity<UserDetailsVO>(userdetailsvo, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/addMoneyToWallet", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<WalletStmntVO> addMoneyToWallet(@RequestBody PaymentVO paymentDetails) throws Exception {
+		WalletStmntVO walletStatmentVO =null ;
+		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				if (null != login) {
+					if (null != paymentDetails.getAmount()) {
+						int comparevalue = paymentDetails.getAmount().compareTo(BigDecimal.ZERO);
+						if (comparevalue == 1) {
+							UserProfile userprofile = userservice.fetchUserAccordingToUserName(login.getUsername());
+							if (!"ADMIN".equals(login.getUsername())) {
+								paymentDetails.setUsername(login.getUsername());
+								WorkFlow addMoneytowallet = new WorkFlow();
+								addMoneytowallet.setAssignedto("ADMIN");
+								addMoneytowallet.setMessage(login.getUsername()+" request to add INR "+paymentDetails.getAmount()+" money to wallet ");
+								addMoneytowallet.setCreatedby(login.getUsername());
+								addMoneytowallet.setCreatetime(new Date());
+								addMoneytowallet.setWorktype("ADD_MONEY_TO_WALLET");
+								addMoneytowallet.setStatus(false);
+								addMoneytowallet.setWorkparameter(objectmapper.writeValueAsBytes( paymentDetails));
+								addMoneytowallet.setProfileid(String.valueOf(userprofile.getId()));
+								workflowservice.createWorkFlowForValidation(addMoneytowallet);
+							} else {
+								WalletDetails walletDetails = userprofile.getWalletdetails();
+								WalletStatement walletStatment = walletservice
+										.fetchWalletStmnt(walletDetails.getWalletid());
+								walletStatment.setCurrentbalance(
+										walletStatment.getCurrentbalance().add(paymentDetails.getAmount()));
+								walletStatment.setMaxencashable(
+										walletStatment.getMaxencashable().add(paymentDetails.getAmount()));
+								walletStatment.setPayout(walletStatment.getPayout().add(paymentDetails.getAmount()));
+								walletStatment.setWalletlastupdate(new Date());
+								walletservice.updateWalletStmnt(walletStatment);
+								TransactionDetails txnDetails = WalletAmountCalculator.populateTransactionDetails(
+										paymentDetails, walletDetails.getWalletid(), login.getFirstname(),
+										login.getLastname());
+								txnDetails.setTxntype("ADD");
+								transactionDetailsService.save(txnDetails);
+								walletStatmentVO = WalletAmountCalculator.populateWalletStmnt(walletStatment);
+							}
+						}
+					}
+				}
 
+			}
+		}
+		return new ResponseEntity<WalletStmntVO>(walletStatmentVO, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/sendMoney", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<WalletStmntVO> sendMoney(@RequestBody PaymentVO paymentDetails) throws Exception {
+		WalletStmntVO walletStatmentVO = null;
+		if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+			LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (null != login && null != paymentDetails) {
+				int comparevalue = paymentDetails.getAmount().compareTo(BigDecimal.ZERO);
+				if (comparevalue==1) {
+					UserProfile debituserprofile = userservice.fetchUserAccordingToUserName(login.getUsername());
+					WalletDetails debitwalletDetails = debituserprofile.getWalletdetails();
+					WalletStatement debitwalletStatment = walletservice
+							.fetchWalletStmnt(debitwalletDetails.getWalletid());
+					debitwalletStatment.setCurrentbalance(debitwalletStatment.getCurrentbalance().subtract(paymentDetails.getAmount()));
+					debitwalletStatment.setMaxencashable(debitwalletStatment.getMaxencashable().subtract(paymentDetails.getAmount()));
+					debitwalletStatment.setPayout(debitwalletStatment.getPayout().subtract(paymentDetails.getAmount()));
+					debitwalletStatment.setWalletlastupdate(new Date());
+					walletservice.updateWalletStmnt(debitwalletStatment);
+					TransactionDetails debittxnDetails = WalletAmountCalculator.populateTransactionDetails(
+							paymentDetails, debitwalletDetails.getWalletid(), login.getFirstname(),
+							login.getLastname());
+					debittxnDetails.setTxntype("SEND");
+					transactionDetailsService.save(debittxnDetails);
+
+					WalletStatement creditwalletStatment = walletservice
+							.fetchWalletStmntFromWalletNumber(paymentDetails.getPayewalletnumber());
+					UserProfile credituserprofile =creditwalletStatment.getWallet().getUserprofile();
+					creditwalletStatment.setCurrentbalance(creditwalletStatment.getCurrentbalance().add(paymentDetails.getAmount()));
+					creditwalletStatment.setMaxencashable(creditwalletStatment.getMaxencashable().add(paymentDetails.getAmount()));
+					creditwalletStatment.setPayout(creditwalletStatment.getPayout().add(paymentDetails.getAmount()));
+					creditwalletStatment.setWalletlastupdate(new Date());
+					walletservice.updateWalletStmnt(creditwalletStatment);
+					
+					TransactionDetails credittxnDetails = WalletAmountCalculator.populateTransactionDetails(
+							paymentDetails, debitwalletDetails.getWalletid(), credituserprofile.getFirstname(),
+							credituserprofile.getLastname());
+					credittxnDetails.setTxntype("RECIVED");
+					transactionDetailsService.save(credittxnDetails);
+					walletStatmentVO=WalletAmountCalculator.populateWalletStmnt(debitwalletStatment);
+				}
+			}
+		}
+		return new ResponseEntity<WalletStmntVO>(walletStatmentVO, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/getTransactionDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<TransactionDetails>> getTransactionDetails() throws Exception {
+		List<TransactionDetails> transactionDetails = null;
+		if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+			LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			transactionDetails = transactionDetailsService.getTransactionDetails(login.getUsername());
+		}
+		return new ResponseEntity<List<TransactionDetails>>(transactionDetails, HttpStatus.OK);
+	}
+	
 }

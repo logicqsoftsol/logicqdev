@@ -3,7 +3,12 @@ package com.logicq.mlm.common.helper;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.logicq.mlm.model.admin.TransactionDetails;
 import com.logicq.mlm.model.wallet.WalletStatement;
+import com.logicq.mlm.vo.EncashVO;
+import com.logicq.mlm.vo.LoginVO;
+import com.logicq.mlm.vo.PaymentVO;
+import com.logicq.mlm.vo.WalletStmntVO;
 
 public class WalletAmountCalculator {
 	
@@ -21,16 +26,41 @@ public class WalletAmountCalculator {
 	}
 
 	public static WalletStatement calculateCurrentBalanceAfterEncashed(WalletStatement walletstmnt,BigDecimal enasedamount){
-		//Fetch amount according to level
-	  BigDecimal currentbalance= walletstmnt.getCurrentbalance().subtract(enasedamount);
-	  BigDecimal maxencashbalance= walletstmnt.getMaxencashable().subtract(enasedamount);
-	  BigDecimal payoutbalance= walletstmnt.getPayout().subtract(enasedamount);
-	  walletstmnt.setCurrentbalance(currentbalance);
-	  walletstmnt.setMaxencashable(maxencashbalance);	
 	  walletstmnt.setEncashedAmount(walletstmnt.getEncashedAmount().add(enasedamount));
-	  walletstmnt.setPayout(payoutbalance);
 	  walletstmnt.setWalletlastupdate(new Date());
 	  return walletstmnt;
 	}
+
+	public static TransactionDetails populateTransactionDetails(PaymentVO paymentDetails, String walletid,String firstName,String lastName) {
+		TransactionDetails transactionDetail = new TransactionDetails();
+		transactionDetail.setAmount(paymentDetails.getAmount());
+		transactionDetail.setDescription(paymentDetails.getDescription());
+		transactionDetail.setModeoftxn(paymentDetails.getPaymentmode());
+		transactionDetail.setTxndate(new Date());
+		transactionDetail.setWalletid(walletid);
+		transactionDetail.setTxnfor(firstName + " " + lastName);
+		transactionDetail.setRefrenceno(paymentDetails.getRefrencenumber());
+		return transactionDetail;
+	}
 	
+	public static TransactionDetails populateTransactionDetails(EncashVO encahedDetails, String walletid,String firstName,String lastName) {
+		TransactionDetails transactionDetail = new TransactionDetails();
+		transactionDetail.setAmount(encahedDetails.getEncashamount());
+		transactionDetail.setDescription(encahedDetails.getRefrencenumber());
+		transactionDetail.setModeoftxn(encahedDetails.getPaymentmode());
+		transactionDetail.setTxndate(new Date());
+		transactionDetail.setWalletid(walletid);
+		transactionDetail.setTxnfor(firstName + " " + lastName);
+		transactionDetail.setRefrenceno(encahedDetails.getRefrencenumber());
+		return transactionDetail;
+	}
+	
+	public static WalletStmntVO populateWalletStmnt(WalletStatement walletstmnt){
+		WalletStmntVO walletstmntvo=new WalletStmntVO();
+		walletstmntvo.setCurrentbalance(walletstmnt.getCurrentbalance());
+		walletstmntvo.setEncashedAmount(walletstmnt.getEncashedAmount());
+		walletstmntvo.setMaxencashable(walletstmnt.getMaxencashable());
+		walletstmntvo.setPayout(walletstmnt.getPayout());
+		return walletstmntvo;
+	}
 }

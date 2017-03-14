@@ -36,6 +36,20 @@ public class WalletStmntDAO extends AbstractDAO<WalletStatement> implements IWal
 	public void updateWalletStmnt(WalletStatement walletStatement){
 		update(walletStatement);
 	}
+
+	@Override
+	public WalletStatement fetchWalletStmnt(String walletid) throws Exception {
+		StringBuilder query = new StringBuilder();
+		query.append(" from WalletStatement ws where ws.walletid='" +walletid+ "'");
+		return  execcuteQueryForUnique(query.toString());
+	}
+
+	@Override
+	public WalletStatement fetchWalletStmntFromWalletNumber(String walletnumber) throws Exception {
+		StringBuilder query = new StringBuilder();
+		query.append(" from WalletStatement ws where ws.wallet.walletnumber='" +walletnumber+ "'");
+		return  execcuteQueryForUnique(query.toString());
+	}
 	
 	
 

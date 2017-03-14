@@ -203,7 +203,7 @@ public class UserController {
 			workflowmobile.setCreatedby(userdetailvo.getUserprofile().getLogindetails().getUsername());
 			workflowmobile.setCreatetime(new Date());
 			workflowmobile.setWorktype("MOBILE_VERIFICATION");
-			workflowmobile.setStatus(false);
+			workflowmobile.setStatus(true);
 			workflowmobile.setProfileid(String.valueOf(userdetailvo.getUserprofile().getId()));
 			workflowdetails.add(workflowmobile);
 		}

@@ -12,6 +12,7 @@ import com.logicq.mlm.dao.wallet.IWalletStmntDAO;
 import com.logicq.mlm.model.admin.FeeSetup;
 import com.logicq.mlm.model.profile.WalletDetails;
 import com.logicq.mlm.model.wallet.WalletStatement;
+import com.logicq.mlm.vo.PaymentVO;
 
 @Service
 @Transactional
@@ -62,5 +63,20 @@ public class WalletStmntService  implements IWalletStmntService{
 		walletStatement.setWalletlastupdate(new Date());
 		walletStmntDAO.updateWalletStmnt(walletStatement);
 	}
+
+
+	@Override
+	public WalletStatement fetchWalletStmnt(String walletid) throws Exception {
+		return walletStmntDAO.fetchWalletStmnt(walletid);
+	}
+
+	@Override
+	public WalletStatement fetchWalletStmntFromWalletNumber(String walletnumber) throws Exception {
+		return walletStmntDAO.fetchWalletStmntFromWalletNumber(walletnumber);
+	}
+
+
+
+	
 
 }
