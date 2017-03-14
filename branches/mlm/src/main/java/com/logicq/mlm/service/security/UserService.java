@@ -1,7 +1,5 @@
 package com.logicq.mlm.service.security;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
 
 import com.logicq.mlm.common.factory.LoginFactory;
-import com.logicq.mlm.model.login.Authority;
 import com.logicq.mlm.model.login.Login;
 import com.logicq.mlm.vo.LoginVO;
 
@@ -23,29 +20,7 @@ public class UserService implements UserDetailsService {
     private static  Map<String, LoginVO> userMap = new ConcurrentHashMap<String, LoginVO>();
     private static final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
     
-	public final LoginVO loadUserByUsername(String username) throws UsernameNotFoundException {
-		LoginVO loginvo = null;
-		if (userMap.isEmpty()) {
-			Login user = new Login();
-			user.setEmail("admin@gmail.com");
-			user.setMobilenumber("7057014118");
-			user.setEnabled(Boolean.TRUE);
-			user.setUsername("ADMIN");
-			user.setPassword("admin");
-			user.setEmail("asd@gmail.com");
-			List<Authority> authorities = new ArrayList<>();
-			Authority authority = new Authority();
-			authority.setId(new Long(1));
-			authority.setName("ADMIN");
-			authorities.add(authority);
-			user.setAuthorities(authorities);
-			loginvo = LoginFactory.create(user);
-			userMap.put("ADMIN", loginvo);
-		}
-		return userMap.get(username);
-
-	}
-    
+	
 	public LoginVO checkUserDetails(final String username,final  String password) {
 		LoginVO logindetails = loadUserByUsername(username);
 		if (null == logindetails) {
@@ -77,5 +52,11 @@ public class UserService implements UserDetailsService {
         userMap.remove(username);
     }
     
-  
+   
+    
+    public final LoginVO loadUserByUsername(String username) throws UsernameNotFoundException {
+		return userMap.get(username);
+
+	}
+    
 }

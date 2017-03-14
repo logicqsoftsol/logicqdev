@@ -16,6 +16,8 @@ public interface IWalletStmntService {
 	
 	 WalletDetails fetchWalletDetails(WalletDetails walletdetails);
 	 void updateWalletStatementAccordingToFee(FeeSetup fee,WalletStatement walletStatement);
+	  WalletStatement fetchWalletStmnt(String walletid) throws Exception;
+	  WalletStatement fetchWalletStmntFromWalletNumber(String walletnumber)throws Exception;
 	   
 	
 }

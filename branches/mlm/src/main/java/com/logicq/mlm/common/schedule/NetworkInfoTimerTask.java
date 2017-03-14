@@ -91,6 +91,7 @@ public class NetworkInfoTimerTask {
 	private void calculateWalletAmount(String memberid,List<FeeSetup> feeList,String level) throws Exception {
 		NetworkInfo networkInfo = networkDetailService.getNetworkDetails(memberid);
 		NetWorkDetails networkdetails = PropertyHelper.convertJsonToNetworkInfo(networkInfo);
+		if("ADMIN".equals(networkInfo.getMemberid())){
 		if (null != feeList && !feeList.isEmpty()) {
 			UserProfile userprofile = userservice.fetchUserAccordingToUserName(memberid);
 			WalletStatement walletstment = new WalletStatement();
@@ -115,6 +116,7 @@ public class NetworkInfoTimerTask {
 					}
 				}
 			}
+		}
 			if (null != networkdetails && !StringUtils.isEmpty(networkInfo.getParentmemberid())) {
 				int intlevel = StringFormatHelper.getLevelAsInteger(level);
 				int currentlevel = intlevel + 1;

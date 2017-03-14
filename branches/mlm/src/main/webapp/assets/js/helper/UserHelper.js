@@ -111,6 +111,23 @@
 						
 				};				
 				},
+				populatePaymentDetailsRequest: function ($scope){
+					return $scope.request.paymentdetails={
+							payewalletnumber:$scope.paymentdetails.payeewalletnumber,
+							amount:$scope.paymentdetails.txnamount,
+							description:$scope.paymentdetails.description,
+							paymentmode:$scope.paymentdetails.modeofpayment,
+							refrencenumber:$scope.paymentdetails.refrenceno
+					}
+				},
+				populateAddToWalletRequest: function ($scope){
+					return $scope.request.addMoney={
+							amount:$scope.addMoney.creditamount,
+							description:$scope.addMoney.description,
+							paymentmode:$scope.addMoney.modeofpayment,
+							refrencenumber:$scope.addMoney.refrenceno
+					}
+				},
 		}
 }]);
 

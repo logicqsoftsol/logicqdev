@@ -49,6 +49,8 @@
 					$scope.maxFileUploadSize=3000000;
 					$scope.networkinfolist=[];
 					$scope.viewuserprofile={};
+					$scope.paymentdetails={};
+					$scope.addMoney={};
 					
 					
 					angular.forEach($state.get(), function (item) {
@@ -82,7 +84,9 @@
 				    });
 					
 				};
-				
+				$scope.addMoneyToWallet=function(){
+                   $location.path('/dashboard/payment');
+				}
 				
 				$scope.onClickViewSupportHands=function(){
 					document.getElementById('networkmember-chart').innerHTML=null;
@@ -239,7 +243,7 @@
 					$scope.user.networkinfo.memberlevel=$scope.userdetails.userprofile.networkinfo.memberlevel;
 					$scope.user.walletdetails.walletnumber=$scope.userdetails.userprofile.walletdetails.walletnumber;
 					$scope.user.walletdetails.walletStatement.payout=$scope.userdetails.walletStatement.payout;
-					$scope.user.walletdetails.walletStatement.maxencashable=$scope.userdetails.walletStatement.maxencashable;
+					$scope.user.walletdetails.walletStatement.encashedAmount=$scope.userdetails.walletStatement.encashedAmount;
 					$scope.user.walletdetails.walletStatement.currentbalance=$scope.userdetails.walletStatement.currentbalance;
 					$scope.user.walletdetails.walletStatement.walletlastupdate=new Date($scope.userdetails.walletStatement.walletlastupdate);
 					if(null!=$scope.userdetails.userprofile.socialdetails){
@@ -313,6 +317,106 @@
 						$scope.userprofile.conatctDetails={};
 						$scope.userprofile.networkinfo={};
 						UserHelper.prepareUserProfileForEdit($scope);
+					}
+					
+					$scope.addMoneyToWallet=function(){
+						$scope.request.addMoney={};
+						UserHelper.populateAddToWalletRequest($scope);
+						AdminService.addMoneyToWallet($scope.request).success(function(data, status) {
+                           if(null!=data){
+							$scope.user.walletdetails.walletStatement.payout=data.payout;
+						    $scope.user.walletdetails.walletStatement.encashedAmount=data.encashedAmount;
+							$scope.user.walletdetails.walletStatement.currentbalance=data.currentbalance;
+                            $scope.userdetails.walletStatement.payout=data.payout;
+					        $scope.userdetails.walletStatement.encashedAmount=data.encashedAmount;
+					        $scope.userdetails.walletStatement.currentbalance=data.currentbalance;
+					        $scope.userdetails.walletStatement.walletlastupdate=data.walletlastupdate;
+							}
+						}).error(function(data, status) {
+							   var errormsg='Unable to pay  : '+status;
+								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+								$exceptionHandler(errormsg);
+							});
+					}
+					
+					$scope.pay=function(){
+						$scope.request.paymentdetails={};
+						UserHelper.populatePaymentDetailsRequest($scope);
+						AdminService.pay($scope.request).success(function(data, status) {
+							$scope.user.walletdetails.walletStatement.payout=data.payout;
+						    $scope.user.walletdetails.walletStatement.encashedAmount=data.encashedAmount;
+							$scope.user.walletdetails.walletStatement.currentbalance=data.currentbalance;
+							$scope.userdetails.walletStatement.payout=data.payout;
+					        $scope.userdetails.walletStatement.encashedAmount=data.encashedAmount;
+					        $scope.userdetails.walletStatement.currentbalance=data.currentbalance;
+					        $scope.userdetails.walletStatement.walletlastupdate=data.walletlastupdate;
+						}).error(function(data, status) {
+							   var errormsg='Unable to pay  : '+status;
+								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+								$exceptionHandler(errormsg);
+							});
+					}
+					$scope.alltxnlist=[];
+					$scope.sendtxnlist=[];
+					$scope.addtxnlist=[];
+					$scope.recivedtxnlist=[];
+					$scope.encashtxnlist=[];
+								$scope.getAllTxnList = function() {
+									AdminService.getTxnDetails($scope).success(function(data, status) {
+										$scope.alltxnlist=data;
+									}).error(function(data, status) {
+										   var errormsg='Unable to fetch Transaction details : '+status;
+											$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+											$exceptionHandler(errormsg);
+										});
+								
+								}
+								$scope.getSendTxnList = function() {
+									if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
+										angular.forEach($scope.alltxnlist, function(txn){
+											if(txn.txntype=='SEND'){
+												$scope.sendtxnlist.push(txn);
+											}
+										});
+                                     }
+								}
+								$scope.getAddTxnList = function() {
+								if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
+									angular.forEach($scope.alltxnlist, function(txn){
+											if(txn.txntype=='ADD'){
+												$scope.addtxnlist.push(txn);
+											}
+										});
+									}
+								}
+								$scope.getEncashTxnList = function() { 
+									if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
+                                    angular.forEach($scope.alltxnlist, function(txn){
+											if(txn.txntype=='ENCASH'){
+												$scope.encashtxnlist.push(txn);
+											}
+										});
+									}
+
+								}
+								$scope.getRecivedTxnList= function() {
+									if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
+										angular.forEach($scope.alltxnlist, function(txn){
+											if(txn.txntype=='RECIVED'){
+												$scope.recivedtxnlist.push(txn);
+											}
+										});
+									}
+								}
+					
+					$scope.poulateAddMoneyToWallet=function(){
+						$scope.addMoney={};
+						$scope.addMoney.walletnumber=$scope.userdetails.userprofile.walletdetails.walletnumber;
+					}
+					$scope.poulatePaymentDetails=function(){
+						$scope.paymentdetails={};
+						$scope.paymentdetails.walletnumber=$scope.userdetails.userprofile.walletdetails.walletnumber;
+						$scope.paymentdetails.cuurentbalance=$scope.user.walletdetails.walletStatement.currentbalance;
 					}
 					
 					$scope.poulateEncashDetails=function(){

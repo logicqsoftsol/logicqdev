@@ -119,8 +119,8 @@
                         <td>INR {{user.walletdetails.walletStatement.payout}}</td>
                       </tr>
                       <tr>
-                        <td>Encashable</td>
-                        <td>INR {{user.walletdetails.walletStatement.maxencashable}}</td>
+                        <td>Encashed</td>
+                        <td>INR {{user.walletdetails.walletStatement.encashedAmount}}</td>
                       </tr>
                       <tr>
                         <td>Current Balance</td>
@@ -133,9 +133,9 @@
                     </tbody>
                   </table>
                 </div>
-                <button type="button" ng-click="poulateEncashDetails()" class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Add Money</button>
-				<button type="button" ng-click="poulateEncashDetails()" class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Send Money</button>				
-				<button type="button" ng-click="poulateEncashDetails()" class="btn btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Encash</button>
+                <button type="button" ng-click="poulateAddMoneyToWallet()" class="btn btn-space btn-primary pull-right" data-target="#addmoneymodal" data-toggle="modal">Add Money</button>
+				<button type="button" ng-click="poulatePaymentDetails()" class="btn btn-space btn-primary pull-right" data-target="#paymoneymodal" data-toggle="modal">Pay</button>				
+				<button type="button" ng-click="poulateEncashDetails()" class="btn btn-space btn-primary pull-right" data-target="#enashedmodal" data-toggle="modal">Encash</button>
             </div>
           </div>
 		 </div> 
@@ -506,21 +506,36 @@
 		  </div>
 		  
 		  <div class="modal-body">
+		<ng-form name="encaseform" class="form-horizontal" role="form">
 			<div class="col-md-6" >
 					<div class="form-group">
-						<label for="encashdetails.walletnumber">Wallet Number</label>
+						<label for="encashdetails.walletnumber">Your GPMID No</label>
 						<input type="text" id="encashdetails.walletnumber" name="encashdetails.walletnumber" ng-model="encashdetails.walletnumber" class="form-control" readonly>
 					</div>
 					<div class="form-group">
 						<label for="encashdetails.encashamount">Encash Amount</label>
-						<input id="encashdetails.encashamount" name="encashdetails.encashamount" ng-model="encashdetails.encashamount" class="form-control" type="text">
-					</div>				
+						<input id="encashdetails.encashamount" name="encashamount" ng-model="encashdetails.encashamount" class="form-control" type="text" required>
+						<span style="color:red" ng-show="encaseform.encashamount.$error.required">Please enter Encash Amount</span>
+					</div>	
+ 			<div class="form-group">
+				<label for="encashdetails.description">Description *</label>
+				<textarea name="description" class="form-control" ng-model="encashdetails.description"  placeholder="Description" required></textarea>
+				<span style="color:red" ng-show="encaseform.description.$error.required">Please enter Description</span>
+	         </div>			
+		 <div class="form-group">
+          <label for="encashdetails.encashrequestto">Encash Request To *</label>
+            <select class="form-control"  ng-model="encashdetails.encashrequestto">
+			<option value="ADMIN" selected="selected">ADMIN</option>
+         </select>
+	      </div>
 				</div>
+		</ng-form>
 			</div>
+
 					<div class="modal-footer">
 						
 							   <button type="submit" id="encashrequest" class="btn btn-default" ng-click="createEncashRequest()"
-								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+								data-dismiss="modal" ng-disabled="encaseform.$invalid"><i class="fa fa-check-circle" aria-hidden="true"></i>Encash</button>
 								<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
 						
@@ -531,7 +546,137 @@
 		</div>
 	</div>
 	
+
+<!-- Payee Modal -->		
+<div  id="paymoneymodal" name="paymoneymodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+	  <div class="modal-dialog">
 	
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title" id="myModalLabel">Pay Money</h4>
+		  </div>
+		  
+		  <div class="modal-body">
+		<ng-form name="payeeform" class="form-horizontal" role="form">
+			<div class="col-md-6" >
+					<div class="form-group">
+						<label for="paymentdetails.walletnumber">Your GPMID No * </label>
+						<input type="text" id="paymentdetails.walletnumber" name="walletnumber" ng-model="paymentdetails.walletnumber" class="form-control" readonly>
+					</div>
+					<div class="form-group">
+						<label for="paymentdetails.walletnumber">Current Balance</label>
+						<input type="text" id="paymentdetails.cuurentbalance" name="paymentdetails.cuurentbalance" ng-model="paymentdetails.cuurentbalance" class="form-control" readonly>
+					</div>
+					<div class="form-group">
+						<label for="paymentdetails.payeewalletnumber">Payee GPMID No</label>
+						<input type="text" id="paymentdetails.payeewalletnumber" name="payeewalletnumber" ng-model="paymentdetails.payeewalletnumber" class="form-control" required>
+						<span style="color:red" ng-show="payeeform.payeewalletnumber.$error.required">Please enter Payee GPMID Number</span>
+					</div>
+					<div class="form-group">
+						<label for="paymentdetails.txnamount">Amount</label>
+						<input id="paymentdetails.txnamount" name="txnamount" ng-model="paymentdetails.txnamount" class="form-control" type="text" required>
+						<span style="color:red" ng-show="payeeform.txnamount.$error.required">Please enter  Amount</span>
+					</div>
+					<div class="form-group">
+						<label for="paymentdetails.modeofpayment">Mode of Payment*</label> 
+						<select class="form-control" name="modeofpayment" ng-model="paymentdetails.modeofpayment" required>
+							<option value="Cash" selected="selected">Cash</option>
+							<option value="Cheque">Cheque</option>
+							<option value="Online-NEFT">Online NEFT</option>
+					  		<option value="Online-RTGS">Online-RTGS</option>
+					   		<option value="Online-IMPS">Online-IMPS</option>
+						</select> 
+						<span style="color: red" ng-show="payeeform.modeofpayment.$error.required">Please enter Refence number</span>
+					</div>
+					<div class="form-group">
+						<label for="paymentdetails.refrenceno">Refrence Number/Cheque No *</label>
+						<input id="refrenceno" name="refrenceno" ng-model="paymentdetails.refrenceno" placeholder="Enter your Refrence Number/Cheque No" class="form-control" type="text" required>
+						<span style="color:red" ng-show="payeeform.refrenceno.$error.required">Please enter  Refence number</span>
+					</div>
+					<div class="form-group">
+						<label for="paymentdetails.description">Description *</label>
+						<textarea id="description" name="description" ng-model="paymentdetails.description" placeholder="Enter some description" class="form-control" required></textarea>
+						<span style="color:red" ng-show="payeeform.description.$error.required">Please enter  some description</span>
+					</div>
+				</div>
+				</ng-form>		
+			</div>
+				<div class="modal-footer">
+				<button type="submit" id="paybutton" class="btn btn-default" ng-click="pay()"
+						data-dismiss="modal" ng-disabled="payeeform.$invalid"><i class="fa fa-check-circle" aria-hidden="true"></i>PAY</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+			</div>
+	
+		 </div>
+			
+		  </div>
+		</div>
+
+	
+
+
+
+<!-- Add Money Modal -->		
+<div  id="addmoneymodal" name="addmoneymodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+	  <div class="modal-dialog">
+	
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title" id="myModalLabel">Add Money</h4>
+		  </div>
+		  
+		  <div class="modal-body">
+		<ng-form name="addmoneyform" class="form-horizontal" role="form">
+			<div class="col-md-6" >
+					<div class="form-group">
+						<label for="addMoney.walletnumber">Your GPMID No</label>
+						<input type="text" id="addform.walletnumber" name="addMoney.walletnumber" ng-model="addMoney.walletnumber" class="form-control" readonly>
+					</div>
+					<div class="form-group">
+						<label for="addMoney.creditamount">Amount</label>
+						<input id="addMoney.creditamount" name="creditamount" ng-model="addMoney.creditamount" class="form-control" type="text" required>
+						<span style="color:red" ng-show="addmoneyform.creditamount.$error.required">Please enter  Amount</span>
+					</div>
+					<div class="form-group">
+						<label for="addMoney.modeofpayment">Mode of Payment*</label> 
+						<select class="form-control" name="modeofpayment" ng-model="addMoney.modeofpayment" required>
+							<option value="Cash" selected="selected">Cash</option>
+							<option value="Cheque">Cheque</option>
+							<option value="Online-NEFT">Online NEFT</option>
+					  		<option value="Online-RTGS">Online-RTGS</option>
+					   		<option value="Online-IMPS">Online-IMPS</option>
+						</select> 
+						<span style="color: red" ng-show="addmoneyform.modeofpayment.$error.required">Please enter Refence number</span>
+					</div>
+					<div class="form-group">
+						<label for="addMoney.refrenceno">Refrence Number/Cheque No *</label>
+						<input id="refrenceno" name="refrenceno" ng-model="addMoney.refrenceno" placeholder="Enter your Refrence Number/Cheque No" class="form-control" type="text" required>
+						<span style="color:red" ng-show="addmoneyform.refrenceno.$error.required">Please enter  Refence number</span>
+					</div>	
+					<div class="form-group">
+						<label for="addMoney.description">Description *</label>
+						<textarea name="description" class="form-control" ng-model="addMoney.description"  placeholder="Description" required></textarea>
+						<span style="color:red" ng-show="addmoneyform.description.$error.required">Please enter Description</span>
+				  </div>			
+			</div>
+		</ng-form>
+		 </div>
+			<div class="modal-footer">
+				<button type="submit" id="addmoneybutton" class="btn btn-default" ng-click="addMoneyToWallet()"
+						data-dismiss="modal" ng-disabled="addmoneyform.$invalid"><i class="fa fa-check-circle" aria-hidden="true"></i>ADD</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+
+
 <!-- Encashed Modal -->		
 <div  id="encashdetailmodal" name="encashdetailmodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
 	  <div class="modal-dialog">
@@ -965,69 +1110,110 @@
             </div>
             <div class="panel-body">
      	<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" id="alltransaction" class="pull-center"  ng-click=""
+							<li class="active"><a data-toggle="tab" id="alltransaction" class="pull-center"  ng-init="getAllTxnList()" ng-click="getAllTxnList()"
 							href="/admin#passbook_all">All</a></li>
-							<li class="active"><a data-toggle="tab" id="send" class="pull-center"  ng-click=""
+							<li><a data-toggle="tab" id="send" class="pull-center"  ng-click="getSendTxnList()"
 								href="/admin#passbook_send">Send</a></li>
-                           <li class="active"><a data-toggle="tab" id="add" class="pull-center"  ng-click=""
+                           <li><a data-toggle="tab" id="add" class="pull-center"  ng-click="getAddTxnList()"
 								href="/admin#passbook_add">Add</a></li>
-						<li class="active"><a data-toggle="tab" id="encash" class="pull-center"  ng-click=""
+							<li><a data-toggle="tab" id="encash" class="pull-center"  ng-click="getRecivedTxnList()"
+								href="/admin#passbook_recived">Recived</a></li>	
+						   <li><a data-toggle="tab" id="encash" class="pull-center"  ng-click="getEncashTxnList()"
 								href="/admin#passbook_encash">Encash</a></li>
+								
 						</ul>
 
 					<div class="tab-content">
 					<div id="passbook_all" class="tab-pane fade in active">
 					<br></br>
 						<div class="table-responsive">
-							<table class="table table-bordered table-fixed table-hover">
+							<table class="table table-bordered">
 							<tr class ="success">
 								<th class="pull-center">Date</th>
 								<th class="pull-center">Amount</th>
 								<th class="pull-center">Type</th>	
 								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">For</th>
 								<th class="pull-center">Description</th>
 							</tr>
-							<tr ng-repeat="subrow in subjectlist">
-								<td>{{subrow.name}}</td>
-								<td>{{subrow.shortname}}</td>
-								<td>{{subrow.type}}</td>
+							<tr ng-repeat="txn in alltxnlist">
+								<td>{{txn.txndate | date:'yyyy-MM-dd'}}</td>
+								<td>{{txn.amount}}</td>
+								<td>{{txn.txntype}}</td>
+								<td>{{txn.refrenceno}}</td>
+								<td>{{txn.txnfor}}</td>
+								<td>{{txn.description}}</td>
+								</tr>
 						</table>
 					</div>
 					</div>
 					
-					<div id="passbook_add" class="tab-pane fade">
+					<div id="passbook_send" class="tab-pane fade">
 					<br></br>
 			     <div class="table-responsive">
-							<table class="table table-bordered">
-						<tr class ="success">
-								<th class="pull-center">Date</th>
-								<th class="pull-center">Amount</th>
-								<th class="pull-center">Type</th>
-								<th class="pull-center">Refrence No.</th>
-								<th class="pull-center">Description</th>
-							</tr>
-							<tr ng-repeat="subrow in subjectlist">
-								<td>{{subrow.name}}</td>
-								<td>{{subrow.shortname}}</td>
-								<td>{{subrow.type}}</td>
-						</table>
-					</div>
-					</div>
-			   <div id="passbook_send" class="tab-pane fade">
-					<br></br>
-			     <div class="table-responsive">
-							<table class="table table-bordered">
+						<table class="table table-bordered">
 							<tr class ="success">
 								<th class="pull-center">Date</th>
 								<th class="pull-center">Amount</th>
-								<th class="pull-center">Type</th>
+								<th class="pull-center">Type</th>	
 								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">For</th>
 								<th class="pull-center">Description</th>
 							</tr>
-							<tr ng-repeat="subrow in subjectlist">
-								<td>{{subrow.name}}</td>
-								<td>{{subrow.shortname}}</td>
-								<td>{{subrow.type}}</td>
+							<tr ng-repeat="txnsend in sendtxnlist">
+								<td>{{txnsend.txndate | date:'yyyy-MM-dd'}}</td>
+								<td>{{txnsend.amount}}</td>
+								<td>{{txnsend.txntype}}</td>
+								<td>{{txnsend.refrenceno}}</td>
+								<td>{{txnsend.txnfor}}</td>
+								<td>{{txnsend.description}}</td>
+								</tr>
+						</table>
+					</div>
+					</div>
+			   <div id="passbook_add" class="tab-pane fade">
+					<br></br>
+			     <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr class ="success">
+								<th class="pull-center">Date</th>
+								<th class="pull-center">Amount</th>
+								<th class="pull-center">Type</th>	
+								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">For</th>
+								<th class="pull-center">Description</th>
+							</tr>
+							<tr ng-repeat="addtxn in addtxnlist">
+								<td>{{addtxn.txndate | date:'yyyy-MM-dd'}}</td>
+								<td>{{addtxn.amount}}</td>
+								<td>{{addtxn.txntype}}</td>
+								<td>{{addtxn.refrenceno}}</td>
+								<td>{{addtxn.txnfor}}</td>
+								<td>{{addtxn.description}}</td>
+								</tr>
+						</table>
+					</div>
+					</div>
+					   <div id="passbook_recived" class="tab-pane fade">
+					<br></br>
+			     <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr class ="success">
+								<th class="pull-center">Date</th>
+								<th class="pull-center">Amount</th>
+								<th class="pull-center">Type</th>	
+								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">For</th>
+								<th class="pull-center">Description</th>
+							</tr>
+							<tr ng-repeat="rectxn in recivedtxnlist">
+								<td>{{rectxn.txndate | date:'yyyy-MM-dd'}}</td>
+								<td>{{rectxn.amount}}</td>
+								<td>{{rectxn.txntype}}</td>
+								<td>{{rectxn.refrenceno}}</td>
+								<td>{{rectxn.txnfor}}</td>
+								<td>{{rectxn.description}}</td>
+								</tr>
 						</table>
 					</div>
 					</div>
@@ -1035,18 +1221,23 @@
 	   <div id="passbook_encash" class="tab-pane fade">
 					<br></br>
 			     <div class="table-responsive">
-							<table class="table table-bordered">
+						<table class="table table-bordered">
 							<tr class ="success">
 								<th class="pull-center">Date</th>
 								<th class="pull-center">Amount</th>
-								<th class="pull-center">Type</th>
+								<th class="pull-center">Type</th>	
 								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">For</th>
 								<th class="pull-center">Description</th>
 							</tr>
-							<tr ng-repeat="subrow in subjectlist">
-								<td>{{subrow.name}}</td>
-								<td>{{subrow.shortname}}</td>
-								<td>{{subrow.type}}</td>
+							<tr ng-repeat="encashtxn in encashtxnlist">
+								<td>{{encashtxn.txndate | date:'yyyy-MM-dd'}}</td>
+								<td>{{encashtxn.amount}}</td>
+								<td>{{encashtxn.txntype}}</td>
+								<td>{{encashtxn.refrenceno}}</td>
+								<td>{{encashtxn.txnfor}}</td>
+								<td>{{encashtxn.description}}</td>
+								</tr>
 						</table>
 					</div>
 					</div>
