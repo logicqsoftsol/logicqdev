@@ -30,7 +30,7 @@ public class UserDetailsVO extends StatusVO {
 	
 	private UserDocument document;
 	
-	private List<NetworkInfo> networkinfolist;
+	private List<NetworkVO> networkinfolist;
 
 	public UserProfile getUserprofile() {
 		return userprofile;
@@ -80,11 +80,11 @@ public class UserDetailsVO extends StatusVO {
 		this.document = document;
 	}
 
-	public List<NetworkInfo> getNetworkinfolist() {
+	public List<NetworkVO> getNetworkinfolist() {
 		return networkinfolist;
 	}
 
-	public void setNetworkinfolist(List<NetworkInfo> networkinfolist) {
+	public void setNetworkinfolist(List<NetworkVO> networkinfolist) {
 		this.networkinfolist = networkinfolist;
 	}
 

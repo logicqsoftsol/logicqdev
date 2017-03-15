@@ -18,6 +18,8 @@ public final class LoginFactory {
     public static LoginVO create(Login user) {
         return new LoginVO(
                 user.getUsername(),
+                user.getUserprofile().getFirstname(),
+                user.getUserprofile().getLastname(),
                 user.getEmail(),
                 user.getMobilenumber(),
                 user.getPassword(),

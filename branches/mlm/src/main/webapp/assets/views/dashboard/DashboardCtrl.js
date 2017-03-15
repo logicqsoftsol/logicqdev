@@ -87,6 +87,7 @@
 				$scope.addMoneyToWallet=function(){
                    $location.path('/dashboard/payment');
 				}
+
 				
 				$scope.onClickViewSupportHands=function(){
 					document.getElementById('networkmember-chart').innerHTML=null;
@@ -282,9 +283,24 @@
 					if(null!=$localStorage.profile.networkinfolist){
 						$scope.networkinfolist=$localStorage.profile.networkinfolist;
 					}
-						$scope.getProfileListAccordingToPage=function(page) {
-						
+					$scope.searchMemberWithPatteren = function() {
 						}
+						
+						$scope.populateWalletForMember = function(network) {
+									$scope.viewuser=network.memberid;
+									UserDetailsService.getUserProfileDetails($scope).success(function(data, status) {
+										$scope.paymentdetails={};
+										$scope.paymentdetails.walletnumber=$scope.userdetails.userprofile.walletdetails.walletnumber;
+										$scope.paymentdetails.cuurentbalance=$scope.user.walletdetails.walletStatement.currentbalance;
+										$scope.paymentdetails.payeewalletnumber=data.userprofile.walletdetails.walletnumber;
+										}).error(function(data, status) {
+										  var errormsg='Unable to specifc user profile '+status;
+											$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+											$exceptionHandler(errormsg);
+										});    
+									
+						      }
+
 								$scope.viewMemberProfileDetails = function(network) {
 									$scope.viewuser=network.memberid;
 									UserDetailsService.getUserProfileDetails($scope).success(function(data, status) {
@@ -316,6 +332,8 @@
 					$scope.setupNetworkForEdit=function(){
 						$scope.userprofile.conatctDetails={};
 						$scope.userprofile.networkinfo={};
+						$scope.userprofile.bankAccountDetails={};
+						$scope.userprofile.socialdetails={};
 						UserHelper.prepareUserProfileForEdit($scope);
 					}
 					

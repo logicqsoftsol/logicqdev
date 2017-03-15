@@ -12,5 +12,6 @@ public interface INetworkDetailsDAO {
     List<NetworkInfo> getNetworkDetailsForParent(String parentid);
     NetworkInfo getUpdatePedingNetworkDetails(String memberid);
     List<NetworkInfo> getAllNetworkList(int pagesize,int pagenumber);
+    List<NetworkInfo> getNetworkDetailsForParentWithPagination(String parentid) ;
 
 }

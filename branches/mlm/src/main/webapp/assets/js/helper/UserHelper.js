@@ -16,6 +16,32 @@
 				$scope.userprofile.conatctDetails.pincode=$scope.userdetails.userprofile.conatctDetails.pincode;
 				$scope.userprofile.conatctDetails.district=$scope.userdetails.userprofile.conatctDetails.district;
 				$scope.userprofile.conatctDetails.state=$scope.userdetails.userprofile.conatctDetails.state;
+				if(null!=$scope.userdetails.userprofile.bankAccountDetails){
+				$scope.userprofile.bankAccountDetails.bankName=$scope.userdetails.userprofile.bankAccountDetails.bankName;
+				$scope.userprofile.bankAccountDetails.accountNumber=$scope.userdetails.userprofile.bankAccountDetails.accountNumber;
+				$scope.userprofile.bankAccountDetails.ifsccode=$scope.userdetails.userprofile.bankAccountDetails.ifsccode;
+				$scope.userprofile.bankAccountDetails.pancardno=$scope.userdetails.userprofile.bankAccountDetails.pancardno;
+				$scope.userprofile.bankAccountDetails.accountHolderName=$scope.userdetails.userprofile.bankAccountDetails.accountHolderName;
+				}else{
+				$scope.userprofile.bankAccountDetails.bankName=$scope.user.bankdetails.bankname;
+				$scope.userprofile.bankAccountDetails.accountNumber=$scope.user.bankdetails.ifsccode;
+				$scope.userprofile.bankAccountDetails.ifsccode=$scope.user.bankdetails.accountNumber;
+				$scope.userprofile.bankAccountDetails.pancardno=$scope.user.bankdetails.pancardno;
+				$scope.userprofile.bankAccountDetails.accountHolderName=$scope.user.bankdetails.accountHolderName;
+                  }
+				if(null!=$scope.userdetails.userprofile.socialdetails){
+						$scope.userprofile.socialdetails.fblink=$scope.userdetails.userprofile.socialdetails.fblink;
+						$scope.userprofile.socialdetails.gogglepluslink=$scope.userdetails.userprofile.googlePlusLink;
+						$scope.userprofile.socialdetails.youtubelink=$scope.userdetails.userprofile.youtubelink;
+						$scope.userprofile.socialdetails.twiter=$scope.userdetails.userprofile.twiter;
+						$scope.userprofile.socialdetails.linkedin=$scope.userdetails.userprofile.linkedinlink;
+					}else{
+						$scope.userprofile.socialdetails.fblink=$scope.user.socialdetails.fblink;
+						$scope.userprofile.socialdetails.googlePlusLink=$scope.user.socialdetails.gogglepluslink;
+						$scope.userprofile.socialdetails.youtubelink=$scope.user.socialdetails.youtubelink;
+						$scope.userprofile.socialdetails.twiter=$scope.user.socialdetails.twiter;
+						$scope.userprofile.socialdetails.linkedinlink=$scope.user.socialdetails.linkedin;
+					}
 			},
 
 				prepareUserProfileRequest: function ($scope) {

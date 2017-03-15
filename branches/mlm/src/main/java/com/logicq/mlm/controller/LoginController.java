@@ -33,6 +33,7 @@ import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
 import com.logicq.mlm.vo.EncashVO;
 import com.logicq.mlm.vo.LoginVO;
+import com.logicq.mlm.vo.NetworkVO;
 import com.logicq.mlm.vo.UserDetailsVO;
 
 @RestController
@@ -96,7 +97,7 @@ public class LoginController {
 							tasklist.add(task);
 						}
 						userdetailsvo.setTasklist(tasklist);
-						List<NetworkInfo> networkinfolist=networkservice.getAllNetworkList(1, 20);
+						List<NetworkVO> networkinfolist=networkservice.getAllNetworkList(1, 20);
 						userdetailsvo.setNetworkinfolist(networkinfolist);
 					}else{
 					List<WorkFlow> workflowlist = workflowservice.getPendingWorkFlowForUser(login.getUsername(),
@@ -128,7 +129,7 @@ public class LoginController {
 						}
 					}
 					userdetailsvo.setTasklist(tasklist);
-					List<NetworkInfo> networkinfolist=networkservice.getNetworkDetailsForParent(login.getUsername());
+					List<NetworkVO> networkinfolist=networkservice.getNetworkDetailsForParentWithPagination(login.getUsername());
 					userdetailsvo.setNetworkinfolist(networkinfolist);
 					}
 					NetworkInfo networkinfo=networkservice.getNetworkDetails(login.getUsername());
