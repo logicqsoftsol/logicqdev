@@ -28,6 +28,8 @@ public class LoginVO implements UserDetails {
 
     public LoginVO(
           String username,
+          String fname,
+          String lname,
           String email,
           String mobilenumber,
           String password, Collection<? extends GrantedAuthority> authorities,
@@ -35,6 +37,8 @@ public class LoginVO implements UserDetails {
           UserProfile userprofile
     ) {
         this.username = username;
+        this.firstname=fname;
+        this.lastname=lname;
         this.email = email;
         this.mobilenumber=mobilenumber;
         this.password = password;

@@ -58,5 +58,14 @@ public class NetworkDetailsDAO  extends AbstractDAO<NetworkInfo> implements INet
 		StringBuilder query=new StringBuilder();
 		return loadClassWithPagination(NetworkInfo.class,pagesize,pagenumber);
 	}
+	
+	
+	@Override
+	public List<NetworkInfo> getNetworkDetailsForParentWithPagination(String parentid) {
+		StringBuilder query=new StringBuilder();
+		query.append(" from NetworkInfo ni where ni.parentmemberid='"+parentid+"' order by dateofjoin desc");
+		// need to change query may break as null pointer
+		return (List<NetworkInfo>) executeQueryWithPagination(query.toString(), 1, 20);
+	}
 
 }

@@ -9736,3 +9736,20 @@ html,body {
 .btn-space {
     margin-right: 5px;
 }
+#horizontal_scroll{
+  overflow-x: scroll;
+  width: auto;
+      white-space: nowrap;
+  }
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}

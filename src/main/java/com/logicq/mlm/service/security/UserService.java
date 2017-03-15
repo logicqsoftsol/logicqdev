@@ -51,7 +51,10 @@ public class UserService implements UserDetailsService {
     public static void removeUser(String username) {
         userMap.remove(username);
     }
-    
+    public static LoginVO getUserByUsername(String username) {
+		return userMap.get(username);
+
+	}
    
     
     public final LoginVO loadUserByUsername(String username) throws UsernameNotFoundException {
