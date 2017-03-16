@@ -31,6 +31,8 @@ public class UserDetailsVO extends StatusVO {
 	private UserDocument document;
 	
 	private List<NetworkVO> networkinfolist;
+	
+	private List<NetworkCountVO> networkcountlist;
 
 	public UserProfile getUserprofile() {
 		return userprofile;
@@ -88,13 +90,20 @@ public class UserDetailsVO extends StatusVO {
 		this.networkinfolist = networkinfolist;
 	}
 
-	
+	public List<NetworkCountVO> getNetworkcountlist() {
+		return networkcountlist;
+	}
+
+	public void setNetworkcountlist(List<NetworkCountVO> networkcountlist) {
+		this.networkcountlist = networkcountlist;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDetailsVO [userprofile=" + userprofile + ", walletStatement=" + walletStatement
 				+ ", userperformance=" + userperformance + ", networkjson=" + networkjson + ", tasklist=" + tasklist
-				+ ", document=" + document + ", networkinfolist=" + networkinfolist + "]";
+				+ ", document=" + document + ", networkinfolist=" + networkinfolist + ", networkcountlist="
+				+ networkcountlist + "]";
 	}
-
 
 }

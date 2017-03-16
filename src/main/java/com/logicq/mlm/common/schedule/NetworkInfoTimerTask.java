@@ -16,8 +16,10 @@ import org.springframework.util.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.helper.PropertyHelper;
 import com.logicq.mlm.common.helper.StringFormatHelper;
+import com.logicq.mlm.common.helper.WalletAmountCalculator;
 import com.logicq.mlm.model.admin.FeeSetup;
 import com.logicq.mlm.model.admin.NetWorkTask;
+import com.logicq.mlm.model.admin.TransactionDetails;
 import com.logicq.mlm.model.performance.UserNetworkCount;
 import com.logicq.mlm.model.profile.NetWorkDetails;
 import com.logicq.mlm.model.profile.NetworkInfo;
@@ -28,7 +30,9 @@ import com.logicq.mlm.service.networkdetails.INetworkTaskService;
 import com.logicq.mlm.service.performance.IUserNetworkPerformanceService;
 import com.logicq.mlm.service.user.IUserService;
 import com.logicq.mlm.service.wallet.IFeeSetupService;
+import com.logicq.mlm.service.wallet.ITransactionDetailsService;
 import com.logicq.mlm.service.wallet.IWalletStmntService;
+import com.logicq.mlm.vo.PaymentVO;
 
 @Configuration
 @EnableScheduling
@@ -51,6 +55,10 @@ public class NetworkInfoTimerTask {
 	
 	@Autowired
 	IWalletStmntService walletStmntService;
+	
+
+	@Autowired
+	ITransactionDetailsService transactionDetailsService;
 
 	ObjectMapper mapper = new ObjectMapper();
 
@@ -59,31 +67,54 @@ public class NetworkInfoTimerTask {
 		List<NetWorkTask> tasklist = networktaskservice.getNetworkTaskList();
 		if (!tasklist.isEmpty()) {
 			List<FeeSetup> feeList = feeSetupService.getFeeDetails();
-			Map<String,Integer> netWorkCountMap=new HashMap<>();
+			List<UserNetworkCount> networkCountList=new ArrayList<>();
 			for (NetWorkTask task : tasklist) {
 				updateNetworkDetails(task.getMemberid(), task.getParentid());
 				networktaskservice.deleteNetworkTask(task);
-				//calculateNetworkCount(task.getMemberid(),netWorkCountMap,null);
 				calculateWalletAmount(task.getParentid(),feeList,"LEVEL1");
-				calculateNetworkCount(task.getParentid(),netWorkCountMap);
+				calculateNetworkCount(task.getMemberid(),networkCountList);
+				userNetworkPerformance.addUserNetworkPerformanceList(networkCountList);
 			}
 		}
 	}
 
 	
 	
-	private void calculateNetworkCount(String memberid,Map<String,Integer> netWorkCountMap) throws Exception {
-//		NetworkInfo networkInfo = networkDetailService.getNetworkDetails(memberid);
-//		NetWorkDetails networkdetails = PropertyHelper.convertJsonToNetworkInfo(networkInfo);
-//		List<NetWorkDetails>  networkDetailList= networkdetails.getChildren();
-//		if (null != networkDetailList && !networkDetailList.isEmpty()) {
-//			Integer networkCount=netWorkCountMap.get(memberid + "_" + networkdetails.getCategory());
-//			networkCount = networkCount + networkDetailList.size();
-//			netWorkCountMap.put(memberid + "_" + networkdetails.getCategory(), networkCount);
-//		}
-//		if (null != networkdetails && !StringUtils.isEmpty(networkInfo.getParentmemberid())) {
-//			calculateNetworkCount(networkInfo.getParentmemberid(),netWorkCountMap);
-//		}
+	private void calculateNetworkCount(String memberid,List<UserNetworkCount> networkCountList) throws Exception {
+		NetworkInfo networkInfo = networkDetailService.getNetworkDetails(memberid);
+		NetWorkDetails networkdetails = PropertyHelper.convertJsonToNetworkInfo(networkInfo);
+	   if(null!=networkdetails){
+		   List<NetWorkDetails> networkDetailsList=networkdetails.getChildren();
+		   caculateAllMemeberDetails(memberid, networkCountList, networkInfo, networkDetailsList);
+	   }
+		 if (null != networkdetails && !StringUtils.isEmpty(networkInfo.getParentmemberid())) {
+			 calculateNetworkCount(networkInfo.getParentmemberid(),networkCountList);
+		  }
+	
+	}
+
+
+
+	private void caculateAllMemeberDetails(String memberid, List<UserNetworkCount> networkCountList,
+			NetworkInfo networkInfo, List<NetWorkDetails> networkDetailsList) {
+		if (null != networkDetailsList && !networkDetailsList.isEmpty()) {
+			String level = networkDetailsList.get(0).getCategory();
+			Integer intlevel = StringFormatHelper.getLevelAsInteger(level);
+			UserNetworkCount usernetworkCount = new UserNetworkCount();
+			usernetworkCount.setMemberid(memberid);
+			usernetworkCount.setNetworklevel(intlevel);
+			UserNetworkCount fetchedNetworkCount = userNetworkPerformance.getNetworkPerformanceForMemeberandLevel(usernetworkCount);
+			if (null != fetchedNetworkCount) {
+				usernetworkCount = fetchedNetworkCount;
+			}
+			usernetworkCount.setMembercount(networkDetailsList.size());
+			usernetworkCount.setParentid(networkInfo.getParentmemberid());
+			networkCountList.add(usernetworkCount);
+			for (NetWorkDetails networkDetail : networkDetailsList) {
+				List<NetWorkDetails> childNetworkList = networkDetail.getChildren();
+				caculateAllMemeberDetails(memberid, networkCountList, networkInfo, childNetworkList);
+			}
+		}
 	}
 
 
@@ -91,7 +122,6 @@ public class NetworkInfoTimerTask {
 	private void calculateWalletAmount(String memberid,List<FeeSetup> feeList,String level) throws Exception {
 		NetworkInfo networkInfo = networkDetailService.getNetworkDetails(memberid);
 		NetWorkDetails networkdetails = PropertyHelper.convertJsonToNetworkInfo(networkInfo);
-		if("ADMIN".equals(networkInfo.getMemberid())){
 		if (null != feeList && !feeList.isEmpty()) {
 			UserProfile userprofile = userservice.fetchUserAccordingToUserName(memberid);
 			WalletStatement walletstment = new WalletStatement();
@@ -108,11 +138,16 @@ public class NetworkInfoTimerTask {
 								walletstment.setMaxencashable(walletstment.getMaxencashable().add(calculated));
 								walletstment.setCurrentbalance(walletstment.getCurrentbalance().add(calculated));
 								walletstment.setWalletlastupdate(new Date());
+							if (!"ADMIN".equals(userprofile.getLogindetails().getUsername())) {
 								walletStmntService.updateWalletStmnt(walletstment);
-								break;
+								TransactionDetails txnDetails = WalletAmountCalculator.populateTransactionDetails(
+										populatePayementDetails(calculated,level), walletstment.getWalletid(), userprofile.getFirstname(),
+										userprofile.getLastname());
+								txnDetails.setTxntype("ADD");
+								transactionDetailsService.save(txnDetails);
+							}
+							break;
 						   }
-						
-						
 					}
 				}
 			}
@@ -125,7 +160,7 @@ public class NetworkInfoTimerTask {
 					calculateWalletAmount(networkInfo.getParentmemberid(), feeList, stringlevel);
 				}
 			}
-		}
+		
 	}
 
 
@@ -179,64 +214,6 @@ public class NetworkInfoTimerTask {
 
 	}
 	
-	private void calculateNetworkCount(String memberid, Map<String,Integer>  netWorkCountMap,UserNetworkCount networkCount) throws Exception {
-		NetworkInfo networkInfo = networkDetailService.getNetworkDetails(memberid);
-		NetWorkDetails networkdetails = PropertyHelper.convertJsonToNetworkInfo(networkInfo);
-		List<NetWorkDetails> childNetworkList = networkdetails.getChildren();
-		if (null != networkdetails) {
-			int level = 0;
-			UserNetworkCount userNetworkCount = new UserNetworkCount();
-			userNetworkCount.setMemberid(networkdetails.getId());
-			if (null != networkCount) {
-				if (!StringUtils.isEmpty(networkdetails.getParentid())) {
-					networkCount.setParentid(networkdetails.getParentid());
-				}
-				level = networkCount.getNetworklevel();
-				UserNetworkCount fetchedUserNetwork = userNetworkPerformance
-						.getNetworkPerformanceForMemeberandLevel(networkCount);
-				if (null != fetchedUserNetwork) {
-					fetchedUserNetwork.setMembercount(networkCount.getMembercount());
-					userNetworkPerformance.updateUserNetworkPerformance(fetchedUserNetwork);
-					netWorkCountMap.put(networkdetails.getId() + "_" + level, networkCount.getMembercount());
-				} else {
-					userNetworkPerformance.addUserNetworkPerformance(networkCount);
-					netWorkCountMap.put(networkdetails.getId() + "_" + level, networkCount.getMembercount());
-				}
-			}
-			if (!StringUtils.isEmpty(networkdetails.getParentid())) {
-				userNetworkCount.setParentid(networkdetails.getParentid());
-			}
-			if (null != childNetworkList && !childNetworkList.isEmpty()) {
-				String networkLevel = childNetworkList.get(0).getCategory();
-				level=StringFormatHelper.getLevelAsInteger(networkLevel);
-				userNetworkCount.setNetworklevel(level);
-				UserNetworkCount fetchedUserNetwork = userNetworkPerformance
-						.getNetworkPerformanceForMemeberandLevel(userNetworkCount);
-				if (null != fetchedUserNetwork) {
-					fetchedUserNetwork.setMembercount(childNetworkList.size());
-					userNetworkPerformance.updateUserNetworkPerformance(fetchedUserNetwork);
-					netWorkCountMap.put(networkdetails.getId()+"_"+level, childNetworkList.size());
-				} else {
-					userNetworkCount.setMembercount(childNetworkList.size());
-					userNetworkPerformance.addUserNetworkPerformance(userNetworkCount);
-					netWorkCountMap.put(networkdetails.getId()+"_"+level, childNetworkList.size());
-				}
-				
-			}
-			if (!StringUtils.isEmpty(networkdetails.getParentid())) {
-				Integer memberCount = netWorkCountMap.get(networkdetails.getId() + "_" + level);
-				UserNetworkCount parentNetworkCount = null;
-				if (null != memberCount) {
-					parentNetworkCount = new UserNetworkCount();
-					parentNetworkCount.setMemberid(networkdetails.getParentid());
-					parentNetworkCount.setMembercount(memberCount);
-					parentNetworkCount.setNetworklevel(level + 1);
-				}
-				calculateNetworkCount(networkdetails.getParentid(), netWorkCountMap, parentNetworkCount);
-			}
-		}
-	}
-
 
 	private BigDecimal caculateAmountAccordingToFee(FeeSetup feedetails,BigDecimal multiplicationfactor) {
 		BigDecimal baseAmount = feedetails.getAmount();
@@ -246,5 +223,12 @@ public class NetworkInfoTimerTask {
 		return null;
 	}
 
-
+private PaymentVO  populatePayementDetails(BigDecimal amount,String level){
+	PaymentVO payemntDetails=new PaymentVO();
+	payemntDetails.setAmount(amount);
+	payemntDetails.setDescription("Amount add for "+level);
+	payemntDetails.setRefrencenumber("REF"+System.currentTimeMillis());
+	payemntDetails.setPaymentmode("ADD");
+	return payemntDetails;
+}
 }

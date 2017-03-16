@@ -47,6 +47,12 @@ public class AbstractDAO<T> {
 		}
 	}
 	
+	public void saveOrUpdateList(List<T> abstractentitylist) {
+		for (T abstarctentity : abstractentitylist) {
+			getCurrentSession().saveOrUpdate(abstarctentity);
+		}
+	}
+	
 	public void saveOrUpdate(T p_abstractentity) {
         getCurrentSession().saveOrUpdate(p_abstractentity);
     }

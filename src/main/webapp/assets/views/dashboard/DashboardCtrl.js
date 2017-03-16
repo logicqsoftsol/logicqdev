@@ -51,6 +51,7 @@
 					$scope.viewuserprofile={};
 					$scope.paymentdetails={};
 					$scope.addMoney={};
+					$scope.networkcountlist=[];
 					
 					
 					angular.forEach($state.get(), function (item) {
@@ -262,10 +263,10 @@
 					}
 					if(null!=$scope.userdetails.userprofile.bankAccountDetails){
 					$scope.user.bankdetails.bankname=$scope.userdetails.userprofile.bankAccountDetails.bankName;
-					$scope.user.bankdetails.ifsccode=$scope.userprofile.bankAccountDetails.ifsccode;
-					$scope.user.bankdetails.accountNumber=$scope.userprofile.bankAccountDetails.accountNumber;
-					$scope.user.bankdetails.pancardno=$scope.userprofile.bankAccountDetails.pancardno;
-					$scope.user.bankdetails.accountHolderName=$scope.userprofile.bankAccountDetails.accountHolderName;
+					$scope.user.bankdetails.ifsccode=$scope.userdetails.userprofile.bankAccountDetails.ifsccode;
+					$scope.user.bankdetails.accountNumber=$scope.userdetails.userprofile.bankAccountDetails.accountNumber;
+					$scope.user.bankdetails.pancardno=$scope.userdetails.userprofile.bankAccountDetails.pancardno;
+					$scope.user.bankdetails.accountHolderName=$scope.userdetails.userprofile.bankAccountDetails.accountHolderName;
 		              }else{
 		            	  $scope.user.bankdetails.bankname="DUMMY BANK";
 		            	  $scope.user.bankdetails.ifsccode="DUMMY012";
@@ -273,6 +274,7 @@
 		            	  $scope.user.bankdetails.pancardno="DUMMYPAN";
 		            	  $scope.user.bankdetails.accountHolderName="GETPAY";
 		              }
+					$scope.networkcountlist=$scope.userdetails.networkcountlist;
 		        //$scope.user.userperformance.totalnetwork=$scope.userdetails.userperformance.network;
 					//$scope.user.userperformance.totalmetting=$scope.userdetails.userperformance.metting;
 					//$scope.user.userperformance.totaltask=$scope.userdetails.userperformance.task;
