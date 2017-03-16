@@ -152,7 +152,7 @@ session_destroy();
                                     data-ccity="Balesore" 
                                     data-cstate="ODISHA" 
                                     data-czip="756001" 
-                                    data-ccountry="INDIA">
+                                    data-ccountry="INDIA" >
                                     </div>
                                 </div>
                                 
@@ -160,9 +160,49 @@ session_destroy();
                                 
                                 <div class="news-body">
                                 
-                                                            
+                                 <?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM contact_us";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$contus_title = $db_field['title'];
+											$contus_address1 = $db_field['address1'];
+											$contus_address2 = $db_field['address2'];
+											$contus_address3 = $db_field['address3'];
+											$contus_pin = $db_field['Pin'];
+											$contus_tel = $db_field['Tel'];
+											$contus_fax = $db_field['Fax'];
+											$contus_mailid = $db_field['mailid'];
+											$contus_fblink = $db_field['fblink'];
+											$contus_twiterlink = $db_field['twiterlink'];
+											
+											print("<div itemscope itemtype='http://data-vocabulary.org/Organization'>");
+											print("<h2 class='title-median m-contact-subject' itemprop='name'>$contus_title</h2>");
+											print("<div class='m-contact-address' itemprop='address' itemscope itemtype='http://data-vocabulary.org/Address'>");
+											print("<span class='m-contact-street' itemprop='street-address'>$contus_address1</span>");
+											print("<span class='m-contact-city-region' itemprop='locality region'>$contus_address2</span>");
+											print("<span class='m-contact-zip-country' itemprop='postal-code country-name'>$contus_address3</span>");
+											print("<span class='m-contact-zip-country'>Pin-$contus_pin</span>");
+											print("</div>");
+											print("<div class='m-contact-tel-fax'>");
+											print("<span class='m-contact-tel'>Tel: <span itemprop='tel'>+91-$contus_tel</span></span>");
+											print("<span class='m-contact-fax'>Fax: <span itemprop='fax'>+91-$contus_fax</span></span>");
+											print("</div>");
+											print("</div>");
+											print("<div class='social-icons'>");
+											print("<ul class='list-unstyled list-inline'>");
+											print("<li><a href='mailto:$contus_mailid' title='Contact us'><i class='fa fa-envelope'></i></a></li>");
+											print("<li><a href='$contus_fblink' title='Facebook'><i class='fa fa-facebook'></i></a></li>");
+											print("</ul>");
+											print("</div>");
+																				
+											
+										}
+										mysql_close($db_handle);
+										?>                           
                                 
-                                <div itemscope itemtype="http://data-vocabulary.org/Organization"> 
+                               <!--  <div itemscope itemtype="http://data-vocabulary.org/Organization"> 
                                 
                                 	<h2 class="title-median m-contact-subject" itemprop="name">ST Mary's Convent School</h2>
 									
@@ -190,12 +230,9 @@ session_destroy();
                                     
                                     </ul>
                                 
-                                </div>
+                                </div> -->
                     
-							</li>
-                            
-                                    
-                                    <hr />
+							
                                     
                                     <h6>Drop us note!</h6>
                                     
