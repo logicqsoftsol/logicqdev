@@ -143,7 +143,7 @@ session_destroy();
                                     id="g-map-1" 
                                     class="map" 
                                     data-gmaptitle="Contact" 
-                                    data-gmapzoom="13" 
+                                    data-gmapzoom="15" 
                                     data-gmaplon="86.7601823" 
                                     data-gmaplat="21.9471398" 
                                     data-gmapmarker="" 
@@ -154,7 +154,7 @@ session_destroy();
                                     data-czip="756001" 
                                     data-ccountry="INDIA">
                                     </div>
-                                </div>`
+                                </div>
                                 
                                 <h1 class="page-title">Contact Us</h1>
                                 
@@ -279,9 +279,9 @@ session_destroy();
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<p>»");
+											print("<li>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</p>");
+											print("</li>");
 										}
 										mysql_close($db_handle);
 										?>
@@ -364,6 +364,7 @@ session_destroy();
                         	<li class="widget-container widget_nav_menu"><!-- widgets list -->
                     
                                 <h1 class="title-widget">Useful links</h1>
+                                
                                 <ul>
                                 	
 										<?php
@@ -376,9 +377,9 @@ session_destroy();
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<p>»");
+											print("<li>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</p>");
+											print("</li>");
 										}
 										mysql_close($db_handle);
 										?>
@@ -403,47 +404,35 @@ session_destroy();
                     
                                 <h1 class="title-widget">Contact</h1>
                                 
-                         <?php
-										include 'sql.php';
-
-										$SQL ="SELECT * FROM contact_us";;
-										$result = mysql_query($SQL);
-										while ($db_field = mysql_fetch_assoc($result)) {
-											$contus_title = $db_field['title'];
-											$contus_address1 = $db_field['address1'];
-											$contus_address2 = $db_field['address2'];
-											$contus_address3 = $db_field['address3'];
-											$contus_pin = $db_field['Pin'];
-											$contus_tel = $db_field['Tel'];
-											$contus_fax = $db_field['Fax'];
-											$contus_mailid = $db_field['mailid'];
-											$contus_fblink = $db_field['fblink'];
-											$contus_twiterlink = $db_field['twiterlink'];
-											
-											print("<div itemscope itemtype='http://data-vocabulary.org/Organization'>");
-											print("<h2 class='title-median m-contact-subject' itemprop='name'>$contus_title</h2>");
-											print("<div class='m-contact-address' itemprop='address' itemscope itemtype='http://data-vocabulary.org/Address'>");
-											print("<span class='m-contact-street' itemprop='street-address'>$contus_address1</span>");
-											print("<span class='m-contact-city-region' itemprop='locality region'>$contus_address2</span>");
-											print("<span class='m-contact-zip-country' itemprop='postal-code country-name'>$contus_address3</span>");
-											print("<span class='m-contact-zip-country'>$contus_pin</span>");
-											print("</div>");
-											print("<div class='m-contact-tel-fax'>");
-											print("<span class='m-contact-tel'>Tel: <span itemprop='tel'>+91-$contus_tel</span></span>");
-											print("<span class='m-contact-fax'>Fax: <span itemprop='fax'>+91-$contus_fax</span></span>");
-											print("</div>");
-											print("<div class='social-icons'>");
-											print("<ul class='list-unstyled list-inline'>");
-											print("<li><a href='mailto:$contus_mailid' title='Contact us'><i class='fa fa-envelope'></i></a></li>");
-											print("<li><a href='$contus_fblink' title='Facebook'><i class='fa fa-facebook'></i></a></li>");
-											print("</ul>");
-											print("</div>");
-																				
-											
-										}
-										mysql_close($db_handle);
-										?>
-                    
+                                <div itemscope itemtype="http://data-vocabulary.org/Organization"> 
+                                
+                                	<h2 class="title-median m-contact-subject" itemprop="name">ST Mary's Convent School</h2>
+									
+                                
+                                	<div class="m-contact-address" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
+                                		<span class="m-contact-street" itemprop="street-address">Laxmiposi Road, Baripada Municipal Market</span>
+                                		<span class="m-contact-city-region"><span class="m-contact-city" itemprop="locality">Baripada</span>, <span class="m-contact-region" itemprop="region">ODISHA</span></span>
+                                		<span class="m-contact-zip-country"><span class="m-contact-zip" itemprop="postal-code">757001</span> <span class="m-contact-country" itemprop="country-name">INDIA</span></span>
+                                	</div>
+                                     
+                                	<div class="m-contact-tel-fax">
+                                    	<span class="m-contact-tel">Tel: <span itemprop="tel">+(91)-6792-255290</span></span>
+                                    	<span class="m-contact-fax">Fax: <span itemprop="fax">+(91)-6792-255290</span></span>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="social-icons">
+                                
+                                	<ul class="list-unstyled list-inline">
+                                    
+                                    	<li><a href="mailto:info@stmaryrnpur.org" title="Contact us"><i class="fa fa-envelope"></i></a></li>
+                                        
+                                        <li><a href="https://www.facebook.com/pages/S-T-Mary-convent-School-Raghunath-Pur-Baripada/480859435290908" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                    
+                                    </ul>
+                                
+                                </div>
                     
 							</li>
                             
@@ -463,9 +452,13 @@ session_destroy();
                     
                                 <h1 class="title-widget">Send SMS</h1>
                                 
-								<button type="submit" class="btn btn-default"><a href="http://sms.sudhanshulenka.com/" title="Send SMS">SEND SMS</button></span>
-                                <span class="help-block">Click Here to Send SMS</span>
-
+								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
+                                    <div class="input-group">
+                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
+                                    </div>
+                                    <span class="help-block">Click Here to Send SMS</span>
+                                </form>
+                                
                     
 							</li>
                             
@@ -526,7 +519,6 @@ session_destroy();
     
     <!-- Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVWryYT9Ok1lnpE1o-BIt5MDa2Gl-IpbE" type="text/javascript"></script>
     
     <!-- Theme -->
     <script src="js/theme.js"></script>
