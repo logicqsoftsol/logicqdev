@@ -6,6 +6,7 @@ if (!$_SESSION['logon']){
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -46,9 +47,9 @@ if (!$_SESSION['logon']){
         
             </nav><!-- functional navig end -->
         
-        	<div class="col-lg-12">
+        	<!--div class="col-lg-12">
         
-        		<div id="k-site-logo" class="pull-left"><!-- site logo -->
+        		<div id="k-site-logo" class="pull-left"> // Site Logo
                 
                     <h1 class="k-logo">
                         <a href="index.php" title="Home Page">
@@ -56,11 +57,11 @@ if (!$_SESSION['logon']){
                         </a>
                     </h1>
                     
-                    <a id="mobile-nav-switch" href="#drop-down-left"><span class="alter-menu-icon"></span></a><!-- alternative menu button -->
+                    <a id="mobile-nav-switch" href="#drop-down-left"><span class="alter-menu-icon"></span></a> // alternative menu button 
             
-            	</div><!-- site logo end -->
-
-            	<nav id="k-menu" class="k-main-navig"><!-- main navig -->
+            	</div>  // site logo end 
+				
+            	<nav id="k-menu" class="k-main-navig"> // main navig 
         
                     <ul id="drop-down-left" class="k-dropdown-menu">
                         <li>
@@ -105,9 +106,9 @@ if (!$_SESSION['logon']){
                         </li>
                     </ul>
         
-            	</nav><!-- main navig end -->
+            	</nav> // main navig end
             
-            </div>
+            </div-->
             
         </div><!-- row end -->
     
@@ -123,7 +124,7 @@ if (!$_SESSION['logon']){
             	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
                 
                 	<ol class="breadcrumb">
-                    	<li><a href="index.php">Home</a></li>
+                    	<li><a href="admin_page	.php">Back</a></li>
                         <li class="active">ADMIN</li>
                     </ol>
                     
@@ -137,9 +138,7 @@ if (!$_SESSION['logon']){
                 	 <div class="row">
    					 <div class="col-sm-12 text-center">
        		  		  <button  class="btn btn-primary  btnhorizental" data-toggle="modal" data-target="#newsmodal">Add News</button>
-        			  <button  class="btn btn-danger  btnhorizental" data-toggle="modal" data-target="#newsmodal">Edit News</button>
-         			  <button class="btn btn-danger  btnhorizental" data-toggle="modal" data-target="#newsmodal">Delete News</button>
-    			 </div>
+        		</div>
 				</div>
                     <div class="col-padded col-shaded"><!-- inner custom column -->
                     
@@ -160,14 +159,15 @@ include 'sql.php';
 
 $SQL ="SELECT * FROM news";;
 $result = mysql_query($SQL);
-while ($db_field = mysql_fetch_assoc($result)) {
+while ($db_field = mysql_fetch_array($result)) {
 	$title = $db_field['title'];
 	$newsdate = $db_field['news_date'];
 	$details = $db_field['details'];
 	$imageurl = $db_field['imageurl'];
-	$id = $db_field['id'];
+	
 	print("<div class='col-md-5 col-lg-5 table-responsive '>");
-	print("<h1 class='title-median'><a href='#'>$title</a></h1>");
+	print("<h1 class='title-median'>$title</h1>");
+	//print("<a href='edit.php?id=$id>Edit</a>");
 	print("<div class='up-event-meta clearfix'>");
 	print("<div class='up-event-date'></div>$newsdate");
 	print("</div>");
@@ -176,12 +176,27 @@ while ($db_field = mysql_fetch_assoc($result)) {
 	print(" <a href='#'><img src='$imageurl' class='attachment-thumbnail wp-post-image' alt='Thumbnail 3' /></a>");
 	print(" </figure>");
 	print("  <div class='recent-news-text'>");
+	print("<a href=\"editnews.php?id=$db_field[id]\">Edit</a> | <a href=\"deletenews.php?id=$db_field[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a>");
 	print("<p> $details</p>");
 	print("</div>");
 	print("</div>");
 	print("</div>");
+	print("<br>");
+	
+	// print("<div id='test' class='modal fade' role='dialog'><div class='modal-dialog modal-lg'><div class='modal-content'><div class='modal-header'>
+	
+       // <h4 class='title-median'>$db_field[id]</h4>
+      //</div>
+      // <div class='modal-body'></div>
+	  //</div></div></div>");
+      	  
+
 }
 mysql_close($db_handle);
+
+
+
+
 ?>
 								  </div>
 								</div>
@@ -198,9 +213,7 @@ mysql_close($db_handle);
                 		 <div class="row">
    					 <div class="col-sm-12 text-center">
        		  		  <button  class="btn btn-primary  btnhorizental" data-toggle="modal" data-target="#eventsmodal">Add Event</button>
-        			  <button  class="btn btn-danger  btnhorizental" data-toggle="modal" data-target="#eventsmodal">Edit Event</button>
-         			  <button class="btn btn-danger  btnhorizental" data-toggle="modal" data-target="#eventsmodal">Delete Event</button>
-    			 </div>
+        		</div>
 				</div>
                     <div class="col-padded"><!-- inner custom column -->
                     
@@ -231,6 +244,7 @@ while ($db_field = mysql_fetch_assoc($result)) {
 	print("<div class='up-event-meta clearfix'>");
 	print("<div class='up-event-date'></div>$eventdate");
 	print("</div>");
+	print("<a href=\"editevents.php?id=$db_field[id]\">Edit</a> | <a href=\"deleteevents.php?id=$db_field[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a>");
 	print("<p> $description</p>");
 	print("</div>");
 }
@@ -266,34 +280,44 @@ mysql_close($db_handle);
         <h4 class="title-median">Events Details</h4>
       </div>
       <div class="modal-body">
-      <div class="col-md-5">
-      <input name='operationtype'  class="form-control"  type="text" placeholder="For Events" readonly>
-	</div>					
-	<div class="col-md-6">	
-	   <?php
-       include 'sql.php';
-       $SQL = "SELECT eventname,id FROM events ";
-       $result = mysql_query($SQL);
-	  print("<input type='text' class='form-control' list='eventnamelist' placeholder='Select Details'>");
-	   print("<datalist id='eventnamelist'>");
-	while ($db_field = mysql_fetch_assoc($result)) {
-		$ev_name = $db_field['eventname'];
-		$ev_id = $db_field['id'];
-		print("<option value='$ev_name'>'$ev_id'</option>");
-	}
-	print("</datalist>");
-	mysql_close($db_handle);
-	?>     
-	</div>	   	                  
-								Title : <input name = 'title' type = 'text' value = '' placeholder="Enter  Title">
-								Date : <input name = 'date' type = 'text' value = '' placeholder="Enter  Date">
-								Details: <textarea rows="5" cols="80" name = 'detail'  value = '' placeholder="Enter  Details"></textarea>
-						
+
+		<form method="post" enctype="multipart/form-data" class="form-horizontal" id="event_form" action="insertevent.php">
+     
+			 <table class="table table-bordered table-responsive">
+			 
+				<tr>
+				 <td><label class="control-label">Event Title</label></td>
+					<td><input class="form-control" type="text" name="event_title" placeholder="Enter News Title" value="<?php echo $event_title; ?>" /></td>
+				</tr>
+				
+				<tr>
+				 <td><label class="control-label">Date</label></td>
+					<td><input class="form-control" type="date" name="event_date" placeholder="" value="<?php echo $event_date; ?>" /></td>
+				</tr>
+				
+				<tr>
+				 <td><label class="control-label">Event Description</label></td>
+						<td>
+						<textarea rows="4" cols="50" name="event_desc" form="event_form" value="<?php echo $event_desc; ?>"></textarea>
+  						</td>
+					</tr>	
+				
+				<tr>
+					<td colspan="2"><button type="submit" name="eventsave" class="btn btn-default">
+					<span class="glyphicon glyphicon-save"></span> &nbsp; save
+					</button>
+					</td>
+				</tr>
+				
+				</table>
+				
+		</form >    
+	  
       </div>
-      <div class="modal-footer">
+      <!--div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      </div-->
     </div>
 
   </div>
@@ -309,35 +333,111 @@ mysql_close($db_handle);
         <h4 class="title-median">News Details</h4>
       </div>
       <div class="modal-body">				
-	<div class="col-md-5">	
-	   <?php
-       include 'sql.php';
-       $SQL = "SELECT title,id FROM news ";
-       $result = mysql_query($SQL);
-	  print("<select name='newlist' class='form-control' id='newlist' onchange='fetchNewsDetails(this.value);'>");
-	while ($db_field = mysql_fetch_assoc($result)) {
-		$ev_name = $db_field['title'];
-		$ev_id = $db_field['id'];
-		print("<option value=$ev_id>$ev_name</option>");
-	}
-	print("</select>");
-	mysql_close($db_handle);
-	?>  
-	</div>	   	                  
-						
-								Date : <input name = "newsdate" id="newsdate" type = "text"  placeholder="Enter  Date">
-								Details: <textarea rows="5" id="newsdetails" cols="80" name = 'newsdetails'   placeholder="Enter  Details"></textarea>
-						
+		<form method="post" enctype="multipart/form-data" class="form-horizontal" id="news_form"  action="insert.php">
+     
+			 <table class="table table-bordered table-responsive">
+			 
+				<tr>
+				 <td><label class="control-label">News Title</label></td>
+					<td><input class="form-control" type="text" name="news_title" placeholder="Enter News Title" value="<?php echo $news_title; ?>" /></td>
+				</tr>
+				
+				<tr>
+				 <td><label class="control-label">Date</label></td>
+					<td><input class="form-control" type="date" name="news_date" placeholder="" value="<?php echo $news_date; ?>" /></td>
+				</tr>
+				
+				<tr>
+				 <td><label class="control-label">Image to Upload</label></td>
+					<td><input class="input-group" type="file" name="news_image" accept="img/*" /></td>
+				</tr>
+				
+				<tr>
+				 <td><label class="control-label">News Description</label></td>
+						<td>
+						<textarea rows="4" cols="50" name="description" form="news_form" value="<?php echo $description; ?>"></textarea>
+  						</td>
+					</tr>	
+				
+				<tr>
+					<td colspan="2"><button type="submit" name="btnsave" class="btn btn-default">
+					<span class="glyphicon glyphicon-save"></span> &nbsp; save
+					</button>
+					</td>
+				</tr>
+				
+				</table>
+				
+		</form>
+	
       </div>
-      <div class="modal-footer">
+      <!--div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      </div-->
     </div>
 
   </div>
 </div> 
-   
+<div id="delete_newsmodal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="title-median">News Details</h4>
+      </div>
+      <div class="modal-body">				
+		<!--form method="post" enctype="multipart/form-data" class="form-horizontal" id="news_form" >
+     
+			 <table class="table table-bordered table-responsive">
+			 
+				<tr>
+				 <td><label class="control-label">News Title</label></td>
+					<td><input class="form-control" type="text" name="news_title" placeholder="Enter News Title" value="<?php echo $news_title; ?>" /></td>
+				</tr>
+				
+				<tr>
+				 <td><label class="control-label">Date</label></td>
+					<td><input class="form-control" type="date" name="news_date" placeholder="" value="<?php echo $news_date; ?>" /></td>
+				</tr>
+				
+				<tr>
+				 <td><label class="control-label">Image to Upload</label></td>
+					<td><input class="input-group" type="file" name="news_image" accept="img/*" /></td>
+				</tr>
+				
+				<tr>
+				 <td><label class="control-label">News Title</label></td>
+						<td>
+						<textarea rows="4" cols="50" name="description" form="news_form" value="<?php echo $description; ?>">Enter Description Here....</textarea>
+  						</td>
+					</tr>	
+				
+				<tr>
+					<td colspan="2"><button type="submit" name="btnsave" class="btn btn-default">
+					<span class="glyphicon glyphicon-save"></span> &nbsp; save
+					</button>
+					</td>
+				</tr>
+				
+				</table>
+				
+		</form-->
+	
+      </div>
+      <!--div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div-->
+    </div>
+
+  </div>
+
+ </div>
+ 
+ 
     <div id="k-subfooter"><!-- subfooter -->
     
     	<div class="container"><!-- container -->
@@ -384,9 +484,7 @@ mysql_close($db_handle);
     <!-- Theme -->
     <script src="js/theme.js"></script>
     <script type="text/javascript">
-function fetchNewsDetails(id){
-	
-}
+
 </script>
   </body>
 </html>
