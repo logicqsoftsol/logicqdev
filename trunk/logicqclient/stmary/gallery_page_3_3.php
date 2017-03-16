@@ -141,27 +141,78 @@ session_destroy();
                             
                             <div class="row gutter k-equal-height"><!-- row -->
                             
-                                <?php
-										include 'sql.php';
-
-										$SQL ="SELECT * FROM gallery_details";;
-										$result = mysql_query($SQL);
-										while ($db_field = mysql_fetch_assoc($result)) {
-											$glry_title = $db_field['title'];
-											$glry_photo = $db_field['photourl'];
-											
-											print("<div class='col-lg-4 col-md-4 col-sm-12'>");
-											print("<figure class='gallery-photo-thumb'>");
-											print("<a href='$glry_photo' title='Image' data-fancybox-group='gallery-bssb' class='fancybox'><img src='$glry_photo' alt='Image' /></a>");
-											print("</figure>");
-											print("<div class='gallery-photo-description'>$glry_title</div>");
-											print("</div>");
-																				
-											
-										}
-										mysql_close($db_handle);
-										?>
-								
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                	<figure class="gallery-photo-thumb">
+                                    	<a href="img/slide-1.jpg" title="Image 1" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-1.jpg" alt="Image 1" /></a>
+                                    </figure>
+                                    <div class="gallery-photo-description">
+                                    	Lorem ipsum dolor sit amet
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                	<figure class="gallery-photo-thumb">
+                                    	<a href="img/slide-2.jpg" title="Image 2" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-2.jpg" alt="Image 2" /></a>
+                                   	</figure>
+                                    <div class="gallery-photo-description">
+                                    	Nunc aliquam erat id nulla ultrices varius
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                	<figure class="gallery-photo-thumb">
+                                    	<a href="img/slide-3.jpg" title="Image 3" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-3.jpg" alt="Image 3" /></a>
+                                    </figure>
+                                    <div class="gallery-photo-description">
+                                    	Duis vehicula nec eros vel vehicula
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                	<figure class="gallery-photo-thumb">
+                                    	<a href="img/slide-4.jpg" title="Image 4" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-4.jpg" alt="Image 4" /></a>
+                                    </figure>
+                                    <div class="gallery-photo-description">
+                                    	Suspendisse sagittis
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                	<figure class="gallery-photo-thumb">
+                                    	<a href="img/slide-6.jpg" title="Image 5" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-6.jpg" alt="Image 5" /></a>
+                                    </figure>
+                                    <div class="gallery-photo-description">
+                                    	Orci quis venenatis sodales, eros est ultrices quam
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                	<figure class="gallery-photo-thumb">
+                                    	<a href="img/slide-5.jpg" title="Image 6" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-5.jpg" alt="Image 6" /></a>
+                                    </figure>
+                                    <div class="gallery-photo-description">
+                                    	Sit amet ultrices diam velit vel leo
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                	<figure class="gallery-photo-thumb">
+                                    	<a href="img/slide-7.jpg" title="Image 7" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-7.jpg" alt="Image 7" /></a>
+                                    </figure>
+                                    <div class="gallery-photo-description">
+                                    	Phasellus congue ornare odio rhoncus varius
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                	<figure class="gallery-photo-thumb">
+                                    	<a href="img/slide-8.jpg" title="Image 8" data-fancybox-group="gallery-bssb" class="fancybox"><img src="img/slide-8.jpg" alt="Image 8" /></a>
+                                    </figure>
+                                    <div class="gallery-photo-description">
+                                    	Cras luctus laoreet leo quis porttitor
+                                    </div>
+                                </div>
+                            
                             </div><!-- row end -->
                             
                         </div>
@@ -192,7 +243,7 @@ session_destroy();
                     
                                 <h1 class="title-widget">Useful links</h1>
                                 
-                                <ul>
+                               <ul>
                                 	
 										<?php
 										include 'sql.php';
@@ -204,9 +255,9 @@ session_destroy();
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<p>»");
+											print("<li>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</p>");
+											print("</li>");
 										}
 										mysql_close($db_handle);
 										?>
@@ -236,47 +287,30 @@ session_destroy();
                                 	<h2 class="title-median m-contact-subject" itemprop="name">ST Mary's Convent School</h2>
 									
                                 
-                                	<?php
-										include 'sql.php';
-
-										$SQL ="SELECT * FROM contact_us";;
-										$result = mysql_query($SQL);
-										while ($db_field = mysql_fetch_assoc($result)) {
-											$abus_title = $db_field['title'];
-											$abus_address1 = $db_field['address1'];
-											$abus_address2 = $db_field['address2'];
-											$abus_address3 = $db_field['address3'];
-											$abus_pin = $db_field['Pin'];
-											$abus_tel = $db_field['Tel'];
-											$abus_fax = $db_field['Fax'];
-											$abus_mailid = $db_field['mailid'];
-											$abus_fblink = $db_field['fblink'];
-											$abus_twiterlink = $db_field['twiterlink'];
-											
-											print("<div itemscope itemtype='http://data-vocabulary.org/Organization'>");
-											print("<h2 class='title-median m-contact-subject' itemprop='name'>$abus_title</h2>");
-											print("<div class='m-contact-address' itemprop='address' itemscope itemtype='http://data-vocabulary.org/Address'>");
-											print("<span class='m-contact-street' itemprop='street-address'>$abus_address1</span>");
-											print("<span class='m-contact-city-region' itemprop='locality region'>$abus_address2</span>");
-											print("<span class='m-contact-zip-country' itemprop='postal-code country-name'>$abus_address3</span>");
-											print("<span class='m-contact-zip-country'>$abus_pin</span>");
-											print("</div>");
-											print("<div class='m-contact-tel-fax'>");
-											print("<span class='m-contact-tel'>Tel: <span itemprop='tel'>+91-$abus_tel</span></span>");
-											print("<span class='m-contact-fax'>Fax: <span itemprop='fax'>+91-$abus_fax</span></span>");
-											print("</div>");
-											print("<div class='social-icons'>");
-											print("<ul class='list-unstyled list-inline'>");
-											print("<li><a href='mailto:$abus_mailid' title='Contact us'><i class='fa fa-envelope'></i></a></li>");
-											print("<li><a href='$abus_fblink' title='Facebook'><i class='fa fa-facebook'></i></a></li>");
-											print("</ul>");
-											print("</div>");
-																				
-											
-										}
-										mysql_close($db_handle);
-										?>
-                    
+                                	<div class="m-contact-address" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
+                                		<span class="m-contact-street" itemprop="street-address">Laxmiposi Road, Baripada Municipal Market</span>
+                                		<span class="m-contact-city-region"><span class="m-contact-city" itemprop="locality">Baripada</span>, <span class="m-contact-region" itemprop="region">ODISHA</span></span>
+                                		<span class="m-contact-zip-country"><span class="m-contact-zip" itemprop="postal-code">757001</span> <span class="m-contact-country" itemprop="country-name">INDIA</span></span>
+                                	</div>
+                                     
+                                	<div class="m-contact-tel-fax">
+                                    	<span class="m-contact-tel">Tel: <span itemprop="tel">+(91)-6792-255290</span></span>
+                                    	<span class="m-contact-fax">Fax: <span itemprop="fax">+(91)-6792-255290</span></span>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="social-icons">
+                                
+                                	<ul class="list-unstyled list-inline">
+                                    
+                                    	<li><a href="mailto:info@stmaryrnpur.org" title="Contact us"><i class="fa fa-envelope"></i></a></li>
+                                        
+                                        <li><a href="https://www.facebook.com/pages/S-T-Mary-convent-School-Raghunath-Pur-Baripada/480859435290908" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                    
+                                    </ul>
+                                
+                                </div>
                     
 							</li>
                             
@@ -296,9 +330,13 @@ session_destroy();
                     
                                 <h1 class="title-widget">Send SMS</h1>
                                 
-								<button type="submit" class="btn btn-default"><a href="http://sms.sudhanshulenka.com/" title="Send SMS">SEND SMS</button></span>
-                                <span class="help-block">Click Here to Send SMS</span>
-
+								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
+                                    <div class="input-group">
+                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
+                                    </div>
+                                    <span class="help-block">Click Here to Send SMS</span>
+                                </form>
+                                
                     
 							</li>
                             
