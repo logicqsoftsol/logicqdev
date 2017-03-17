@@ -15,7 +15,7 @@ if(isset($_GET['delete_id']))
   if($stmt_delete->execute())
 			{
 				echo '<script language="javascript">';
-				echo 'alert("Contact Us Content Removed Sucessfully"); location.href="aboutus_admin.php"';
+				echo 'alert("Contact Us Content Removed Sucessfully"); location.href="sch_add_admin.php"';
 				echo '</script>';
 			}
 			else
