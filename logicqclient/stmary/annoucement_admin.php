@@ -62,7 +62,7 @@ if (!$_SESSION['logon']){
                 
                 	<ol class="breadcrumb">
                     	<li><a href="admin_page.php">Back</a></li>
-                        <li class="active">Contact-Us</li>
+                        <li class="active">Annoucements</li>
                     </ol>
                     
                 </div><!-- breadcrumbs end -->
@@ -79,19 +79,21 @@ if (!$_SESSION['logon']){
                         
                         	<div class="col-lg-12 col-md-12">
                             
-                                <h1 class="page-title">Contact Us</h1>
+                                <h1 class="page-title">Announcements</h1>
                                 
                                 <div class="news-body">
 								
 								<div class="col-sm-12">
-								  <button  class="btn btn-primary  btnhorizental" data-toggle="modal" data-target="#school_contact_modal">Add School Address Here</button>
-								</div>
-                                
+								  <button  class="btn btn-primary  btnhorizental" data-toggle="modal" data-target="#announcement_modal">Add New Announcement Here</button>
+								                                
+								<br>
+								   	
+								
 								<?php
 								 error_reporting( ~E_NOTICE );
 								 require_once 'dbconfig.php';
 								 
-								 $stmt = $DB_con->prepare('SELECT *	 FROM contact_us');
+								 $stmt = $DB_con->prepare('SELECT * FROM announcements');
 								 $stmt->execute();
 								 
 								 if($stmt->rowCount() > 0)
@@ -101,39 +103,12 @@ if (!$_SESSION['logon']){
 								   extract($row);
 								?>
 						
-								<div itemscope itemtype='http://data-vocabulary.org/Organization'>
-									<h2 class="title-median m-contact-subject" itemprop="name"><?php echo $row['title'];  ?></h2>
-									<div class="m-contact-address" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-									
-									<span class="m-contact-street" itemprop="street-address"><?php echo $row['address1'];  ?></span>
-									<span class="m-contact-city-region" itemprop="street-address"><?php echo $row['address2'];  ?></span>
-									<span class="m-contact-zip-country" itemprop="street-address"><?php echo $row['address3'];  ?></span>
-									<span class="m-contact-zip-country" ><?php echo $row['Pin'];  ?></span>
-									</div>
-									<div class="m-contact-tel-fax">
-										 <span class="m-contact-tel">Tel:
-										 <span itemprop="tel"><?php echo $row['Tel'];  ?></span>
-										 </span>
-										 <span class="m-contact-fax">	
-										 <span itemprop="fax"><?php echo $row['Fax']  ?></span>
-										 </span>
-									</div>
-								</div>			
-								<div class="social-icons">
-								<ul class="list-unstyled list-inline">
-								<li><a href="mailto:<?php echo $row['mailid']  ?>" title="Contact us"><i class="fa fa-envelope"></i></a></li>
-								<li><a href="<?php echo $row['fblink']  ?>" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="<?php echo $row['twiterlink']  ?>" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-								</ul>
-								
-								<p class="page-header">
-									<span>
-										<a class="btn btn-danger" href="delete_contactus.php?delete_id=<?php echo $row['id']; ?>" title="click for delete" onclick="return confirm('sure to delete ?')"><span class="glyphicon glyphicon-remove-circle"></span> Delete</a>
-									</span>
-								</p>
-
-								</div>
-							                          
+								                                
+									<p>» <a href="<?php echo $row['fileurl'] ?>"><?php echo $row['title'] ?></a> 
+									<a href="delete_annoucement.php?delete_id=<?php echo $row['id']; ?>" title="click for delete" onclick="return confirm('sure to delete ?')"><span class="glyphicon glyphicon-remove	"></span></a>
+									</p>
+						            
+								                      
                                 <?php
 								  }
 								 }
@@ -150,6 +125,10 @@ if (!$_SESSION['logon']){
 								 
 							?>
 								
+								</div>			
+								
+								</div>
+							    
                                </div>
                             
                             </div>
@@ -167,7 +146,7 @@ if (!$_SESSION['logon']){
     
     </div><!-- content wrapper end -->
     
-	<div id="school_contact_modal" class="modal fade" role="dialog">
+	<div id="announcement_modal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
@@ -177,56 +156,51 @@ if (!$_SESSION['logon']){
         <h4 class="title-median">School Contact Details</h4>
       </div>
       <div class="modal-body">				
-		<form method="post" enctype="multipart/form-data" class="form-horizontal" id="school_contact"  action="add_school_contact.php">
+		<form method="post" enctype="multipart/form-data" class="form-horizontal" id="announcement"  action="add_annoucement.php">
      
 			 <table class="table table-responsive">
 			 
 				<tr>
-				 <td><label class="control-label">Title</label></td>
-					<td><input class="form-control" type="text" name="school_title" placeholder="" value="<?php echo $school_title; ?>" /></td>
+				 <td><label class="control-label">Annoucement Title</label></td>
+					<td><input class="form-control" type="text" name="ann_title" placeholder="" value="<?php echo $ann_title; ?>" /></td>
 				</tr>
 				
 				<tr>
-				 <td><label class="control-label">Address 1</label></td>
-					<td><input class="form-control" type="text" name="addres1" placeholder="" value="<?php echo $addres1; ?>" /></td>
-				</tr>
-				
-				<tr>
-				 <td><label class="control-label">Address 2</label></td>
-					<td><input class="form-control" type="text" name="addres2" placeholder="" value="<?php echo $addres2; ?>" /></td>
+				 <td><label class="control-label">Files to be Uploaded </label></td>
+					<td><input class="form-control" type="file" name="file" /></td>
 				</tr>
 				<tr>
-				 <td><label class="control-label">Address 3</label></td>
-					<td><input class="form-control" type="text" name="addres3" placeholder="" value="<?php echo $addres3; ?>" /></td>
-				</tr>
-				<tr>
-				 <td><label class="control-label">Pin</label></td>
-					<td><input class="form-control" type="text" name="pin" placeholder="" value="<?php echo $pin; ?>" /></td>
-				</tr>
-				<tr>
-					<td><label class="control-label">Tel</label><input class="form-control" type="text" name="tel" placeholder="" value="<?php echo $tel; ?>" /></td>
-					<td><label class="control-label">Fax</label><input class="form-control" type="text" name="fax" placeholder="" value="<?php echo $fax; ?>" /></td>
-				</tr>
-				<tr>
-				 <td><label class="control-label">Mail_ID</label></td>
-					<td><input class="form-control" type="text" name="mail" placeholder="" value="<?php echo $mail; ?>" /></td>
-				</tr>
-				<tr>
-				 <td><label class="control-label">Facebook Link</label></td>
-					<td><input class="form-control" type="text" name="fb_link" placeholder="" value="<?php echo $fb_link; ?>" /></td>
-				</tr>
-				<tr>
-				 <td><label class="control-label">Twiter Link</label></td>
-					<td><input class="form-control" type="text" name="twiter_link" placeholder="" value="<?php echo $twiter_link; ?>" /></td>
-				</tr>
-				<tr>
-					<td colspan="2"><button type="submit" name="school_contact" class="btn btn-default"> Add About US content </button>
+					<td colspan="2"><button type="submit" name="announcement" class="btn btn-default"> Add Annoucement </button>
 					</td>
 				</tr>
 				
 				</table>
 				
 		</form>
+		
+		<br> <br>
+		
+		<?php
+ if(isset($_GET['success']))
+ {
+  ?>
+        <label>File Uploaded Successfully...  </label>
+        <?php
+ }
+ else if(isset($_GET['fail']))
+ {
+  ?>
+        <label>Problem While File Uploading !</label>
+        <?php
+ }
+ else
+ {
+  ?>
+        <label>Try to upload any files(PDF, DOC, EXE, VIDEO, MP3, ZIP,etc...)</label>
+        <?php
+ }
+ ?>
+		
 	
       </div>
       <!--div class="modal-footer">
@@ -237,7 +211,21 @@ if (!$_SESSION['logon']){
 
   </div>
 </div>   
-  
+
+<div id="k-footer"><!-- footer -->
+    
+    	<div class="container"><!-- container -->
+        
+        	<div class="row no-gutter"><!-- row -->
+            
+            	<div class="col-lg-4 col-md-4"><!-- widgets column left -->
+    
+</div>
+</div>
+</div>
+</div>
+
+
     <div id="k-subfooter"><!-- subfooter -->
     
     	<div class="container"><!-- container -->
