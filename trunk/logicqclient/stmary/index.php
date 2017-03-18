@@ -494,9 +494,9 @@ mysql_close($db_handle);
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<li>»");
+											print("<p>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</li>");
+											print("</p>");
 										}
 										mysql_close($db_handle);
 										?>
@@ -523,35 +523,46 @@ mysql_close($db_handle);
                     
                                 <h1 class="title-widget">Contact</h1>
                                 
-                                <div itemscope itemtype="http://data-vocabulary.org/Organization"> 
-                                
-                                	<h2 class="title-median m-contact-subject" itemprop="name">ST Mary's Convent School</h2>
-									
-                                
-                                	<div class="m-contact-address" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-                                		<span class="m-contact-street" itemprop="street-address">Laxmiposi Road, Baripada Municipal Market</span>
-                                		<span class="m-contact-city-region"><span class="m-contact-city" itemprop="locality">Baripada</span>, <span class="m-contact-region" itemprop="region">ODISHA</span></span>
-                                		<span class="m-contact-zip-country"><span class="m-contact-zip" itemprop="postal-code">757001</span> <span class="m-contact-country" itemprop="country-name">INDIA</span></span>
-                                	</div>
-                                     
-                                	<div class="m-contact-tel-fax">
-                                    	<span class="m-contact-tel">Tel: <span itemprop="tel">+(91)-6792-255290</span></span>
-                                    	<span class="m-contact-fax">Fax: <span itemprop="fax">+(91)-6792-255290</span></span>
-                                    </div>
-                                    
-                                </div>
-                                
-                                <div class="social-icons">
-                                
-                                	<ul class="list-unstyled list-inline">
-                                    
-                                    	<li><a href="mailto:info@stmaryrnpur.org" title="Contact us"><i class="fa fa-envelope"></i></a></li>
-                                        
-                                        <li><a href="https://www.facebook.com/pages/S-T-Mary-convent-School-Raghunath-Pur-Baripada/480859435290908" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                    
-                                    </ul>
-                                
-                                </div>
+                                <?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM contact_us";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$abus_title = $db_field['title'];
+											$abus_address1 = $db_field['address1'];
+											$abus_address2 = $db_field['address2'];
+											$abus_address3 = $db_field['address3'];
+											$abus_pin = $db_field['Pin'];
+											$abus_tel = $db_field['Tel'];
+											$abus_fax = $db_field['Fax'];
+											$abus_mailid = $db_field['mailid'];
+											$abus_fblink = $db_field['fblink'];
+											$abus_twiterlink = $db_field['twiterlink'];
+											
+											print("<div itemscope itemtype='http://data-vocabulary.org/Organization'>");
+											print("<h2 class='title-median m-contact-subject' itemprop='name'>$abus_title</h2>");
+											print("<div class='m-contact-address' itemprop='address' itemscope itemtype='http://data-vocabulary.org/Address'>");
+											print("<span class='m-contact-street' itemprop='street-address'>$abus_address1</span>");
+											print("<span class='m-contact-city-region' itemprop='locality region'>$abus_address2</span>");
+											print("<span class='m-contact-zip-country' itemprop='postal-code country-name'>$abus_address3</span>");
+											print("<span class='m-contact-zip-country'>$abus_pin</span>");
+											print("</div>");
+											print("<div class='m-contact-tel-fax'>");
+											print("<span class='m-contact-tel'>Tel: <span itemprop='tel'>+91-$abus_tel</span></span>");
+											print("<span class='m-contact-fax'>Fax: <span itemprop='fax'>+91-$abus_fax</span></span>");
+											print("</div>");
+											print("<div class='social-icons'>");
+											print("<ul class='list-unstyled list-inline'>");
+											print("<li><a href='mailto:$abus_mailid' title='Contact us'><i class='fa fa-envelope'></i></a></li>");
+											print("<li><a href='$abus_fblink' title='Facebook'><i class='fa fa-facebook'></i></a></li>");
+											print("</ul>");
+											print("</div>");
+																				
+											
+										}
+										mysql_close($db_handle);
+										?>
                     
 							</li>
                             
@@ -571,14 +582,9 @@ mysql_close($db_handle);
                     
                                 <h1 class="title-widget">Send SMS</h1>
                                 
-								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
-                                    <div class="input-group">
-                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
-                                    </div>
-                                    <span class="help-block">Click Here to Send SMS</span>
-                                </form>
-                                
-                    
+								<button type="submit" class="btn btn-default"><a href="http://sms.sudhanshulenka.com/" title="Send SMS">SEND SMS</button></span>
+                                <span class="help-block">Click Here to Send SMS</span>
+         
 							</li>
                             
                         </ul> 

@@ -18,44 +18,41 @@
 		$twiter_link = $_POST['twiter_link'];
 				
 		if(empty($school_title)){
-			$errMSG = "Please Enter School Name.";
+			echo $errMSG = "Please Enter School Name.";
 		}
 		else if(empty($addres1)){
-			$errMSG = "Please Enter Address 1.";
+			echo $errMSG = "Please Enter Address 1.";
 		}
 		else if(empty($addres2)){
-			$errMSG = "Please Enter Address 2.";
+			echo $errMSG = "Please Enter Address 2.";
 		}
 		else if(empty($addres3)){
-			$errMSG = "Please Enter Address 3.";
+			echo $errMSG = "Please Enter Address 3.";
 		}
 		else if(empty($fax)){
-			$errMSG = "Please Enter Fax Number.";
+			echo $errMSG = "Please Enter Fax Number.";
 		}
 		else if(empty($pin)){
-			$errMSG = "Please Enter Pin";
+			echo $errMSG = "Please Enter Pin";
 		}
 		else if(empty($tel)){
-			$errMSG = "Please Enter Telephone.";
+			echo $errMSG = "Please Enter Telephone.";
 		}
 		else if(empty($mail)){
-			$errMSG = "Please Enter Mail ID.";
+			echo $errMSG = "Please Enter Mail ID.";
 		}
 		else if(empty($fb_link)){
-			$errMSG = "Please Enter Facebook Link.";
+			echo $errMSG = "Please Enter Facebook Link.";
 		}
 		else if(empty($twiter_link)){
-			$errMSG = "Please Enter Twitter Link.";
+			echo $errMSG = "Please Enter Twitter Link.";
 		}
-		else {
-			$errMSG = "Please Enter At Least 2 Field";
-		}
-			
+					
 		
 		// if no error occured, continue ....
 		if(!isset($errMSG))
 		{
-			$stmt = $DB_con->prepare('INSERT INTO contact_us(title, address1, address2, address3, Pin, Tel, Fax, mailid, fblink, twiterlink) VALUES(:title,:addres1,:addres2,:addres3,:Pin,:Tel,:Fax,:mail,:fb_link,:twiter_link)');
+			$stmt = $DB_con->prepare('INSERT INTO contact_us(title, address1, address2, address3, Pin, Tel, Fax, mailid, fblink, twiterlink) VALUES(:title, :addres1, :addres2, :addres3, :Pin, :Tel, :Fax, :mail, :fb_link, :twiter_link)');
 			$stmt->bindParam(':title',$school_title);
 			$stmt->bindParam(':addres1',$addres1);
 			$stmt->bindParam(':addres2',$addres2);

@@ -3,6 +3,7 @@ session_start();
 session_destroy();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -121,264 +122,63 @@ session_destroy();
                 
                 	<ol class="breadcrumb">
                     	<li><a href="index.php">Home</a></li>
-                        <li class="active">Gallery</li>
+                        <li class="active">Gallery-2015-16</li>
                     </ol>
                     
                 </div><!-- breadcrumbs end -->
                 
             </div><!-- row end -->
             
-            <div class="row no-gutter"><!-- row -->
+            <div class="row no-gutter fullwidth"><!-- row -->
                 
-                <div class="col-lg-8 col-md-8"><!-- doc body wrapper -->
+                <div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
                 	
                     <div class="col-padded"><!-- inner custom column -->
-                    
-                    	<div class="row gutter"><!-- row -->
                         
-                        	<div class="col-lg-12 col-md-12">
-                    
-                            	<h1 class="page-title">School Galleries</h1><!-- category title -->
+                        <?php
+						
+						include 'sql.php';
+						$SQL ="SELECT * FROM gallery_details";
+						$result = mysql_query($SQL);
+						$noofrows = mysql_num_rows($result);
+						print("<h1 class='page-title'>ST Mary's School students buzz <span class='label label-info'>$noofrows photos</span></h1>");
+                        
+						
+						
+						?> 
+                        
+                        <div class="news-body">
                             
-                            </div>
-                        
-                        </div><!-- row end -->
-                    
-                    	<div class="row gutter"><!-- row -->
-                        
-                        	<div class="col-lg-12 col-md-12">
+                            <div class="row gutter k-equal-height"><!-- row -->
                             
-                            	<div class="gallery-wrapper"><!-- gallery single wrap -->
-                            	
-                            		<figure class="gallery-last-photo clearfix">
-                            			<a href="#" title="Gallery 01"><img src="img/news-5.jpg" alt="Leading photo" /></a>
-                            		</figure>
-                            		
-                            		<div class="gallery-info">
-                            			<span class="gallery-photos-num">24</span>
-                            			<span class="gallery-photos-tag">photos</span>
-                            		</div>
-                                    
-                                    <div class="gallery-meta">
-                                    	<h1 class="gallery-title"><a href="#" title="Gallery 01">ST Mary's School students buzz</a></h1>
-                                        <p class="gallery-description">
-                                    	What do the do, where do they go when off the lectures...
-                                    	</p>
-                                    </div>
-                                
-                                </div><!-- gallery single wrap end -->
-                                
-                            	<div class="gallery-wrapper"><!-- gallery single wrap -->
-                            	
-                            		<figure class="gallery-last-photo clearfix">
-                            			<a href="#" title="Gallery 02"><img src="img/news-6.jpg" alt="Leading photo" /></a>
-                            		</figure>
-                            		
-                            		<div class="gallery-info">
-                            			<span class="gallery-photos-num">09</span>
-                            			<span class="gallery-photos-tag">photos</span>
-                            		</div>
-                                    
-                                    <div class="gallery-meta">
-                                    	<h1 class="gallery-title"><a href="#" title="Gallery 01">Cody Rotschild has back from Montreal</a></h1>
-                                        <p class="gallery-description">
-                                    	A couple of Cody Rotschild shots taken at the school hall...
-                                    	</p>
-                                    </div>
-                                
-                                </div><!-- gallery single wrap end -->
-                                
-                            	<div class="gallery-wrapper"><!-- gallery single wrap -->
-                            	
-                            		<figure class="gallery-last-photo clearfix">
-                            			<a href="#" title="Gallery 03"><img src="img/slide-2.jpg" alt="Leading photo" /></a>
-                            		</figure>
-                            		
-                            		<div class="gallery-info">
-                            			<span class="gallery-photos-num">13</span>
-                            			<span class="gallery-photos-tag">photos</span>
-                            		</div>
-                                    
-                                    <div class="gallery-meta">
-                                    	<h1 class="gallery-title"><a href="#" title="Gallery 01">Drinking coffee School competition</a></h1>
-                                        <p class="gallery-description">
-                                    	How much coffee students drink during a day...
-                                    	</p>
-                                    </div>
-                                
-                                </div><!-- gallery single wrap end -->
-                                
-                            	<div class="gallery-wrapper"><!-- gallery single wrap -->
-                            	
-                            		<figure class="gallery-last-photo clearfix">
-                            			<a href="#" title="Gallery 04"><img src="img/slide-5.jpg" alt="Leading photo" /></a>
-                            		</figure>
-                            		
-                            		<div class="gallery-info">
-                            			<span class="gallery-photos-num">33</span>
-                            			<span class="gallery-photos-tag">photos</span>
-                            		</div>
-                                    
-                                    <div class="gallery-meta">
-                                    	<h1 class="gallery-title"><a href="#" title="Gallery 01">Students painting School walls</a></h1>
-                                        <p class="gallery-description">
-                                    	Take a look at how much work they did in the past couple of days...
-                                    	</p>
-                                    </div>
-                                
-                                </div><!-- gallery single wrap end -->
-                                
-                            	<div class="gallery-wrapper"><!-- gallery single wrap -->
-                            	
-                            		<figure class="gallery-last-photo clearfix">
-                            			<a href="#" title="Gallery 05"><img src="img/slide-8.jpg" alt="Leading photo" /></a>
-                            		</figure>
-                            		
-                            		<div class="gallery-info">
-                            			<span class="gallery-photos-num">07</span>
-                            			<span class="gallery-photos-tag">photos</span>
-                            		</div>
-                                    
-                                    <div class="gallery-meta">
-                                    	<h1 class="gallery-title"><a href="#" title="Gallery 01">At the School Yard</a></h1>
-                                        <p class="gallery-description">
-                                    	What they do when lectures are over...
-                                    	</p>
-                                    </div>
-                                
-                                </div><!-- gallery single wrap end -->
+                                <?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM gallery_details";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$glry_title = $db_field['title'];
+											$glry_photo = $db_field['photourl'];
+											
+											print("<div class='col-lg-4 col-md-4 col-sm-12'>");
+											print("<figure class='gallery-photo-thumb'>");
+											print("<a href='$glry_photo' title='Image' data-fancybox-group='gallery-bssb' class='fancybox'><img src='$glry_photo' alt='Image' /></a>");
+											print("</figure>");
+											print("<div class='gallery-photo-description'>$glry_title</div>");
+											print("</div>");
+																				
+											
+										}
+										mysql_close($db_handle);
+										?>
+								
+                            </div><!-- row end -->
                             
-                            </div>
-                        
-                        </div><!-- row end -->
-                        
-                        <div class="row gutter"><!-- row -->
-                        
-                        	<div class="col-lg-12">
-                        
-                                <ul class="pagination pull-right"><!-- pagination -->
-                                    <li class="disabled"><a href="#">Prev</a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">Next</a></li>
-                                </ul><!-- pagination end -->
-                            
-                            </div>
-                            
-                        </div><!-- row end -->
+                        </div>
                     
                     </div><!-- inner custom column end -->
                     
                 </div><!-- doc body wrapper end -->
-                
-                <div id="k-sidebar" class="col-lg-4 col-md-4"><!-- sidebar wrapper -->
-                	
-                    <div class="col-padded col-shaded"><!-- inner custom column -->
-                    
-                        <ul class="list-unstyled clear-margins"><!-- widgets -->
-                        
-                        	<li class="widget-container widget_nav_menu"><!-- widget -->
-                    
-                                <h1 class="title-widget">Useful links</h1>
-                                
-                               <ul>
-                                	
-										<?php
-										include 'sql.php';
-
-										$SQL ="SELECT * FROM announcements";;
-										$result = mysql_query($SQL);
-										while ($db_field = mysql_fetch_assoc($result)) {
-											$ann_title = $db_field['title'];
-											$ann_details = $db_field['details'];
-											$ann_fileurl = $db_field['fileurl'];
-											$ann_id = $db_field['id'];
-											print("<li>»");
-											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</li>");
-										}
-										mysql_close($db_handle);
-										?>
-                                    
-                                </ul>
-                    
-							</li>
-                            
-                        	<li class="widget-container widget_recent_news"><!-- widgets list -->
-                    
-                                <h1 class="title-widget">School News</h1>
-                                
-                                <ul class="list-unstyled">
-                                
-														<?php
-include 'sql.php';
-
-$SQL ="SELECT * FROM news";;
-$result = mysql_query($SQL);
-while ($db_field = mysql_fetch_assoc($result)) {
-	$title = $db_field['title'];
-	$newsdate = $db_field['news_date'];
-	$details = $db_field['details'];
-	$imageurl = $db_field['imageurl'];
-	$id = $db_field['id'];
-	print("<li class='recent-news-wrap news-no-summary'>");
-	print("<div class='recent-news-content clearfix'>");
-	print(" <figure class='recent-news-thumb'>");
-	print(" <a href='#'><img src='$imageurl' class='attachment-thumbnail wp-post-image' alt='Thumbnail' /></a>");
-	print(" </figure>");
-	print("<div class='recent-news-text'>");
-	print("<div class='recent-news-meta'>");
-	print("<div class='recent-news-date'>$newsdate</div>");
-	print("</div>");
-	print(" <div class='news-summary'>");
-	print("<h1 class='title-median'>$title</h1>");
-	print("</div>");
-	print("</div>");
-	print("</li>");
-	
-}
-mysql_close($db_handle);
-?>
-                                
-                                </ul>
-                                
-                            </li><!-- widgets list end -->
-                            
-                        	<li class="widget-container widget_newsletter"><!-- widget -->
-                            
-                            	<h1 class="title-titan">School Newsletter</h1>
-                                
-                                <form role="search" method="get" class="newsletter-form" action="#">
-                                    <div class="input-group">
-                                        <input type="text" placeholder="Your e-mail address" autocomplete="off" class="form-control newsletter-form-input" name="email" />
-                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">GO!</button></span>
-                                    </div>
-                                    <span class="help-block">* Enter your e-mail address to subscribe.</span>
-                                </form>
-                            
-                            </li>
-                            
-                            <li class="widget-container widget_text"><!-- widget -->
-                            
-                            	<a href="#" class="custom-button cb-red" title="How to apply?">
-                                	<i class="custom-button-icon fa fa-empire"></i>
-                                    <span class="custom-button-wrap">
-                                    	<span class="custom-button-title">Donate Now</span>
-                                        <span class="custom-button-tagline">Become a corporate sponsor of our schools!</span>
-                                    </span>
-                                    <em></em>
-                                </a>
-                            
-                            </li>
-                            
-                        </ul><!-- widgets end -->
-                    
-                    </div><!-- inner custom column end -->
-                    
-                </div><!-- sidebar wrapper end -->
             
             </div><!-- row end -->
         
@@ -414,9 +214,9 @@ mysql_close($db_handle);
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<li>»");
+											print("<p>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</li>");
+											print("</p>");
 										}
 										mysql_close($db_handle);
 										?>
@@ -439,36 +239,54 @@ mysql_close($db_handle);
                         
                         	<li class="widget-container widget_recent_news"><!-- widgets list -->
                     
-                                <h1 class="title-widget">School Contact</h1>
+                                <h1 class="title-widget">Contact</h1>
                                 
                                 <div itemscope itemtype="http://data-vocabulary.org/Organization"> 
                                 
-                                	<h2 class="title-median m-contact-subject" itemprop="name">Buntington Public Schools</h2>
+                                	<h2 class="title-median m-contact-subject" itemprop="name">ST Mary's Convent School</h2>
+									
                                 
-                                	<div class="m-contact-address" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-                                		<span class="m-contact-street" itemprop="street-address">19 Tower Avenue, Buntington Station</span>
-                                		<span class="m-contact-city-region"><span class="m-contact-city" itemprop="locality">New York</span>, <span class="m-contact-region" itemprop="region">NY</span></span>
-                                		<span class="m-contact-zip-country"><span class="m-contact-zip" itemprop="postal-code">11506</span> <span class="m-contact-country" itemprop="country-name">USA</span></span>
-                                	</div>
-                                     
-                                	<div class="m-contact-tel-fax">
-                                    	<span class="m-contact-tel">Tel: <span itemprop="tel">631-551-3678</span></span>
-                                    	<span class="m-contact-fax">Fax: <span itemprop="fax">631-551-3688</span></span>
-                                    </div>
-                                    
-                                </div>
-                                
-                                <div class="social-icons">
-                                
-                                	<ul class="list-unstyled list-inline">
-                                    
-                                    	<li><a href="#" title="Contact us"><i class="fa fa-envelope"></i></a></li>
-                                        <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                    
-                                    </ul>
-                                
-                                </div>
+                                	<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM contact_us";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$abus_title = $db_field['title'];
+											$abus_address1 = $db_field['address1'];
+											$abus_address2 = $db_field['address2'];
+											$abus_address3 = $db_field['address3'];
+											$abus_pin = $db_field['Pin'];
+											$abus_tel = $db_field['Tel'];
+											$abus_fax = $db_field['Fax'];
+											$abus_mailid = $db_field['mailid'];
+											$abus_fblink = $db_field['fblink'];
+											$abus_twiterlink = $db_field['twiterlink'];
+											
+											print("<div itemscope itemtype='http://data-vocabulary.org/Organization'>");
+											print("<h2 class='title-median m-contact-subject' itemprop='name'>$abus_title</h2>");
+											print("<div class='m-contact-address' itemprop='address' itemscope itemtype='http://data-vocabulary.org/Address'>");
+											print("<span class='m-contact-street' itemprop='street-address'>$abus_address1</span>");
+											print("<span class='m-contact-city-region' itemprop='locality region'>$abus_address2</span>");
+											print("<span class='m-contact-zip-country' itemprop='postal-code country-name'>$abus_address3</span>");
+											print("<span class='m-contact-zip-country'>$abus_pin</span>");
+											print("</div>");
+											print("<div class='m-contact-tel-fax'>");
+											print("<span class='m-contact-tel'>Tel: <span itemprop='tel'>+91-$abus_tel</span></span>");
+											print("<span class='m-contact-fax'>Fax: <span itemprop='fax'>+91-$abus_fax</span></span>");
+											print("</div>");
+											print("<div class='social-icons'>");
+											print("<ul class='list-unstyled list-inline'>");
+											print("<li><a href='mailto:$abus_mailid' title='Contact us'><i class='fa fa-envelope'></i></a></li>");
+											print("<li><a href='$abus_fblink' title='Facebook'><i class='fa fa-facebook'></i></a></li>");
+											print("</ul>");
+											print("</div>");
+																				
+											
+										}
+										mysql_close($db_handle);
+										?>
+                    
                     
 							</li>
                             
@@ -488,13 +306,9 @@ mysql_close($db_handle);
                     
                                 <h1 class="title-widget">Send SMS</h1>
                                 
-								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
-                                    <div class="input-group">
-                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
-                                    </div>
-                                    <span class="help-block">Click Here to Send SMS</span>
-                                </form>
-                                
+								<button type="submit" class="btn btn-default"><a href="http://sms.sudhanshulenka.com/" title="Send SMS">SEND SMS</button></span>
+                                <span class="help-block">Click Here to Send SMS</span>
+
                     
 							</li>
                             

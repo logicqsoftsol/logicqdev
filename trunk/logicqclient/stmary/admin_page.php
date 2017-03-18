@@ -78,10 +78,10 @@ if (!$_SESSION['logon']){
                             <a href="sch_add_admin.php" title="ADD/DELETE">School Address</a>
                         </li>
                         <li>
-                            <a href="hm_slide_admin.php" title="ADD/DELETE">Home Page Silder</a>
+                            <a href="slider_admin.php" title="ADD/DELETE">Home Page Silder</a>
                         </li>
                         <li>
-                            <a href="annoucment_admin.php" title="ADD/DELETE">Annoucements</a>
+                            <a href="annoucement_admin.php" title="ADD/DELETE">Annoucements</a>
                         </li>
                     </ul>
 	
