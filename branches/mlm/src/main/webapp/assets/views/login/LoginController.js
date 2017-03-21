@@ -33,11 +33,13 @@
 					$location.path('/dashboard/overview');
 				}
 			     var errormsg='Sucess fully able to login';
-				 $rootScope.$emit("callAddAlert", {type:'info',msg:errormsg});
+				// alert(errormsg);
+				 //$rootScope.$emit("callAddAlert", {type:'info',msg:errormsg});
 				}
 			}).error(function(response, status) {
 				var errormsg='Unable to Login Check setting or Loging Details '+' Status Code : '+status;
-				 $rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+				 //$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+				alert(errormsg);
 				$exceptionHandler(errormsg);
 				$location.path('/login');
 			});

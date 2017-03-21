@@ -29,7 +29,9 @@
 	    'getUserProfileDetailsURL' : '/api/user/getUserBasicDetails',
 	    'addMoneyToWalletURL' : '/api/admin/addMoneyToWallet',
 	    'senMoneyURL' : '/api/admin/sendMoney',
-	    'getTransactionDetailsURL' : '/api/admin/getTransactionDetails'
+	    'getTransactionDetailsURL' : '/api/admin/getTransactionDetails',
+	    'reloadWalletStmntURL' : '/api/user/getUserWalletDetails',
+	    'roolbackTransactionDetailsURL' : '/api/admin/rollBackTransactionDetails'
 	}).directive('ngConfirmClick', [
 	                                   function(){
 	                                       return {

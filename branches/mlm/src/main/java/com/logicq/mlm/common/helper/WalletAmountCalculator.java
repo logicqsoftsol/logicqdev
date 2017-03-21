@@ -40,6 +40,7 @@ public class WalletAmountCalculator {
 		transactionDetail.setWalletid(walletid);
 		transactionDetail.setTxnfor(firstName + " " + lastName);
 		transactionDetail.setRefrenceno(paymentDetails.getRefrencenumber());
+		transactionDetail.setTxnNumber(StringFormatHelper.randomString());
 		return transactionDetail;
 	}
 	
@@ -52,6 +53,7 @@ public class WalletAmountCalculator {
 		transactionDetail.setWalletid(walletid);
 		transactionDetail.setTxnfor(firstName + " " + lastName);
 		transactionDetail.setRefrenceno(encahedDetails.getRefrencenumber());
+		transactionDetail.setTxnNumber(StringFormatHelper.randomString());
 		return transactionDetail;
 	}
 	

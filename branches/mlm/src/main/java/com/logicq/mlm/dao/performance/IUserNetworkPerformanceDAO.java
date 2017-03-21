@@ -11,4 +11,5 @@ public interface IUserNetworkPerformanceDAO {
 	List<UserNetworkCount> getNetworkPerformance(UserNetworkCount usernetowrk);
 	void addUserNetworkPerformanceList(List<UserNetworkCount> usernetowrkList);
 	UserNetworkCount getNetworkPerformanceForMemeberandLevel(UserNetworkCount usernetowrk);
+	public void saveorupdateUserNetworkPerformance(UserNetworkCount usernetowrk);
 }

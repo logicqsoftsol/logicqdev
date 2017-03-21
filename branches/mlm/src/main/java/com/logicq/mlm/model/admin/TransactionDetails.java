@@ -28,23 +28,26 @@ public class TransactionDetails {
 	@Column(name = "TXN_DATE")
 	private Date txndate;
 
-	@Column(name = "TXN_AMOUT")
+	@Column(name = "TXN_AMOUT", nullable = false)
 	private BigDecimal amount;
 	
-	@Column(name = "MODE_OF_TXN")
+	@Column(name = "MODE_OF_TXN",nullable = false)
 	private String modeoftxn;
 	
-	@Column(name = "TXN_REFRENCE_NO")
+	@Column(name = "TXN_REFRENCE_NO",nullable = false)
 	private String refrenceno;
 	
 	@Column(name = "TXN_FOR")
 	private String txnfor;
 	
-	@Column(name = "WALLET_ID")
+	@Column(name = "WALLET_ID",nullable = false)
 	private String walletid;
 	
 	@Column(name = "TXN_TYPE")
 	private String txntype;
+	
+	@Column(name = "TXN_NUMBER",nullable = false)
+	private String txnNumber;
 
 
 	public Long getTxnid() {
@@ -121,12 +124,18 @@ public class TransactionDetails {
 		this.txntype = txntype;
 	}
 
+	public String getTxnNumber() {
+		return txnNumber;
+	}
+
+	public void setTxnNumber(String txnNumber) {
+		this.txnNumber = txnNumber;
+	}
+
 	@Override
 	public String toString() {
 		return "TransactionDetails [txnid=" + txnid + ", description=" + description + ", txndate=" + txndate
 				+ ", amount=" + amount + ", modeoftxn=" + modeoftxn + ", refrenceno=" + refrenceno + ", txnfor="
-				+ txnfor + ", walletid=" + walletid + ", txntype=" + txntype + "]";
+				+ txnfor + ", walletid=" + walletid + ", txntype=" + txntype + ", txnNumber=" + txnNumber + "]";
 	}
-
-	
 }

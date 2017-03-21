@@ -39,6 +39,11 @@ public class TransactionDetailsService implements ITransactionDetailsService {
 		UserProfile userprofile=userService.fetchUserAccordingToUserName(username);
 		return transactionDetailsDAO.getTransactionDetails(userprofile.getWalletdetails().getWalletid());
 	}
+
+	@Override
+	public List<TransactionDetails> getTransactionDetailsAccordingToRefrenceNumber(String refrenceNumber) {
+		return transactionDetailsDAO.getTransactionDetailsAccordingToRefrenceNumber(refrenceNumber);
+	}
 	
 	
 

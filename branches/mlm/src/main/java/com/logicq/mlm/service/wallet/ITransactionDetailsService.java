@@ -8,5 +8,6 @@ public interface ITransactionDetailsService {
 	
 	void save(TransactionDetails transactionDetails);
 	List<TransactionDetails> getTransactionDetails(String username);
+	List<TransactionDetails> getTransactionDetailsAccordingToRefrenceNumber(String refrenceNumber);
 
 }
