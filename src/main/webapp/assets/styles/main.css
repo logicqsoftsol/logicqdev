@@ -9647,6 +9647,10 @@ html,body {
     cursor: pointer;
 }
 
+.spanclikable {
+    cursor: pointer;
+}
+
 .panel-heading span {
     margin-top: -20px;
     font-size: 15px;
@@ -9736,6 +9740,16 @@ html,body {
 .btn-space {
     margin-right: 5px;
 }
+.divspace div {
+    margin: 2px;
+}
+.span-space{
+   margin-right: 5px;
+    margin-left: 5px;
+}
+.btn-space-a {
+    margin-right: 20px;
+}
 #horizontal_scroll{
   overflow-x: scroll;
   width: auto;
@@ -9752,4 +9766,9 @@ html,body {
 .stylish-input-group button{
     border:0;
     background:transparent;
+}
+.table-fixed tbody {
+  height: 60px;
+  overflow-y: auto;
+  width: 100%;
 }

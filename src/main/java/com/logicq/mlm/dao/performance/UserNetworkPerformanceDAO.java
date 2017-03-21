@@ -24,7 +24,12 @@ public class UserNetworkPerformanceDAO extends AbstractDAO<UserNetworkCount> imp
 	public void addUserNetworkPerformanceList(List<UserNetworkCount> usernetowrkList) {
 		saveOrUpdateList(usernetowrkList);
 	}
-
+	
+	@Override
+	public void saveorupdateUserNetworkPerformance(UserNetworkCount usernetowrk) {
+		saveOrUpdate(usernetowrk);
+	}
+	
 
 	@Override
 	public List<UserNetworkCount> getNetworkPerformance(UserNetworkCount usernetowrk) {

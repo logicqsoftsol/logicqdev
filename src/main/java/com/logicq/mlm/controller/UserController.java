@@ -59,6 +59,7 @@ import com.logicq.mlm.vo.LoginVO;
 import com.logicq.mlm.vo.PasswordVO;
 import com.logicq.mlm.vo.StatusVO;
 import com.logicq.mlm.vo.UserDetailsVO;
+import com.logicq.mlm.vo.WalletStmntVO;
 
 @RestController
 @RequestMapping("/api/user")
@@ -416,5 +417,24 @@ public class UserController {
 		return new ResponseEntity<UserDetailsVO>(userdetailvo, HttpStatus.OK);
 	}
 
+	
+	@RequestMapping(value = "/getUserWalletDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<WalletStmntVO> getUserWalletDetails() throws Exception {
+		WalletStmntVO walletstmsntvo=new WalletStmntVO();
+		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				 UserProfile userprofile = userservice.fetchUserAccordingToUserName(login.getUsername());
+				WalletStatement walletstmnt=walletStatementservice.fetchWalletStmntFromWalletNumber(userprofile.getWalletdetails().getWalletnumber());
+				walletstmsntvo.setCurrentbalance(walletstmnt.getCurrentbalance());
+				walletstmsntvo.setEncashedAmount(walletstmnt.getEncashedAmount());
+				walletstmsntvo.setMaxencashable(walletstmnt.getMaxencashable());
+				walletstmsntvo.setPayout(walletstmnt.getPayout());
+				walletstmsntvo.setWalletid(walletstmnt.getWalletid());
+				walletstmsntvo.setWalletlastupdate(walletstmnt.getWalletlastupdate());
+			}
+		}
+		return new ResponseEntity<WalletStmntVO>(walletstmsntvo, HttpStatus.OK);
+	}
 	
 }

@@ -77,6 +77,15 @@
 				data : ''
 			})
 	},
+	reloadUserWalletDetails: function ($scope) {
+		return  $http({
+			method: 'GET',
+			url: AppConstants.hostName+AppConstants.reloadWalletStmntURL,
+			//url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getUserProfileURL+"/"+$scope.networkid,
+			dataType :'json',
+			data : ''
+		})
+},
 		}
 }]);
 

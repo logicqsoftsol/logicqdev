@@ -52,6 +52,7 @@
 					$scope.paymentdetails={};
 					$scope.addMoney={};
 					$scope.networkcountlist=[];
+					$scope.paymentrollback=false;
 					
 					
 					angular.forEach($state.get(), function (item) {
@@ -70,8 +71,9 @@
 								$scope.displayProfile();
 									}).error(function(data, status) {
 									   var errormsg='Unable to Populate for Calnder event details : '+status;
-										$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
-										$exceptionHandler(errormsg);
+										//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+										alert(errormsg);
+									   $exceptionHandler(errormsg);
 									});
 					 });
 					 
@@ -100,7 +102,8 @@
 					$scope.user.walletdetails.walletStatement.walletlastupdate=new Date(data.walletStatement.walletlastupdate);
 							}).error(function(data, status) {
 							   var errormsg='Unable to display network: '+status;
-								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+							//	$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+							   alert(errormsg);
 								$exceptionHandler(errormsg);
 							});
 				
@@ -145,7 +148,8 @@
 															   UserDetailsService.sendOTP($scope).success(function(data, status) {
 															   	}).error(function(data, status) {
 															   			var errormsg='Unable to Send OTP  '+status;
-															   			$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+															   			//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+															   		     alert(errormsg);
 															   			$exceptionHandler(errormsg);
 															   	});
 														  }	
@@ -181,7 +185,8 @@
 				}*/
 				}).error(function(data, status) {
 									  var errormsg='Unable to validate OTP  '+status;
-										$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+										//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+									  alert(errormsg);
 										$exceptionHandler(errormsg);
 									});
 					
@@ -194,7 +199,8 @@
 						$scope.taskPoller=data.tasklist;
 					  }).error(function(data, status) {
 						  var errormsg='Unable to Update Your Task  '+status;
-							$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+							//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+						  alert(errormsg);
 							$exceptionHandler(errormsg);
 						});     
 				}
@@ -228,8 +234,10 @@
 					}				
 				if($scope.usertype=='ADMIN'){
 			    	$scope.taskreadonly='false';
+			    	$scope.paymentrollback=true;
 				}else{
 					$scope.taskreadonly='true';
+					$scope.paymentrollback=false;
 				}
 					$scope.profileDisplayName.firstname=$scope.userdetails.userprofile.firstname;
 					$scope.profileDisplayName.lastname=$scope.userdetails.userprofile.lastname;
@@ -297,7 +305,8 @@
 										$scope.paymentdetails.payeewalletnumber=data.userprofile.walletdetails.walletnumber;
 										}).error(function(data, status) {
 										  var errormsg='Unable to specifc user profile '+status;
-											$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+										  alert(errormsg);
+											//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 											$exceptionHandler(errormsg);
 										});    
 									
@@ -318,7 +327,8 @@
 										$scope.viewuserprofile.image=data.document.documentPath;
 									  }).error(function(data, status) {
 										  var errormsg='Unable to specifc user profile '+status;
-											$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+										  alert(errormsg);
+											//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 											$exceptionHandler(errormsg);
 										});    
 									
@@ -351,10 +361,12 @@
 					        $scope.userdetails.walletStatement.encashedAmount=data.encashedAmount;
 					        $scope.userdetails.walletStatement.currentbalance=data.currentbalance;
 					        $scope.userdetails.walletStatement.walletlastupdate=data.walletlastupdate;
+							alert(" Your Transaction Complet Sucessfully");
 							}
 						}).error(function(data, status) {
 							   var errormsg='Unable to pay  : '+status;
-								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+							   alert(errormsg);
+								//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 								$exceptionHandler(errormsg);
 							});
 					}
@@ -370,9 +382,11 @@
 					        $scope.userdetails.walletStatement.encashedAmount=data.encashedAmount;
 					        $scope.userdetails.walletStatement.currentbalance=data.currentbalance;
 					        $scope.userdetails.walletStatement.walletlastupdate=data.walletlastupdate;
+							alert(" Your Transaction Complet Sucessfully");
 						}).error(function(data, status) {
 							   var errormsg='Unable to pay  : '+status;
-								$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+							   alert(errormsg);
+							//	$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 								$exceptionHandler(errormsg);
 							});
 					}
@@ -386,12 +400,15 @@
 										$scope.alltxnlist=data;
 									}).error(function(data, status) {
 										   var errormsg='Unable to fetch Transaction details : '+status;
-											$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+										   alert(errormsg);
+										//	$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 											$exceptionHandler(errormsg);
 										});
 								
 								}
 								$scope.getSendTxnList = function() {
+									$scope.getAllTxnList();
+									$scope.sendtxnlist=[];
 									if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
 										angular.forEach($scope.alltxnlist, function(txn){
 											if(txn.txntype=='SEND'){
@@ -401,6 +418,8 @@
                                      }
 								}
 								$scope.getAddTxnList = function() {
+									$scope.getAllTxnList();
+									$scope.addtxnlist=[];
 								if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
 									angular.forEach($scope.alltxnlist, function(txn){
 											if(txn.txntype=='ADD'){
@@ -410,6 +429,8 @@
 									}
 								}
 								$scope.getEncashTxnList = function() { 
+									$scope.getAllTxnList();
+									$scope.encashtxnlist=[];
 									if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
                                     angular.forEach($scope.alltxnlist, function(txn){
 											if(txn.txntype=='ENCASH'){
@@ -420,6 +441,8 @@
 
 								}
 								$scope.getRecivedTxnList= function() {
+									$scope.getAllTxnList();
+									$scope.recivedtxnlist=[];
 									if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
 										angular.forEach($scope.alltxnlist, function(txn){
 											if(txn.txntype=='RECIVED'){
@@ -428,7 +451,22 @@
 										});
 									}
 								}
-					
+							$scope.reloadWalletDetails=function(){
+								UserDetailsService.reloadUserWalletDetails($scope).success(function(data, status) {
+									$scope.user.walletdetails.walletStatement.payout=data.payout;
+								    $scope.user.walletdetails.walletStatement.encashedAmount=data.encashedAmount;
+									$scope.user.walletdetails.walletStatement.currentbalance=data.currentbalance;
+									$scope.userdetails.walletStatement.payout=data.payout;
+							        $scope.userdetails.walletStatement.encashedAmount=data.encashedAmount;
+							        $scope.userdetails.walletStatement.currentbalance=data.currentbalance;
+							        $scope.userdetails.walletStatement.walletlastupdate=data.walletlastupdate;
+								}).error(function(data, status) {
+									   var errormsg='Unable to refresh your wallet '+status;
+									   alert(errormsg);
+										//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+										$exceptionHandler(errormsg);
+									});
+								}
 					$scope.poulateAddMoneyToWallet=function(){
 						$scope.addMoney={};
 						$scope.addMoney.walletnumber=$scope.userdetails.userprofile.walletdetails.walletnumber;
@@ -450,9 +488,11 @@
 						$scope.request.encashdetails.encashamount=$scope.encashdetails.encashamount;
 						UserDetailsService.createEncashRequest($scope.request).success(function(data, status) {
                       $scope.taskPoller.push("createEncashRequest");
+					  alert(" Your have create EncashRequest Sucessfully");
 					}).error(function(data, status) {
 						   var errormsg='Unable to Create Encash Request : '+status;
-							$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+						   alert(errormsg);
+							//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 							$exceptionHandler(errormsg);
 						});
 					}
@@ -461,10 +501,15 @@
 						UserHelper.populateEncashRequestDetails($scope);
 					}
 					
+					$scope.populateTransactionDetailsForRollBack=function(){
+						
+					}
+					
 					$scope.addUserDetails=function(){
 						UserHelper.prepareUserProfileRequest($scope);
 						UserDetailsService.saveUserProfileDetails( $scope.request).success(function(data, status) {
                        $scope.taskPoller.push("userSave");
+					   alert("User Added Sucessfully");
 							if(!data.mobilenoVerified){
 								$scope.otp.mobilenumber=data.userprofile.conatctDetails.mobilenumber;
 								angular.element('#otppopup').modal('show');
@@ -475,7 +520,8 @@
 						     	}
 								}).error(function(data, status) {
 								   var errormsg='Unable to save User Profile  details : '+status;
-									$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+								   alert(errormsg);
+									//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 									$exceptionHandler(errormsg);
 								});
 					}
@@ -510,7 +556,8 @@
 					 angular.element('#encashdetailmodal').modal('hide');
 					 }).error(function(data, status) {
 								   var errormsg='Unable to Update Task Details: '+status;
-									$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+								   alert(errormsg);
+									//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 									$exceptionHandler(errormsg);
 								});
 					}
@@ -528,7 +575,8 @@
 				  $scope.documentid=data.documentID;
 			  }).error(function(data, status) {
 								   var errormsg='Unable to upload Image';
-									$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+								   alert(errormsg);
+									//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 									$exceptionHandler(errormsg);
 								});
 					}

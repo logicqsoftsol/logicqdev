@@ -23,4 +23,11 @@ public class TransactionDetailsDAO extends AbstractDAO<TransactionDetails> imple
 		return (List<TransactionDetails>) executeQueryWithPagination(selectQuery.toString(),1,20);
 	}
 
+	@Override
+	public List<TransactionDetails> getTransactionDetailsAccordingToRefrenceNumber(String refrenceNumber) {
+		StringBuilder selectQuery=new StringBuilder();
+		selectQuery.append(" from TransactionDetails where refrenceno='"+refrenceNumber+"'");
+		return (List<TransactionDetails>) execcuteQuery(selectQuery.toString());
+	}
+
 }

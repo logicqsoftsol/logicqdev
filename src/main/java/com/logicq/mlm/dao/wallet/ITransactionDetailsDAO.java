@@ -8,5 +8,6 @@ public interface ITransactionDetailsDAO {
 
 	void saveTransactionDetails(TransactionDetails transactionDetails);
 	List<TransactionDetails> getTransactionDetails(String walletid);
+	List<TransactionDetails> getTransactionDetailsAccordingToRefrenceNumber(String refrenceNumber);
 	
 }

@@ -13,4 +13,5 @@ public interface IUserNetworkPerformanceService {
 	void addUserNetworkPerformanceList(List<UserNetworkCount> usernetowrkList);
     UserNetworkCount getNetworkPerformanceForMemeberandLevel(UserNetworkCount usernetowrk);
     List<NetworkCountVO> getNetworkPerformanceAccordingToUser(String username);
+     void saveorupdateUserNetworkPerformance(UserNetworkCount usernetowrk);
 }

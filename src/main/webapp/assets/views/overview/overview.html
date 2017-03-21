@@ -25,17 +25,20 @@
  </a> 
  <div class=fr>
  <h2>Organization Details <small> Easy Way to Know Your Support Hands</small></h2> 
+ <ul class="snap-ul pull-right">  
+<li ng-class="{active: $state.includes('logout')}" > <a ui-sref=logout>Log out </a></li>  
+</ul>
  </div>
  <div class=jumbotron> 
-   <a href="" data-target="#profiledetails" data-toggle="modal" class="btn btn-sucess pull-right" ng-click="setupNetwork()">
+   <a href="" data-target="#profiledetails" data-toggle="modal" class="btn-space-a pull-right" ng-click="setupNetwork()">
     <i class="fa fa-users" aria-hidden="true"></i>
 	<span>Setup Network</span>
 </a>
-   <a href="" data-target="#networkmodal" data-toggle="modal" class="btn btn-sucess pull-right" ng-click="onClickViewSupportHands()">
+   <a href="" data-target="#networkmodal" data-toggle="modal" class="btn-space-a pull-right" ng-click="onClickViewSupportHands()">
     <i class="fa fa-sitemap" aria-hidden="true"></i>
 </a>
 
-<a href="" data-target="#notificationdetails" data-toggle="modal" class="btn btn-sucess pull-right" ng-click="getNotificationDetails()">
+<a href="" data-target="#notificationdetails" data-toggle="modal" class="btn-space-a pull-right" ng-click="getNotificationDetails()">
     <i class="fa fa-bell-o" aria-hidden="true"></i>
 	<span>{{tasklist.count}}</span>
 </a>
@@ -47,7 +50,8 @@
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">{{user.firstname}} {{user.lastname}}</h3>
-			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+			  <span class="pull-right clickable span-space"><i class="glyphicon glyphicon-chevron-up"></i></span>
+			  <span class="pull-right spanclikable span-space"  ng-click="reloadWalletDetails()"><i class="fa fa-refresh"></i></span>
 			 <a href="" data-target="#bankaccountemodal" data-toggle="modal" class="pull-right">Bank Account Details</a>
             </div>
             <div class="panel-body">
@@ -101,7 +105,8 @@
 		   <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">Wallet Details</h3>
-			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+			  <span class="pull-right clickable span-space"><i class="glyphicon glyphicon-chevron-up"></i></span>
+			  <span class="pull-right  spanclikable span-space"  ng-click="reloadWalletDetails()"><i class="fa fa-refresh"></i></span>
 				<a href="" data-target="#bankpassbookmodal" data-toggle="modal" class="pull-right">Passbook</a>
             </div>
             <div class="panel-body">
@@ -139,10 +144,13 @@
             </div>
           </div>
 		 </div> 
-		  <div class="col-md-8">
+		  <div class="col-md-9">
 		   <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">Your Network Member Details</h3>
+			  <span class="pull-right clickable span-space"><i class="glyphicon glyphicon-chevron-up"></i></span>
+			  <span class="pull-right  spanclikable span-space"  ng-click="reloadWalletDetails()"><i class="fa fa-refresh"></i></span>
+			  
             </div>
             <div class="panel-body">
                <div class="table-responsive">
@@ -162,28 +170,31 @@
         </div>
 	</div>
 			</ul>	
-							<table class="table table-bordered table-fixed">
+							<table class="table table-bordered table-fixed" >
 							<tr class ="success">
 								<th class="pull-center">MEMEBR NAME</th>
 								<th class="pull-center">JOINING DATE</th>
 								<th class="pull-center">MEMEBR REFER BY</th>
 							</tr>
+							<tbody>
 							<tr ng-repeat="network in networkinfolist">
-								<td>{{network.firstname}} {{network.lastname}}</td>
+							    <td><a id="viewprofile"  data-toggle="modal"  data-target="#viewprofilemodal"   ng-click="viewMemberProfileDetails(network)">{{network.firstname}} {{network.lastname}}</a></td>
 								<td>{{network.dateofjoin}}</td>
 								<td>{{network.parentfirstname}} {{network.parentlastname}}</td>
-								<td><a id="viewprofile"  data-toggle="modal"  data-target="#viewprofilemodal"   ng-click="viewMemberProfileDetails(network)"><i class="fa fa-eye" aria-hidden="true"></i>View</a></td>
 								<td><a id="paymoney"  data-toggle="modal"  data-target="#paymoneymodal"   ng-click="populateWalletForMember(network)"><i class="fa fa-money" aria-hidden="true"></i>Pay</a></td>
 							</tr>
+							</tbody>
 						</table>
 					</div>
             </div>
           </div>
       </div>
-	  	  <div class="col-md-4">
+	  	  <div class="col-md-3">
 		   <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">Your Network Details</h3>
+			  <span class="pull-right clickable span-space"><i class="glyphicon glyphicon-chevron-up"></i></span>
+			  <span class="pull-right  spanclikable span-space"  ng-click="reloadWalletDetails()"><i class="fa fa-refresh"></i></span>
             </div>
             <div class="panel-body">
                <div class="table-responsive">
@@ -197,6 +208,129 @@
 								<td>{{networkcount.count}}</td>
 							</tr>
 						</table>
+					</div>
+            </div>
+          </div>
+      </div>
+	  
+	   <div class="col-md-12">
+	                <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Transaction Details For {{profileDisplayName.firstname}} {{profileDisplayName.lastname}}</h3>
+			    <span class="pull-right clickable span-space"><i class="glyphicon glyphicon-chevron-up"></i></span>
+			  <span class="pull-right spanclikable span-space"  ng-click="getSendTxnList()"><i class="fa fa-refresh"></i></span>
+            </div>
+            <div class="panel-body">
+     	<ul class="nav nav-tabs">
+							<!--li class="active"><a data-toggle="tab" id="alltransaction" class="pull-center"  ng-init="getAllTxnList()" ng-click="getAllTxnList()"
+							href="/admin#passbook_all">All</a></li-->
+							<li class="active"><a data-toggle="tab" id="send" class="pull-center" ng-init="getSendTxnList()"  ng-click="getSendTxnList()"
+								href="/admin#passbook_send">Send</a></li>
+                           <li><a data-toggle="tab" id="add" class="pull-center"  ng-click="getAddTxnList()"
+								href="/admin#passbook_add">Add</a></li>
+							<li><a data-toggle="tab" id="encash" class="pull-center"  ng-click="getRecivedTxnList()"
+								href="/admin#passbook_recived">Recived</a></li>	
+						   <li><a data-toggle="tab" id="encash" class="pull-center"  ng-click="getEncashTxnList()"
+								href="/admin#passbook_encash">Encash</a></li>
+								
+						</ul>
+
+					<div class="tab-content">
+					<div id="passbook_send" class="tab-pane fade in active">
+					<br></br>
+			     <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr class ="success">
+								<th class="pull-center">Date</th>
+								<th class="pull-center">Amount</th>
+								<th class="pull-center">Type</th>	
+								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">Send To</th>
+								<th class="pull-center">Description</th>
+							</tr>
+							<tr ng-repeat="txnsend in sendtxnlist">
+								<td>{{txnsend.txndate | date:'yyyy-MM-dd'}}</td>
+								<td>{{txnsend.amount}}</td>
+								<td>{{txnsend.txntype}}</td>
+								<td>{{txnsend.refrenceno}}</td>
+								<td>{{txnsend.txnfor}}</td>
+								<td>{{txnsend.description}}</td>
+								<td ng-show="paymentrollback"><a id="rollback"  data-toggle="modal"  data-target="#rollbackmodal"  ng-click="populateTransactionDetailsForRollBack(txnsend)"><i class="fa fa-undo" aria-hidden="true"></i>RollBack</a></td>
+						</tr>
+						</table>
+					</div>
+					</div>
+			   <div id="passbook_add" class="tab-pane fade">
+					<br></br>
+			     <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr class ="success">
+								<th class="pull-center">Date</th>
+								<th class="pull-center">Amount</th>
+								<th class="pull-center">Type</th>	
+								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">Add To</th>
+								<th class="pull-center">Description</th>
+							</tr>
+							<tr ng-repeat="addtxn in addtxnlist">
+								<td>{{addtxn.txndate | date:'yyyy-MM-dd'}}</td>
+								<td>{{addtxn.amount}}</td>
+								<td>{{addtxn.txntype}}</td>
+								<td>{{addtxn.refrenceno}}</td>
+								<td>{{addtxn.txnfor}}</td>
+								<td>{{addtxn.description}}</td>
+								</tr>
+						</table>
+					</div>
+					</div>
+					   <div id="passbook_recived" class="tab-pane fade">
+					<br></br>
+			     <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr class ="success">
+								<th class="pull-center">Date</th>
+								<th class="pull-center">Amount</th>
+								<th class="pull-center">Type</th>	
+								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">Recived For</th>
+								<th class="pull-center">Description</th>
+							</tr>
+							<tr ng-repeat="rectxn in recivedtxnlist">
+								<td>{{rectxn.txndate | date:'yyyy-MM-dd'}}</td>
+								<td>{{rectxn.amount}}</td>
+								<td>{{rectxn.txntype}}</td>
+								<td>{{rectxn.refrenceno}}</td>
+								<td>{{rectxn.txnfor}}</td>
+								<td>{{rectxn.description}}</td>
+								</tr>
+						</table>
+					</div>
+					</div>
+
+	   <div id="passbook_encash" class="tab-pane fade">
+					<br></br>
+			     <div class="table-responsive">
+						<table class="table table-bordered">
+							<tr class ="success">
+								<th class="pull-center">Date</th>
+								<th class="pull-center">Amount</th>
+								<th class="pull-center">Type</th>	
+								<th class="pull-center">Refrence No.</th>
+								<th class="pull-center">Encashed By</th>
+								<th class="pull-center">Description</th>
+							</tr>
+							<tr ng-repeat="encashtxn in encashtxnlist">
+								<td>{{encashtxn.txndate | date:'yyyy-MM-dd'}}</td>
+								<td>{{encashtxn.amount}}</td>
+								<td>{{encashtxn.txntype}}</td>
+								<td>{{encashtxn.refrenceno}}</td>
+								<td>{{encashtxn.txnfor}}</td>
+								<td>{{encashtxn.description}}</td>
+								</tr>
+						</table>
+					</div>
+					</div>
+
 					</div>
             </div>
           </div>
@@ -1042,9 +1176,7 @@
             </div>
             <div class="panel-body">
      	<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" id="alltransaction" class="pull-center"  ng-init="getAllTxnList()" ng-click="getAllTxnList()"
-							href="/admin#passbook_all">All</a></li>
-							<li><a data-toggle="tab" id="send" class="pull-center"  ng-click="getSendTxnList()"
+							<li class="active"><a data-toggle="tab" id="send" class="pull-center"  ng-init="getSendTxnList()" ng-click="getSendTxnList()"
 								href="/admin#passbook_send">Send</a></li>
                            <li><a data-toggle="tab" id="add" class="pull-center"  ng-click="getAddTxnList()"
 								href="/admin#passbook_add">Add</a></li>
@@ -1052,7 +1184,6 @@
 								href="/admin#passbook_recived">Recived</a></li>	
 						   <li><a data-toggle="tab" id="encash" class="pull-center"  ng-click="getEncashTxnList()"
 								href="/admin#passbook_encash">Encash</a></li>
-								
 						</ul>
 
 					<div class="tab-content">
@@ -1089,7 +1220,7 @@
 								<th class="pull-center">Amount</th>
 								<th class="pull-center">Type</th>	
 								<th class="pull-center">Refrence No.</th>
-								<th class="pull-center">For</th>
+								<th class="pull-center">Send For</th>
 								<th class="pull-center">Description</th>
 							</tr>
 							<tr ng-repeat="txnsend in sendtxnlist">
@@ -1112,7 +1243,7 @@
 								<th class="pull-center">Amount</th>
 								<th class="pull-center">Type</th>	
 								<th class="pull-center">Refrence No.</th>
-								<th class="pull-center">For</th>
+								<th class="pull-center">Add To</th>
 								<th class="pull-center">Description</th>
 							</tr>
 							<tr ng-repeat="addtxn in addtxnlist">
@@ -1135,7 +1266,7 @@
 								<th class="pull-center">Amount</th>
 								<th class="pull-center">Type</th>	
 								<th class="pull-center">Refrence No.</th>
-								<th class="pull-center">For</th>
+								<th class="pull-center">Recived For</th>
 								<th class="pull-center">Description</th>
 							</tr>
 							<tr ng-repeat="rectxn in recivedtxnlist">
@@ -1159,7 +1290,7 @@
 								<th class="pull-center">Amount</th>
 								<th class="pull-center">Type</th>	
 								<th class="pull-center">Refrence No.</th>
-								<th class="pull-center">For</th>
+								<th class="pull-center">Encashed By</th>
 								<th class="pull-center">Description</th>
 							</tr>
 							<tr ng-repeat="encashtxn in encashtxnlist">

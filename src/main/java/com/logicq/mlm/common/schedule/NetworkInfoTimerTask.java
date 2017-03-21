@@ -67,20 +67,22 @@ public class NetworkInfoTimerTask {
 		List<NetWorkTask> tasklist = networktaskservice.getNetworkTaskList();
 		if (!tasklist.isEmpty()) {
 			List<FeeSetup> feeList = feeSetupService.getFeeDetails();
-			List<UserNetworkCount> networkCountList=new ArrayList<>();
+			Map<String, UserNetworkCount> networkCountList = new HashMap<>();
 			for (NetWorkTask task : tasklist) {
 				updateNetworkDetails(task.getMemberid(), task.getParentid());
 				networktaskservice.deleteNetworkTask(task);
-				calculateWalletAmount(task.getParentid(),feeList,"LEVEL1");
-				calculateNetworkCount(task.getMemberid(),networkCountList);
-				userNetworkPerformance.addUserNetworkPerformanceList(networkCountList);
+				calculateWalletAmount(task.getParentid(), feeList, "LEVEL1");
+				calculateNetworkCount(task.getMemberid(), networkCountList);
+				for (Map.Entry<String, UserNetworkCount> networkcount : networkCountList.entrySet()) {
+					userNetworkPerformance.saveorupdateUserNetworkPerformance(networkcount.getValue());
+				}
 			}
 		}
 	}
 
 	
 	
-	private void calculateNetworkCount(String memberid,List<UserNetworkCount> networkCountList) throws Exception {
+	private void calculateNetworkCount(String memberid,Map<String, UserNetworkCount> networkCountList) throws Exception {
 		NetworkInfo networkInfo = networkDetailService.getNetworkDetails(memberid);
 		NetWorkDetails networkdetails = PropertyHelper.convertJsonToNetworkInfo(networkInfo);
 	   if(null!=networkdetails){
@@ -95,7 +97,7 @@ public class NetworkInfoTimerTask {
 
 
 
-	private void caculateAllMemeberDetails(String memberid, List<UserNetworkCount> networkCountList,
+	private void caculateAllMemeberDetails(String memberid, Map<String, UserNetworkCount> networkCountList,
 			NetworkInfo networkInfo, List<NetWorkDetails> networkDetailsList) {
 		if (null != networkDetailsList && !networkDetailsList.isEmpty()) {
 			String level = networkDetailsList.get(0).getCategory();
@@ -109,7 +111,13 @@ public class NetworkInfoTimerTask {
 			}
 			usernetworkCount.setMembercount(networkDetailsList.size());
 			usernetworkCount.setParentid(networkInfo.getParentmemberid());
-			networkCountList.add(usernetworkCount);
+			UserNetworkCount mapnetworkCount=networkCountList.get(memberid+"_"+intlevel);
+			if (null == mapnetworkCount) {
+				networkCountList.put(memberid + "_" + intlevel, usernetworkCount);
+			} else {
+				mapnetworkCount.setMembercount(mapnetworkCount.getMembercount() + intlevel);
+				networkCountList.put(memberid + "_" + intlevel, usernetworkCount);
+			}
 			for (NetWorkDetails networkDetail : networkDetailsList) {
 				List<NetWorkDetails> childNetworkList = networkDetail.getChildren();
 				caculateAllMemeberDetails(memberid, networkCountList, networkInfo, childNetworkList);
