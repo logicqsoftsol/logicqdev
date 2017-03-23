@@ -60,46 +60,73 @@ session_destroy();
             	<nav id="k-menu" class="k-main-navig"><!-- main navig -->
         
                     <ul id="drop-down-left" class="k-dropdown-menu">
-                        <li>
-                            <a href="news.php" title="Our School News">News</a>
-                        </li>
-                        <li>
-                            <a href="events.php" title="Upcoming Events">Events</a>
-                        </li>
-                        <li>
-                            <a href="#" class="Pages Collection" title="Moments of Life">Gallery</a>
-                            <ul class="sub-menu">
-                                
-                               <li><a href="#">Summer Holiday Trip</a></li>
-                                <li><a href="#">Winter Holiday Trip</a></li>
-                               
-                                <li>
-                                    <a href="#">Annual Function</a>	
-                                    <ul class="sub-menu">
-                                        <li><a href="gallery.php">2014-15</a></li>
-                                        <li>
-                                            <a href="gallery_page_3_3.php">2015-16</a>
-                                         
-                                        </li>
-                                        <li><a href="#">2016-17</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-						<li>
-                            <a href="#" title="Available Course">Course</a>
-                        </li>
-                        <li>
-                            <a href="about-us.php" title="See More about our school">About Us</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">Our Vision</a></li>
-                                <li><a href="#">Achievements</a></li>
-                           
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="contact-us.php" title="School Contacts">Contact Us</a>
-                        </li>
+                        <?php
+							 error_reporting( ~E_NOTICE );
+							require_once 'dbconfig.php';
+							 
+							 $stmt = $DB_con->prepare('SELECT * FROM main_menu');
+							 $stmt->execute();
+							 
+							 if($stmt->rowCount() > 0)
+							 {
+							  while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+							  {
+							   extract($row);
+
+								?>
+
+													
+								<li><a href="<?php echo $row['m_menu_link']; ?>" title="<?php echo $row['subtitle_menu']; ?>"><?php echo $row['m_menu_name']; ?></a>
+								<?php
+								$stmt1 = $DB_con->prepare('SELECT * FROM sub_menu WHERE m_menu_id='.$row['m_menu_id']);
+								// $res_pro=$dbcon->query("SELECT * FROM sub_menu WHERE m_menu_id=".$row['m_menu_id']);
+								
+								$stmt1->execute();
+								?>
+								<ul>				
+									<?php  
+										if($stmt1->rowCount() > 0)
+										{
+											while($row1=$stmt1->fetch(PDO::FETCH_ASSOC))
+											{
+												extract($row1);
+										?>
+										<li><a href="<?php echo $row1['s_menu_link']; ?>"><?php echo $row1['s_menu_name']; ?></a>
+										<?php
+										$stmt2 = $DB_con->prepare('SELECT * FROM s_sub_menu WHERE s_menu_id='.$row1['s_menu_id']);
+										// $res_pro=$dbcon->query("SELECT * FROM sub_menu WHERE m_menu_id=".$row['m_menu_id']);
+										
+										$stmt2->execute();
+										?>
+										<ul>				
+										<?php  
+										if($stmt2->rowCount() > 0)
+										{
+											while($row2=$stmt2->fetch(PDO::FETCH_ASSOC))
+											{
+												extract($row2);
+										?>
+										<li><a href="<?php echo $row2['ss_menu_link']; ?>"><?php echo $row2['ss_menu_name']; ?></a></li>
+										<?php
+											}
+										}
+										?>
+										
+										</ul>
+										</li>
+									
+										<?php
+											}
+										}
+									?>
+								</ul>
+								</li>	
+								<?php
+								}
+							}
+						?>
+						
+
                     </ul>
         
             	</nav><!-- main navig end -->
@@ -206,7 +233,7 @@ mysql_close($db_handle);
                     
                                 <h1 class="title-widget">Useful links</h1>
                                 
-                                <ul>
+                                 <ul>
                                 	
 										<?php
 										include 'sql.php';
@@ -218,14 +245,15 @@ mysql_close($db_handle);
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<li>»");
+											print("<p>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</li>");
+											print("</p>");
 										}
 										mysql_close($db_handle);
 										?>
                                     
                                 </ul>
+                    
                     
 							</li>
                             
@@ -327,7 +355,7 @@ mysql_close($db_handle);
                     
                                 <h1 class="title-widget">Useful links</h1>
                                 
-                               <ul>
+                              <ul>
                                 	
 										<?php
 										include 'sql.php';
@@ -339,9 +367,9 @@ mysql_close($db_handle);
 											$ann_details = $db_field['details'];
 											$ann_fileurl = $db_field['fileurl'];
 											$ann_id = $db_field['id'];
-											print("<li>»");
+											print("<p>»");
 											print("<a href=$ann_fileurl>$ann_title</a>");
-											print("</li>");
+											print("</p>");
 										}
 										mysql_close($db_handle);
 										?>
@@ -371,30 +399,47 @@ mysql_close($db_handle);
                                 	<h2 class="title-median m-contact-subject" itemprop="name">ST Mary's Convent School</h2>
 									
                                 
-                                	<div class="m-contact-address" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-                                		<span class="m-contact-street" itemprop="street-address">Laxmiposi Road, Baripada Municipal Market</span>
-                                		<span class="m-contact-city-region"><span class="m-contact-city" itemprop="locality">Baripada</span>, <span class="m-contact-region" itemprop="region">ODISHA</span></span>
-                                		<span class="m-contact-zip-country"><span class="m-contact-zip" itemprop="postal-code">757001</span> <span class="m-contact-country" itemprop="country-name">INDIA</span></span>
-                                	</div>
-                                     
-                                	<div class="m-contact-tel-fax">
-                                    	<span class="m-contact-tel">Tel: <span itemprop="tel">+(91)-6792-255290</span></span>
-                                    	<span class="m-contact-fax">Fax: <span itemprop="fax">+(91)-6792-255290</span></span>
-                                    </div>
-                                    
-                                </div>
-                                
-                                <div class="social-icons">
-                                
-                                	<ul class="list-unstyled list-inline">
-                                    
-                                    	<li><a href="mailto:info@stmaryrnpur.org" title="Contact us"><i class="fa fa-envelope"></i></a></li>
-                                        
-                                        <li><a href="https://www.facebook.com/pages/S-T-Mary-convent-School-Raghunath-Pur-Baripada/480859435290908" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                    
-                                    </ul>
-                                
-                                </div>
+                                	<?php
+										include 'sql.php';
+
+										$SQL ="SELECT * FROM contact_us";;
+										$result = mysql_query($SQL);
+										while ($db_field = mysql_fetch_assoc($result)) {
+											$abus_title = $db_field['title'];
+											$abus_address1 = $db_field['address1'];
+											$abus_address2 = $db_field['address2'];
+											$abus_address3 = $db_field['address3'];
+											$abus_pin = $db_field['Pin'];
+											$abus_tel = $db_field['Tel'];
+											$abus_fax = $db_field['Fax'];
+											$abus_mailid = $db_field['mailid'];
+											$abus_fblink = $db_field['fblink'];
+											$abus_twiterlink = $db_field['twiterlink'];
+											
+											print("<div itemscope itemtype='http://data-vocabulary.org/Organization'>");
+											print("<h2 class='title-median m-contact-subject' itemprop='name'>$abus_title</h2>");
+											print("<div class='m-contact-address' itemprop='address' itemscope itemtype='http://data-vocabulary.org/Address'>");
+											print("<span class='m-contact-street' itemprop='street-address'>$abus_address1</span>");
+											print("<span class='m-contact-city-region' itemprop='locality region'>$abus_address2</span>");
+											print("<span class='m-contact-zip-country' itemprop='postal-code country-name'>$abus_address3</span>");
+											print("<span class='m-contact-zip-country'>$abus_pin</span>");
+											print("</div>");
+											print("<div class='m-contact-tel-fax'>");
+											print("<span class='m-contact-tel'>Tel: <span itemprop='tel'>+91-$abus_tel</span></span>");
+											print("<span class='m-contact-fax'>Fax: <span itemprop='fax'>+91-$abus_fax</span></span>");
+											print("</div>");
+											print("<div class='social-icons'>");
+											print("<ul class='list-unstyled list-inline'>");
+											print("<li><a href='mailto:$abus_mailid' title='Contact us'><i class='fa fa-envelope'></i></a></li>");
+											print("<li><a href='$abus_fblink' title='Facebook'><i class='fa fa-facebook'></i></a></li>");
+											print("</ul>");
+											print("</div>");
+																				
+											
+										}
+										mysql_close($db_handle);
+										?>
+                    
                     
 							</li>
                             
@@ -414,12 +459,9 @@ mysql_close($db_handle);
                     
                                 <h1 class="title-widget">Send SMS</h1>
                                 
-								<form role="search" method="get" class="newsletter-form" action="sms.sudhanshulenka.com">
-                                    <div class="input-group">
-                                        <span class="input-group-btn"><button type="submit" class="btn btn-default">SEND SMS</button></span>
-                                    </div>
-                                    <span class="help-block">Click Here to Send SMS</span>
-                                </form>
+								<button type="submit" class="btn btn-default"><a href="http://sms.sudhanshulenka.com/" title="Send SMS">SEND SMS</button></span>
+                                <span class="help-block">Click Here to Send SMS</span>
+
                                 
                     
 							</li>
