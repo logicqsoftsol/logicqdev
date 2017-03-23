@@ -53,6 +53,7 @@
 					$scope.addMoney={};
 					$scope.networkcountlist=[];
 					$scope.paymentrollback=false;
+					$scope.txnrollback={};
 					
 					
 					angular.forEach($state.get(), function (item) {
@@ -501,9 +502,6 @@
 						UserHelper.populateEncashRequestDetails($scope);
 					}
 					
-					$scope.populateTransactionDetailsForRollBack=function(){
-						
-					}
 					
 					$scope.addUserDetails=function(){
 						UserHelper.prepareUserProfileRequest($scope);
@@ -561,6 +559,29 @@
 									$exceptionHandler(errormsg);
 								});
 					}
+					
+					
+						$scope.populateTransactionDetailsForRollBack = function(txnsend) {
+							$scope.request.txnrollback={};
+							$scope.request.txnrollback.txnRefrenceNumber=txnsend.refrenceno;
+							AdminService.getTxnDetailsForRefrenceNumber($scope.request).success(function(data, status) { 
+							$scope.txnrollback.cfirstname=data.creditorFirstName;
+							$scope.txnrollback.clastname=data.crediotrLastName;
+							$scope.txnrollback.creditorgpmid=data.creditorGpmIdNo;
+							$scope.txnrollback.payeefirstname=data.payeeFirstName;
+							$scope.txnrollback.payeelastname=data.payeeLastName;
+							$scope.txnrollback.payeegpmid=data.payeeGpmIdNo;
+							$scope.txnrollback.payeecurrentbalance=data.payeeCurrentBalance;
+							$scope.txnrollback.txnrefrenceno=data.txnRefrenceNumber;
+							$scope.txnrollback.txndescription=data.txnDescription;
+							$scope.txnrollback.reasone=null;
+							}).error(function(data, status) {
+								   var errormsg='Unable to fetch Details: '+status;
+								   alert(errormsg);
+									//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+									$exceptionHandler(errormsg);
+								});
+						}	
 					
 			$scope.uploadFile = function(files) {
                $scope.request.fd = new FormData();

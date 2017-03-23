@@ -29,7 +29,11 @@
 				data : ''
 			})
 		},
-		
+		getTxnDetailsForRefrenceNumber: function (request) {
+			var url = AppConstants.hostName+AppConstants.getTransactionDetailsForRefrenceNumberURL;
+			//var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.updateAdminTaskURL;
+			return  $http.post(url,request.txnrollback)
+		},
 		}
 }]);
 

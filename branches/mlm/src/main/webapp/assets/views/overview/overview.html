@@ -255,7 +255,7 @@
 								<td>{{txnsend.refrenceno}}</td>
 								<td>{{txnsend.txnfor}}</td>
 								<td>{{txnsend.description}}</td>
-								<td ng-show="paymentrollback"><a id="rollback"  data-toggle="modal"  data-target="#rollbackmodal"  ng-click="populateTransactionDetailsForRollBack(txnsend)"><i class="fa fa-undo" aria-hidden="true"></i>RollBack</a></td>
+								<td ng-show="paymentrollback"><a id="rollback"  data-toggle="modal"  data-target="#txnrollbackmodal"  ng-click="populateTransactionDetailsForRollBack(txnsend)"><i class="fa fa-undo" aria-hidden="true"></i>RollBack</a></td>
 						</tr>
 						</table>
 					</div>
@@ -1103,6 +1103,80 @@
 	</div>
 	</div>
 
+	
+
+			<!-- View Bank Account details  modal-->
+	<div id="txnrollbackmodal"  name="txnrollbackmodal" class="modal fade"  role="dialog">
+ <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Transaction Details </h4>	
+						</div>
+	<div class="modal-body">
+	<div class="col-md-12">  
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{profileDisplayName.firstname}} {{profileDisplayName.lastname}}</h3>
+			  <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+			<ng-form name="txnrollbackform" class="form-horizontal" role="form">
+                <div class="col-md-3 col-lg-3" align="center"> <img alt="user Pic"  ng-src="{{viewuserprofile.image}}"  class="img-circle img-responsive"></div>
+                
+                <div class="col-md-9 col-lg-9 table-responsive"> 
+                  <table class="table table-user-information">
+                    <tbody>
+					 <tr>
+                        <td>Creditor Name </td>
+                        <td>{{txnrollback.cfirstname}} {{txnrollback.clastname}}</td>
+                      </tr>
+                      <tr>
+                        <td>GPM ID For Credit</td>
+                        <td>{{txnrollback.creditorgpmid}}</td>
+                      </tr>
+                      <tr>
+                        <td>Payee Name</td>
+                        <td>{{txnrollback.payeefirstname}} {{txnrollback.payeelastname}}</td>
+                      </tr>
+                      <tr>
+                        <td>GPM ID For Payee</td>
+                        <td>{{txnrollback.payeegpmid}}</td>
+                      </tr>
+                      <tr>
+                        <td>Payee Current Balance</td>
+                        <td>{{txnrollback.payeecurrentbalance}}</td>
+                      </tr>
+					   <tr>
+                        <td>Transaction Refrence Number</td>
+                        <td>{{txnrollback.txnrefrenceno}}</td>
+                      </tr>
+					  	   <tr>
+                        <td>Transaction Description</td>
+                        <td>{{txnrollback.txndescription}}</td>
+                      </tr>
+					   <tr>
+					    <td>Reasone For RollBack</td>
+					  	<textarea name="message" class="form-control" ng-model="txnrollback.reasone" name="txnrollbackreasone"  placeholder="Roll back reasone" required></textarea>
+                         <span style="color:red" ng-show="txnrollbackform.txnrollbackreasone.$error.required && txnrollbackform.txnrollbackreasone.$dirty">Please enter reasone for rollback</span> 						
+					   </tr>
+                    </tbody>
+                  </table>
+                </div>
+				</ng-form>
+            </div>
+          </div>
+		</div>
+				<div class="modal-footer">
+				<button type="submit" id="txnrollbackconfirmbutton" class="btn btn-default" ng-click="txnRollbackConfirm()" ng-disabled="txnrollbackform.$invalid"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+			   </div>
+			</div>
+		</div>
+	</div>
+	</div>	
 
 
 			<!-- View Bank Account details  modal-->
