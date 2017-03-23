@@ -1,6 +1,5 @@
-<?php
-session_start();
-session_destroy();
+	<?php
+
 ?>
 
 <!DOCTYPE html>
@@ -61,51 +60,81 @@ session_destroy();
             	<nav id="k-menu" class="k-main-navig"><!-- main navig -->
         
                     <ul id="drop-down-left" class="k-dropdown-menu">
-                        <li>
-                            <a href="news.php" title="Our School News">News</a>
-                        </li>
-                        <li>
-                            <a href="events.php" title="Upcoming Events">Events</a>
-                        </li>
-                        <li>
-                            <a href="#" class="Pages Collection" title="Moments of Life">Gallery</a>
-                            <ul class="sub-menu">
-                                
-                               <li><a href="#">Summer Holiday Trip</a></li>
-                                <li><a href="#">Winter Holiday Trip</a></li>
-                               
-                                <li>
-                                    <a href="#">Annual Function</a>	
-                                    <ul class="sub-menu">
-                                        <li><a href="gallery.php">2014-15</a></li>
-                                        <li>
-                                            <a href="gallery_page_3_3.php">2015-16</a>
-                                         
-                                        </li>
-                                        <li><a href="#">2016-17</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-						<li>
-                            <a href="#" title="Available Course">Course</a>
-                        </li>
-                        <li>
-                            <a href="about-us.php" title="See More about our school">About Us</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">Our Vision</a></li>
-                                <li><a href="#">Achievements</a></li>
-                           
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="contact-us.php" title="School Contacts">Contact Us</a>
-                        </li>
+                        
+						<?php
+							 error_reporting( ~E_NOTICE );
+							require_once 'dbconfig.php';
+							 
+							 $stmt = $DB_con->prepare('SELECT * FROM main_menu');
+							 $stmt->execute();
+							 
+							 if($stmt->rowCount() > 0)
+							 {
+							  while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+							  {
+							   extract($row);
+
+								?>
+
+													
+								<li><a href="<?php echo $row['m_menu_link']; ?>" title="<?php echo $row['subtitle_menu']; ?>"><?php echo $row['m_menu_name']; ?></a>
+								<?php
+								$stmt1 = $DB_con->prepare('SELECT * FROM sub_menu WHERE m_menu_id='.$row['m_menu_id']);
+								// $res_pro=$dbcon->query("SELECT * FROM sub_menu WHERE m_menu_id=".$row['m_menu_id']);
+								
+								$stmt1->execute();
+								?>
+								<ul>				
+									<?php  
+										if($stmt1->rowCount() > 0)
+										{
+											while($row1=$stmt1->fetch(PDO::FETCH_ASSOC))
+											{
+												extract($row1);
+										?>
+										<li><a href="<?php echo $row1['s_menu_link']; ?>"><?php echo $row1['s_menu_name']; ?></a>
+										<?php
+										$stmt2 = $DB_con->prepare('SELECT * FROM s_sub_menu WHERE s_menu_id='.$row1['s_menu_id']);
+										// $res_pro=$dbcon->query("SELECT * FROM sub_menu WHERE m_menu_id=".$row['m_menu_id']);
+										
+										$stmt2->execute();
+										?>
+										<ul>				
+										<?php  
+										if($stmt2->rowCount() > 0)
+										{
+											while($row2=$stmt2->fetch(PDO::FETCH_ASSOC))
+											{
+												extract($row2);
+										?>
+										<li><a href="<?php echo $row2['ss_menu_link']; ?>"><?php echo $row2['ss_menu_name']; ?></a></li>
+										<?php
+											}
+										}
+										?>
+										
+										</ul>
+										</li>
+									
+										<?php
+											}
+										}
+									?>
+								</ul>
+								</li>	
+								<?php
+								}
+							}
+						?>
+						
+						
                     </ul>
         
             	</nav><!-- main navig end -->
             
             </div>
+			
+			
             
         </div><!-- row end -->
     
@@ -131,7 +160,7 @@ session_destroy();
             
             <div class="row no-gutter fullwidth"><!-- row -->
             
-                <div class="col-lg-12 clearfix"><!-- featured posts slider -->
+                <div class="col-lg-8 clearfix"><!-- featured posts slider -->
                 
                     <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
                     
@@ -276,6 +305,24 @@ session_destroy();
                     </div><!-- featured posts slider wrapper end -->
                         
                 </div><!-- featured posts slider end -->
+				
+				<div class="col-lg-4 clearfix">
+			
+				<div>
+                    
+                                
+                                
+                                <ul>
+                                	
+									<h1 class="title-widget"><b>Our Principal Says</b></h1>
+									
+									<p>	Welcome to our school website. </p>
+
+<p>WE CARE is our school motto and very much underpins everything we do at Gate Pa. We pride ourselves on our unique spirit and the culture of sharing and caring. Please free to call in or make an appointment so I can show you around our school facilities. </p>
+                                    
+                                </ul>
+					</div>
+				</div>
                 
             </div><!-- row end -->
             
@@ -296,7 +343,7 @@ session_destroy();
                                     <?php
 include 'sql.php';
 
-$SQL ="SELECT * FROM events";;
+$SQL ="SELECT * FROM events ORDER BY event_date LIMIT 0 , 2";;
 $result = mysql_query($SQL);
 while ($db_field = mysql_fetch_assoc($result)) {
 	$eventname = $db_field['eventname'];
@@ -313,8 +360,8 @@ while ($db_field = mysql_fetch_assoc($result)) {
 }
 mysql_close($db_handle);
 ?>
-                                    
-                          
+                                 
+         <a href="events.php">View More</a>
                                 
                                 </ul>
                             
@@ -341,7 +388,7 @@ mysql_close($db_handle);
 						<?php
 include 'sql.php';
 
-$SQL ="SELECT * FROM news";;
+$SQL ="SELECT * FROM news ORDER BY news_date LIMIT 0 , 2";;
 $result = mysql_query($SQL);
 while ($db_field = mysql_fetch_assoc($result)) {
 	$title = $db_field['title'];
@@ -366,6 +413,8 @@ while ($db_field = mysql_fetch_assoc($result)) {
 }
 mysql_close($db_handle);
 ?>	
+
+<a href="news.php">View More</a>
                                 </ul>
                                 
                             </li><!-- widgets list end -->
@@ -582,14 +631,15 @@ mysql_close($db_handle);
                     
                                 <h1 class="title-widget">Send SMS</h1>
                                 
-								<button type="submit" class="btn btn-default"><a href="http://sms.sudhanshulenka.com/" title="Send SMS">SEND SMS</button></span>
-                                <span class="help-block">Click Here to Send SMS</span>
-         
+								<button type="submit" class="btn btn-default"><a href="http://sms.sudhanshulenka.com/" title="Send SMS">SEND SMS</button>
+                                        
 							</li>
                             
                         </ul> 
                         
                     </div>
+				
+				</div>
                 
                 </div><!-- widgets column right end -->
             
@@ -607,7 +657,7 @@ mysql_close($db_handle);
             
             	<div class="col-lg-12">
                 
-                	<p class="copy-text text-inverse">
+                	<p>
                     &copy; 2017 St Mary's Convent Schools. All rights reserved. | Designed By LogicQ SoftSol Pvt. Ltd.
                     </p>
                 

@@ -60,46 +60,73 @@ session_destroy();
             	<nav id="k-menu" class="k-main-navig"><!-- main navig -->
         
                     <ul id="drop-down-left" class="k-dropdown-menu">
-                        <li>
-                            <a href="news.php" title="Our School News">News</a>
-                        </li>
-                        <li>
-                            <a href="events.php" title="Upcoming Events">Events</a>
-                        </li>
-                        <li>
-                            <a href="#" class="Pages Collection" title="Moments of Life">Gallery</a>
-                            <ul class="sub-menu">
-                                
-                               <li><a href="#">Summer Holiday Trip</a></li>
-                                <li><a href="#">Winter Holiday Trip</a></li>
-                               
-                                <li>
-                                    <a href="#">Annual Function</a>	
-                                    <ul class="sub-menu">
-                                        <li><a href="gallery.php">2014-15</a></li>
-                                        <li>
-                                            <a href="gallery_page_3_3.php">2015-16</a>
-                                         
-                                        </li>
-                                        <li><a href="#">2016-17</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-						<li>
-                            <a href="#" title="Available Course">Course</a>
-                        </li>
-                        <li>
-                            <a href="about-us.php" title="See More about our school">About Us</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">Our Vision</a></li>
-                                <li><a href="#">Achievements</a></li>
-                           
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="contact-us.php" title="School Contacts">Contact Us</a>
-                        </li>
+                        <?php
+							 error_reporting( ~E_NOTICE );
+							require_once 'dbconfig.php';
+							 
+							 $stmt = $DB_con->prepare('SELECT * FROM main_menu');
+							 $stmt->execute();
+							 
+							 if($stmt->rowCount() > 0)
+							 {
+							  while($row=$stmt->fetch(PDO::FETCH_ASSOC))
+							  {
+							   extract($row);
+
+								?>
+
+													
+								<li><a href="<?php echo $row['m_menu_link']; ?>" title="<?php echo $row['subtitle_menu']; ?>"><?php echo $row['m_menu_name']; ?></a>
+								<?php
+								$stmt1 = $DB_con->prepare('SELECT * FROM sub_menu WHERE m_menu_id='.$row['m_menu_id']);
+								// $res_pro=$dbcon->query("SELECT * FROM sub_menu WHERE m_menu_id=".$row['m_menu_id']);
+								
+								$stmt1->execute();
+								?>
+								<ul>				
+									<?php  
+										if($stmt1->rowCount() > 0)
+										{
+											while($row1=$stmt1->fetch(PDO::FETCH_ASSOC))
+											{
+												extract($row1);
+										?>
+										<li><a href="<?php echo $row1['s_menu_link']; ?>"><?php echo $row1['s_menu_name']; ?></a>
+										<?php
+										$stmt2 = $DB_con->prepare('SELECT * FROM s_sub_menu WHERE s_menu_id='.$row1['s_menu_id']);
+										// $res_pro=$dbcon->query("SELECT * FROM sub_menu WHERE m_menu_id=".$row['m_menu_id']);
+										
+										$stmt2->execute();
+										?>
+										<ul>				
+										<?php  
+										if($stmt2->rowCount() > 0)
+										{
+											while($row2=$stmt2->fetch(PDO::FETCH_ASSOC))
+											{
+												extract($row2);
+										?>
+										<li><a href="<?php echo $row2['ss_menu_link']; ?>"><?php echo $row2['ss_menu_name']; ?></a></li>
+										<?php
+											}
+										}
+										?>
+										
+										</ul>
+										</li>
+									
+										<?php
+											}
+										}
+									?>
+								</ul>
+								</li>	
+								<?php
+								}
+							}
+						?>
+						
+
                     </ul>
         
             	</nav><!-- main navig end -->
