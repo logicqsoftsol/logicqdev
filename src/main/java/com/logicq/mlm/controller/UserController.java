@@ -36,6 +36,7 @@ import com.logicq.mlm.common.helper.PropertyHelper;
 import com.logicq.mlm.common.helper.sms.MessageHelper;
 import com.logicq.mlm.common.helper.sms.SMSHelper;
 import com.logicq.mlm.common.vendor.sms.SMSVendor;
+import com.logicq.mlm.model.admin.TransactionDetails;
 import com.logicq.mlm.model.login.Login;
 import com.logicq.mlm.model.message.EmailDetails;
 import com.logicq.mlm.model.performance.UserPerformance;
@@ -43,6 +44,7 @@ import com.logicq.mlm.model.profile.NetWorkDetails;
 import com.logicq.mlm.model.profile.NetworkInfo;
 import com.logicq.mlm.model.profile.UserDocument;
 import com.logicq.mlm.model.profile.UserProfile;
+import com.logicq.mlm.model.profile.WalletDetails;
 import com.logicq.mlm.model.sms.SMSDetails;
 import com.logicq.mlm.model.wallet.WalletStatement;
 import com.logicq.mlm.model.workflow.WorkFlow;
@@ -52,12 +54,15 @@ import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
 import com.logicq.mlm.service.performance.IUserPerformanceService;
 import com.logicq.mlm.service.user.IDocumentUploadService;
 import com.logicq.mlm.service.user.IUserService;
+import com.logicq.mlm.service.wallet.ITransactionDetailsService;
+import com.logicq.mlm.service.wallet.IWalletDetailsService;
 import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
 import com.logicq.mlm.vo.EncashVO;
 import com.logicq.mlm.vo.LoginVO;
 import com.logicq.mlm.vo.PasswordVO;
 import com.logicq.mlm.vo.StatusVO;
+import com.logicq.mlm.vo.TxnRollBackVO;
 import com.logicq.mlm.vo.UserDetailsVO;
 import com.logicq.mlm.vo.WalletStmntVO;
 
@@ -91,7 +96,16 @@ public class UserController {
 
 	@Autowired
 	ServletContext context;
+	
+	@Autowired
+	IWalletDetailsService walletDetailsService;
+	
+	@Autowired
+	IWalletStmntService walletservice;
 
+
+	@Autowired
+	ITransactionDetailsService transactionDetailsService;
 
 	private final static SMSVendor smsvendor = SMSVendor.getInstance();
 	ObjectMapper objectmapper = new ObjectMapper();
@@ -435,6 +449,44 @@ public class UserController {
 			}
 		}
 		return new ResponseEntity<WalletStmntVO>(walletstmsntvo, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/txndetailsforrefrenceno",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<TxnRollBackVO> getTransactionDetailsForRefrenceNumber(@RequestBody TxnRollBackVO txnrollbackvo) throws Exception {
+		if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+			LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if ("ADMIN".equals(login.getUsername())) {
+				List<TransactionDetails> transactionlist = transactionDetailsService
+						.getTransactionDetailsAccordingToRefrenceNumber(txnrollbackvo.getTxnRefrenceNumber());
+				for (TransactionDetails txnDetails : transactionlist) {
+					if (txnDetails.getTxntype().equals("RECIVED")) {
+						WalletDetails walletDetails = new WalletDetails();
+						walletDetails.setWalletid(txnDetails.getWalletid());
+						walletDetails = walletDetailsService.fetchWalletDetails(walletDetails);
+						UserProfile userProfile = walletDetails.getUserprofile();
+						WalletStatement payeewalletStatment = walletservice.fetchWalletStmnt(txnDetails.getWalletid());
+						txnrollbackvo.setPayeeCurrentBalance(payeewalletStatment.getCurrentbalance());
+						txnrollbackvo.setPayeeFirstName(userProfile.getFirstname());
+						txnrollbackvo.setPayeeLastName(userProfile.getLastname());
+						txnrollbackvo.setPayeeGpmIdNo(walletDetails.getWalletnumber());
+						txnrollbackvo.setRollbackAmount(txnDetails.getAmount());
+						txnrollbackvo.setTxnDate(txnDetails.getTxndate());
+						txnrollbackvo.setTxnRefrenceNumber(txnDetails.getDescription());
+					}
+					if (txnDetails.getTxntype().equals("SEND")) {
+						WalletDetails walletDetails = new WalletDetails();
+						walletDetails.setWalletid(txnDetails.getWalletid());
+						walletDetails = walletDetailsService.fetchWalletDetails(walletDetails);
+						UserProfile userProfile = walletDetails.getUserprofile();
+						txnrollbackvo.setCrediotrLastName(userProfile.getLastname());
+						txnrollbackvo.setCreditorFirstName(userProfile.getFirstname());
+						txnrollbackvo.setCreditorGpmIdNo(walletDetails.getWalletnumber());
+					
+					}
+				}
+			}
+		}
+		return new ResponseEntity<TxnRollBackVO>(txnrollbackvo, HttpStatus.OK);
 	}
 	
 }

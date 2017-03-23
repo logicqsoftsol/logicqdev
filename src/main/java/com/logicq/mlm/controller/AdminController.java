@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,6 +45,7 @@ import com.logicq.mlm.vo.EncashVO;
 import com.logicq.mlm.vo.LoginVO;
 import com.logicq.mlm.vo.PaymentVO;
 import com.logicq.mlm.vo.StatusVO;
+import com.logicq.mlm.vo.TxnRollBackVO;
 import com.logicq.mlm.vo.UserDetailsVO;
 import com.logicq.mlm.vo.WalletStmntVO;
 
@@ -311,39 +313,46 @@ public class AdminController {
 	}
 	
 	
+	
+	
 	@RequestMapping(value = "/rollBackTransactionDetails",  method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<WalletStmntVO> rollBackTransactionDetails(@RequestBody PaymentVO paymentDetails) throws Exception {
 		WalletStmntVO walletStment=null;
 		if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
-			LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			List<TransactionDetails> transactionlist = transactionDetailsService.getTransactionDetailsAccordingToRefrenceNumber(login.getUsername());
-		    for(TransactionDetails txnDetails :transactionlist){
-		    	if(txnDetails.getTxntype().equals("RECIVED")){
-		    		WalletDetails walletDetails=new WalletDetails();
-		    		walletDetails.setWalletid(txnDetails.getWalletid());
-		    		walletDetails=walletDetailsService.fetchWalletDetails(walletDetails);
-		    		UserProfile userProfile=walletDetails.getUserprofile();
-		    		WalletStatement debitwalletStatment = walletservice.fetchWalletStmnt(txnDetails.getWalletid());
-					TransactionDetails debittxnDetails = WalletAmountCalculator.populateTransactionDetails(
-							paymentDetails, debitwalletStatment.getWalletid(), userProfile.getFirstname(),
-							userProfile.getLastname());
-					debittxnDetails.setTxntype("ADMIN_SEND");
-					transactionHelper.debitFromWallet(debitwalletStatment, paymentDetails.getAmount(), debittxnDetails);     
-		    	}
-		    	if(txnDetails.getTxntype().equals("SEND")){
-		    		WalletDetails walletDetails=new WalletDetails();
-		    		walletDetails.setWalletid(txnDetails.getWalletid());
-		    		walletDetails=walletDetailsService.fetchWalletDetails(walletDetails);
-		    		UserProfile userProfile=walletDetails.getUserprofile();
-		    		WalletStatement debitwalletStatment = walletservice.fetchWalletStmnt(txnDetails.getWalletid());
-					TransactionDetails credittxnDetails = WalletAmountCalculator.populateTransactionDetails(
-							paymentDetails, debitwalletStatment.getWalletid(), userProfile.getFirstname(),
-							userProfile.getLastname());
-					credittxnDetails.setTxntype("ADMIN_RECIVED");
-					transactionHelper.debitFromWallet(debitwalletStatment, paymentDetails.getAmount(), credittxnDetails); 
-		    	}
-		    }
-		
+			LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();			
+			if ("ADMIN".equals(login.getUsername())) {
+				List<TransactionDetails> transactionlist = transactionDetailsService
+						.getTransactionDetailsAccordingToRefrenceNumber(paymentDetails.getRefrencenumber());
+				for (TransactionDetails txnDetails : transactionlist) {
+					if (txnDetails.getTxntype().equals("RECIVED")) {
+						WalletDetails walletDetails = new WalletDetails();
+						walletDetails.setWalletid(txnDetails.getWalletid());
+						walletDetails = walletDetailsService.fetchWalletDetails(walletDetails);
+						UserProfile userProfile = walletDetails.getUserprofile();
+						WalletStatement debitwalletStatment = walletservice.fetchWalletStmnt(txnDetails.getWalletid());
+						TransactionDetails debittxnDetails = WalletAmountCalculator.populateTransactionDetails(
+								paymentDetails, debitwalletStatment.getWalletid(), userProfile.getFirstname(),
+								userProfile.getLastname());
+						debittxnDetails.setTxntype("ADMIN_SEND");
+						transactionHelper.debitFromWallet(debitwalletStatment, paymentDetails.getAmount(),
+								debittxnDetails);
+					}
+					if (txnDetails.getTxntype().equals("SEND")) {
+						WalletDetails walletDetails = new WalletDetails();
+						walletDetails.setWalletid(txnDetails.getWalletid());
+						walletDetails = walletDetailsService.fetchWalletDetails(walletDetails);
+						UserProfile userProfile = walletDetails.getUserprofile();
+						WalletStatement debitwalletStatment = walletservice.fetchWalletStmnt(txnDetails.getWalletid());
+						TransactionDetails credittxnDetails = WalletAmountCalculator.populateTransactionDetails(
+								paymentDetails, debitwalletStatment.getWalletid(), userProfile.getFirstname(),
+								userProfile.getLastname());
+						credittxnDetails.setTxntype("ADMIN_RECIVED");
+						transactionHelper.debitFromWallet(debitwalletStatment, paymentDetails.getAmount(),
+								credittxnDetails);
+					}
+				}
+			}
+
 		}
 		return new ResponseEntity<WalletStmntVO>(walletStment, HttpStatus.OK);
 	}
