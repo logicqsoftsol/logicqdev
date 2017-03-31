@@ -20,19 +20,46 @@
 			//var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.updateAdminTaskURL;
 			return  $http.post(url,request.addMoney)
 		},
+		rollbackTransaction: function (request) {
+			var url = AppConstants.hostName+AppConstants.rollbackTransactionDetailsURL+"/"+request.txnRefrenceNumber+"/"+request.reasone;
+			//var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.updateAdminTaskURL;
+			return  $http.post(url,'')
+		},
 		getTxnDetails: function ($scope) {
 			return  $http({
 				method: 'GET',
-				url: AppConstants.hostName+AppConstants.getTransactionDetailsURL,
+				url: AppConstants.hostName+AppConstants.getTransactionDetailsURL+"/"+$scope.txnRefrenceNumber,
 				//url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getUserProfileURL+"/"+$scope.networkid,
 				dataType :'json',
 				data : ''
 			})
 		},
-		getTxnDetailsForRefrenceNumber: function (request) {
-			var url = AppConstants.hostName+AppConstants.getTransactionDetailsForRefrenceNumberURL;
-			//var url = AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.updateAdminTaskURL;
-			return  $http.post(url,request.txnrollback)
+		getTransactionDetailsForTxnType: function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.getTransactionDetailsForTxnTypeURL+"/"+$scope.txntype,
+				//url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getUserProfileURL+"/"+$scope.networkid,
+				dataType :'json',
+				data : ''
+			})
+		},
+		getTxnDetailsForRefrenceNumber:  function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.getTransactionDetailsURL+"/"+$scope.txnRefrenceNumber,
+				//url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getUserProfileURL+"/"+$scope.networkid,
+				dataType :'json',
+				data : ''
+			})
+		},
+		reloadWalletDetails:  function ($scope) {
+			return  $http({
+				method: 'GET',
+				url: AppConstants.hostName+AppConstants.reloadWalletDetailsURL,
+				//url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getUserProfileURL+"/"+$scope.networkid,
+				dataType :'json',
+				data : ''
+			})
 		},
 		}
 }]);

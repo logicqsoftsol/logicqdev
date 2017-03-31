@@ -32,4 +32,9 @@ public class WalletDetailsService implements IWalletDetailsService {
 		walletDetailsDAO.updateWalletDetails(walletdetails);
 	}
 
+	@Override
+	public WalletDetails getWalletDetails(String walletid) {
+		return walletDetailsDAO.getWalletDetails(walletid);
+	}
+	
 }

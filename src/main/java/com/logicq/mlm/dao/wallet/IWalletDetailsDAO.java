@@ -9,4 +9,5 @@ public interface IWalletDetailsDAO {
 	public WalletDetails fetchWalletDetails(WalletDetails walletdetails);
 
 	public void updateWalletDetails(WalletDetails walletdetails);
+	public WalletDetails getWalletDetails(String  walletid);
 }

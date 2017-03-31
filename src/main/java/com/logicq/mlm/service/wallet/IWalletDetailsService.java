@@ -10,5 +10,7 @@ public interface IWalletDetailsService {
 	public WalletDetails fetchWalletDetails(WalletDetails walletdetails);
 
 	public void updateWalletDetails(WalletDetails walletdetails);
+	
+	public WalletDetails getWalletDetails(String walletid);
 
 }

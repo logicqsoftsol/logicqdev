@@ -8,6 +8,7 @@ import com.logicq.mlm.model.wallet.WalletStatement;
 import com.logicq.mlm.vo.EncashVO;
 import com.logicq.mlm.vo.LoginVO;
 import com.logicq.mlm.vo.PaymentVO;
+import com.logicq.mlm.vo.TxnRollBackVO;
 import com.logicq.mlm.vo.WalletStmntVO;
 
 public class WalletAmountCalculator {
@@ -40,6 +41,20 @@ public class WalletAmountCalculator {
 		transactionDetail.setWalletid(walletid);
 		transactionDetail.setTxnfor(firstName + " " + lastName);
 		transactionDetail.setRefrenceno(paymentDetails.getRefrencenumber());
+		transactionDetail.setTxnNumber(StringFormatHelper.randomString());
+		return transactionDetail;
+	}
+	
+	
+	public static TransactionDetails populateTransactionDetails(TxnRollBackVO txnrollbackdetails, String walletid,String firstName,String lastName) {
+		TransactionDetails transactionDetail = new TransactionDetails();
+		transactionDetail.setAmount(txnrollbackdetails.getRollbackAmount());
+		transactionDetail.setDescription(txnrollbackdetails.getRollbackReasone());
+		transactionDetail.setModeoftxn("ONLINE");
+		transactionDetail.setTxndate(new Date());
+		transactionDetail.setWalletid(walletid);
+		transactionDetail.setTxnfor(firstName + " " + lastName);
+		transactionDetail.setRefrenceno(txnrollbackdetails.getTxnRefrenceNumber());
 		transactionDetail.setTxnNumber(StringFormatHelper.randomString());
 		return transactionDetail;
 	}

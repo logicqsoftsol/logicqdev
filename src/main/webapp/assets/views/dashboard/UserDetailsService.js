@@ -23,6 +23,16 @@
 				data : ''
 			})
 	},
+	
+	reloadNetworkCount: function ($scope) {
+		return  $http({
+			method: 'GET',
+			url: AppConstants.hostName+AppConstants.reloadNetworkCountURL,
+			//url: AppConstants.hostName+AppConstants.hostPort+AppConstants.applicationName+AppConstants.getUserProfileURL+"/"+$scope.networkid,
+			dataType :'json',
+			data : ''
+		})
+},
 		
 		getUserNetwork: function ($scope) {
 			return  $http({

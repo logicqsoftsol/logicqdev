@@ -13,6 +13,7 @@ public class TaskDetails {
 	private String taskstatus;
 	private String priority;
 	private Long taskid;
+	private String message;
 	
 	private EncashVO encashvo;
 	
@@ -64,11 +65,20 @@ public class TaskDetails {
 	public void setEncashvo(EncashVO encashvo) {
 		this.encashvo = encashvo;
 	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
 	@Override
 	public String toString() {
 		return "TaskDetails [taskname=" + taskname + ", taskfor=" + taskfor + ", taskassigneddate=" + taskassigneddate
 				+ ", tasktype=" + tasktype + ", taskstatus=" + taskstatus + ", priority=" + priority + ", taskid="
-				+ taskid + ", encashvo=" + encashvo + "]";
+				+ taskid + ", message=" + message + ", encashvo=" + encashvo + "]";
 	}
 	
+	
+
 }

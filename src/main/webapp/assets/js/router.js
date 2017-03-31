@@ -102,5 +102,13 @@
                     controller:'AdminCtrl'
                     
                 })
+				$stateProvider
+                .state('forgetpassword', {
+					parent: 'dashboard',
+                    url: "/forgetpassword",
+                    templateUrl:"assets/views/login/forgetpassword.html",
+                    controller:'LoginController'
+                    
+                })
     });
 })();
