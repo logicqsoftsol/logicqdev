@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logicq.mlm.common.factory.LoginFactory;
 import com.logicq.mlm.common.helper.PropertyHelper;
+import com.logicq.mlm.common.helper.WalletAmountCalculator;
 import com.logicq.mlm.common.helper.sms.MessageHelper;
 import com.logicq.mlm.common.helper.sms.SMSHelper;
 import com.logicq.mlm.common.vendor.sms.SMSVendor;
@@ -51,6 +53,7 @@ import com.logicq.mlm.model.workflow.WorkFlow;
 import com.logicq.mlm.service.login.ILoginService;
 import com.logicq.mlm.service.messaging.IEmailService;
 import com.logicq.mlm.service.networkdetails.INetworkDetailsService;
+import com.logicq.mlm.service.performance.IUserNetworkPerformanceService;
 import com.logicq.mlm.service.performance.IUserPerformanceService;
 import com.logicq.mlm.service.user.IDocumentUploadService;
 import com.logicq.mlm.service.user.IUserService;
@@ -60,6 +63,7 @@ import com.logicq.mlm.service.wallet.IWalletStmntService;
 import com.logicq.mlm.service.workflow.IWorkFlowService;
 import com.logicq.mlm.vo.EncashVO;
 import com.logicq.mlm.vo.LoginVO;
+import com.logicq.mlm.vo.NetworkCountVO;
 import com.logicq.mlm.vo.PasswordVO;
 import com.logicq.mlm.vo.StatusVO;
 import com.logicq.mlm.vo.TxnRollBackVO;
@@ -106,6 +110,9 @@ public class UserController {
 
 	@Autowired
 	ITransactionDetailsService transactionDetailsService;
+	
+	@Autowired
+	IUserNetworkPerformanceService userNetworkPerformance;
 
 	private final static SMSVendor smsvendor = SMSVendor.getInstance();
 	ObjectMapper objectmapper = new ObjectMapper();
@@ -320,10 +327,14 @@ public class UserController {
 		if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
 			if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
 				LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-				UserProfile userprofile = userservice.fetchUserAccordingToUserName(login.getUsername());
-				encashvo.setUsername(login.getUsername());
-				encashvo.setRequestdate(new Date());
-				workflowservice.createWorkFlowForEncashRequest(encashvo, userprofile);
+				if (encashvo.getEncashamount().compareTo(BigDecimal.ZERO) == 1) {
+					UserProfile userprofile = userservice.fetchUserAccordingToUserName(login.getUsername());
+					encashvo.setUsername(login.getUsername());
+					encashvo.setRequestdate(new Date());
+					workflowservice.createWorkFlowForEncashRequest(encashvo, userprofile);
+				}else{
+					throw new Exception("Insufficient balance for encashing");
+				}
 			}
 		}
 		return new ResponseEntity<EncashVO>(encashvo, HttpStatus.OK);
@@ -487,6 +498,17 @@ public class UserController {
 			}
 		}
 		return new ResponseEntity<TxnRollBackVO>(txnrollbackvo, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/reloaNetworkPerformanceCount", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserDetailsVO> reloadWallet() throws Exception {
+		UserDetailsVO userdetailsvo = new UserDetailsVO();
+		if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof LoginVO) {
+			LoginVO login = (LoginVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			List<NetworkCountVO> networkCountList=userNetworkPerformance.getNetworkPerformanceAccordingToUser(login.getUsername());
+			userdetailsvo.setNetworkcountlist(networkCountList);
+		}
+		return new ResponseEntity<UserDetailsVO>(userdetailsvo, HttpStatus.OK);
 	}
 	
 }

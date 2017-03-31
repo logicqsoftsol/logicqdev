@@ -313,6 +313,27 @@
 									
 						      }
 
+							  $scope.viewMemberProfileDetailsForTask = function(task) {
+								  $scope.viewuser=task.taskfor;
+								  	UserDetailsService.getUserProfileDetails($scope).success(function(data, status) {
+										$scope.viewuserprofile.firstname = data.userprofile.firstname;
+										$scope.viewuserprofile.lastname = data.userprofile.lastname;
+										$scope.viewuserprofile.memberlevel = data.userprofile.networkinfo.memberlevel;
+										$scope.viewuserprofile.dateofbirth = data.userprofile.dateofbirth;
+										$scope.viewuserprofile.gender = data.userprofile.gender;
+										$scope.viewuserprofile.addressText = data.userprofile.conatctDetails.addressText;
+										$scope.viewuserprofile.district = data.userprofile.conatctDetails.district;
+										$scope.viewuserprofile.email = data.userprofile.conatctDetails.email;
+										$scope.viewuserprofile.mobilenumber = data.userprofile.conatctDetails.mobilenumber;
+										$scope.viewuserprofile.image=data.document.documentPath;
+									  }).error(function(data, status) {
+										  var errormsg='Unable to specifc user profile '+status;
+										  alert(errormsg);
+											//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+											$exceptionHandler(errormsg);
+										}); 
+							  }
+								
 								$scope.viewMemberProfileDetails = function(network) {
 									$scope.viewuser=network.memberid;
 									UserDetailsService.getUserProfileDetails($scope).success(function(data, status) {
@@ -391,6 +412,23 @@
 								$exceptionHandler(errormsg);
 							});
 					}
+					$scope.reloadWalletDetails=function(){
+						AdminService.reloadWalletDetails($scope).success(function(data, status) {
+						   $scope.user.walletdetails.walletStatement.payout=data.payout;
+						    $scope.user.walletdetails.walletStatement.encashedAmount=data.encashedAmount;
+							$scope.user.walletdetails.walletStatement.currentbalance=data.currentbalance;
+							$scope.userdetails.walletStatement.payout=data.payout;
+					        $scope.userdetails.walletStatement.encashedAmount=data.encashedAmount;
+					        $scope.userdetails.walletStatement.currentbalance=data.currentbalance;
+					        $scope.userdetails.walletStatement.walletlastupdate=data.walletlastupdate;
+							}).error(function(data, status) {
+							   var errormsg='Unable to pay  : '+status;
+							   alert(errormsg);
+							//	$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+								$exceptionHandler(errormsg);
+							});
+					}
+					
 					$scope.alltxnlist=[];
 					$scope.sendtxnlist=[];
 					$scope.addtxnlist=[];
@@ -398,7 +436,7 @@
 					$scope.encashtxnlist=[];
 								$scope.getAllTxnList = function() {
 									AdminService.getTxnDetails($scope).success(function(data, status) {
-										$scope.alltxnlist=data;
+										$scope.alltxnlist=data.transactionDetails;
 									}).error(function(data, status) {
 										   var errormsg='Unable to fetch Transaction details : '+status;
 										   alert(errormsg);
@@ -408,49 +446,53 @@
 								
 								}
 								$scope.getSendTxnList = function() {
-									$scope.getAllTxnList();
 									$scope.sendtxnlist=[];
-									if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
-										angular.forEach($scope.alltxnlist, function(txn){
-											if(txn.txntype=='SEND'){
-												$scope.sendtxnlist.push(txn);
-											}
+									$scope.txntype='SEND';
+									AdminService.getTransactionDetailsForTxnType($scope).success(function(data, status) {
+										$scope.sendtxnlist=data;
+									}).error(function(data, status) {
+										   var errormsg='Unable to fetch Transaction details : '+status;
+										   alert(errormsg);
+										//	$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+											$exceptionHandler(errormsg);
 										});
-                                     }
 								}
 								$scope.getAddTxnList = function() {
-									$scope.getAllTxnList();
 									$scope.addtxnlist=[];
-								if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
-									angular.forEach($scope.alltxnlist, function(txn){
-											if(txn.txntype=='ADD'){
-												$scope.addtxnlist.push(txn);
-											}
+									$scope.txntype='ADD';
+									AdminService.getTransactionDetailsForTxnType($scope).success(function(data, status) {
+										$scope.addtxnlist=data;
+									}).error(function(data, status) {
+										   var errormsg='Unable to fetch Transaction details : '+status;
+										   alert(errormsg);
+										//	$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+											$exceptionHandler(errormsg);
 										});
-									}
 								}
 								$scope.getEncashTxnList = function() { 
-									$scope.getAllTxnList();
 									$scope.encashtxnlist=[];
-									if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
-                                    angular.forEach($scope.alltxnlist, function(txn){
-											if(txn.txntype=='ENCASH'){
-												$scope.encashtxnlist.push(txn);
-											}
+									$scope.txntype='ENCASH';
+									AdminService.getTransactionDetailsForTxnType($scope).success(function(data, status) {
+										$scope.encashtxnlist=data;
+									}).error(function(data, status) {
+										   var errormsg='Unable to fetch Transaction details : '+status;
+										   alert(errormsg);
+										//	$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+											$exceptionHandler(errormsg);
 										});
-									}
 
 								}
 								$scope.getRecivedTxnList= function() {
-									$scope.getAllTxnList();
 									$scope.recivedtxnlist=[];
-									if(null!=$scope.alltxnlist && $scope.alltxnlist.length>0){
-										angular.forEach($scope.alltxnlist, function(txn){
-											if(txn.txntype=='RECIVED'){
-												$scope.recivedtxnlist.push(txn);
-											}
+									$scope.txntype='RECIVED';
+									AdminService.getTransactionDetailsForTxnType($scope).success(function(data, status) {
+										$scope.recivedtxnlist=data;
+									}).error(function(data, status) {
+										   var errormsg='Unable to fetch Transaction details : '+status;
+										   alert(errormsg);
+										//	$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+											$exceptionHandler(errormsg);
 										});
-									}
 								}
 							$scope.reloadWalletDetails=function(){
 								UserDetailsService.reloadUserWalletDetails($scope).success(function(data, status) {
@@ -491,7 +533,7 @@
                       $scope.taskPoller.push("createEncashRequest");
 					  alert(" Your have create EncashRequest Sucessfully");
 					}).error(function(data, status) {
-						   var errormsg='Unable to Create Encash Request : '+status;
+						   var errormsg='Unable to Create Encash Request check your balance : '+status;
 						   alert(errormsg);
 							//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 							$exceptionHandler(errormsg);
@@ -559,12 +601,10 @@
 									$exceptionHandler(errormsg);
 								});
 					}
-					
-					
+					$scope.txnRefrenceNumber='null';
 						$scope.populateTransactionDetailsForRollBack = function(txnsend) {
-							$scope.request.txnrollback={};
-							$scope.request.txnrollback.txnRefrenceNumber=txnsend.refrenceno;
-							AdminService.getTxnDetailsForRefrenceNumber($scope.request).success(function(data, status) { 
+							$scope.txnRefrenceNumber=txnsend.refrenceno;
+							AdminService.getTxnDetailsForRefrenceNumber($scope).success(function(data, status) { 
 							$scope.txnrollback.cfirstname=data.creditorFirstName;
 							$scope.txnrollback.clastname=data.crediotrLastName;
 							$scope.txnrollback.creditorgpmid=data.creditorGpmIdNo;
@@ -572,6 +612,7 @@
 							$scope.txnrollback.payeelastname=data.payeeLastName;
 							$scope.txnrollback.payeegpmid=data.payeeGpmIdNo;
 							$scope.txnrollback.payeecurrentbalance=data.payeeCurrentBalance;
+							$scope.txnrollback.rollbackAmount=data.rollbackAmount;
 							$scope.txnrollback.txnrefrenceno=data.txnRefrenceNumber;
 							$scope.txnrollback.txndescription=data.txnDescription;
 							$scope.txnrollback.reasone=null;
@@ -582,7 +623,30 @@
 									$exceptionHandler(errormsg);
 								});
 						}	
-					
+						$scope.txnRollbackConfirm = function(txnrollback) {
+							$scope.request.txnRefrenceNumber=txnrollback.txnrefrenceno;
+							$scope.request.reasone=$scope.txnrollback.reasone;
+							AdminService.rollbackTransaction($scope.request).success(function(data, status) {
+								 var errormsg='Sucessfully rollback your transaction: '+status;
+								 alert(errormsg);
+							}).error(function(data, status) {
+								   var errormsg='Unable to rollback your transaction: '+status;
+								   alert(errormsg);
+									//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+									$exceptionHandler(errormsg);
+								});
+						}
+						
+						$scope.reloadNetworkCount=function() {	
+							UserDetailsService.reloadNetworkCount($scope).success(function(data, status) {
+								$scope.networkcountlist=data.networkcountlist;
+							}).error(function(data, status) {
+								   var errormsg='Unable to refresh your Network performance : '+status;
+								   alert(errormsg);
+									//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
+									$exceptionHandler(errormsg);
+								});
+						}
 			$scope.uploadFile = function(files) {
                $scope.request.fd = new FormData();
                var fileSize = files[0].size;

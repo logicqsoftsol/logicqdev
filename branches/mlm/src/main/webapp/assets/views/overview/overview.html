@@ -194,7 +194,7 @@
             <div class="panel-heading">
               <h3 class="panel-title">Your Network Details</h3>
 			  <span class="pull-right clickable span-space"><i class="glyphicon glyphicon-chevron-up"></i></span>
-			  <span class="pull-right  spanclikable span-space"  ng-click="reloadWalletDetails()"><i class="fa fa-refresh"></i></span>
+			  <span class="pull-right  spanclikable span-space"  ng-click="reloadNetworkCount()"><i class="fa fa-refresh"></i></span>
             </div>
             <div class="panel-body">
                <div class="table-responsive">
@@ -963,16 +963,15 @@
 								<th class="pull-center">Task Priority</th>
 							</tr>
 							<tr ng-repeat="task in tasklist">
-								<td>{{task.taskname}}</td>
-								<td>{{task.taskfor}}</td>
-								<td>{{task.taskassigneddate | date:'yyyy-MM-dd'}}</td>
 								<td>{{task.tasktype}}</td>
+								<td><a id="taskviewprofile"  data-toggle="modal"  data-target="#viewprofilemodal"   ng-click="viewMemberProfileDetailsForTask(task)">{{task.taskfor}}</a></td>
+								<td>{{task.taskassigneddate | date:'yyyy-MM-dd'}}</td>
+								<td>{{task.message}}</td>
+
 								<td><input type="text" id="taskstatus" ng-model="task.taskstatus" name="taskstatus" class="form-control" list="taskstatuslist">
 								<datalist id="taskstatuslist">
 									<option value="Pending">
 									<option value="Approved">
-									<option value="KYC Verification Pending">
-									<option value="Waiting">
 								</datalist>
 								</td>
 								<td>{{task.priority}}</td>
@@ -1132,7 +1131,7 @@
                         <td>{{txnrollback.cfirstname}} {{txnrollback.clastname}}</td>
                       </tr>
                       <tr>
-                        <td>GPM ID For Credit</td>
+                        <td>Creditor GPM ID </td>
                         <td>{{txnrollback.creditorgpmid}}</td>
                       </tr>
                       <tr>
@@ -1140,12 +1139,12 @@
                         <td>{{txnrollback.payeefirstname}} {{txnrollback.payeelastname}}</td>
                       </tr>
                       <tr>
-                        <td>GPM ID For Payee</td>
-                        <td>{{txnrollback.payeegpmid}}</td>
+                        <td>Payee GPM ID || Current Balance </td>
+                        <td>{{txnrollback.payeegpmid}} || INR {{txnrollback.payeecurrentbalance}}.00</td>
                       </tr>
                       <tr>
-                        <td>Payee Current Balance</td>
-                        <td>{{txnrollback.payeecurrentbalance}}</td>
+                        <td>Rollback Amount</td>
+                        <td>INR {{txnrollback.rollbackAmount}}.00</td>
                       </tr>
 					   <tr>
                         <td>Transaction Refrence Number</td>
@@ -1157,7 +1156,7 @@
                       </tr>
 					   <tr>
 					    <td>Reasone For RollBack</td>
-					  	<textarea name="message" class="form-control" ng-model="txnrollback.reasone" name="txnrollbackreasone"  placeholder="Roll back reasone" required></textarea>
+					  	<td><textarea name="message" class="form-control" ng-model="txnrollback.reasone" name="txnrollbackreasone"  placeholder="Roll back reasone" required></textarea><td>
                          <span style="color:red" ng-show="txnrollbackform.txnrollbackreasone.$error.required && txnrollbackform.txnrollbackreasone.$dirty">Please enter reasone for rollback</span> 						
 					   </tr>
                     </tbody>
@@ -1168,7 +1167,7 @@
           </div>
 		</div>
 				<div class="modal-footer">
-				<button type="submit" id="txnrollbackconfirmbutton" class="btn btn-default" ng-click="txnRollbackConfirm()" ng-disabled="txnrollbackform.$invalid"
+				<button type="submit" id="txnrollbackconfirmbutton" class="btn btn-default" ng-click="txnRollbackConfirm(txnrollback)" ng-disabled="txnrollbackform.$invalid"
 								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>

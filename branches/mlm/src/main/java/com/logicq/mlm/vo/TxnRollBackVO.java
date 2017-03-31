@@ -3,6 +3,9 @@ package com.logicq.mlm.vo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
+import com.logicq.mlm.model.admin.TransactionDetails;
 
 public class TxnRollBackVO implements Serializable {
 	/**
@@ -21,6 +24,8 @@ public class TxnRollBackVO implements Serializable {
 	private String txnRefrenceNumber;
 	private String txnDescription;
 	private String rollbackReasone;
+	private List<TransactionDetails> transactionDetails;
+	
 	public String getCreditorFirstName() {
 		return creditorFirstName;
 	}
@@ -93,6 +98,16 @@ public class TxnRollBackVO implements Serializable {
 	public void setRollbackReasone(String rollbackReasone) {
 		this.rollbackReasone = rollbackReasone;
 	}
+	
+	
+	
+	public List<TransactionDetails> getTransactionDetails() {
+		return transactionDetails;
+	}
+	public void setTransactionDetails(List<TransactionDetails> transactionDetails) {
+		this.transactionDetails = transactionDetails;
+	}
+	
 	
 	@Override
 	public String toString() {

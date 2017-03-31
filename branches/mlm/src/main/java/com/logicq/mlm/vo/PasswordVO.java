@@ -13,6 +13,12 @@ public class PasswordVO implements Serializable {
 	private String newPassword;
 	private String confirmPasword;
 	private String date;
+	private String mobilenumber;
+	private String gpmidno;
+	private String cgpmidno;
+	private String username;
+	
+	
 	public String getOldpassword() {
 		return oldpassword;
 	}
@@ -37,4 +43,38 @@ public class PasswordVO implements Serializable {
 	public void setDate(String date) {
 		this.date = date;
 	}
+	public String getMobilenumber() {
+		return mobilenumber;
+	}
+	public void setMobilenumber(String mobilenumber) {
+		this.mobilenumber = mobilenumber;
+	}
+	public String getGpmidno() {
+		return gpmidno;
+	}
+	public void setGpmidno(String gpmidno) {
+		this.gpmidno = gpmidno;
+	}
+	public String getCgpmidno() {
+		return cgpmidno;
+	}
+	public void setCgpmidno(String cgpmidno) {
+		this.cgpmidno = cgpmidno;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "PasswordVO [oldpassword=" + oldpassword + ", newPassword=" + newPassword + ", confirmPasword="
+				+ confirmPasword + ", date=" + date + ", mobilenumber=" + mobilenumber + ", gpmidno=" + gpmidno
+				+ ", cgpmidno=" + cgpmidno + ", username=" + username + "]";
+	}
+	
+	
 }

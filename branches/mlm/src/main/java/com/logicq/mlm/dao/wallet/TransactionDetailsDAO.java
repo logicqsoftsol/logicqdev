@@ -30,4 +30,22 @@ public class TransactionDetailsDAO extends AbstractDAO<TransactionDetails> imple
 		return (List<TransactionDetails>) execcuteQuery(selectQuery.toString());
 	}
 
+	@Override
+	public void deleteTransaction(TransactionDetails txnDetails) {
+		delete(txnDetails);
+	}
+
+	@Override
+	public List<TransactionDetails> getTransactionDetails(String walletid, String txnType) {
+		StringBuilder selectQuery=new StringBuilder();
+		if("RECIVED".equals(txnType)){
+			txnType=txnType+"','"+"ROLLBACK_CREDIT";
+		}
+		if("SEND".equals(txnType)){
+			txnType=txnType+"','"+"ROLLBACK_DEBIT";
+		}
+		selectQuery.append(" from TransactionDetails where walletid='"+walletid+"' and txntype in ('"+txnType+"')order by txndate desc");
+		return (List<TransactionDetails>) executeQueryWithPagination(selectQuery.toString(),1,20);
+	}
+
 }

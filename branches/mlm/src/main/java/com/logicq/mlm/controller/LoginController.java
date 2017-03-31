@@ -95,6 +95,7 @@ public class LoginController {
 							task.setTaskassigneddate(workflow.getCreatetime());
 							task.setTaskfor(workflow.getCreatedby());
 							task.setTaskname(workflow.getWorktype());
+							task.setMessage(workflow.getMessage());
 							if(!workflow.getStatus()){
 								task.setTaskstatus("Pending");	
 							}							
@@ -126,6 +127,7 @@ public class LoginController {
 							task.setTaskassigneddate(work.getCreatetime());
 							task.setTaskfor(work.getCreatedby());
 							task.setTaskname(work.getWorktype());
+							task.setMessage(work.getMessage());
 							if(!work.getStatus()){
 								task.setTaskstatus("Pending");	
 							}							
@@ -158,6 +160,8 @@ public class LoginController {
 		}
 		return new ResponseEntity<UserDetailsVO>(userdetailsvo, HttpStatus.OK);
 	}
+	
+	
 	
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -44,5 +44,9 @@
 				$location.path('/login');
 			});
     };
+	
+	$scope.passwordChange = function () {
+		
+	};
 			 } ]);
 }());
