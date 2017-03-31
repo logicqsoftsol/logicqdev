@@ -533,7 +533,7 @@
                       $scope.taskPoller.push("createEncashRequest");
 					  alert(" Your have create EncashRequest Sucessfully");
 					}).error(function(data, status) {
-						   var errormsg='Unable to Create Encash Request check your balance : '+status;
+						   var errormsg='Unable to Create Encash Request : '+status;
 						   alert(errormsg);
 							//$rootScope.$emit("callAddAlert", {type:'danger',msg:errormsg});
 							$exceptionHandler(errormsg);
