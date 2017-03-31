@@ -13,6 +13,8 @@
 			 function($scope,$rootScope,$http,$location,$localStorage,$exceptionHandler,AuthenticationService) {
 		$scope.approval={};
 		$scope.profileDisplayName={};
+		$scope.password={};
+		$scope.request={};
 		$scope.login = function () {
 			AuthenticationService.Login($scope).success(function(response, status, headers, config){
 				if(headers('AUTH-TOKEN') != '' && response.authorities != '' )
@@ -46,7 +48,12 @@
     };
 	
 	$scope.passwordChange = function () {
-		
+		$scope.request.password.username=$scope.password.username;
+		$scope.request.mobilenumber=$scope.password.mobilenumber;
+		$scope.request.gpmidno=$scope.password.gpmidno;
+		$scope.request.cgpmidno=$scope.password.cgpmidno;
+		$scope.request.newPassword=$scope.password.newPassword;
+		$scope.request.confirmPasswor=$scope.password.confirmPasswor;
 	};
 			 } ]);
 }());
