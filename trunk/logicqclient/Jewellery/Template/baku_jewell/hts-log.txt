@@ -1,0 +1,20 @@
+HTTrack3.49-1+htsswf+htsjava launched on Fri, 05 May 2017 01:05:27 at https://p.w3layouts.com/demos/baku/web/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://p.w3layouts.com/demos/baku/web/ -O1 "E:\logicq\baku_jewell" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+01:06:04	Error: 	"Not Found" (404) at link https://p.w3layouts.com/demos/baku/web/fonts/glyphicons-halflings-regular.eot (from https://p.w3layouts.com/demos/baku/web/css/bootstrap.css)
+01:06:04	Error: 	"Not Found" (404) at link https://p.w3layouts.com/demos/baku/web/fonts/glyphicons-halflings-regular.eot? (from https://p.w3layouts.com/demos/baku/web/css/bootstrap.css)
+01:06:04	Error: 	"Not Found" (404) at link https://p.w3layouts.com/demos/baku/web/fonts/glyphicons-halflings-regular.woff (from https://p.w3layouts.com/demos/baku/web/css/bootstrap.css)
+01:06:04	Error: 	"Not Found" (404) at link https://p.w3layouts.com/demos/baku/web/fonts/glyphicons-halflings-regular.ttf (from https://p.w3layouts.com/demos/baku/web/css/bootstrap.css)
+01:06:04	Error: 	"Not Found" (404) at link https://p.w3layouts.com/demos/baku/web/fonts/glyphicons-halflings-regular.svg (from https://p.w3layouts.com/demos/baku/web/css/bootstrap.css)
+01:06:04	Error: 	"Not Found" (404) at link https://p.w3layouts.com/demos/baku/web/images/pagenate.png (from https://p.w3layouts.com/demos/baku/web/css/bootstrap.css)
+01:06:04	Error: 	"Not Found" (404) at link https://p.w3layouts.com/demos/baku/web/css/AjaxLoader.gif (from https://p.w3layouts.com/demos/baku/web/css/owl.carousel.css)
+01:06:04	Error: 	"Not Found" (404) at link https://p.w3layouts.com/demos/baku/web/css/grabbing.png (from https://p.w3layouts.com/demos/baku/web/css/owl.carousel.css)
+01:06:04	Error: 	"Not Found" (404) at link https://p.w3layouts.com/demos/baku/web/images/bg_direction_nav.png (from https://p.w3layouts.com/demos/baku/web/css/flexslider.css)
+
+HTTrack Website Copier/3.49-1 mirror complete in 37 seconds : 70 links scanned, 60 files written (2156803 bytes overall) [1865792 bytes received at 50426 bytes/sec], 435541 bytes transferred using HTTP compression in 25 files, ratio 25%, 7.0 requests per connection
+(9 errors, 0 warnings, 0 messages)
