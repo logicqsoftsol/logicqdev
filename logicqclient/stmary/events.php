@@ -36,8 +36,8 @@ session_destroy();
             <nav class="k-functional-navig"><!-- functional navig -->
         
                 <ul class="list-inline pull-right">
-                    <li><a href="login.php">LOGIN</a></li>
-                    <li><a href="#">Calendar</a></li>
+                    <li><a href="login.php" class="button">LOGIN</a></li>
+                    <li><a href="#" class="button">Calendar</a></li>
              
                 </ul>
         

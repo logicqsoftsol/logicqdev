@@ -20,6 +20,9 @@
     <link href="js/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
     <link href="js/audioplayer/audioplayer.css" rel="stylesheet" type="text/css"><!-- Audioplayer -->
     <link href="style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
+	
+	<!-- link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css" -->
 
   </head>
   
@@ -36,9 +39,11 @@
             <nav class="k-functional-navig"><!-- functional navig -->
         
                 <ul class="list-inline pull-right">
-                    <li><a href="login.php">LOGIN</a></li>
-                    <li><a href="#">Calendar</a></li>
-             
+				
+				
+                    <li><a href="login.php" class="button">LOGIN</a></li>
+                    <li><a href="#" class="button">Calendar</a></li>
+				
                 </ul>
         
             </nav><!-- functional navig end -->
@@ -330,7 +335,7 @@
                 
                 <div class="col-lg-4 col-md-4"><!-- upcoming events wrapper -->
                 	
-                    <div class="col-padded col-shaded"><!-- inner custom column -->
+                    <div class="col-padded col-shaded" 	><!-- inner custom column -->
                     
                     	<ul class="list-unstyled clear-margins"><!-- widgets -->
                         
@@ -339,12 +344,15 @@
                                 <h1 class="title-widget">Upcoming Events</h1>
                                 
                                 <ul class="list-unstyled">
-                                
+								
+								<marquee scrollamount="3" onmouseover="stop();"  onmouseout="start();" direction="up" >
+								                       
                                     <?php
 include 'sql.php';
 
-$SQL ="SELECT * FROM events ORDER BY event_date LIMIT 0 , 2";;
-$result = mysql_query($SQL);
+<<<<<<< .mine$SQL ="SELECT * FROM events ORDER BY event_date DESC LIMIT 0, 3";;
+=======$SQL ="SELECT * FROM events ORDER BY event_date LIMIT 0 , 2";;
+>>>>>>> .theirs$result = mysql_query($SQL);
 while ($db_field = mysql_fetch_assoc($result)) {
 	$eventname = $db_field['eventname'];
 	$eventdate = $db_field['event_date'];
@@ -360,10 +368,14 @@ while ($db_field = mysql_fetch_assoc($result)) {
 }
 mysql_close($db_handle);
 ?>
-                                 
+<<<<<<< .mine 
+</marquee>
+ 
+ <a href="events.php">View More</a>		 
+=======                                 
          <a href="events.php">View More</a>
                                 
-                                </ul>
+>>>>>>> .theirs                                </ul>
                             
                             </li><!-- widgets list end -->
                         
@@ -384,6 +396,8 @@ mysql_close($db_handle);
                                 <h1 class="title-widget">Latest News</h1>
                                 
                                 <ul class="list-unstyled">
+								
+								<marquee scrollamount="3" onmouseover="stop();"  onmouseout="start();" direction="up" >
                                 
 						<?php
 include 'sql.php';
@@ -413,9 +427,11 @@ while ($db_field = mysql_fetch_assoc($result)) {
 }
 mysql_close($db_handle);
 ?>	
-
+<<<<<<< .mine</marquee>
 <a href="news.php">View More</a>
-                                </ul>
+=======
+<a href="news.php">View More</a>
+>>>>>>> .theirs                                </ul>
                                 
                             </li><!-- widgets list end -->
                         
@@ -672,6 +688,36 @@ mysql_close($db_handle);
     <!-- jQuery -->
     <script src="jQuery/jquery-2.1.1.min.js"></script>
     <script src="jQuery/jquery-migrate-1.2.1.min.js"></script>
+	
+	<!-- script type="text/javascript">
+	jQuery.noConflict();
+    jQuery(document).ready(function (){ 
+        jQuery("#marquee_list").marquee({ 
+   			  
+		// enable the plugin
+		enable : true,  //plug-in is enabled
+		
+		// scroll direction
+		// 'vertical' or 'horizontal'
+		direction: 'vertical',
+
+		// children items
+		itemSelecter : 'li',
+		// animation delay
+		delay: 30,
+
+		// animation speed
+		speed: 1,
+		 
+		// animation timing
+		timing: 1,
+
+		// mouse hover to stop the scroller
+		mouse: true
+	  
+		  });
+	});
+	</script -->
     
     <!-- Bootstrap -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -697,6 +743,10 @@ mysql_close($db_handle);
     
     <!-- Theme -->
     <script src="js/theme.js"></script>
+	
+	<!-- News Therme >
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.marquee.js" type="text/javascript"></script -->
     
   </body>
 </html>
