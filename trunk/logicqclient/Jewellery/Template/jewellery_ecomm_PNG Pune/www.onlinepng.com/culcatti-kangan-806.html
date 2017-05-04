@@ -1,0 +1,1598 @@
+	<!DOCTYPE html>
+<html lang="en">
+	
+<!-- Mirrored from www.onlinepng.com/culcatti-kangan-806.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 May 2017 20:12:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(2),u=e(3),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}finally{f.emit("fn-end",[c.now()],t)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now()])}},{}],2:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],3:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],4:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=m(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){v[e]=m(e).concat(n)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(t)}function g(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var v={},y={},b={on:l,emit:t,get:w,listeners:m,context:n,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(2),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=h.info=NREUM.info,n=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+h.offset],null,"api");var t=d.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===d.readyState&&i()}function i(){f("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),f=e("handle"),c=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1026.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=n.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),f("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<title>CULCATTI KANGAN - Bangles - Gold</title>
+<meta name="description" content="&amp;nbsp;" />
+<meta name="keywords" content="CULCATTI KANGAN" />
+<meta name="robots" content="NOINDEX,NOFOLLOW" />
+<link rel="icon" href="http://www.onlinepng.com/media/favicon/default/favicon2_1.png" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="shortcut icon" href="http://www.onlinepng.com/media/favicon/default/favicon2_1.png" type="image/x-icon" />
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = 'http://www.onlinepng.com/js/blank.html';
+    var BLANK_IMG = 'http://www.onlinepng.com/js/spacer.gif';
+//]]>
+</script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="http://www.onlinepng.com/media/css/d17fc402d90bcad1095c3ce0c2206d35_1485941380.css" />
+<link rel="stylesheet" type="text/css" href="http://www.onlinepng.com/media/css/52b434404f3fa656d445759370d4cf8d_1487249794.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://www.onlinepng.com/media/css/d554aa3290bfc7659c39db1ec5a86266_1487249788.css" media="print" />
+<script type="text/javascript"  src="http://www.onlinepng.com/media/js/239c90cdbd68ae963df2d10e8e4ef25b_1487249794.js"></script>
+<link href="http://www.onlinepng.com/blog/rss/index/store_id/1/" title="Blog" rel="alternate" type="application/rss+xml" />
+<link rel='stylesheet' type='text/css' href="http://www.onlinepng.com/skin/frontend/shoptimize/shoptimize_theme_v4/css/advanced_styling/skin_2.css" />
+<link rel='stylesheet' type='text/css' href="http://www.onlinepng.com/media/advanced_styling/shoptimize/27_feb.css" />
+<!--[if lt IE 8]>
+<link rel="stylesheet" type="text/css" href="http://www.onlinepng.com/media/css/e153c10a7c71cbc0c74ba4f00fd55456_1487249788.css" media="all" />
+<![endif]-->
+
+<script type="text/javascript">
+//<![CDATA[
+Mage.Cookies.path     = 'http://www.onlinepng.com/';
+Mage.Cookies.domain   = '.www.onlinepng.com';
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+optionalZipCountries = ["HK","IE","MO","PA"];
+//]]>
+</script>
+                        <!-- BEGIN GOOGLE ANALYTICS CODE -->
+            <script type="text/javascript">
+            //<![CDATA[
+                var _gaq = _gaq || [];
+                
+_gaq.push(['_setAccount', 'UA-58539396-23']);
+
+_gaq.push(['_trackPageview']);
+                                
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+
+            //]]>
+            </script>
+            <!-- END GOOGLE ANALYTICS CODE -->
+              
+    
+
+<script type='text/javascript'>//<![CDATA[
+                         var AjaxKitConfig = JSON.parse('{"general_add_to_cart":{"enable_ajax_for_add_to_cart":["cms","product","category"],"add_to_cart_btn_selector":".btn-cart, #wishlist-sidebar .link-cart, #product-addtocart-button","header_selector":".header","product_image_animation":"0","enable_quick_view":"1","add_to_cart_static_block":"","remove_from_cart_static_block":""},"general_add_to_links":{"enabled_add_to_compare":"1","enabled_add_to_wishlist":"1","add_to_compare_success_message_static_block":"","add_to_wishlist_success_message_static_block":"","header_selector":".header"},"general_login":{"header_selector":".header","after_login":"reload","after_login_custom_url":"","after_login_magento_pages":"no_redirection","after_login_static_pages":"","after_logout":"reload","after_logout_custom_url":"","after_logout_magento_pages":"no_redirection","after_logout_static_pages":"","after_registration":"reload","after_registration_custom_url":"","after_registration_magento_pages":"no_redirection","after_registration_static_pages":"","after_forgot_password":"reload","after_forgot_password_custom_url":"","after_forgot_password_magento_pages":"no_redirection","after_forgot_password_static_pages":""},"general_toolbar":{"enable_ajax_toolbar":"0","enable_ajax_layered_navigation":"0","enable_ajax_infinite_scroll":"0","infinite_scroll_buffer":"20","infinite_scroll_threshold":"3"},"main":{"url":"http://www.onlinepng.com/culcatti-kangan-806.html\/\/www.onlinepng.com\/ajaxKit\/","uenc":"aHR0cDovL3d3dy5vbmxpbmVwbmcuY29tOjgwODAvY3VsY2F0dGkta2FuZ2FuLTgwNi5odG1s","parent":{"module":"catalog","controller":"product"},"js_css":{"head_html":"","head_js_css":[{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/prototype\/prototype.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/lib\/ccard.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/prototype\/validation.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/scriptaculous\/builder.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/scriptaculous\/effects.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/scriptaculous\/dragdrop.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/scriptaculous\/controls.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/scriptaculous\/slider.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/varien\/js.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/varien\/form.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/varien\/menu.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/mage\/translate.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/mage\/cookies.js"}},{"name":"link","attributes":{"href":"http:\/\/www.onlinepng.com\/skin\/frontend\/shoptimize\/shoptimize_theme_v4\/css\/styles.css"}},{"name":"link","attributes":{"href":"http:\/\/www.onlinepng.com\/skin\/frontend\/base\/default\/css\/widgets.css"}},{"name":"link","attributes":{"href":"http:\/\/www.onlinepng.com\/skin\/frontend\/shoptimize\/shoptimize_theme_v4\/css\/print.css"}},{"name":"link","attributes":{"href":"http:\/\/www.onlinepng.com\/skin\/frontend\/shoptimize\/shoptimize_theme_v4\/aw_blog\/css\/style.css"}},{"name":"link","attributes":{"href":"http:\/\/www.onlinepng.com\/skin\/frontend\/shoptimize\/default\/css\/formbuilder\/custom.css"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/mage\/captcha.js"}},{"name":"link","attributes":{"href":"http:\/\/www.onlinepng.com\/js\/calendar\/calendar-win2k-1.css"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/calendar\/calendar.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/calendar\/calendar-setup.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/shoptimize\/ajaxkit\/main.js"}},{"name":"link","attributes":{"href":"http:\/\/www.onlinepng.com\/skin\/frontend\/shoptimize\/shoptimize_theme_v4\/ajaxkit\/main.css"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/shoptimize\/ajaxkit\/general_add_to_cart.js"}},{"name":"link","attributes":{"href":"http:\/\/www.onlinepng.com\/skin\/frontend\/shoptimize\/shoptimize_theme_v4\/ajaxkit\/general_add_to_cart.css"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/shoptimize\/ajaxkit\/general_add_to_links.js"}},{"name":"link","attributes":{"href":"http:\/\/www.onlinepng.com\/skin\/frontend\/shoptimize\/shoptimize_theme_v4\/ajaxkit\/general_add_to_links.css"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/shoptimize\/ajaxkit\/general_login.js"}},{"name":"script","attributes":{"src":"http:\/\/www.onlinepng.com\/js\/shoptimize\/ajaxkit\/general_toolbar.js"}}]}}}');
+                    // ]]></script>
+                    <script type='text/javascript'>//<![CDATA[
+                     GeneralAddToCart.thisPage = "product"
+                // ]]></script>
+                    <script type='text/javascript'>//<![CDATA[
+                         AjaxKitMain.initSubmodules();
+                    // ]]></script>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><link href="http://fonts.googleapis.com/css?family=Hind:600,300,700,400,500" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css"><link href="http://fonts.googleapis.com/css?family=Biryani:200,300,400,600,700,800,900" rel="stylesheet" type="text/css">	<style type="text/css">
+		/* @media only screen and (min-width: 1332px){ */
+			body.boxed-layout .container,
+			body .container {max-width: 1900px; width: 100%;}
+		/* } */
+	</style>
+<script type="text/javascript">//<![CDATA[
+        var Translator = new Translate([]);
+        //]]></script>
+<meta name="google-site-verification" content="jTF-AqMKgA-qTo0e7NOe4sT3kUK_6H01WB8f2axILrA" />  
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=1343206015704588";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <link type="text/css" rel="stylesheet" media="screen" href="http://www.onlinepng.com/skin/frontend/shoptimize/default/le_sociallogin/css/style.css"/>
+    <script type="text/javascript" src="http://www.onlinepng.com/skin/frontend/shoptimize/default/le_sociallogin/js/sociallogin.js"></script>    	</head>
+	<body class=" catalog-product-view wide-layout catalog-product-view product-culcatti-kangan categorypath-gold-bangles-html category-bangles">
+		
+		    <noscript>
+        <div class="global-site-notice noscript">
+            <div class="notice-inner">
+                <p>
+                    <strong>JavaScript seems to be disabled in your browser.</strong><br />
+                    You must have JavaScript enabled in your browser to utilize the functionality of this website.                </p>
+            </div>
+        </div>
+    </noscript>
+		<div class="header-breadcrumbs-wrapper with-breadcrumbs">
+			<div class="header-wrapper">
+		<header id="header" class="header header-2 header-7">
+		<div class="top-block clearfix">
+						<h2 class="logo pull-left">
+				<strong>PNGadgil and Sons</strong>
+				<a href="http://www.onlinepng.com/" title="PNGadgil and Sons" class="logo">
+					<img src="http://www.onlinepng.com/media/png-logo.png" alt="PNGadgil and Sons" />
+				</a>
+			</h2>
+			<div class="row">
+				<div class="col-md-8 col-lg-9 pull-right">
+					<p class="welcome-msg pull-left">Default welcome msg! </p>
+					<div class="right-wrapper pull-right">
+						<!-- AJAX START [top.links] -->
+<div id="turpentine-esi-block-2ab3219f56b6a44d521366f3b2c55527e84893acc22615a8d27be312b6214d80" class="turpentine-div" style="display: none">
+    <script type="text/javascript">
+        (function() {
+            var blockTag = "turpentine-esi-block-2ab3219f56b6a44d521366f3b2c55527e84893acc22615a8d27be312b6214d80", esiUrl = "http://www.onlinepng.com/culcatti-kangan-806.html\/\/www.onlinepng.com\/turpentine\/esi\/getBlock\/method\/ajax\/access\/private\/ttl\/0\/hmac\/a7b4bac3a58295710b058e502ec61c19842ed4dbd90a0aa7ed54ea0a1641aca1\/data\/YPx9yxndZXj15tuvdRNZx0fYrCVO9Ix0HKDaw3Km-sb1B8RRe2W-Iaa20c8jqgkdCFKYsNiJMaVXF0ohOsHksQ9grVEbk0Xy3eeiwbvrnqn3Dq72UtA26SVJaJaqESxJM5RWdyeaD-HHY8PsrlgZItEExPCpdC7GpDR1a5ytm8mtST2xF2igiHVOe645uhucW41UYQcWsgumGxkMKJMTUdksldZzfeaZHY7NLiimq0vFL.iZWBTssKUXDyiQG4lPbsdv3zwnG5RK4ScBp4eL8QGyI.2ibCy7PF-3Fv.oBCvXL67QtvSVSEqRQEusRV9o7yWA8hB0QgZlXWTU4F2bBwuZuGmgoFbTPC5T3eDyrudsAg4wOfEKd-ylma9yfE0vFWU6IZ14MsGEjZKlhCu8EMYnkAnX6kV1MmM9ZzryrjU=\/";
+            if (typeof Ajax === 'object' && typeof Ajax.Updater === 'function') {
+                new Ajax.Updater(
+                    blockTag,
+                    esiUrl,
+                    {
+                        method: "get",
+                        evalScripts: true,
+                        onComplete: function() {
+                            $(blockTag).appear({
+                                duration: 0.3
+                            });
+                        }
+                    }
+                );
+            } else if (typeof jQuery === 'function') {
+                jQuery.ajax(
+                    {
+                        url: esiUrl,
+                        type: "get",
+                        dataType: "html"
+                    }
+                ).always(function() {
+                    $(blockTag).fadeIn(300);
+                });
+            }
+        })();
+    </script>
+</div><!-- AJAX END [top.links] -->
+						<!-- AJAX START [header_cart_sidebar] -->
+<div id="turpentine-esi-block-3eab6b830b832e337efc0f2d0b1f1b4440f21a27f4d5864f5c65fb5de6186762" class="turpentine-div" style="display: none">
+    <script type="text/javascript">
+        (function() {
+            var blockTag = "turpentine-esi-block-3eab6b830b832e337efc0f2d0b1f1b4440f21a27f4d5864f5c65fb5de6186762", esiUrl = "http://www.onlinepng.com/culcatti-kangan-806.html\/\/www.onlinepng.com\/turpentine\/esi\/getBlock\/method\/ajax\/access\/private\/ttl\/0\/hmac\/e689256ea23a8f28dc59a6c4bf48d0504f3c20f1eb2141f3515fa91812455c5b\/data\/Rwz.02YxkYqZ.9zJ7N4qj1Qkqizl3NuDhmAMtX7mA9AUgdV5eLOKOn2tdbk6RekfNRpDypmDN8lYRw0rFkysSWzn3NzFJygwex43gs8c3pep3.Pa.z8dBhDs551D-sMRyXBYijvCKIrcFTQotWTPt714ZAKcfcCjPTUG.rozt6wsrbxFhguq4Shiv5.LyRPhfjnlpV.gcmxJQZ57z5dkMnMzVXfvCuntVgETlpFhSvynFkRshduaAVR.s9Qs4Jm5fLtQD57bPVtK6MjwwHfAcWG1E51Tv0UEH3clZro7n9OTz.wd39P7wljcoTopF1VycNbNIj4WicgBtSocTlxOn9a8Jy4csckQwedRl0Vh-K3p.m-m3FIEGF9rZQfjE1Lej0CadpaOch3tR2pPW-uRLCzSYus.-9z0PfLnN5gMcBM=\/";
+            if (typeof Ajax === 'object' && typeof Ajax.Updater === 'function') {
+                new Ajax.Updater(
+                    blockTag,
+                    esiUrl,
+                    {
+                        method: "get",
+                        evalScripts: true,
+                        onComplete: function() {
+                            $(blockTag).appear({
+                                duration: 0.3
+                            });
+                        }
+                    }
+                );
+            } else if (typeof jQuery === 'function') {
+                jQuery.ajax(
+                    {
+                        url: esiUrl,
+                        type: "get",
+                        dataType: "html"
+                    }
+                ).always(function() {
+                    $(blockTag).fadeIn(300);
+                });
+            }
+        })();
+    </script>
+</div><!-- AJAX END [header_cart_sidebar] -->
+																		<form id="search_mini_form_127" action="http://www.onlinepng.com/catalogsearch/result/" method="get" class="search-mini-form">
+    <div class="form-search">
+		<div class="search-button">
+			<i class="fa fa-search"></i><span>Search</span>
+		</div>
+        <div class="indent">
+            <label for="search_127">Search:</label>
+            <input id="search_127" type="text" name="q" value="" class="form-control" maxlength="128" />
+            <button type="submit" title="Search" class="btn btn-default"><span><span><i class="fa fa-search"></i></span></span></button>
+            <div id="search_autocomplete_127" class="search-autocomplete"></div>
+            <script type="text/javascript">
+            //<![CDATA[
+                var searchForm = new Varien.searchForm('search_mini_form_127', 'search_127', 'Search entire store here...');
+                searchForm.initAutocomplete('http://www.onlinepng.com/catalogsearch/ajax/suggest/', 'search_autocomplete_127');
+            //]]>
+            </script>
+        </div>
+    </div>
+</form>					</div>
+				</div>
+				<div class="menu-block pull-right col-md-12 col-lg-10">
+					<div class="wrapper-menu clearfix">
+							<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<button class="navbar-toggle menu-button" type="button">
+			<i class="fa fa-navicon"></i>
+			<span>Menu</span>
+		</button>
+	</div>
+	<div class="collapse topmenu navbar-collapse">
+		<ul class="nav nav-wide topmenu navbar-nav">
+						<li  class="level0 nav-1 first level-top parent"><a href="http://www.onlinepng.com/bullion.html"  class="level-top" ><span>Bullion</span></a><div class="menu-wrapper default-menu"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/bullion/gold-coin.html" ><span class="subtitle">Gold Coin</span></a></li><li class="level1"><a href="http://www.onlinepng.com/bullion/gold-vedhani.html" ><span class="subtitle">Gold Vedhani</span></a></li><li class="level1"><a href="http://www.onlinepng.com/bullion/silver-coins.html" ><span class="subtitle">Silver Coins</span></a></li><li class="level1"><a href="http://www.onlinepng.com/bullion/gold-biscuit.html" ><span class="subtitle">Gold Biscuit</span></a></li></ul><div class="transparent"></div></div></li><li  class="level0 nav-2 level-top parent"><a href="http://www.onlinepng.com/gold.html"  class="level-top" ><span>Gold</span></a><div class="menu-wrapper" data-columns="2"><div class="row"><div class="col-md-4"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/gold/bangles.html" ><span class="subtitle">Bangles</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/earrings.html" ><span class="subtitle">Earrings</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/gold-chain.html" ><span class="subtitle">Gold Chain</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/gold-finger-ring.html" ><span class="subtitle">Gold Finger Ring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/gold-nath-press.html" ><span class="subtitle">Maharashtrian Jewellery (Mens &amp; Womens)</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/kids.html" ><span class="subtitle">Kids</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/mangalsutra.html" ><span class="subtitle">Mangalsutra</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/mens-accessories.html" ><span class="subtitle">Mens Accessories</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/necklace.html" ><span class="subtitle">Necklace</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/pendants.html" ><span class="subtitle">Pendants</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/pendent-set.html" ><span class="subtitle">Pendent Set</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/rakhi.html" ><span class="subtitle">Rakhi</span></a></li></ul></div><div class="col-md-8 right-content"><div class="mega-inner" style="border-left: 1px dashed #999; padding-left:20px;">
+<div class="row" style="border-bottom: 1px dashed #999;">
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/bangles.html"><img src="http://www.onlinepng.com/media/wysiwyg/bangles.jpg" alt="" /><h6>BANGLES</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/earrings.html"><img src="http://www.onlinepng.com/media/wysiwyg/earings.jpg" alt="" /><h6>EARRINGS</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/gold-finger-ring.html"><img src="http://www.onlinepng.com/media/wysiwyg/rings.jpg" alt="" /><h6>RINGS</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/mangalsutra.html"><img src="http://www.onlinepng.com/media/wysiwyg/mangalsutra_1.jpg" alt="" /><h6>MANGALSUTRA</h6></a></div>
+</div>
+<div class="row">
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/mens-accessories.html"><img src="http://www.onlinepng.com/media/wysiwyg/mens-acessories.jpg" alt="" /><h6>MENS ACESSORIES</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/gold-nath-press.html"><img src="http://www.onlinepng.com/media/wysiwyg/nath.jpg" alt="" /><h6>NATH</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/necklace.html"><img src="http://www.onlinepng.com/media/wysiwyg/necklace.jpg" alt="" /><h6>NECKLACE</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/kids.html"><img src="http://www.onlinepng.com/media/wysiwyg/Kids.jpg" alt="" /><h6>KIDS</h6></a></div>
+</div>
+</div></div></div><div class="clear"></div><div class="transparent"></div></div></li><li  class="level0 nav-3 level-top parent"><a href="http://www.onlinepng.com/silver.html"  class="level-top" ><span>Silver</span></a><div class="menu-wrapper" data-columns="2"><div class="row"><div class="col-md-4"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/silver/silver-earring.html" ><span class="subtitle">Silver Earring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/pendents.html" ><span class="subtitle">Pendants</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/pendent-set.html" ><span class="subtitle">Pendant Set</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/necklace.html" ><span class="subtitle">Necklace</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/pooja-items.html" ><span class="subtitle">Pooja Items</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/kids.html" ><span class="subtitle">Kids</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/gift-items.html" ><span class="subtitle">Gift Items</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/silver-coins.html" ><span class="subtitle">Silver Coins</span></a></li></ul></div><div class="col-md-8 right-content"><div class="mega-inner" style="border-left: 1px dashed #999; padding-left:20px;">
+<div class="row" style="border-bottom: 1px dashed #999;">
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/silver/silver-earring.html"><img src="http://www.onlinepng.com/media/wysiwyg/earings_1.jpg" alt="" /><h6>EARRINGS</h6></a></div>
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/silver/pendents.html"><img src="http://www.onlinepng.com/media/wysiwyg/pendant.jpg" alt="" /><h6>PENDANTS</h6></a></div>
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/gold-silver-coin-vedhani.html"><img src="http://www.onlinepng.com/media/wysiwyg/silver_coin.jpg" alt="" /><h6>SILVER COINS</h6></a></div>
+</div>
+<div class="row">
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/silver/pendent-set.html"><img src="http://www.onlinepng.com/media/wysiwyg/pendant-set.jpg" alt="" /><h6>PENDANT SET</h6></a></div>
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/silver/necklace.html"><img src="http://www.onlinepng.com/media/wysiwyg/necklace_1.jpg" alt="" /><h6>NECKLACE</h6></a></div>
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/silver/kids.html"><img src="http://www.onlinepng.com/media/wysiwyg/kids.jpg" alt="" /><h6>KIDS JEWELRY</h6></a></div>
+</div>
+</div></div></div><div class="clear"></div><div class="transparent"></div></div></li><li  class="level0 nav-4 level-top parent"><a href="http://www.onlinepng.com/diamond.html"  class="level-top" ><span>Diamond</span></a><div class="menu-wrapper" data-columns="2"><div class="row"><div class="col-md-4"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/diamond/diamond-chain-pendent.html" ><span class="subtitle">Diamond Pendants</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/diamond-ring.html" ><span class="subtitle">Diamond Ring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/flower-multi-diamond-earring.html" ><span class="subtitle"> Multi Diamond Flower Earring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/j-dia-bali.html" ><span class="subtitle">J Dia Bali</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/j-diamond-earring.html" ><span class="subtitle">Diamond Earring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/kudi.html" ><span class="subtitle">Kudi</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/multi-diamond-earring.html" ><span class="subtitle">Multi Diamond Earring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/rose-gold-e-ring.html" ><span class="subtitle">Rose Gold E.Ring</span></a></li></ul></div><div class="col-md-8 right-content"><div class="mega-inner" style="border-left: 1px dashed #999; padding-left:20px;">
+<div class="row" style="border-bottom: 1px dashed #999;">
+<div class="col-xs-6 img-mega"><a href="http://www.onlinepng.com/diamond/diamond-ring.html"><img src="http://www.onlinepng.com/media/wysiwyg/ring.jpg" alt="" /><h6>RINGS</h6></a></div>
+<div class="col-xs-6 img-mega"><a href="http://www.onlinepng.com/diamond/diamond-chain-pendent.html"><img src="http://www.onlinepng.com/media/wysiwyg/pendant_1.jpg" alt="" /><h6>PENDANTS</h6></a></div>
+</div>
+<div class="row">
+<div class="col-xs-6 img-mega"><a href="http://www.onlinepng.com/diamond/j-diamond-earring/danglers.html"><img src="http://www.onlinepng.com/media/wysiwyg/danglers.jpg" alt="" /><h6>DANGLERS</h6></a></div>
+<div class="col-xs-6 img-mega"><a href="http://www.onlinepng.com/diamond/j-diamond-earring/studs.html"><img src="http://www.onlinepng.com/media/wysiwyg/studs.jpg" alt="" /><h6>STUDS</h6></a></div>
+</div>
+</div></div></div><div class="clear"></div><div class="transparent"></div></div></li><li  class="level0 nav-5 level-top parent"><a href="http://www.onlinepng.com/gifts-243.html"  class="level-top" ><span>Gifts</span></a><div class="menu-wrapper default-menu"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/gifts-243/gajant-laxmi.html" ><span class="subtitle">Gajant Laxmi</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gifts-243/gift-items.html" ><span class="subtitle">Gift Items</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gifts-243/pooja-items.html" ><span class="subtitle">Pooja Items</span></a></li></ul><div class="transparent"></div></div></li><li  class="level0 nav-6 level-top parent"><a href="http://www.onlinepng.com/made-to-order.html"  class="level-top" ><span>Made to order</span></a><div class="menu-wrapper default-menu"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/made-to-order/necklace.html" ><span class="subtitle">Necklace</span></a></li><li class="level1"><a href="http://www.onlinepng.com/made-to-order/mangalsutra.html" ><span class="subtitle">Mangalsutra</span></a></li><li class="level1"><a href="http://www.onlinepng.com/made-to-order/bangles.html" ><span class="subtitle">Bangles</span></a></li><li class="level1"><a href="http://www.onlinepng.com/made-to-order/pendant-sets.html" ><span class="subtitle">Pendent Sets</span></a></li><li class="level1"><a href="http://www.onlinepng.com/made-to-order/earrings.html" ><span class="subtitle">Earrings</span></a></li><li class="level1"><a href="http://www.onlinepng.com/made-to-order/temple-jwelary-classics.html" ><span class="subtitle">Temple Jewellery Classics</span></a></li></ul><div class="transparent"></div></div></li><li  class="level0 nav-7 last level-top"><a href="https://shopping.pngadgilandsons.com/"  class="level-top"  target="_blank"><span>Saving scheme</span></a></li>			<li class="level0 nav-7  level-top"><a href="http://www.onlinepng.com/blog" class="level-top"><span> Blog </span></a></li>		</ul>
+	</div>
+</nav>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			
+	</header>
+	<header id="sticky-header" class="header">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 clearfix">
+				<div class="pull-left">
+											<h2 class="small-logo pull-left">
+							<strong>Shoptimize Commerce</strong>
+							<a href="http://www.onlinepng.com/" title="PNGadgil and Sons" class="logo">
+								<img 
+									src="http://www.onlinepng.com/media/pnglogosmall.png" alt="PNGadgil and Sons" />
+							</a>
+						</h2>
+										<div class="pull-left">
+							<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<button class="navbar-toggle menu-button" type="button">
+			<i class="fa fa-navicon"></i>
+			<span>Menu</span>
+		</button>
+	</div>
+	<div class="collapse topmenu navbar-collapse">
+		<ul class="nav nav-wide topmenu navbar-nav">
+						<li  class="level0 nav-1 first level-top parent"><a href="http://www.onlinepng.com/bullion.html"  class="level-top" ><span>Bullion</span></a><div class="menu-wrapper default-menu"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/bullion/gold-coin.html" ><span class="subtitle">Gold Coin</span></a></li><li class="level1"><a href="http://www.onlinepng.com/bullion/gold-vedhani.html" ><span class="subtitle">Gold Vedhani</span></a></li><li class="level1"><a href="http://www.onlinepng.com/bullion/silver-coins.html" ><span class="subtitle">Silver Coins</span></a></li><li class="level1"><a href="http://www.onlinepng.com/bullion/gold-biscuit.html" ><span class="subtitle">Gold Biscuit</span></a></li></ul><div class="transparent"></div></div></li><li  class="level0 nav-2 level-top parent"><a href="http://www.onlinepng.com/gold.html"  class="level-top" ><span>Gold</span></a><div class="menu-wrapper" data-columns="2"><div class="row"><div class="col-md-4"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/gold/bangles.html" ><span class="subtitle">Bangles</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/earrings.html" ><span class="subtitle">Earrings</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/gold-chain.html" ><span class="subtitle">Gold Chain</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/gold-finger-ring.html" ><span class="subtitle">Gold Finger Ring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/gold-nath-press.html" ><span class="subtitle">Maharashtrian Jewellery (Mens &amp; Womens)</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/kids.html" ><span class="subtitle">Kids</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/mangalsutra.html" ><span class="subtitle">Mangalsutra</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/mens-accessories.html" ><span class="subtitle">Mens Accessories</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/necklace.html" ><span class="subtitle">Necklace</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/pendants.html" ><span class="subtitle">Pendants</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/pendent-set.html" ><span class="subtitle">Pendent Set</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gold/rakhi.html" ><span class="subtitle">Rakhi</span></a></li></ul></div><div class="col-md-8 right-content"><div class="mega-inner" style="border-left: 1px dashed #999; padding-left:20px;">
+<div class="row" style="border-bottom: 1px dashed #999;">
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/bangles.html"><img src="http://www.onlinepng.com/media/wysiwyg/bangles.jpg" alt="" /><h6>BANGLES</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/earrings.html"><img src="http://www.onlinepng.com/media/wysiwyg/earings.jpg" alt="" /><h6>EARRINGS</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/gold-finger-ring.html"><img src="http://www.onlinepng.com/media/wysiwyg/rings.jpg" alt="" /><h6>RINGS</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/mangalsutra.html"><img src="http://www.onlinepng.com/media/wysiwyg/mangalsutra_1.jpg" alt="" /><h6>MANGALSUTRA</h6></a></div>
+</div>
+<div class="row">
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/mens-accessories.html"><img src="http://www.onlinepng.com/media/wysiwyg/mens-acessories.jpg" alt="" /><h6>MENS ACESSORIES</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/gold-nath-press.html"><img src="http://www.onlinepng.com/media/wysiwyg/nath.jpg" alt="" /><h6>NATH</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/necklace.html"><img src="http://www.onlinepng.com/media/wysiwyg/necklace.jpg" alt="" /><h6>NECKLACE</h6></a></div>
+<div class="col-xs-3 img-mega"><a href="http://www.onlinepng.com/gold/kids.html"><img src="http://www.onlinepng.com/media/wysiwyg/Kids.jpg" alt="" /><h6>KIDS</h6></a></div>
+</div>
+</div></div></div><div class="clear"></div><div class="transparent"></div></div></li><li  class="level0 nav-3 level-top parent"><a href="http://www.onlinepng.com/silver.html"  class="level-top" ><span>Silver</span></a><div class="menu-wrapper" data-columns="2"><div class="row"><div class="col-md-4"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/silver/silver-earring.html" ><span class="subtitle">Silver Earring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/pendents.html" ><span class="subtitle">Pendants</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/pendent-set.html" ><span class="subtitle">Pendant Set</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/necklace.html" ><span class="subtitle">Necklace</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/pooja-items.html" ><span class="subtitle">Pooja Items</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/kids.html" ><span class="subtitle">Kids</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/gift-items.html" ><span class="subtitle">Gift Items</span></a></li><li class="level1"><a href="http://www.onlinepng.com/silver/silver-coins.html" ><span class="subtitle">Silver Coins</span></a></li></ul></div><div class="col-md-8 right-content"><div class="mega-inner" style="border-left: 1px dashed #999; padding-left:20px;">
+<div class="row" style="border-bottom: 1px dashed #999;">
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/silver/silver-earring.html"><img src="http://www.onlinepng.com/media/wysiwyg/earings_1.jpg" alt="" /><h6>EARRINGS</h6></a></div>
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/silver/pendents.html"><img src="http://www.onlinepng.com/media/wysiwyg/pendant.jpg" alt="" /><h6>PENDANTS</h6></a></div>
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/gold-silver-coin-vedhani.html"><img src="http://www.onlinepng.com/media/wysiwyg/silver_coin.jpg" alt="" /><h6>SILVER COINS</h6></a></div>
+</div>
+<div class="row">
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/silver/pendent-set.html"><img src="http://www.onlinepng.com/media/wysiwyg/pendant-set.jpg" alt="" /><h6>PENDANT SET</h6></a></div>
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/silver/necklace.html"><img src="http://www.onlinepng.com/media/wysiwyg/necklace_1.jpg" alt="" /><h6>NECKLACE</h6></a></div>
+<div class="col-xs-4 img-mega"><a href="http://www.onlinepng.com/silver/kids.html"><img src="http://www.onlinepng.com/media/wysiwyg/kids.jpg" alt="" /><h6>KIDS JEWELRY</h6></a></div>
+</div>
+</div></div></div><div class="clear"></div><div class="transparent"></div></div></li><li  class="level0 nav-4 level-top parent"><a href="http://www.onlinepng.com/diamond.html"  class="level-top" ><span>Diamond</span></a><div class="menu-wrapper" data-columns="2"><div class="row"><div class="col-md-4"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/diamond/diamond-chain-pendent.html" ><span class="subtitle">Diamond Pendants</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/diamond-ring.html" ><span class="subtitle">Diamond Ring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/flower-multi-diamond-earring.html" ><span class="subtitle"> Multi Diamond Flower Earring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/j-dia-bali.html" ><span class="subtitle">J Dia Bali</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/j-diamond-earring.html" ><span class="subtitle">Diamond Earring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/kudi.html" ><span class="subtitle">Kudi</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/multi-diamond-earring.html" ><span class="subtitle">Multi Diamond Earring</span></a></li><li class="level1"><a href="http://www.onlinepng.com/diamond/rose-gold-e-ring.html" ><span class="subtitle">Rose Gold E.Ring</span></a></li></ul></div><div class="col-md-8 right-content"><div class="mega-inner" style="border-left: 1px dashed #999; padding-left:20px;">
+<div class="row" style="border-bottom: 1px dashed #999;">
+<div class="col-xs-6 img-mega"><a href="http://www.onlinepng.com/diamond/diamond-ring.html"><img src="http://www.onlinepng.com/media/wysiwyg/ring.jpg" alt="" /><h6>RINGS</h6></a></div>
+<div class="col-xs-6 img-mega"><a href="http://www.onlinepng.com/diamond/diamond-chain-pendent.html"><img src="http://www.onlinepng.com/media/wysiwyg/pendant_1.jpg" alt="" /><h6>PENDANTS</h6></a></div>
+</div>
+<div class="row">
+<div class="col-xs-6 img-mega"><a href="http://www.onlinepng.com/diamond/j-diamond-earring/danglers.html"><img src="http://www.onlinepng.com/media/wysiwyg/danglers.jpg" alt="" /><h6>DANGLERS</h6></a></div>
+<div class="col-xs-6 img-mega"><a href="http://www.onlinepng.com/diamond/j-diamond-earring/studs.html"><img src="http://www.onlinepng.com/media/wysiwyg/studs.jpg" alt="" /><h6>STUDS</h6></a></div>
+</div>
+</div></div></div><div class="clear"></div><div class="transparent"></div></div></li><li  class="level0 nav-5 level-top parent"><a href="http://www.onlinepng.com/gifts-243.html"  class="level-top" ><span>Gifts</span></a><div class="menu-wrapper default-menu"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/gifts-243/gajant-laxmi.html" ><span class="subtitle">Gajant Laxmi</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gifts-243/gift-items.html" ><span class="subtitle">Gift Items</span></a></li><li class="level1"><a href="http://www.onlinepng.com/gifts-243/pooja-items.html" ><span class="subtitle">Pooja Items</span></a></li></ul><div class="transparent"></div></div></li><li  class="level0 nav-6 level-top parent"><a href="http://www.onlinepng.com/made-to-order.html"  class="level-top" ><span>Made to order</span></a><div class="menu-wrapper default-menu"><ul class="level0"><li class="level1"><a href="http://www.onlinepng.com/made-to-order/necklace.html" ><span class="subtitle">Necklace</span></a></li><li class="level1"><a href="http://www.onlinepng.com/made-to-order/mangalsutra.html" ><span class="subtitle">Mangalsutra</span></a></li><li class="level1"><a href="http://www.onlinepng.com/made-to-order/bangles.html" ><span class="subtitle">Bangles</span></a></li><li class="level1"><a href="http://www.onlinepng.com/made-to-order/pendant-sets.html" ><span class="subtitle">Pendent Sets</span></a></li><li class="level1"><a href="http://www.onlinepng.com/made-to-order/earrings.html" ><span class="subtitle">Earrings</span></a></li><li class="level1"><a href="http://www.onlinepng.com/made-to-order/temple-jwelary-classics.html" ><span class="subtitle">Temple Jewellery Classics</span></a></li></ul><div class="transparent"></div></div></li><li  class="level0 nav-7 last level-top"><a href="https://shopping.pngadgilandsons.com/"  class="level-top"  target="_blank"><span>Saving scheme</span></a></li>			<li class="level0 nav-7  level-top"><a href="http://www.onlinepng.com/blog" class="level-top"><span> Blog </span></a></li>		</ul>
+	</div>
+</nav>
+
+					</div>
+				</div>
+				<div class="quick-access pull-right">
+					<div class="pull-right">
+
+						<!-- AJAX START [sticky_header_cart_sidebar] -->
+<div id="turpentine-esi-block-be51b1681baec05658bf84c4d3fffc70779eb7f168f008d9f8003d949b0f0824" class="turpentine-div" style="display: none">
+    <script type="text/javascript">
+        (function() {
+            var blockTag = "turpentine-esi-block-be51b1681baec05658bf84c4d3fffc70779eb7f168f008d9f8003d949b0f0824", esiUrl = "http://www.onlinepng.com/culcatti-kangan-806.html\/\/www.onlinepng.com\/turpentine\/esi\/getBlock\/method\/ajax\/access\/private\/ttl\/0\/hmac\/6dab11d3627392ff69981457ab3cfc9e09c128f2433fa9da6c1711dde3152a35\/data\/1sIi94W5h15FnhMdCONfdlTmbbm6EMJuuD6H6H3iwCp6HkjveE0zmAyBu4Y99Zy3p5mZeyjWTFFcSJ4d4NfuWp6By9yKfMZJuYscLrTIhHUZqg.j8eK6MtkwCW2wRcLVdp813kWD50wyVagMgaGkCi2jzl2FIoN5cPLI-Sgm5o2BzFcAG4ipyRvOZvDt5Cc6bwF2oknYb5wTwxz6fLIul8lFBrN-EaI75auL8TDIr3Rkm0FN4vyzoVWy7UcjN9TEZyCAk3CPF1ny6.B34sPxtQQzBnfoAmAwfLz9-rz1K2Vhd2TAVG54YzV8la1-Iai.7Cj7X7lBBwSm9kLSt2GEjk3B7lGUW3yKqZwS8HU-Tf.gOhDP7FD3lSjpmnlezMG7BCOYwiQmgNfEgtc2PmzrTwsLoH-Q-VhxiT9pi8ji4Xo=\/";
+            if (typeof Ajax === 'object' && typeof Ajax.Updater === 'function') {
+                new Ajax.Updater(
+                    blockTag,
+                    esiUrl,
+                    {
+                        method: "get",
+                        evalScripts: true,
+                        onComplete: function() {
+                            $(blockTag).appear({
+                                duration: 0.3
+                            });
+                        }
+                    }
+                );
+            } else if (typeof jQuery === 'function') {
+                jQuery.ajax(
+                    {
+                        url: esiUrl,
+                        type: "get",
+                        dataType: "html"
+                    }
+                ).always(function() {
+                    $(blockTag).fadeIn(300);
+                });
+            }
+        })();
+    </script>
+</div><!-- AJAX END [sticky_header_cart_sidebar] -->
+					</div>
+					<div class="pull-right">
+											</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>		</div>								<div class="breadcrumbs-wrapper  " style="">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="breadcrumbs-inner clearfix">
+												<ul class="breadcrumb">
+															<li class="home" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+																	<a href="http://www.onlinepng.com/" title="Home"
+									itemprop="url"><span itemprop="title">Home</span></a>
+																</li>
+															<li class="category77" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+																	<a href="http://www.onlinepng.com/gold.html" title="Gold"
+									itemprop="url"><span itemprop="title">Gold</span></a>
+																</li>
+															<li class="category78" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+																	<a href="http://www.onlinepng.com/gold/bangles.html" title="Bangles"
+									itemprop="url"><span itemprop="title">Bangles</span></a>
+																</li>
+															<li class="product">
+																	<strong>CULCATTI KANGAN</strong>
+																</li>
+													</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+					</div>
+		<div class="content-wrapper">
+			 <!-- ESI START [global_messages] -->
+<!-- ESI URL: http://www.onlinepng.com/turpentine/esi/getBlock/method/esi/access/private/ttl/3600/hmac/420079ca223776a987603ebd8b521974946392bef7a2b0c4e9d74e3aed23a822/data/YPx9yxndZXjB9bU.hs4IHWV0lzj7QRkeni360wvA9fvxClCACOp2vu9LAugvYS0hUkOeTlHQrAMFjjJ2u3MKgCD2XZFBvzUpE-wteTMfmfp2lyRKviLLds3UGyXJta4kSWvaMzgFyfRMnFUq1Q0rmMUvKpooPlSLs7SL9PGGcYd86rYe9pzkYYLi6e5u4NH0IgcGR9EVUdI52QwkE1JhIy77DAlmWiStbyZe7v3iVR2o5heXyPG38HfZ6rgthXs2cEw6afpEiNKHpRuz2W7Xvu5FwUeM2bea0vJjtKzJ80qZL6SwaUg6DI5cnpcrZDBdNlourANdWQF.mrLeT-kLLBg5raLO1V.UO-Rn8rzrOmv4UxPDyWFGNcdzOg8Zfwg7MdiyKB7Rr4Y=/ -->
+
+  
+<!-- ESI END [global_messages] -->
+			<!-- for category-sub-banner -->
+								    <!-- end category-sub-banner -->
+			<div class="container">
+				<div class="main-container col1-layout">
+					<div class="row">
+						<div class="col-main col-xs-12">
+							
+							<!-- cooliyo conversion Pixel for product landing(description) page -->
+
+
+<script type="text/javascript">
+//<![CDATA[
+enUS = {"m":{"wide":["January","February","March","April","May","June","July","August","September","October","November","December"],"abbr":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]}}; // en_US locale reference
+Calendar._DN = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]; // full day names
+Calendar._SDN = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]; // short day names
+Calendar._FD = 0; // First day of the week. "0" means display Sunday first, "1" means display Monday first, etc.
+Calendar._MN = ["January","February","March","April","May","June","July","August","September","October","November","December"]; // full month names
+Calendar._SMN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; // short month names
+Calendar._am = "AM"; // am/pm
+Calendar._pm = "PM";
+
+// tooltips
+Calendar._TT = {};
+Calendar._TT["INFO"] = 'About the calendar';
+
+Calendar._TT["ABOUT"] =
+'DHTML Date/Time Selector\n' +
+"(c) dynarch.com 2002-2005 / Author: Mihai Bazon\n" +
+'For latest version visit: http://www.dynarch.com/projects/calendar/\n' +
+'Distributed under GNU LGPL. See http://gnu.org/licenses/lgpl.html for details.' +
+'\n\n' +
+'Date selection:\n' +
+'- Use the \xab, \xbb buttons to select year\n' +
+'- Use the \u2039 buttons to select month\n' +
+'- Hold mouse button on any of the above buttons for faster selection.';
+Calendar._TT["ABOUT_TIME"] = '\n\n' +
+'Time selection:\n' +
+'- Click on any of the time parts to increase it\n' +
+'- or Shift-click to decrease it\n' +
+'- or click and drag for faster selection.';
+
+Calendar._TT["PREV_YEAR"] = 'Prev. year (hold for menu)';
+Calendar._TT["PREV_MONTH"] = 'Prev. month (hold for menu)';
+Calendar._TT["GO_TODAY"] = 'Go Today';
+Calendar._TT["NEXT_MONTH"] = 'Next month (hold for menu)';
+Calendar._TT["NEXT_YEAR"] = 'Next year (hold for menu)';
+Calendar._TT["SEL_DATE"] = 'Select date';
+Calendar._TT["DRAG_TO_MOVE"] = 'Drag to move';
+Calendar._TT["PART_TODAY"] = ' (' + "today" + ')';
+
+// the following is to inform that "%s" is to be the first day of week
+Calendar._TT["DAY_FIRST"] = 'Display %s first';
+
+// This may be locale-dependent. It specifies the week-end days, as an array
+// of comma-separated numbers. The numbers are from 0 to 6: 0 means Sunday, 1
+// means Monday, etc.
+Calendar._TT["WEEKEND"] = "0,6";
+
+Calendar._TT["CLOSE"] = 'Close';
+Calendar._TT["TODAY"] = "today";
+Calendar._TT["TIME_PART"] = '(Shift-)Click or drag to change value';
+
+// date formats
+Calendar._TT["DEF_DATE_FORMAT"] = "%b %e, %Y";
+Calendar._TT["TT_DATE_FORMAT"] = "%B %e, %Y";
+
+Calendar._TT["WK"] = "Week";
+Calendar._TT["TIME"] = 'Time:';
+//]]>
+</script>
+
+
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice([]);
+</script>
+<div id="messages_product_view"><!-- ESI START [messages] -->
+<!-- ESI URL: http://www.onlinepng.com/turpentine/esi/getBlock/method/esi/access/private/ttl/3600/hmac/1b0637ec5714f6cd0ae8fa102ed7f86017c3ec2ac0798a306455924205e953a0/data/XkDpCfvSsBTchdBXNfA-5sOWo2lp2gHbIfw41Qb3gFSGcUIML.gLwM1W-U5NGGQDWOuG0e-EUB9-lxFpdtysauCJ6VpqezrhFnRJ6KPrzY51q96d.65Qy.LK3WEuRx3X8Uy44YX2-Ylm.9N8tJuk.nrVMPradd.vX3.MkzVm05pYfTuurmWf5f3tzGZTmSMYmr5a7jqiVyUiZO-ak9SaKMUWYOsUJEBk9HDXyl8B1Tp8MGlIFVJ-0dwiEa-KPTdwK9ehbyhzbflcL9tmSqA1lUzGKF0XJI1oRd0ixOhYFFviJRkLlBoa8dwzqe6oUn1w4ZVgxoNXqxSRLyrbcdEmq60aQ2593Fo7Ef8bTlkgps9B6blRwJHbnlnMYT1i4yWS/ -->
+
+  
+<!-- ESI END [messages] -->
+</div>
+<div class="product-view" itemscope itemtype="http://schema.org/Product">
+			<meta itemprop="name" content="CULCATTI KANGAN" />
+				<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+		<div class="product-essential">
+		<div class="row clearfix no-sidebar">
+						<div class="col-sm-12">
+				<div class="row">
+					<div class="product-img-box col-sm-6 medium-layout">
+							<div class="product-image-gallery clearfix loading hide-overlay  col-sm-9 col-sm-push-3">
+		<div class="product-image product-image-zoom inner ">
+																					<a href="http://www.onlinepng.com/media/catalog/product/cache/1/image/800x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_1_1.jpg" 
+							data-toggle="lightbox"
+							data-gallery="navigateTo"
+							data-footer="CULCATTI KANGAN"
+							class="lightbox-button">
+							<i class="fa fa-search"></i>
+						</a>
+											<a href="http://www.onlinepng.com/media/catalog/product/cache/1/image/800x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_2_1.jpg" 
+							data-toggle="lightbox"
+							data-gallery="navigateTo"
+							data-footer="CULCATTI KANGAN"
+							class="lightbox-button">
+							<i class="fa fa-search"></i>
+						</a>
+											<a href="http://www.onlinepng.com/media/catalog/product/cache/1/image/800x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_3_1.jpg" 
+							data-toggle="lightbox"
+							data-gallery="navigateTo"
+							data-footer="CULCATTI KANGAN"
+							class="lightbox-button">
+							<i class="fa fa-search"></i>
+						</a>
+											<a href="http://www.onlinepng.com/media/catalog/product/cache/1/image/800x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_4_1.jpg" 
+							data-toggle="lightbox"
+							data-gallery="navigateTo"
+							data-footer="CULCATTI KANGAN"
+							class="lightbox-button">
+							<i class="fa fa-search"></i>
+						</a>
+															<div class="product-labels-wrapper clearfix top label-type-2">
+				</div>			<img src="http://www.onlinepng.com/media/catalog/product/cache/1/image/950x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_1_1.jpg" class="gallery-image visible ajax_image_loader" alt="CULCATTI KANGAN" title="CULCATTI KANGAN" id="image" data-zoom-image="http://www.onlinepng.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/k/a/kan544603_1_1.jpg" />		</div>
+	</div>
+	<div class="more-views col-sm-3 col-sm-pull-9">
+							<ul class="clearfix" id="more-views-slider">
+									<li class="item">
+						<a href="javascript:void(0);"
+						title=""
+						data-bigimg="http://www.onlinepng.com/media/catalog/product/cache/1/image/950x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_1_1.jpg"
+						data-zoomimg="http://www.onlinepng.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/k/a/kan544603_1_1.jpg">
+							<img src="http://www.onlinepng.com/media/catalog/product/cache/1/image/150x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_1_1.jpg" class="gallery-image lazyOwl no_ajax_image_loader" alt="CULCATTI KANGAN" title="CULCATTI KANGAN" data-src="http://www.onlinepng.com/media/catalog/product/cache/1/image/040ec09b1e35df139433887a97daa66f/k/a/kan544603_1_1.jpg" />						</a>
+					</li>
+									<li class="item">
+						<a href="javascript:void(0);"
+						title=""
+						data-bigimg="http://www.onlinepng.com/media/catalog/product/cache/1/image/950x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_2_1.jpg"
+						data-zoomimg="http://www.onlinepng.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/k/a/kan544603_2_1.jpg">
+							<img src="http://www.onlinepng.com/media/catalog/product/cache/1/image/150x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_2_1.jpg" class="gallery-image lazyOwl no_ajax_image_loader" alt="CULCATTI KANGAN" title="CULCATTI KANGAN" data-src="http://www.onlinepng.com/media/catalog/product/cache/1/image/040ec09b1e35df139433887a97daa66f/k/a/kan544603_2_1.jpg" />						</a>
+					</li>
+									<li class="item">
+						<a href="javascript:void(0);"
+						title=""
+						data-bigimg="http://www.onlinepng.com/media/catalog/product/cache/1/image/950x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_3_1.jpg"
+						data-zoomimg="http://www.onlinepng.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/k/a/kan544603_3_1.jpg">
+							<img src="http://www.onlinepng.com/media/catalog/product/cache/1/image/150x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_3_1.jpg" class="gallery-image lazyOwl no_ajax_image_loader" alt="CULCATTI KANGAN" title="CULCATTI KANGAN" data-src="http://www.onlinepng.com/media/catalog/product/cache/1/image/040ec09b1e35df139433887a97daa66f/k/a/kan544603_3_1.jpg" />						</a>
+					</li>
+									<li class="item">
+						<a href="javascript:void(0);"
+						title=""
+						data-bigimg="http://www.onlinepng.com/media/catalog/product/cache/1/image/950x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_4_1.jpg"
+						data-zoomimg="http://www.onlinepng.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/k/a/kan544603_4_1.jpg">
+							<img src="http://www.onlinepng.com/media/catalog/product/cache/1/image/150x/040ec09b1e35df139433887a97daa66f/k/a/kan544603_4_1.jpg" class="gallery-image lazyOwl no_ajax_image_loader" alt="CULCATTI KANGAN" title="CULCATTI KANGAN" data-src="http://www.onlinepng.com/media/catalog/product/cache/1/image/040ec09b1e35df139433887a97daa66f/k/a/kan544603_4_1.jpg" />						</a>
+					</li>
+				
+				
+				
+			</ul>
+						<!-- video -->
+
+	</div>
+	<script type="text/javascript">
+		jQuery(window).load(function(){
+			if(jQuery('.more-views').length){
+				var thisItem;
+				var image = jQuery('#image');
+				jQuery('.more-views li a').on('click', function(){
+					var thisItem = jQuery(this);
+					bigImgUrl = thisItem.data('bigimg');
+					zoomImgUrl = thisItem.data('zoomimg');
+					jQuery.removeData(image, 'elevateZoom'); //remove zoom instance from image
+					jQuery('.zoomContainer').remove(); // remove zoom container from DOM
+					zoomImg = new Image;
+					bigImg = new Image;
+					zoomImg.src = zoomImgUrl;
+					bigImg.src = bigImgUrl;
+					zoomLoaded = false;
+					bigLoaded = false;
+					function loader(){
+						zoomImgWidth = zoomImg.width;
+						imgWidth = bigImg.width;
+						mainImg = jQuery('#image');
+						mainImg.attr('src', bigImgUrl).data('zoomImage', zoomImgUrl);
+						productImageSize();
+						if(jQuery('.product-image').width() < zoomImgWidth){
+							mainImg.elevateZoom({ zoomType: "inner", cursor: "crosshair" });
+						}
+					}
+					zoomImg.onload = function(){
+						zoomLoaded = true;
+						if(zoomLoaded && bigLoaded){
+							loader();
+						}
+					}
+					bigImg.onload = function(){
+						bigLoaded = true;
+						if(zoomLoaded && bigLoaded){
+							loader();
+						}
+					}
+					
+					productImageSize();
+					itemIndex = thisItem.parents('.more-views').find('li').index(thisItem.parent());
+					jQuery('.product-view .product-image a.lightbox-button').removeClass('active').eq(itemIndex).addClass('active');
+
+				});
+				bigImgUrl = jQuery('#image').data('zoomImage');
+				jQuery('.more-views li a').each(function(index){
+					/*if(jQuery(this).data('zoomimg').indexOf(bigImgUrl) !=-1){
+						jQuery('.product-view .product-image a.lightbox-button').eq(index).addClass('active');
+					}*/
+				});
+			}
+		});
+		jQuery(document).ready(function(){
+				jQuery("#more-views-slider").slick({
+				      slidesToShow: 3,
+				      slidesToScroll: 1,
+				      vertical: true,
+				      autoplay: false,
+				      arrows:true,
+				      autoplaySpeed: 2000,
+				      nextArrow: '<i class="fa fa-chevron-down"></i>',
+				      prevArrow: '<i class="fa fa-chevron-up"></i>',
+				      responsive: [
+				        {
+				          breakpoint: 768,
+				          settings: {
+				            slidesToShow: 3,
+				            slidesToScroll: 1,
+				            vertical: false,
+				            arrows:true,
+				            nextArrow: '<i class="fa fa-chevron-left"></i>',
+				            prevArrow: '<i class="fa fa-chevron-right"></i>',
+				          }
+				        }
+				      ]
+
+				});
+		});
+	</script>
+
+
+<!-- video end -->
+<script type="text/javascript">
+	jQuery(window).ready(function() {
+		if ( jQuery(window).width() > 771) {
+			imgUrl = jQuery('#image').data('zoomImage');
+			zoomImg = new Image;
+			zoomImg.src = imgUrl;
+			var func = function() {
+				var zoomImgWidth = zoomImg.width;
+				var imgWidth = jQuery('#image').width();
+				if(imgWidth < zoomImgWidth) {
+					jQuery("#image").elevateZoom({ zoomType: "inner", cursor: "crosshair", easing : true });
+					setTimeout(function(){
+						jQuery('.hide-overlay').removeClass('hide-overlay');
+					}, 1000);
+				}
+				productImageSize();
+			}
+			if (zoomImg.complete) {
+				func();
+			} else {
+				zoomImg.onload=func;
+				zoomImg.onerror=func;
+			}
+		}
+	});
+</script>
+					</div>
+										<div class="product-shop col-sm-6 medium-layout a-left">
+														
+														
+							<div class="product-name">
+																<h1 itemprop="name">CULCATTI KANGAN</h1>
+																																																		<p class="availability out-of-stock"><i class="fa fa-circle"></i>Product <span itemprop="availability"
+												 	>sold out</span></p>
+																					
+																																	<div class="sku">SKU:<span>KAN-544603</span></div>
+															</div>
+							
+							<div class="sku-reviews-block">
+																
+
+                            <div class="price-box">
+                                                                <span class="regular-price" id="product-price-655">
+                    													<span class="price" itemprop="price">Rs. 1,27,696</span>						                                    </span>
+                                </div>
+															</div>
+																									
+																						<div class="short-description">
+									<div class="std" itemprop="description">Culcatti Bangles. <br><li>Purity : 22 Carat</li><li>Gross Weight : 38.830 Grams</li><li>Net Weight : 38.830 Grams</li><li>Size : 37.5</li><li>Delivered within 7 to 8 working days</li></div>
+								</div>
+																		
+															<form action="http://www.onlinepng.com/checkout/cart/add/uenc/aHR0cDovL3d3dy5vbmxpbmVwbmcuY29tL2N1bGNhdHRpLWthbmdhbi04MDYuaHRtbA,,/product/655/form_key/bUBYilK3uRH4dOaU/" method="post" class="clearfix" id="product_addtocart_form">
+								<input name="form_key" type="hidden" value="bUBYilK3uRH4dOaU" />
+								<div class="no-display">
+									<input type="hidden" name="product" value="655" />
+									<input type="hidden" name="related_product" id="related-products-field" value="" />
+								</div>
+																																<dl>
+									        <div class="size-guide">
+								                								                     
+								                            <div class="">
+								                                <span  data-toggle="modal" data-target="#displaysizeguide">
+								                                	<a class="size-guidetext" href="#"> Size Guide </a>
+								                                </span>     
+								                                <div class="modal fade" id="displaysizeguide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								                                  <div class="modal-dialog">
+								                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+								                                    <div class="modal-content">
+									                                    <div class="modal-body">
+									                                        <img src="http://www.onlinepng.com/media/wysiwyg/bangle-diameter.jpg" data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+									                                    </div>
+								                                    </div>
+								                                  </div>
+								                                </div>
+								    						</div>
+								                     
+									        </div>
+										</dl>
+														
+            <p><a href="javascript:void(0)" onclick="showform()">Notify me when this product is back in stock</a></p>
+    <div class="fieldset" class = "no-display" style="display:none;" id="alertmeDiv">
+        <div id="alertmeMsg" style="display:none;" class="note-msg"></div>
+
+        <div class="form-list">
+            <div class="field">
+                <label for="email" class="text required">Email<em>*</em></label>
+                <div class="input-box">
+                    <input name="emailid" id="emailid" class="input-text validate-email required-entry" type="text" value="" />
+                </div>
+            </div>
+        </div>  
+        <div class="field" name="emailmsg" id="emailmsg" style="display:none; color:#FF0000;" font>Invalid Email Id</div>
+        <input type="hidden" name="productid" id="productid" value="655"/>
+        <input type="hidden" name="loginstatus" id="loginstatus" value=""/>
+        <div class="form-list">
+            <div class="field">
+                <label for="mobile" class="text required">Mobile<em>*</em></label>
+                <div class="input-box">
+                    <input name="mobile" id="mobile" value="" class="input-text validate-number required-entry" type="text"/>
+                </div>
+            </div>      
+        </div>
+        <div class="field" name="mobilemsg" id="mobilemsg" style="display:none; color:#FF0000;" font>Invalid Mobile Number</div>
+        <div class="form-list">
+            <div class="field">
+                <label for="pincode">Pincode</label>
+                <div class="input-box">
+                    <input name="pincode" id="pincode" value="" type="text"/>
+                </div>
+            </div>      
+        </div>
+
+        <div>         
+            <input type="button" name="alertmeForm" value="Notify me" class="button" id="alertmeForm"><br>
+        </div>
+    </div>  <br> 
+
+
+    <script type="text/javascript">
+            
+            function showform(){
+
+                if(document.getElementById('alertmeDiv').style.display=='none') { 
+                    document.getElementById('alertmeDiv').style.display='block'; 
+                } 
+                else{   document.getElementById('alertmeDiv').style.display='none'; 
+                }
+            }
+    </script>
+
+    <script type="text/javascript">
+        
+        jQuery("#alertmeForm").click(function() {      
+            var email = document.getElementById('emailid').value;
+            var mobile = document.getElementById('mobile').value; 
+            var pincode = document.getElementById('pincode').value;
+            var productid = document.getElementById('productid').value; 
+            var loginstatus = document.getElementById('loginstatus').value; 
+            var atposition=email.indexOf("@");  
+            var dotposition=email.lastIndexOf(".");  
+            /*
+            if(atposition<1 || dotposition<atposition+2 || dotposition+2>=email.length){ 
+                    document.getElementById('emailmsg').style.display='block';
+                    return false;
+            }
+            else{
+                    document.getElementById('emailmsg').style.display='none';   
+            }
+            if(mobile!="" && isNaN(mobile)){ 
+                    document.getElementById('mobilemsg').style.display='block';
+                    return false;
+            }
+            else{
+                    document.getElementById('mobilemsg').style.display='none';
+            }
+            */
+            if(atposition<1 || dotposition<atposition+2 || dotposition+2>=email.length){ 
+                    document.getElementById('emailmsg').style.display='block';
+                    //return false;
+                    if(mobile == "" || isNaN(mobile)) { 
+                    document.getElementById('mobilemsg').style.display='block';
+                    return false;
+            }
+                    else{
+                        return false;
+                    }
+            }
+            else{
+                    document.getElementById('emailmsg').style.display='none';   
+            } 
+            if(mobile == "" || isNaN(mobile)) { 
+                    document.getElementById('mobilemsg').style.display='block';
+                    return false;
+            }
+            else{
+                    document.getElementById('mobilemsg').style.display='none';
+            }
+            var dataString = 'email='+email+'&mobile='+mobile+'&product_id='+productid+'&loginstatus='+loginstatus+'&pincode='+pincode;    
+            var url = "http://www.onlinepng.com/productalert/add/stock/product_id/655/uenc/aHR0cDovL3d3dy5vbmxpbmVwbmcuY29tOjgwODAvY3VsY2F0dGkta2FuZ2FuLTgwNi5odG1s/";
+            //alert(url);
+            jQuery.ajax({   
+                type: "POST",
+                url: url,
+                datatype: "json",
+                data: dataString,
+                success: function(data)
+                {     
+                    if(document.getElementById('alertmeMsg').style.display=='none') { 
+                        document.getElementById('alertmeMsg').style.display='block';
+                        document.getElementById("alertmeMsg").innerHTML=data; 
+                    } else {  
+                        document.getElementById("alertmeMsg").innerHTML=data;                                   
+                    }                 
+                }
+            });
+            
+        });
+
+    </script>
+							
+															<div class="add-to-box">
+																												
+
+	<ul class="add-to-links clearfix">
+		    <li><a href="https://www.onlinepng.com/wishlist/index/add/product/655/form_key/bUBYilK3uRH4dOaU/" title="Add to Wishlist"  onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><i class="fa fa-heart"></i></a></li>
+				    <li><a href="http://www.onlinepng.com/catalog/product_compare/add/product/655/uenc/aHR0cDovL3d3dy5vbmxpbmVwbmcuY29tOjgwODAvY3VsY2F0dGkta2FuZ2FuLTgwNi5odG1s/form_key/bUBYilK3uRH4dOaU/" title="Add to Compare" class="link-compare"><i class="fa fa-exchange"></i></a></li>
+					<li class="email-friend"><a href="http://www.onlinepng.com/sendfriend/product/send/id/655/cat_id/78/"><i class="fa fa-envelope-o"></i></a></li>
+		</ul>
+																	</div>
+																													
+
+															<!-- AJAX START [priceengine.view] -->
+<div id="turpentine-esi-block-ee8882c44d0f46f514f3a50f4b6ab35a82ca72225df8c5cf5307b3ece01a44b0" class="turpentine-div" style="display: none">
+    <script type="text/javascript">
+        (function() {
+            var blockTag = "turpentine-esi-block-ee8882c44d0f46f514f3a50f4b6ab35a82ca72225df8c5cf5307b3ece01a44b0", esiUrl = "http://www.onlinepng.com/culcatti-kangan-806.html\/\/www.onlinepng.com\/turpentine\/esi\/getBlock\/method\/ajax\/access\/private\/ttl\/0\/hmac\/381a75ccaf3370175c64475108a532e3599ec8c2f3864857ce05ad38cd7b7cc2\/data\/6H.m4a7.rlSLJ.qN5S1euZRL7pSxmvB1fpfcy98Vl7Vn61FMmhY2zkIzvCZnw7sQAtN4Nhu77deRicARU0DkVxPCCwFYgMEK74WElQSlN4XPqsL2cd2ln2mifxVb8emPkbn4mg-AEzTUYHdN5rWcsf1G4v7Ssd62wOQ.FKOx7LNJqOJasyjM-GBMxNACIPVJzk9Z8ltlZJBkhmrEBXH7bW58cW3UQjelYQXzuhCbsWGpSuCJNFB.InrSWOAfkFpKk-9usCI8bRgLoub5.a2Ixbq41W2d6FMYS2WASq4v3upZ3i5wCjpnEb4FQw92HHQSaPDGZSz2tGrgyE9mrJrBGS2ohrBSidwOas9kPw0TwQCls9o9vFoZAgI3lVKOPwCPhmNpcjlIPxa5oIHEYKUW1y6MODt3lMr3NMFeVrLW7pA=\/";
+            if (typeof Ajax === 'object' && typeof Ajax.Updater === 'function') {
+                new Ajax.Updater(
+                    blockTag,
+                    esiUrl,
+                    {
+                        method: "get",
+                        evalScripts: true,
+                        onComplete: function() {
+                            $(blockTag).appear({
+                                duration: 0.3
+                            });
+                        }
+                    }
+                );
+            } else if (typeof jQuery === 'function') {
+                jQuery.ajax(
+                    {
+                        url: esiUrl,
+                        type: "get",
+                        dataType: "html"
+                    }
+                ).always(function() {
+                    $(blockTag).fadeIn(300);
+                });
+            }
+        })();
+    </script>
+</div><!-- AJAX END [priceengine.view] -->
+  
+
+<!-- Share on facebook to get discounts -->
+
+
+
+
+
+
+
+
+
+    
+
+
+														
+							<div class="block block-deliverycheck">
+    
+    <div class="block-content deliverycheck">
+
+                 <div class="pincode-wrapper" >
+                    <span class="title-name">
+                        CHECK DELIVERY TIME  
+                    </span>
+                    <div class="cod-wrapper-btn-text">
+                    <input type="text" class="form-control"  title="pincode" maxlength="6" id="pincode" placeholder="Enter Pincode" name="pincode">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"  onclick="deliverycheck()"  type="button">CHECK</button>
+                    </span>
+                    </div>
+                </div><!-- /input-group -->
+
+                
+                <div id="result">
+                    <!-- Result comes here -->
+                </div>
+<!-- style="display:none" -->
+            <div  id="ajax_loader_deliverycheck" style="display:none"><img src="http://www.onlinepng.com/custom_lib/images/spinner.gif"></div>
+            <div style="clear:both;"></div>
+    </div>
+</div>
+<script type="text/javascript">
+function deliverycheck(){
+    jQuery('#ajax_loader_deliverycheck').show();
+    jQuery('#result').html(''); 
+    var pincode = jQuery('#pincode').val();
+    if(isNaN(pincode)){
+        jQuery('#result').html('<p>Please enter valid pin code</p>');
+        jQuery('#result').css('color','red');
+        jQuery('#ajax_loader_deliverycheck').hide();
+        return;
+    }
+
+    var product_id = "655";
+
+    jQuery.ajax({
+        url: "http://www.onlinepng.com/codpincode/index/deliverycheck?id="+product_id+"&pin="+pincode,
+    }).done(function(data) {
+        jQuery('#result').html(data);
+        jQuery('#result').css('color','');
+        jQuery('#ajax_loader_deliverycheck').hide();
+    });
+}
+</script>
+
+
+<div class="product-custom">
+<div id="fb-root">&nbsp;</div>
+<script type="text/javascript">// <![CDATA[
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+// ]]></script>
+<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false">&nbsp;</div>
+<a class="twitter-share-button" href="https://twitter.com/share" data-via="meigeeteam">Tweet</a>
+<script type="text/javascript">// <![CDATA[
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+// ]]></script>
+<div class="g-plusone" data-size="medium">&nbsp;</div>
+<script type="text/javascript">// <![CDATA[
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+// ]]></script>
+</div>															</form>
+													
+
+						
+																							</div>
+									</div>
+			</div>
+					</div>
+		    <div id="product-shop">
+    <script type="text/javascript">
+      var blockTag = "product-shop";
+      jQuery('.'+blockTag+' .price-box').html('');
+      if(jQuery('.old-price').length){
+        jQuery('.old-price').html('');
+      }
+        (function() {
+            var esiUrl = "http://www.onlinepng.com/turpentine/esi/getPriceData";
+            if (typeof jQuery === 'function') {
+                jQuery(document).ready( function() { setTimeout( function() {
+                    jQuery.ajax(
+                        {
+                            url: esiUrl,
+                            type: "POST",
+                            data: {prodIds : 655},
+                            dataType: "json"
+                        }
+                    ).done(function(data) {
+                        jQuery('.'+"product-shop .price-box").html(data.price_block[655]).fadeIn(300);
+                    });
+                }, 10 ); } );
+            }
+        })();
+    </script>
+</div>    <script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+        productAddToCartForm.buynow = function(buyaction,button, url){ 
+        	if (this.validator.validate()) {
+                var form = this.form;
+                var input = document.createElement('input');
+				input.type = "hidden";
+				input.name = "buynowaction";
+				input.value = buyaction;
+				form.appendChild(input);
+                var oldUrl = form.action;
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+        productAddToCartForm.submitLight = function(button, url){
+            if(this.validator) {
+                var nv = Validation.methods;
+                delete Validation.methods['required-entry'];
+                delete Validation.methods['validate-one-required'];
+                delete Validation.methods['validate-one-required-by-name'];
+                // Remove custom datetime validators
+                for (var methodName in Validation.methods) {
+                    if (methodName.match(/^validate-datetime-.*/i)) {
+                        delete Validation.methods[methodName];
+                    }
+                }
+                if (this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+                    this.form.submit();
+                }
+                Object.extend(Validation.methods, nv);
+            }
+        }.bind(productAddToCartForm);
+    //]]>
+	if(jQuery('.breadcrumbs-wrapper.type-2').length && jQuery('.product-buttons').length){
+		jQuery('.catalog-product-view .product-buttons').appendTo(jQuery('.breadcrumbs-wrapper.type-2 .breadcrumbs-inner'));
+	}
+    </script>
+    </div>
+        	 	
+			<div class="product-collateral">
+			<div class="product-simple-list panel-group">
+			<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					Product Description				</h4>
+			</div>
+			<div class="panel-body">
+				    <h2>Details</h2>
+    <div class="std">
+        &nbsp;    </div>
+			</div>
+		</div>
+							<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					additional information				</h4>
+			</div>
+			<div class="panel-body">
+				    <h2>additional information</h2>
+    <table class="table table-responsive table-bordered" id="product-attribute-specs-table">
+        <tbody>
+                    <tr>
+                <th class="label">Why PNG & Sons</th>
+                <td class="data">&nbsp;</td>
+            </tr>
+                    <tr>
+                <th class="label">SKU</th>
+                <td class="data">KAN-544603</td>
+            </tr>
+                    <tr>
+                <th class="label">Stone</th>
+                <td class="data">No</td>
+            </tr>
+                    <tr>
+                <th class="label">Stone Weight</th>
+                <td class="data">No</td>
+            </tr>
+                </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('product-attribute-specs-table')</script>
+			</div>
+		</div>
+							</div>		</div>
+			<div class="related-bottom">
+		<div class="block-title clearfix">
+			<strong><span>Related Products</span></strong>
+			 <p class="block-subtitle">Check items to add to the cart or&nbsp;<a href="#" onclick="selectAllRelatedBottom(this); return false;">select all</a></p>
+		</div>
+		<div class="block-content">
+			<div id="related-bottom-slider">
+				<ul class="products-grid related-products carousel-ul clearfix">
+													<li class="item col-lg-3 col-sm-4">
+						<div class="product">
+							<div class="image-box">
+								<a href="http://www.onlinepng.com/g-r-stone-bangle.html" title="G/R STONE Bangle" class="product-image">
+									<img src="http://www.onlinepng.com/media/catalog/product/cache/1/thumbnail/400x/040ec09b1e35df139433887a97daa66f/k/a/kan530872.1_1.jpg" alt="G/R STONE Bangle" title="G/R STONE Bangle" class="lazyOwl no_ajax_image_loader" data-src="http://www.onlinepng.com/media/catalog/product/cache/1/small_image/400x/040ec09b1e35df139433887a97daa66f/k/a/kan530872.1_1.jpg" />								</a>
+							</div>
+							<div class="product-details">
+								<div class="product-name clearfix">
+									<a href="http://www.onlinepng.com/g-r-stone-bangle.html">G/R STONE Bangle</a>
+																														<input type="checkbox" class="checkbox related-checkbox" id="related-bottom-checkbox663" name="related_products[]" value="663" />
+																											</div>
+								                            <div class="price-box">
+                                                                <span class="regular-price" id="product-price-663-related">
+                    													<span class="price">Rs. 1,09,114</span>						                                    </span>
+                                </div>
+							</div>
+						</div>
+					</li>
+
+													<li class="item col-lg-3 col-sm-4">
+						<div class="product">
+							<div class="image-box">
+								<a href="http://www.onlinepng.com/antique-kangan.html" title="ANTIQUE KANGAN" class="product-image">
+									<img src="http://www.onlinepng.com/media/catalog/product/cache/1/thumbnail/400x/040ec09b1e35df139433887a97daa66f/k/a/kan500093.1_1.jpg" alt="ANTIQUE KANGAN" title="ANTIQUE KANGAN" class="lazyOwl no_ajax_image_loader" data-src="http://www.onlinepng.com/media/catalog/product/cache/1/small_image/400x/040ec09b1e35df139433887a97daa66f/k/a/kan500093.1_1.jpg" />								</a>
+							</div>
+							<div class="product-details">
+								<div class="product-name clearfix">
+									<a href="http://www.onlinepng.com/antique-kangan.html">ANTIQUE KANGAN</a>
+																														<input type="checkbox" class="checkbox related-checkbox" id="related-bottom-checkbox664" name="related_products[]" value="664" />
+																											</div>
+								                            <div class="price-box">
+                                                                <span class="regular-price" id="product-price-664-related">
+                    													<span class="price">Rs. 1,28,836</span>						                                    </span>
+                                </div>
+							</div>
+						</div>
+					</li>
+
+													<li class="item col-lg-3 col-sm-4">
+						<div class="product">
+							<div class="image-box">
+								<a href="http://www.onlinepng.com/antique-bangles.html" title="ANTIQUE Bangles" class="product-image">
+									<img src="http://www.onlinepng.com/media/catalog/product/cache/1/thumbnail/400x/040ec09b1e35df139433887a97daa66f/k/a/kan500097.1_1.jpg" alt="ANTIQUE Bangles" title="ANTIQUE Bangles" class="lazyOwl no_ajax_image_loader" data-src="http://www.onlinepng.com/media/catalog/product/cache/1/small_image/400x/040ec09b1e35df139433887a97daa66f/k/a/kan500097.1_1.jpg" />								</a>
+							</div>
+							<div class="product-details">
+								<div class="product-name clearfix">
+									<a href="http://www.onlinepng.com/antique-bangles.html">ANTIQUE Bangles</a>
+																														<input type="checkbox" class="checkbox related-checkbox" id="related-bottom-checkbox665" name="related_products[]" value="665" />
+																											</div>
+								                            <div class="price-box">
+                                                                <span class="regular-price" id="product-price-665-related">
+                    													<span class="price">Rs. 1,25,347</span>						                                    </span>
+                                </div>
+							</div>
+						</div>
+					</li>
+
+													<li class="item col-lg-3 col-sm-4">
+						<div class="product">
+							<div class="image-box">
+								<a href="http://www.onlinepng.com/chain-pendent-stone.html" title="CHAIN PENDENT STONE" class="product-image">
+									<img src="http://www.onlinepng.com/media/catalog/product/cache/1/thumbnail/400x/040ec09b1e35df139433887a97daa66f/f/j/fj1159124_1.jpg" alt="CHAIN PENDENT STONE" title="CHAIN PENDENT STONE" class="lazyOwl no_ajax_image_loader" data-src="http://www.onlinepng.com/media/catalog/product/cache/1/small_image/400x/040ec09b1e35df139433887a97daa66f/f/j/fj1159124_1.jpg" />								</a>
+							</div>
+							<div class="product-details">
+								<div class="product-name clearfix">
+									<a href="http://www.onlinepng.com/chain-pendent-stone.html">CHAIN PENDENT STONE</a>
+																														<input type="checkbox" class="checkbox related-checkbox" id="related-bottom-checkbox812" name="related_products[]" value="812" />
+																											</div>
+								                            <div class="price-box">
+                                                                <span class="regular-price" id="product-price-812-related">
+                    													<span class="price">Rs. 768</span>						                                    </span>
+                                </div>
+							</div>
+						</div>
+					</li>
+
+								</ul>
+				<script type="text/javascript">decorateList('related-bottom', 'none-recursive')</script>
+			</div>
+			<!-- <div class="prev unselectable"><i class="fa fa-angle-left"></i></div>
+			<div class="next"><i class="fa fa-angle-right"></i></div> -->
+		</div>
+		<script type="text/javascript">
+			//<![CDATA[
+			$$('.related-checkbox').each(function(elem){
+				Event.observe(elem, 'click', addRelatedToProduct)
+			});
+			var relatedProductsCheckFlag = false;
+			 function selectAllRelated(txt){
+				if (relatedProductsCheckFlag == false) {
+					$$('.related-checkbox').each(function(elem){
+						elem.checked = true;
+					});
+					relatedProductsCheckFlag = true;
+					txt.innerHTML="unselect all";
+				} else {
+					$$('.related-checkbox').each(function(elem){
+						elem.checked = false;
+					});
+					relatedProductsCheckFlag = false;
+					txt.innerHTML="select all";
+				}
+				addRelatedToProduct();
+			}
+			function addRelatedToProduct(){
+				var checkboxes = $$('.related-checkbox');
+				var values = [];
+				for(var i=0;i<checkboxes.length;i++){
+					if(checkboxes[i].checked) values.push(checkboxes[i].value);
+				}
+				if($('related-products-field')){
+					$('related-products-field').value = values.join(',');
+				}
+			}
+			//]]>
+			jQuery(document).ready(function(){
+				/* Related Block Slider */
+				function relatedButtonsTop() {
+					if(jQuery('.related-bottom').length){
+						var maxHeight = 0;
+						var titleHeight = jQuery('.related-bottom .block-title').outerHeight();
+						jQuery('.related-bottom li.item .product-image img').each(function() {
+							if (jQuery(this).height() > maxHeight){
+								maxHeight = jQuery(this).height();
+							}
+							jQuery('.related-bottom .next, .related-bottom .prev').css('top', (maxHeight/2) + titleHeight);
+						});
+					}
+				}
+				/*relatedButtonsTop();
+				jQuery(window).resize(function(){relatedButtonsTop()});
+				relatedBottomSlider = jQuery('#related-bottom-slider .carousel-ul');
+				relatedBottomSlider.owlCarousel({
+					items: 4,
+					itemsDesktopSmall: [1331,4],
+					itemsTablet: [1007,3],
+					itemsTabletSmall: [767,2],
+					itemsMobile: [479,2],
+					pagination: false,
+					lazyLoad: false,
+					lazyEffect: 'fade',
+					beforeUpdate : relatedButtonsTop(),
+					afterUpdate : relatedButtonsTop(),
+					beforeInit: relatedButtonsTop(),
+					afterInit: relatedButtonsTop(), 
+					afterLazyLoad : relatedButtonsTop()
+				});
+				// Custom Navigation Events
+			   jQuery(".related-bottom .next").click(function(){
+				 relatedBottomSlider.trigger('owl.next');
+			   });
+			   jQuery(".related-bottom .prev").click(function(){
+				 relatedBottomSlider.trigger('owl.prev');
+			   });*/
+			});
+		</script>
+		<script>
+			jQuery(document).ready(function() {
+				if ( jQuery(window).width() > 771) {
+				jQuery('.related-products').slick({
+				  lazyLoad:false,
+				  dots: false,
+				  infinite: true,
+				  speed: 500,
+				  slidesToShow: 4,
+				  slidesToScroll: 1,
+				  arrows: true,
+				  nextArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+				  prevArrow: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+				  responsive: [
+				    {
+				      breakpoint: 1024,
+				      settings: {
+				        slidesToShow: 3,
+				        slidesToScroll: 3,
+				        infinite: true,
+				        dots: false
+				      }
+				    },
+				    {
+				      breakpoint: 600,
+				      settings: {
+				        slidesToShow: 2,
+				        slidesToScroll: 2
+				      }
+				    },
+				   
+				    // You can unslick at a given breakpoint now by adding:
+				    // settings: "unslick"
+				    // instead of a settings object
+				  ]
+				});
+				}
+				else{
+				jQuery('.related-products').slick({
+				  dots: false,
+				  infinite: true,
+				  speed: 500,
+				  slidesToShow: 2,
+				  slidesToScroll: 1,
+				  arrows: true,
+				  nextArrow: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+				  prevArrow: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+				  responsive: [
+				    {
+				      breakpoint: 450,
+				      settings: {
+				        slidesToShow: 1,
+				        slidesToScroll: 1
+				      }
+				    }  
+				  ]
+				}); 
+				}
+			});
+		</script>
+		<style>
+		.related-products .slick-track{
+		    margin: auto;
+		}
+		.related-products .item{
+		    text-align: center;
+		}
+		.related-products .item a img{
+		    margin: auto;
+		}
+		.related-products .slick-arrow{
+		  position: absolute;
+		  top: 35%;
+		}
+		.related-products .slick-arrow.fa-angle-left{
+		  left: 5px;
+		  font-size: 30px;
+		  cursor: pointer;
+		  z-index: 999;
+		}
+		.related-products .slick-arrow.fa-angle-right{
+		  right: 5px;
+		  font-size: 30px;
+		  cursor: pointer;
+		  z-index: 999;
+		}
+		@media (max-width: 767px){
+		    .related-products .slick-arrow {
+		        width: 27px;
+		        height: 27px;
+		        background: rgba(220, 220, 220, 0.4);
+		        border: 1px solid #ddd;
+		        text-align: center;
+		        border-radius: 50%;
+		        line-height: 24px;
+		    }
+		}
+		</style>
+	</div>
+	
+		
+			</div>
+	</div>
+
+
+
+<script type="text/javascript">
+    var lifetime = 3600;
+    var expireAt = Mage.Cookies.expires;
+    if (lifetime > 0) {
+        expireAt = new Date();
+        expireAt.setTime(expireAt.getTime() + lifetime * 1000);
+    }
+    Mage.Cookies.set('external_no_cache', 1, expireAt);
+</script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer id="footer">
+	<div class="news-wrapper">
+<div class="row news-container">
+<div class="col-xs-12 col-sm-6 sign-heading">
+<h2>sign up for our newsletter</h2>
+</div>
+<div class="col-xs-12 col-sm-6"><div class="block block-subscribe">
+    <div class="block-title">
+        <strong><span>Newsletter</span></strong>
+    </div>
+    <form action="https://www.onlinepng.com/newsletter/subscriber/new/" method="post" id="newsletter-validate-detail-96">
+        <div class="block-content">
+            
+			<div class="input-wrapper input-group">
+				<input type="text" name="email" id="newsletter-96" title="Enter your email..." class="form-control required-entry validate-email" value="Enter your email..." onblur="if (this.value=='') this.value = 'Enter your email...'" onfocus="if (this.value=='Enter your email...') this.value = ''" />
+		   
+ <span class="input-group-btn">           
+<button type="submit" title="Subscribe" class="btn btn-default"><span><span>Subscribe</span></span></button>
+</span>
+           
+           </div>
+		   
+        </div>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail-96');
+    //]]>
+    </script>
+</div></div>
+</div>
+</div>
+<div class="footer-container">
+<div class="row footer-wrapper">
+<div class="col-xs-12 col-sm-6 col-md-3 footer-block">
+<h2 class="footer-block-title">About PNG</h2>
+<div class="footer-block-content">
+<div class="block-list">
+<ul>
+<li><a href="http://www.onlinepng.com/about">About Us</a></li>
+<li><a href="http://www.onlinepng.com/values">Values</a></li>
+<li><a href="http://www.onlinepng.com/contact-us">Contact Us</a></li>
+<li><a href="http://www.onlinepng.com/stores">Stores</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-3 footer-block">
+<h2 class="footer-block-title">Customer service</h2>
+<div class="footer-block-content">
+<div class="block-list">
+<ul>
+<li><a href="http://www.onlinepng.com/shipping">Shipping</a></li>
+<li><a href="http://www.onlinepng.com/refund">Refund</a></li>
+<li><a href="http://www.onlinepng.com/privacy-policy">Privacy Policy</a></li>
+<li><a href="http://www.onlinepng.com/terms-conditions">Terms &amp; Conditions</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-3 footer-block">
+<h2 class="footer-block-title">Email</h2>
+<div class="footer-block-content">
+<div class="block-list email-footer">
+<ul>
+<li class="email"><a href="mailto:online@pngadgilandsons.com" target="_top">online@pngadgilandsons.com</a></li>
+</ul>
+</div>
+</div>
+<hr class="indent-28 white-space visible-xs clearfix" />
+<h2 class="footer-block-title">Phone</h2>
+<div class="footer-block-content">
+<div class="block-list">
+<ul>
+<li><a href="tel:18002330888">1800 233 0888</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-3 footer-block social-block">
+<h2 class="footer-block-title">Follow Us</h2>
+<div class="footer-block-content bottom-wrapper">
+<ul class="links">
+<li><a class="fbook" target="_blank" href="https://www.facebook.com/PNGGoldandsilver"> <i class="fa fa-facebook"></i></a></li>
+<li><a class="twitter" target="_blank" href="https://twitter.com/Pngandsons"> <i class="fa fa-twitter"></i> </a> </li>
+<li><a class="gplus" target="_blank" href="https://plus.google.com/+Pngadgilandsonspune/posts"> <i class="fa fa-google-plus"></i> </a></li>
+</ul>
+<div class="like-button">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1717868671783859";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-like" data-href="https://www.facebook.com/PNGGoldandsilver" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+</div>
+<h2 class="footer-block-title">Payment secured by</h2>
+<div class="footer-block-content bottom-wrapper">
+<ul>
+<li><img style="width: 100%; max-width: 250px;" alt="" src="http://www.onlinepng.com/media/wysiwyg/payement2.png"/></li>
+</ul>
+</div>
+</div>
+<hr class="indent-28 white-space" /></div>
+</div>
+<div class="bottom-block">
+<div class="container">
+<div class="a-center clearfix">
+<div class="store-swicther-wrapper copyright"><a href="http://www.shoptimize.in/" target="_blank">Powered by shoptimize</a></div>
+</div>
+</div>
+</div></footer>		<div id="toolbar-loading">
+	<div class="spinner">
+		<div class="spinner-container container1">
+			<div class="circle1"></div>
+			<div class="circle2"></div>
+			<div class="circle3"></div>
+			<div class="circle4"></div>
+		</div>
+		<div class="spinner-container container2">
+			<div class="circle1"></div>
+			<div class="circle2"></div>
+			<div class="circle3"></div>
+			<div class="circle4"></div>
+		</div>
+		<div class="spinner-container container3">
+			<div class="circle1"></div>
+			<div class="circle2"></div>
+			<div class="circle3"></div>
+			<div class="circle4"></div>
+		</div>
+	</div>
+</div><!-- AJAX START [popup_block] -->
+<div id="turpentine-esi-block-a63b6b645d8cb96c93b06ce4ab9d2499e24198854137556d25bd345c6ed6bb1c" class="turpentine-div" style="display: none">
+    <script type="text/javascript">
+        (function() {
+            var blockTag = "turpentine-esi-block-a63b6b645d8cb96c93b06ce4ab9d2499e24198854137556d25bd345c6ed6bb1c", esiUrl = "http://www.onlinepng.com/culcatti-kangan-806.html\/\/www.onlinepng.com\/turpentine\/esi\/getBlock\/method\/ajax\/access\/private\/ttl\/0\/hmac\/eda7e30d655dda5d9d3409539e96a25bbb9bc748a7a49cc8b79307f219d7c8f8\/data\/9wpNCHty-GHIq4nk-TsU46Y5-dBvsyBfRylycvF3Y3xOP0lQ-VDUyDpi6ZHPABbPckmIGKc8JWGepfReoMqP1Yl7EaoWf3NEBkfg--aYz0lQreOpyb45Zrftjp7b83x189ddnKM1wdA3xXpTWlRAzA97zD0ef2GZ80dBUlqlRZPlYNVa14Iht82xIQYeL9itx8qjEc-ZboQ9JlxJ5xKp2PIEnnmIkvYEYst-MlMkL0z-XkAJIzMmaXeRqGYc0PAgZz8Ovpd3hSBB9OFjTmxk8ZV7Qo-apl0l.Prty28wzxhL7kL8v2U9H5fPMuGPNuC-3uXotaB4ZPTe--MKIcQL3-DYyCXnN9Eb-5zGLjZV684ShZpmqggB183WAyGYByxlr3uqCxCFXPCnF.Q1zuRXIQ==\/";
+            if (typeof Ajax === 'object' && typeof Ajax.Updater === 'function') {
+                new Ajax.Updater(
+                    blockTag,
+                    esiUrl,
+                    {
+                        method: "get",
+                        evalScripts: true,
+                        onComplete: function() {
+                            $(blockTag).appear({
+                                duration: 0.3
+                            });
+                        }
+                    }
+                );
+            } else if (typeof jQuery === 'function') {
+                jQuery.ajax(
+                    {
+                        url: esiUrl,
+                        type: "get",
+                        dataType: "html"
+                    }
+                ).always(function() {
+                    $(blockTag).fadeIn(300);
+                });
+            }
+        })();
+    </script>
+</div><!-- AJAX END [popup_block] -->
+		<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/580b1d9be808d60cd07192bb/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->	<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"156a71793c","applicationID":"5643620","transactionName":"MVUGZUBXWxBQUhUMXwgfJVJGX1oNHlIAEVEKXwMeQkRaB0RSFUpGD1UT","queueTime":0,"applicationTime":608,"atts":"HRIFEwhNSB4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+
+<!-- Mirrored from www.onlinepng.com/culcatti-kangan-806.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 May 2017 20:12:14 GMT -->
+</html>

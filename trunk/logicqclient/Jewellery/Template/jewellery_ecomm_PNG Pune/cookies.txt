@@ -1,0 +1,8 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.google.com	TRUE	/	FALSE	1999999999	NID	102=w20sf-3zg1Gh4l3nLt4F5cQuk94NJcnVxrXI0L2-2DgAQYZCz_tfK--oOcS3WlA6-UJF4HWC4BQkIDBLIXLIruTBvg3PEC_ijkBaOUXpLSkOEtF1tpABy4EGwyhjCFi_
+www.onlinepng.com	TRUE	/	FALSE	1999999999	frontend_cid	hDEeBPcjW6sExBke
+www.onlinepng.com	TRUE	/	FALSE	1999999999	frontend	4gq4t029sapu2fstbabqcfuea1
+www.onlinepng.com	TRUE	/	FALSE	1999999999	store	default
+www.onlinepng.com	TRUE	/	FALSE	1999999999	currency	INR
+

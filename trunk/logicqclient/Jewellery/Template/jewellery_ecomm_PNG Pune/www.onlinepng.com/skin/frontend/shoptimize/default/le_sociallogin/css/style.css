@@ -1,0 +1,448 @@
+/**
+ * @project     SocialLogin
+ * @package     LitExtension_SocialLogin
+ * @author      LitExtension
+ * @email       litextension@gmail.com
+ */
+
+.le-socialconnect-login{margin-top: 20px;}
+div.le-socialconnect-login .col3-set .col-3 {width: 100%;}
+div.le-socialconnect-login .col3-set .col-3 .content {min-height: 100px;border: 1px solid #bbb6a5;}
+div.le-socialconnect-login .col3-set .col-3 .content .le-social-button-login{background: #fff;margin: 0 auto;width: 220px;padding: 10px 0;}
+
+
+.le-socialconnect-login .ico-guest{
+  background: url('../images/checkout_as_guest.png')!important;
+  background-repeat: no-repeat;
+  width: 194px !important;
+  height: 40px !important;
+  padding: 0;
+  border: none;
+  margin-bottom: 5px;
+  display: none;
+}
+
+#checkout-step-login .le-socialconnect-login .ico-guest{
+  display: inline-block;
+}
+
+.le-socialconnect-login .ico-fb{
+  background: url('../images/social-sign-in.png')!important;
+  background-repeat: no-repeat;
+  width: 196px !important;
+  height: 40px !important;
+  padding: 0;
+  border: none;
+  background-position: 0 86px !important;
+  margin-bottom: 5px;
+}
+.le-socialconnect-login .ico-go{
+  background: url('../images/social-sign-in.png')!important;
+  background-repeat: no-repeat;
+  width: 196px !important;
+  height: 40px !important;
+  padding: 0;
+  border: none;
+  background-position: 0 40px !important;
+  margin-bottom: 5px;
+}
+.le-socialconnect-login .ico-tw{
+  background: url('../images/social-sign-in.png')!important;
+  background-repeat: no-repeat;
+  width: 196px !important;
+  height: 40px !important;
+  padding: 0;
+  border: none;
+  background-position: 0 0!important;
+  margin-bottom: 5px;
+}
+.le-socialconnect-login .ico-li{background: url('../images/linkdin_icon.png') !important; background-repeat:no-repeat; width: 30px !important; height: 30px !important; padding: 0; border: none;}
+.le-socialconnect-login .ico-yh{background: url('../images/yahoo_icon.png') !important; background-repeat:no-repeat; width: 30px !important; height: 30px !important; padding: 0; border: none;}
+.le-icon{ margin-right: 5px; cursor: pointer;}
+.button-set{border-top: 1px solid #efefef}
+.button-bum{float: right; width: 100%;}
+.social-button{text-align: center;margin-top: 10px;}
+
+/******* checkout page new layout code start *********/
+
+/* onepage */
+.modal-content div#opcMessage {text-align: center;}
+#checkout-payment-method-load dt .form-list div {color: #999; font-size: 11px; font-weight: normal;}
+#checkout-payment-method-load dt ul {display: block !important;}
+#pincode-error-msg .modal-content {border-radius: 10px;}
+#pincode-error-msg .modal-header {border-bottom: none;}
+#pincode-error-msg .modal-footer {border-top: none; text-align: center; margin-bottom: 15px; padding: 0px; margin-top: 0px;} 
+#opcMessage div {text-align: center;}
+#pincode-error-msg .modal-footer .btn {padding: 6px 22px; text-transform: uppercase; font-weight: bold;}
+#opcMessage div h2, #opcMessage div ul{text-align: left; margin: 0px;}
+#opcMessage .modal-body {padding: 0px 20px;}
+.sp-methods .radio {margin-top: 0px;}
+.gift-messages p.control .checkbox {margin-top: 1px;}
+#checkoutSteps.opc .step-title {cursor: pointer;}
+#co-billing-form .form-list label.required em {display: none !important;}
+.checkout-onepage-index .button {text-transform: uppercase;}
+#checkoutSteps.opc .buttons-set p.required {display: none;}
+ #checkoutSteps label {font-weight: normal;}
+#checkoutSteps.opc .step-title h2 {margin: 5px;}
+#checkoutSteps.opc .active .step-title h2 {font-weight: bold; color: #2c2b2b;}
+#checkoutSteps .step-title .done {float: left !important;}
+#checkoutSteps li.allow  .number {display: none !important;}
+#checkoutSteps li.active .number {display: block !important;}
+.checkout-onepage-index .page-title .trustpay span {color: #999;}
+.checkout-onepage-index .page-title .trustpay p {font-size: 13px;}
+#checkoutSteps.opc .active .step-title .number {opacity: 1;}
+.opc-index-index .form-list ul {display: block !important;}
+#checkoutSteps.opc .step-title .done i {
+    padding: 6px 6px;
+    margin-right: 10px;
+    border-radius: 25px;
+    border: 1px solid;
+    margin-left: 5px;
+    color: #4ec8b0;
+    }
+    #checkoutSteps.opc .step-title .number {
+    padding: 4px 10px;
+    margin-right: 10px;
+    border-radius: 25px;
+    border: 1px solid;
+    margin-left: 5px;
+    color: #999;
+    background: #fff;
+    opacity: 0.5;
+}
+
+  @media (min-width: 768px){
+    .checkout-onepage-index .page-title h1 {float: left;} 
+    .checkout-onepage-index .page-title .trustpay {float: right; padding-top: 10px;}
+    .checkout-onepage-index .page-title .trustpay p {margin: 0px;}
+    .checkout-onepage-index .layout.layout-1-col div[role="main"] {min-height: 1100px;}
+    /* #checkoutSteps div#checkout-step-review, */ #checkoutSteps div#checkout-step-shipping_method {
+      height: 100%; min-height: 690px; overflow: auto;}
+    #checkoutSteps.opc .step-title h2 {margin: 0px;}
+    #checkoutSteps.opc .active .step-title .number { margin-left: 0px; opacity: 1;}
+    #checkoutSteps .step-title {float: none; width: 36%; border-radius: 0 !important;}
+    #checkoutSteps .step {float: right; width: 65%; position: absolute; top: 0; right: 0;}
+    #checkoutSteps.opc .active .step-title {background: #F7F7F7; border: none; border-left: 4px solid #777777;}
+    #checkoutSteps.opc .step {border: none; background: #F7F7F7; padding: 25px 30px; min-height: 500px; z-index: 999;}
+    #checkoutSteps .step h3 {margin-top: 0px;}
+    #checkoutSteps .step-title h2 {padding-top: 5px;}
+    #checkoutSteps.opc .step-title {
+      background-image: none; 
+      background: #fff; 
+      border:none; 
+      border-bottom: 1px solid #dedede; 
+      padding: 20px;
+    }
+  }
+
+  @media(min-width: 1200px){
+    #checkoutSteps .step-title {float: none; width: 30%; border-radius: 0 !important;}
+    #checkoutSteps .step {float: right; width: 70%; position: absolute; top: 0; right: 0;}
+  }
+
+  /* login */
+  .checkout-onepage-index .col2-set { margin-left: 0px; margin-right: 0px;}
+  .checkout-onepage-index .col2-set #login-form .input-text {width: 50%;}
+  .checkout-onepage-index .col2-set .forgot-pass {text-decoration: underline; margin-top: 5px; color: #999;}
+  .checkout-onepage-index .col2-set .buttons-set {border-top: none;  margin-top: 0px;}
+  .checkout-onepage-index .col2-set .buttons-set button.button {float: left; margin-left: 0px; padding: 10px 50px; font-weight: bold;}
+  .checkout-onepage-index .col2-set .le-social-button-login {float: left; padding-top: 20px;}
+  .checkout-onepage-index .col2-set .le-socialconnect-login .social-login-msg {color: #999; text-align: left;}
+ .le-socialconnect-login .social-login-msg, .checkout-onepage-index .mini-login .le-socialconnect-login .social-login-msg {display: none !important;}
+  .checkout-onepage-index .le-socialconnect-login .social-login-msg  {display: block !important;}
+  .checkout-onepage-index .button.register-btn {text-transform: uppercase; padding: 10px 41px; font-weight: bold; display: block; margin-bottom: 20px;}
+  .customer-account-create .button.register-btn {display: none;}
+
+  /* billing */
+   .opc-wrapper-opc #billing-new-address-form .field .input-box {width: 100%; float: left;}
+  #billing-new-address-form {margin-top: 25px;}
+    #co-billing-form .note {color: #999;}
+    #co-billing-form .form-list .wide {margin-bottom: 10px;}
+    #billing-new-address-form .field {width: 100%; padding: 0px;}
+    #billing-new-address-form .field label { float: left; line-height: 30px; width: 30%;}
+    #billing-new-address-form .field .input-box {float: left; width: 50%;}
+    #billing-new-address-form .field .input-box .input-text {border-radius: 5px;}
+    #billing-new-address-form .field select {background: transparent; border-color: #ccc; border-radius: 5px;}
+    #billing-new-address-form label.required em {display: none;}
+    #billing-new-address-form .customer-name-middlename .name-middlename {display: none;}
+    #co-billing-form .button span {font-weight:bold;}
+    #co-billing-form .button {float: left; margin:0px;}
+    #billing-buttons-container {margin: 0px; border-top: none;}
+    #co-billing-form .control {display: inline-block; padding: 0px 10px 10px 0px;}
+    #co-billing-form .form-list li.control label {display: inline-block;}
+    #co-billing-form .form-list .add-type {width: 30%;}
+    .form-list li {margin-bottom: 0px;}
+    #billing-new-address-form .field {margin-bottom: 15px; float: left;}
+    #billing-new-address-form .input-box .mob-number-start {display: inline-block; width: 8%; margin-top: 5px;}
+    
+
+    @media (max-width: 500px){
+      #billing-new-address-form .field {margin-bottom: 0px;}
+      #billing-new-address-form .field .input-box {width: 100%;}
+        /* #billing-new-address-form .field .input-box {float: left; width: 60%;} */
+        #co-billing-form .form-list .add-type {width: 100%;}
+        #billing-new-address-form .field label { float: left; line-height: 30px; width: 40%;}
+        
+    }
+
+  /* order review */
+   .opc-wrapper-opc .opc-data-table tbody td {vertical-align: top;}
+    #checkout-review-table.data-table > tfoot > tr > td {border: none; padding: 8px 20px;}
+    #checkout-review-table-wrapper .table-footer {background: #fff; border: none; border-top: 2px solid #ccc;}
+    #checkout-review-table.data-table > thead > tr > th {border: none; padding: 10px 12px;}
+    #checkout-review-table.data-table > tbody > tr > td {padding: 10px 20px; border: none; vertical-align: top;}
+    #checkout-review-table.table-body {border: none; background: #fff;}
+    #checkout-review-table.table-title {border: none; margin-bottom: 0px;}
+    #checkout-review-table-wrapper .table-title, #checkout-review-table-wrapper .table-footer {width: 98%;}
+    #checkout-agreements .buttons-set {border: none;}
+    .checkout-onepage-index .review-product-img, .checkout-onepage-index .review-product-name {
+      vertical-align: top;}
+    #billing-new-address-form .field .input-box .mob-number-start {width: 18%; border: 1px solid #ddd; padding: 6px 3px; margin-top: 0px;}
+    .checkout-onepage-index #billing-new-address-form .input-box input[placeholder="10 digit mobile number"] {
+   width: 80% !important;
+   margin-left: 0px;
+}
+
+ /* method */
+ .checkout-onepage-index #co-payment-form input[type="checkbox"] {display: inline-block; vertical-align: middle; margin: 0px;}
+ .opc-wrapper-opc .sp-methods .form-list {float: left;}
+    #checkout-payment-method-load dt {
+    display: inline-block;
+    width: 30%;
+    padding: 5px;
+    vertical-align: top;
+}
+
+/* #checkout-payment-method-load .radio {margin-top: 0px; float: none; vertical-align: middle; display: inline-block;} */
+
+
+
+
+@media (max-width: 380px){
+  .col2-set #login-form .input-text {width: 100%;}
+}
+
+@media (max-width: 400px){
+  #billing-new-address-form .input-box input[placeholder="10 digit mobile number"]  {display: inline-block; 
+        width: 84% !important; margin-left: 10px; float: right;}
+  #checkout-payment-method-load label img {width: 90px; max-width: 100%;}
+}
+@media (min-width: 400px){
+     #checkout-payment-method-load label img {width: 130px; max-width: 100%; }
+}
+@media (max-width: 500px){
+  .checkout-onepage-index .col2-set #login-form .input-text {width: 100%;}
+  #billing-new-address-form .field label {width: 100%;}
+  #pincode-error-msg .modal-dialog {margin: 25px;}
+  #checkout-payment-method-load dt {width: 48%;}
+  #checkout-payment-method-load .radio {
+    vertical-align: middle;
+    display: inline-block;
+    float: left;
+    margin: 0px !important;
+    margin-right: 4px !important;
+    
+}
+
+
+#checkout-payment-method-load .img-label img, .payment-block dt label {
+  max-width: 100%;
+    float: left;
+    width: 85px;
+    display: inline-block;
+    vertical-align: middle;
+}
+}
+
+@media (min-width: 501px){
+  #checkout-payment-method-load dt {width: 30%;}
+  #checkout-payment-method-load .radio {
+    vertical-align: middle;
+    display: inline-block;
+    float: left;
+    margin: 0px !important;
+    margin-right: 4px !important;
+    
+}
+#pincode-error-msg .modal-dialog { width: 400px; margin: 10px auto; margin-top: 80px;}
+
+#checkout-payment-method-load .img-label img, .payment-block dt label {
+  max-width: 100%;
+    float: left;
+    width: 85px;
+    display: inline-block;
+    vertical-align: middle;
+}
+}
+
+@media (max-width:768px){
+   #billing-new-address-form .input-box input[placeholder="10 digit mobile number"]  {display: inline-block; 
+        width: 87%; margin-left: 10px; float: right;}
+  .opc-index-index #opc-address-form-billing button.button.btn-default.btn.btn-checkout.opc-btn-checkout{display: none;}
+   #checkout-review-table-wrapper .table-title, #checkout-review-table-wrapper .table-footer {width: 100% !important;}
+    #checkout-review-table.data-table > tbody > tr > td {padding: 10px 17px !important;}
+    #checkout-review-table.data-table > thead > tr > th {padding: 10px 8px !important;}
+    #checkout-review-table.data-table > tfoot > tr > td {padding: 8px !important;}
+    #billing-new-address-form .field .input-box .mob-number-start {width: 18%; }
+   .checkout-onepage-index #billing-new-address-form .input-box input[placeholder="10 digit mobile number"] {width: 80% !important;}
+}
+
+@media (min-width:768px){
+  #billing-new-address-form .input-box input[placeholder="10 digit mobile number"]  {display: inline-block; 
+        width: 82%; margin-left: 10px; float: right;}
+  #product-review-list {max-height: 400px; overflow: auto; width: 100%; margin-bottom: 20px;}
+ }
+  
+
+@media (min-width: 991px){
+  .checkout-onepage-index .review-product-img, .checkout-onepage-index .review-product-name {display: inline-block;}
+  .checkout-onepage-index .review-product-img {float: left; padding-right: 5px;}
+  #billing-new-address-form .input-box input[placeholder="10 digit mobile number"]  {display: inline-block; 
+        width: 87%; margin-left: 10px; float: right;}
+  #checkout-payment-method-load label img {width: 130px; max-width: 100%; }
+  #checkout-payment-method-load dt {width: 48%;}
+  #checkout-payment-method-load .radio {
+    vertical-align: middle;
+    display: inline-block;
+    float: left;
+    margin: 0px !important;
+    margin-right: 4px !important;
+    
+}
+.checkout-onepage-index #checkout-payment-method-load .img-label img {width: 100px;}
+
+#checkout-payment-method-load .img-label img, .payment-block dt label {
+  max-width: 100%;
+    float: left;
+    width: 85px;
+    display: inline-block;
+    vertical-align: middle;
+}
+/*****/
+.checkout-onepage-index #checkout-payment-method-load dt {width: 30%;}
+}
+
+@media (min-width: 1200px){
+    #checkout-payment-method-load label img {width: 150px; max-width: 100%; }
+    #checkout-payment-method-load dt {width: 48%;}
+}
+
+/* onepage checkout */
+  #checkout-payment-method-load dt {min-height: 75px;}
+  #checkout-payment-method-load dt .form-list {width: 100%; padding-top: 5px; float: left;}
+  .opc-index-index dt .form-list {float: left;}
+  .opc-index-index #billing-new-address-form .field .input-box {float: none; width: 100%;}
+  .opc-index-index .opc-wrapper-opc .form-list .input-box input[type="text"] {background: #fff;}
+  .opc-index-index #billing-new-address-form .field .input-box .input-text {border-radius: 6px; background: #fff;}
+  .opc-index-index #billing-new-address-form .field label {float: none; width: 100%;}
+  .opc-index-index #shipping-block-methods {background: transparent;}
+  .opc-index-index .opc-wrapper-opc .form-list .input-box select.validate-select {border-color: #ccc;}
+  .opc-wrapper-opc .payment-block dt {margin-bottom: 0px !important;}
+  .opc-index-index .sp-methods .radio {margin-top: 7px;}
+  .checkout-onepage-index #checkout-payment-method-load dt p {margin: 0px;}
+  .opc-wrapper-opc .opc-login-trigger:hover {border-radius: 4px !important;}
+  .opc-wrapper-opc .opc-login-trigger {
+      width: 196px;
+      height: 36px; 
+      line-height: 35px;
+      margin-top: 1px;
+}
+
+
+
+ @media (min-width: 500px) and (max-width: 991px){
+  .opc-index-index .opc-wrapper-opc .form-list .input-box input[type="text"], 
+  .opc-index-index .opc-wrapper-opc .form-list .input-box input[type="password"],
+  .opc-index-index .opc-wrapper-opc .form-list .input-box select.validate-select {width: 50%;}
+   
+ }
+ 
+
+ /* login buttons css */
+.le-socialconnect-login .ico-fb:hover {
+    background: url('../images/social-sign-in-hvr.png')!important;
+    background-repeat: no-repeat;
+    width: 196px !important;
+    height: 40px !important;
+    padding: 0;
+    border: none;
+    background-position: 0 86px !important;
+    margin-bottom: 5px;
+    transition: .6s;
+    -webkit-transition: .6s;
+    -moz-transition: .6s;
+    -o-transition: .6s;
+}
+
+.le-socialconnect-login .ico-go {background-position: 0 42px !important;}
+.le-socialconnect-login .ico-go:hover {
+    background: url('../images/social-sign-in-hvr.png')!important;
+    background-repeat: no-repeat;
+    width: 196px !important;
+    height: 40px !important;
+    padding: 0;
+    border: none;
+    background-position: 0 42px !important;
+    margin-bottom: 5px;
+    transition: .6s;
+    -webkit-transition: .6s;
+    -moz-transition: .6s;
+    -o-transition: .6s;
+}
+
+.le-socialconnect-login .ico-tw:hover {
+    background: url('../images/social-sign-in-hvr.png')!important;
+    background-repeat: no-repeat;
+    width: 196px !important;
+    height: 40px !important;
+    padding: 0;
+    border: none;
+    background-position: 0 0!important;
+    margin-bottom: 5px;
+    transition: .6s;
+    -webkit-transition: .6s;
+    -moz-transition: .6s;
+    -o-transition: .6s;
+}
+
+.le-socialconnect-login .ico-guest:hover {
+    background: url('../images/checkout2.png')!important;
+    transition: .6s;
+    -webkit-transition: .6s;
+    -moz-transition: .6s;
+    -o-transition: .6s;
+}
+
+.le-socialconnect-login .ico-guest {
+    background: url('../images/checkout_as_guest.png')!important;
+    background-repeat: no-repeat;
+    width: 192px !important;
+    height: 36px !important;
+    padding: 0;
+    border: none;
+    margin-bottom: 5px;
+    vertical-align: top;
+    margin-top: 2px;
+}
+
+@media (max-width: 320px){
+    #checkout-review-table.data-table > thead > tr > th {padding: 10px 4px !important;}
+    div#checkout-step-review {padding: 0px;}
+    div#checkout-step-review .data-table > tbody > tr > td {padding: 10px 10px !important;}
+}
+
+
+.checkout-onepage-index .col2-set .col-1 {float: right; width: 49%;}
+.checkout-onepage-index .col2-set .col-2 {float: left; width: 49%;}
+.checkout-onepage-index .col-3.social-log {clear: both; padding-top: 50px;}
+.checkout-onepage-index #checkout-step-login .col-1 .form-list {height: 98px;}
+.checkout-onepage-index button#onepage-guest-register-button {padding: 10px 40px;}
+.checkout-onepage-index .col2-set h2 {margin-bottom: 20px;}
+
+@media (max-width:1007px){
+  .checkout-onepage-index .col2-set .col-1, .checkout-onepage-index .col2-set .col-2 {float: left; width: 100%;}
+  .checkout-onepage-index .col2-set .col-1 {border-top: 1px solid #ccc; margin-top: 20px;}
+}
+/******* checkout page new layout code end *********/
+
+
