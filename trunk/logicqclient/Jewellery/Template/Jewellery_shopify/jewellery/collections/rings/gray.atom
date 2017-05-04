@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:s="http://jadedpixel.com/-/spec/shopify">
+  <id>https://cs-utc-jewelry.myshopify.com/collections/all.atom</id>
+  <link rel="alternate" type="text/html" href="https://cs-utc-jewelry.myshopify.com/collections/all"/>
+  <link rel="self" type="application/atom+xml" href="https://cs-utc-jewelry.myshopify.com/collections/rings/gray.atom"/>
+  <title>Jewelry - Shopify theme</title>
+  <updated>2015-06-29T00:22:00-04:00</updated>
+  <author>
+    <name>Jewelry - Shopify theme</name>
+  </author>
+  <entry>
+    <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+    <published>2015-06-29T00:22:00-04:00</published>
+    <updated>2015-06-29T00:22:00-04:00</updated>
+    <link rel="alternate" type="text/html" href="https://cs-utc-jewelry.myshopify.com/products/curabitur-cursus-dignis"/>
+    <title>Curabitur cursus dignis</title>
+    <s:type>Sweaters Wear</s:type>
+    <s:vendor>Vendor 1</s:vendor>
+    <summary type="html">
+      <![CDATA[<table border="0">
+  <tr>
+    <td width="200"><img width="200" src="https://cdn.shopify.com/s/files/1/0908/7252/products/1.jpg?v=1435560927" /></td>
+    <td valign="bottom">
+      <p>
+        <strong>Vendor: </strong>Vendor 1<br>
+        <strong>Type: </strong>Sweaters Wear<br>
+        <strong>Price: </strong>
+            259.00 - 299.00
+            <a href="https://cs-utc-jewelry.myshopify.com/products/curabitur-cursus-dignis">(16 variants)</a>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.</p>
+<p>Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.</p></td>
+  </tr>
+</table>
+]]>
+    </summary>
+    <s:tag>$100 - $200</s:tag>
+    <s:tag>Above $200</s:tag>
+    <s:tag>Best Seller</s:tag>
+    <s:tag>Black</s:tag>
+    <s:tag>Green</s:tag>
+    <s:tag>L</s:tag>
+    <s:tag>M</s:tag>
+    <s:tag>Red</s:tag>
+    <s:tag>S</s:tag>
+    <s:tag>Sale Off</s:tag>
+    <s:tag>Under $100</s:tag>
+    <s:tag>White</s:tag>
+    <s:tag>XL</s:tag>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>black / small</title>
+      <s:price currency="USD">259.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>red / small</title>
+      <s:price currency="USD">260.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>blue / small</title>
+      <s:price currency="USD">269.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>purple / small</title>
+      <s:price currency="USD">279.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>green / small</title>
+      <s:price currency="USD">289.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>white / small</title>
+      <s:price currency="USD">299.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>black / medium</title>
+      <s:price currency="USD">270.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>red / medium</title>
+      <s:price currency="USD">280.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>blue / medium</title>
+      <s:price currency="USD">270.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>purple / medium</title>
+      <s:price currency="USD">259.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>green / medium</title>
+      <s:price currency="USD">259.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>white / medium</title>
+      <s:price currency="USD">259.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>red / large</title>
+      <s:price currency="USD">259.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>blue / large</title>
+      <s:price currency="USD">259.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>purple / large</title>
+      <s:price currency="USD">289.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293238211</id>
+      <title>green / large</title>
+      <s:price currency="USD">259.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+  </entry>
+  <entry>
+    <id>https://cs-utc-jewelry.myshopify.com/products/1293239619</id>
+    <published>2015-06-29T00:22:00-04:00</published>
+    <updated>2015-06-29T00:22:00-04:00</updated>
+    <link rel="alternate" type="text/html" href="https://cs-utc-jewelry.myshopify.com/products/curabitur-cursus-dignis-1"/>
+    <title>Curabitur cursus dignis</title>
+    <s:type>Hoodies Wear</s:type>
+    <s:vendor>Vendor 2</s:vendor>
+    <summary type="html">
+      <![CDATA[<table border="0">
+  <tr>
+    <td width="200"><img width="200" src="https://cdn.shopify.com/s/files/1/0908/7252/products/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310" /></td>
+    <td valign="bottom">
+      <p>
+        <strong>Vendor: </strong>Vendor 2<br>
+        <strong>Type: </strong>Hoodies Wear<br>
+        <strong>Price: </strong>
+            200.00
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.</p>
+<p>Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.</p></td>
+  </tr>
+</table>
+]]>
+    </summary>
+    <s:tag>Best Seller</s:tag>
+    <s:tag>Red</s:tag>
+    <s:tag>S</s:tag>
+    <s:tag>Sale Off</s:tag>
+    <s:tag>Under $100</s:tag>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293239619</id>
+      <title>Default Title</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+  </entry>
+  <entry>
+    <id>https://cs-utc-jewelry.myshopify.com/products/1293236931</id>
+    <published>2015-06-29T00:22:00-04:00</published>
+    <updated>2015-06-29T00:22:00-04:00</updated>
+    <link rel="alternate" type="text/html" href="https://cs-utc-jewelry.myshopify.com/products/donec-aliquam-ante-non"/>
+    <title>Donec aliquam ante non</title>
+    <s:type>Dressing</s:type>
+    <s:vendor>Vendor 3</s:vendor>
+    <summary type="html">
+      <![CDATA[<table border="0">
+  <tr>
+    <td width="200"><img width="200" src="https://cdn.shopify.com/s/files/1/0908/7252/products/6_03a522d6-f36a-4f59-a815-bbade4d87a6e.jpg?v=1435897857" /></td>
+    <td valign="bottom">
+      <p>
+        <strong>Vendor: </strong>Vendor 3<br>
+        <strong>Type: </strong>Dressing<br>
+        <strong>Price: </strong>
+            250.00 - 260.00
+            <a href="https://cs-utc-jewelry.myshopify.com/products/donec-aliquam-ante-non">(4 variants)</a>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.</p>
+<p>Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.</p></td>
+  </tr>
+</table>
+]]>
+    </summary>
+    <s:tag>$100 - $200</s:tag>
+    <s:tag>Best Seller</s:tag>
+    <s:tag>Green</s:tag>
+    <s:tag>M</s:tag>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293236931</id>
+      <title>black / small</title>
+      <s:price currency="USD">250.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293236931</id>
+      <title>white / small</title>
+      <s:price currency="USD">250.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293236931</id>
+      <title>black / medium</title>
+      <s:price currency="USD">260.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293236931</id>
+      <title>white / medium</title>
+      <s:price currency="USD">260.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+  </entry>
+  <entry>
+    <id>https://cs-utc-jewelry.myshopify.com/products/1293235843</id>
+    <published>2015-06-29T00:22:00-04:00</published>
+    <updated>2015-06-29T00:22:00-04:00</updated>
+    <link rel="alternate" type="text/html" href="https://cs-utc-jewelry.myshopify.com/products/donec-condime-fermentum"/>
+    <title>Donec condime fermentum</title>
+    <s:type>Sweaters Wear</s:type>
+    <s:vendor>Vendor 4</s:vendor>
+    <summary type="html">
+      <![CDATA[<table border="0">
+  <tr>
+    <td width="200"><img width="200" src="https://cdn.shopify.com/s/files/1/0908/7252/products/4_0fe2529b-f7ae-4ed5-a8ff-4fae623757f9.jpg?v=1435561424" /></td>
+    <td valign="bottom">
+      <p>
+        <strong>Vendor: </strong>Vendor 4<br>
+        <strong>Type: </strong>Sweaters Wear<br>
+        <strong>Price: </strong>
+            200.00 - 250.00
+            <a href="https://cs-utc-jewelry.myshopify.com/products/donec-condime-fermentum">(8 variants)</a>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.</p>
+<p>Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.</p></td>
+  </tr>
+</table>
+]]>
+    </summary>
+    <s:tag>Above $200</s:tag>
+    <s:tag>Black</s:tag>
+    <s:tag>L</s:tag>
+    <s:tag>Sale Off</s:tag>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293235843</id>
+      <title>black / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293235843</id>
+      <title>red / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293235843</id>
+      <title>white / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293235843</id>
+      <title>blue / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293235843</id>
+      <title>black / medium</title>
+      <s:price currency="USD">250.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293235843</id>
+      <title>red / medium</title>
+      <s:price currency="USD">250.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293235843</id>
+      <title>blue / medium</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293235843</id>
+      <title>white / medium</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+  </entry>
+  <entry>
+    <id>https://cs-utc-jewelry.myshopify.com/products/1293234819</id>
+    <published>2015-06-29T00:22:00-04:00</published>
+    <updated>2015-06-29T00:22:00-04:00</updated>
+    <link rel="alternate" type="text/html" href="https://cs-utc-jewelry.myshopify.com/products/donec-condimentum-fer"/>
+    <title>Donec condimentum fer</title>
+    <s:type>Hoodies Wear</s:type>
+    <s:vendor>Vendor 4</s:vendor>
+    <summary type="html">
+      <![CDATA[<table border="0">
+  <tr>
+    <td width="200"><img width="200" src="https://cdn.shopify.com/s/files/1/0908/7252/products/5_a774d2ff-edcb-44b7-99e6-4b4b11d6531e.jpg?v=1435561502" /></td>
+    <td valign="bottom">
+      <p>
+        <strong>Vendor: </strong>Vendor 4<br>
+        <strong>Type: </strong>Hoodies Wear<br>
+        <strong>Price: </strong>
+            200.00
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.</p>
+<p>Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.</p></td>
+  </tr>
+</table>
+]]>
+    </summary>
+    <s:tag>Best Seller</s:tag>
+    <s:tag>Gray</s:tag>
+    <s:tag>S</s:tag>
+    <s:tag>Sale Off</s:tag>
+    <s:tag>Under $100</s:tag>
+    <s:tag>XL</s:tag>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293234819</id>
+      <title>black / large</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293234819</id>
+      <title>red / large</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293234819</id>
+      <title>blue / large</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+  </entry>
+  <entry>
+    <id>https://cs-utc-jewelry.myshopify.com/products/1293232771</id>
+    <published>2015-06-29T00:22:00-04:00</published>
+    <updated>2015-06-29T00:22:00-04:00</updated>
+    <link rel="alternate" type="text/html" href="https://cs-utc-jewelry.myshopify.com/products/donec-justo-condimentum"/>
+    <title>Donec justo condimentum</title>
+    <s:type>Dressing</s:type>
+    <s:vendor>Vendor 3</s:vendor>
+    <summary type="html">
+      <![CDATA[<table border="0">
+  <tr>
+    <td width="200"><img width="200" src="https://cdn.shopify.com/s/files/1/0908/7252/products/6_e3262113-c6c2-4c85-b20a-56b61f779815.jpg?v=1435561627" /></td>
+    <td valign="bottom">
+      <p>
+        <strong>Vendor: </strong>Vendor 3<br>
+        <strong>Type: </strong>Dressing<br>
+        <strong>Price: </strong>
+            200.00
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.</p>
+<p>Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.</p></td>
+  </tr>
+</table>
+]]>
+    </summary>
+    <s:tag>$100 - $200</s:tag>
+    <s:tag>Red</s:tag>
+    <s:tag>S</s:tag>
+    <s:tag>Sale Off</s:tag>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293232771</id>
+      <title>black / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293232771</id>
+      <title>blue / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293232771</id>
+      <title>white / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293232771</id>
+      <title>red / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293232771</id>
+      <title>black / large</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293232771</id>
+      <title>blue / large</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293232771</id>
+      <title>white / large</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+  </entry>
+  <entry>
+    <id>https://cs-utc-jewelry.myshopify.com/products/1293231043</id>
+    <published>2015-06-29T00:22:00-04:00</published>
+    <updated>2015-06-29T00:22:00-04:00</updated>
+    <link rel="alternate" type="text/html" href="https://cs-utc-jewelry.myshopify.com/products/gravida-est-quis-euismod"/>
+    <title>Gravida est quis euismod</title>
+    <s:type>Sweaters Wear</s:type>
+    <s:vendor>Vendor 1</s:vendor>
+    <summary type="html">
+      <![CDATA[<table border="0">
+  <tr>
+    <td width="200"><img width="200" src="https://cdn.shopify.com/s/files/1/0908/7252/products/7_15911c75-e357-4cc1-a903-950a8ed4b779.jpg?v=1435561706" /></td>
+    <td valign="bottom">
+      <p>
+        <strong>Vendor: </strong>Vendor 1<br>
+        <strong>Type: </strong>Sweaters Wear<br>
+        <strong>Price: </strong>
+            200.00
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.</p>
+<p>Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.</p></td>
+  </tr>
+</table>
+]]>
+    </summary>
+    <s:tag>Above $200</s:tag>
+    <s:tag>Best Seller</s:tag>
+    <s:tag>Green</s:tag>
+    <s:tag>M</s:tag>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293231043</id>
+      <title>black / medium</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293231043</id>
+      <title>white / medium</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293231043</id>
+      <title>red / medium</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293231043</id>
+      <title>green / medium</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+  </entry>
+  <entry>
+    <id>https://cs-utc-jewelry.myshopify.com/products/1293229251</id>
+    <published>2015-06-29T00:22:00-04:00</published>
+    <updated>2015-06-29T00:22:00-04:00</updated>
+    <link rel="alternate" type="text/html" href="https://cs-utc-jewelry.myshopify.com/products/malesuada-fames-ac-ante"/>
+    <title>Malesuada fames ac ante</title>
+    <s:type>Dressing</s:type>
+    <s:vendor>Vendor 2</s:vendor>
+    <summary type="html">
+      <![CDATA[<table border="0">
+  <tr>
+    <td width="200"><img width="200" src="https://cdn.shopify.com/s/files/1/0908/7252/products/8_c017028b-7029-4526-8a96-c8ca814d82f5.jpg?v=1435561776" /></td>
+    <td valign="bottom">
+      <p>
+        <strong>Vendor: </strong>Vendor 2<br>
+        <strong>Type: </strong>Dressing<br>
+        <strong>Price: </strong>
+            200.00
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.</p>
+<p>Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.</p></td>
+  </tr>
+</table>
+]]>
+    </summary>
+    <s:tag>Above $200</s:tag>
+    <s:tag>Best Seller</s:tag>
+    <s:tag>Gray</s:tag>
+    <s:tag>Green</s:tag>
+    <s:tag>L</s:tag>
+    <s:tag>M</s:tag>
+    <s:tag>Red</s:tag>
+    <s:tag>S</s:tag>
+    <s:tag>Sale Off</s:tag>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293229251</id>
+      <title>black / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293229251</id>
+      <title>white / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293229251</id>
+      <title>purple / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+    <s:variant>
+      <id>https://cs-utc-jewelry.myshopify.com/products/1293229251</id>
+      <title>green / small</title>
+      <s:price currency="USD">200.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>0</s:grams>
+    </s:variant>
+  </entry>
+</feed>
