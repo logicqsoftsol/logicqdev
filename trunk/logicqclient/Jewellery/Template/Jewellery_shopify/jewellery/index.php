@@ -1,18 +1,22 @@
 <?php
-	include("includes/config.php");
+	include("config.php");
 	
 	// PROJECT RELATED FUNCTIONS
 	function get_menu_tree($parent_id) 
 		{
 		global $con;
 		$menu = "";
-		$sqlquery = " SELECT * FROM menu_details where parent_category='" .$parent_id . "' ";
+		$sqlquery = " SELECT * FROM menu_details where parent_category='" .$parent_id . "' ORDER BY `menu_ID`";
 		$res=mysqli_query($con,$sqlquery);
 		while($row=mysqli_fetch_array($res,MYSQLI_ASSOC)) 
 		{
-			   $menu .="<li class='nav-item active'><a href='".$row['menu_link']."'>".$row['menu_name']."</a>";
-			   
-			   $menu .= "<ul class='nav navbar-nav hoverMenuWrapper'>".get_menu_tree($row['menu_ID'])."</ul>"; //call  recursively
+			   $menu .="<li class='nav-item dropdown' class='dropdown-toggle dropdown-link' data-toggle='dropdown'>
+						<a href='".$row['menu_link']."'><span>".$row['menu_name']."</span>
+						<i class='fa fa-caret-down'></i>   
+						<i class='sub-dropdown1 visible-sm visible-md visible-lg'></i>
+						<i class='sub-dropdown visible-sm visible-md visible-lg'></i></a>";
+			   // need to add condition for menu check
+			   $menu .= "<ul class='dropdown-menu'>".get_menu_tree($row['menu_ID'])."</ul>"; //call  recursively
 			   
 			   $menu .= "</li>";
 	 
@@ -343,6 +347,11 @@ var __st={"a":9087252,"offset":-14400,"reqid":"8f3f807d-2658-46e1-808d-44d48b2b2
     <a href="account/register.html" id="customer_register_link">Create an account</a>
   </li>
   
+  <li class="login">
+    
+	<a href="login.php" id="admin_login">ADMIN LOGIN</a>
+	
+  </li>
   
 </ul>
 
@@ -364,7 +373,7 @@ var __st={"a":9087252,"offset":-14400,"reqid":"8f3f807d-2658-46e1-808d-44d48b2b2
     <span class="heading hidden-xs">GOLD RATE</span>
     <i class="fa fa-caret-down"></i>
   </a>
-  <ul class="currencies dropdown-menu text-left">
+  <ul class="dropdown-menu">
     
         <div class="gold-box">
         <div class="menu-wrapper" data-columns="1">
@@ -380,27 +389,11 @@ var __st={"a":9087252,"offset":-14400,"reqid":"8f3f807d-2658-46e1-808d-44d48b2b2
           <div class="clear">&nbsp;</div>
           <div class="transparent">&nbsp;</div>
         </div>
-</div>
+	</div>
     
     
   </ul>
   
-  <select class="currencies_src hide" name="currencies">
-    
-    
-    <option value="USD" selected="selected">USD</option>
-    
-    
-    
-    
-    <option value="EUR">EUR</option>
-    
-    
-    
-    <option value="GBP">GBP</option>
-    
-    
-  </select>
 </div>
 
 
@@ -511,7 +504,7 @@ var __st={"a":9087252,"offset":-14400,"reqid":"8f3f807d-2658-46e1-808d-44d48b2b2
     <div class="collapse navbar-collapse"> 
       <ul class="nav navbar-nav hoverMenuWrapper">
       
-		<?=$db->get_menu_tree(0);?>
+		<?php echo get_menu_tree(0);?>
 	  
       </ul>       
     </div>
