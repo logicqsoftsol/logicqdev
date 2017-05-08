@@ -1,3 +1,30 @@
+<?php
+	include("admin/dbconfig.php");
+	
+	// PROJECT RELATED FUNCTIONS
+	function get_menu_tree($parent_id) 
+		{
+		global $con;
+		$menu = "";
+		$sqlquery = " SELECT * FROM menu_details where parent_category='" .$parent_id . "' ORDER BY `menu_ID`";
+		$res=mysqli_query($db_found,$sqlquery);
+		while($row=mysqli_fetch_array($res,MYSQLI_ASSOC)) 
+		{
+			   $menu .="<li class='nav-item dropdown' class='dropdown-toggle dropdown-link' data-toggle='dropdown'>
+						<a href='".$row['menu_link']."'><span>".$row['menu_name']."</span>
+						<i class='fa fa-caret-down'></i>   
+						<i class='sub-dropdown1 visible-sm visible-md visible-lg'></i>
+						<i class='sub-dropdown visible-sm visible-md visible-lg'></i></a>";
+			   // need to add condition for menu check
+			   $menu .= "<ul class='dropdown-menu'>".get_menu_tree($row['menu_ID'])."</ul>"; //call  recursively
+			   
+			   $menu .= "</li>";
+	 
+		}
+		
+		return $menu;
+		} 
+?>
 <!doctype html>
  <html lang="en" class="no-js"> 
 
@@ -29,6 +56,7 @@
 <link href="assets/css/cs.globala67f.css" rel="stylesheet" type="text/css" media="all" />
 <link href="assets/css/cs.stylea67f.css" rel="stylesheet" type="text/css" media="all" />
 <link href="assets/css/cs.media.3xa67f.css" rel="stylesheet" type="text/css" media="all" />
+<link href="assets/css/27_feb.css" rel='stylesheet' type='text/css' media="all"/>
 
 <script src="assets/js/jquery-1.9.1.mina67f.js" type="text/javascript"></script>
 <script src="assets/js/jquery.imagesloaded.mina67f.js" type="text/javascript"></script>
@@ -120,6 +148,13 @@
   </li>
   
   
+   <li class="login">
+    
+	<a href="login.php" id="admin_login">ADMIN LOGIN</a>
+	
+  </li>
+  
+  
 </ul>
 
         </li>
@@ -140,6 +175,26 @@
             
           </ul>
         </li>
+		
+		<li>
+			  <a class="view-box" href="#">Gold Rate
+			  <div class="gold-box">
+				<div class="menu-wrapper" data-columns="1">
+				  <span class="gold-heading">Todays Metal Rates (per gram)</span>
+				  <div class="row gold-row">	<div class="col-xs-6">
+							<span class="heading-metal">Metal Type</span>
+							<ul><li>Platinum</li><li>Gold 24 ct (999)</li><li>Gold 24 ct (995)</li><li>Gold 23.5 ct</li><li>Gold 23 ct</li><li>Gold 22 ct</li><li>Gold 18 ct</li><li>Silver Bar</li><li>Silver</li></ul>
+					</div>
+					<div class="col-xs-6">
+							<span class="heading-metal">Metal Rate</span>
+							<ul><li>Rs. 3283</li><li>Rs. 2870</li><li>Rs. 2850</li><li>Rs. 2830</li><li>Rs. 2830</li><li>Rs. 2760</li><li>Rs. 2296</li><li>Rs. 40.3</li><li>Rs. 40.0</li></ul>
+					</div></div>
+				  <div class="clear">&nbsp;</div>
+				  <div class="transparent">&nbsp;</div>
+				</div>
+			  </div>
+			  </a>
+    </li>
         
       </ul>
     </div>
@@ -224,410 +279,8 @@
 
     <div class="collapse navbar-collapse"> 
       <ul class="nav navbar-nav hoverMenuWrapper">
-        
-        
-
-
-
-
-<li class="nav-item active">
-  <a href="index.html">
-    <span>Home</span>
-  </a>
-</li>
-
-
-
-
-
-
-        
-        
-
-
-<li class="dropdown mega-menu">
-  <a href="collections/all.html" class="dropdown-toggle dropdown-link" data-toggle="dropdown">
-    <span>Collections</span>
     
-    <i class="fa fa-caret-down"></i>
-    
-    <i class="sub-dropdown1 visible-sm visible-md visible-lg"></i>
-    <i class="sub-dropdown visible-sm visible-md visible-lg"></i>
-  </a>
-  
-  <div class="megamenu-container megamenu-container-1 dropdown-menu banner-bottom mega-col-4">
-    
-    <ul class="sub-mega-menu">
-	  
-      <li>
-        
-        <ul>
-          <li class="list-title">Collection Links</li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/curabitur-cursus-dignis.html">Dolorem Sed
-            
-            
-            
-            
-            </a>      
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/donec-aliquam-ante-non.html">Proident Nulla
-            
-            
-            
-            
-            </a>      
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/donec-justo-condimentum.html">Phasellus Leo
-            
-            
-            	<span class="megamenu-label hot-label" >Hot</span>
-            
-            
-            
-            </a>      
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/gravida-est-quis-euismod.html">Tristique Amet
-            
-            
-            
-            
-            	<span class="megamenu-label feature-label" >Featured</span>
-            
-            </a>      
-          </li>
-          
-        </ul>
-      </li>
-      
-	  
-      <li>
-        
-        <ul>
-          <li class="list-title">Collection Links</li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/curabitur-cursus-dignis.html">Dolorem Sed
-            
-            
-            
-             
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/donec-aliquam-ante-non.html">Proident Nulla
-            
-            	<span class="megamenu-label new-label" >New</span>
-            
-            
-            
-             
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/donec-justo-condimentum.html">Phasellus Leo
-            
-            
-            
-             
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/gravida-est-quis-euismod.html">Tristique Amet
-            
-            
-            
-             
-            </a>
-          </li>
-          
-        </ul>
-      </li>
-	  
-      
-      <li>
-        
-        <ul>
-          <li class="list-title">Collection Links</li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/curabitur-cursus-dignis.html">Dolorem Sed
-            
-            
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/donec-aliquam-ante-non.html">Proident Nulla
-            
-            
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/donec-justo-condimentum.html">Phasellus Leo
-            
-            
-            
-            	<span class="megamenu-label sale-label" >Sale</span>
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/gravida-est-quis-euismod.html">Tristique Amet
-            
-            
-            
-            
-            </a>
-          </li>
-          
-        </ul>
-      </li>
-	  
-      
-      <li>
-        
-        <ul>
-          <li class="list-title">Collection Links</li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/curabitur-cursus-dignis.html">Dolorem Sed
-            
-            	<span class="megamenu-label new-label" >New</span>
-            
-            
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/donec-aliquam-ante-non.html">Proident Nulla
-            
-            
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/donec-justo-condimentum.html">Phasellus Leo
-            
-            
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/gravida-est-quis-euismod.html">Tristique Amet
-            
-            
-            	<span class="megamenu-label hot-label" >Hot</span>
-            
-            
-            
-            </a>
-          </li>
-          
-        </ul>
-      </li>
-      
-      
-      
-    </ul>
-  </div>
-
-  
-</li>
-
-
-
-
-
-
-        
-        
-
-
-<li class="dropdown mega-menu">
-  <a href="collections/all.html" class="dropdown-toggle dropdown-link" data-toggle="dropdown">
-    <span>Pages</span>
-    
-    <i class="fa fa-caret-down"></i>
-    
-    <i class="sub-dropdown1 visible-sm visible-md visible-lg"></i>
-    <i class="sub-dropdown visible-sm visible-md visible-lg"></i>
-  </a>
-  
-  <div class="megamenu-container megamenu-container-2 dropdown-menu banner-right mega-col-2">
-    
-    <ul class="sub-mega-menu">
-      
-      <li>
-        
-        <ul>
-          <li class="list-title">Page Layout</li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="collections/bracelets.html">Collection full width
-            
-            
-            
-            
-            </a>            
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="collections/sample-collection-with-left-slidebar.html">Collection - left sidebar
-            
-            
-            
-            
-            </a>            
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="collections/sample-collection-with-right-slidebar.html">Collection - right sidebar
-            
-            
-            
-            
-            </a>            
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/donec-aliquam-ante-non.html">Product full width
-            
-            
-            
-            
-            </a>            
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/product-with-left-slidebar.html">Product - left sidebar
-            
-            
-            
-            
-            </a>            
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="products/product-with-right-slidebar.html">Product - right sidebar
-            
-            
-            
-            
-            </a>            
-          </li>
-          
-        </ul>
-      </li>
-      
-      
-      <li>
-        
-        <ul>
-          <li class="list-title">Page Content</li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="pages/about-us.html">About
-            
-            
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="pages/price-table.html">Price table
-            
-            
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="pages/faqs.html">FAQs
-            
-            
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="pages/testimonials.html">Testimonial
-            
-            
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="collections/all.html">New product introduction
-            
-            
-            
-            
-            </a>
-          </li>
-          
-          <li class="list-unstyled li-sub-mega">
-            <a href="pages/contact.html"> Contact
-            
-            
-            
-            
-            </a>
-          </li>
-          
-        </ul>
-      </li>
-	  
-      
-      
-      
-      
-    </ul>     
-  </div>
-  
-</li>
-
-
-
-<li class="nav-item">
-  <a href="pages/contact.html">
-    <span>Contact</span>
-  </a>
-</li>
-
-
-
-
-
-
+		<?php echo get_menu_tree(0);?>
         
       </ul>       
     </div>
