@@ -29,9 +29,8 @@ if(isset($_POST['add_sub_menu']))
  $submenu_name = $_POST['sub_menu_name'];
  $s_menu_link = $_POST['sub_menu_link'];
  
- $stmt = $dbcon->query('INSERT INTO menu_details(parent_category,menu_name,menu_link) VALUES($parent, '$submenu_name', '$s_menu_link')');
- 
-			
+ $stmt = $dbcon->query("INSERT INTO menu_details(parent_category,menu_name,menu_link) VALUES('$parent', '$submenu_name', '$s_menu_link')");
+	
  //$sql=$con->query("INSERT INTO menu_details(parent_category,menu_name,menu_link) VALUES('$parent','$submenu_name','$s_menu_link')");
  
 			if($stmt->num_rows > 0)

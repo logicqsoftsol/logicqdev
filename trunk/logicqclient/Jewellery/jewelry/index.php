@@ -1,30 +1,3 @@
-<?php
-	include("admin/dbconfig.php");
-	
-	// PROJECT RELATED FUNCTIONS
-	function get_menu_tree($parent_id) 
-		{
-		global $con;
-		$menu = "";
-		$sqlquery = " SELECT * FROM menu_details where parent_category='" .$parent_id . "' ORDER BY `menu_ID`";
-		$res=mysqli_query($db_found,$sqlquery);
-		while($row=mysqli_fetch_array($res,MYSQLI_ASSOC)) 
-		{
-			   $menu .="<li class='nav-item dropdown' class='dropdown-toggle dropdown-link' data-toggle='dropdown'>
-						<a href='".$row['menu_link']."'><span>".$row['menu_name']."</span>
-						<i class='fa fa-caret-down'></i>   
-						<i class='sub-dropdown1 visible-sm visible-md visible-lg'></i>
-						<i class='sub-dropdown visible-sm visible-md visible-lg'></i></a>";
-			   // need to add condition for menu check
-			   $menu .= "<ul class='dropdown-menu'>".get_menu_tree($row['menu_ID'])."</ul>"; //call  recursively
-			   
-			   $menu .= "</li>";
-	 
-		}
-		
-		return $menu;
-		} 
-?>
 <!doctype html>
  <html lang="en" class="no-js"> 
 
@@ -56,7 +29,6 @@
 <link href="assets/css/cs.globala67f.css" rel="stylesheet" type="text/css" media="all" />
 <link href="assets/css/cs.stylea67f.css" rel="stylesheet" type="text/css" media="all" />
 <link href="assets/css/cs.media.3xa67f.css" rel="stylesheet" type="text/css" media="all" />
-<link href="assets/css/27_feb.css" rel='stylesheet' type='text/css' media="all"/>
 
 <script src="assets/js/jquery-1.9.1.mina67f.js" type="text/javascript"></script>
 <script src="assets/js/jquery.imagesloaded.mina67f.js" type="text/javascript"></script>
@@ -148,13 +120,6 @@
   </li>
   
   
-   <li class="login">
-    
-	<a href="login.php" id="admin_login">ADMIN LOGIN</a>
-	
-  </li>
-  
-  
 </ul>
 
         </li>
@@ -175,26 +140,6 @@
             
           </ul>
         </li>
-		
-		<li>
-			  <a class="view-box" href="#">Gold Rate
-			  <div class="gold-box">
-				<div class="menu-wrapper" data-columns="1">
-				  <span class="gold-heading">Todays Metal Rates (per gram)</span>
-				  <div class="row gold-row">	<div class="col-xs-6">
-							<span class="heading-metal">Metal Type</span>
-							<ul><li>Platinum</li><li>Gold 24 ct (999)</li><li>Gold 24 ct (995)</li><li>Gold 23.5 ct</li><li>Gold 23 ct</li><li>Gold 22 ct</li><li>Gold 18 ct</li><li>Silver Bar</li><li>Silver</li></ul>
-					</div>
-					<div class="col-xs-6">
-							<span class="heading-metal">Metal Rate</span>
-							<ul><li>Rs. 3283</li><li>Rs. 2870</li><li>Rs. 2850</li><li>Rs. 2830</li><li>Rs. 2830</li><li>Rs. 2760</li><li>Rs. 2296</li><li>Rs. 40.3</li><li>Rs. 40.0</li></ul>
-					</div></div>
-				  <div class="clear">&nbsp;</div>
-				  <div class="transparent">&nbsp;</div>
-				</div>
-			  </div>
-			  </a>
-    </li>
         
       </ul>
     </div>
@@ -279,9 +224,52 @@
 
     <div class="collapse navbar-collapse"> 
       <ul class="nav navbar-nav hoverMenuWrapper">
-    
-		<?php echo get_menu_tree(0);?>
-        
+             <?php
+			 include 'ChromePhp.php';
+			 include 'sql.php';
+			  $SQL ="SELECT * FROM menu_details order by id";
+              $result = mysql_query($SQL);
+			  while ($db_field = mysql_fetch_array($result)) {
+				   $menu_id = $db_field['id'];
+				  $linkurl = $db_field['linkurl'];
+				   $displayname = $db_field['displayname'];
+				    $name = $db_field['name'];
+				    $submenulist = $db_field['submenulist'];
+					if( $submenulist==0){
+						  print("<li class='nav-item active'>");
+						  print("<a href=$linkurl>");
+						  print("<span>$displayname</span> </a></li>");
+			       }else{
+						print("<li class='dropdown mega-menu'>");
+						print("<a href=$linkurl class='dropdown-toggle dropdown-link' data-toggle='dropdown'>");
+						print("<span>$displayname</span>  <i class='fa fa-caret-down'></i> <i class='sub-dropdown1 visible-sm visible-md visible-md'></i>");
+						print("<i class='sub-dropdown visible-sm visible-md visible-sm'></i></a>");
+						print("<div class='megamenu-container megamenu-container-1 dropdown-menu banner-bottom'>");
+						print("<ul class='sub-mega-menu'>");
+						
+						$SUB_HEADER_SQL ="SELECT * FROM sub_menu_header where menu_id=$menu_id order by id";
+						 $sub_HD_result = mysql_query($SUB_HEADER_SQL);
+						 while ($subdb_hd_field = mysql_fetch_array($sub_HD_result)) {
+						 $sub_hd_displayname = $subdb_hd_field['displayname'];
+						 $sub_hd_id = $subdb_hd_field['id'];
+					     print(" <li><ul><li class='list-title'>$sub_hd_displayname</li>");
+						 $SUB_SQL ="SELECT * FROM sub_menu_details where menu_id=$menu_id and sub_menu_header_id=$sub_hd_id order by id";
+						 $sub_result = mysql_query($SUB_SQL);
+						 while ($subdb_field = mysql_fetch_array($sub_result)) {
+						     	$sub_displayname = $subdb_field['displayname'];
+								$sub_linkurl = $subdb_field['linkurl'];
+							    print(" <li class='list-unstyled li-sub-mega'>");
+                                print("<a href=$sub_linkurl>$sub_displayname</a></li>");
+						 }
+						  print(" </ul></li>");
+						 }
+						  print(" </ul></li>");
+						  print("  </li>");
+				   }
+				   
+			  }
+   mysql_close($db_handle);
+    ?>			 
       </ul>       
     </div>
   </div>
@@ -401,11 +389,6 @@
         <div class="camera_caption camera_image-caption_2 moveFromLeft">
           <img src="assets/images/slide-image-caption-2a67f.png" alt="image_caption" />
         </div>
-        
-        
-        
-
-        
         <div class="camera_cta_2">
           <a href="collections/sample-collection-with-left-slidebar.html" class="btn">See Collection</a>
         </div>
@@ -413,20 +396,7 @@
 
       </div>
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
       
       <div data-src="assets/images/slide-image-3a67f.jpg">
         
@@ -728,7 +698,7 @@
       </div>
       <div class="list-mode-description">
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
+      </d v>
       <div class="hover-appear">
         <form action="#" method="post">
           
@@ -2402,7 +2372,4 @@
   
 
   
-</body>
-
-<!-- Mirrored from cs-utc-jewelry.myshopify.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 May 2017 19:43:33 GMT -->
-</html>
+</body><!-- Mirrored from cs-utc-jewelry.myshopify.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 May 2017 19:43:33 GMT --></html>
