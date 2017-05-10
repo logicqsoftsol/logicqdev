@@ -1,37 +1,4 @@
-<?php
-if (!session_id()) session_start();
-if (!$_SESSION['logon_admin']){
-	header("Location:index.php");
-	die();
-}
-?>
-<?php
-	include("admin/config.php");
-	
-	// PROJECT RELATED FUNCTIONS
-	function get_menu_tree($parent_id) 
-		{
-		global $con;
-		$menu = "";
-		$sqlquery = " SELECT * FROM menu_details where parent_category='" .$parent_id . "' ORDER BY `menu_ID`";
-		$res=mysqli_query($con,$sqlquery);
-		while($row=mysqli_fetch_array($res,MYSQLI_ASSOC)) 
-		{
-			   $menu .="<li class='nav-item dropdown' class='dropdown-toggle dropdown-link' data-toggle='dropdown'>
-						<a href='".$row['menu_link']."'><span>".$row['menu_name']."</span>
-						<i class='fa fa-caret-down'></i>   
-						<i class='sub-dropdown1 visible-sm visible-md visible-lg'></i>
-						<i class='sub-dropdown visible-sm visible-md visible-lg'></i></a>";
-			   // need to add condition for menu check
-			   $menu .= "<ul class='dropdown-menu'>".get_menu_tree($row['menu_ID'])."</ul>"; //call  recursively
-			   
-			   $menu .= "</li>";
-	 
-		}
-		
-		return $menu;
-		} 
-?>
+
 <!doctype html>
  <html lang="en" class="no-js"> 
 
@@ -103,67 +70,6 @@ if (!$_SESSION['logon_admin']){
     <div class="col-md-18">
       <ul class="text-right">
         <li class="customer-links hidden-xs">
-          
-
-<ul id="accounts" class="list-inline">
-  <li class="my-account">
-    <a href="account/login.html">My Account</a>
-  </li>
-  
-  <li class="login">
-    
-    <span id="loginButton" class="dropdown-toggle" data-toggle="dropdown">
-      Login
-      <i class="sub-dropdown1"></i>
-      <i class="sub-dropdown"></i>
-    </span>
-
-    <!-- Customer Account Login -->
-    <div id="loginBox" class="dropdown-menu text-left">
-      <form method="post" action="#" id="customer_login" accept-charset="UTF-8"><input type="hidden" value="customer_login" name="form_type" /><input type="hidden" name="utf8" value="✓" />
-
-      <div id="bodyBox">
-        <ul class="control-container customer-accounts list-unstyled">
-          <li class="clearfix">
-            <label for="customer_email_box" class="control-label">Email Address <span class="req">*</span></label>
-            <input type="email" value="" name="customer[email]" id="customer_email_box" class="form-control" />
-          </li>
-          
-          <li class="clearfix">
-            <label for="customer_password_box" class="control-label">Password <span class="req">*</span></label>
-            <input type="password" value="" name="customer[password]" id="customer_password_box" class="form-control password" />
-          </li>
-          
-          <li class="clearfix">
-            <button class="btn" type="submit">Login</button>
-          </li>
-          <li class="clearfix">
-            <a class="action btn btn-1" href="account/register.html">Create an account</a>
-          </li>
-        </ul>
-      </div>
-      </form>
-
-    </div>
-
-    
-  </li>
-  <li>/</li>
-   
-  <li class="register">
-    <a href="account/register.html" id="customer_register_link">Create an account</a>
-  </li>
-  
-  
-   <li class="login">
-    
-	<a href="login.php" id="admin_login">ADMIN LOGIN</a>
-	
-  </li>
-  
-  
-</ul>
-
         </li>
 		
         
