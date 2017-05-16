@@ -468,39 +468,55 @@
 			  include "sql.php";
 			  $sql_query ="SELECT * FROM `popular collections` order by id ASC";
               $result_query = mysql_query($sql_query);
-			  while ($get_values = mysql_fetch_array($result_query) or die(mysql_error())) 
-			  {
+			  while ($get_values = mysql_fetch_array($result_query)) { 
 			  
+			  $c_link = $get_values['collection_link'];
+			  $c_name = $get_values['collection_name'];
+			  $c_image = $get_values['collection_image'];
+			  
+			  print("<div class='home_collections_item'>");
+                print("<div class='home_collections_item_inner'>");
+                  print("<div class='collection-details'>");
+                    
+                    print("<a href=$c_link title=Browse our $c_name>");
+                      
+                     print("<img src=$c_image alt=$c_name />");
+                      
+                    print("</a>");
+                  print("</div>");
+                  print("<div class='hover-overlay'>");
+                    print("<span class='col-name'><a href=$c_link>$c_name</a></span>");
+                    print("<div class='collection-action'>");
+                      print("<a href=$c_link>See the Collection</a>");
+                    print("</div>");
+                  print("</div>");
+                 print("</div>");
+                print("</div>");
+                
+			  }
+			   mysql_close($db_handle);
 			  ?>
 			  
-				
-				<div class="home_collections_item">
+			  
+			   <div class="home_collections_item">
                 <div class="home_collections_item_inner">
                   <div class="collection-details">
                     
-                    <a href="<?php echo $get_values['collection_link']; ?>" title="Browse our <?!php echo $get_values['collection_name']; ?>">
+                    <a href="collections/bracelets.html" title="Browse our Bracelets">
                       
-                      <img src="<?php echo $get_values['collection_image']; ?>" alt="<?php echo $get_values['collection_name']; ?>" />
+                      <img src="assets/images/3_largef441.png" alt="Bracelets" />
                       
                     </a>
                   </div>
                   <div class="hover-overlay">
-                    <span class="col-name"><a href="<?php echo $get_values['collection_link']; ?>"><?php echo $get_values['collection_name']; ?></a></span>
+                    <span class="col-name"><a href="collections/bracelets.html">Bracelets</a></span>
                     <div class="collection-action">
-                      <a href="<?php echo $get_values['collection_link']; ?>">See the Collection</a>
+                      <a href="collections/bracelets.html">See the Collection</a>
                     </div>
                   </div>
-                 </div>
                 </div>
-                
-			  
-			 
-			  
-			  <?php
-             	  
-			  }
-			  
-			  ?>
+              </div>
+               
 		</div>
 		</div>
 		</div>
@@ -520,39 +536,22 @@
           <h6 class="general-title">Featured Products</h6>
           <div class="home_fp_wrapper">
             <div id="home_fp">
-              
-              
-
-              
               <div class="element no_full_width not-animated" data-animate="fadeInUp" data-delay="0">
                   <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="products/curabitur-cursus-dignis.html" class="container_item">
+					<li class="row-left">
+					  <a href="products/curabitur-cursus-dignis.html" class="container_item">
+						<img src="assets/images/products/1_grande2245.jpg" class="img-responsive" alt="Curabitur cursus dignis" /> 
+					  </a>
+					  <div class="hbw">
+						<span class="hoverBorderWrapper"></span>
+					  </div>
+					</li>
 
-        <img src="assets/images/products/1_grande2245.jpg" class="img-responsive" alt="Curabitur cursus dignis" />
-
-        
-        <span class="sale_banner">
-          
-          <span class="sale_text">Sale</span>
-          
-        </span>
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
+					<li class="row-right parent-fly animMix">
 	  <div class="product-content-left">
-        <a class="title-5" href="products/curabitur-cursus-dignis.html">Curabitur cursus dignis</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293238211"></span>
-        
-      </div>
+        <a class="title-5" href="products/curabitur-cursus-dignis.html">Cubical Ring Design</a>
+			<span class="shopify-product-reviews-badge" data-id="1293238211"></span>
+        </div>
       <div class="product-content-right">
       <div class="product-price">
         <span class="price_sale"><span class='money'>$259.00</span></span>
@@ -560,14 +559,13 @@
       </div>
       </div>
       <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
+        Cubical Ring Design
       </div>
       <div class="hover-appear">
         <form action="#" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
-              
               <option selected="selected" value="3947651075">black / small</option>
               <option value="3947651139">red / small</option>
               <option value="3947651203">blue / small</option>
@@ -607,7 +605,7 @@
           <a class="wish-list" href="account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
       </div>
     </li>
-  </ul> 
+				</ul> 
 
               </div>
               
@@ -694,13 +692,6 @@
 
         <img src="assets/images/products/6_03a522d6-f36a-4f59-a815-bbade4d87a6e_grandec150.jpg" class="img-responsive" alt="Donec aliquam ante non" />
 
-        
-        <span class="sale_banner">
-          
-          <span class="sale_text">Sale</span>
-          
-        </span>
-        
       </a>
 
       <div class="hbw">
@@ -905,13 +896,7 @@
 
         <img src="assets/images/products/10_16854be2-a731-4970-984e-7f6e483d2405_grandedd3a.jpg?v=1435561913" class="img-responsive" alt="Maximus quam posuere" />
 
-        
-        <span class="sale_banner">
-          
-          <span class="sale_text">Sale</span>
-          
-        </span>
-        
+    
       </a>
 
       <div class="hbw">
@@ -1028,14 +1013,7 @@
       <a href="products/product-full-width.html" class="container_item">
 
         <img src="assets/images/products/11_68ab6d0f-109c-429b-a903-4cbf60257806_grande6ce0.jpg?v=1435561981" class="img-responsive" alt="Product full width" />
-
-        
-        <span class="sale_banner">
-          
-          <span class="sale_text">Sale</span>
-          
-        </span>
-        
+ 
       </a>
 
       <div class="hbw">
@@ -1153,13 +1131,6 @@
 
         <img src="assets/images/products/9_29fe62cc-0d0f-4cbc-b09a-6d6a8d7c2431_grandeebbe.jpg?v=1435833580" class="img-responsive" alt="Product with left sidebar" />
 
-        
-        <span class="sale_banner">
-          
-          <span class="sale_text">Sale</span>
-          
-        </span>
-        
       </a>
 
       <div class="hbw">
@@ -1276,14 +1247,7 @@
       <a href="products/product-with-right-slidebar.html" class="container_item">
 
         <img src="assets/images/products/13_728a8813-99ca-43bd-80fe-a5cbae33a10e_grandeae57.jpg?v=1435562121" class="img-responsive" alt="Product with right sidebar" />
-
-        
-        <span class="sale_banner">
-          
-          <span class="sale_text">Sale</span>
-          
-        </span>
-        
+       
       </a>
 
       <div class="hbw">
