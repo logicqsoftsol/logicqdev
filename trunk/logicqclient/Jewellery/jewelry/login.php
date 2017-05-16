@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			if (!session_id())
 				session_start();
 				$_SESSION['logon'] = true;
-				header("Location: admin.php");
+				header("Location: admin.html");
 				die();
 		}
 	}
