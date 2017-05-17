@@ -22,6 +22,7 @@ if (!$_SESSION['logon']){
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
+ 
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="assets/css/skins/_all-skins.min.css">
@@ -93,9 +94,9 @@ if (!$_SESSION['logon']){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="product_details.html"><i class="fa fa-circle-o"></i> View </a></li>
-            <li><a href="addmenu_page.php"><i class="fa fa-circle-o"></i> Add/Edit Product</a></li>
-			<li><a href="addmenu_page.php"><i class="fa fa-circle-o"></i> Create bulk Product</a></li>
+            <li class="active"><a href="#producttable" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i> View </a></li>
+            <li><a href="#productadd" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i> Add/Edit Product</a></li>
+			<li><a href="#productbulkupload" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i> Create bulk Product</a></li>
           </ul>
         </li>
 		 <li class="treeview">
@@ -106,15 +107,15 @@ if (!$_SESSION['logon']){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Stock Details </a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Supplier Details</a></li>
-			<li><a href="#"><i class="fa fa-circle-o"></i>Vendor Details</a></li>
-			<li><a href="#"><i class="fa fa-circle-o"></i>Invoice Details</a></li>
-			<li><a href="#"><i class="fa fa-circle-o"></i>Offer Details</a></li>
-            <li><a href="view_edit_delete.php"><i class="fa fa-circle-o"></i>Bulk Inventory Upload</a></li>         
+            <li class="active"><a href="#" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i> Stock Details </a></li>
+            <li><a href="#" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i>Supplier Details</a></li>
+			<li><a href="#venderdetails" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i>Vendor Details</a></li>
+			<li><a href="#" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i>Invoice Details</a></li>
+			<li><a href="#" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i>Offer Details</a></li>
+            <li><a href="#" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i>Bulk Inventory Upload</a></li>         
 		 </ul>
         </li>
-		 <li class="treeview">
+		    <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Customer Details</span>
             <span class="pull-right-container">
@@ -129,7 +130,7 @@ if (!$_SESSION['logon']){
 			<li><a href="#"><i class="fa fa-circle-o"></i>Feedback/Review Details</a></li>
 			<li><a href="#"><i class="fa fa-circle-o"></i>Payment Details</a></li>
 	      </ul>
-        </li>
+          </li>
 			 <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>User Settings</span>
@@ -150,10 +151,10 @@ if (!$_SESSION['logon']){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="view_edit_delete.php"><i class="fa fa-circle-o"></i>Setup Menus</a></li>
-			<li><a href="view_edit_delete.php"><i class="fa fa-circle-o"></i>Setup popular Collection</a></li>
-			<li><a href="view_edit_delete.php"><i class="fa fa-circle-o"></i>Setup new Collection</a></li>
-			<li><a href="view_edit_delete.php"><i class="fa fa-circle-o"></i>Setup price Chart</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i>Setup Menus</a></li>
+			<li><a href="#"><i class="fa fa-circle-o"></i>Setup popular Collection</a></li>
+			<li><a href="#"><i class="fa fa-circle-o"></i>Setup new Collection</a></li>
+			<li><a href="#"><i class="fa fa-circle-o"></i>Setup price Chart</a></li>
 			
 			<li><a href="view_edit_delete.php"><i class="fa fa-circle-o"></i>Audit info</a></li>
            </ul>
@@ -163,7 +164,7 @@ if (!$_SESSION['logon']){
       </ul>
     </section>
     <!-- /.sidebar -->
-  </aside>
+   </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -173,28 +174,18 @@ if (!$_SESSION['logon']){
         Welcome to DD Jewellery ADMIN Page
       </h1>
       <ol class="breadcrumb">
-        <li><a href="admin.html"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="admin.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
 
     <!-- Main content -->
- 
-<section class="content" >
  <div class="col-md-12 container">
- <!--div class="panel-heading">
-							<ul class="pull-right">
-								<button id="adddetails" data-toggle="modal" data-target="#productregmodel"
-									class="btn btn-default">
-									<i class="fa fa-plus-circle" aria-hidden="true"></i>ADD
-								</button>
-								
-								
-							</ul>
-						</div>
-						<div class="panel-body">
-						 <div class="table-responsive">
-  <table class="table table-bordered table-fixed table-hover">
+  
+  <div  id="producttable" class="tab-pane fade">
+ 	<div class="panel-body">
+		<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
  
 					<ul class="pagination pull-left" num-pages="tasks.pageCount"
 										current-page="tasks.currentPage">
@@ -205,8 +196,8 @@ if (!$_SESSION['logon']){
 											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
 										<li ng-class="{disabled: noNext()}"><a
 											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
-									</ul>	
-   
+					</ul>	
+ 
     <tr class ="success">
 		<th class="pull-center">NAME</th>
 		<th class="pull-center">CATEGORY</th>
@@ -243,36 +234,12 @@ if (!$_SESSION['logon']){
 		<td><a><span class="glyphicon glyphicon-edit"></span>Delete</a></td>
       </tr>
   </table>
-   </div>
-  </div-->
-</div>
-</section>
-
+		</div>
+	</div>
  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0.0
-    </div>
-    <strong>Copyright &copy; 2017-2018 <a href="http://logicqsoftsol.com">Logicq softsol pvt. ltd </a>.</strong> All rights
-    reserved.
-  </footer>
-
- <aside>
- 
-  </aside>
-</div>
-</body>
-
-<div id="productregmodel" class="modal fade" role="dialog">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">Product Registartion Details</h4>	
-						</div>
-					
-						<div class="modal-body">
+ <div  id="productadd" class="tab-pane fade">
+ 	<div class="panel-body">
+				
 				<div class="row">
 					<br> <br>
 					<div class="panel with-nav-tabs panel-success">
@@ -287,119 +254,192 @@ if (!$_SESSION['logon']){
 							<li><a data-toggle="tab" class="pull-center"
 								href="#productdescdetails">Description Details</a></li>
 							<li><a data-toggle="tab" class="pull-center"
-								href="#productvenderdetails">Vender Details</a></li>
+								href="#productimagedetails">Product Image</a></li>
 						</ul>
-
 						<div class="panel-body">
 							<div class="tab-content col-md-12">
 								<div id="productbasicdetails" class="tab-pane fade in active">
 									
-										<h4>Product Basic Details</h4>
+										<h3 style="text-align:center">Product Basic Details</h3>
 										<div class="row">
-											<div class="col-xs-6 col-sm-6 col-md-6">
-
+										  <div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+                                              
 												<div class="form-group">
+												<label for="productname">Product Name :</label>
 													<input type="text" name="pname" id="pname"
 														 class="form-control" 
 														placeholder="Product Name">
-													
-												</div>
+											    </div>
 
 												<div class="form-group">
-													<input type="text" name="type" id="typename"
-														class="form-control" 
-														placeholder="Product Type">
-														<datalist id="datalisttypename">
-														<option>Gold</option>
-														<option>Silver</option>
-													</datalist>
+										         <label for="producttype">Product Type :</label>
+												 <select class="form-control" id="producttype" name="producttype">
+													<option>Select</option>
+													<option>Gold</option>
+													<option>Diamond</option>
+                                                     <option>Silver</option>
+                                                   </select>
 												</div>
 												<div class="form-group">
-													<input type="text" name="Category" id="cgname"
-														class="form-control" 
-														placeholder="Catagory">
-														<datalist id="datalistcategory">
-														<option>Gold</option>
-														<option>Silver</option>
-													</datalist>
+												<label for="productcatagory">Product Category :</label>
+													<select class="form-control" id="productcatagory" name="productcatagory">
+														<option>Select</option>
+														<option>Earring</option>
+														<option>Pedant</option>
+                                                       <option>Chain</option>
+                                                    </select>
 												</div>
-												<div class="form-group">
-													<input type="text" name="scategory" id="scategory"
-														class="form-control" 
-														placeholder="Sub Catagory">
-												    </div>
+												  <div class="form-group">
+												   <label for="subcatagory">Sub Catagory :</label>
+												   <select class="form-control"id="subcatagory"name="subcatagory">
+												     <option>Select</option>
+												     <option>Necklace</option>
+													 <option>Bracelet</option>
+												   </select>
+												  </div>
 											</div>
-										<div class="row">
-											<div class="col-xs-6 col-sm-6 col-md-6">
+										
+											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
 												<div class="form-group">
-													<input type="text" name="createdate" id="createdate"
-														class="form-control" 
-														placeholder="Creation Date">
-												</div>
-												<div class="form-group">
+												<label for="mfgdate">Mfg Date :</label>
 													<input type="text" name="mfgdate" id="mfgdate"
 														class="form-control" 
 														placeholder="Mfg Date">
 												</div>
 												<div class="form-group">
+												<label for="expdate">Exp Date :</label>
 													<input type="text" name="expdate" id="expdate"
 														class="form-control" 
 														placeholder="Exp Date">
 												</div>
-												<div class="form-group">
-													<input type="textarea" name="desc" id="desc"
-														class="form-control" 
-														placeholder="Description">
-												    </div>
+												
+														<div class="form-group">
+													    <label for="description">Description:</label>
+														<textarea class="form-control" rows="5" id="description"></textarea>
+														</div>
 											</div>
-										</div>		
+											
 										</div>
 								</div>
 
 								<div id="productquntitydetails" class="tab-pane fade">
 
-									<h4> Quantity Details</h4>
+									<h3 style="text-align:center"> Quantity Details</h3>
 									<div class="row">
-											<div class="col-xs-6 col-sm-6 col-md-6">
+											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
 												
 													<div class="form-group">
-													<input type="text" name="s" id="scategory"
+												   <label for="ordernumber"></label>
+													<input type="text" name="ordernumber" id="ordernumber"
 														class="form-control" 
-														placeholder="Sub Catagory">
+														placeholder="">
 												    </div>
+													<div class="form-group">
+												   <label for="orderdate">Order Date:</label>
+													<input type="text" name="orderdate" id="orderdate"
+														class="form-control" 
+														placeholder="">
+												    </div>
+												<div class="form-group">
+												   <label for="grossweight">Gross Weight:</label>
+													<input type="text" name="grossweight" id="grossweight"
+														class="form-control" 
+														placeholder="">
+												</div>
+												<div class="form-group">
+												   <label for="netweight">Net Weight:</label>
+													<input type="text" name="netweight" id="netweight"
+														class="form-control" 
+														placeholder="">
+												  </div>
+													
 
 											</div>
-											<div class="col-xs-6 col-sm-6 col-md-6">
-												<div class="form-group">
-													<input type="textarea" name="desc" id="desc"
+											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+												  <div class="form-group">
+												   <label for="pureweight">Pure Weight:</label>
+													<input type="text" name="pureweight" id="pureweight"
 														class="form-control" 
-														placeholder="Description">
-												    </div>
+														placeholder=""readonly>
+												  </div>
+												  <div class="form-group">
+												   <label for="wastage">Wastage:</label>
+													<input type="text" name="wastage" id="wastage"
+														class="form-control" 
+														placeholder="">
+												  </div>
+												  <div class="form-group">
+												   <label for="wastage">Wastage:</label>
+													<input type="text" name="wastage" id="wastage"
+														class="form-control" 
+														placeholder="">
+												  </div>
+												  <div class="form-group">
+												   <label for="wastage">Wastage:</label>
+													<input type="text" name="wastage" id="wastage"
+														class="form-control" 
+														placeholder="">
+												  </div>
 											</div>
 										</div>
 								</div>
 
 								<div id="productpricedetails" class="tab-pane fade">
 
-									<h4>Price Details</h4>
+									<h3 style="text-align:center">Price Details</h3>
 									<div class="row">
-											<div class="col-xs-6 col-sm-6 col-md-6">
-												
-													<div class="form-group">
-													<input type="text" name="scategory" id="scategory"
+											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+												<div class="form-group">
+												   <label for="unitprice">1gm Price:</label>
+													<input type="text" name="unitprice" id="unitprice"
 														class="form-control" 
-														placeholder="Sub Catagory">
-												    </div>
-													<div class="form-group">
-													<input type="text" name="scategory" id="scategory"
+														placeholder="">
+												  </div>
+												  <div class="form-group">
+												   <label for="discountpercentage">Discounted %(If  yes) :</label>
+													<input type="text" name="discountpercentage" id="discountpercentage"
 														class="form-control" 
-														placeholder="Sub Catagory">
-												    </div>
-													<div class="form-group">
-													<input type="textarea" name="desc" id="desc"
+														placeholder="">
+												  </div>
+												  <div class="form-group">
+												   <label for="discountprice">Discounted Price(If yes):</label>
+													<input type="text" name="discountprice" id="discountprice"
 														class="form-control" 
-														placeholder="Description">
-												    </div>
+														placeholder="">
+												  </div>
+												 <div class="form-group">
+												   <label for="totalprice">Total Price:</label>
+													<input type="text" name="totalprice" id="totalprice"
+														class="form-control" 
+														placeholder="">
+												 </div>
+													
+											 </div>
+											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+											 <div class="form-group">
+												   <label for="totalprice">Total Price:</label>
+													<input type="text" name="totalprice" id="totalprice"
+														class="form-control" 
+														placeholder="">
+												 </div>
+												 <div class="form-group">
+												   <label for="totalprice">Total Price:</label>
+													<input type="text" name="totalprice" id="totalprice"
+														class="form-control" 
+														placeholder="">
+												 </div>
+												 <div class="form-group">
+												   <label for="totalprice">Total Price:</label>
+													<input type="text" name="totalprice" id="totalprice"
+														class="form-control" 
+														placeholder="">
+												 </div>
+												 <div class="form-group">
+												   <label for="totalprice">Total Price:</label>
+													<input type="text" name="totalprice" id="totalprice"
+														class="form-control" 
+														placeholder="">
+												 </div>
 											</div>
 									</div>
 								</div>
@@ -407,64 +447,206 @@ if (!$_SESSION['logon']){
 								<div id="productdescdetails" class="tab-pane fade">
 								
     
-                           <h4>Description Details</h4>
+                           <h3 style="text-align:center">Description Details</h3>
 									<div class="row">
-											<div class="col-xs-6 col-sm-6 col-md-6">
-												
+											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
 													<div class="form-group">
-													<input type="text" name="descname" id="descname"
+													 <label for="brand">Brand:</label>
+													<input type="text" name="brand" id="brand"
 														class="form-control" 
-														placeholder="Product Name">
+														placeholder="">
 												    </div>
-
+												  <div class="form-group">
+													 <label for="metal">Metal:</label>
+												<select class="form-control"id="metal"name="metal">
+												     <option>Select</option>
+												     <option>Gold</option>
+													 <option>Silver</option>
+												   </select>
+												    </div>
+													<div class="form-group">
+													 <label for="metalcolor">Metal Color:</label>
+														<select class="form-control"id="metalcolor"name="metalcolor">
+												     <option>Select</option>
+												     <option>Yellow</option>
+													 <option>Silver</option>
+													 <option>Bicolor</option>
+												   </select>
+												    </div>
+													<div class="form-group">
+													 <label for="gender">Gender:</label>
+													<select class="form-control"id="gender"name="gender">
+												     <option>Select</option>
+												     <option>Men</option>
+													 <option>Women</option>
+													 <option>Kids</option>
+												   </select>
+												   </div>
 											</div>
-											<div class="col-xs-6 col-sm-6 col-md-6">
+											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
 												<div class="form-group">
-													<input type="color" name="color "id=""
-														class="form-control"> 
-														
+													 <label for="karatage">Gold Karatage</label>
+													<select class="form-control"id="karatage"name="karatage">
+												     <option>Select</option>
+												     <option>14KT</option>
+													 <option>18KT</option>
+													 <option>22KT</option>
+													 <option>24KT</option>
+												   </select>
+												    </div>
+													<div class="form-group">
+													 <label for="productstyle">Style:</label>
+													<select class="form-control"id="productstyle"name="productstyle">
+												     <option>Select</option>
+												     <option>Stud</option>
+													 <option>Hoop</option>
+													 <option>Jhumka</option>
+													 <option>Drop</option>
+												   </select>
+												    </div>
+													<div class="form-group">
+													 <label for="jewellerytype">Jewellery Type:</label>
+													<input type="text" name="jewellerytype" id="jewellerytype"
+														class="form-control" 
+														placeholder="">
+												    </div>
+													<div class="form-group">
+													 <label for="tagnumber">Tag Number:</label>
+													<input type="text" name="tagnumber" id="tagnumber"
+														class="form-control" 
+														placeholder="">
 												    </div>
 											</div>
 										</div>
 								</div>
 
-								<div id="productvenderdetails" class="tab-pane fade">
+								
+									<div id="productimagedetails" class="tab-pane fade">
 
-									<h4>Vender Details</h4>
+									<h3 style="text-align:center">Product Image</h3>
 									<div class="row">
-											<div class="col-xs-6 col-sm-6 col-md-6">
+											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
 												
-													<div class="form-group">
-													<input type="text" name="scategory" id="scategory"
+												<div class="form-group">
+												   <label for="productsize">Product Size:</label>
+													<input type="text" name="productsize" id="productsize"
 														class="form-control" 
-														placeholder="Sub Catagory">
-												    </div>
+														placeholder="">
+												</div>
+												<div class="form-group">
+												<label for="address">Address:</label>
+													<input type="textarea" name="address" id="address"
+														class="form-control" 
+														placeholder="">
+												</div>
+												<div class="form-group">
+												<label for="mobilenumber">Mobile Number:</label>
+													<input type="text" name="mobile" id="mobilenumber"
+														class="form-control" 
+														placeholder="">
+												</div>
+												<div class="form-group">
+												<label for="email">Email:</label>
+													<input type="text" name="email" id="email"
+														class="form-control" 
+														placeholder="">
+												</div>
 
 											</div>
-											<div class="col-xs-6 col-sm-6 col-md-6">
-												<div class="form-group">
-													<input type="textarea" name="desc" id="desc"
-														class="form-control" 
-														placeholder="Description">
-												    </div>
-											</div>
+											 <div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+												  <div class="form-group">
+												     <img src="jewellary.jpg" class="img-rounded" alt="Jewellary Image" width="304" height="236"> 
+												  </div>
+                                               </div>
 										</div>
 								</div>
-							</div>
 							
-						</div>
 					</div>
 				</div>
-			</div>
-			   <div class="modal-footer">
-							<button type="submit" id="usersearch" class="btn btn-default" ng-click="downloadAttendaceReport()"
-								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
-						</div>
-			</div>
-  
-			</div>
-			</div><!---End of Modal Product Reg  details-->
-			
+			       </div>
+			  </div>
+	</div>
+ </div>
+ <div class="col-md-12 container" id="productbulkupload" class="tab-pane fade">
+</div>
+
+<div id="venderdetails" class="tab-pane fade">
+<div class="panel-body">
+
+									<h3 style="text-align:center">Vender Details</h3>
+									  <div class="row">
+											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+												
+												<div class="form-group">
+												   <label for="vendername">Vender Name:</label>
+													<input type="text" name="vendername" id="vendername"
+														class="form-control" 
+														placeholder="">
+												</div>
+												<div class="form-group">
+												<label for="address">Address:</label>
+													<input type="textarea" name="address" id="address"
+														class="form-control" 
+														placeholder="">
+												</div>
+												<div class="form-group">
+												<label for="mobilenumber">Mobile Number:</label>
+													<input type="text" name="mobile" id="mobilenumber"
+														class="form-control" 
+														placeholder="">
+												</div>
+												<div class="form-group">
+												<label for="email">Email:</label>
+													<input type="text" name="email" id="email"
+														class="form-control" 
+														placeholder="">
+												</div>
+
+											</div>
+											 <div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+												  
+												  <div class="form-group">
+												   <label for="organisation">Organisation:</label>
+													<input type="text" name="organisation" id="organisation"
+														class="form-control" 
+														placeholder="">
+												</div>
+												<div class="form-group">
+												   <label for="bankname">Bank Name:</label>
+													<input type="text" name="bankname" id="bankname"
+														class="form-control" 
+														placeholder="">
+												</div>
+												<div class="form-group">
+												   <label for="ifsccode">IFSC code:</label>
+													<input type="text" name="ifsccode" id="ifsccode"
+														class="form-control" 
+														placeholder="">
+												  </div>
+												<div class="form-group">
+												   <label for="accountnumber">Account Number:</label>
+													<input type="text" name="accountnumber" id="accountnumber"
+														class="form-control" 
+														placeholder="">
+												</div>
+											 </div>
+										</div>
+								</div>
+								</div>
+</div>
+</div>
+ <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.0
+    </div>
+    <strong>Copyright &copy; 2017-2018 <a href="http://logicqsoftsol.com">Logicq softsol pvt. ltd </a>.</strong> All rights
+    reserved.
+  </footer>
+<aside>
+ 
+  </aside>
+</div>
+</body>
+</div>
   </html>
