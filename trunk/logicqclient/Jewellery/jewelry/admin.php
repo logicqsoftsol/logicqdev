@@ -237,6 +237,7 @@ if (!$_SESSION['logon']){
 		</div>
 	</div>
  </div>
+ 
  <div  id="productadd" class="tab-pane fade">
  	<div class="panel-body">
 				
@@ -253,33 +254,42 @@ if (!$_SESSION['logon']){
 								href="#productpricedetails">Price Details</a></li>
 							<li><a data-toggle="tab" class="pull-center"
 								href="#productdescdetails">Description Details</a></li>
+								<li><a data-toggle="tab" class="pull-center"
+								href="#productvenderprice">Vender Price</a></li>
 							<li><a data-toggle="tab" class="pull-center"
 								href="#productimagedetails">Product Image</a></li>
 						</ul>
 						<div class="panel-body">
-							<div class="tab-content col-md-12">
+							<div class="tab-content col-md-10">
 								<div id="productbasicdetails" class="tab-pane fade in active">
 									
 										<h3 style="text-align:center">Product Basic Details</h3>
 										<div class="row">
-										  <div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+										  <div class="col-xs-3 col-sm-3 col-md-3">
                                               
 												<div class="form-group">
 												<label for="productname">Product Name :</label>
-													<input type="text" name="pname" id="pname"
+													<input type="text" name="productname" id="productname"
 														 class="form-control" 
 														placeholder="Product Name">
 											    </div>
-
 												<div class="form-group">
-										         <label for="producttype">Product Type :</label>
-												 <select class="form-control" id="producttype" name="producttype">
+												<label for="productid">Product Id:</label>
+													<input type="text" name="productid" id="productid"
+														 class="form-control" 
+														placeholder="Product Id">
+											    </div>
+												<div class="form-group">
+										         <label for="productmatterialtype">Product Matterial Type :</label>
+												 <select class="form-control" id="productmatterialtype" name="productmatterialtype">
 													<option>Select</option>
 													<option>Gold</option>
 													<option>Diamond</option>
                                                      <option>Silver</option>
                                                    </select>
 												</div>
+												</div>
+												<div class="col-xs-3 col-sm-3 col-md-3">
 												<div class="form-group">
 												<label for="productcatagory">Product Category :</label>
 													<select class="form-control" id="productcatagory" name="productcatagory">
@@ -289,7 +299,7 @@ if (!$_SESSION['logon']){
                                                        <option>Chain</option>
                                                     </select>
 												</div>
-												  <div class="form-group">
+												<div class="form-group">
 												   <label for="subcatagory">Sub Catagory :</label>
 												   <select class="form-control"id="subcatagory"name="subcatagory">
 												     <option>Select</option>
@@ -297,89 +307,170 @@ if (!$_SESSION['logon']){
 													 <option>Bracelet</option>
 												   </select>
 												  </div>
-											</div>
-										
-											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
-												<div class="form-group">
-												<label for="mfgdate">Mfg Date :</label>
-													<input type="text" name="mfgdate" id="mfgdate"
+												  <div class="form-group">
+												  <label for="purchasedate">Purchase Date :</label>
+													<input type="text" name="purchasedate" id="purchasedate"
 														class="form-control" 
 														placeholder="Mfg Date">
 												</div>
-												<div class="form-group">
-												<label for="expdate">Exp Date :</label>
-													<input type="text" name="expdate" id="expdate"
-														class="form-control" 
-														placeholder="Exp Date">
-												</div>
 												
-														<div class="form-group">
-													    <label for="description">Description:</label>
-														<textarea class="form-control" rows="5" id="description"></textarea>
-														</div>
 											</div>
+										
+											<div class="col-xs-3 col-sm-3 col-md-3">
+												
+												
+												<div class="form-group">
+												   <label for="productsize">Product Size:</label>
+													<input type="text" name="productsize" id="productsize"
+														class="form-control" 
+														placeholder="">
+												</div>
+												<div class="form-group">
+												<label for="barcode">Barcode:</label>
+													<input type="text" name="barcode" id="barcode"
+														class="form-control" 
+														placeholder="Barcode">
+												</div>
+												<div class="form-group">
+													    <label for="description">Description:</label>
+														<input type="text" class="form-control" name="description" id="description">
+												</div>
+											 </div>
 											
 										</div>
 								</div>
 
 								<div id="productquntitydetails" class="tab-pane fade">
 
-									<h3 style="text-align:center"> Quantity Details</h3>
+								<h3 style="text-align:center"> Quantity Details</h3>
 									<div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
-												
-													<div class="form-group">
-												   <label for="ordernumber"></label>
-													<input type="text" name="ordernumber" id="ordernumber"
-														class="form-control" 
-														placeholder="">
-												    </div>
-													<div class="form-group">
-												   <label for="orderdate">Order Date:</label>
-													<input type="text" name="orderdate" id="orderdate"
-														class="form-control" 
-														placeholder="">
-												    </div>
+											<div class="col-xs-3 col-sm-3 col-md-3">
 												<div class="form-group">
-												   <label for="grossweight">Gross Weight:</label>
-													<input type="text" name="grossweight" id="grossweight"
+												   <label for="carat">Carat:</label>
+												   <select class="form-control"id="carat"name="carat">
+												     <option>Select</option>
+												     <option>14KT</option>
+													 <option>18KT</option>
+													 <option>22KT</option>
+													 <option>24KT</option>
+												   </select>
+												  </div>
+													<div class="form-group">
+												   <label for="stoneweight">Stone Weight</label>
+													<input type="text" name="stoneweight" id="stoneweight"
 														class="form-control" 
 														placeholder="">
+												    </div>
+													
+													<div class="form-group">
+												   <label for="stonecolor">Stone Color:</label>
+												   <select class="form-control"id="stonecolor"name="stonecolor">
+												     <option>Select</option>
+												     <option>Yellow</option>
+													 <option>White</option>
+													 <option>Pink</option>
+													 <option>Diamond</option>
+												   </select>
+												  </div>
+												  <div class="form-group">
+												   <label for="venderid">Vender Id:</label>
+													<input type="text" name="venderid" id="venderid"
+														class="form-control" 
+														placeholder="">
+												  </div>
+												  <div class="form-group">
+												   <label for="venderprice">Vender Price:</label>
+													<input type="text" name="venderprice" id="venderprice"
+														class="form-control" 
+														placeholder="">
+												 </div>
+													
 												</div>
-												<div class="form-group">
+												<div class="col-xs-3 col-sm-3 col-md-3">
+												 <div class="form-group">
 												   <label for="netweight">Net Weight:</label>
 													<input type="text" name="netweight" id="netweight"
 														class="form-control" 
 														placeholder="">
 												  </div>
-													
-
-											</div>
-											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
 												  <div class="form-group">
+												   <label for="stonepcs">Stone Pcs:</label>
+													<input type="text" name="stonepcs" id="stonepcs"
+														class="form-control" 
+														placeholder="">
+												    </div>
+												
+												  <div class="form-group">
+												   <label for="meenaweight">Meena Weight:</label>
+													<input type="text" name="meenaweight" id="meenaweight"
+														class="form-control" 
+														placeholder="">
+														</div>
+														<div class="form-group">
+												   <label for="vatprice">VAT Price:</label>
+													<input type="text" name="vatprice" id="vatprice"
+														class="form-control" 
+														placeholder="">
+												  </div>
+												</div>
+											<div class="col-xs-3 col-sm-3 col-md-3">
+												 <div class="form-group">
 												   <label for="pureweight">Pure Weight:</label>
 													<input type="text" name="pureweight" id="pureweight"
 														class="form-control" 
 														placeholder=""readonly>
 												  </div>
+												
 												  <div class="form-group">
+												   <label for="grossweight">Gross Weight:</label>
+													<input type="text" name="grossweight" id="grossweight"
+														class="form-control" 
+														placeholder="">
+												</div>
+												 <div class="form-group">
 												   <label for="wastage">Wastage:</label>
 													<input type="text" name="wastage" id="wastage"
 														class="form-control" 
 														placeholder="">
 												  </div>
+												  
 												  <div class="form-group">
-												   <label for="wastage">Wastage:</label>
-													<input type="text" name="wastage" id="wastage"
+												   <label for="vendername">Vender Name:</label>
+													<input type="text" name="vendername" id="vendername"
 														class="form-control" 
 														placeholder="">
 												  </div>
+												  
+												  
+											</div>
+											<div class="col-xs-3 col-sm-3 col-md-3">
+												  
 												  <div class="form-group">
-												   <label for="wastage">Wastage:</label>
-													<input type="text" name="wastage" id="wastage"
+												   <label for="makingcharges">Making Charges:</label>
+													<input type="text" name="makingcharges" id="makingcharges"
 														class="form-control" 
 														placeholder="">
 												  </div>
+												 <div class="form-group">
+												   <label for="mrpprice">MRP Price:</label>
+													<input type="text" name="mrpprice" id="mrpprice"
+														class="form-control" 
+														placeholder="">
+												 </div>
+												  
+												   <div class="form-group">
+												   <label for="totalprice">Sell Price:</label>
+													<input type="text" name="totalprice" id="totalprice"
+														class="form-control" 
+														placeholder="">
+												 </div>
+												 <div class="form-group">
+												   <label for="stoneprice">Stone Price:</label>
+													<input type="text" name="stoneprice" id="stoneprice"
+														class="form-control" 
+														placeholder="">
+												  </div>
+												  
 											</div>
 										</div>
 								</div>
@@ -388,58 +479,69 @@ if (!$_SESSION['logon']){
 
 									<h3 style="text-align:center">Price Details</h3>
 									<div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+											<div class="col-xs-3 col-sm-3 col-md-3 ">
 												<div class="form-group">
-												   <label for="unitprice">1gm Price:</label>
-													<input type="text" name="unitprice" id="unitprice"
+												   <label for="venderid">Vender Id:</label>
+													<input type="text" name="venderid" id="venderid"
 														class="form-control" 
 														placeholder="">
 												  </div>
 												  <div class="form-group">
-												   <label for="discountpercentage">Discounted %(If  yes) :</label>
-													<input type="text" name="discountpercentage" id="discountpercentage"
+												   <label for="vendername">Vender Name:</label>
+													<input type="text" name="vendername" id="vendername"
 														class="form-control" 
 														placeholder="">
 												  </div>
 												  <div class="form-group">
-												   <label for="discountprice">Discounted Price(If yes):</label>
-													<input type="text" name="discountprice" id="discountprice"
+												   <label for="venderprice">Vender Price:</label>
+													<input type="text" name="venderprice" id="venderprice"
 														class="form-control" 
 														placeholder="">
-												  </div>
-												 <div class="form-group">
-												   <label for="totalprice">Total Price:</label>
+												 </div>
+											</div>
+											<div class="col-xs-3 col-sm-3 col-md-3 ">
+											    <div class="form-group">
+												   <label for="mrpprice">MRP Price:</label>
+													<input type="text" name="mrpprice" id="mrpprice"
+														class="form-control" 
+														placeholder="">
+												 </div>
+											  <div class="form-group">
+												   <label for="totalprice">Sell Price:</label>
 													<input type="text" name="totalprice" id="totalprice"
 														class="form-control" 
 														placeholder="">
 												 </div>
+												 <div class="form-group">
+												   <label for="stoneprice">Stone Price:</label>
+													<input type="text" name="stoneprice" id="stoneprice"
+														class="form-control" 
+														placeholder="">
+												  </div>
 													
 											 </div>
-											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
-											 <div class="form-group">
-												   <label for="totalprice">Total Price:</label>
-													<input type="text" name="totalprice" id="totalprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
+											<div class="col-xs-3 col-sm-3 col-md-3" >
+											 
 												 <div class="form-group">
-												   <label for="totalprice">Total Price:</label>
-													<input type="text" name="totalprice" id="totalprice"
+												   <label for="makingcharges">Making Charges:</label>
+													<input type="text" name="makingcharges" id="makingcharges"
+														class="form-control" 
+														placeholder="">
+												  </div>
+												  <div class="form-group">
+												   <label for="vatprice">VAT Price:</label>
+													<input type="text" name="vatprice" id="vatprice"
+														class="form-control" 
+														placeholder="">
+												  </div>
+												  <div class="form-group">
+												   <label for="hmtagprice">HM Tag Price:</label>
+													<input type="text" name="totalcostprice" id="totalcostprice"
 														class="form-control" 
 														placeholder="">
 												 </div>
-												 <div class="form-group">
-												   <label for="totalprice">Total Price:</label>
-													<input type="text" name="totalprice" id="totalprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
-												 <div class="form-group">
-												   <label for="totalprice">Total Price:</label>
-													<input type="text" name="totalprice" id="totalprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
+												 
+												 
 											</div>
 									</div>
 								</div>
@@ -449,7 +551,7 @@ if (!$_SESSION['logon']){
     
                            <h3 style="text-align:center">Description Details</h3>
 									<div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+											<div class="col-xs-3 col-sm-3 col-md-3 ">
 													<div class="form-group">
 													 <label for="brand">Brand:</label>
 													<input type="text" name="brand" id="brand"
@@ -483,7 +585,7 @@ if (!$_SESSION['logon']){
 												   </select>
 												   </div>
 											</div>
-											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+											<div class="col-xs-3 col-sm-3 col-md-3 ">
 												<div class="form-group">
 													 <label for="karatage">Gold Karatage</label>
 													<select class="form-control"id="karatage"name="karatage">
@@ -519,38 +621,81 @@ if (!$_SESSION['logon']){
 											</div>
 										</div>
 								</div>
+								<div id="productvenderprice" class="tab-pane fade">
+                                           <h3 style="text-align:center">Vender Price</h3>
+									<div class="row">
+											<div class="col-xs-3 col-sm-3 col-md-3">
+													<div class="form-group">
+													 <label for="stonepieces">Stone Pieces:</label>
+													<input type="text" name="stonepieces" id="stonepieces"
+														class="form-control" 
+														placeholder="">
+												    </div>
+												  <div class="form-group">
+													 <label for="stoneweight">Stone Weight</label>
+												<input type="text" name="stoneweight" id="stoneweight"
+														class="form-control" 
+														placeholder="">
+												    </div>
+													<div class="form-group">
+													   <label for="stonecostprice">Stone Cost Price:</label>
+														<input type="text" name="stonecostprice" id="stonecostprice"
+														class="form-control" 
+														placeholder="">
+												    </div>
+													<div class="form-group">
+													 <label for="makingcharges">Making Charges:</label>
+														<input type="text" name="makingcharges" id="makingcharges"
+														class="form-control" 
+														placeholder="">
+												    </div>
+											</div>
+											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+												<div class="form-group">
+													 <label for="purity">Purity</label>
+													<select class="form-control"id="purity"name="purity">
+												     <option>Select</option>
+												     <option>14KT</option>
+													 <option>18KT</option>
+													 <option>22KT</option>
+													 <option>24KT</option>
+												   </select>
+												    </div>
+													<div class="form-group">
+													 <label for="hmtagprice">HM Tag Price</label>
+													<input type="text" name="hmtagprice" id="hmtagprice"
+														class="form-control" 
+														placeholder="">
+												    </div>
+													<div class="form-group">
+													 <label for="vatprice">Vat Price:</label>
+													<input type="text" name="vatprice" id="vatprice"
+														class="form-control" 
+														placeholder="">
+												    </div>
+													<div class="form-group">
+													 <label for="totalcostprice">Total Cost Price:</label>
+													<input type="text" name="totalcostprice" id="totalcostprice"
+														class="form-control" 
+														placeholder="">
+												    </div>
+											</div>
+										</div>
+								</div>
 
 								
 									<div id="productimagedetails" class="tab-pane fade">
 
 									<h3 style="text-align:center">Product Image</h3>
 									<div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+											<div class="col-xs-3 col-sm-3 col-md-3">
 												
 												<div class="form-group">
-												   <label for="productsize">Product Size:</label>
-													<input type="text" name="productsize" id="productsize"
-														class="form-control" 
-														placeholder="">
+												   <img src="C:\xampplite\htdocs\jewelry\assets\images\image1.jpg" class="img-rounded" alt="Image1" width="100" height="100"> 
+												   <img src="C:\xampplite\htdocs\jewelry\assets\images\image1.jpg" class="img-rounded" alt="Image1" width="100" height="100"> 
+												   <img src="C:\xampplite\htdocs\jewelry\assets\images\image1.jpg" class="img-rounded" alt="Image1" width="100" height="100"> 
 												</div>
-												<div class="form-group">
-												<label for="address">Address:</label>
-													<input type="textarea" name="address" id="address"
-														class="form-control" 
-														placeholder="">
-												</div>
-												<div class="form-group">
-												<label for="mobilenumber">Mobile Number:</label>
-													<input type="text" name="mobile" id="mobilenumber"
-														class="form-control" 
-														placeholder="">
-												</div>
-												<div class="form-group">
-												<label for="email">Email:</label>
-													<input type="text" name="email" id="email"
-														class="form-control" 
-														placeholder="">
-												</div>
+												
 
 											</div>
 											 <div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
@@ -561,12 +706,13 @@ if (!$_SESSION['logon']){
 										</div>
 								</div>
 							
-					</div>
-				</div>
-			       </div>
+					       </div>
+				    </div>
+			      </div>
 			  </div>
 	</div>
  </div>
+
  <div class="col-md-12 container" id="productbulkupload" class="tab-pane fade">
 </div>
 
@@ -575,7 +721,7 @@ if (!$_SESSION['logon']){
 
 									<h3 style="text-align:center">Vender Details</h3>
 									  <div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+											<div class="col-xs-3 col-sm-3 col-md-3">
 												
 												<div class="form-group">
 												   <label for="vendername">Vender Name:</label>
@@ -603,7 +749,7 @@ if (!$_SESSION['logon']){
 												</div>
 
 											</div>
-											 <div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
+											 <div class="col-xs-3 col-sm-3 col-md-3 ">
 												  
 												  <div class="form-group">
 												   <label for="organisation">Organisation:</label>
