@@ -1,0 +1,72 @@
+table 
+
+Product Details 
+ ID,   longint
+ PName    varchar(200)
+ PCategoryID  longint 
+ PSubCategoryID  integer
+ pmatialtypeid longint 
+ barcode  longit
+ vendor id interger
+ pcolor blob
+ psize  blob
+ productpriceid  interger
+ pquantityid longint
+ pdocuemntid logint
+ pdecid longint
+
+productprice details
+  pid
+  priceid
+  sell price
+  vendor price
+  mrp price
+  HMTag Price
+  making charges 
+  
+product quantiy details  
+
+pquantity id
+pid
+netwt
+grosswt
+purewt
+meenawt
+wastagewt
+stoneid
+
+product stone dteails
+
+stoneid
+stone type
+stone wt
+stone clolor
+stone pices used
+stone price
+
+
+product document detail
+	pid
+	pdocuemntid 
+	productimage
+	rigtsideimage
+	front
+	back
+	leftsideimage
+	otherimages  
+product desc details
+	 pid
+	 pdid
+	 pdecid
+	 productspecification
+	 product desc
+	 product caption
+	 product tag line
+	 product degine specifiaction
+	 product technical specification
+ 
+pc details
+   id name displayname
+pc sub cateory
+   catory id ,id ,name ,display name
+ 
