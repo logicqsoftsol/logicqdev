@@ -22,12 +22,13 @@ if (!$_SESSION['logon']){
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
- 
+<link rel="stylesheet" href="assets/css/dropzone.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="assets/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="assets/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="assets/css/elements.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -37,8 +38,98 @@ if (!$_SESSION['logon']){
 <!-- Slimscroll -->
 <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- AdminLTE App -->
+		<!-- page specific plugin scripts -->
+<script src="assets/js/dropzone.min.js"></script>
 <script src="assets/js/app.min.js"></script>
 <script src="assets/js/custom.js"></script>
+<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			jQuery(function($){
+			
+			try {
+			  Dropzone.autoDiscover = false;
+			
+			  var myDropzone = new Dropzone('#dropzone', {
+			    previewTemplate: $('#preview-template').html(),
+			    
+				thumbnailHeight: 120,
+			    thumbnailWidth: 120,
+			    maxFilesize: 0.5,
+				
+				//addRemoveLinks : true,
+				//dictRemoveFile: 'Remove',
+				
+				dictDefaultMessage :
+				'<span class="bigger-150 bolder"><i class="ace-icon fa fa-caret-right red"></i> Drop files</span> to upload \
+				<span class="smaller-80 grey">(or click)</span> <br /> \
+				<i class="upload-icon ace-icon fa fa-cloud-upload blue fa-3x"></i>'
+			,
+				
+			    thumbnail: function(file, dataUrl) {
+			      if (file.previewElement) {
+			        $(file.previewElement).removeClass("dz-file-preview");
+			        var images = $(file.previewElement).find("[data-dz-thumbnail]").each(function() {
+						var thumbnailElement = this;
+						thumbnailElement.alt = file.name;
+						thumbnailElement.src = dataUrl;
+					});
+			        setTimeout(function() { $(file.previewElement).addClass("dz-image-preview"); }, 1);
+			      }
+			    }
+			
+			  });
+			
+			
+			  //simulating upload progress
+			  var minSteps = 6,
+			      maxSteps = 60,
+			      timeBetweenSteps = 100,
+			      bytesPerStep = 100000;
+			
+			  myDropzone.uploadFiles = function(files) {
+			    var self = this;
+			
+			    for (var i = 0; i < files.length; i++) {
+			      var file = files[i];
+			          totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
+			
+			      for (var step = 0; step < totalSteps; step++) {
+			        var duration = timeBetweenSteps * (step + 1);
+			        setTimeout(function(file, totalSteps, step) {
+			          return function() {
+			            file.upload = {
+			              progress: 100 * (step + 1) / totalSteps,
+			              total: file.size,
+			              bytesSent: (step + 1) * file.size / totalSteps
+			            };
+			
+			            self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
+			            if (file.upload.progress == 100) {
+			              file.status = Dropzone.SUCCESS;
+			              self.emit("success", file, 'success', null);
+			              self.emit("complete", file);
+			              self.processQueue();
+			            }
+			          };
+			        }(file, totalSteps, step), duration);
+			      }
+			    }
+			   }
+			
+			   
+			   //remove dropzone instance when leaving this page in ajax mode
+			   $(document).one('ajaxloadstart.page', function(e) {
+					try {
+						myDropzone.destroy();
+					} catch(e) {}
+			   });
+			
+			} catch(e) {
+			  alert('Dropzone.js does not support older browsers!');
+			}
+			
+			});
+		</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -94,9 +185,9 @@ if (!$_SESSION['logon']){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="#producttable" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i> View </a></li>
-            <li><a href="#productadd" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i> Add/Edit Product</a></li>
-			<li><a href="#productbulkupload" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i> Create bulk Product</a></li>
+            <li><a href="#" rel="producttable" class="pull-center"><i class="fa fa-circle-o"></i> View </a></li>
+            <li><a href="#" rel="productadd" class="pull-center"><i class="fa fa-circle-o"></i> Add Product</a></li>
+			<li><a href="#" rel="productbulkupload" class="pull-center"><i class="fa fa-circle-o"></i> Create bulk Product</a></li>
           </ul>
         </li>
 		 <li class="treeview">
@@ -107,12 +198,12 @@ if (!$_SESSION['logon']){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="#" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i> Stock Details </a></li>
-            <li><a href="#" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i>Supplier Details</a></li>
-			<li><a href="#venderdetails" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i>Vendor Details</a></li>
-			<li><a href="#" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i>Invoice Details</a></li>
-			<li><a href="#" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i>Offer Details</a></li>
-            <li><a href="#" class="pull-center" data-toggle="tab"><i class="fa fa-circle-o"></i>Bulk Inventory Upload</a></li>         
+            <li><a href="#" class="pull-center" class="pull-center"><i class="fa fa-circle-o"></i> Stock Details </a></li>
+            <li><a href="#" class="pull-center" class="pull-center"><i class="fa fa-circle-o"></i>Supplier Details</a></li>
+			<li><a href="#" rel="venderdetails" class="pull-center"><i class="fa fa-circle-o"></i>Vendor Details</a></li>
+			<li><a href="#" class="pull-center" class="pull-center"><i class="fa fa-circle-o"></i>Invoice Details</a></li>
+			<li><a href="#" class="pull-center" class="pull-center"><i class="fa fa-circle-o"></i>Offer Details</a></li>
+            <li><a href="#" class="pull-center" class="pull-center"><i class="fa fa-circle-o"></i>Bulk Inventory Upload</a></li>         
 		 </ul>
         </li>
 		    <li class="treeview">
@@ -123,7 +214,7 @@ if (!$_SESSION['logon']){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> View Details </a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> View Details </a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i>Add</a></li>
 			<li><a href="#"><i class="fa fa-circle-o"></i>Recent Orders</a></li>
 			<li><a href="#"><i class="fa fa-circle-o"></i>Transaction Details</a></li>
@@ -139,12 +230,12 @@ if (!$_SESSION['logon']){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Create User</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i>Create User</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i>Assigne Role</a></li>
 			<li><a href="#"><i class="fa fa-circle-o"></i>Setup SMS/Email</a></li>
 			<li><a href="#"><i class="fa fa-circle-o"></i>Setup Offer</a></li>
 			 <li class="treeview">
-          <a href="">
+          <a href="#">
             <i class="fa fa-dashboard"></i> <span>Admin Operation Details</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -182,7 +273,7 @@ if (!$_SESSION['logon']){
     <!-- Main content -->
  <div class="col-md-12 container">
   
-  <div  id="producttable" class="tab-pane fade">
+  <div  id="producttable" style="display: none">
  	<div class="panel-body">
 		<div class="table-responsive">
 			<table class="table table-bordered table-fixed table-hover">
@@ -238,7 +329,7 @@ if (!$_SESSION['logon']){
 	</div>
  </div>
  
- <div  id="productadd" class="tab-pane fade">
+ <div  id="productadd" style="display: none">
  	<div class="panel-body">
 				
 				<div class="row">
@@ -249,47 +340,37 @@ if (!$_SESSION['logon']){
 							<li class="active"><a data-toggle="tab" class="pull-center"
 								href="#productbasicdetails">Product Basic Details</a></li>
 							<li><a data-toggle="tab" class="pull-center"
-								href="#productquntitydetails">Quantity Details</a></li>
-							<li><a data-toggle="tab" class="pull-center"
 								href="#productpricedetails">Price Details</a></li>
 							<li><a data-toggle="tab" class="pull-center"
 								href="#productdescdetails">Description Details</a></li>
-								<li><a data-toggle="tab" class="pull-center"
-								href="#productvenderprice">Vender Price</a></li>
 							<li><a data-toggle="tab" class="pull-center"
-								href="#productimagedetails">Product Image</a></li>
+								href="#productimagedetails">Product Image Details</a></li>
 						</ul>
 						<div class="panel-body">
-							<div class="tab-content col-md-10">
+							<div class="tab-content">
 								<div id="productbasicdetails" class="tab-pane fade in active">
-									
-										<h3 style="text-align:center">Product Basic Details</h3>
-										<div class="row">
-										  <div class="col-xs-3 col-sm-3 col-md-3">
-                                              
-												<div class="form-group">
-												<label for="productname">Product Name :</label>
-													<input type="text" name="productname" id="productname"
-														 class="form-control" 
-														placeholder="Product Name">
-											    </div>
-												<div class="form-group">
+								<div class="col-md-12">
+                                            <div class="form-group col-md-4">
 												<label for="productid">Product Id:</label>
 													<input type="text" name="productid" id="productid"
 														 class="form-control" 
-														placeholder="Product Id">
+														placeholder="Product Id" readonly>
 											    </div>
-												<div class="form-group">
-										         <label for="productmatterialtype">Product Matterial Type :</label>
-												 <select class="form-control" id="productmatterialtype" name="productmatterialtype">
-													<option>Select</option>
-													<option>Gold</option>
-													<option>Diamond</option>
-                                                     <option>Silver</option>
-                                                   </select>
+											    <div class="form-group col-md-4">
+												<label for="barcode">Barcode:</label>
+													<input type="text" name="barcode" id="barcode"
+														class="form-control" 
+														placeholder="Barcode">
 												</div>
-												</div>
-												<div class="col-xs-3 col-sm-3 col-md-3">
+												 <div class="form-group col-md-4">
+													 <label for="brand">Brand Name:</label>
+													<input type="text" name="brand" id="brand"
+														class="form-control" 
+														placeholder="Brand Name">
+												 </div>
+										</div>		
+                                   <div class="col-md-12">										
+										<div class="col-md-4">
 												<div class="form-group">
 												<label for="productcatagory">Product Category :</label>
 													<select class="form-control" id="productcatagory" name="productcatagory">
@@ -299,6 +380,8 @@ if (!$_SESSION['logon']){
                                                        <option>Chain</option>
                                                     </select>
 												</div>
+												</div>
+												<div class="col-md-4">
 												<div class="form-group">
 												   <label for="subcatagory">Sub Catagory :</label>
 												   <select class="form-control"id="subcatagory"name="subcatagory">
@@ -307,44 +390,74 @@ if (!$_SESSION['logon']){
 													 <option>Bracelet</option>
 												   </select>
 												  </div>
-												  <div class="form-group">
-												  <label for="purchasedate">Purchase Date :</label>
-													<input type="text" name="purchasedate" id="purchasedate"
-														class="form-control" 
-														placeholder="Mfg Date">
+												  </div>
+												  <div class="col-md-4">
+												<div class="form-group">
+												<label for="productname">Product Name :</label>
+													<input type="text" name="productname" id="productname"
+														 class="form-control" 
+														placeholder="Product Name">
+											    </div>
+												</div>	
+												</div>			
+											<div class="col-md-12">												
+											<div class="col-md-4">
+													<div class="form-group">
+										         <label for="productmatterialtype">Product Matterial Type :</label>
+												 <select class="form-control" id="productmatterialtype" name="productmatterialtype">
+													<option>Select</option>
+													<option>Gold</option>
+													<option>Diamond</option>
+                                                     <option>Silver</option>
+                                                   </select>
 												</div>
-												
-											</div>
-										
-											<div class="col-xs-3 col-sm-3 col-md-3">
-												
-												
+												</div>
+												<div class="col-md-4">
+												<div class="form-group">
+												  <label for="purchasedate">Purchase Date :</label>
+													<input type="date" name="purchasedate" id="purchasedate"
+														class="form-control" 
+														placeholder="Purchase Date">
+												</div>
+												</div>
+												<div class="col-md-4">
 												<div class="form-group">
 												   <label for="productsize">Product Size:</label>
 													<input type="text" name="productsize" id="productsize"
 														class="form-control" 
-														placeholder="">
+														placeholder="Product Size">
 												</div>
-												<div class="form-group">
-												<label for="barcode">Barcode:</label>
-													<input type="text" name="barcode" id="barcode"
-														class="form-control" 
-														placeholder="Barcode">
-												</div>
-												<div class="form-group">
-													    <label for="description">Description:</label>
-														<input type="text" class="form-control" name="description" id="description">
-												</div>
+										
 											 </div>
-											
-										</div>
+											 </div>
 								</div>
 
-								<div id="productquntitydetails" class="tab-pane fade">
 
-								<h3 style="text-align:center"> Quantity Details</h3>
+								<div id="productpricedetails" class="tab-pane fade">
+
+									<h4 style="font-weight:bold">Quantity Details</h4>
 									<div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3">
+											<div class="col-md-3 ">
+												<div class="form-group">
+												   <label for="venderid">Vender Id:</label>
+													<input type="text" name="venderid" id="venderid"
+														class="form-control" 
+														placeholder="">
+												  </div>
+												  <div class="form-group">
+												   <label for="vendername">Vender Name:</label>
+													<input type="text" name="vendername" id="vendername"
+														class="form-control" 
+														placeholder="">
+												  </div>
+												  <div class="form-group">
+												   <label for="venderprice">Vender Price:</label>
+													<input type="text" name="venderprice" id="venderprice"
+														class="form-control" 
+														placeholder="">
+												 </div>
+											</div>
+											<div class="col-md-3">
 												<div class="form-group">
 												   <label for="carat">Carat:</label>
 												   <select class="form-control"id="carat"name="carat">
@@ -355,7 +468,52 @@ if (!$_SESSION['logon']){
 													 <option>24KT</option>
 												   </select>
 												  </div>
-													<div class="form-group">
+												  
+												  <div class="form-group">
+												   <label for="pureweight">Pure Weight:</label>
+													<input type="text" name="pureweight" id="pureweight"
+														class="form-control" 
+														placeholder=""readonly>
+												  </div>
+												  
+								                 <div class="form-group">
+												   <label for="netweight">Net Weight:</label>
+													<input type="text" name="netweight" id="netweight"
+														class="form-control" 
+														placeholder="">
+												  </div>
+													
+												</div>
+												<div class="col-md-3">
+												<div class="form-group">
+												   <label for="meenaweight">Meena Weight:</label>
+													<input type="text" name="meenaweight" id="meenaweight"
+														class="form-control" 
+														placeholder="">
+												</div>
+												
+												  <div class="form-group">
+												   <label for="grossweight">Gross Weight:</label>
+													<input type="text" name="grossweight" id="grossweight"
+														class="form-control" 
+														placeholder="">
+												</div>
+												
+												 <div class="form-group">
+												   <label for="wastage">Wastage Weight:</label>
+													<input type="text" name="wastage" id="wastage"
+														class="form-control" 
+														placeholder="Wastage">
+												  </div>
+												</div>
+												<div class="col-md-3">
+												<div class="form-group">
+												   <label for="stoneweight">Total Stone Used</label>
+													<input type="text" name="stoneweight" id="stoneweight"
+														class="form-control" 
+														placeholder="">
+												   </div>
+												<div class="form-group">
 												   <label for="stoneweight">Stone Weight</label>
 													<input type="text" name="stoneweight" id="stoneweight"
 														class="form-control" 
@@ -372,232 +530,58 @@ if (!$_SESSION['logon']){
 													 <option>Diamond</option>
 												   </select>
 												  </div>
-												  <div class="form-group">
-												   <label for="venderid">Vender Id:</label>
-													<input type="text" name="venderid" id="venderid"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												  <div class="form-group">
-												   <label for="venderprice">Vender Price:</label>
-													<input type="text" name="venderprice" id="venderprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
-													
 												</div>
-												<div class="col-xs-3 col-sm-3 col-md-3">
-												 <div class="form-group">
-												   <label for="netweight">Net Weight:</label>
-													<input type="text" name="netweight" id="netweight"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												  <div class="form-group">
-												   <label for="stonepcs">Stone Pcs:</label>
-													<input type="text" name="stonepcs" id="stonepcs"
-														class="form-control" 
-														placeholder="">
-												    </div>
-												
-												  <div class="form-group">
-												   <label for="meenaweight">Meena Weight:</label>
-													<input type="text" name="meenaweight" id="meenaweight"
-														class="form-control" 
-														placeholder="">
-														</div>
-														<div class="form-group">
-												   <label for="vatprice">VAT Price:</label>
-													<input type="text" name="vatprice" id="vatprice"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												</div>
-											<div class="col-xs-3 col-sm-3 col-md-3">
-												 <div class="form-group">
-												   <label for="pureweight">Pure Weight:</label>
-													<input type="text" name="pureweight" id="pureweight"
-														class="form-control" 
-														placeholder=""readonly>
-												  </div>
-												
-												  <div class="form-group">
-												   <label for="grossweight">Gross Weight:</label>
-													<input type="text" name="grossweight" id="grossweight"
-														class="form-control" 
-														placeholder="">
-												</div>
-												 <div class="form-group">
-												   <label for="wastage">Wastage:</label>
-													<input type="text" name="wastage" id="wastage"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												  
-												  <div class="form-group">
-												   <label for="vendername">Vender Name:</label>
-													<input type="text" name="vendername" id="vendername"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												  
-												  
-											</div>
-											<div class="col-xs-3 col-sm-3 col-md-3">
-												  
-												  <div class="form-group">
-												   <label for="makingcharges">Making Charges:</label>
-													<input type="text" name="makingcharges" id="makingcharges"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												 <div class="form-group">
-												   <label for="mrpprice">MRP Price:</label>
-													<input type="text" name="mrpprice" id="mrpprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
-												  
-												   <div class="form-group">
-												   <label for="totalprice">Sell Price:</label>
-													<input type="text" name="totalprice" id="totalprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
-												 <div class="form-group">
-												   <label for="stoneprice">Stone Price:</label>
-													<input type="text" name="stoneprice" id="stoneprice"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												  
-											</div>
 										</div>
-								</div>
-
-								<div id="productpricedetails" class="tab-pane fade">
-
-									<h3 style="text-align:center">Price Details</h3>
+									<h4  style="font-weight:bold">Price Details</h4>
 									<div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3 ">
-												<div class="form-group">
-												   <label for="venderid">Vender Id:</label>
-													<input type="text" name="venderid" id="venderid"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												  <div class="form-group">
-												   <label for="vendername">Vender Name:</label>
-													<input type="text" name="vendername" id="vendername"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												  <div class="form-group">
-												   <label for="venderprice">Vender Price:</label>
-													<input type="text" name="venderprice" id="venderprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
-											</div>
-											<div class="col-xs-3 col-sm-3 col-md-3 ">
-											    <div class="form-group">
+											<div class="col-md-3">
+												   <div class="form-group">
 												   <label for="mrpprice">MRP Price:</label>
 													<input type="text" name="mrpprice" id="mrpprice"
 														class="form-control" 
 														placeholder="">
 												 </div>
-											  <div class="form-group">
-												   <label for="totalprice">Sell Price:</label>
-													<input type="text" name="totalprice" id="totalprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
-												 <div class="form-group">
+												<div class="form-group">
 												   <label for="stoneprice">Stone Price:</label>
 													<input type="text" name="stoneprice" id="stoneprice"
 														class="form-control" 
-														placeholder="">
-												  </div>
-													
-											 </div>
-											<div class="col-xs-3 col-sm-3 col-md-3" >
-											 
-												 <div class="form-group">
+														placeholder="Stone Price">
+												 </div>
+												  <div class="form-group">
 												   <label for="makingcharges">Making Charges:</label>
 													<input type="text" name="makingcharges" id="makingcharges"
 														class="form-control" 
-														placeholder="">
+														placeholder="Making Charges">
 												  </div>
+												</div>
+												<div class="col-md-3">
 												  <div class="form-group">
 												   <label for="vatprice">VAT Price:</label>
 													<input type="text" name="vatprice" id="vatprice"
 														class="form-control" 
-														placeholder="">
+														placeholder="VAT Price">
 												  </div>
 												  <div class="form-group">
 												   <label for="hmtagprice">HM Tag Price:</label>
-													<input type="text" name="totalcostprice" id="totalcostprice"
+													<input type="text" name="hmtagprice" id="hmtagprice"
 														class="form-control" 
-														placeholder="">
+														placeholder="HM Tag Price">
 												 </div>
-												 
-												 
+												  <div class="form-group">
+												   <label for="discountprice">Discount Price:</label>
+													<input type="text" name="discountprice" id="discountprice"
+														class="form-control" 
+														placeholder="Discount Price">
+												 </div>
 											</div>
 									</div>
 								</div>
 
 								<div id="productdescdetails" class="tab-pane fade">
-								
-    
-                           <h3 style="text-align:center">Description Details</h3>
 									<div class="row">
 											<div class="col-xs-3 col-sm-3 col-md-3 ">
-													<div class="form-group">
-													 <label for="brand">Brand:</label>
-													<input type="text" name="brand" id="brand"
-														class="form-control" 
-														placeholder="">
-												    </div>
-												  <div class="form-group">
-													 <label for="metal">Metal:</label>
-												<select class="form-control"id="metal"name="metal">
-												     <option>Select</option>
-												     <option>Gold</option>
-													 <option>Silver</option>
-												   </select>
-												    </div>
-													<div class="form-group">
-													 <label for="metalcolor">Metal Color:</label>
-														<select class="form-control"id="metalcolor"name="metalcolor">
-												     <option>Select</option>
-												     <option>Yellow</option>
-													 <option>Silver</option>
-													 <option>Bicolor</option>
-												   </select>
-												    </div>
-													<div class="form-group">
-													 <label for="gender">Gender:</label>
-													<select class="form-control"id="gender"name="gender">
-												     <option>Select</option>
-												     <option>Men</option>
-													 <option>Women</option>
-													 <option>Kids</option>
-												   </select>
-												   </div>
-											</div>
-											<div class="col-xs-3 col-sm-3 col-md-3 ">
 												<div class="form-group">
-													 <label for="karatage">Gold Karatage</label>
-													<select class="form-control"id="karatage"name="karatage">
-												     <option>Select</option>
-												     <option>14KT</option>
-													 <option>18KT</option>
-													 <option>22KT</option>
-													 <option>24KT</option>
-												   </select>
-												    </div>
-													<div class="form-group">
-													 <label for="productstyle">Style:</label>
+													<label for="productstyle">Degine Style:</label>
 													<select class="form-control"id="productstyle"name="productstyle">
 												     <option>Select</option>
 												     <option>Stud</option>
@@ -605,105 +589,100 @@ if (!$_SESSION['logon']){
 													 <option>Jhumka</option>
 													 <option>Drop</option>
 												   </select>
-												    </div>
+												   </div>
+												   
 													<div class="form-group">
-													 <label for="jewellerytype">Jewellery Type:</label>
-													<input type="text" name="jewellerytype" id="jewellerytype"
-														class="form-control" 
-														placeholder="">
-												    </div>
-													<div class="form-group">
-													 <label for="tagnumber">Tag Number:</label>
-													<input type="text" name="tagnumber" id="tagnumber"
-														class="form-control" 
-														placeholder="">
-												    </div>
-											</div>
-										</div>
-								</div>
-								<div id="productvenderprice" class="tab-pane fade">
-                                           <h3 style="text-align:center">Vender Price</h3>
-									<div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3">
-													<div class="form-group">
-													 <label for="stonepieces">Stone Pieces:</label>
-													<input type="text" name="stonepieces" id="stonepieces"
-														class="form-control" 
-														placeholder="">
-												    </div>
-												  <div class="form-group">
-													 <label for="stoneweight">Stone Weight</label>
-												<input type="text" name="stoneweight" id="stoneweight"
-														class="form-control" 
-														placeholder="">
-												    </div>
-													<div class="form-group">
-													   <label for="stonecostprice">Stone Cost Price:</label>
-														<input type="text" name="stonecostprice" id="stonecostprice"
-														class="form-control" 
-														placeholder="">
-												    </div>
-													<div class="form-group">
-													 <label for="makingcharges">Making Charges:</label>
-														<input type="text" name="makingcharges" id="makingcharges"
-														class="form-control" 
-														placeholder="">
-												    </div>
-											</div>
-											<div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
-												<div class="form-group">
-													 <label for="purity">Purity</label>
-													<select class="form-control"id="purity"name="purity">
-												     <option>Select</option>
-												     <option>14KT</option>
-													 <option>18KT</option>
-													 <option>22KT</option>
-													 <option>24KT</option>
+													 <label for="metalcolor">Avilable Color:</label>
+													<select class="form-control"id="metalcolor"name="metalcolor">
+														<option>Yellow</option>
+														<option>Silver</option>
+														<option>Bicolor</option>
 												   </select>
 												    </div>
 													<div class="form-group">
-													 <label for="hmtagprice">HM Tag Price</label>
-													<input type="text" name="hmtagprice" id="hmtagprice"
-														class="form-control" 
-														placeholder="">
-												    </div>
-													<div class="form-group">
-													 <label for="vatprice">Vat Price:</label>
-													<input type="text" name="vatprice" id="vatprice"
-														class="form-control" 
-														placeholder="">
-												    </div>
-													<div class="form-group">
-													 <label for="totalcostprice">Total Cost Price:</label>
-													<input type="text" name="totalcostprice" id="totalcostprice"
-														class="form-control" 
-														placeholder="">
-												    </div>
+													 <label for="gender">Applicable Geneder</label>
+													<select class="form-control"id="gender"name="gender">
+												      <option>Select</option>
+												      <option>Men</option>
+													  <option>Women</option>
+													  <option>Kids-Girl</option>
+													  <option>Kids-Boys</option>
+													  <option>All</option>
+												   </select>
+												   </div>
 											</div>
+										<div class="col-md-3 ">
+													<div class="form-group">
+													 <label for="gender">Description Text</label>
+													<textarea class="form-control" id="desctext"name="desctext">
+												    </textarea>
+												   </div>
+												   	<div class="form-group">
+													 <label for="gender">Degine Description</label>
+													<textarea class="form-control" id="deginedesc"name="deginedesc">
+												    </textarea>
+												   </div>
+												   <div class="form-group">
+													 <label for="gender">Technical Description</label>
+													<textarea class="form-control" id="technicaldesc"name="technicaldesc">
+												    </textarea>
+												   </div>
+										</div>
+										
 										</div>
 								</div>
-
+	
 								
 									<div id="productimagedetails" class="tab-pane fade">
-
-									<h3 style="text-align:center">Product Image</h3>
-									<div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3">
-												
-												<div class="form-group">
-												   <img src="C:\xampplite\htdocs\jewelry\assets\images\image1.jpg" class="img-rounded" alt="Image1" width="100" height="100"> 
-												   <img src="C:\xampplite\htdocs\jewelry\assets\images\image1.jpg" class="img-rounded" alt="Image1" width="100" height="100"> 
-												   <img src="C:\xampplite\htdocs\jewelry\assets\images\image1.jpg" class="img-rounded" alt="Image1" width="100" height="100"> 
-												</div>
-												
-
-											</div>
-											 <div class="col-xs-3 col-sm-3 col-md-3 col-xs-offset-2 col-sm-offset-2 col-md-offset-2">
-												  <div class="form-group">
-												     <img src="jewellary.jpg" class="img-rounded" alt="Jewellary Image" width="304" height="236"> 
-												  </div>
-                                               </div>
+									<div>
+									<form action="./dummy.html" class="dropzone well" id="dropzone">
+										<div class="fallback">
+											<input name="file" type="file" multiple="" />
 										</div>
+									</form>
+								</div>
+												<div id="preview-template" class="hide">
+									<div class="dz-preview dz-file-preview">
+										<div class="dz-image">
+											<img data-dz-thumbnail="" />
+										</div>
+
+										<div class="dz-details">
+											<div class="dz-size">
+												<span data-dz-size=""></span>
+											</div>
+
+											<div class="dz-filename">
+												<span data-dz-name=""></span>
+											</div>
+										</div>
+
+										<div class="dz-progress">
+											<span class="dz-upload" data-dz-uploadprogress=""></span>
+										</div>
+
+										<div class="dz-error-message">
+											<span data-dz-errormessage=""></span>
+										</div>
+
+										<div class="dz-success-mark">
+											<span class="fa-stack fa-lg bigger-150">
+												<i class="fa fa-circle fa-stack-2x white"></i>
+
+												<i class="fa fa-check fa-stack-1x fa-inverse green"></i>
+											</span>
+										</div>
+
+										<div class="dz-error-mark">
+											<span class="fa-stack fa-lg bigger-150">
+												<i class="fa fa-circle fa-stack-2x white"></i>
+
+												<i class="fa fa-remove fa-stack-1x fa-inverse red"></i>
+											</span>
+										</div>
+									</div>
+								</div><!-- PAGE CONTENT ENDS -->
+
 								</div>
 							
 					       </div>
@@ -713,10 +692,10 @@ if (!$_SESSION['logon']){
 	</div>
  </div>
 
- <div class="col-md-12 container" id="productbulkupload" class="tab-pane fade">
+ <div  id="productbulkupload" style="display: none">
 </div>
 
-<div id="venderdetails" class="tab-pane fade">
+<div id="venderdetails" style="display: none">
 <div class="panel-body">
 
 									<h3 style="text-align:center">Vender Details</h3>
@@ -795,4 +774,10 @@ if (!$_SESSION['logon']){
 </div>
 </body>
 </div>
+<script type="text/javascript">
+$('a').on('click', function(){
+   var target = $(this).attr('rel');
+   $("#"+target).show().siblings("div").hide();
+});
+</script>
   </html>
