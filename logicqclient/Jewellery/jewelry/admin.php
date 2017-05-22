@@ -397,22 +397,46 @@ if (!$_SESSION['logon']){
 										<div class="col-md-4">
 												<div class="form-group">
 												<label for="productcatagory">Product Category :</label>
-													<select class="form-control" id="productcatagory" name="productcatagory">
-														<option>Select</option>
-														<option>Earring</option>
-														<option>Pedant</option>
-                                                       <option>Chain</option>
-                                                    </select>
+													<?php 
+												// include 'dbconfig.php';
+												// $query=$DB_con->query("Select * From category_details");
+												// $rowcount=$query->num_rows;
+												
+												 error_reporting(E_ALL ^ E_DEPRECATED);
+												
+												require_once 'sql.php' ;
+												  $SQL ="SELECT * FROM catagory_details";
+												  $result = mysql_query($SQL);
+												  $rowcount = mysql_num_rows($result);
+												
+												?>
+												
+												<select class="form-control" id="productcatagory" name="productcatagory" onchange="change_category();">
+														<option selected="selected">Select Category</option>
+														<?php
+														if($rowcount>0){
+
+																while($row=mysql_fetch_array($result)){
+																	echo '<option value="'.$row['ID'].'">'.$row['DISPLAYNAME'].'</option>';
+															}
+														}
+														else{
+																echo '<option value="">Category Not Available</option>';
+
+															}
+														?>
+														
+												    </select>
 												</div>
 												</div>
 												<div class="col-md-4">
 												<div class="form-group">
-												   <label for="subcatagory">Sub Catagory :</label>
+												   <label for="subcatagory">Sub Category :</label>
 												   <select class="form-control"id="subcatagory"name="subcatagory">
-												     <option>Select</option>
-												     <option>Necklace</option>
-													 <option>Bracelet</option>
+												     <option selected="selected">Select Sub-Category</option>
+												     
 												   </select>
+												
 												  </div>
 												  </div>
 												  <div class="col-md-4">
@@ -464,15 +488,36 @@ if (!$_SESSION['logon']){
 											<div class="col-md-3 ">
 												<div class="form-group">
 												   <label for="venderid">Vender Id:</label>
-													<input type="text" name="venderid" id="venderid"
-														class="form-control" 
-														placeholder="">
+												<?php 	
+													$query ="SELECT * FROM vendor_details";
+												  $result_vd = mysql_query($query);
+												  $rowcount = mysql_num_rows($result_vd);
+												  
+												 ?>
+													
+													<select class="form-control" id="vendorid" name="vendorid" >
+														<option selected="selected">Select Vendor ID</option>
+														<?php
+														if($rowcount>0){
+
+																while($row=mysql_fetch_array($result_vd)){
+																	echo '<option value="'.$row['ID'].'">'.$row['ID'].'</option>';
+															}
+														}
+														else{
+																echo '<option value="">Vendors Not Available</option>';
+
+															}
+														?>
+														
+												    </select>
+												
 												  </div>
 												  <div class="form-group">
 												   <label for="vendername">Vender Name:</label>
 													<input type="text" name="vendername" id="vendername"
 														class="form-control" 
-														placeholder="">
+														placeholder="" readonly>
 												  </div>
 												  <div class="form-group">
 												   <label for="venderprice">Vender Price:</label>
@@ -1299,4 +1344,62 @@ $('a').on('click', function(){
    $("#"+target).show().siblings("div").hide();
 });
 </script>
+<script type="text/javascript">
+	
+$(document).ready(function()
+{
+$('#productcatagory').on('change',function()
+{
+var id =$(this).val();
+if(id)
+{
+$.ajax
+({
+type:'POST',
+url:'process/get_subcategory.php',
+data:'id='+id,
+success:function(data)
+{
+
+$('#subcatagory').html(data);
+
+}
+});
+}else
+{
+$('#subcatagory').html('<option value=””>Select Category First</option>');
+
+}
+
+})
+
+$('#vendorid').on('change',function()
+{
+var vid =$(this).val();
+if(vid)
+{
+$.ajax
+({
+type:'POST',
+url:'process/get_subcategory.php',
+data:'id='+vid,
+success:function(data)
+{
+
+$('#vendorname').html(data);
+
+}
+});
+}else
+{
+$('#vendorname').html('<option value=””>Select Vendor ID First</option>');
+
+}
+
+})
+
+
+});
+
+		</script>
   </html>
