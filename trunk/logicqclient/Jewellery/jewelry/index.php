@@ -466,7 +466,7 @@
               <?php 
 			  
 			  include "sql.php";
-			  $sql_query ="SELECT * FROM `popular collections` order by id ASC";
+			  $sql_query ="SELECT * FROM popular_collections order by id ASC";
               $result_query = mysql_query($sql_query);
 			  while ($get_values = mysql_fetch_array($result_query)) { 
 			  
