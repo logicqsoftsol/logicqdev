@@ -11,7 +11,7 @@ $db_found = mysql_select_db($database, $db_handle);
 
 $user_name = "root";
 $password = "";
-$database = "jewellery_ecommerce";
+$database = "jewelry";
 $server = "127.0.0.1:3306";
 $db_handle = mysql_connect($server, $user_name, $password);
 $db_found = mysql_select_db($database, $db_handle);	
