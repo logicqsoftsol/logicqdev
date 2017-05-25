@@ -357,6 +357,7 @@ if (!$_SESSION['logon']){
  	<div class="panel-body">
 				
 				<div class="row">
+				<form id="productadd_submit" action="add_product.php" method="POST">
 					<br> <br>
 					<div class="panel with-nav-tabs panel-success">
 						
@@ -371,6 +372,7 @@ if (!$_SESSION['logon']){
 								href="#productimagedetails">Product Image Details</a></li>
 						</ul>
 						<div class="panel-body">
+						
 							<div class="tab-content">
 								<div id="productbasicdetails" class="tab-pane fade in active">
 								<div class="col-md-12">
@@ -378,7 +380,7 @@ if (!$_SESSION['logon']){
 												<label for="productid">Product Id:</label>
 													<input type="text" name="productid" id="productid"
 														 class="form-control" 
-														placeholder="Product Id" readonly>
+														placeholder="Product Id" readonly >
 											    </div>
 											    <div class="form-group col-md-4">
 												<label for="barcode">Barcode:</label>
@@ -411,7 +413,7 @@ if (!$_SESSION['logon']){
 												
 												?>
 												
-												<select class="form-control" id="productcatagory" name="productcatagory" onchange="change_category();">
+												<select class="form-control" id="productcatagory" name="productcatagory">
 														<option selected="selected">Select Category</option>
 														<?php
 														if($rowcount>0){
@@ -487,7 +489,7 @@ if (!$_SESSION['logon']){
 									<div class="row">
 											<div class="col-md-3 ">
 												<div class="form-group">
-												   <label for="venderid">Vender Id:</label>
+												   <label for="vendername">Vender Name:</label>
 												<?php 	
 													$query ="SELECT * FROM vendor_details";
 												  $result_vd = mysql_query($query);
@@ -495,13 +497,13 @@ if (!$_SESSION['logon']){
 												  
 												 ?>
 													
-													<select class="form-control" id="vendorid" name="vendorid" >
-														<option selected="selected">Select Vendor ID</option>
+													<select class="form-control" id="vendername" name="vendername" onchange="change_vendorname();">
+														<option selected="selected">Select Vendor Name</option>
 														<?php
 														if($rowcount>0){
 
 																while($row=mysql_fetch_array($result_vd)){
-																	echo '<option value="'.$row['ID'].'">'.$row['ID'].'</option>';
+																	echo '<option value="'.$row['ID'].'">'.$row['VENDOR_NAME'].'</option>';
 															}
 														}
 														else{
@@ -511,13 +513,15 @@ if (!$_SESSION['logon']){
 														?>
 														
 												    </select>
+												  
 												
 												  </div>
+												  
 												  <div class="form-group">
-												   <label for="vendername">Vender Name:</label>
-													<input type="text" name="vendername" id="vendername"
+												   <label for="venderid">Vender ID:</label>
+													<input type="text" name="venderid" id="venderid"
 														class="form-control" 
-														placeholder="" readonly>
+														value=""readonly >
 												  </div>
 												  <div class="form-group">
 												   <label for="venderprice">Vender Price:</label>
@@ -529,7 +533,7 @@ if (!$_SESSION['logon']){
 											<div class="col-md-3">
 												<div class="form-group">
 												   <label for="carat">Carat:</label>
-												   <select class="form-control"id="carat"name="carat">
+												   <select class="form-control"id="carat"name="carat" onchange="change_carat();">
 												     <option>Select</option>
 												     <option>14KT</option>
 													 <option>18KT</option>
@@ -542,7 +546,7 @@ if (!$_SESSION['logon']){
 												   <label for="pureweight">Pure Weight:</label>
 													<input type="text" name="pureweight" id="pureweight"
 														class="form-control" 
-														placeholder=""readonly>
+														placeholder="" value=""readonly>
 												  </div>
 												  
 								                 <div class="form-group">
@@ -577,8 +581,8 @@ if (!$_SESSION['logon']){
 												</div>
 												<div class="col-md-3">
 												<div class="form-group">
-												   <label for="stoneweight">Total Stone Used</label>
-													<input type="text" name="stoneweight" id="stoneweight"
+												   <label for="stone_used">Total Stone Used</label>
+													<input type="text" name="stone_used" id="stone_used"
 														class="form-control" 
 														placeholder="">
 												   </div>
@@ -753,10 +757,18 @@ if (!$_SESSION['logon']){
 								</div><!-- PAGE CONTENT ENDS -->
 
 								</div>
-							
+							<div class="modal-footer">
+								<button type="submit" id="productadd_submit" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>ADD NEW PRODUCT</button>
+								<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>RESET</button>
+								</div>
 					       </div>
+						   </form>
 				    </div>
+					
 			      </div>
+				  </form>
 			  </div>
 	</div>
  </div>
@@ -1371,35 +1383,40 @@ $('#subcatagory').html('<option value=””>Select Category First</option>');
 
 }
 
-})
-
-$('#vendorid').on('change',function()
-{
-var vid =$(this).val();
-if(vid)
-{
-$.ajax
-({
-type:'POST',
-url:'process/get_subcategory.php',
-data:'id='+vid,
-success:function(data)
-{
-
-$('#vendorname').html(data);
-
-}
-});
-}else
-{
-$('#vendorname').html('<option value=””>Select Vendor ID First</option>');
-
-}
-
-})
-
-
 });
 
-		</script>
-  </html>
+});
+</script>
+  <script type="text/javascript">
+function change_vendorname()
+{
+	
+	var selected_val=$( "#vendername option:selected" ).val();
+	//alert(selected_text);
+														
+	$('#venderid').val(selected_val);
+													
+}
+function change_carat()
+{
+	var selected_text=$( "#carat option:selected" ).text();
+	//alert(selected_text);
+	if (selected_text == '14KT')
+	{		
+	$('#pureweight').val(60);
+	}
+	else if (selected_text == '18KT')
+	{		
+	$('#pureweight').val(70);
+	}
+	else if (selected_text == '22KT')
+	{		
+	$('#pureweight').val(80);
+	}
+	else 
+	{
+	$('#pureweight').val(90);	
+	}
+}
+</script>
+	</html>
