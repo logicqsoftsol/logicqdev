@@ -20,12 +20,14 @@ if (!$_SESSION['logon']){
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
+ 
+ <!-- Theme style -->
   <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
 <link rel="stylesheet" href="assets/css/dropzone.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="assets/css/skins/_all-skins.min.css">
+<link href="assets/css/cs.stylea67f.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="assets/css/elements.css">
   <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
@@ -200,7 +202,7 @@ if (!$_SESSION['logon']){
           <ul class="treeview-menu">
 		    <li><a href="#" rel="salesreport" class="pull-center"><i class="fa fa-circle-o"></i>  Sales Reports</a></li>
 			<li><a href="#" rel="issuebills" class="pull-center"><i class="fa fa-circle-o"></i>Issue Bill</a></li>
-            <li><a href="#" rel="salesandclosingreport" class="pull-center"><i class="fa fa-circle-o"></i> View Sales Closing reports </a></li>
+            <li><a href="#" rel="salesclosingreport" class="pull-center"><i class="fa fa-circle-o"></i> View Sales Closing reports </a></li>
 	      </ul>
           </li>
 	    <li class="treeview">
@@ -214,7 +216,7 @@ if (!$_SESSION['logon']){
             <li><a href="#" rel="supplierlist" class="pull-center"><i class="fa fa-circle-o"></i> Supplier List  </a></li>
             <li><a href="#" rel="supplierproductlist" class="pull-center"><i class="fa fa-circle-o"></i> Supplier Product List</a></li>
 			 <li><a href="#" rel="purchasedetails" class="pull-center"><i class="fa fa-circle-o"></i>Purchase Details </a></li>		
-            <li><a href="#" rel="recivedetails" class="pull-center"><i class="fa fa-circle-o"></i> Recive Details </a></li>
+            <li><a href="#" rel="recivedDetails" class="pull-center"><i class="fa fa-circle-o"></i> Recived Details </a></li>
 			<li><a href="#" rel="paymentddetails" class="pull-center"><i class="fa fa-circle-o"></i> Payment Details </a></li>	
 			<li><a href="#" rel="pre-orderdetails" class="pull-center"><i class="fa fa-circle-o"></i> Pre-Order Details </a></li>			
 		</ul>
@@ -240,7 +242,8 @@ if (!$_SESSION['logon']){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#" rel="customerlist" class="pull-center"><i class="fa fa-circle-o"></i> CUstomer List </a></li>
+            <li><a href="#" rel="customerlist" class="pull-center"><i class="fa fa-circle-o"></i> Customer List </a></li>
+			<li><a href="#" rel="customerwizard" class="pull-center"><i class="fa fa-circle-o"></i> Customer Wizard </a></li>
 			<li><a href="#" rel="recentorderbill" class="pull-center"><i class="fa fa-circle-o"></i>Recent Orders/Bill</a></li>
 			<li><a href="#" rel="feedbackreview" class="pull-center"><i class="fa fa-circle-o"></i>Feedback/Review Details</a></li>
 			<li><a href="#" rel="paymentdetails" class="pull-center"><i class="fa fa-circle-o"></i>Payment Details</a></li>
@@ -355,7 +358,6 @@ if (!$_SESSION['logon']){
  
  <div  id="productadd" style="display: none">
  	<div class="panel-body">
-				
 				<div class="row">
 				<form id="productadd_submit" action="add_product.php" method="POST">
 					<br> <br>
@@ -533,7 +535,7 @@ if (!$_SESSION['logon']){
 											<div class="col-md-3">
 												<div class="form-group">
 												   <label for="carat">Carat:</label>
-												   <select class="form-control"id="carat"name="carat" onchange="change_carat();">
+												   <select class="form-control"id="carat"name="carat">
 												     <option>Select</option>
 												     <option>14KT</option>
 													 <option>18KT</option>
@@ -890,6 +892,962 @@ if (!$_SESSION['logon']){
 		</div>
 	</div>
  </div>
+ 
+ 
+  <div  id="salesclosingreport" style="display: none">
+	<div class="panel-body">
+		<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Transaction Type</th>
+		<th class="pull-center">Bill No.</th>
+		<th class="pull-center">Bill Amount(INR)</th>
+		<th class="pull-center">Recived Amount(INR)</th>
+		<th class="pull-center">Due Amount(INR)</th>
+		<th class="pull-center">Due Amount Reasone</th>
+	</tr>
+	
+      <tr>
+	    <td>CASH</td>
+	    <td>DD165</td>
+        <td>25000.00</td>
+		<td>2000.00</td>
+		<td>23000.00</td>
+		<td>Advanced Payment</td>
+	  </tr>
+       <tr>
+	    <td>CASH</td>
+	    <td>DD165</td>
+        <td>25000.00</td>
+		<td>2000.00</td>
+		<td>23000.00</td>
+		<td>Advanced Payment</td>
+	  </tr>
+       <tr>
+	    <td>CASH</td>
+	    <td>DD165</td>
+        <td>25000.00</td>
+		<td>2000.00</td>
+		<td>23000.00</td>
+		<td>Advanced Payment</td>
+	  </tr>
+  </table>
+		</div>
+	</div>	
+	<div class="panel-footer">
+	   <div class="col-md-9 col-lg-9 table-responsive"> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Total Bill Count</td>
+                        <td>3</td>
+                      </tr>
+                      <tr>
+                        <td>Total Billed Amount(INR)</td>
+                        <td>75000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Total Recived Amount(INR)</td>
+                        <td>6000.00</td>
+                      </tr>
+                        <tr>
+                        <td>Total Due Amount(INR)</td>
+                        <td>6000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Sale Report date</td>
+                        <td>2017-MAY-10</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+	</div>
+	</div>
+	
+	
+  <div  id="supplierlist" style="display: none">
+ 	<div class="panel-body">
+		<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Id</th>
+		<th class="pull-center">Name</th>
+		<th class="pull-center">Address</th>
+		<th class="pull-center">Contact Number</th>
+		<th class="pull-center">Contact Person</th>
+	</tr>
+	
+      <tr>
+        <td>DS1233</td>
+        <td>Radha Mohan Charu</td>
+		<td>kuch bi kuch bi</td>
+        <td>7057014118</td>
+		<td>Radha Mohan Charu</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
+		<td><a><span class="glyphicon glyphicon-edit"></span>Delete</a></td>
+		</tr>
+        <tr>
+        <td>DS1233</td>
+        <td>Radha Mohan Charu</td>
+		<td>kuch bi kuch bi</td>
+        <td>7057014118</td>
+		<td>Radha Mohan Charu</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
+		<td><a><span class="glyphicon glyphicon-edit"></span>Delete</a></td>
+		</tr>
+       <tr>
+        <td>DS1233</td>
+        <td>Radha Mohan Charu</td>
+		<td>kuch bi kuch bi</td>
+        <td>7057014118</td>
+		<td>Radha Mohan Charu</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
+		<td><a><span class="glyphicon glyphicon-edit"></span>Delete</a></td>
+		</tr>
+  </table>
+		</div>
+	</div>
+ </div>
+ 
+ 
+ <div  id="supplierproductlist" style="display: none">
+   
+      <li class="umbrella hidden-xs">			
+        <div id="umbrella" class="list-inline unmargin">
+          <div class="cart-link">
+            <a href="cart.html" class="dropdown-toggle dropdown-link" data-toggle="dropdown">
+              <i class="sub-dropdown1"></i>
+              <i class="sub-dropdown"></i>              
+              <div class="num-items-in-cart">
+                <span class="icon">
+                  Cart
+                  <span class="number">0</span>
+                </span>
+              </div>
+            </a>
+
+            
+            <div id="cart-info" class="dropdown-menu">
+              <div id="cart-content">
+                <div class="loading">
+                  <img src="assets/images/loadera67f.gif" alt="" />
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </li>
+	  
+ 	<div class="panel-body">
+		<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Id</th>
+		<th class="pull-center">Name</th>
+		<th class="pull-center">Item Category</th>
+		<th class="pull-center">Item Sub-Category</th>
+		<th class="pull-center">Product ID</th>
+		<th class="pull-center">Item Degine Type</th>
+		<th class="pull-center">Item Price</th>
+	</tr>
+	
+      <tr>
+        <td>DS1233</td>
+        <td>Radha Mohan Charu</td>
+		<td>GOld</td>
+        <td>Bracelates</td>
+		<td>PR12345</td>
+		<td>Chain</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
+		<td><a><span class="glyphicon glyphicon-edit"></span>Place Order</a></td>
+		</tr>
+       <tr>
+        <td>DS1233</td>
+        <td>Radha Mohan Charu</td>
+		<td>GOld</td>
+        <td>Bracelates</td>
+		<td>PR12346</td>
+		<td>Bold Chain</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
+		<td><a data-toggle="modal" data-target="#addtocart"><span class="glyphicon glyphicon-edit"></span>Place Order</a></td>
+	  </tr>
+       <tr>
+        <td>DS1233</td>
+        <td>Radha Mohan Charu</td>
+		<td>GOld</td>
+        <td>Bracelates</td>
+		<td>PR12347</td>
+		<td>Plain</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
+		<td><a data-toggle="modal" data-target="#addtocart"><span class="glyphicon glyphicon-edit"></span>Place Order</a></td>
+	   </tr>
+  </table>
+		</div>
+	</div>
+ </div>
+	
+	
+<div  id="purchasedetails" style="display: none">
+ 	<div class="panel-body">
+	<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Supplier Name</th>
+		<th class="pull-center">Item Name</th>
+		<th class="pull-center">Item Degine Type</th>
+		<th class="pull-center">Item Quantity</th>
+		<th class="pull-center">Item Total Price</th>
+		<th class="pull-center">Payment Status</th>
+		<th class="pull-center">Last Order Date</th>
+		<th class="pull-center">Excepted Delivery Date</th>
+	</tr>
+	
+      <tr>
+        <td>DS1233</td>
+        <td>Bracelates</td>
+		<td>Chain</td>
+        <td>10</td>
+		<td>12000</td>
+		<td>Advance</td>
+		<td>2017-09-09</td>
+		<td>2017-09-15</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
+		<td><a><span class="glyphicon glyphicon-edit"></span>Modify Order</a></td>
+		</tr>
+             <tr>
+        <td>DS1233</td>
+        <td>Bracelates</td>
+		<td>Chain</td>
+        <td>10</td>
+		<td>12000</td>
+		<td>Advance</td>
+		<td>2017-09-09</td>
+		<td>2017-09-15</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
+		<td><a><span class="glyphicon glyphicon-edit"></span>Modify Order</a></td>
+		</tr>
+             <tr>
+        <td>DS1233</td>
+        <td>Bracelates</td>
+		<td>Chain</td>
+        <td>10</td>
+		<td>12000</td>
+		<td>Advance</td>
+		<td>2017-09-09</td>
+		<td>2017-09-15</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
+		<td><a><span class="glyphicon glyphicon-edit"></span>Modify Order</a></td>
+		</tr>
+  </table>
+		</div>
+	</div>
+ </div>
+	
+<div  id="recivedDetails" style="display: none">
+ 	<div class="panel-body">
+	<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Supplier Name</th>
+		<th class="pull-center">Item Name</th>
+		<th class="pull-center">Item Degine Type</th>
+		<th class="pull-center">Item Quantity</th>
+		<th class="pull-center">Item Per Unit Price</th>
+		<th class="pull-center">Item Total Price</th>
+		<th class="pull-center">Order Date</th>
+		<th class="pull-center">Recive By</th>
+		<th class="pull-center">Recive Date</th>
+		<th class="pull-center">Payment Status</th>
+		<th class="pull-center">Comments</th>
+	</tr>
+	
+      <tr>
+        <td>Ram Hari Prasad</td>
+        <td>Bracelates</td>
+		<td>Chain</td>
+        <td>10</td>
+		<td>1000</td>
+		<td>9000</td>
+		<td>Satyajit </td>
+		<td>2017-09-07</td>
+		<td>2017-09-09</td>
+		<td>paid</td>
+		<td>clear all due </td>
+		</tr>
+        <tr>
+        <td>Ram Hari Prasad</td>
+        <td>Bracelates</td>
+		<td>Chain</td>
+        <td>10</td>
+		<td>1000</td>
+		<td>9000</td>
+		<td>Satyajit </td>
+		<td>2017-09-07</td>
+		<td>2017-09-09</td>
+		<td>paid</td>
+		<td>clear all due </td>
+	   </tr>
+                  <tr>
+        <td>Ram Hari Prasad</td>
+        <td>Bracelates</td>
+		<td>Chain</td>
+        <td>10</td>
+		<td>1000</td>
+		<td>9000</td>
+		<td>Satyajit </td>
+		<td>2017-09-07</td>
+		<td>2017-09-09</td>
+		<td>paid</td>
+		<td>clear all due </td>
+		</tr>
+  </table>
+		</div>
+	</div>
+ </div>	
+	
+	
+<div  id="stockbalances" style="display: none">
+	<div class="panel-header">
+ <a class="btn btn-default pull-right" data-toggle="modal" data-target="#stockupdateModal"><span class="glyphicon glyphicon-edit"></span>Update</a>
+	</div>
+	<div class="panel-body">
+	<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Item Id</th>
+		<th class="pull-center">Item Name</th>
+		<th class="pull-center">Item Avilable Quantity</th>
+		<th class="pull-center">Item Sell Quantity</th>
+		<th class="pull-center">Item Total Quantity</th>
+		<th class="pull-center">Item Unit Type</th>
+		<th class="pull-center">Last Order Date</th>
+		<th class="pull-center">Current Stock Status </th>
+	</tr>
+	
+      <tr>
+        <td>DPCED123</td>
+        <td>Bracelates</td>
+		<td>10</td>
+        <td>5</td>
+		<td>15</td>
+		<td>pices</td>
+		<td>2017-09-07 </td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Close</a></td>
+		<td>Normal</td>
+		</tr>
+        <tr>
+        <td>DPCED123</td>
+        <td>Bracelates</td>
+		<td>4</td>
+        <td>11</td>
+		<td>15</td>
+		<td>pices</td>
+		<td>2017-09-07 </td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Close</a></td>
+		<td>Major</td>
+		</tr>
+        <tr>
+        <td>DPCED123</td>
+        <td>Bracelates</td>
+		<td>1</td>
+        <td>14</td>
+		<td>15</td>
+		<td>pices</td>
+		<td>2017-09-07 </td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Close</a></td>
+		<td>critical</td>
+		</tr>
+  </table>
+		</div>
+	</div>
+</div>	
+	
+<div  id="stockhistory" style="display: none">
+	<div class="panel-body">
+	<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Item Id</th>
+		<th class="pull-center">Item Name</th>
+		<th class="pull-center">Order Id</a></th>
+		<th class="pull-center">Supplier Id</a></th>
+		<th class="pull-center">Supplier Name</th>
+		<th class="pull-center">Last Stock Update</th>
+		<th class="pull-center">Stock Update By</th>
+	</tr>
+	
+      <tr>
+        <td><a data-toggle="modal" data-target="#productdetailmodal">DPCED123</a></td>
+        <td>Bracelates</td>
+		<td><a data-toggle="modal" data-target="#orderdetailsmodal">DD123234</a></td>
+        <td><a data-toggle="modal" data-target="#suppliermodal">ASDSDDSE</a></td>
+		<td>Sudhakar jena</td>
+		<td>2017-09-07 </td>
+		<td>Admin</td>
+		</tr>
+            <tr>
+        <td><a data-toggle="modal" data-target="#productdetailmodal">DPCED123</a></td>
+        <td>Bracelates</td>
+		<td><a data-toggle="modal" data-target="#orderdetailsmodal">DD123234</a></td>
+        <td><a data-toggle="modal" data-target="#suppliermodal">ASDSDDSE</a></td>
+		<td>Sudhakar jena</td>
+		<td>2017-09-07 </td>
+		<td>Admin</td>
+		</tr>
+      <tr>
+        <td><a data-toggle="modal" data-target="#productdetailmodal">DPCED123</a></td>
+        <td>Bracelates</td>
+		<td><a data-toggle="modal" data-target="#orderdetailsmodal">DD123234</a></td>
+        <td><a data-toggle="modal" data-target="#suppliermodal">ASDSDDSE</a></td>
+		<td>Sudhakar jena</td>
+		<td>2017-09-07 </td>
+		<td>Admin</td>
+		</tr>
+  </table>
+		</div>
+	</div>
+
+</div>	
+	
+<div  id="customerlist" style="display: none">
+	<div class="panel-body">
+		<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Customer Name</th>
+		<th class="pull-center">Type</th>
+		<th class="pull-center">Mobile Number</th>
+		<th class="pull-center">Last Transaction Date</th>
+	    <th class="pull-center">Billed Amount</th>
+		<th class="pull-center">Current Status</th>
+	</tr>
+	
+      <tr>
+	    <td>Sudhakar Jena</td>
+		<td>Individual</td>
+	    <td>91-7057014118</td>
+        <td>2017-May-10</td>
+		<td>25000.00</td>
+		<td>Over Due</td>
+	  </tr>
+       <tr>
+	    <td>Sudhakar Jena</td>
+		<td>Individual</td>
+	    <td>91-7057014118</td>
+        <td>2017-May-10</td>
+		<td>25000.00</td>
+		<td>Over Due</td>
+	  </tr>
+       <tr>
+	    <td>Sudhakar Jena</td>
+		<td>Individual</td>
+	    <td>91-7057014118</td>
+        <td>2017-May-10</td>
+		<td>25000.00</td>
+		<td>Over Due</td>
+	  </tr>
+   </table>
+ </div>
+ </div> </div>
+ 
+ <div id="customerwizard" style="display: none">
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+
+                    <li role="presentation" class="active">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="customer details">
+                            <span class="round-tab">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Address Details">
+                            <span class="round-tab">
+                               <i class="fa fa-address-book" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+					   <li role="presentation" class="disabled">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Purchase Details">
+                            <span class="round-tab">
+                                <i class="fa fa-file" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Payment Details">
+                            <span class="round-tab">
+                                <i class="fa fa-money" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+                   <li role="presentation" class="disabled">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <form role="form">
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                                <div class="col-sm-12 form-group">
+														<div class="col-sm-2">
+													<select class="form-control" id="productcatagory" name="productcatagory">
+														<option>Select</option>
+														<option>Mr.</option>
+														<option>Mrs.</option>
+                                                        <option>Miss</option>
+                                                    </select>	
+														</div>
+
+														<div class="col-sm-4">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<input type="text" class="form-control" placeholder="First Name *" name="fname">
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-6">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<input type="text" class="form-control" placeholder="Family Name/Last Name *" name="faname">
+																</div>
+															</div>
+														</div>
+												</div><!--.col-->
+														<div class="col-sm-12 form-group">
+														<div class="col-sm-6">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<input type="text" name="birthday" class="form-control bootstrap-daterangepicker-basic" value="" placeholder="Date Of Birth*" />
+																</div>
+															</div>
+														</div>	
+
+														<div class="col-sm-5 padding-right-zero">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<input type="email" class="form-control" name="email1" placeholder="Email Id*">
+																</div>
+															</div>
+														</div>
+												</div>
+							<div class="col-sm-12 form-group">
+														<div class="col-sm-6">
+													<select class="form-control" id="productcatagory" name="productcatagory">
+														<option>Select</option>
+														<option>Male</option>
+														<option>Female</option>
+                                                    </select>
+														</div>	
+														<div class="col-sm-1 padding-right-zero phone">
+													<select class="form-control" id="productcatagory" name="productcatagory">
+														<option>Select</option>
+														<option>+91</option>
+														<option>+89</option>
+                                                    </select>
+														</div>	
+														<div class="col-sm-4 padding-right-zero">
+															<div class="inputer">
+																<div class="input-wrapper">
+																	<input type="text" class="form-control" name="phoneno" placeholder="Phone Number*">
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-1 text-right" id="abc1">
+															<a class="btn btn-red btn-xs btn-ripple" id="reg_no_ver3" onClick="if($('#reg_no_ver3')[0].className == 'btn btn-red btn-xs btn-ripple'){$('#phonedefaultModal').modal();}"><i class="fa fa-check-square-o"></i></a>
+
+
+
+															<div class="modal scale fade" id="phonedefaultModal" tabindex="-1" role="dialog" aria-hidden="true">
+																<div class="modal-dialog">
+																	<div class="modal-content">
+																		<div class="modal-header bg-main-color">
+																			<div class="col-sm-12">
+																				<h4 class="modal-title">Phone Verification</h4>
+																			</div><!--.col-->
+																			<div class="clearfix"></div>
+																		</div>
+																		<div class="modal-body">
+
+																			<div id="pane-login" class="panel-body active">
+																				<div class="form-group">
+																					<div class="inputer">
+																						<div class="input-wrapper">
+																							<input type="text" class="form-control" placeholder="Enter OTP">
+																						</div>
+																					</div>
+																				</div><!--.form-group-->
+																				<div class="form-buttons clearfix">
+																					<button class="btn btn-success btn-xs pull-right" onClick="$('#phonedefaultModal').modal('hide');" type="button">Submit</button>
+																					
+																					<button class="btn btn-success btn-xs pull-right" style="margin-right: 10px;" onClick="$('#phonedefaultModal').modal('hide');" type="button">Re Send OTP</button>
+																				</div><!--.form-buttons-->
+																			</div><!--#login.panel-body-->
+																		</div>
+																	</div><!--.modal-content-->
+																</div><!--.modal-dialog-->
+															</div><!--.modal-->
+														</div>
+												</div>														
+                      
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step2">
+                        			<div class="col-sm-12 form-group">
+												<div class="col-sm-8">
+													<div class="col-sm-12 padding-zero">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<textarea class="form-control" rows="1" placeholder="Address Line1"></textarea>
+															</div>
+														</div>
+														<div class="inputer">
+															<div class="input-wrapper">
+																<textarea class="form-control" rows="1" placeholder="Address Line2"></textarea>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-6 padding-left-zero">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<input type="text" class="form-control" placeholder="City" name="city">
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-6 padding-right-zero">
+														<select class="form-control" id="productcatagory" name="productcatagory">
+														<option>Select</option>
+														<option>GOA</option>
+														<option>DELHI</option>
+                                                    </select>
+													</div>
+													<div class="clearfix"></div>
+													<div class="col-sm-6 padding-left-zero">
+														<div id="basic" data-input-name="country" data-width="100%"></div>
+													</div>
+													<div class="col-sm-6 padding-right-zero">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<input type="text" class="form-control" placeholder="Pin Code" name="pin_code">
+															</div>
+														</div>
+													</div>	
+												</div>
+												<div class="col-sm-4">
+														<div class="col-sm-6 padding-right-zero">
+														<div class="inputer">
+															<div class="input-wrapper">
+																<textarea type="text" class="form-control" placeholder="Shipping Address Details" name="pin_code"></textarea>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step3">
+                       
+	<div class="panel-body">
+	<div class="col-md-8">
+		<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+    <tr class ="success">
+	    <th class="pull-center">Item Type</th>
+	    <th class="pull-center">Item Name</th>
+		<th class="pull-center">Item Code</th>
+		<th class="pull-center">Item Wegiht</th>
+		<th class="pull-center">Quantity</th>
+		<th class="pull-center">Amount</th>
+	    <th class="pull-center">Discount</th>
+	</tr>
+
+      <tr>
+	    <td>Gold</td>
+	    <td>Jhumuka</td>
+        <td>DP123445</td>
+		<td>100gm</td>
+		<td>2</td>
+		<td>23000.00</td>
+		<td>N/A</td>
+	  </tr>
+  </table>
+  </div>
+  </div>
+  <div class="col-md-4">
+  <table class="table table-bordered table-fixed table-hover">
+  	<tr class ="success">
+	<th class="pull-center">Makeing Charges</th>
+	<th class="pull-center">Carret</th>
+	</tr>
+	 <tr>
+	  <td>400.00</td>
+	  <td>24</td>
+	 </tr>
+  </table>
+  </div>
+	</div>	
+	<div class="panel-footer">
+	   <div class="col-md-9 col-lg-9 table-responsive"> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Total Billed Amount(INR)</td>
+                        <td>75000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Total Recived Amount(INR)</td>
+                        <td>6000.00</td>
+                      </tr>
+                        <tr>
+                        <td>Total Due Amount(INR)</td>
+                        <td>6000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Due Reasone</td>
+                        <td>sadadsad</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+	</div>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                        </ul>
+                    </div>
+					  <div class="tab-pane" role="tabpanel" id="step4">
+            <div class="panel-body">
+					<div class="panel with-nav-tabs panel-success">
+						
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" class="pull-center"
+								href="#cardPayment">Card</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="#netbanking">NetBanking</a></li>
+							<li><a data-toggle="tab" class="pull-center"
+								href="#walletpayment">Wallet</a></li>
+						    <li><a data-toggle="tab" class="pull-center"
+								href="#otherpayment">Other</a></li>
+						</ul>
+						<div class="panel-body">
+							<div class="tab-content">
+								<div id="cardPayment" class="tab-pane fade in active">
+								    <div class="col-sm-8">
+													<div class="col-sm-12 padding-zero">
+													<div class="col-sm-6">
+														<div class="inputer">
+															<div class="input-wrapper">
+																	<input type="text" class="form-control" placeholder="NAME ON CARD" name="nameoncard" required>
+															</div>
+														</div>
+													</div>	
+													<div class="col-sm-5">
+														<div class="inputer">
+															<div class="input-wrapper">
+																	<input type="text" class="form-control" placeholder="CARD NUMBER" name="cardnumber" required>
+															</div>
+														</div>
+									                </div>
+													  </div>
+												<div class="col-sm-12 padding-zero">
+												<div class="col-sm-8">
+															<div class="input-wrapper">
+														   <h5>EXPIRATION</h5>
+														   <div class="col-sm-3">
+																	<input type="number" class="form-control"  value="6" min="1" />	
+															</div>
+															<div class="col-sm-4">
+																	<input type="number" class="form-control"   value="1988" min="1" />	
+													      </div>
+													  </div>
+													 </div>
+													 	<div class="col-sm-4">
+													<div class="inputer">
+															<div class="input-wrapper">										
+														<input type="text" class="form-control" placeholder="CVV NUMBER" name="cvvnumber" max=4 min=3 requried>
+													</div>
+													</div>
+													</div>
+									              </div>
+													
+												</div>	
+								
+								</div>
+								<div id="netbanking" class="tab-pane fade">
+					            		<div class="swit">								
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" checked=""><i></i>Andhra Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Allahabad Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Bank of Baroda</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Canara Bank</label> </div></div>	
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>IDBI Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Icici Bank</label> </div></div>	
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Indian Overseas Bank</label> </div></div>	
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Punjab National Bank</label> </div></div>	
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>South Indian Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>State Bank Of India</label> </div></div>		
+												</div>
+												<div class="swit">								
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" checked=""><i></i>City Union Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>HDFC Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>IndusInd Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Syndicate Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Deutsche Bank</label> </div></div>	
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Corporation Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>UCO Bank</label> </div></div>	
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Indian Bank</label> </div></div>	
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Federal Bank</label> </div></div>	
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>ING Vysya Bank</label> </div></div>	
+												</div>
+									
+								</div>
+
+								<div id="walletpayment" class="tab-pane fade">
+											<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" checked=""><i></i>PayTM</label> </div></div>
+											<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>PayPal</label> </div></div>
+
+								</div>
+								<div id="otherpayment" class="tab-pane fade">
+											<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" checked=""><i></i>Cash</label> </div></div>
+											<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Chqueu</label> </div></div>
+
+								</div>
+								
+								</div><!-- PAGE CONTENT ENDS -->
+								</div>
+							
+					       </div>
+	               </div>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="complete">
+                             
+                         <object data="data/yesbankpay.pdf" type="application/pdf" class="form-control" style="width:900px; height:400px;">
+							<a href="data/yesbankpay.pdf">yesbankpay.pdf</a>
+						</object>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+</div><!--.display-animation-->
+ 
  
 <div id="venderdetails" style="display: none">
 <div class="panel-body">
@@ -1346,7 +2304,31 @@ if (!$_SESSION['logon']){
 		</div>
 	</div>
  </div>
+  <div id="stockupdateModal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+   <div class="modal-dialog modal-md">
   
+   <div class="modal-content">
+   
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Product Details</h4>
+      </div>
+	  <div class="modal-body">
+         	<div class="panel-body">
+				<div class="form-group">
+				        <label for="bankname">Purchase Recived ID</label>
+						<input type="text" name="productrecciveid" id="productrecciveid" class="form-control" placeholder="Product Recive ID">
+				</div>
+					<button type="submit" id="usersearch" class="btn btn-default"  data-dismiss="modal">Processed</button>
+			</div>
+			
+			  <div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+                 </div>
+	   </div>
+	   </div>
+  </div>
 </div>
 </body>
 </div>
@@ -1355,68 +2337,41 @@ $('a').on('click', function(){
    var target = $(this).attr('rel');
    $("#"+target).show().siblings("div").hide();
 });
-</script>
-<script type="text/javascript">
-	
-$(document).ready(function()
-{
-$('#productcatagory').on('change',function()
-{
-var id =$(this).val();
-if(id)
-{
-$.ajax
-({
-type:'POST',
-url:'process/get_subcategory.php',
-data:'id='+id,
-success:function(data)
-{
 
-$('#subcatagory').html(data);
+$(document).ready(function () {
+    //Initialize tooltips
+    $('.nav-tabs > li a[title]').tooltip();
+    
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 
-}
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+
+    });
+    $(".prev-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+
+    });
 });
-}else
-{
-$('#subcatagory').html('<option value=””>Select Category First</option>');
 
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
 }
-
-});
-
-});
-</script>
-  <script type="text/javascript">
-function change_vendorname()
-{
-	
-	var selected_val=$( "#vendername option:selected" ).val();
-	//alert(selected_text);
-														
-	$('#venderid').val(selected_val);
-													
-}
-function change_carat()
-{
-	var selected_text=$( "#carat option:selected" ).text();
-	//alert(selected_text);
-	if (selected_text == '14KT')
-	{		
-	$('#pureweight').val(60);
-	}
-	else if (selected_text == '18KT')
-	{		
-	$('#pureweight').val(70);
-	}
-	else if (selected_text == '22KT')
-	{		
-	$('#pureweight').val(80);
-	}
-	else 
-	{
-	$('#pureweight').val(90);	
-	}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
 }
 </script>
-	</html>
+  </html>
