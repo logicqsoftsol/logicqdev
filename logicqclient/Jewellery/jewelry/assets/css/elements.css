@@ -1,42 +1,3 @@
-/*
-Pleasure Admin Dashboard Theme (elements.css)
----------------------------
-TABLE OF CONTENTS:
-1 - Typography
-2 - Buttons
-3 - Badges
-4 - Alerts
-5 - Notes
-6 - Progress Bars
-7 - Forms
-8 - Panels
-9 - Navs Tabs
-10 - Responsive Tables
-11 - Modals
-12 - Cards
-13 - Lists
-14 - Messages
-15 - Footer Links
-16 - Bg Colors
-17 - Charts
-18 - Pricing Tables
-19 - Misc
-20 - Others
-21 - User Pages
-22 - Error Pages
-23 - Coming Soon
-24 - About Us
-25 - Contact Us
-26 - Invoice
-27 - Search Results
-28 - Timeline
-29 - Helpers
-30 - Mobile
----------------------------
-*/
-/*
-1 - Typography
-*/
 p {
   margin-bottom: 20px;
 }
@@ -4324,7 +4285,7 @@ fieldset[disabled] .btn-flat.active {
   padding-right: 0;
   box-shadow: none;
   border: none;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #2095f2;
   border-radius: 0;
   background: transparent;
 }
