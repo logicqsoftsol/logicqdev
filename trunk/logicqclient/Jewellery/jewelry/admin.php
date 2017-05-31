@@ -214,11 +214,10 @@ if (!$_SESSION['logon']){
           </a>
           <ul class="treeview-menu">
             <li><a href="#" rel="supplierlist" class="pull-center"><i class="fa fa-circle-o"></i> Supplier List  </a></li>
-            <li><a href="#" rel="supplierproductlist" class="pull-center"><i class="fa fa-circle-o"></i> Supplier Product List</a></li>
+            <li><a href="#" rel="supplierproductlist" class="pull-center"><i class="fa fa-circle-o"></i> Supplier Product catalogue</a></li>
 			 <li><a href="#" rel="purchasedetails" class="pull-center"><i class="fa fa-circle-o"></i>Purchase Details </a></li>		
             <li><a href="#" rel="recivedDetails" class="pull-center"><i class="fa fa-circle-o"></i> Recived Details </a></li>
-			<li><a href="#" rel="paymentddetails" class="pull-center"><i class="fa fa-circle-o"></i> Payment Details </a></li>	
-			<li><a href="#" rel="pre-orderdetails" class="pull-center"><i class="fa fa-circle-o"></i> Pre-Order Details </a></li>			
+			<li><a href="#" rel="paymentddetails" class="pull-center"><i class="fa fa-circle-o"></i> Payment Details </a></li>			
 		</ul>
         </li>
 		 <li class="treeview">
@@ -299,8 +298,7 @@ if (!$_SESSION['logon']){
 
     <!-- Main content -->
  <div class="col-md-12 container">
-  
-  <div  id="producttable" style="display: none">
+<div  id="producttable" style="display: none">
  	<div class="panel-body">
 		<div class="table-responsive">
 			<table class="table table-bordered table-fixed table-hover">
@@ -318,72 +316,75 @@ if (!$_SESSION['logon']){
  
     <tr class ="success">
 		<th class="pull-center">Product Name</th>
-		<th class="pull-center">Jewellery Type</th>
-		<th class="pull-center">Degine Type</th>
-		<th class="pull-center">Available Quantity</th>
-		<th class="pull-center">Inventory Last Update</th>
+		<th class="pull-center">Material Type</th>
+		<th class="pull-center">Degine Category</th>
+		<th class="pull-center">Catelogue Name</th>
+		<th class="pull-center">Rating</th>
+		<th class="pull-center">Comment</th>
 	</tr>
 	
       <tr>
         <td>Necklace</td>
         <td>Gold</td>
 		<td>round neck</td>
-        <td>2 Pices</td>
-		<td>12/04/17</td>
+		<td>Neck Catelogue</td>
+		<td>*****</td>
+		<td>good degine</td>
 		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
 		<td><a><span class="glyphicon glyphicon-edit"></span>Delete</a></td>
 		</tr>
-      <tr>
-         <td>Ring</td>
+       <tr>
+        <td>Necklace</td>
         <td>Gold</td>
 		<td>round neck</td>
-        <td>10 pices</td>
-		<td>12/04/17</td>
-		<td><a><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
+		<td>Neck Catelogue</td>
+		<td>*****</td>
+		<td>good degine</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
 		<td><a><span class="glyphicon glyphicon-edit"></span>Delete</a></td>
-      </tr>
-      <tr>
-         <td>Bracelet</td>
-        <td>silver</td>
+	</tr>
+     <tr>
+        <td>Necklace</td>
+        <td>Gold</td>
 		<td>round neck</td>
-        <td>25 pices</td>
-		<td>18/04/17</td>
-        <td><a><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
+		<td>Neck Catelogue</td>
+		<td>*****</td>
+		<td>good degine</td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
 		<td><a><span class="glyphicon glyphicon-edit"></span>Delete</a></td>
-      </tr>
+	</tr>
   </table>
 		</div>
 	</div>
  </div>
  
- <div  id="productadd" style="display: none">
+<div  id="productadd" style="display: none">
  	<div class="panel-body">
 				<div class="row">
-				<form id="productadd_submit" action="add_product.php" method="POST">
 					<br> <br>
 					<div class="panel with-nav-tabs panel-success">
 						
 						<ul class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab" class="pull-center"
-								href="#productbasicdetails">Product Basic Details</a></li>
+								href="#productbasicdetails">Product Details</a></li>
 							<li><a data-toggle="tab" class="pull-center"
-								href="#productpricedetails">Price Details</a></li>
-							<li><a data-toggle="tab" class="pull-center"
-								href="#productdescdetails">Description Details</a></li>
-							<li><a data-toggle="tab" class="pull-center"
-								href="#productimagedetails">Product Image Details</a></li>
+								href="#productimagedetails">Images</a></li>
 						</ul>
 						<div class="panel-body">
-						
 							<div class="tab-content">
 								<div id="productbasicdetails" class="tab-pane fade in active">
 								<div class="col-md-12">
-                                            <div class="form-group col-md-4">
-												<label for="productid">Product Id:</label>
-													<input type="text" name="productid" id="productid"
-														 class="form-control" 
-														placeholder="Product Id" readonly >
-											    </div>
+									    <div class="col-md-4">
+													<div class="form-group">
+										         <label for="productmatterialtype">Product Matterial Type :</label>
+												 <select class="form-control" id="productmatterialtype" name="productmatterialtype">
+													<option>Select</option>
+													<option>Gold</option>
+													<option>Diamond</option>
+                                                     <option>Silver</option>
+                                                   </select>
+												</div>
+												</div>
 											    <div class="form-group col-md-4">
 												<label for="barcode">Barcode:</label>
 													<input type="text" name="barcode" id="barcode"
@@ -401,46 +402,22 @@ if (!$_SESSION['logon']){
 										<div class="col-md-4">
 												<div class="form-group">
 												<label for="productcatagory">Product Category :</label>
-													<?php 
-												// include 'dbconfig.php';
-												// $query=$DB_con->query("Select * From category_details");
-												// $rowcount=$query->num_rows;
-												
-												 error_reporting(E_ALL ^ E_DEPRECATED);
-												
-												require_once 'sql.php' ;
-												  $SQL ="SELECT * FROM catagory_details";
-												  $result = mysql_query($SQL);
-												  $rowcount = mysql_num_rows($result);
-												
-												?>
-												
-												<select class="form-control" id="productcatagory" name="productcatagory">
-														<option selected="selected">Select Category</option>
-														<?php
-														if($rowcount>0){
-
-																while($row=mysql_fetch_array($result)){
-																	echo '<option value="'.$row['ID'].'">'.$row['DISPLAYNAME'].'</option>';
-															}
-														}
-														else{
-																echo '<option value="">Category Not Available</option>';
-
-															}
-														?>
-														
-												    </select>
+													<select class="form-control" id="productcatagory" name="productcatagory">
+														<option>Select</option>
+														<option>Earring</option>
+														<option>Pedant</option>
+                                                       <option>Chain</option>
+                                                    </select>
 												</div>
 												</div>
 												<div class="col-md-4">
 												<div class="form-group">
-												   <label for="subcatagory">Sub Category :</label>
+												   <label for="subcatagory">Sub Catagory :</label>
 												   <select class="form-control"id="subcatagory"name="subcatagory">
-												     <option selected="selected">Select Sub-Category</option>
-												     
+												     <option>Select</option>
+												     <option>Necklace</option>
+													 <option>Bracelet</option>
 												   </select>
-												
 												  </div>
 												  </div>
 												  <div class="col-md-4">
@@ -450,273 +427,86 @@ if (!$_SESSION['logon']){
 														 class="form-control" 
 														placeholder="Product Name">
 											    </div>
-												</div>	
-												</div>			
-											<div class="col-md-12">												
+												</div>
+                                       </div>													
+									    <div class="col-md-12">
 											<div class="col-md-4">
-													<div class="form-group">
-										         <label for="productmatterialtype">Product Matterial Type :</label>
-												 <select class="form-control" id="productmatterialtype" name="productmatterialtype">
-													<option>Select</option>
-													<option>Gold</option>
-													<option>Diamond</option>
-                                                     <option>Silver</option>
-                                                   </select>
-												</div>
-												</div>
-												<div class="col-md-4">
-												<div class="form-group">
-												  <label for="purchasedate">Purchase Date :</label>
-													<input type="date" name="purchasedate" id="purchasedate"
-														class="form-control" 
-														placeholder="Purchase Date">
-												</div>
-												</div>
-												<div class="col-md-4">
-												<div class="form-group">
-												   <label for="productsize">Product Size:</label>
-													<input type="text" name="productsize" id="productsize"
-														class="form-control" 
-														placeholder="Product Size">
-												</div>
-										
-											 </div>
-											 </div>
-								</div>
-
-
-								<div id="productpricedetails" class="tab-pane fade">
-
-									<h4 style="font-weight:bold">Quantity Details</h4>
-									<div class="row">
-											<div class="col-md-3 ">
-												<div class="form-group">
-												   <label for="vendername">Vender Name:</label>
-												<?php 	
-													$query ="SELECT * FROM vendor_details";
-												  $result_vd = mysql_query($query);
-												  $rowcount = mysql_num_rows($result_vd);
-												  
-												 ?>
-													
-													<select class="form-control" id="vendername" name="vendername" onchange="change_vendorname();">
-														<option selected="selected">Select Vendor Name</option>
-														<?php
-														if($rowcount>0){
-
-																while($row=mysql_fetch_array($result_vd)){
-																	echo '<option value="'.$row['ID'].'">'.$row['VENDOR_NAME'].'</option>';
-															}
-														}
-														else{
-																echo '<option value="">Vendors Not Available</option>';
-
-															}
-														?>
-														
-												    </select>
-												  
-												
-												  </div>
-												  
-												  <div class="form-group">
-												   <label for="venderid">Vender ID:</label>
+											   <div class="form-group">
+												   <label for="venderid">Catalogue Id:</label>
 													<input type="text" name="venderid" id="venderid"
 														class="form-control" 
-														value=""readonly >
-												  </div>
-												  <div class="form-group">
-												   <label for="venderprice">Vender Price:</label>
-													<input type="text" name="venderprice" id="venderprice"
+														placeholder="">
+												</div>
+											</div>	
+											<div class="col-md-4">
+												<div class="form-group">
+												   <label for="vendername">Catalogue Name:</label>
+													<input type="text" name="vendername" id="vendername"
 														class="form-control" 
 														placeholder="">
-												 </div>
-											</div>
-											<div class="col-md-3">
+												</div>
+											 </div>	
+											 <div class="col-md-4">
 												<div class="form-group">
-												   <label for="carat">Carat:</label>
-												   <select class="form-control"id="carat"name="carat">
-												     <option>Select</option>
-												     <option>14KT</option>
-													 <option>18KT</option>
-													 <option>22KT</option>
-													 <option>24KT</option>
-												   </select>
-												  </div>
-												  
-												  <div class="form-group">
-												   <label for="pureweight">Pure Weight:</label>
-													<input type="text" name="pureweight" id="pureweight"
-														class="form-control" 
-														placeholder="" value=""readonly>
-												  </div>
-												  
-								                 <div class="form-group">
 												   <label for="netweight">Net Weight:</label>
 													<input type="text" name="netweight" id="netweight"
 														class="form-control" 
 														placeholder="">
-												  </div>
-													
 												</div>
-												<div class="col-md-3">
-												<div class="form-group">
-												   <label for="meenaweight">Meena Weight:</label>
-													<input type="text" name="meenaweight" id="meenaweight"
-														class="form-control" 
-														placeholder="">
-												</div>
-												
-												  <div class="form-group">
-												   <label for="grossweight">Gross Weight:</label>
-													<input type="text" name="grossweight" id="grossweight"
-														class="form-control" 
-														placeholder="">
-												</div>
-												
-												 <div class="form-group">
-												   <label for="wastage">Wastage Weight:</label>
-													<input type="text" name="wastage" id="wastage"
-														class="form-control" 
-														placeholder="Wastage">
-												  </div>
-												</div>
-												<div class="col-md-3">
-												<div class="form-group">
-												   <label for="stone_used">Total Stone Used</label>
-													<input type="text" name="stone_used" id="stone_used"
-														class="form-control" 
-														placeholder="">
-												   </div>
-												<div class="form-group">
-												   <label for="stoneweight">Stone Weight</label>
-													<input type="text" name="stoneweight" id="stoneweight"
-														class="form-control" 
-														placeholder="">
-												    </div>
-													
-													<div class="form-group">
-												   <label for="stonecolor">Stone Color:</label>
-												   <select class="form-control"id="stonecolor"name="stonecolor">
-												     <option>Select</option>
-												     <option>Yellow</option>
-													 <option>White</option>
-													 <option>Pink</option>
-													 <option>Diamond</option>
-												   </select>
-												  </div>
-												</div>
+											</div>
 										</div>
-									<h4  style="font-weight:bold">Price Details</h4>
-									<div class="row">
-											<div class="col-md-3">
-												   <div class="form-group">
+										<div class="col-md-12">
+											<div class="col-md-4">
+												 <div class="form-group">
 												   <label for="mrpprice">MRP Price:</label>
 													<input type="text" name="mrpprice" id="mrpprice"
 														class="form-control" 
 														placeholder="">
 												 </div>
-												<div class="form-group">
-												   <label for="stoneprice">Stone Price:</label>
-													<input type="text" name="stoneprice" id="stoneprice"
-														class="form-control" 
-														placeholder="Stone Price">
-												 </div>
-												  <div class="form-group">
+											</div> 
+											<div class="col-md-4">
+												 <div class="form-group">
 												   <label for="makingcharges">Making Charges:</label>
 													<input type="text" name="makingcharges" id="makingcharges"
 														class="form-control" 
 														placeholder="Making Charges">
 												  </div>
-												</div>
-												<div class="col-md-3">
-												  <div class="form-group">
-												   <label for="vatprice">VAT Price:</label>
-													<input type="text" name="vatprice" id="vatprice"
-														class="form-control" 
-														placeholder="VAT Price">
-												  </div>
-												  <div class="form-group">
-												   <label for="hmtagprice">HM Tag Price:</label>
-													<input type="text" name="hmtagprice" id="hmtagprice"
-														class="form-control" 
-														placeholder="HM Tag Price">
-												 </div>
-												  <div class="form-group">
-												   <label for="discountprice">Discount Price:</label>
-													<input type="text" name="discountprice" id="discountprice"
-														class="form-control" 
-														placeholder="Discount Price">
-												 </div>
 											</div>
-									</div>
-								</div>
-
-								<div id="productdescdetails" class="tab-pane fade">
-									<div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3 ">
-												<div class="form-group">
-													<label for="productstyle">Degine Style:</label>
-													<select class="form-control"id="productstyle"name="productstyle">
-												     <option>Select</option>
-												     <option>Stud</option>
-													 <option>Hoop</option>
-													 <option>Jhumka</option>
-													 <option>Drop</option>
-												   </select>
-												   </div>
-												   
-													<div class="form-group">
-													 <label for="metalcolor">Avilable Color:</label>
-													<select class="form-control"id="metalcolor"name="metalcolor">
-														<option>Yellow</option>
-														<option>Silver</option>
-														<option>Bicolor</option>
-												   </select>
-												    </div>
-													<div class="form-group">
-													 <label for="gender">Applicable Geneder</label>
-													<select class="form-control"id="gender"name="gender">
-												      <option>Select</option>
-												      <option>Men</option>
-													  <option>Women</option>
-													  <option>Kids-Girl</option>
-													  <option>Kids-Boys</option>
-													  <option>All</option>
-												   </select>
-												   </div>
-											</div>
-										<div class="col-md-3 ">
+						               </div>
+									<div class="col-md-12">
+									<div class="col-md-4">
 													<div class="form-group">
 													 <label for="gender">Description Text</label>
 													<textarea class="form-control" id="desctext"name="desctext">
 												    </textarea>
 												   </div>
+										</div>
+										<div class="col-md-4">
 												   	<div class="form-group">
 													 <label for="gender">Degine Description</label>
 													<textarea class="form-control" id="deginedesc"name="deginedesc">
 												    </textarea>
 												   </div>
+										</div>
+										<div class="col-md-4">
 												   <div class="form-group">
 													 <label for="gender">Technical Description</label>
 													<textarea class="form-control" id="technicaldesc"name="technicaldesc">
 												    </textarea>
 												   </div>
-										</div>
-										
-										</div>
+										</div>	
+									</div>										
 								</div>
-	
-								
-									<div id="productimagedetails" class="tab-pane fade">
+
+								<div id="productimagedetails" class="tab-pane fade">
 									<div>
-									<form action="./dummy.html" class="dropzone well" id="dropzone">
+									 <form action="./dummy.html" class="dropzone well" id="dropzone">
 										<div class="fallback">
 											<input name="file" type="file" multiple="" />
 										</div>
-									</form>
-								</div>
-												<div id="preview-template" class="hide">
+									 </form>
+								  </div>
+								  		<div id="preview-template" class="hide">
 									<div class="dz-preview dz-file-preview">
 										<div class="dz-image">
 											<img data-dz-thumbnail="" />
@@ -758,28 +548,23 @@ if (!$_SESSION['logon']){
 									</div>
 								</div><!-- PAGE CONTENT ENDS -->
 
-								</div>
-							<div class="modal-footer">
-								<button type="submit" id="productadd_submit" class="btn btn-default"
-								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>ADD NEW PRODUCT</button>
-								<button type="button" class="btn btn-default"
-								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>RESET</button>
-								</div>
+								
+						</div>
+	
+								
+							
+							
 					       </div>
-						   </form>
 				    </div>
-					
 			      </div>
-				  </form>
 			  </div>
 	</div>
  </div>
-   
- <div  id="productbulkupload" style="display: none">
+
+<div  id="productbulkupload" style="display: none">
 </div>
 
-
-  <div  id="salesreport" style="display: none">
+<div  id="salesreport" style="display: none">
  	<div class="panel-body">
 		<div class="table-responsive">
 			<table class="table table-bordered table-fixed table-hover">
@@ -837,7 +622,7 @@ if (!$_SESSION['logon']){
 	</div>
  </div>
 
-   <div  id="issuebills" style="display: none">
+<div  id="issuebills" style="display: none">
  	
 	<div class="panel-header">
 	  <a data-toggle="modal" class="btn btn-default pull-right" data-target="#createbillmodal"><span class="glyphicons glyphicons-file-plus"></span>Create New Bill</a>
@@ -893,8 +678,7 @@ if (!$_SESSION['logon']){
 	</div>
  </div>
  
- 
-  <div  id="salesclosingreport" style="display: none">
+<div  id="salesclosingreport" style="display: none">
 	<div class="panel-body">
 		<div class="table-responsive">
 			<table class="table table-bordered table-fixed table-hover">
@@ -975,9 +759,8 @@ if (!$_SESSION['logon']){
                 </div>
 	</div>
 	</div>
-	
-	
-  <div  id="supplierlist" style="display: none">
+		
+<div  id="supplierlist" style="display: none">
  	<div class="panel-body">
 		<div class="table-responsive">
 			<table class="table table-bordered table-fixed table-hover">
@@ -1033,35 +816,24 @@ if (!$_SESSION['logon']){
 	</div>
  </div>
  
- 
- <div  id="supplierproductlist" style="display: none">
+<div  id="supplierproductlist" style="display: none">
    
       <li class="umbrella hidden-xs">			
         <div id="umbrella" class="list-inline unmargin">
           <div class="cart-link">
-            <a href="cart.html" class="dropdown-toggle dropdown-link" data-toggle="dropdown">
-              <i class="sub-dropdown1"></i>
-              <i class="sub-dropdown"></i>              
+            <a class="btn btn-default" data-toggle="modal" data-target="#checkoutmodal">              
               <div class="num-items-in-cart">
                 <span class="icon">
-                  Cart
-                  <span class="number">0</span>
+                 Purchase Cart
+                  <span class="number">1</span>
                 </span>
               </div>
             </a>
-
-            
-            <div id="cart-info" class="dropdown-menu">
-              <div id="cart-content">
-                <div class="loading">
-                  <img src="assets/images/loadera67f.gif" alt="" />
-                </div>
-              </div>
-            </div>
-            
           </div>
         </div>
       </li>
+	  <br></br>
+	  <a class="btn btn-default pull-right" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Add Catelogue</a>
 	  
  	<div class="panel-body">
 		<div class="table-responsive">
@@ -1079,51 +851,53 @@ if (!$_SESSION['logon']){
 					</ul>	
  
     <tr class ="success">
-	    <th class="pull-center">Id</th>
-		<th class="pull-center">Name</th>
+	    <th class="pull-center">Catelogue Id</th>
+		<th class="pull-center">Catelogue Name</th>
+		<th class="pull-center">Vendor Id</th>
 		<th class="pull-center">Item Category</th>
 		<th class="pull-center">Item Sub-Category</th>
 		<th class="pull-center">Product ID</th>
 		<th class="pull-center">Item Degine Type</th>
-		<th class="pull-center">Item Price</th>
 	</tr>
 	
       <tr>
         <td>DS1233</td>
+		<td>ASSSDASA</td>
         <td>Radha Mohan Charu</td>
 		<td>GOld</td>
         <td>Bracelates</td>
 		<td>PR12345</td>
 		<td>Chain</td>
 		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
-		<td><a><span class="glyphicon glyphicon-edit"></span>Place Order</a></td>
+		<td><a data-toggle="modal" data-target="#quantitymodal"><span class="glyphicon glyphicon-edit"></span>Place Order</a></td>
 		</tr>
        <tr>
         <td>DS1233</td>
+		<td>ASSSDASA</td>
         <td>Radha Mohan Charu</td>
 		<td>GOld</td>
         <td>Bracelates</td>
 		<td>PR12346</td>
 		<td>Bold Chain</td>
 		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
-		<td><a data-toggle="modal" data-target="#addtocart"><span class="glyphicon glyphicon-edit"></span>Place Order</a></td>
+		<td><a data-toggle="modal" data-target="#quantitymodal"><span class="glyphicon glyphicon-edit"></span>Place Order</a></td>
 	  </tr>
        <tr>
         <td>DS1233</td>
+		<td>ASSSDASA</td>
         <td>Radha Mohan Charu</td>
 		<td>GOld</td>
         <td>Bracelates</td>
 		<td>PR12347</td>
 		<td>Plain</td>
 		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
-		<td><a data-toggle="modal" data-target="#addtocart"><span class="glyphicon glyphicon-edit"></span>Place Order</a></td>
+		<td><a data-toggle="modal" data-target="#quantitymodal"><span class="glyphicon glyphicon-edit"></span>Place Order</a></td>
 	   </tr>
   </table>
 		</div>
 	</div>
  </div>
-	
-	
+		
 <div  id="purchasedetails" style="display: none">
  	<div class="panel-body">
 	<div class="table-responsive">
@@ -1141,58 +915,62 @@ if (!$_SESSION['logon']){
 					</ul>	
  
     <tr class ="success">
-	    <th class="pull-center">Supplier Name</th>
-		<th class="pull-center">Item Name</th>
-		<th class="pull-center">Item Degine Type</th>
-		<th class="pull-center">Item Quantity</th>
-		<th class="pull-center">Item Total Price</th>
-		<th class="pull-center">Payment Status</th>
-		<th class="pull-center">Last Order Date</th>
+	    <th class="pull-center">Purchase Id</th>
+		<th class="pull-center">Purchase Date</th>
+		<th class="pull-center">Supplier Id</th>
+		<th class="pull-center">Supplier Name</th>
 		<th class="pull-center">Excepted Delivery Date</th>
+		<th class="pull-center">Payment Status</th>
+		<th class="pull-center">Comment</th>
+		<th class="pull-center">Invoice No</th>
+		
 	</tr>
 	
       <tr>
-        <td>DS1233</td>
-        <td>Bracelates</td>
-		<td>Chain</td>
-        <td>10</td>
-		<td>12000</td>
-		<td>Advance</td>
-		<td>2017-09-09</td>
-		<td>2017-09-15</td>
-		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
-		<td><a><span class="glyphicon glyphicon-edit"></span>Modify Order</a></td>
+        <td>DD_PUARCHE_01</td>
+        <td>30-May-2017</td>
+		<td>DDASADF</td>
+        <td>Rakesh Mheta</td>
+		<td>02-June-2017</td>
+		<td>N/A</td>
+		<td>Yet to recive</td>
+		<td>DD/INV/004</td>
+		<td><a data-toggle="modal" data-target="#productpurchasemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
+		<td><a data-toggle="modal" data-target="#puarcherreciptmodel"><span class="glyphicon glyphicon-edit"></span>Print</a></td>
 		</tr>
-             <tr>
-        <td>DS1233</td>
-        <td>Bracelates</td>
-		<td>Chain</td>
-        <td>10</td>
-		<td>12000</td>
-		<td>Advance</td>
-		<td>2017-09-09</td>
-		<td>2017-09-15</td>
-		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
-		<td><a><span class="glyphicon glyphicon-edit"></span>Modify Order</a></td>
-		</tr>
-             <tr>
-        <td>DS1233</td>
-        <td>Bracelates</td>
-		<td>Chain</td>
-        <td>10</td>
-		<td>12000</td>
-		<td>Advance</td>
-		<td>2017-09-09</td>
-		<td>2017-09-15</td>
-		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>view Details</a></td>
-		<td><a><span class="glyphicon glyphicon-edit"></span>Modify Order</a></td>
-		</tr>
+	 <tr>
+        <td>DD_PUARCHE_01</td>
+        <td>30-May-2017</td>
+		<td>DDASADF</td>
+        <td>Rakesh Mheta</td>
+		<td>02-June-2017</td>
+		<td>N/A</td>
+		<td>Yet to recive</td>
+		<td> </td>
+		<td><a data-toggle="modal" data-target="#productpurchasemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
+	    <td><a data-toggle="modal" data-target="#puarcherreciptmodel"><span class="glyphicon glyphicon-edit"></span>Print</a></td>
+	</tr>
+      <tr>
+       <td>DD_PUARCHE_01</td>
+        <td>30-May-2017</td>
+		<td>DDASADF</td>
+        <td>Rakesh Mheta</td>
+		<td>02-June-2017</td>
+		<td>N/A</td>
+		<td>Yet to recive</td>
+		<td> </td>
+		<td><a data-toggle="modal" data-target="#productpurchasemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
+	    <td><a data-toggle="modal" data-target="#puarcherreciptmodel"><span class="glyphicon glyphicon-edit"></span>Print</a></td>
+	</tr>
   </table>
 		</div>
 	</div>
  </div>
 	
 <div  id="recivedDetails" style="display: none">
+	<div class="panel-header">
+        <a class="btn btn-default pull-right" data-toggle="modal" data-target="#processreciveModal"><span class="glyphicon glyphicon-edit"></span>Process Purchase</a>
+	</div>
  	<div class="panel-body">
 	<div class="table-responsive">
 			<table class="table table-bordered table-fixed table-hover">
@@ -1209,64 +987,61 @@ if (!$_SESSION['logon']){
 					</ul>	
  
     <tr class ="success">
-	    <th class="pull-center">Supplier Name</th>
-		<th class="pull-center">Item Name</th>
-		<th class="pull-center">Item Degine Type</th>
-		<th class="pull-center">Item Quantity</th>
-		<th class="pull-center">Item Per Unit Price</th>
-		<th class="pull-center">Item Total Price</th>
-		<th class="pull-center">Order Date</th>
+	    <th class="pull-center">Recived Id</th>
+		<th class="pull-center">Puarche Id</th>
+		<th class="pull-center">Puarche Date</th>
+		<th class="pull-center">Quantity</th>
+		<th class="pull-center">Total Weight</th>
+		<th class="pull-center">Recived Date</th>
 		<th class="pull-center">Recive By</th>
-		<th class="pull-center">Recive Date</th>
+		<th class="pull-center">Payment By</th>
 		<th class="pull-center">Payment Status</th>
 		<th class="pull-center">Comments</th>
 	</tr>
-	
       <tr>
-        <td>Ram Hari Prasad</td>
-        <td>Bracelates</td>
-		<td>Chain</td>
+        <td>DDREC_123</td>
+        <td>DD_PUARCHE_01</td>
+		<td>30-May-2017</td>
         <td>10</td>
-		<td>1000</td>
-		<td>9000</td>
+		<td>100 mg</td>
+		<td>30-May-2017</td>
 		<td>Satyajit </td>
-		<td>2017-09-07</td>
-		<td>2017-09-09</td>
-		<td>paid</td>
-		<td>clear all due </td>
-		</tr>
-        <tr>
-        <td>Ram Hari Prasad</td>
-        <td>Bracelates</td>
-		<td>Chain</td>
+		<td>Glod</td>
+		<td>due</td>
+		<td>Need to lear rest amount by gold</td>
+		<td><a data-toggle="modal" data-target="#orderrecivemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
+	  </tr>
+      <tr>
+        <td>DDREC_123</td>
+        <td>DD_PUARCHE_01</td>
+		<td>30-May-2017</td>
         <td>10</td>
-		<td>1000</td>
-		<td>9000</td>
+		<td>100 mg</td>
+		<td>30-May-2017</td>
 		<td>Satyajit </td>
-		<td>2017-09-07</td>
-		<td>2017-09-09</td>
-		<td>paid</td>
-		<td>clear all due </td>
-	   </tr>
-                  <tr>
-        <td>Ram Hari Prasad</td>
-        <td>Bracelates</td>
-		<td>Chain</td>
+		<td>Glod</td>
+		<td>due</td>
+		<td>Need to lear rest amount by gold</td>
+		<td><a data-toggle="modal" data-target="#orderrecivemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
+	  </tr>
+      <tr>
+        <td>DDREC_123</td>
+        <td>DD_PUARCHE_01</td>
+		<td>30-May-2017</td>
         <td>10</td>
-		<td>1000</td>
-		<td>9000</td>
+		<td>100 mg</td>
+		<td>30-May-2017</td>
 		<td>Satyajit </td>
-		<td>2017-09-07</td>
-		<td>2017-09-09</td>
-		<td>paid</td>
-		<td>clear all due </td>
-		</tr>
+		<td>Glod</td>
+		<td>due</td>
+		<td>Need to lear rest amount by gold</td>
+		<td><a data-toggle="modal" data-target="#orderrecivemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
+	  </tr>
   </table>
 		</div>
 	</div>
  </div>	
-	
-	
+		
 <div  id="stockbalances" style="display: none">
 	<div class="panel-header">
  <a class="btn btn-default pull-right" data-toggle="modal" data-target="#stockupdateModal"><span class="glyphicon glyphicon-edit"></span>Update</a>
@@ -1354,8 +1129,8 @@ if (!$_SESSION['logon']){
     <tr class ="success">
 	    <th class="pull-center">Item Id</th>
 		<th class="pull-center">Item Name</th>
-		<th class="pull-center">Order Id</a></th>
-		<th class="pull-center">Supplier Id</a></th>
+		<th class="pull-center"><a>Order Id</a></th>
+		<th class="pull-center"><a>Supplier Id</a></th>
 		<th class="pull-center">Supplier Name</th>
 		<th class="pull-center">Last Stock Update</th>
 		<th class="pull-center">Stock Update By</th>
@@ -1390,10 +1165,9 @@ if (!$_SESSION['logon']){
 		</tr>
   </table>
 		</div>
-	</div>
+</div>
+</div>
 
-</div>	
-	
 <div  id="customerlist" style="display: none">
 	<div class="panel-body">
 		<div class="table-responsive">
@@ -1447,7 +1221,7 @@ if (!$_SESSION['logon']){
  </div>
  </div> </div>
  
- <div id="customerwizard" style="display: none">
+<div id="customerwizard" style="display: none">
         <div class="wizard">
             <div class="wizard-inner">
                 <div class="connecting-line"></div>
@@ -1848,7 +1622,6 @@ if (!$_SESSION['logon']){
         </div>
 </div><!--.display-animation-->
  
- 
 <div id="venderdetails" style="display: none">
 <div class="panel-body">
 
@@ -1912,8 +1685,104 @@ if (!$_SESSION['logon']){
 										</div>
 								</div>
 								</div>
+
+<div id="checkoutdetails" style="display: none">
+ <div class="panel-body">
+<table class="table table-bordered table-fixed table-hover">
+			 <tr class ="success">
+	    <th class="pull-center">Catelogue Id</th>
+		 <th class="pull-center">Catelogue Name</th>
+		 <th class="pull-center">Product Id</th>
+		 <th class="pull-center">Item Name</th>
+		 <th class="pull-center">Item For</th>
+		 <th class="pull-center">Size</th>
+		 <th class="pull-center">Carat</th>
+		 <th class="pull-center">Net Weight</th>
+		 <th class="pull-center">Stone Used</th>
+		 <th class="pull-center">Stone Color</th>
+		 <th class="pull-center">Quantity</th>
+		 
+	  </tr>
+	
+      <tr>
+        <td>DS1233</td>
+		 <td>ASsdsdsdsald</td>
+		 <td>Bracletes</td>
+		<td>PROD_1234</td>
+        <td>Men</td>
+		<td><input type="text" class="form-control" value="27-24"></td>
+		<td><input type="text" class="form-control" value="24"></td>
+		<td><input type="text" class="form-control" value="10-25"></td>
+		<td><input type="text" class="form-control" value="Y"></td>
+		<td><input type="text" class="form-control" value="Any"></td>
+		<td><input type="text" class="form-control" value="10">10</input></td>
+	 </tr>
+	   <tr>
+        <td>DS1234</td>
+		 <td>ASsdsdsdsa</td>
+		 <td>Bracletes</td>
+		<td>PROD_1235</td>
+        <td>Women</td>
+		<td><input type="text" class="form-control">25-22</input></td>
+		<td><input type="text" class="form-control">24</input></td>
+		<td><input type="text" class="form-control">10-25</input></td>
+		<td><input type="text" class="form-control">Y</input></td>
+		<td><input type="text" class="form-control">Rose/Red/Yellow</input></td>
+		<td><input type="text" class="form-control">10</input></td>
+	 </tr>
+   </table>
+<table class="table table-bordered table-fixed table-hover">
+			 <tr class ="success">
+	    <th class="pull-center">Catelogue Id</th>
+		 <th class="pull-center">Catelogue Name</th>
+		 <th class="pull-center">Product Id</th>
+		 <th class="pull-center">Item Name</th>
+		 <th class="pull-center">Item For</th>
+		 <th class="pull-center">Size</th>
+		 <th class="pull-center">Carat</th>
+		 <th class="pull-center">Net Weight</th>
+		 <th class="pull-center">Stone Used</th>
+		 <th class="pull-center">Stone Color</th>
+		 <th class="pull-center">Quantity</th>
+		 
+	  </tr>
+	
+      <tr>
+        <td>DS1233</td>
+		 <td>ASsdsdsdsald</td>
+		 <td>Bracletes</td>
+		<td>PROD_1234</td>
+        <td>Men</td>
+		<td><input type="text" class="form-control" value="27-24"></td>
+		<td><input type="text" class="form-control" value="24"></td>
+		<td><input type="text" class="form-control" value="10-25"></td>
+		<td><input type="text" class="form-control" value="Y"></td>
+		<td><input type="text" class="form-control" value="Any"></td>
+		<td><input type="text" class="form-control" value="10">10</input></td>
+	 </tr>
+	   <tr>
+        <td>DS1234</td>
+		 <td>ASsdsdsdsa</td>
+		 <td>Bracletes</td>
+		<td>PROD_1235</td>
+        <td>Women</td>
+		<td><input type="text" class="form-control">25-22</input></td>
+		<td><input type="text" class="form-control">24</input></td>
+		<td><input type="text" class="form-control">10-25</input></td>
+		<td><input type="text" class="form-control">Y</input></td>
+		<td><input type="text" class="form-control">Rose/Red/Yellow</input></td>
+		<td><input type="text" class="form-control">10</input></td>
+	 </tr>
+   </table>
+ 
 </div>
 </div>
+
+</div>
+</div>	 
+ </div> 
+  </div>
+
  <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -1925,8 +1794,7 @@ if (!$_SESSION['logon']){
 <aside>
  
   </aside>
-  
-  
+ 
   <!-- /product edit modal -->
   <div  id="productaddmodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
   <div class="modal-dialog modal-lg">
@@ -2330,13 +2198,212 @@ if (!$_SESSION['logon']){
 	   </div>
   </div>
 </div>
-</body>
+
+
+<div id="processreciveModal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+   <div class="modal-dialog modal-md">
+  
+   <div class="modal-content">
+   
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Recive Details</h4>
+      </div>
+	  <div class="modal-body">
+         	<div class="panel-body">
+				<div class="form-group">
+				        <label for="bankname">Purchase ID</label>
+						<input type="text" name="purchaseid" id="purchaseid" class="form-control" placeholder="Purchaseid Id">
+				</div>
+					<button type="submit" id="usersearch" class="btn btn-default"  data-dismiss="modal">Process</button>
+			</div>
+			
+			  <div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+                 </div>
+	   </div>
+	   </div>
+  </div>
 </div>
+
+  <div id="quantitymodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+   <div class="modal-dialog modal-md">
+  
+   <div class="modal-content">
+   
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Quantity Details</h4>
+      </div>
+	  <div class="modal-body">
+         	<div class="panel-body">
+			
+							<div class="table-responsive">
+						  <table class="table table-bordered table-fixed table-hover">
+							<tr class ="success">
+								<th class="pull-center">Supplier Name</th>
+								<th class="pull-center">Supplier ID</th>
+								<th class="pull-center">Catalogue Id</th>
+								<th class="pull-center">Category</th>
+								<th class="pull-center">Sub Category</th>
+								<th class="pull-center">Matrial Type</th>
+								<th class="pull-center">Carret</th>
+								<th class="pull-center">Size</th>
+								<th class="pull-center">Weight</th>
+							</tr>
+							<tr>
+								<td>RadhaMohan Jewellry</td>
+								<td>DD1234567</td>
+								<td>DDCAT6785</td>
+								<td>Ring</td>
+								<td>Chain Ring</td>
+								<td>Gold</td>
+								<td>22</td>
+								<td>10-20</td>
+								<td>10gm</td>
+							</tr>
+						</table>
+						</div>
+						
+						<label for="bankname">Quantity in Pices</label>
+						<input type="text" name="pquantity" id="pquantity" class="form-control" placeholder="Purchase Quantity">
+				
+			</div>
+			
+			  <div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Add to Cart</button>
+                <button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+				</div>
+	   </div>
+	   </div>
+  </div>
+</div>
+
+ <div id="checkoutmodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+   <div class="modal-dialog modal-md">
+  
+   <div class="modal-content">
+   
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Puarche Details</h4>
+      </div>
+	  <div class="modal-body">
+         	<div class="panel-body">
+	<table class="table table-bordered table-fixed table-hover">
+			 <tr class ="success">
+	    <th class="pull-center">Catelogue Id</th>
+		 <th class="pull-center">Catelogue Name</th>
+		 <th class="pull-center">Item Category</th>
+		 <th class="pull-center">Item Sub-Category</th>
+		 <th class="pull-center">Item Degine Type</th>
+		 <th class="pull-center">Quantity</th>
+	  </tr>
+	
+      <tr>
+        <td>DS1233</td>
+		 <td>ASsdsdsdsald</td>
+		<td>GOld</td>
+        <td>Bracelates</td>
+		<td>Chain</td>
+		<td>10</td>
+	 </tr>
+   </table>
+			</div>
+			  <div class="modal-footer">
+			   <button id="checkoutbutton" type="button" class="btn btn-default"><i class="fa fa-times-circle" aria-hidden="true"></i>Check Out</button>
+                <button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Continu Shopping</button>
+				</div>
+	   </div>
+	   </div>
+  </div>
+</div>
+
+
+
+<div id="productpurchasemodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+   <div class="modal-dialog modal-md">
+  
+   <div class="modal-content">
+   
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Puarche Details</h4>
+      </div>
+	  <div class="modal-body">
+         	<div class="panel-body">
+	<table class="table table-bordered table-fixed table-hover">
+			 <tr class ="success">
+	    <th class="pull-center">Catelogue Id</th>
+		 <th class="pull-center">Catelogue Name</th>
+		 <th class="pull-center">Product Id</th>
+		 <th class="pull-center">Item Name</th>
+		 <th class="pull-center">Item For</th>
+		 <th class="pull-center">Size</th>
+		 <th class="pull-center">Carat</th>
+		 <th class="pull-center">Net Weight</th>
+		 <th class="pull-center">Stone Used</th>
+		 <th class="pull-center">Stone Color</th>
+		 <th class="pull-center">Quantity</th>
+		 
+	  </tr>
+	
+      <tr>
+        <td>DS1233</td>
+		 <td>ASsdsdsdsald</td>
+		 <td>Bracletes</td>
+		<td>PROD_1234</td>
+        <td>Men</td>
+		<td><input type="text" class="form-control" value="27-24"></td>
+		<td><input type="text" class="form-control" value="24"></td>
+		<td><input type="text" class="form-control" value="10-25"></td>
+		<td><input type="text" class="form-control" value="Y"></td>
+		<td><input type="text" class="form-control" value="Any"></td>
+		<td><input type="text" class="form-control" value="10">10</input></td>
+	 </tr>
+	   <tr>
+        <td>DS1234</td>
+		 <td>ASsdsdsdsa</td>
+		 <td>Bracletes</td>
+		<td>PROD_1235</td>
+        <td>Women</td>
+		<td><input type="text" class="form-control">25-22</input></td>
+		<td><input type="text" class="form-control">24</input></td>
+		<td><input type="text" class="form-control">10-25</input></td>
+		<td><input type="text" class="form-control">Y</input></td>
+		<td><input type="text" class="form-control">Rose/Red/Yellow</input></td>
+		<td><input type="text" class="form-control">10</input></td>
+	 </tr>
+   </table>
+			</div>
+			  <div class="modal-footer">
+			   <button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Update</button>
+								<button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+				</div>
+	   </div>
+	   </div>
+  </div>
+</div>
+
+</body>
 <script type="text/javascript">
+$('#checkoutbutton').on('click', function(){
+  $('#checkoutmodal').modal('hide');
+  $('#supplierproductlist').hide();
+  $('#purchasedetails').show();
+});
+
 $('a').on('click', function(){
    var target = $(this).attr('rel');
    $("#"+target).show().siblings("div").hide();
 });
+
 
 $(document).ready(function () {
     //Initialize tooltips
