@@ -193,6 +193,9 @@ input:focus,
 .customer-links .login {
   position: relative;
 }
+.customer-links .goldrate {
+  position: relative;
+}
 .li-currency {
   display: block;
   float: right;
@@ -697,6 +700,12 @@ End Dropdown Cart
       padding-right: 30px;
 }
 #loginBox {
+  position: absolute;
+  right: 0;
+  left: auto;
+  z-index: 99999;
+}
+#goldrate {
   position: absolute;
   right: 0;
   left: auto;
@@ -5653,11 +5662,16 @@ ul#price-table {
   zoom: 1;
   margin-right: 15px;
 }
+.filter-tag-group .tag-group#coll-filter-3 ul.ref_3439822031 {
+	padding-left: 0;
+    margin-left: 0;
+    text-indent: 0;
+}
 .filter-tag-group .tag-group#coll-filter-3 ul > li {
   width: 100%;
 }
 .filter-tag-group .tag-group#coll-filter-1 ul > li a {
-  display: block;
+  
   background: transparent;
   border: 1px solid #eaeaea;
   height: 30px;

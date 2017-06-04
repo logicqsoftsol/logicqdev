@@ -936,10 +936,10 @@ if (!$_SESSION['logon']){
 		<td>Yet to recive</td>
 		<td>DD/INV/004</td>
 		<td><a data-toggle="modal" data-target="#productpurchasemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
-		<td><a data-toggle="modal" data-target="#puarcherreciptmodel"><span class="glyphicon glyphicon-edit"></span>Print</a></td>
+		<td><a href="invoice.php?purchaseid=DD_PUARCHE_01&sellerid=DDASADF"><span class="glyphicon glyphicon-edit"></span>Print</a></td>
 		</tr>
 	 <tr>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_PUARCHE_02</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>
@@ -948,10 +948,10 @@ if (!$_SESSION['logon']){
 		<td>Yet to recive</td>
 		<td> </td>
 		<td><a data-toggle="modal" data-target="#productpurchasemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
-	    <td><a data-toggle="modal" data-target="#puarcherreciptmodel"><span class="glyphicon glyphicon-edit"></span>Print</a></td>
+	    <td><a href="invoice.php?purchaseid=DD_PUARCHE_02&sellerid=DDASADF@"><span class="glyphicon glyphicon-edit"></span>Print</a></td>
 	</tr>
       <tr>
-       <td>DD_PUARCHE_01</td>
+       <td>DD_PUARCHE_03</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>

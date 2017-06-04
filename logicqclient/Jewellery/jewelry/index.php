@@ -119,30 +119,62 @@
     <a href="account/register.html" id="customer_register_link">Create an account</a>
   </li>
   
+  <li class="goldrate">
+    
+    <span id="loginButton" class="dropdown-toggle" data-toggle="dropdown">
+     <i class="fa fa-money" aria-hidden="true"></i>&nbsp; Rate Chart
+      <i class="sub-dropdown1"></i>
+      <i class="sub-dropdown"></i>
+    </span>
+
+    <!-- Customer Account Login -->
+    <div id="goldrate" class="dropdown-menu">
+	
+	Today Gold & Silver Rates (Per Gram)
+	
+	<table cellspacing="0" cellpadding="0">
+		  <tr align="center">
+			<th >Type</th>
+			<th>Rate</th>
+		  </tr>
+	
+	<?php error_reporting(E_ALL ^ E_DEPRECATED); 
+			 include "sql.php";
+			  $sql_gold ="SELECT * FROM gold_rate";
+              $result_grate = mysql_query($sql_gold);
+			  while ($get_goldrate = mysql_fetch_array($result_grate)) { 
+	?>
+		  <tr>
+			<td><?php echo $get_goldrate['gold_mattype']; ?></td>
+			<td><?php echo $get_goldrate['gold_rate_pergm']; ?></td>
+		  </tr>
+		  
+		  <?php   }
+			   mysql_close($db_handle);
+		?>
+		  
+	</table>
+
+	
+    </div>
+
+    
+  </li>
   
 </ul>
 
-        </li>
-		
-        
-        
-        <li id="widget-social">
+</li>
+
+  <li id="widget-social">
           <ul class="list-inline">
             
             <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a></li>
             <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-            
-            
             <li><a target="_blank" href="#" class="btooltip swing" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-            
-            
-            
-            
-          </ul>
-        </li>
-        
-      </ul>
-    </div>
+            </ul>
+  </li>
+ </ul>
+</div>
 
   </div>
 </div>
@@ -227,7 +259,7 @@
              <?php
 			  error_reporting(E_ALL ^ E_DEPRECATED);
 			  
-			 require_once  'sql.php';
+			 include  "sql.php";
 			  $SQL ="SELECT * FROM menu_details order by id";
               $result = mysql_query($SQL);
 			  while ($db_field = mysql_fetch_array($result)) {
@@ -351,7 +383,7 @@
    <div data-src="assets/images/slide-image-1.jpg">
         
         <div class="camera_caption camera_title_1 fadeIn">
-          <a href="collections/bracelets.html" style="color:#010101;">Live the moment</a>
+          <a href="collections/collections_with_filter.php" style="color:#010101;">Live the moment</a>
         </div>
         
 
@@ -371,7 +403,7 @@
 
         
         <div class="camera_cta_1">
-          <a href="collections/bracelets.html" class="btn">See Collection</a>
+          <a href="collections/collections_with_filter.php" class="btn">See Collection</a>
         </div>
         
 
@@ -380,7 +412,7 @@
       <div src="assets/images/slide-image-2a67f.jpg">
         
         <div class="camera_caption camera_title_2 moveFromLeft">
-          <a href="collections/sample-collection-with-left-slidebar.html" style="color:#666666;">Love’s embrace</a>
+          <a href="collections/collections_with_filter.php" style="color:#666666;">Love’s embrace</a>
         </div>
         
 
@@ -391,7 +423,7 @@
           <img src="assets/images/slide-image-caption-2a67f.png" alt="image_caption" />
         </div>
         <div class="camera_cta_2">
-          <a href="collections/sample-collection-with-left-slidebar.html" class="btn">See Collection</a>
+          <a href="collections/collections_with_filter.php" class="btn">See Collection</a>
         </div>
         
 
@@ -418,7 +450,7 @@
 
         
         <div class="camera_cta_3">
-          <a href="collections/sample-collection-with-right-slidebar.html" class="btn">See Collection</a>
+          <a href="collections/collections_with_filter.php" class="btn">See Collection</a>
         </div>
         
 
@@ -502,7 +534,7 @@
                 <div class="home_collections_item_inner">
                   <div class="collection-details">
                     
-                    <a href="collections/bracelets.html" title="Browse our Bracelets">
+                    <a href="collections/collections_with_filter.php" title="Browse our Bracelets">
                       
                       <img src="assets/images/3_largef441.png" alt="Bracelets" />
                       
@@ -511,7 +543,7 @@
                   <div class="hover-overlay">
                     <span class="col-name"><a href="collections/bracelets.html">Bracelets</a></span>
                     <div class="collection-action">
-                      <a href="collections/bracelets.html">See the Collection</a>
+                      <a href="collections/collections_with_filter.php">See the Collection</a>
                     </div>
                   </div>
                 </div>

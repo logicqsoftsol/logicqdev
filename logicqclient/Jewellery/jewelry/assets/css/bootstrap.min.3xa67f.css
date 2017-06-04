@@ -946,6 +946,9 @@ img {
 .img-rounded {
   border-radius: 6px;
 }
+.noBorder {
+    border:none !important;
+}
 .img-thumbnail {
   padding: 4px;
   line-height: 1.42857143;
@@ -2632,6 +2635,7 @@ pre code {
 }
 table {
   background-color: transparent;
+  border: none;
 }
 caption {
   padding-top: 8px;
@@ -2640,7 +2644,7 @@ caption {
   text-align: left;
 }
 th {
-  text-align: left;
+  text-align: center;
 }
 .table {
   width: 100%;
