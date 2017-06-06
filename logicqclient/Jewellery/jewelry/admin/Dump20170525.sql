@@ -59,7 +59,7 @@ CREATE TABLE `gold rate` (
 -- Dumping data for table `gold rate`
 --
 
-LOCK TABLES `gold rate` WRITE;
+LOCK TABLES `gold_rate` WRITE;
 /*!40000 ALTER TABLE `gold rate` DISABLE KEYS */;
 INSERT INTO `gold rate` VALUES (1001,'Platinum',3350),(1002,'Silver',40),(1003,'Silver Bar',42),(1004,'Gold 24C 999',2900),(1005,'Gold 24C 995',2850),(1006,'Gold 23C',2805),(1007,'Gold 22C',2750),(1008,'Gold 18C',2720);
 /*!40000 ALTER TABLE `gold rate` ENABLE KEYS */;

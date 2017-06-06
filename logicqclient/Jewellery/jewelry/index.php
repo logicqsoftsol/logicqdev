@@ -72,7 +72,7 @@
 
 <ul id="accounts" class="list-inline">
   <li class="my-account">
-    <a href="account/login.html">My Account</a>
+    <a href="account/login.php">My Account</a>
   </li>
   
   <li class="login">

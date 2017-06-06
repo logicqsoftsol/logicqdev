@@ -45,7 +45,7 @@ if (!$_SESSION['logon']){
 <script src="assets/js/app.min.js"></script>
 <script src="assets/js/custom.js"></script>
 <!-- inline scripts related to this page -->
-		<script type="text/javascript">
+ <script type="text/javascript">
 			jQuery(function($){
 			
 			try {
@@ -207,7 +207,7 @@ if (!$_SESSION['logon']){
           </li>
 	    <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Supplier Details</span>
+            <i class="fa fa-dashboard"></i> <span>Supplier</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -215,9 +215,20 @@ if (!$_SESSION['logon']){
           <ul class="treeview-menu">
             <li><a href="#" rel="supplierlist" class="pull-center"><i class="fa fa-circle-o"></i> Supplier List  </a></li>
             <li><a href="#" rel="supplierproductlist" class="pull-center"><i class="fa fa-circle-o"></i> Supplier Product catalogue</a></li>
-			 <li><a href="#" rel="purchasedetails" class="pull-center"><i class="fa fa-circle-o"></i>Purchase Details </a></li>		
-            <li><a href="#" rel="recivedDetails" class="pull-center"><i class="fa fa-circle-o"></i> Recived Details </a></li>
-			<li><a href="#" rel="paymentddetails" class="pull-center"><i class="fa fa-circle-o"></i> Payment Details </a></li>			
+		</ul>
+        </li>
+	   <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Payment/purchase</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#" rel="purchasedetails" class="pull-center"><i class="fa fa-circle-o"></i>Order Details</a></li>		
+            <li><a href="#" rel="recivedDetails" class="pull-center"><i class="fa fa-circle-o"></i>Process Order</a></li>
+			<li><a href="#" rel="paymentddetails" class="pull-center"><i class="fa fa-circle-o"></i>Process Payment</a></li>
+			<li><a href="#" rel="invoicedetails" class="pull-center"><i class="fa fa-circle-o"></i>Order Invoice Details</a></li>
 		</ul>
         </li>
 		 <li class="treeview">
@@ -299,6 +310,60 @@ if (!$_SESSION['logon']){
     <!-- Main content -->
  <div class="col-md-12 container">
 <div  id="producttable" style="display: none">
+
+ <li class="umbrella hidden-xs">			
+        <div id="umbrella" class="list-inline unmargin">
+          <div class="cart-link">
+            <a class="btn btn-default" data-toggle="modal" data-target="#checkoutmodal">              
+              <div class="num-items-in-cart">
+                <span class="icon">
+                 Purchase Cart
+                  <span class="number">1</span>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </li>
+
+	  
+	   <a href="#" rel="pre-order">
+                       <div class="col-lg-3 col-md-3">
+                                 <div class="panel info-box panel-white">
+                                <div class="panel-body">
+                                    <div class="info-box-stats">
+                                        <p class="counter">300</p>
+                                        <span class="info-box-title">Total product</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						</a>
+						<a href="#" rel="inprogress-order">
+						<div class="col-lg-3 col-md-3">
+                            <div class="panel info-box panel-white">
+                                <div class="panel-body">
+                                    <div class="info-box-stats">
+                                        <p class="counter">10</p>
+                                        <span class="info-box-title">Recent Product</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</a>
+					 <a href="#" rel="processed-order">		
+				      <div class="col-lg-3 col-md-3">
+                        <div class="panel info-box panel-white">
+                                <div class="panel-body">
+                                    <div class="info-box-stats">
+                                        <p class="counter">10</p>
+                                        <span class="info-box-title">Top 10 Product Degine</span>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+					 </a>
+	  <div class="col-md-12">
  	<div class="panel-body">
 		<div class="table-responsive">
 			<table class="table table-bordered table-fixed table-hover">
@@ -318,7 +383,7 @@ if (!$_SESSION['logon']){
 		<th class="pull-center">Product Name</th>
 		<th class="pull-center">Material Type</th>
 		<th class="pull-center">Degine Category</th>
-		<th class="pull-center">Catelogue Name</th>
+		<th class="pull-center">Item Code</th>
 		<th class="pull-center">Rating</th>
 		<th class="pull-center">Comment</th>
 	</tr>
@@ -327,36 +392,36 @@ if (!$_SESSION['logon']){
         <td>Necklace</td>
         <td>Gold</td>
 		<td>round neck</td>
-		<td>Neck Catelogue</td>
+		<td>DD12345</td>
 		<td>*****</td>
 		<td>good degine</td>
-		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
-		<td><a><span class="glyphicon glyphicon-edit"></span>Delete</a></td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Modify</a></td>
+		<td><a data-toggle="modal" data-target="#vendorListmodal"><span class="glyphicon glyphicon-edit"></span>PlaceOrder</a></td>
 		</tr>
        <tr>
         <td>Necklace</td>
         <td>Gold</td>
 		<td>round neck</td>
-		<td>Neck Catelogue</td>
+		<td>DD12346</td>
 		<td>*****</td>
 		<td>good degine</td>
-		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
-		<td><a><span class="glyphicon glyphicon-edit"></span>Delete</a></td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Modify</a></td>
+		<td><a data-toggle="modal" data-target="#vendorListmodal"><span class="glyphicon glyphicon-edit"></span>PlaceOrder</a></td>
 	</tr>
      <tr>
         <td>Necklace</td>
         <td>Gold</td>
 		<td>round neck</td>
-		<td>Neck Catelogue</td>
+		<td>DD12346</td>
 		<td>*****</td>
 		<td>good degine</td>
-		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
-		<td><a><span class="glyphicon glyphicon-edit"></span>Delete</a></td>
+		<td><a data-toggle="modal" data-target="#productaddmodal"><span class="glyphicon glyphicon-edit"></span>Modify</a></td>
+		<td><a data-toggle="modal" data-target="#vendorListmodal"><span class="glyphicon glyphicon-edit"></span>PlaceOrder</a></td>
 	</tr>
   </table>
 		</div>
 	</div>
- </div>
+ </div></div>
  
 <div  id="productadd" style="display: none">
  	<div class="panel-body">
@@ -384,12 +449,6 @@ if (!$_SESSION['logon']){
                                                      <option>Silver</option>
                                                    </select>
 												</div>
-												</div>
-											    <div class="form-group col-md-4">
-												<label for="barcode">Barcode:</label>
-													<input type="text" name="barcode" id="barcode"
-														class="form-control" 
-														placeholder="Barcode">
 												</div>
 												 <div class="form-group col-md-4">
 													 <label for="brand">Brand Name:</label>
@@ -429,50 +488,7 @@ if (!$_SESSION['logon']){
 											    </div>
 												</div>
                                        </div>													
-									    <div class="col-md-12">
-											<div class="col-md-4">
-											   <div class="form-group">
-												   <label for="venderid">Catalogue Id:</label>
-													<input type="text" name="venderid" id="venderid"
-														class="form-control" 
-														placeholder="">
-												</div>
-											</div>	
-											<div class="col-md-4">
-												<div class="form-group">
-												   <label for="vendername">Catalogue Name:</label>
-													<input type="text" name="vendername" id="vendername"
-														class="form-control" 
-														placeholder="">
-												</div>
-											 </div>	
-											 <div class="col-md-4">
-												<div class="form-group">
-												   <label for="netweight">Net Weight:</label>
-													<input type="text" name="netweight" id="netweight"
-														class="form-control" 
-														placeholder="">
-												</div>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="col-md-4">
-												 <div class="form-group">
-												   <label for="mrpprice">MRP Price:</label>
-													<input type="text" name="mrpprice" id="mrpprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
-											</div> 
-											<div class="col-md-4">
-												 <div class="form-group">
-												   <label for="makingcharges">Making Charges:</label>
-													<input type="text" name="makingcharges" id="makingcharges"
-														class="form-control" 
-														placeholder="Making Charges">
-												  </div>
-											</div>
-						               </div>
+									
 									<div class="col-md-12">
 									<div class="col-md-4">
 													<div class="form-group">
@@ -899,6 +915,44 @@ if (!$_SESSION['logon']){
  </div>
 		
 <div  id="purchasedetails" style="display: none">
+                      <a href="#" rel="pre-order">
+                       <div class="col-lg-3 col-md-3">
+                                 <div class="panel info-box panel-white">
+                                <div class="panel-body">
+                                    <div class="info-box-stats">
+                                        <p class="counter">3</p>
+                                        <span class="info-box-title">Yet to review</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						</a>
+						<a href="#" rel="inprogress-order">
+						<div class="col-lg-3 col-md-3">
+                            <div class="panel info-box panel-white">
+                                <div class="panel-body">
+                                    <div class="info-box-stats">
+                                        <p class="counter">10</p>
+                                        <span class="info-box-title">Order In Progress</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</a>
+				     <a href="#" rel="processed-order">		
+				      <div class="col-lg-3 col-md-3">
+                        <div class="panel info-box panel-white">
+                                <div class="panel-body">
+                                    <div class="info-box-stats">
+                                        <p class="counter">12</p>
+                                        <span class="info-box-title">Processed</span>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+					  </a>
+<div id="pre-order"	style="display: none">			  
+	<div class="col-md-12">
  	<div class="panel-body">
 	<div class="table-responsive">
 			<table class="table table-bordered table-fixed table-hover">
@@ -920,9 +974,9 @@ if (!$_SESSION['logon']){
 		<th class="pull-center">Supplier Id</th>
 		<th class="pull-center">Supplier Name</th>
 		<th class="pull-center">Excepted Delivery Date</th>
-		<th class="pull-center">Payment Status</th>
+		<th class="pull-center">Status</th>
 		<th class="pull-center">Comment</th>
-		<th class="pull-center">Invoice No</th>
+		
 		
 	</tr>
 	
@@ -932,39 +986,169 @@ if (!$_SESSION['logon']){
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>
 		<td>02-June-2017</td>
-		<td>N/A</td>
-		<td>Yet to recive</td>
-		<td>DD/INV/004</td>
-		<td><a data-toggle="modal" data-target="#productpurchasemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
-		<td><a href="invoice.php?purchaseid=DD_PUARCHE_01&sellerid=DDASADF"><span class="glyphicon glyphicon-edit"></span>Print</a></td>
+		<td>review</td>
+		<td>Yet to review</td>
 		</tr>
 	 <tr>
-        <td>DD_PUARCHE_02</td>
+        <td>DD_PUARCHE_01</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>
 		<td>02-June-2017</td>
-		<td>N/A</td>
-		<td>Yet to recive</td>
-		<td> </td>
-		<td><a data-toggle="modal" data-target="#productpurchasemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
-	    <td><a href="invoice.php?purchaseid=DD_PUARCHE_02&sellerid=DDASADF@"><span class="glyphicon glyphicon-edit"></span>Print</a></td>
+		<td>review</td>
+		<td>Yet to review</td>
 	</tr>
       <tr>
-       <td>DD_PUARCHE_03</td>
+        <td>DD_PUARCHE_01</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>
 		<td>02-June-2017</td>
-		<td>N/A</td>
-		<td>Yet to recive</td>
-		<td> </td>
-		<td><a data-toggle="modal" data-target="#productpurchasemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
-	    <td><a data-toggle="modal" data-target="#puarcherreciptmodel"><span class="glyphicon glyphicon-edit"></span>Print</a></td>
+		<td>review</td>
+		<td>Yet to review</td>
 	</tr>
   </table>
 		</div>
 	</div>
+  </div>
+ </div>
+ 
+ <div id="inprogress-order"	style="display: none">			  
+	<div class="col-md-12">
+ 	<div class="panel-body">
+	<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Purchase Id</th>
+		<th class="pull-center">Purchase Date</th>
+		<th class="pull-center">Supplier Id</th>
+		<th class="pull-center">Supplier Name</th>
+		<th class="pull-center">Excepted Delivery Date</th>
+		<th class="pull-center">Invoice Id</th>
+		<th class="pull-center">Status</th>
+		<th class="pull-center">Comment</th>
+	</tr>
+	
+      <tr>
+        <td>DD_PUARCHE_01</td>
+        <td>30-May-2017</td>
+		<td>DDASADF</td>
+        <td>Rakesh Mheta</td>
+		<td>02-June-2017</td>
+		<td>DD/INV/004</td>
+		<td>inprogress</td>
+		<td>Place order by syx</td>
+		</tr>
+	 <tr>
+        <td>DD_PUARCHE_01</td>
+        <td>30-May-2017</td>
+		<td>DDASADF</td>
+        <td>Rakesh Mheta</td>
+		<td>02-June-2017</td>
+		<td>DD/INV/004</td>
+		<td>inprogress</td>
+		<td>Place order by syx</td>
+		</tr>
+      <tr>
+        <td>DD_PUARCHE_01</td>
+        <td>30-May-2017</td>
+		<td>DDASADF</td>
+        <td>Rakesh Mheta</td>
+		<td>02-June-2017</td>
+		<td>DD/INV/004</td>
+		<td>inprogress</td>
+		<td>Place order by syx</td>
+	</tr>
+  </table>
+		</div>
+	</div>
+  </div>
+ </div>
+ 
+ <div id="processed-order"	style="display: none">			  
+	<div class="col-md-12">
+ 	<div class="panel-body">
+	<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Purchase Id</th>
+		<th class="pull-center">Purchase Date</th>
+		<th class="pull-center">Supplier Id</th>
+		<th class="pull-center">Supplier Name</th>
+		<th class="pull-center">Excepted Delivery Date</th>
+		<th class="pull-center">Invoice Id</th>
+		<th class="pull-center">Payment Recipt No.</th>
+		<th class="pull-center">Payment status</th>
+		<th class="pull-center">Status</th>
+		<th class="pull-center">Comment</th>
+	</tr>
+	
+      <tr>
+        <td>DD_PUARCHE_01</td>
+        <td>30-May-2017</td>
+		<td>DDASADF</td>
+        <td>Rakesh Mheta</td>
+		<td>02-June-2017</td>
+		<td>DD/INV/004</td>
+		<td>DD/PAY/123</td>
+		<td>Pending</td>
+		<td>processed</td>
+		<td>Place order by syx</td>
+	 </tr>
+	 <tr>
+        <td>DD_PUARCHE_01</td>
+        <td>30-May-2017</td>
+		<td>DDASADF</td>
+        <td>Rakesh Mheta</td>
+		<td>02-June-2017</td>
+		<td>DD/INV/004</td>
+		<td>DD/PAY/123</td>
+		<td>Pending</td>
+		<td>processed</td>
+		<td>Place order by syx</td>
+	 </tr>
+       <tr>
+        <td>DD_PUARCHE_01</td>
+        <td>30-May-2017</td>
+		<td>DDASADF</td>
+        <td>Rakesh Mheta</td>
+		<td>02-June-2017</td>
+		<td>DD/INV/004</td>
+		<td>DD/PAY/123</td>
+		<td>Pending</td>
+		<td>processed</td>
+		<td>Place order by syx</td>
+	 </tr>
+  </table>
+		</div>
+	</div>
+  </div>
+ </div>
+  
  </div>
 	
 <div  id="recivedDetails" style="display: none">
@@ -988,8 +1172,8 @@ if (!$_SESSION['logon']){
  
     <tr class ="success">
 	    <th class="pull-center">Recived Id</th>
-		<th class="pull-center">Puarche Id</th>
-		<th class="pull-center">Puarche Date</th>
+		<th class="pull-center">Purche Id</th>
+		<th class="pull-center">Purche Date</th>
 		<th class="pull-center">Quantity</th>
 		<th class="pull-center">Total Weight</th>
 		<th class="pull-center">Recived Date</th>
@@ -1000,7 +1184,7 @@ if (!$_SESSION['logon']){
 	</tr>
       <tr>
         <td>DDREC_123</td>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_PUARCHE_02</td>
 		<td>30-May-2017</td>
         <td>10</td>
 		<td>100 mg</td>
@@ -1012,8 +1196,8 @@ if (!$_SESSION['logon']){
 		<td><a data-toggle="modal" data-target="#orderrecivemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
 	  </tr>
       <tr>
-        <td>DDREC_123</td>
-        <td>DD_PUARCHE_01</td>
+        <td>DDREC_124</td>
+        <td>DD_PUARCHE_02</td>
 		<td>30-May-2017</td>
         <td>10</td>
 		<td>100 mg</td>
@@ -1025,8 +1209,8 @@ if (!$_SESSION['logon']){
 		<td><a data-toggle="modal" data-target="#orderrecivemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
 	  </tr>
       <tr>
-        <td>DDREC_123</td>
-        <td>DD_PUARCHE_01</td>
+        <td>DDREC_125</td>
+        <td>DD_PUARCHE_02</td>
 		<td>30-May-2017</td>
         <td>10</td>
 		<td>100 mg</td>
@@ -1778,6 +1962,84 @@ if (!$_SESSION['logon']){
 </div>
 </div>
 
+<div id="recivedproductdetails" style="display: none">
+ 	<div class="panel-body">
+	<div class="table-responsive">
+			<table class="table table-bordered table-fixed table-hover">
+ 
+					<ul class="pagination pull-left" num-pages="tasks.pageCount"
+										current-page="tasks.currentPage">
+										<li ng-class="{disabled: noPrevious()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&laquo;</a></li>
+										<li ng-repeat="page in pages"
+											ng-class="{active: isActive(page)}"><a
+											ng-click="searchAllSubjectListAccordingToPage(page)">1</a></li>
+										<li ng-class="{disabled: noNext()}"><a
+											ng-click="searchAllSubjectListAccordingToPage()">&raquo;</a></li>
+					</ul>	
+ 
+    <tr class ="success">
+	    <th class="pull-center">Catelogue Id</th>
+		<th class="pull-center">Item Code</th>
+		<th class="pull-center">Product Id</th>
+		<th class="pull-center">Purity</th>
+		<th class="pull-center">Pure Weight</th>
+		<th class="pull-center">Net Weight</th>
+		<th class="pull-center">Meena Weight</th>
+		<th class="pull-center">Wastage Weight</th>
+		<th class="pull-center">Gross Weight</th>
+		<th class="pull-center">Total Stone Used</th>
+		<th class="pull-center">Total Stone Weight</th>
+		<th class="pull-center">Stone Color</th>
+		<th class="pull-center">Stone Price</th>
+		<th class="pull-center">Making Charges</th>
+		<th class="pull-center">HM Tag Price</th>
+		<th class="pull-center">MRP Buy Price</th>
+	</tr>
+      <tr>
+        <td>DS1234</td>
+		<td>DS_RING_1234</td>
+        <td>22</td>
+		<td>10 mg</td>
+        <td>12 mg</td>
+		<td>1 mg</td>
+		<td>30-May-2017</td>
+		<td>Satyajit </td>
+		<td>Glod</td>
+		<td>due</td>
+		<td>Need to lear rest amount by gold</td>
+		<td></td>
+	  </tr>
+      <tr>
+        <td>DDREC_124</td>
+        <td>DD_PUARCHE_02</td>
+		<td>30-May-2017</td>
+        <td>10</td>
+		<td>100 mg</td>
+		<td>30-May-2017</td>
+		<td>Satyajit </td>
+		<td>Glod</td>
+		<td>due</td>
+		<td>Need to lear rest amount by gold</td>
+		<td><a data-toggle="modal" data-target="#orderrecivemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
+	  </tr>
+      <tr>
+        <td>DDREC_125</td>
+        <td>DD_PUARCHE_02</td>
+		<td>30-May-2017</td>
+        <td>10</td>
+		<td>100 mg</td>
+		<td>30-May-2017</td>
+		<td>Satyajit </td>
+		<td>Glod</td>
+		<td>due</td>
+		<td>Need to lear rest amount by gold</td>
+		<td><a data-toggle="modal" data-target="#orderrecivemodal"><span class="glyphicon glyphicon-edit"></span>View/Modify</a></td>
+	  </tr>
+  </table>
+		</div>
+	</div>
+</div>
 </div>
 </div>	 
  </div> 
@@ -1806,29 +2068,28 @@ if (!$_SESSION['logon']){
         <h4 class="modal-title">Product Details</h4>
       </div>
 	  <div class="modal-body">
-         	<div class="panel-body">
 					<div class="panel with-nav-tabs panel-success">
-						
 						<ul class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab" class="pull-center"
-								href="#productbasicdetails">Product Basic Details</a></li>
+								href="#productbasicdetails">Product Details</a></li>
 							<li><a data-toggle="tab" class="pull-center"
-								href="#productpricedetails">Price Details</a></li>
-							<li><a data-toggle="tab" class="pull-center"
-								href="#productdescdetails">Description Details</a></li>
-							<li><a data-toggle="tab" class="pull-center"
-								href="#productimagedetails">Product Image Details</a></li>
+								href="#productimagedetails">Images</a></li>
 						</ul>
 						<div class="panel-body">
 							<div class="tab-content">
 								<div id="productbasicdetails" class="tab-pane fade in active">
 								<div class="col-md-12">
-                                            <div class="form-group col-md-4">
-												<label for="productid">Product Id:</label>
-													<input type="text" name="productid" id="productid"
-														 class="form-control" 
-														placeholder="Product Id" readonly>
-											    </div>
+									    <div class="col-md-4">
+													<div class="form-group">
+										         <label for="productmatterialtype">Product Matterial Type :</label>
+												 <select class="form-control" id="productmatterialtype" name="productmatterialtype">
+													<option>Select</option>
+													<option>Gold</option>
+													<option>Diamond</option>
+                                                     <option>Silver</option>
+                                                   </select>
+												</div>
+												</div>
 											    <div class="form-group col-md-4">
 												<label for="barcode">Barcode:</label>
 													<input type="text" name="barcode" id="barcode"
@@ -1871,250 +2132,43 @@ if (!$_SESSION['logon']){
 														 class="form-control" 
 														placeholder="Product Name">
 											    </div>
-												</div>	
-												</div>			
-											<div class="col-md-12">												
-											<div class="col-md-4">
-													<div class="form-group">
-										         <label for="productmatterialtype">Product Matterial Type :</label>
-												 <select class="form-control" id="productmatterialtype" name="productmatterialtype">
-													<option>Select</option>
-													<option>Gold</option>
-													<option>Diamond</option>
-                                                     <option>Silver</option>
-                                                   </select>
 												</div>
-												</div>
-												<div class="col-md-4">
-												<div class="form-group">
-												  <label for="purchasedate">Purchase Date :</label>
-													<input type="date" name="purchasedate" id="purchasedate"
-														class="form-control" 
-														placeholder="Purchase Date">
-												</div>
-												</div>
-												<div class="col-md-4">
-												<div class="form-group">
-												   <label for="productsize">Product Size:</label>
-													<input type="text" name="productsize" id="productsize"
-														class="form-control" 
-														placeholder="Product Size">
-												</div>
-										
-											 </div>
-											 </div>
-								</div>
-
-
-								<div id="productpricedetails" class="tab-pane fade">
-
-									<h4 style="font-weight:bold">Quantity Details</h4>
-									<div class="row">
-											<div class="col-md-3 ">
-												<div class="form-group">
-												   <label for="venderid">Vender Id:</label>
-													<input type="text" name="venderid" id="venderid"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												  <div class="form-group">
-												   <label for="vendername">Vender Name:</label>
-													<input type="text" name="vendername" id="vendername"
-														class="form-control" 
-														placeholder="">
-												  </div>
-												  <div class="form-group">
-												   <label for="venderprice">Vender Price:</label>
-													<input type="text" name="venderprice" id="venderprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-												   <label for="carat">Carat:</label>
-												   <select class="form-control"id="carat"name="carat">
-												     <option>Select</option>
-												     <option>14KT</option>
-													 <option>18KT</option>
-													 <option>22KT</option>
-													 <option>24KT</option>
-												   </select>
-												  </div>
-												  
-												  <div class="form-group">
-												   <label for="pureweight">Pure Weight:</label>
-													<input type="text" name="pureweight" id="pureweight"
-														class="form-control" 
-														placeholder=""readonly>
-												  </div>
-												  
-								                 <div class="form-group">
-												   <label for="netweight">Net Weight:</label>
-													<input type="text" name="netweight" id="netweight"
-														class="form-control" 
-														placeholder="">
-												  </div>
-													
-												</div>
-												<div class="col-md-3">
-												<div class="form-group">
-												   <label for="meenaweight">Meena Weight:</label>
-													<input type="text" name="meenaweight" id="meenaweight"
-														class="form-control" 
-														placeholder="">
-												</div>
-												
-												  <div class="form-group">
-												   <label for="grossweight">Gross Weight:</label>
-													<input type="text" name="grossweight" id="grossweight"
-														class="form-control" 
-														placeholder="">
-												</div>
-												
-												 <div class="form-group">
-												   <label for="wastage">Wastage Weight:</label>
-													<input type="text" name="wastage" id="wastage"
-														class="form-control" 
-														placeholder="Wastage">
-												  </div>
-												</div>
-												<div class="col-md-3">
-												<div class="form-group">
-												   <label for="stoneweight">Total Stone Used</label>
-													<input type="text" name="stoneweight" id="stoneweight"
-														class="form-control" 
-														placeholder="">
-												   </div>
-												<div class="form-group">
-												   <label for="stoneweight">Stone Weight</label>
-													<input type="text" name="stoneweight" id="stoneweight"
-														class="form-control" 
-														placeholder="">
-												    </div>
-													
-													<div class="form-group">
-												   <label for="stonecolor">Stone Color:</label>
-												   <select class="form-control"id="stonecolor"name="stonecolor">
-												     <option>Select</option>
-												     <option>Yellow</option>
-													 <option>White</option>
-													 <option>Pink</option>
-													 <option>Diamond</option>
-												   </select>
-												  </div>
-												</div>
-										</div>
-									<h4  style="font-weight:bold">Price Details</h4>
-									<div class="row">
-											<div class="col-md-3">
-												   <div class="form-group">
-												   <label for="mrpprice">MRP Price:</label>
-													<input type="text" name="mrpprice" id="mrpprice"
-														class="form-control" 
-														placeholder="">
-												 </div>
-												<div class="form-group">
-												   <label for="stoneprice">Stone Price:</label>
-													<input type="text" name="stoneprice" id="stoneprice"
-														class="form-control" 
-														placeholder="Stone Price">
-												 </div>
-												  <div class="form-group">
-												   <label for="makingcharges">Making Charges:</label>
-													<input type="text" name="makingcharges" id="makingcharges"
-														class="form-control" 
-														placeholder="Making Charges">
-												  </div>
-												</div>
-												<div class="col-md-3">
-												  <div class="form-group">
-												   <label for="vatprice">VAT Price:</label>
-													<input type="text" name="vatprice" id="vatprice"
-														class="form-control" 
-														placeholder="VAT Price">
-												  </div>
-												  <div class="form-group">
-												   <label for="hmtagprice">HM Tag Price:</label>
-													<input type="text" name="hmtagprice" id="hmtagprice"
-														class="form-control" 
-														placeholder="HM Tag Price">
-												 </div>
-												  <div class="form-group">
-												   <label for="discountprice">Discount Price:</label>
-													<input type="text" name="discountprice" id="discountprice"
-														class="form-control" 
-														placeholder="Discount Price">
-												 </div>
-											</div>
-									</div>
-								</div>
-
-								<div id="productdescdetails" class="tab-pane fade">
-									<div class="row">
-											<div class="col-xs-3 col-sm-3 col-md-3 ">
-												<div class="form-group">
-													<label for="productstyle">Degine Style:</label>
-													<select class="form-control"id="productstyle"name="productstyle">
-												     <option>Select</option>
-												     <option>Stud</option>
-													 <option>Hoop</option>
-													 <option>Jhumka</option>
-													 <option>Drop</option>
-												   </select>
-												   </div>
-												   
-													<div class="form-group">
-													 <label for="metalcolor">Avilable Color:</label>
-													<select class="form-control"id="metalcolor"name="metalcolor">
-														<option>Yellow</option>
-														<option>Silver</option>
-														<option>Bicolor</option>
-												   </select>
-												    </div>
-													<div class="form-group">
-													 <label for="gender">Applicable Geneder</label>
-													<select class="form-control"id="gender"name="gender">
-												      <option>Select</option>
-												      <option>Men</option>
-													  <option>Women</option>
-													  <option>Kids-Girl</option>
-													  <option>Kids-Boys</option>
-													  <option>All</option>
-												   </select>
-												   </div>
-											</div>
-										<div class="col-md-3 ">
+                                       </div>													
+									
+									<div class="col-md-12">
+									<div class="col-md-4">
 													<div class="form-group">
 													 <label for="gender">Description Text</label>
 													<textarea class="form-control" id="desctext"name="desctext">
 												    </textarea>
 												   </div>
+										</div>
+										<div class="col-md-4">
 												   	<div class="form-group">
 													 <label for="gender">Degine Description</label>
 													<textarea class="form-control" id="deginedesc"name="deginedesc">
 												    </textarea>
 												   </div>
+										</div>
+										<div class="col-md-4">
 												   <div class="form-group">
 													 <label for="gender">Technical Description</label>
 													<textarea class="form-control" id="technicaldesc"name="technicaldesc">
 												    </textarea>
 												   </div>
-										</div>
-										
-										</div>
+										</div>	
+									</div>										
 								</div>
-	
-								
-									<div id="productimagedetails" class="tab-pane fade">
+
+								<div id="productimagedetails" class="tab-pane fade">
 									<div>
-									<form action="./dummy.html" class="dropzone well" id="dropzone">
+									 <form action="./dummy.html" class="dropzone well" id="dropzone">
 										<div class="fallback">
 											<input name="file" type="file" multiple="" />
 										</div>
-									</form>
-								</div>
-												<div id="preview-template" class="hide">
+									 </form>
+								  </div>
+								  		<div id="preview-template" class="hide">
 									<div class="dz-preview dz-file-preview">
 										<div class="dz-image">
 											<img data-dz-thumbnail="" />
@@ -2154,14 +2208,12 @@ if (!$_SESSION['logon']){
 											</span>
 										</div>
 									</div>
-								</div><!-- PAGE CONTENT ENDS -->
-
 								</div>
-							
+						      </div>
 					       </div>
-				    </div>
+				      </div>
 			      </div>
-				  </div>
+	         </div>
 				  <div class="modal-footer">
                    	<button type="submit" id="usersearch" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>Confirm</button>
@@ -2170,9 +2222,9 @@ if (!$_SESSION['logon']){
                  </div>
 			  </div>
 		</div>
-	</div>
  </div>
-  <div id="stockupdateModal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+ 
+ <div id="stockupdateModal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
    <div class="modal-dialog modal-md">
   
    <div class="modal-content">
@@ -2199,7 +2251,6 @@ if (!$_SESSION['logon']){
   </div>
 </div>
 
-
 <div id="processreciveModal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
    <div class="modal-dialog modal-md">
   
@@ -2215,7 +2266,7 @@ if (!$_SESSION['logon']){
 				        <label for="bankname">Purchase ID</label>
 						<input type="text" name="purchaseid" id="purchaseid" class="form-control" placeholder="Purchaseid Id">
 				</div>
-					<button type="submit" id="usersearch" class="btn btn-default"  data-dismiss="modal">Process</button>
+					<button type="submit" id="processpurchase" class="btn btn-default"  data-dismiss="modal">Process</button>
 			</div>
 			
 			  <div class="modal-footer">
@@ -2227,7 +2278,7 @@ if (!$_SESSION['logon']){
   </div>
 </div>
 
-  <div id="quantitymodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+<div id="quantitymodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
    <div class="modal-dialog modal-md">
   
    <div class="modal-content">
@@ -2282,7 +2333,7 @@ if (!$_SESSION['logon']){
   </div>
 </div>
 
- <div id="checkoutmodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+<div id="checkoutmodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
    <div class="modal-dialog modal-md">
   
    <div class="modal-content">
@@ -2322,8 +2373,6 @@ if (!$_SESSION['logon']){
 	   </div>
   </div>
 </div>
-
-
 
 <div id="productpurchasemodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
    <div class="modal-dialog modal-md">
@@ -2385,6 +2434,35 @@ if (!$_SESSION['logon']){
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Update</button>
 								<button type="button" class="btn btn-default"
 								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Close</button>
+				</div>
+	   </div>
+	   </div>
+  </div>
+</div>
+
+<div id="vendorListmodal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+   <div class="modal-dialog modal-md">
+  
+   <div class="modal-content">
+   
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Vendor Details</h4>
+      </div>
+	  <div class="modal-body">
+         	<div class="panel-body">
+<input list="vendors">
+
+<datalist id="vendors">
+  <option value="ABC sad">
+  <option value="PQR sad">
+  <option value="DFV asd">
+</datalist>
+			</div>
+			  <div class="modal-footer">
+			   <button id="checkoutbutton" type="button" class="btn btn-default"><i class="fa fa-times-circle" aria-hidden="true"></i>save</button>
+                <button type="button" class="btn btn-default"
+								data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>close</button>
 				</div>
 	   </div>
 	   </div>
