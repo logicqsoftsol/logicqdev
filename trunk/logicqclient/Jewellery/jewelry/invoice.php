@@ -1,352 +1,115 @@
 <?php
 
 error_reporting(E_ALL ^ E_DEPRECATED);
-
-require("pdfcrowd.php"); 
+require('fpdf/fpdf.php');
 
 $purchaseid = $_GET['purchaseid'];
 $sellerid = $_GET['sellerid'];
 
-$invoiceno='DDNOV171002';
+$invoiceno='DD/NOV17/1002';
 
-$pdfname=$invoiceno.'.pdf';
+$pdf = new FPDF('P', 'mm', 'A4');
+//Adding Page
+$pdf->AddPage();
+// Set Font for page
+$pdf->SetFont('Courier', 'B',14);
 
-try {
+//Cell Function with (width, height, text, border (0 no or 1 border), endline (0 continue or 1 new), align(L, R, C))
+$pdf->Cell(120, 5,'M/S DD Jewellery Pvt. Ltd.',0,0);
+$pdf->Cell(70, 5,'INVOICE',0,1);
 
-    $a = new Pdfcrowd("sunilpatro", "b524f9f6c91cdf7310828bad90d15dbb");
-    //$pdf = $client->convertFile("invoice_pdf.php?purchaseid=DD_PUARCHE_02&sellerid=DDASAD");
+$pdf->SetFont('Courier', '',12);
 
-	$pdfcreate = $a->convertHtml("<html><head>
-    <meta charset=\"UTF-8\">
-    <title>Invoice</title>
-    <link rel=\"stylesheet\" href=\"assets/bootstrap/bootstrap.css\">
-    <style>
-      
-      body, h1, h2, h3, h4, h5, h6{
-      font-family: 'Bree Serif', serif;
-      }
-    </style>
-  </head>
-  
-  <body>
-    <div class=\"container\">
-      <div class=\"row\">
-        <div class=\"col-xs-6\">
-          <h1>
-            <a href=\"#\">            
-            Logo here
-            </a>
-          </h1>
-        </div>
-        <div class=\"col-xs-6 text-right\">
-          <h1>INVOICE</h1>
-          <h1><small> $invoiceno </small></h1>
-        </div>
-      </div>
-      <div class=\"row\">
-        <div class=\"col-xs-5\">
-          <div class=\"panel panel-default\">
-            <div class=\"panel-heading\">
-              <h4><a href=\"#\">DD Jewellery Shop</a></h4>
-            </div>
-            <div class=\"panel-body\">
-              <p>
-                Pune <br>
-                MH-411033 <br>
-                INDIA <br>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class=\"col-xs-5 col-xs-offset-2 text-right\">
-          <div class=\"panel panel-default\">
-            <div class=\"panel-heading\">
-              <h4>Shipped To : <a href=\"#\">Client $sellerid</a></h4>
-            </div>
-            <div class=\"panel-body\">
-              <p>
-                Address <br>
-                details <br>
-                more <br>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / end client details section -->
-      <table class=\"table table-bordered\">
-        <thead>
-          <tr>
-            <th>
-              <h4>Service</h4>
-            </th>
-            <th>
-              <h4>Description</h4>
-            </th>
-            <th>
-              <h4>Hrs/Qty</h4>
-            </th>
-            <th>
-              <h4>Rate/Price</h4>
-            </th>
-            <th>
-              <h4>Sub Total</h4>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Article</td>
-            <td><a href=\"#\">Title of your article here</a></td>
-            <td class=\"text-right\">-</td>
-            <td class=\"text-right\">$200.00</td>
-            <td class=\"text-right\">$200.00</td>
-          </tr>
-          <tr>
-            <td>Template Design</td>
-            <td><a href=\"#\">Details of project here</a></td>
-            <td class=\"text-right\">10</td>
-            <td class=\"text-right\">75.00</td>
-            <td class=\"text-right\">$750.00</td>
-          </tr>
-          <tr>
-            <td>Development</td>
-            <td><a href=\"#\">WordPress Blogging theme</a></td>
-            <td class=\"text-right\">5</td>
-            <td class=\"text-right\">50.00</td>
-            <td class=\"text-right\">$250.00</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class=\"row text-right\">
-        <div class=\"col-xs-2 col-xs-offset-8\">
-          <p>
-            <strong>
-            Sub Total : <br>
-            TAX : <br>
-            Total : <br>
-            </strong>
-          </p>
-        </div>
-        <div class=\"col-xs-2\">
-          <strong>
-          $1200.00 <br>
-          N/A <br>
-          $1200.00 <br>
-          </strong>
-        </div>
-      </div>
-      <div class=\"row\">
-        <div class=\"col-xs-5\">
-          <div class=\"panel panel-info\">
-            <div class=\"panel-heading\">
-              <h4>Bank details</h4>
-            </div>
-            <div class=\"panel-body\">
-              <p>Your Name</p>
-              <p>Bank Name</p>
-              <p>SWIFT : --------</p>
-              <p>Account Number : --------</p>
-              <p>IBAN : --------</p>
-            </div>
-          </div>
-        </div>
-        <div class=\"col-xs-7\">
-          <div class=\"span7\">
-            <div class=\"panel panel-info\">
-              <div class=\"panel-heading\">
-                <h4>Contact Details</h4>
-              </div>
-              <div class=\"panel-body\">
-                <p>
-                  Email : you@example.com <br><br>
-                  Mobile : -------- <br><br><br>
-                </p>
-                <h4>Payment should be made by Bank Transfer</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br><br>
-      This is a sample invoice.<br><br>
-      </div>
-  </body>
-</html>");
+$pdf->Cell(120, 5,'Bavadhan',0,0);
+$pdf->Cell(80, 5,'',0,1);
 
-	
-    header("Content-Type: application/pdf");
-    header("Cache-Control: no-cache");
-    header("Accept-Ranges: none");
-    header("Content-Disposition: inline; filename=\"newinvoice.pdf\"");
+$pdf->Cell(120, 5,'Pune, MH-411021',0,0);
+$pdf->Cell(25, 5,'Date',0,0);
+$pdf->Cell(45, 5,'07/06/2017',0,1);
 
-    echo $pdfcreate;
+$pdf->Cell(120, 5,'Contact [+91-8087089087]',0,0);
+$pdf->Cell(25, 5,'Invoice #',0,0);
+$pdf->Cell(45, 5,$invoiceno,0,1);
 
-}
-catch(PdfcrowdException $why) {
-    echo "Can't create PDF: ".$why."\n";
-}
+$pdf->Cell(120, 5,'Fax [+91-20-12548765]',0,0);
+$pdf->Cell(25, 5,'PurchID #',0,0);
+$pdf->Cell(45, 5,$purchaseid,0,1);
 
+$pdf->Cell(190, 10,'',0,1);
+
+$pdf->Cell(100, 5,'Billing to',0,0);
+$pdf->Cell(90, 5,'Shipping to',0,1);
+
+$pdf->Cell(5, 5,'',0,0);
+$pdf->Cell(95, 5,'S S Lenka',0,0);
+$pdf->Cell(5, 5,'',0,0);
+$pdf->Cell(80, 5,'S S Lenka',0,1);
+
+$pdf->Cell(5, 5,'',0,0);
+$pdf->Cell(95, 5,'Balesore, Odisha - 751201',0,0);
+$pdf->Cell(5, 5,'',0,0);
+$pdf->Cell(80, 5,'Balesore, Odisha - 751201',0,1);
+
+$pdf->Cell(5, 5,'',0,0);
+$pdf->Cell(95, 5,'+91-7057014118',0,0);
+$pdf->Cell(5, 5,'',0,0);
+$pdf->Cell(80, 5,'+91-7057014118',0,1);
+
+$pdf->Cell(190, 10,'',0,1);
+
+$pdf->SetFont('Courier', 'B',12);
+
+$pdf->Cell(35, 5,'Product Code',1,0,'C');
+$pdf->Cell(85, 5,'Description',1,0,'C');
+$pdf->Cell(25, 5,'Weight(s)',1,0);
+$pdf->Cell(45, 5,'Amount',1,1,'C');
+
+$pdf->SetFont('Courier', '',12);
+
+$pdf->Cell(35, 5,'125486',1,0,'C');
+$pdf->Cell(85, 5,'Silver Plate',1,0,'C');
+$pdf->Cell(25, 5,'10',1,0,'C');
+$pdf->Cell(45, 5,'3,350.00',1,1,'R');
+
+$pdf->Cell(35, 5,'928856',1,0,'C');
+$pdf->Cell(85, 5,'Silver Ring',1,0,'C');
+$pdf->Cell(25, 5,'20',1,0,'C');
+$pdf->Cell(45, 5,'4,850.00',1,1,'R');
+
+$pdf->Cell(35, 5,'785246',1,0,'C');
+$pdf->Cell(85, 5,'Diamond Ring',1,0,'C');
+$pdf->Cell(25, 5,'22',1,0,'C');
+$pdf->Cell(45, 5,'5,050.00',1,1,'R');
+
+define('RUPEE',chr(8377));
+$pdf->Cell(30, 5,'',0,0);
+$pdf->Cell(90, 5,'',0,0,'C');
+$pdf->Cell(25, 5,'Subtotal',0,0);
+$pdf->Cell(5, 5,RUPEE,1,0);
+$pdf->Cell(40, 5,'13,200.00',1,1,'R');
+
+$pdf->Cell(30, 5,'',0,0);
+$pdf->Cell(90, 5,'',0,0,'C');
+$pdf->Cell(25, 5,'Taxable',0,0);
+$pdf->Cell(5, 5,RUPEE,1,0);
+$pdf->Cell(40, 5,'-',1,1,'R');
+
+$pdf->Cell(30, 5,'',0,0);
+$pdf->Cell(90, 5,'',0,0,'C');
+$pdf->Cell(25, 5,'VAT',0,0);
+$pdf->Cell(5, 5,RUPEE,1,0);
+$pdf->Cell(40, 5,'14%',1,1,'R');
+
+$pdf->Cell(30, 5,'',0,0);
+$pdf->Cell(90, 5,'',0,0,'C');
+$pdf->Cell(25, 5,'Total',0,0);
+$pdf->Cell(5, 5,RUPEE,1,0);
+$pdf->Cell(40, 5,'15,050.00',1,1,'R');
+
+
+
+
+ob_end_clean();
+$pdf->Output();
 
 ?>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Invoice</title>
-    <link rel="stylesheet" href="assets/bootstrap/bootstrap.css">
-    <style>
-      @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
-      body, h1, h2, h3, h4, h5, h6{
-      font-family: 'Bree Serif', serif;
-      }
-    </style>
-  </head>
-  
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-6">
-          <h1>
-            <a href="#">            
-            Logo here
-            </a>
-          </h1>
-        </div>
-        <div class="col-xs-6 text-right">
-          <h1>INVOICE</h1>
-          <h1><small><?php echo $invoiceno; ?></small></h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-5">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4><a href="#">DD Jewellery Shop</a></h4>
-            </div>
-            <div class="panel-body">
-              <p>
-                Pune <br>
-                MH-411033 <br>
-                INDIA <br>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-5 col-xs-offset-2 text-right">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4>Shipped To : <a href="#">Client <?php echo $sellerid; ?></a></h4>
-            </div>
-            <div class="panel-body">
-              <p>
-                Address <br>
-                details <br>
-                more <br>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- / end client details section -->
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>
-              <h4>Service</h4>
-            </th>
-            <th>
-              <h4>Description</h4>
-            </th>
-            <th>
-              <h4>Hrs/Qty</h4>
-            </th>
-            <th>
-              <h4>Rate/Price</h4>
-            </th>
-            <th>
-              <h4>Sub Total</h4>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Article</td>
-            <td><a href="#">Title of your article here</a></td>
-            <td class="text-right">-</td>
-            <td class="text-right">$200.00</td>
-            <td class="text-right">$200.00</td>
-          </tr>
-          <tr>
-            <td>Template Design</td>
-            <td><a href="#">Details of project here</a></td>
-            <td class="text-right">10</td>
-            <td class="text-right">75.00</td>
-            <td class="text-right">$750.00</td>
-          </tr>
-          <tr>
-            <td>Development</td>
-            <td><a href="#">WordPress Blogging theme</a></td>
-            <td class="text-right">5</td>
-            <td class="text-right">50.00</td>
-            <td class="text-right">$250.00</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="row text-right">
-        <div class="col-xs-2 col-xs-offset-8">
-          <p>
-            <strong>
-            Sub Total : <br>
-            TAX : <br>
-            Total : <br>
-            </strong>
-          </p>
-        </div>
-        <div class="col-xs-2">
-          <strong>
-          $1200.00 <br>
-          N/A <br>
-          $1200.00 <br>
-          </strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-5">
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h4>Bank details</h4>
-            </div>
-            <div class="panel-body">
-              <p>Your Name</p>
-              <p>Bank Name</p>
-              <p>SWIFT : --------</p>
-              <p>Account Number : --------</p>
-              <p>IBAN : --------</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-7">
-          <div class="span7">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h4>Contact Details</h4>
-              </div>
-              <div class="panel-body">
-                <p>
-                  Email : you@example.com <br><br>
-                  Mobile : -------- <br><br><br>
-                </p>
-                <h4>Payment should be made by Bank Transfer</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br><br>
-      This is a sample invoice.<br><br>
-      </div>
-  
-  
-  
-  </body>
-</html>
