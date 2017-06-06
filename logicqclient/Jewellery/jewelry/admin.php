@@ -2451,13 +2451,24 @@ if (!$_SESSION['logon']){
       </div>
 	  <div class="modal-body">
          	<div class="panel-body">
-<input list="vendors">
-
+			<div class="col-md-4">
+<input list="vendors" class="form-control" placeholder="Vendor Details">
 <datalist id="vendors">
   <option value="ABC sad">
   <option value="PQR sad">
   <option value="DFV asd">
 </datalist>
+</div>
+<div class="col-md-4">
+<input  class="form-control" placeholder="Quantity">
+</div>
+<div class="col-md-6">
+<p>Name : Sudhanshu <p>
+<p>Address : syad,rpet,aaasda,pin-756019<p>
+<p>Email : asd@gmail.com<p>
+<p>Mobile Number : +91-705014119 <p>
+<p>Shop Number : +91-705014119 <p>
+</div>
 			</div>
 			  <div class="modal-footer">
 			   <button id="checkoutbutton" type="button" class="btn btn-default"><i class="fa fa-times-circle" aria-hidden="true"></i>save</button>
