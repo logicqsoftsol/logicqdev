@@ -708,7 +708,7 @@ End Dropdown Cart
 #goldrate {
   position: absolute;
   right: 0;
-  left: auto;
+  right: auto;
   z-index: 99999;
 }
 #loginBox:before {

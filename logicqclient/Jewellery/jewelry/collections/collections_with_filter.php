@@ -502,7 +502,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -586,7 +586,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -659,7 +659,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -670,7 +670,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -744,7 +744,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -755,7 +755,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -828,7 +828,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -839,7 +839,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -912,7 +912,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -923,7 +923,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -997,7 +997,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1008,7 +1008,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1081,7 +1081,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1092,7 +1092,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1165,7 +1165,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1176,7 +1176,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1250,7 +1250,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1261,7 +1261,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1334,7 +1334,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1345,7 +1345,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1418,7 +1418,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1429,7 +1429,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1503,7 +1503,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1514,7 +1514,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1587,7 +1587,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1598,7 +1598,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1671,7 +1671,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1682,7 +1682,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1756,7 +1756,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1767,7 +1767,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1840,7 +1840,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1851,7 +1851,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -1924,7 +1924,7 @@
         
         <span class="price">
           
-          <span class='money'>$200.00</span>
+          <span class='money'>Rs.200.00</span>
           
         </span>
           
@@ -1935,7 +1935,7 @@
         Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
       </div>
       <div class="hover-appear">
-        <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post">
+        <form action="../cart.html" method="post">
           
           <div class="hide clearfix"> 
             <select name="id" >
@@ -2627,7 +2627,7 @@ $(document).ready(function() {
                 </ul>
               </div> 
               
-              <form action="https://cs-utc-jewelry.myshopify.com/cart/add" method="post" class="variants" id="quick-shop-product-actions" enctype="multipart/form-data">
+              <form action="../cart.html" method="post" class="variants" id="quick-shop-product-actions" enctype="multipart/form-data">
                 
                 <div id="quick-shop-price-container" class="detail-price"></div>
 
