@@ -241,7 +241,7 @@ table{
 
 table thead th,
 table thead td{
-  padding: 14px 20px;
+  padding: 0px 0px;
   font-family: 'Belleza', sans-serif;
   text-transform: uppercase;
   background: #ebebeb;
@@ -255,7 +255,7 @@ table thead th{
 table tbody td,
 table tfoot td{
   text-align: center;  
-  padding: 15px 20px;
+  padding: 0px 0px;
   line-height: 20px;
   font-size: 14px;   
 }

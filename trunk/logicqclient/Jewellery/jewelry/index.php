@@ -188,7 +188,7 @@
 
     <ul class="list-inline">
       <li class="top-logo">
-        <a id="site-title" href="index.html" title="Jewelry - Shopify theme">
+        <a id="site-title" href="index.php" title="Jewelry - Shopify theme">
           
           <img class="img-responsive" src="assets/images/logo.png" alt="Jewelry " />
           
@@ -229,7 +229,7 @@
             <ul class="customer dropdown-menu">
               
               <li class="logout">
-                <a href="account/login.html">Login</a>
+                <a href="account/login.php">Login</a>
               </li>
               <li class="account">
                 <a href="account/register.html">Register</a>
@@ -634,7 +634,7 @@
               <!--span class="product-json hide">{"id":1293238211,"title":"Curabitur cursus dignis","handle":"curabitur-cursus-dignis","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:34-04:00","vendor":"Vendor 1","type":"Sweaters Wear","tags":["$100 - $200","Above $200","Best Seller","Black","Green","L","M","Red","S","Sale Off","Under $100","White","XL"],"price":25900,"price_min":25900,"price_max":29900,"available":true,"price_varies":true,"compare_at_price":30000,"compare_at_price_min":30000,"compare_at_price_max":30000,"compare_at_price_varies":false,"variants":[{"id":3947651075,"title":"black \/ small","option1":"black","option2":"small","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792149251,"product_id":1293238211,"position":1,"created_at":"2015-06-29T02:55:27-04:00","updated_at":"2015-06-29T02:55:27-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/1.jpg?v=1435560927","variant_ids":[3947651075,3947651459]},"available":true,"name":"Curabitur cursus dignis - black \/ small","public_title":"black \/ small","options":["black","small"],"price":25900,"weight":0,"compare_at_price":30000,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651139,"title":"red \/ small","option1":"red","option2":"small","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792149443,"product_id":1293238211,"position":2,"created_at":"2015-06-29T02:55:28-04:00","updated_at":"2015-06-29T02:55:28-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2.jpg?v=1435560928","variant_ids":[3947651139,3947651523,3947651907]},"available":true,"name":"Curabitur cursus dignis - red \/ small","public_title":"red \/ small","options":["red","small"],"price":26000,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651203,"title":"blue \/ small","option1":"blue","option2":"small","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792150083,"product_id":1293238211,"position":3,"created_at":"2015-06-29T02:55:30-04:00","updated_at":"2015-06-29T02:55:30-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3.jpg?v=1435560930","variant_ids":[3947651203,3947651587,3947651971]},"available":true,"name":"Curabitur cursus dignis - blue \/ small","public_title":"blue \/ small","options":["blue","small"],"price":26900,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651267,"title":"purple \/ small","option1":"purple","option2":"small","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792150339,"product_id":1293238211,"position":4,"created_at":"2015-06-29T02:55:31-04:00","updated_at":"2015-06-29T02:55:31-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4.jpg?v=1435560931","variant_ids":[3947651267,3947651651,3947652035]},"available":true,"name":"Curabitur cursus dignis - purple \/ small","public_title":"purple \/ small","options":["purple","small"],"price":27900,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651331,"title":"green \/ small","option1":"green","option2":"small","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792150915,"product_id":1293238211,"position":5,"created_at":"2015-06-29T02:55:32-04:00","updated_at":"2015-06-29T02:55:32-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/5.jpg?v=1435560932","variant_ids":[3947651331,3947651715,3947652099]},"available":true,"name":"Curabitur cursus dignis - green \/ small","public_title":"green \/ small","options":["green","small"],"price":28900,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651395,"title":"white \/ small","option1":"white","option2":"small","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792151107,"product_id":1293238211,"position":6,"created_at":"2015-06-29T02:55:33-04:00","updated_at":"2015-06-29T02:55:33-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/6.jpg?v=1435560933","variant_ids":[3947651395,3947651779]},"available":true,"name":"Curabitur cursus dignis - white \/ small","public_title":"white \/ small","options":["white","small"],"price":29900,"weight":0,"compare_at_price":30000,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651459,"title":"black \/ medium","option1":"black","option2":"medium","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792149251,"product_id":1293238211,"position":1,"created_at":"2015-06-29T02:55:27-04:00","updated_at":"2015-06-29T02:55:27-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/1.jpg?v=1435560927","variant_ids":[3947651075,3947651459]},"available":true,"name":"Curabitur cursus dignis - black \/ medium","public_title":"black \/ medium","options":["black","medium"],"price":27000,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651523,"title":"red \/ medium","option1":"red","option2":"medium","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792149443,"product_id":1293238211,"position":2,"created_at":"2015-06-29T02:55:28-04:00","updated_at":"2015-06-29T02:55:28-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2.jpg?v=1435560928","variant_ids":[3947651139,3947651523,3947651907]},"available":true,"name":"Curabitur cursus dignis - red \/ medium","public_title":"red \/ medium","options":["red","medium"],"price":28000,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651587,"title":"blue \/ medium","option1":"blue","option2":"medium","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792150083,"product_id":1293238211,"position":3,"created_at":"2015-06-29T02:55:30-04:00","updated_at":"2015-06-29T02:55:30-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3.jpg?v=1435560930","variant_ids":[3947651203,3947651587,3947651971]},"available":true,"name":"Curabitur cursus dignis - blue \/ medium","public_title":"blue \/ medium","options":["blue","medium"],"price":27000,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651651,"title":"purple \/ medium","option1":"purple","option2":"medium","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792150339,"product_id":1293238211,"position":4,"created_at":"2015-06-29T02:55:31-04:00","updated_at":"2015-06-29T02:55:31-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4.jpg?v=1435560931","variant_ids":[3947651267,3947651651,3947652035]},"available":true,"name":"Curabitur cursus dignis - purple \/ medium","public_title":"purple \/ medium","options":["purple","medium"],"price":25900,"weight":0,"compare_at_price":30000,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651715,"title":"green \/ medium","option1":"green","option2":"medium","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792150915,"product_id":1293238211,"position":5,"created_at":"2015-06-29T02:55:32-04:00","updated_at":"2015-06-29T02:55:32-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/5.jpg?v=1435560932","variant_ids":[3947651331,3947651715,3947652099]},"available":true,"name":"Curabitur cursus dignis - green \/ medium","public_title":"green \/ medium","options":["green","medium"],"price":25900,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651779,"title":"white \/ medium","option1":"white","option2":"medium","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792151107,"product_id":1293238211,"position":6,"created_at":"2015-06-29T02:55:33-04:00","updated_at":"2015-06-29T02:55:33-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/6.jpg?v=1435560933","variant_ids":[3947651395,3947651779]},"available":true,"name":"Curabitur cursus dignis - white \/ medium","public_title":"white \/ medium","options":["white","medium"],"price":25900,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651907,"title":"red \/ large","option1":"red","option2":"large","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792149443,"product_id":1293238211,"position":2,"created_at":"2015-06-29T02:55:28-04:00","updated_at":"2015-06-29T02:55:28-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2.jpg?v=1435560928","variant_ids":[3947651139,3947651523,3947651907]},"available":true,"name":"Curabitur cursus dignis - red \/ large","public_title":"red \/ large","options":["red","large"],"price":25900,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947651971,"title":"blue \/ large","option1":"blue","option2":"large","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792150083,"product_id":1293238211,"position":3,"created_at":"2015-06-29T02:55:30-04:00","updated_at":"2015-06-29T02:55:30-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3.jpg?v=1435560930","variant_ids":[3947651203,3947651587,3947651971]},"available":true,"name":"Curabitur cursus dignis - blue \/ large","public_title":"blue \/ large","options":["blue","large"],"price":25900,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947652035,"title":"purple \/ large","option1":"purple","option2":"large","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792150339,"product_id":1293238211,"position":4,"created_at":"2015-06-29T02:55:31-04:00","updated_at":"2015-06-29T02:55:31-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4.jpg?v=1435560931","variant_ids":[3947651267,3947651651,3947652035]},"available":true,"name":"Curabitur cursus dignis - purple \/ large","public_title":"purple \/ large","options":["purple","large"],"price":28900,"weight":0,"compare_at_price":null,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null},{"id":3947652099,"title":"green \/ large","option1":"green","option2":"large","option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":{"id":2792150915,"product_id":1293238211,"position":5,"created_at":"2015-06-29T02:55:32-04:00","updated_at":"2015-06-29T02:55:32-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/5.jpg?v=1435560932","variant_ids":[3947651331,3947651715,3947652099]},"available":true,"name":"Curabitur cursus dignis - green \/ large","public_title":"green \/ large","options":["green","large"],"price":25900,"weight":0,"compare_at_price":30000,"inventory_quantity":1,"inventory_management":null,"inventory_policy":"deny","barcode":null}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/1.jpg?v=1435560927","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2.jpg?v=1435560928","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3.jpg?v=1435560930","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4.jpg?v=1435560931","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/5.jpg?v=1435560932","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/6.jpg?v=1435560933"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/1.jpg?v=1435560927","options":["Color","Size"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span-->
             </div>
         </div>
-          <a class="wish-list" href="account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+          <a class="wish-list" href="account/login.php" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
       </div>
     </li>
 				</ul> 
@@ -708,7 +708,7 @@
         </div>
 
         
-          <a class="wish-list" href="account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+          <a class="wish-list" href="account/login.php" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
           
         
       </div>
@@ -800,7 +800,7 @@
         </div>
 
         
-          <a class="wish-list" href="account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+          <a class="wish-list" href="account/login.php" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
           
         
       </div>
@@ -912,7 +912,7 @@
         </div>
 
         
-          <a class="wish-list" href="account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+          <a class="wish-list" href="account/login.php" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
           
         
       </div>
@@ -1030,7 +1030,7 @@
         </div>
 
         
-          <a class="wish-list" href="account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+          <a class="wish-list" href="account/login.php" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
           
         
       </div>
@@ -1147,7 +1147,7 @@
         </div>
 
         
-          <a class="wish-list" href="account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+          <a class="wish-list" href="account/login.php" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
           
         
       </div>
@@ -1264,7 +1264,7 @@
         </div>
 
         
-          <a class="wish-list" href="account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+          <a class="wish-list" href="account/login.php" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
           
         
       </div>
@@ -1381,7 +1381,7 @@
         </div>
 
         
-          <a class="wish-list" href="account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+          <a class="wish-list" href="account/login.php" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
           
         
       </div>
@@ -1530,19 +1530,19 @@
         <ul class="list-unstyled list-styled">
           
           <li class="list-unstyled">
-            <a href="index.html">Store Locations</a>
+            <a href="index.php">Store Locations</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Whosesalers</a>
+            <a href="index.php">Whosesalers</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Map Site</a>
+            <a href="index.php">Map Site</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Contact Us</a>
+            <a href="index.php">Contact Us</a>
           </li>
           
         </ul>
@@ -1560,19 +1560,19 @@
         <ul class="list-unstyled list-styled">
           
           <li class="list-unstyled">
-            <a href="index.html">Help &amp; FAQs</a>
+            <a href="index.php">Help &amp; FAQs</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Advance Search</a>
+            <a href="index.php">Advance Search</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Gift Cards</a>
+            <a href="index.php">Gift Cards</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Shop By Brands</a>
+            <a href="index.php">Shop By Brands</a>
           </li>
           
         </ul>
@@ -1590,19 +1590,19 @@
         <ul class="list-unstyled list-styled">
           
           <li class="list-unstyled">
-            <a href="index.html">Preferences</a>
+            <a href="login.php">Preferences</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Order History</a>
+            <a href="login.php">Order History</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Cart Page</a>
+            <a href="login.php">Cart Page</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Sign In</a>
+            <a href="login.php">Sign In</a>
           </li>
           
         </ul>
@@ -1620,19 +1620,19 @@
         <ul class="list-unstyled list-styled">
           
           <li class="list-unstyled">
-            <a href="search.html">Search Advanced</a>
+            <a href="search.php">Search Advanced</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Return Policy</a>
+            <a href="index.php">Return Policy</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Privacy Policy</a>
+            <a href="index.php">Privacy Policy</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="index.html">Help &amp; Contact</a>
+            <a href="index.php">Help &amp; Contact</a>
           </li>
           
         </ul>
@@ -1647,7 +1647,7 @@
   
 
     
-    <div class="copyright col-md-12">&copy; 2017 <a href="index.html">Jewelry </a>. All Rights Reserved.</div> 
+    <div class="copyright col-md-12">&copy; 2017 <a href="index.php">Jewelry </a>. All Rights Reserved.</div> 
 
     
     

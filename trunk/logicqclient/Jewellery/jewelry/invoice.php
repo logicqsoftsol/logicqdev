@@ -57,55 +57,73 @@ $pdf->Cell(80, 5,'+91-7057014118',0,1);
 
 $pdf->Cell(190, 10,'',0,1);
 
-$pdf->SetFont('Courier', 'B',12);
+$pdf->SetFont('Courier', 'B',10);
 
-$pdf->Cell(35, 5,'Product Code',1,0,'C');
-$pdf->Cell(85, 5,'Description',1,0,'C');
-$pdf->Cell(25, 5,'Weight(s)',1,0);
-$pdf->Cell(45, 5,'Amount',1,1,'C');
+$pdf->Cell(10, 5,'Sl. No',0,0,'C');
+$pdf->Cell(20, 5,'Code',0,0,'C');
+$pdf->Cell(45, 5,'Item(s)',0,0);
+$pdf->Cell(20, 5,'Purity',0,0,'C');
+$pdf->Cell(15, 5,'Weight',0,0,'C');
+$pdf->Cell(25, 5,'Wastage(%)',0,0,'C');
+$pdf->Cell(25, 5,'Making/Gm',0,0,'C');
+$pdf->Cell(30, 5,'Amount',0,1,'R');
 
-$pdf->SetFont('Courier', '',12);
+$pdf->SetFont('Courier', '',10);
 
-$pdf->Cell(35, 5,'125486',1,0,'C');
-$pdf->Cell(85, 5,'Silver Plate',1,0,'C');
-$pdf->Cell(25, 5,'10',1,0,'C');
-$pdf->Cell(45, 5,'3,350.00',1,1,'R');
+$pdf->Cell(10, 5,'1',0,0,'C');
+$pdf->Cell(20, 5,'1801',0,0,'C');
+$pdf->Cell(45, 5,'C. F. Tops',0,0);
+$pdf->Cell(20, 5,'916KDM',0,0,'C');
+$pdf->Cell(15, 5,'4.8gm',0,0,'C');
+$pdf->Cell(25, 5,'2',0,0,'C');
+$pdf->Cell(25, 5,'100',0,0,'C');
+$pdf->Cell(30, 5,'13,440',0,1,'R');
 
-$pdf->Cell(35, 5,'928856',1,0,'C');
-$pdf->Cell(85, 5,'Silver Ring',1,0,'C');
-$pdf->Cell(25, 5,'20',1,0,'C');
-$pdf->Cell(45, 5,'4,850.00',1,1,'R');
+$pdf->Cell(10, 5,'2',0,0,'C');
+$pdf->Cell(20, 5,'1602',0,0,'C');
+$pdf->Cell(45, 5,'C. Rings',0,0);
+$pdf->Cell(20, 5,'916KDM',0,0,'C');
+$pdf->Cell(15, 5,'2.5gm',0,0,'C');
+$pdf->Cell(25, 5,'3',0,0,'C');
+$pdf->Cell(25, 5,'200',0,0,'C');
+$pdf->Cell(30, 5,'11,270',0,1,'R');
 
-$pdf->Cell(35, 5,'785246',1,0,'C');
-$pdf->Cell(85, 5,'Diamond Ring',1,0,'C');
-$pdf->Cell(25, 5,'22',1,0,'C');
-$pdf->Cell(45, 5,'5,050.00',1,1,'R');
+$pdf->Cell(120, 10,'',0,1);
 
-define('RUPEE',chr(8377));
-$pdf->Cell(30, 5,'',0,0);
-$pdf->Cell(90, 5,'',0,0,'C');
-$pdf->Cell(25, 5,'Subtotal',0,0);
-$pdf->Cell(5, 5,RUPEE,1,0);
-$pdf->Cell(40, 5,'13,200.00',1,1,'R');
+$pdf->SetFont('Courier', 'B',10);
+define('RUPEE',chr(8234));
+$pdf->Cell(25, 5,'',0,0);
+$pdf->Cell(25, 5,'',0,0,'C');
+$pdf->Cell(75, 5,'',0,0,'C');
+$pdf->Cell(35, 5,'Total Amount',0,0);
+$pdf->Cell(30, 5,'24,710.00',0,1,'R');
 
-$pdf->Cell(30, 5,'',0,0);
-$pdf->Cell(90, 5,'',0,0,'C');
-$pdf->Cell(25, 5,'Taxable',0,0);
-$pdf->Cell(5, 5,RUPEE,1,0);
-$pdf->Cell(40, 5,'-',1,1,'R');
+$pdf->SetFont('Courier', 'B',10);
+$pdf->Cell(25, 5,'Paid By Cash',0,0);
 
-$pdf->Cell(30, 5,'',0,0);
-$pdf->Cell(90, 5,'',0,0,'C');
-$pdf->Cell(25, 5,'VAT',0,0);
-$pdf->Cell(5, 5,RUPEE,1,0);
-$pdf->Cell(40, 5,'14%',1,1,'R');
+$pdf->SetFont('Courier', '',10);
+$pdf->SetFont('Courier', '',10);
+$pdf->Cell(25, 5,'16,000.00',0,0,'C');
+$pdf->Cell(75, 5,'',0,0,'C');
+$pdf->Cell(35, 5,'Discount Amount',0,0);
+$pdf->Cell(30, 5,'0.00',0,1,'R');
 
-$pdf->Cell(30, 5,'',0,0);
-$pdf->Cell(90, 5,'',0,0,'C');
-$pdf->Cell(25, 5,'Total',0,0);
-$pdf->Cell(5, 5,RUPEE,1,0);
-$pdf->Cell(40, 5,'15,050.00',1,1,'R');
+$pdf->Cell(25, 5,'',0,0);
+$pdf->Cell(25, 5,'',0,0,'C');
+$pdf->Cell(75, 5,'',0,0,'C');
+$pdf->Cell(35, 5,'VAT(14.5%)',0,0);
+$pdf->Cell(30, 5,'3,583.00',0,1,'R');
 
+$pdf->SetFont('Courier', 'B',10);
+$pdf->Cell(25, 5,'',0,0);
+$pdf->Cell(25, 5,'',0,0,'C');
+$pdf->Cell(75, 5,'',0,0,'C');
+$pdf->Cell(35, 5,'Net Total',0,0);
+$pdf->Cell(30, 5,'28,293.00',0,1,'R');
+
+$pdf->Cell(20, 10,'Remarks',0,0);
+$pdf->SetFont('Courier', '',10);
+$pdf->Cell(50, 10,'You are connecting with Us',0,1);
 
 
 
