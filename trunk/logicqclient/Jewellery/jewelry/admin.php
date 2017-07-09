@@ -969,8 +969,8 @@ if (!$_SESSION['logon']){
 					</ul>	
  
     <tr class ="success">
-	    <th class="pull-center">Purchase Id</th>
-		<th class="pull-center">Purchase Date</th>
+	    <th class="pull-center">Requsition Id</th>
+		<th class="pull-center">Requsition Date</th>
 		<th class="pull-center">Supplier Id</th>
 		<th class="pull-center">Supplier Name</th>
 		<th class="pull-center">Excepted Delivery Date</th>
@@ -981,7 +981,7 @@ if (!$_SESSION['logon']){
 	</tr>
 	
       <tr>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_REQUESTN_01</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>
@@ -990,7 +990,7 @@ if (!$_SESSION['logon']){
 		<td>Yet to review</td>
 		</tr>
 	 <tr>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_REQUESTN_01</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>
@@ -999,10 +999,10 @@ if (!$_SESSION['logon']){
 		<td>Yet to review</td>
 	</tr>
       <tr>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_REQUESTN_02</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
-        <td>Rakesh Mheta</td>
+        <td>Prashant Deo</td>
 		<td>02-June-2017</td>
 		<td>review</td>
 		<td>Yet to review</td>
@@ -1031,18 +1031,19 @@ if (!$_SESSION['logon']){
 					</ul>	
  
     <tr class ="success">
-	    <th class="pull-center">Purchase Id</th>
-		<th class="pull-center">Purchase Date</th>
+	    <th class="pull-center">Requsition Id</th>
+		<th class="pull-center">Requsition Date</th>
 		<th class="pull-center">Supplier Id</th>
 		<th class="pull-center">Supplier Name</th>
 		<th class="pull-center">Excepted Delivery Date</th>
 		<th class="pull-center">Invoice Id</th>
 		<th class="pull-center">Status</th>
 		<th class="pull-center">Comment</th>
+		<th class="pull-center">Download Invoice</th>
 	</tr>
 	
       <tr>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_REQUESTN_01</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>
@@ -1050,9 +1051,10 @@ if (!$_SESSION['logon']){
 		<td>DD/INV/004</td>
 		<td>inprogress</td>
 		<td>Place order by syx</td>
+		<td><a href="invoice_purchase.php?purchaseid=DD_REQUESTN_01&invoice=DD/INV/004&sellerid=Rakesh Mheta"><span class="glyphicon glyphicon-edit"></span>Download</a></td>
 		</tr>
 	 <tr>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_REQUESTN_01</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>
@@ -1060,16 +1062,18 @@ if (!$_SESSION['logon']){
 		<td>DD/INV/004</td>
 		<td>inprogress</td>
 		<td>Place order by syx</td>
+		<td><a href="invoice_purchase.php?purchaseid=DD_REQUESTN_01&invoice=DD/INV/004&sellerid=Rakesh Mheta"><span class="glyphicon glyphicon-edit"></span>Download</a></td>
 		</tr>
       <tr>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_REQUESTN_02</td>
         <td>30-May-2017</td>
-		<td>DDASADF</td>
-        <td>Rakesh Mheta</td>
+		<td>DDASAD2</td>
+        <td>Prashant Deo</td>
 		<td>02-June-2017</td>
-		<td>DD/INV/004</td>
+		<td>DD/INV/005</td>
 		<td>inprogress</td>
 		<td>Place order by syx</td>
+		<td><a href="invoice_purchase.php?purchaseid=DD_REQUESTN_02&invoice=DD/INV/005&sellerid=Prashant Deo"><span class="glyphicon glyphicon-edit"></span>Download</a></td>
 	</tr>
   </table>
 		</div>
@@ -1095,8 +1099,8 @@ if (!$_SESSION['logon']){
 					</ul>	
  
     <tr class ="success">
-	    <th class="pull-center">Purchase Id</th>
-		<th class="pull-center">Purchase Date</th>
+	    <th class="pull-center">Requsition Id</th>
+		<th class="pull-center">Requsition Date</th>
 		<th class="pull-center">Supplier Id</th>
 		<th class="pull-center">Supplier Name</th>
 		<th class="pull-center">Excepted Delivery Date</th>
@@ -1108,7 +1112,7 @@ if (!$_SESSION['logon']){
 	</tr>
 	
       <tr>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_REQUESTN_01</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>
@@ -1120,7 +1124,7 @@ if (!$_SESSION['logon']){
 		<td>Place order by syx</td>
 	 </tr>
 	 <tr>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_REQUESTN_01</td>
         <td>30-May-2017</td>
 		<td>DDASADF</td>
         <td>Rakesh Mheta</td>
@@ -1132,13 +1136,13 @@ if (!$_SESSION['logon']){
 		<td>Place order by syx</td>
 	 </tr>
        <tr>
-        <td>DD_PUARCHE_01</td>
+        <td>DD_REQUESTN_02</td>
         <td>30-May-2017</td>
-		<td>DDASADF</td>
-        <td>Rakesh Mheta</td>
+		<td>DDASAD2</td>
+        <td>Prashant Deo</td>
 		<td>02-June-2017</td>
 		<td>DD/INV/004</td>
-		<td>DD/PAY/123</td>
+		<td>DD/PAY/124</td>
 		<td>Pending</td>
 		<td>processed</td>
 		<td>Place order by syx</td>
@@ -1172,8 +1176,8 @@ if (!$_SESSION['logon']){
  
     <tr class ="success">
 	    <th class="pull-center">Recived Id</th>
-		<th class="pull-center">Purche Id</th>
-		<th class="pull-center">Purche Date</th>
+		<th class="pull-center">Requsition Id</th>
+		<th class="pull-center">Requsition Date</th>
 		<th class="pull-center">Quantity</th>
 		<th class="pull-center">Total Weight</th>
 		<th class="pull-center">Recived Date</th>
@@ -1184,7 +1188,7 @@ if (!$_SESSION['logon']){
 	</tr>
       <tr>
         <td>DDREC_123</td>
-        <td>DD_PUARCHE_02</td>
+        <td>DD_REQUESTN_01</td>
 		<td>30-May-2017</td>
         <td>10</td>
 		<td>100 mg</td>
@@ -1197,7 +1201,7 @@ if (!$_SESSION['logon']){
 	  </tr>
       <tr>
         <td>DDREC_124</td>
-        <td>DD_PUARCHE_02</td>
+        <td>DD_REQUESTN_01</td>
 		<td>30-May-2017</td>
         <td>10</td>
 		<td>100 mg</td>
@@ -1210,7 +1214,7 @@ if (!$_SESSION['logon']){
 	  </tr>
       <tr>
         <td>DDREC_125</td>
-        <td>DD_PUARCHE_02</td>
+        <td>DD_REQUESTN_02</td>
 		<td>30-May-2017</td>
         <td>10</td>
 		<td>100 mg</td>

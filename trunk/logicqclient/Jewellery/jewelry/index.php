@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
   <meta name="description" content="" />
-  <title>SB Jewellery Online Store</title>
+  <title>D & D Jewellery Online Store</title>
     
 
   <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
@@ -188,9 +188,9 @@
 
     <ul class="list-inline">
       <li class="top-logo">
-        <a id="site-title" href="index.php" title="Jewelry - Shopify theme">
+        <a id="site-title" href="index.php" title="D & D Jewellery Online Store">
           
-          <img class="img-responsive" src="assets/images/logo.png" alt="Jewelry " />
+          <img class="img-responsive" src="assets/images/logo.png" alt="D & D Jewellery Logo" />
           
         </a>
       </li>
@@ -1647,7 +1647,7 @@
   
 
     
-    <div class="copyright col-md-12">&copy; 2017 <a href="index.php">Jewelry </a>. All Rights Reserved.</div> 
+    <div class="copyright col-md-12">&copy; 2017 <a href="index.php">D & D Jewellery Online Store</a>. All Rights Reserved.</div> 
 
     
     

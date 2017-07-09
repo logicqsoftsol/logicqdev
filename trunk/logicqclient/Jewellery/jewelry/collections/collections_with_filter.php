@@ -7,9 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
   <link rel="canonical" href="sample-collection-with-left-slidebar.html" />  
   <link href='../assets/css/cssfamily_carrious.css' rel='stylesheet' type='text/css'>
+  <!--link type="text/css" rel="stylesheet" href="../assets/css/style.css">
+  <link type="text/css" rel="stylesheet" href="../assets/css/bootstrap.css"-->
   
   <meta name="description" content="" />
-<title>Popular Collections | SB Jewellery Online</title>
+<title>Popular Collections | D & D Jewellery Online Store</title>
  <meta property="og:image" content="../../cdn.shopify.com/s/files/1/0908/7252/t/2/assets/logoa67f.png?18416184091645500243" />
 <link href="../netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../assets/css/jquery.fancybox-buttonsa67f.css?18416184091645500243" rel="stylesheet" type="text/css" media="all" />
@@ -37,9 +39,84 @@
 <script src="../assets/js/jquery.isotope.mina67f.js?18416184091645500243" type="text/javascript"></script>
 <script src="../assets/js/jquery.fancybox-buttonsa67f.js?18416184091645500243" type="text/javascript"></script>
 <script src="../assets/js/jquery.zooma67f.js?18416184091645500243" type="text/javascript"></script>
-<script src="../assets/js/javascripts/currencies.js" type="text/javascript"></script>
+<!--script src="../assets/js/javascripts/currencies.js" type="text/javascript"></script-->
 <script src="../assets/js/jquery.currencies.mina67f.js?18416184091645500243" type="text/javascript"></script>
 <script src="../assets/js/cs.scripta67f.js?18416184091645500243" type="text/javascript"></script>
+<script src="../assets/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../assets/js/jquery.cookie.js"></script>
+<script>
+$(function(){
+    var default_view = 'grid'; // choose the view to show by default (grid/list)
+    
+    // check the presence of the cookie, if not create "view" cookie with the default view value
+    if($.cookie('view') !== 'undefined'){
+        $.cookie('view', default_view, { expires: 7, path: '/' });
+    } 
+    function get_grid(){
+        $('.list').removeClass('list-active');
+        $('.grid').addClass('grid-active');
+        $('.prod-cnt').animate({opacity:0},function(){
+            $('.prod-cnt').removeClass('prod-box-list');
+            $('.prod-cnt').addClass('prod-box');
+            $('.prod-cnt').stop().animate({opacity:1});
+        });
+    } // end "get_grid" function
+    function get_list(){
+        $('.grid').removeClass('grid-active');
+        $('.list').addClass('list-active');
+        $('.prod-cnt').animate({opacity:0},function(){
+            $('.prod-cnt').removeClass('prod-box');
+            $('.prod-cnt').addClass('prod-box-list');
+            $('.prod-cnt').stop().animate({opacity:1});
+        });
+    } // end "get_list" function
+
+    if($.cookie('view') == 'list'){ 
+        // we dont use the "get_list" function here to avoid the animation
+        $('.grid').removeClass('grid-active');
+        $('.list').addClass('list-active');
+        $('.prod-cnt').animate({opacity:0});
+        $('.prod-cnt').removeClass('prod-box');
+        $('.prod-cnt').addClass('prod-box-list');
+        $('.prod-cnt').stop().animate({opacity:1}); 
+    } 
+
+    if($.cookie('view') == 'grid'){ 
+        $('.list').removeClass('list-active');
+        $('.grid').addClass('grid-active');
+        $('.prod-cnt').animate({opacity:0});
+            $('.prod-cnt').removeClass('prod-box-list');
+            $('.prod-cnt').addClass('prod-box');
+            $('.prod-cnt').stop().animate({opacity:1});
+    }
+
+    $('#list').click(function(){   
+        $.cookie('view', 'list'); 
+        get_list()
+    });
+
+    $('#grid').click(function(){ 
+        $.cookie('view', 'grid'); 
+        get_grid();
+    });
+
+    /* filter */
+    $('.category-menu ul li').click(function(){
+        var CategoryID = $(this).attr('category');
+        $('.category-menu ul li').removeClass('cat-active');
+        $(this).addClass('cat-active');
+        
+        $('.prod-cnt').each(function(){
+            if(($(this).hasClass(CategoryID)) == false){
+               $(this).css({'display':'none'});
+            };
+        });
+        $('.'+CategoryID).fadeIn(); 
+        
+    });
+});
+</script>
+
 <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6016096938024&amp;cd[value]=0.00&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
 
   <link href="sample-collection-with-left-slidebar.atom" title="Feed" rel="alternate" type="application/atom+xml" />
@@ -58,7 +135,7 @@
   <div class="top row">
 
     <div class="col-md-6 phone-shopping">
-      <span>PHONE SHOPING (01) 123 456 UJ</span>
+      <span></span>
     </div>
 
     <div class="col-md-18">
@@ -109,7 +186,7 @@
 
     
   </li>
-  <li>/</li>
+  </li>
    
   <li class="register">
     <a href="../account/register.html" id="customer_register_link">Create an account</a>
@@ -140,9 +217,9 @@
 
     <ul class="list-inline">
       <li class="top-logo">
-        <a id="site-title" href="../index.html" title="Jewelry - Shopify theme">
+        <a id="site-title" href="../index.php" title="D & D Jewellery">
           
-          <img class="img-responsive" src="../assets/images/products/logoa67f.png?18416184091645500243" alt="SB Jewelley Site" />
+          <img class="img-responsive" src="../assets/images/logo.png" alt="D & D Jewellery Website" />
           
         </a>
       </li>
@@ -201,7 +278,7 @@
         
 
         <li class="is-mobile-cart">
-          <a href="../cart.html"><i class="fa fa-shopping-cart"></i></a>
+          <a href="../cart.php"><i class="fa fa-shopping-cart"></i></a>
         </li>
       </ul>
     </div>
@@ -288,7 +365,7 @@
       <li class="umbrella hidden-xs">			
         <div id="umbrella" class="list-inline unmargin">
           <div class="cart-link">
-            <a href="../cart.html" class="dropdown-toggle dropdown-link" data-toggle="dropdown">
+            <a href="../cart.php" class="dropdown-toggle dropdown-link" data-toggle="dropdown">
               <i class="sub-dropdown1"></i>
               <i class="sub-dropdown"></i>              
               <div class="num-items-in-cart">
@@ -372,7 +449,7 @@
   <div itemprop="breadcrumb" class="container">
     <div class="row">
       <div class="col-md-24">
-        <a href="../index.html" class="homepage-link" title="Back to the frontpage">Home</a>
+        <a href="../index.php" class="homepage-link" title="Back to the frontpage">Home</a>
         
         
         <span>/</span>
@@ -416,30 +493,21 @@
   
   <div class="container-nav clearfix">
 
+  
     <div id="options" class="container-nav clearfix">
-      <ul class="list-inline text-right">
-        
-        <!--li class="grid_list">
-          <ul class="list-inline option-set hidden-xs" data-option-key="layoutMode">
-            <li data-option-value="fitRows" id="goGrid" class="goAction btooltip active" data-toggle="tooltip" data-placement="top" title="Grid">
-              <span></span>
-            </li>
-            <li data-option-value="straightDown" id="goList" class="goAction btooltip" data-toggle="tooltip" data-placement="top" title="List">
-              <span></span>
-            </li>
-          </ul>
-        </li-->
-        
-
-        
-        <div class="sortBy">
-            <div id="sortButtonWarper" class="dropdown-toggle" data-toggle="dropdown">
-              <button id="sortButton">
+	
+		<ul class="list-inline text-right">
+         <div class="sortBy">
+          
+			<div id="sortButtonWarper" class="dropdown-toggle" data-toggle="dropdown">
+              	
+			<button id="sortButton">
                 <span class="name">Featured</span><i class="fa fa-caret-down"></i>
               </button>
               <i class="sub-dropdown1"></i>
               <i class="sub-dropdown"></i>
             </div>
+			
             <div id="sortBox" class="control-container dropdown-menu">
               <ul id="sortForm" class="list-unstyled option-set text-left list-styled" data-option-key="sortBy">
                 <li class="sort manual"><a href="indexd07c.html?sort_by=manual">Featured</a></li>
@@ -453,1535 +521,315 @@
               </ul>
             </div>
           </div>
-        
-
-      </ul>
-    </div>
+        </ul>
+		
+	</div>
+	
   </div>
 
   <div id="sandBox-wrapper" class="group-product-item row collection-full">
+  
+	<div class="view-cnt">
+            <div id="list" class="list "></div>
+            <div id="grid" class="grid"></div>
+    </div>
     <ul id="sandBox" class="list-unstyled">
       
       <li class="element first no_full_width" data-alpha="Curabitur cursus dignis" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
+         <ul class="row-container list-unstyled clearfix">
+				<li class="row-left">
+					<a href="productone.php" class="container_item">
+					<img src="../assets/images/products/2_119a31f2-2054-4483-93a3-841310e6bdfb_grande2b1c.jpg?v=1435561310" class="img-responsive" alt="Curabitur cursus dignis" />
+					</a>
 
-        <img src="../assets/images/products/2_119a31f2-2054-4483-93a3-841310e6bdfb_grande2b1c.jpg?v=1435561310" class="img-responsive" alt="Curabitur cursus dignis" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Curabitur cursus dignis</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>$200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
+				  <div class="hbw">
+					<span class="hoverBorderWrapper"></span>
+				  </div>
+				</li>
+			<li class="row-right parent-fly animMix">
+			  <div class="product-content-left">
+				<a class="title-5" href="productone.php">Product 1</a>
+				
+				  <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
+				
+			  </div>
+			  <div class="product-content-right">
+			  <div class="price-cnt">
+				<span class='money'>$200.00</span>
+				</div>
+			  </div>
+			  <p>
+				Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
+			  </p>
+			  <div class="hover-appear">
+				<form action="../cart.php" method="post">
+				  <div class="hide clearfix"> 
+					<select name="id" >
+					<option selected="selected" value="5141875779">Default Title</option>
+					 </select>
+				  </div>
+				  
+				  <div class="effect-ajax-cart">
+					<input type="hidden" name="quantity" value="1" />
+					<button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
+				  </div>        
+				</form>
+				<div class="product-ajax-qs hidden-xs hidden-sm">
+					<div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
+					  <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
+					</div>
+				</div>
+					<a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+			  </div>
+			</li>
+		</ul> 
 
       </li>
       
- <li class="element first no_full_width" data-alpha="product 3" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
+		<li class="element first no_full_width" data-alpha="Curabitur cursus dignis" data-price="20000">
+         <ul class="row-container list-unstyled clearfix">
+				<li class="row-left">
+					<a href="productone.php" class="container_item">
+					<img src="../assets/images/products/2_119a31f2-2054-4483-93a3-841310e6bdfb_grande2b1c.jpg?v=1435561310" class="img-responsive" alt="Curabitur cursus dignis" />
+					</a>
 
-        <img src="../assets/images/products/6_03a522d6-f36a-4f59-a815-bbade4d87a6e_grandec150.jpg?v=1435561310" class="img-responsive" alt="product 3" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">product 3</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>$200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
+				  <div class="hbw">
+					<span class="hoverBorderWrapper"></span>
+				  </div>
+				</li>
+			<li class="row-right parent-fly animMix">
+			  <div class="product-content-left">
+				<a class="title-5" href="productone.php">Product 1</a>
+				
+				  <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
+				
+			  </div>
+			  <div class="product-content-right">
+			  <div class="price-cnt">
+				<span class='money'>$200.00</span>
+				</div>
+			  </div>
+			  <p>
+				Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
+			  </p>
+			  <div class="hover-appear">
+				<form action="../cart.php" method="post">
+				  <div class="hide clearfix"> 
+					<select name="id" >
+					<option selected="selected" value="5141875779">Default Title</option>
+					 </select>
+				  </div>
+				  
+				  <div class="effect-ajax-cart">
+					<input type="hidden" name="quantity" value="1" />
+					<button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
+				  </div>        
+				</form>
+				<div class="product-ajax-qs hidden-xs hidden-sm">
+					<div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
+					  <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
+					</div>
+				</div>
+					<a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+			  </div>
+			</li>
+		</ul> 
 
       </li>
-          
-	<li class="element first no_full_width" data-alpha="Product 2" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/4_0fe2529b-f7ae-4ed5-a8ff-4fae623757f9_grande02fe.jpg?v=1435561310" class="img-responsive" alt="Product 2" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Product 2</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"Product 2","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"Product 2","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-          
-     
-      <li class="element first no_full_width" data-alpha="Curabitur cursus dignis" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/2_119a31f2-2054-4483-93a3-841310e6bdfb_grande2b1c.jpg?v=1435561310" class="img-responsive" alt="Curabitur cursus dignis" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Curabitur cursus dignis</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-      
- <li class="element first no_full_width" data-alpha="product 3" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/6_03a522d6-f36a-4f59-a815-bbade4d87a6e_grandec150.jpg?v=1435561310" class="img-responsive" alt="product 3" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">product 3</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-          
-	<li class="element first no_full_width" data-alpha="Product 2" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/4_0fe2529b-f7ae-4ed5-a8ff-4fae623757f9_grande02fe.jpg?v=1435561310" class="img-responsive" alt="Product 2" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Product 2</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"Product 2","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"Product 2","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-          
-     
-      <li class="element first no_full_width" data-alpha="Curabitur cursus dignis" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/2_119a31f2-2054-4483-93a3-841310e6bdfb_grande2b1c.jpg?v=1435561310" class="img-responsive" alt="Curabitur cursus dignis" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Curabitur cursus dignis</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-      
- <li class="element first no_full_width" data-alpha="product 3" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/6_03a522d6-f36a-4f59-a815-bbade4d87a6e_grandec150.jpg?v=1435561310" class="img-responsive" alt="product 3" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">product 3</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-          
-	<li class="element first no_full_width" data-alpha="Product 2" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/4_0fe2529b-f7ae-4ed5-a8ff-4fae623757f9_grande02fe.jpg?v=1435561310" class="img-responsive" alt="Product 2" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Product 2</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"Product 2","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"Product 2","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-          
-     
-      <li class="element first no_full_width" data-alpha="Curabitur cursus dignis" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/2_119a31f2-2054-4483-93a3-841310e6bdfb_grande2b1c.jpg?v=1435561310" class="img-responsive" alt="Curabitur cursus dignis" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Curabitur cursus dignis</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-      
- <li class="element first no_full_width" data-alpha="product 3" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/6_03a522d6-f36a-4f59-a815-bbade4d87a6e_grandec150.jpg?v=1435561310" class="img-responsive" alt="product 3" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">product 3</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-          
-	<li class="element first no_full_width" data-alpha="Product 2" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/4_0fe2529b-f7ae-4ed5-a8ff-4fae623757f9_grande02fe.jpg?v=1435561310" class="img-responsive" alt="Product 2" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Product 2</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"Product 2","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"Product 2","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-          
-     
-      <li class="element first no_full_width" data-alpha="Curabitur cursus dignis" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/2_119a31f2-2054-4483-93a3-841310e6bdfb_grande2b1c.jpg?v=1435561310" class="img-responsive" alt="Curabitur cursus dignis" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Curabitur cursus dignis</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-      
- <li class="element first no_full_width" data-alpha="product 3" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/6_03a522d6-f36a-4f59-a815-bbade4d87a6e_grandec150.jpg?v=1435561310" class="img-responsive" alt="product 3" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">product 3</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-          
-	<li class="element first no_full_width" data-alpha="Product 2" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/4_0fe2529b-f7ae-4ed5-a8ff-4fae623757f9_grande02fe.jpg?v=1435561310" class="img-responsive" alt="Product 2" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Product 2</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"Product 2","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"Product 2","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-          
-     
-      <li class="element first no_full_width" data-alpha="Curabitur cursus dignis" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/2_119a31f2-2054-4483-93a3-841310e6bdfb_grande2b1c.jpg?v=1435561310" class="img-responsive" alt="Curabitur cursus dignis" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Curabitur cursus dignis</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-      
- <li class="element first no_full_width" data-alpha="product 3" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/6_03a522d6-f36a-4f59-a815-bbade4d87a6e_grandec150.jpg?v=1435561310" class="img-responsive" alt="product 3" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">product 3</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"product 3","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"product 3","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
-
-      </li>
-          
-	<li class="element first no_full_width" data-alpha="Product 2" data-price="20000">
-          <ul class="row-container list-unstyled clearfix">
-    <li class="row-left">
-      <a href="productone.php" class="container_item">
-
-        <img src="../assets/images/products/4_0fe2529b-f7ae-4ed5-a8ff-4fae623757f9_grande02fe.jpg?v=1435561310" class="img-responsive" alt="Product 2" />
-
-        
-      </a>
-
-      <div class="hbw">
-        <span class="hoverBorderWrapper"></span>
-      </div>
-
-    </li>
-
-    <li class="row-right parent-fly animMix">
-	  <div class="product-content-left">
-        <a class="title-5" href="productone.php">Product 2</a>
-        
-          <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
-        
-      </div>
-      <div class="product-content-right">
-      <div class="product-price">
-        
-        
-        <span class="price">
-          
-          <span class='money'>Rs.200.00</span>
-          
-        </span>
-          
-         
-      </div>
-      </div>
-      <div class="list-mode-description">
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
-      </div>
-      <div class="hover-appear">
-        <form action="../cart.html" method="post">
-          
-          <div class="hide clearfix"> 
-            <select name="id" >
-              
-              
-              
-              
-              
-              <option selected="selected" value="5141875779">Default Title</option>
-              
-              
-              
-            </select>
-          </div>
-          
-          <div class="effect-ajax-cart">
-            
-            <input type="hidden" name="quantity" value="1" />
-            
-            <button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
-            
-            
-          </div>        
-        </form>
-       
-        
-        <div class="product-ajax-qs hidden-xs hidden-sm">
-            <div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
-              <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
-              <span class="product-json hide">{"id":1293239619,"title":"Product 2","handle":"curabitur-cursus-dignis-1","description":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e","published_at":"2015-06-29T00:22:00-04:00","created_at":"2015-06-29T00:22:38-04:00","vendor":"Vendor 2","type":"Hoodies Wear","tags":["Best Seller","Red","S","Sale Off","Under Rs.100"],"price":20000,"price_min":20000,"price_max":20000,"available":true,"price_varies":false,"compare_at_price":null,"compare_at_price_min":0,"compare_at_price_max":0,"compare_at_price_varies":false,"variants":[{"id":5141875779,"title":"Default Title","option1":"Default Title","option2":null,"option3":null,"sku":"","requires_shipping":true,"taxable":true,"featured_image":null,"available":true,"name":"Product 2","public_title":null,"options":["Default Title"],"price":20000,"weight":0,"compare_at_price":null,"inventory_quantity":9,"inventory_management":null,"inventory_policy":"deny","barcode":""}],"images":["\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/3_5e173faf-876b-4e2f-8e49-597207470817.jpg?v=1435561311","\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/4_5d375b4c-f42f-4a86-aa2f-ff4e0ead303f.jpg?v=1435561312"],"featured_image":"\/\/cdn.shopify.com\/s\/files\/1\/0908\/7252\/products\/2_119a31f2-2054-4483-93a3-841310e6bdfb.jpg?v=1435561310","options":["Title"],"content":"\u003cp\u003eNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum.\u003c\/p\u003e\n\u003cp\u003eTemporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, ut aliquid ex ea commodi consequatur.\u003c\/p\u003e"}</span>
-            </div>
-        </div>
-
-        
-          <a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
-          
-        
-      </div>
-    </li>
-  </ul> 
+	  
+	  <li class="element first no_full_width" data-alpha="Curabitur cursus dignis" data-price="20000">
+         <ul class="row-container list-unstyled clearfix">
+				<li class="row-left">
+					<a href="productone.php" class="container_item">
+					<img src="../assets/images/products/2_119a31f2-2054-4483-93a3-841310e6bdfb_grande2b1c.jpg?v=1435561310" class="img-responsive" alt="Curabitur cursus dignis" />
+					</a>
+
+				  <div class="hbw">
+					<span class="hoverBorderWrapper"></span>
+				  </div>
+				</li>
+			<li class="row-right parent-fly animMix">
+			  <div class="product-content-left">
+				<a class="title-5" href="productone.php">Product 1</a>
+				
+				  <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
+				
+			  </div>
+			  <div class="product-content-right">
+			  <div class="price-cnt">
+				<span class='money'>$200.00</span>
+				</div>
+			  </div>
+			  <p>
+				Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
+			  </p>
+			  <div class="hover-appear">
+				<form action="../cart.php" method="post">
+				  <div class="hide clearfix"> 
+					<select name="id" >
+					<option selected="selected" value="5141875779">Default Title</option>
+					 </select>
+				  </div>
+				  
+				  <div class="effect-ajax-cart">
+					<input type="hidden" name="quantity" value="1" />
+					<button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
+				  </div>        
+				</form>
+				<div class="product-ajax-qs hidden-xs hidden-sm">
+					<div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
+					  <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
+					</div>
+				</div>
+					<a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+			  </div>
+			</li>
+		</ul> 
 
       </li>
           
 
 	 
     </ul>
+  
+  
+        <!--div class="view-cnt">
+            <div id="list" class="list "></div>
+            <div id="grid" class="grid"></div>
+        </div>
+        <div class="clear"></div>
+
+        <!-- change the "cat-1", "cat-2", "cat-3" with your "Categories ID">
+        <div class="prod-box cat-1" >
+		<div class="element first no_full_width">
+         <ul class="row-container list-unstyled clearfix">
+				<li class="row-left">
+					<a href="productone.php" class="container_item">
+					<img src="../assets/images/products/2_119a31f2-2054-4483-93a3-841310e6bdfb_grande2b1c.jpg?v=1435561310" class="img-responsive" alt="Curabitur cursus dignis" />
+					</a>
+
+				  <div class="hbw">
+					<span class="hoverBorderWrapper"></span>
+				  </div>
+				</li>
+			<li class="row-right parent-fly animMix">
+			  <div class="product-content-left">
+				<a class="title-5" href="productone.php">Product 1</a>
+				
+				  <span class="shopify-product-reviews-badge" data-id="1293239619"></span>
+				
+			  </div>
+			  <div class="product-content-right">
+			  <div class="price-cnt">
+				<span class='money'>$200.00</span>
+				</div>
+			  </div>
+			  <p>
+				Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis amet voluptas assumenda est, omnis dolor repellendus quis nostrum. Temporibus autem quibusdam et aut officiis debitis aut rerum dolorem necessitatibus saepe eveniet ut et neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed...
+			  </p>
+			  <div class="hover-appear">
+				<form action="../cart.php" method="post">
+				  <div class="hide clearfix"> 
+					<select name="id" >
+					<option selected="selected" value="5141875779">Default Title</option>
+					 </select>
+				  </div>
+				  
+				  <div class="effect-ajax-cart">
+					<input type="hidden" name="quantity" value="1" />
+					<button class="add-to-cart" type="submit" name="add"><i class="fa fa-shopping-cart"></i><span class="list-mode">Add to Cart</span></button>
+				  </div>        
+				</form>
+				<div class="product-ajax-qs hidden-xs hidden-sm">
+					<div data-handle="curabitur-cursus-dignis-1" data-target="#quick-shop-modal" class="quick_shop" data-toggle="modal">
+					  <i class="fa fa-eye" title="Quick view"></i><span class="list-mode">Quick View</span>
+					</div>
+				</div>
+					<a class="wish-list" href="../account/login.html" title="wish list"><i class="fa fa-heart"></i><span class="list-mode">Add to Wishlist</span></a>
+			  </div>
+			</li>
+		</ul> 
+		</div>           
+        </div><!-- end product box prod-box >
+
+        <div class="prod-box shadow cat-2">
+            <img src="img/product2.jpg">
+            <div class="buy-ico"></div>
+            <h3>
+                <a href="#">Feather Dress With Embellished Lace Top</a>
+            </h3>
+            <div class="price-cnt">
+                <div class="price old">$165.00</div>
+                <div class="price">$99.00</div>
+            </div>
+            <p>
+                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
+            </p>
+        </div>
+
+        <div class="prod-box">
+            <img src="img/product4.jpg">
+            <div class="buy-ico"></div>
+            <h3>
+                <a href="#">Feather Dress With Embellished Lace Top</a>
+            </h3>
+            <div class="price-cnt">
+                <div class="price old">$96.00</div>
+                <div class="price">$45.00</div>
+            </div>
+            <p>
+                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
+            </p>
+        </div><!-- end product box prod-box >
+
+        <div class="prod-box shadow cat-4">
+            <img src="img/product2.jpg">
+            <div class="buy-ico"></div>
+            <h3>
+                <a href="#">Feather Dress With Embellished Lace Top</a>
+            </h3>
+            <div class="price-cnt">
+                <div class="price old">$95.00</div>
+                <div class="price">$55.00</div>
+            </div>
+            <p>
+                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
+            </p>
+        </div>
+
+        <div class="prod-cnt prod-box shadow cat-1">
+            <img src="img/product3.jpg">
+            <div class="buy-ico"></div>
+            <h3>
+                <a href="#">Feather Dress With Embellished Lace Top</a>
+            </h3>
+            <div class="price-cnt">
+                <div class="price old">$95.00</div>
+                <div class="price">$55.00</div>
+            </div>
+            <p>
+                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
+            </p>
+
+        </div> 
+
+
+        <div class="prod-cnt prod-box shadow cat-2" >
+            <img src="img/product4.jpg">
+            <div class="buy-ico"></div>
+            <h3>
+                <a href="#">Feather Dress With Embellished Lace Top</a>
+            </h3>
+            <div class="price-cnt">
+                <div class="price old">$95.00</div>
+                <div class="price">$55.00</div>
+            </div>
+            <p>
+                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
+            </p>
+
+        </div-->  
+  
   </div>
 
 </div>
@@ -1991,41 +839,12 @@
 <div id="prodcoll" class="left-slidebar col-xs-24 col-sm-6">
   <div class="group_sidebar">
   
-  
-  
   <div class="sb-wrapper">
   
  <!-- filter tags group -->
 <div class="filter-tag-group">
   <h6 class="sb-title">Filter</h6>
   
-	<!-- tags groupd 1 -->
-	
-	
-	
-	<div class="tag-group" id="coll-filter-1">
-	<p class="title">Show results for Jewellery</p> 
-		<ul >
-		    <li style="margin-left: -2px">
-                      <a href="#">Women</a>
-            </li>
-			<li style="margin-left: -2px">
-                      <a href="#">Men</span></a>
-            </li>
-			<li style="margin-left: -2px">
-                      <a href="#">Boys</span></a>
-            </li>
-			<li style="margin-left: -2px">
-                      <a href="#">Girls</span></a>
-            </li>
-			<li style="margin-left: -2px">
-                      <a href="#">Kids</span></a>
-            </li>
-            
-        </ul>
-
-	</div>
-	
 	<!-- tags groupd 2 -->
 	<div class="tag-group" id="coll-filter-2">
 	<p class="title">Color</p>
@@ -2156,51 +975,9 @@
     </li>
   </ul>
 </div>
-   
-<div class="sb-wrapper left-sample-block">
-    <h6 class="sb-title">Stone</h6>
-    <ul class="list-unstyled sb-content list-styled">
-       <li style="margin-left: -2px">
-		<a href="#" >
-		<img height="11" width="11" border="0" align="bottom"
-                    alt="American Diamond" src="../assets/images/checkbox_unselected_enabled._CB341434301_.png" />
-             &#8202;<span >American Diamond</span>
-          </a>
-      </li>
-       <li style="margin-left: -2px">
-		<a href="#" >
-		<img height="11" width="11" border="0" align="bottom"
-                    alt="Crystal" src="../assets/images/checkbox_unselected_enabled._CB341434301_.png" />
-             &#8202;<span >Crystal</span>
-          </a>
-      </li>
-	  <li style="margin-left: -2px">
-		<a href="#" >
-		<img height="11" width="11" border="0" align="bottom"
-                    alt="Cubic Zirconia" src="../assets/images/checkbox_unselected_enabled._CB341434301_.png" />
-             &#8202;<span >Cubic Zirconia</span>
-          </a>
-      </li>
-	  <li style="margin-left: -2px">
-		<a href="#" >
-		<img height="11" width="11" border="0" align="bottom"
-                    alt="Diamond" src="../assets/images/checkbox_unselected_enabled._CB341434301_.png" />
-             &#8202;<span >Diamond</span>
-          </a>
-      </li>
-	  <li style="margin-left: -2px">
-		<a href="#" >
-		<img height="11" width="11" border="0" align="bottom"
-                    alt="Emerald" src="../assets/images/checkbox_unselected_enabled._CB341434301_.png" />
-             &#8202;<span >Emerald</span>
-          </a>
-      </li>
-     </ul>
-  </div>
  
-  
-  <div class="sb-wrapper left-sample-block">
-    <h6 class="sb-title">Discount</h6>
+ <!--div class="home-collection-wrapper sb-wrapper clearfix">
+   <h6 class="sb-title">Discount</h6>
     <ul class="list-unstyled sb-content list-styled">
       <li style="margin-left: -2px">
                       <a href="#"><span >10% Off or more</span></a>
@@ -2215,9 +992,8 @@
                       <a href="#"><span >50% Off or more</span></a>
       </li>
     </ul>
-  </div>
-  
-  <div class="sb-wrapper left-sample-block">
+  </div-->
+<div class="sb-wrapper left-sample-block">
     <h6 class="sb-title">New Arrivals</h6>
     <ul class="list-unstyled sb-content list-styled">
       
@@ -2259,8 +1035,9 @@
       </li>
       
     </ul>
-  </div>
-  <div class="sb-wrapper left-sample-block">
+</div>
+
+<div class="sb-wrapper left-sample-block">
     <h6 class="sb-title">Availablity</h6>
     <ul class="list-unstyled sb-content list-styled">
       
@@ -2273,12 +1050,9 @@
       
     </ul>
   </div>
-  
-  
-  
-  <!--End sb-item-->   
-  
 
+
+<!--End sb-item-->   
 </div><!--end group_sidebar-->
 </div>
 
@@ -2341,19 +1115,19 @@ $(document).ready(function() {
         <ul class="list-unstyled list-styled">
           
           <li class="list-unstyled">
-            <a href="../index.html">Store Locations</a>
+            <a href="../index.php">Store Locations</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Whosesalers</a>
+            <a href="../index.php">Whosesalers</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Map Site</a>
+            <a href="../index.php">Map Site</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Contact Us</a>
+            <a href="../index.php">Contact Us</a>
           </li>
           
         </ul>
@@ -2371,19 +1145,19 @@ $(document).ready(function() {
         <ul class="list-unstyled list-styled">
           
           <li class="list-unstyled">
-            <a href="../index.html">Help &amp; FAQs</a>
+            <a href="../index.php">Help &amp; FAQs</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Advance Search</a>
+            <a href="../index.php">Advance Search</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Gift Cards</a>
+            <a href="../index.php">Gift Cards</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Shop By Brands</a>
+            <a href="../index.php">Shop By Brands</a>
           </li>
           
         </ul>
@@ -2401,19 +1175,19 @@ $(document).ready(function() {
         <ul class="list-unstyled list-styled">
           
           <li class="list-unstyled">
-            <a href="../index.html">Preferences</a>
+            <a href="../index.php">Preferences</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Order History</a>
+            <a href="../index.php">Order History</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Cart Page</a>
+            <a href="../index.php">Cart Page</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Sign In</a>
+            <a href="../index.php">Sign In</a>
           </li>
           
         </ul>
@@ -2435,15 +1209,15 @@ $(document).ready(function() {
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Return Policy</a>
+            <a href="../index.php">Return Policy</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Privacy Policy</a>
+            <a href="../index.php">Privacy Policy</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Help &amp; Contact</a>
+            <a href="../index.php">Help &amp; Contact</a>
           </li>
           
         </ul>
@@ -2458,7 +1232,7 @@ $(document).ready(function() {
   
 
     
-    <div class="copyright col-md-12">&copy; 2017 <a href="../index.html">Jewelry - Shopify theme</a>. All Rights Reserved.</div> 
+    <div class="copyright col-md-12">&copy; 2017 <a href="../index.php">D & D Jewellery</a>. All Rights Reserved.</div> 
 
     
     
@@ -2627,7 +1401,7 @@ $(document).ready(function() {
                 </ul>
               </div> 
               
-              <form action="../cart.html" method="post" class="variants" id="quick-shop-product-actions" enctype="multipart/form-data">
+              <form action="../cart.php" method="post" class="variants" id="quick-shop-product-actions" enctype="multipart/form-data">
                 
                 <div id="quick-shop-price-container" class="detail-price"></div>
 
