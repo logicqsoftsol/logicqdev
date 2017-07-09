@@ -9,7 +9,7 @@
   <link href='../assets/css/cssfamily_carrious.css' rel='stylesheet' type='text/css'>
   
   <meta name="description" content="" />
-<title>Popular Collections | SB Jewellery Online</title>
+<title>Popular Collections | D & D Jewellery Online</title>
  <meta property="og:image" content="../../cdn.shopify.com/s/files/1/0908/7252/t/2/assets/logoa67f.png?18416184091645500243" />
 <link href="../netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../assets/css/jquery.fancybox-buttonsa67f.css?18416184091645500243" rel="stylesheet" type="text/css" media="all" />
@@ -140,9 +140,9 @@
 
     <ul class="list-inline">
       <li class="top-logo">
-        <a id="site-title" href="../index.html" title="Jewelry - Shopify theme">
+        <a id="site-title" href="../index.php" title="D & D Jewellery">
           
-          <img class="img-responsive" src="../assets/images/products/logoa67f.png?18416184091645500243" alt="SB Jewelley Site" />
+          <img class="img-responsive" src="../assets/images/logo.png" alt="D & D Jewellery Logo" />
           
         </a>
       </li>
@@ -372,7 +372,7 @@
   <div itemprop="breadcrumb" class="container">
     <div class="row">
       <div class="col-md-24">
-        <a href="../index.html" class="homepage-link" title="Back to the frontpage">Home</a>
+        <a href="../index.php" class="homepage-link" title="Back to the frontpage">Home</a>
         
         
         <span>/</span>
@@ -726,19 +726,19 @@
         <ul class="list-unstyled list-styled">
           
           <li class="list-unstyled">
-            <a href="../index.html">Store Locations</a>
+            <a href="../index.php">Store Locations</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Whosesalers</a>
+            <a href="../index.php">Whosesalers</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Map Site</a>
+            <a href="../index.php">Map Site</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Contact Us</a>
+            <a href="../index.php">Contact Us</a>
           </li>
           
         </ul>
@@ -756,19 +756,19 @@
         <ul class="list-unstyled list-styled">
           
           <li class="list-unstyled">
-            <a href="../index.html">Help &amp; FAQs</a>
+            <a href="../index.php">Help &amp; FAQs</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Advance Search</a>
+            <a href="../index.php">Advance Search</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Gift Cards</a>
+            <a href="../index.php">Gift Cards</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Shop By Brands</a>
+            <a href="../index.php">Shop By Brands</a>
           </li>
           
         </ul>
@@ -786,19 +786,19 @@
         <ul class="list-unstyled list-styled">
           
           <li class="list-unstyled">
-            <a href="../index.html">Preferences</a>
+            <a href="../index.php">Preferences</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Order History</a>
+            <a href="../index.php">Order History</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Cart Page</a>
+            <a href="../index.php">Cart Page</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Sign In</a>
+            <a href="../index.php">Sign In</a>
           </li>
           
         </ul>
@@ -820,15 +820,15 @@
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Return Policy</a>
+            <a href="../index.php">Return Policy</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Privacy Policy</a>
+            <a href="../index.php">Privacy Policy</a>
           </li>
           
           <li class="list-unstyled">
-            <a href="../index.html">Help &amp; Contact</a>
+            <a href="../index.php">Help &amp; Contact</a>
           </li>
           
         </ul>
@@ -843,7 +843,7 @@
   
 
     
-    <div class="copyright col-md-12">&copy; 2017 <a href="../index.html">Jewelry - Shopify theme</a>. All Rights Reserved.</div> 
+    <div class="copyright col-md-12">&copy; 2017 <a href="../index.php">Jewelry - Shopify theme</a>. All Rights Reserved.</div> 
 
     
     

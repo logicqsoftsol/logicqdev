@@ -185,7 +185,7 @@ var __st={"a":9087252,"offset":-14400,"reqid":"18f9e381-6a77-4cd1-bda7-139f27156
             1
           </td>
           <td class="product__price">
-            <span class="order-summary__emphasis">$259.00</span>
+            <span class="order-summary__emphasis">Rs. 259.00</span>
           </td>
         </tr>
         <tr class="product" data-product-id="1293234819" data-variant-id="3947644611" data-product-type="Hoodies Wear">
@@ -207,7 +207,7 @@ var __st={"a":9087252,"offset":-14400,"reqid":"18f9e381-6a77-4cd1-bda7-139f27156
             1
           </td>
           <td class="product__price">
-            <span class="order-summary__emphasis">$200.00</span>
+            <span class="order-summary__emphasis">Rs. 200.00</span>
           </td>
         </tr>
       </tbody>
@@ -236,7 +236,7 @@ var __st={"a":9087252,"offset":-14400,"reqid":"18f9e381-6a77-4cd1-bda7-139f27156
           <td class="total-line__name">Subtotal</td>
           <td class="total-line__price">
             <span class="order-summary__emphasis" data-checkout-subtotal-price-target="45900">
-              $459.00
+              Rs. 459.00
             </span>
           </td>
         </tr>
@@ -254,7 +254,7 @@ var __st={"a":9087252,"offset":-14400,"reqid":"18f9e381-6a77-4cd1-bda7-139f27156
           <tr class="total-line total-line--taxes hidden" data-checkout-taxes="">
             <td class="total-line__name">Taxes</td>
             <td class="total-line__price">
-              <span class="order-summary__emphasis" data-checkout-total-taxes-target="0">$0.00</span>
+              <span class="order-summary__emphasis" data-checkout-total-taxes-target="0">Rs. 0.00</span>
             </td>
           </tr>
 
@@ -265,9 +265,9 @@ var __st={"a":9087252,"offset":-14400,"reqid":"18f9e381-6a77-4cd1-bda7-139f27156
           <span class="payment-due-label__total">Total</span>
         </td>
         <td class="total-line__price payment-due">
-          <span class="payment-due__currency">USD</span>
+          
           <span class="payment-due__price" data-checkout-payment-due-target="45900">
-            $459.00
+            Rs. 459.00
           </span>
         </td>
       </tr>
